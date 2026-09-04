@@ -17,6 +17,23 @@ shoot() { # src w h out [scale]
 # 1200x630 Open Graph card
 shoot "$ROOT/tools/og-render.html" 1200 630 "$ROOT/assets/og.png"
 
+# Per-page Open Graph cards
+urlenc() { python3 -c 'import sys,urllib.parse;print(urllib.parse.quote(sys.argv[1]))' "$1"; }
+card() { # out title kicker sub
+  shoot "$ROOT/tools/og-render.html?t=$(urlenc "$2")&k=$(urlenc "$3")&s=$(urlenc "$4")" \
+    1200 630 "$ROOT/assets/$1"
+}
+card og-ventures.png "Every venture runs on the same factory core." "VENTURE REGISTRY" \
+  "Each keeps its own brand, customers, data boundaries and economics."
+card og-system.png "Three layers. One factory." "SYSTEM / ARCHITECTURE" \
+  "A shared core, venture services built on it, and isolated ventures."
+card og-thesis.png "The company is becoming software." "THESIS / WORKING PAPER" \
+  "What changes when coordination costs fall toward the cost of compute."
+card og-about.png "An independent AI-native venture studio." "ABOUT / FZ" \
+  "Not a fund, an accelerator or an agency."
+card og-enter.png "Enter Factory Zero" "ACCESS REQUEST" \
+  "Build with us, invest, partner or join. A human reads every request."
+
 # README banner, rendered at 2x so it stays crisp on retina
 shoot "$ROOT/tools/banner-render.html" 1280 400 "$ROOT/assets/readme-banner.png" 2
 

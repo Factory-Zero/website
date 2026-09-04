@@ -397,9 +397,3 @@
     requestAnimationFrame(draw);
   }
 })();
-
-/* Footer year — kept out of the main IIFE so it still runs if FZ_DATA is missing. */
-(function () {
-  var y = document.getElementById('fz-year');
-  if (y) y.textContent = String(new Date().getFullYear());
-})();

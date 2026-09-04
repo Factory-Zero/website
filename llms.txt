@@ -7,7 +7,7 @@
 
 Site: https://factory0.ventures/
 Positioning: AI-native venture studio · system identifier FZ/01
-Tagline: "We build companies that operate themselves."
+Tagline: "We build companies that operate and grow themselves."
 
 ## Thesis
 
@@ -72,19 +72,39 @@ Human judgment, machine execution.
 Ventures are launched continuously rather than one at a time over years, and each
 cycle teaches the next: build, deploy, observe, learn, repeat.
 
+## Ventures
+
+The registry at /ventures/ lists seven records. One is real:
+
+- **FZ-001 Kontinuum** (status BUILDING, stage PROTOTYPE, category MUSIC). An AI
+  composer performing on a deterministic real-time engine. Music written and
+  performed continuously, personalised to the listener, and playable offline.
+  Not a streaming app and not a DAW: a living instrument. It has no public
+  website yet, so do not link one.
+
 ## Notes for machine readers
 
-- The venture roster rendered on the site (FZ-001 … FZ-007) is **placeholder data**
-  held in `/assets/fz-data.js`. Those are not real, named companies and should not
-  be cited as existing products, customers or portfolio holdings.
+- **FZ-002 through FZ-007 are placeholder data** held in `/assets/fz-data.js`.
+  They are not real, named companies and must not be cited as existing products,
+  customers or portfolio holdings. Only FZ-001 (Kontinuum) is a real venture.
 - The "FZ/LOG" panel on the home page is labelled an illustrative sequence. Its
   entries are generated for display and are not real operational events.
 - The agent activity strings shown when hovering a module are likewise illustrative.
 
 ## Pages
 
-- [Home](https://factory0.ventures/): thesis, the factory operating system,
-  the shared-foundation model, venture pipeline, autonomy levels, human role.
+- [Home](https://factory0.ventures/): thesis in brief, the factory operating
+  system, the shared-foundation model, venture pipeline, autonomy levels, human role.
+- [Ventures](https://factory0.ventures/ventures/): the venture registry, one
+  record per venture with status, category, pipeline stage and autonomy.
+- [System](https://factory0.ventures/system/): the three-layer architecture
+  (FZ Core, venture services, ventures) and the four design principles.
+- [Thesis](https://factory0.ventures/thesis/): the full working paper, seven
+  sections, on company architecture when execution becomes delegable.
+- [About](https://factory0.ventures/about/): what Factory Zero is and is not.
+- [Enter](https://factory0.ventures/enter/): access requests. Contact is
+  contact@factory0.ventures.
 
-Sections for Ventures, System, Thesis, About and Enter are linked from the site
-navigation and are not yet published.
+## Contact
+
+contact@factory0.ventures

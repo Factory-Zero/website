@@ -1,9 +1,10 @@
 <p align="center">
-  <img src="assets/readme-banner.png" alt="Factory Zero. We build companies that operate themselves." width="100%">
+  <img src="assets/readme-banner.png" alt="Factory Zero. We build companies that operate and grow themselves." width="100%">
 </p>
 
 <p align="center">
   <img src="https://img.shields.io/badge/STATUS-PRE--LAUNCH-FF5A36?style=flat-square&labelColor=0A0A0B" alt="Status: pre-launch">
+  <img src="https://img.shields.io/badge/PAGES-6-EDEBE6?style=flat-square&labelColor=0A0A0B" alt="Pages: 6">
   <img src="https://img.shields.io/badge/STACK-VANILLA%20JS-EDEBE6?style=flat-square&labelColor=0A0A0B" alt="Stack: vanilla JS">
   <img src="https://img.shields.io/badge/BUILD%20STEP-NONE-EDEBE6?style=flat-square&labelColor=0A0A0B" alt="Build step: none">
   <img src="https://img.shields.io/badge/DEPENDENCIES-ZERO-FF5A36?style=flat-square&labelColor=0A0A0B" alt="Dependencies: zero">
@@ -52,6 +53,13 @@ security, experimentation and internal tooling are all shared.
 Each venture still holds its own brand, product, customers, data boundaries,
 strategy, economics and P&L.
 
+### First venture
+
+**FZ-001 Kontinuum.** An AI composer performing on a deterministic real-time
+engine. Music written and performed continuously, personalised to the listener,
+and playable offline. Not a streaming app and not a DAW: a living instrument.
+Currently at prototype stage, with no public surface yet.
+
 ### Signal to company, as a production line
 
 ```
@@ -97,28 +105,37 @@ unchanged.
 ### Layout
 
 ```
-index.html              home page, all prose is static HTML
+index.html              home
+ventures/index.html     the venture registry
+system/index.html       three-layer architecture + design principles
+thesis/index.html       the working paper, 7 sections
+about/index.html        what Factory Zero is and is not
+enter/index.html        access request
 404.html                styled not-found page
 assets/
-  fz.css                design tokens and all component styles
-  fz-data.js            ← content lives here (ventures, agent layers, log pool)
-  fz-app.js             hero canvas, rolling log, agent rotation
-  favicon.svg           source icon
-  og.png                1200x630 Open Graph card (generated)
+  fz.css                design tokens and every component style
+  fz-data.js            ← venture data lives here (single source of truth)
+  fz-common.js          loaded on every page
+  fz-app.js             home: hero canvas, rolling log, agent rotation
+  fz-ventures.js        registry selection
+  fz-enter.js           access-request form
+  kontinuum-animated.svg  FZ-001 brand mark (animated, self-contained)
+  favicon.svg
+  og.png, og-*.png      per-page 1200x630 Open Graph cards (generated)
   readme-banner.png     the banner above (generated)
-  apple-touch-icon.png  180x180 (generated)
-  icon-512.png          512x512 (generated)
+  apple-touch-icon.png, icon-512.png
 robots.txt              allows AI and answer-engine crawlers explicitly
-sitemap.xml
+sitemap.xml             all six pages
 llms.txt                plain-text summary for machine readers
 site.webmanifest
 _headers                Cloudflare Pages response headers
 .well-known/
   security.txt          RFC 9116
 tools/
-  og-render.html        source for og.png
-  banner-render.html    source for readme-banner.png
-  render-og.sh          regenerates all raster assets
+  og-render.html        OG card template (takes ?t=&k=&s= overrides)
+  banner-render.html    README banner
+  render-og.sh          regenerates every raster asset
+  sync-ventures.js      writes fz-data.js into the static HTML
 ```
 
 ### Run it locally
@@ -138,6 +155,12 @@ Nearly everything is data:
 - **`assets/fz-data.js`** holds `ventures`, `layers` (the agent grid) and
   `logPool` (the FZ/LOG strings). Add real ventures there. The pipeline, the
   branch list and the hero counters all derive from that array.
+- **After editing `ventures`, run `node tools/sync-ventures.js`.** The registry
+  rows and the default detail panel are written into `ventures/index.html` and
+  `system/index.html` as static HTML so they are indexable with JavaScript off.
+  That script regenerates them from `fz-data.js`, which stays the only place
+  venture data is authored. It only rewrites the regions between the
+  `<!-- fz:*:start -->` / `<!-- fz:*:end -->` markers.
 - **`window.FZ_CONFIG`** at the bottom of the same file holds the headline,
   factory status, venture count and agent-network number. These mirror the
   editable `data-props` from the design source.
@@ -159,7 +182,9 @@ it silently falls back to its internal renderer and drops colour.
 | `llms.txt` | Structured plain-text summary for LLM readers |
 | `robots.txt` | Explicit allow for GPTBot, ClaudeBot, PerplexityBot, Google-Extended and others |
 | JSON-LD in `index.html` | `Organization`, `WebSite`, `WebPage`, and a `DefinedTermSet` for the autonomy levels |
-| `og.png` | 1200x630 card, generated from the real hero visual |
+| `og.png`, `og-*.png` | A 1200x630 card per page, generated from the real hero visual |
+| JSON-LD per page | Page type plus `BreadcrumbList`; the thesis also emits an `Article` |
+| Directory-style URLs | `/ventures/` rather than `/ventures.html`, so nothing needs redirecting later |
 | `.well-known/security.txt` | RFC 9116 contact |
 
 ### Deviations from the design source
@@ -179,20 +204,27 @@ preview runtime:
    `min-width: 0` on grid tracks. Verified: no horizontal overflow from 320px
    to 1440px.
 
-### Not yet implemented
+### The access-request form
 
-The navigation links to `/ventures/`, `/system/`, `/thesis/`, `/about/` and
-`/enter/`. Those five pages exist in the Claude Design project
-(`Ventures.dc.html`, `System.dc.html`, `Thesis.dc.html`, `About.dc.html`,
-`Enter.dc.html`) but have **not** been implemented here. Only the home page was
-in scope. They currently resolve to `404.html`.
+`/enter/` has no backend. Rather than fake a submission the way the design
+prototype did, the form composes a real `mailto:contact@factory0.ventures`
+with the channel, name, email and message pre-filled, and says plainly that
+nothing left the page on its own. The address is also shown directly under the
+form. Swap in a Cloudflare Pages Function later if you want true server-side
+handling.
 
-### Placeholder data
+### Venture data: one real, six placeholders
 
-`FZ-001` through `FZ-007` in `assets/fz-data.js` are placeholders, not real
-companies. The FZ/LOG panel is labelled an illustrative sequence and its
-entries are generated for display. `llms.txt` states both explicitly so answer
-engines do not cite them as real portfolio holdings. Replace before launch.
+`FZ-001 Kontinuum` is a real venture: an AI composer performing on a
+deterministic real-time engine. It has no public website yet, so its record
+deliberately shows `NO PUBLIC SURFACE YET` and its `autonomy` is `null`, which
+renders as an em dash rather than an invented percentage. Set a figure in
+`fz-data.js` when there is one.
+
+`FZ-002` through `FZ-007` are still placeholders, and the FZ/LOG panel on the
+home page is labelled an illustrative sequence. `llms.txt` states both
+explicitly so answer engines do not cite them as real portfolio holdings.
+Replace before launch.
 
 ### Deployment
 

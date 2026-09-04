@@ -32,16 +32,25 @@
   <div class="content">
     <div class="top">
       <div class="mark"><span>FACTORY ZER</span><span class="o"></span></div>
-      <div class="kind">AI-NATIVE VENTURE STUDIO</div>
+      <div class="kind" id="kind">AI-NATIVE VENTURE STUDIO</div>
     </div>
-    <div class="mid"><h1>We build companies that operate themselves.</h1></div>
+    <div class="mid"><h1 id="title">We build companies that operate and grow themselves.</h1></div>
     <div class="bottom">
-      <div class="sub">Creating and operating companies through a shared network of autonomous agents.</div>
+      <div class="sub" id="sub">Creating and operating companies through a shared network of autonomous agents.</div>
       <div>FACTORY0.VENTURES · FZ/01</div>
     </div>
   </div>
   <div class="rule"></div>
 </div>
+<script>
+// Per-page overrides: ?t=title&k=kicker&s=subline
+(function () {
+  var q = new URLSearchParams(location.search);
+  if (q.get('t')) document.getElementById('title').textContent = q.get('t');
+  if (q.get('k')) document.getElementById('kind').textContent = q.get('k');
+  if (q.get('s')) document.getElementById('sub').textContent = q.get('s');
+})();
+</script>
 <script>
 // Frozen frame of the hero network from assets/fz-app.js, at p = 0.72 ("SYSTEM RUNNING").
 (function () {
