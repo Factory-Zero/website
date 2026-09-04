@@ -136,6 +136,7 @@ tools/
   banner-render.html    README banner
   render-og.sh          regenerates every raster asset
   sync-ventures.js      writes fz-data.js into the static HTML
+  build-dist.sh         assembles dist/ (allowlist + cache-bust stamping)
 ```
 
 ### Run it locally
@@ -213,7 +214,7 @@ nothing left the page on its own. The address is also shown directly under the
 form. Swap in a Cloudflare Pages Function later if you want true server-side
 handling.
 
-### Venture data: one real, six placeholders
+### Venture data
 
 `FZ-001 Kontinuum` is a real venture: an AI composer performing on a
 deterministic real-time engine. It has no public website yet, so its record
@@ -221,29 +222,46 @@ deliberately shows `NO PUBLIC SURFACE YET` and its `autonomy` is `null`, which
 renders as an em dash rather than an invented percentage. Set a figure in
 `fz-data.js` when there is one.
 
-`FZ-002` through `FZ-007` are still placeholders, and the FZ/LOG panel on the
-home page is labelled an illustrative sequence. `llms.txt` states both
-explicitly so answer engines do not cite them as real portfolio holdings.
-Replace before launch.
+`FZ-002` (apparel) and `FZ-003` are real but unannounced, so they carry a
+status of `UNANNOUNCED`, no name and no invented details. Nothing else is
+listed: the registry shows only what exists.
+
+The FZ/LOG panel on the home page is still labelled an illustrative sequence,
+and the hero's `agentNetwork` figure (1,284, with simulated drift) is a design
+placeholder rather than a measurement. `llms.txt` says so, so answer engines do
+not report either as fact.
 
 ### Deployment
 
-Cloudflare Pages, built from `main`. There is no build command: set the build
-output directory to the repo root and Cloudflare serves the files as they are.
+Live at **https://factory0.ventures**, on Cloudflare Pages (project
+`factory-zero`, account "Kontinuum"). `www` 301s to the apex via a Single
+Redirect rule.
 
-- Production domain is `factory0.ventures`. The zone is already on Cloudflare
-  nameservers (`susan.ns.cloudflare.com`, `kolton.ns.cloudflare.com`), but no
-  A record exists yet, so the Pages project still needs to be connected.
-- `_headers` sets caching and security headers. Asset filenames are not
-  content-hashed, so CSS and JS cache for an hour rather than a year.
-  Otherwise a push would not reach visitors.
-- Cloudflare Pages skips dotfiles on upload **except** `.well-known`, so
-  `/.well-known/security.txt` is served as expected.
+Deploys are **direct upload**, not git-connected:
+
+```sh
+./tools/build-dist.sh
+npx wrangler pages deploy dist --project-name factory-zero --branch main
+```
+
+`tools/build-dist.sh` assembles `dist/` from an explicit allowlist, so repo
+tooling (`tools/`, `README.md`, `.git`) can never end up on the site. It also
+stamps every CSS/JS reference with a short content hash (`?v=…`). That matters:
+asset filenames are not versioned in the repo, so without the stamp a deploy
+cannot invalidate a cached file and visitors keep running the old JavaScript.
+With it, `_headers` can cache `/assets/*.css` and `*.js` immutably.
+
+`dist/` is gitignored. The repo root stays the thing you serve locally, with
+no build step.
+
+Other notes:
+
+- Cloudflare Email Routing already handles `contact@factory0.ventures` (MX, SPF,
+  DKIM and DMARC records exist on the zone). Do not disturb those.
 - HSTS is deliberately not set in `_headers`. Turn it on in the Cloudflare
   dashboard (SSL/TLS, Edge Certificates) where it can be rolled back.
+- To connect git deploys instead, link the repo in the Pages dashboard with
+  build command `./tools/build-dist.sh` and output directory `dist`.
 
----
-
-<p align="center">
-  <sub><code>BUILD.</code> <code>DEPLOY.</code> <code>OBSERVE.</code> <code>LEARN.</code> <b><code>REPEAT.</code></b></sub>
-</p>
+GitHub Pages was enabled briefly while this repo was named
+`Factory-Zero.github.io`; it has been deleted and the repo renamed to `website`.

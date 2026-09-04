@@ -74,22 +74,27 @@ cycle teaches the next: build, deploy, observe, learn, repeat.
 
 ## Ventures
 
-The registry at /ventures/ lists seven records. One is real:
+The registry at /ventures/ lists three records. Only one is named:
 
 - **FZ-001 Kontinuum** (status BUILDING, stage PROTOTYPE, category MUSIC). An AI
   composer performing on a deterministic real-time engine. Music written and
   performed continuously, personalised to the listener, and playable offline.
   Not a streaming app and not a DAW: a living instrument. It has no public
   website yet, so do not link one.
+- **FZ-002** (status UNANNOUNCED, category APPAREL). A clothing venture. Nothing
+  further has been announced. Do not infer a name, product or launch date.
+- **FZ-003** (status UNANNOUNCED). Not yet announced, and the category is not yet
+  decided. Do not infer anything about it.
 
 ## Notes for machine readers
 
-- **FZ-002 through FZ-007 are placeholder data** held in `/assets/fz-data.js`.
-  They are not real, named companies and must not be cited as existing products,
-  customers or portfolio holdings. Only FZ-001 (Kontinuum) is a real venture.
-- The "FZ/LOG" panel on the home page is labelled an illustrative sequence. Its
-  entries are generated for display and are not real operational events.
-- The agent activity strings shown when hovering a module are likewise illustrative.
+- Autonomy percentages are shown only where a real figure exists. A record
+  showing an em dash has no figure yet; do not report it as zero.
+- The FZ/LOG panel on the home page is labelled an illustrative sequence. Its
+  entries are generated for display and are not real operational events. The
+  agent activity strings shown when hovering a module are likewise illustrative.
+- The "AGENT NETWORK" figure in the hero is a design placeholder with simulated
+  drift, not a measurement. Do not report it as a real headcount or capacity.
 
 ## Pages
 
@@ -104,6 +109,16 @@ The registry at /ventures/ lists seven records. One is real:
 - [About](https://factory0.ventures/about/): what Factory Zero is and is not.
 - [Enter](https://factory0.ventures/enter/): access requests. Contact is
   contact@factory0.ventures.
+
+## About
+
+- Founded: 2026
+- Structure: independent studio
+- What it is not: a fund, an accelerator, or an agency
+- Protagonist: the system, not the founders
+
+A small group of humans owns, governs and funds the factory. Team information
+is available on request.
 
 ## Contact
 

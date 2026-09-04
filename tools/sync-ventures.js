@@ -18,7 +18,7 @@ const V = global.window.FZ_DATA.ventures;
 
 const STATUS_COLOR = {
   LIVE: '#EDEBE6', SCALING: '#FF5A36', BUILDING: '#A9A8A5',
-  RESEARCHING: '#8A8A8E', ARCHIVED: '#4A4A4E', ACQUIRED: '#EDEBE6'
+  RESEARCHING: '#8A8A8E', UNANNOUNCED: '#8A8A8E', ARCHIVED: '#4A4A4E', ACQUIRED: '#EDEBE6'
 };
 const esc = s => String(s == null ? '' : s)
   .replace(/&/g, '&amp;').replace(/</g, '&lt;')
@@ -86,11 +86,26 @@ let vs = fs.readFileSync(vp, 'utf8');
 vs = replaceRegion(vs, 'registry', V.map(row).join('\n'));
 vs = replaceRegion(vs, 'detail', detail(V[0]));
 vs = replaceRegion(vs, 'spec', spec(V[0]));
-vs = vs.replace(/(<span class="count" id="fz-count">)[^<]*/,
+const COUNT_RE = /(id="fz-count"[^>]*>)[^<]*/;
+if (!COUNT_RE.test(vs)) throw new Error('fz-count marker not found in ventures/index.html');
+vs = vs.replace(COUNT_RE,
   `$1${String(V.length).padStart(2, '0')} RECORDS &middot; ${
     String(V.filter(v => v.status === 'LIVE' || v.status === 'SCALING').length).padStart(2, '0')} LIVE`);
 vs = vs.replace(/(RECORD \/ )FZ-\d+/, `$1${V[0].id}`);
 fs.writeFileSync(vp, vs);
+
+// index.html: the static hero placeholders must not drift from the data,
+// since that is what crawlers and no-JS visitors read.
+const hp = path.join(ROOT, 'index.html');
+let hs = fs.readFileSync(hp, 'utf8');
+for (const [re, val, label] of [
+  [/(id="fz-ventures"[^>]*>)[^<]*/, `${String(live.length).padStart(2, '0')} ACTIVE`, 'fz-ventures'],
+  [/(id="fz-pipeline-count"[^>]*>)[^<]*/, `LINE 01 &middot; ${String(live.length).padStart(2, '0')} UNITS IN PROCESS`, 'fz-pipeline-count'],
+]) {
+  if (!re.test(hs)) throw new Error(`${label} marker not found in index.html`);
+  hs = hs.replace(re, `$1${val}`);
+}
+fs.writeFileSync(hp, hs);
 
 // system/index.html
 const sp = path.join(ROOT, 'system/index.html');

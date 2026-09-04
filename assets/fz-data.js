@@ -1,15 +1,15 @@
 // Factory Zero — central data model. Add real ventures here.
 window.FZ_DATA = {
   ventures: [
-    // First real venture. autonomy is null until a figure is set; the UI renders "—".
+    // Only real records belong here. `autonomy: null` renders as an em dash
+    // rather than an invented percentage; `stage: '—'` keeps a venture out of
+    // the home-page pipeline until it genuinely has one.
     { id: 'FZ-001', name: 'Kontinuum', status: 'BUILDING', stage: 'PROTOTYPE', launched: '—', category: 'MUSIC', autonomy: null, site: '—', logo: 'kontinuum-animated.svg',
       desc: 'An AI composer performing on a deterministic real-time engine. Music written and performed continuously, personalised to the listener, and playable offline. Not a streaming app and not a DAW: a living instrument.' },
-    { id: 'FZ-002', name: 'Venture 002', status: 'SCALING', stage: 'SCALE', launched: '2025', category: 'COMMERCE', autonomy: 71, site: 'fz-002.ventures', desc: 'Inventory forecasting and reordering operated by agents for independent retailers.' },
-    { id: 'FZ-003', name: 'Venture 003', status: 'RESEARCHING', stage: 'VALIDATION', launched: '—', category: 'HEALTH', autonomy: 22, site: '—', desc: 'Signal under validation. Research swarm active.' },
-    { id: 'FZ-004', name: 'Venture 004', status: 'LIVE', stage: 'LAUNCH', launched: '2026', category: 'MUSIC', autonomy: 84, site: 'fz-004.ventures', desc: 'Catalog metadata, rights and distribution operations for independent labels.' },
-    { id: 'FZ-005', name: 'Venture 005', status: 'BUILDING', stage: 'PROTOTYPE', launched: '—', category: 'FINANCE', autonomy: 41, site: '—', desc: 'Prototype build in progress. Specification generated, infrastructure provisioned.' },
-    { id: 'FZ-006', name: 'Venture 006', status: 'RESEARCHING', stage: 'SIGNAL', launched: '—', category: 'LOGISTICS', autonomy: 8, site: '—', desc: 'Market signal identified. Opportunity scoring in progress.' },
-    { id: 'FZ-007', name: 'Venture 007', status: 'ARCHIVED', stage: 'ARCHIVED', launched: '2025', category: 'MEDIA', autonomy: 0, site: '—', desc: 'Archived after validation. Learnings absorbed into the factory knowledge layer.' }
+    { id: 'FZ-002', name: 'Unannounced', status: 'UNANNOUNCED', stage: '—', launched: '—', category: 'APPAREL', autonomy: null, site: '—',
+      desc: 'A clothing venture. Not yet announced.' },
+    { id: 'FZ-003', name: 'Unannounced', status: 'UNANNOUNCED', stage: '—', launched: '—', category: '—', autonomy: null, site: '—',
+      desc: 'Not yet announced.' }
   ],
   layers: [
     { name: 'DISCOVER', agents: [['RESEARCH', 'Analyzing 14,284 market signals'], ['STRATEGY', 'Scoring opportunity 0.91'], ['ANALYTICS', 'Cohort model refreshed']] },
@@ -32,6 +32,5 @@ window.FZ_DATA = {
 window.FZ_CONFIG = {
   headline: 'We build companies that operate and grow themselves.', // also rendered statically in index.html
   factoryStatus: 'ONLINE',   // ONLINE | MAINTENANCE | INITIALIZING
-  activeVentures: 6,         // omit to derive from the venture list
   agentNetwork: 1284
 };
