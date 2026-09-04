@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<!-- Source for assets/og.png. Regenerate with tools/render-og.sh -->
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Archivo:wght@300;400;600&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+  *{box-sizing:border-box}
+  html,body{margin:0;padding:0;background:#0A0A0B;width:1200px;height:630px;overflow:hidden}
+  .card{position:relative;width:1200px;height:630px;color:#EDEBE6;
+        font-family:'Archivo',system-ui,sans-serif;-webkit-font-smoothing:antialiased}
+  canvas{position:absolute;inset:0;display:block}
+  .content{position:relative;height:100%;display:grid;grid-template-rows:auto 1fr auto;padding:56px 64px}
+  .top{display:flex;align-items:center;justify-content:space-between;
+       font-family:'IBM Plex Mono',monospace;font-size:15px;letter-spacing:.18em}
+  .mark{display:flex;align-items:center;gap:11px;font-family:'Archivo',sans-serif;font-weight:600;font-size:19px;letter-spacing:.2em}
+  .mark .o{width:19px;height:19px;border:2px solid currentColor;border-top-color:transparent;border-radius:50%;display:inline-block}
+  .top .kind{color:#8A8A8E}
+  .mid{display:flex;align-items:center}
+  h1{margin:0;max-width:15ch;font-weight:400;font-size:76px;line-height:.95;letter-spacing:-.04em}
+  .bottom{display:flex;align-items:flex-end;justify-content:space-between;gap:40px;
+          font-family:'IBM Plex Mono',monospace;font-size:15px;letter-spacing:.14em;color:#8A8A8E}
+  .bottom .sub{font-family:'Archivo',sans-serif;font-weight:300;letter-spacing:0;font-size:22px;line-height:1.4;color:#A9A8A5;max-width:46ch}
+  .rule{position:absolute;left:0;right:0;bottom:0;height:4px;background:#FF5A36}
+</style>
+</head>
+<body>
+<div class="card">
+  <canvas id="c" width="1200" height="630"></canvas>
+  <div class="content">
+    <div class="top">
+      <div class="mark"><span>FACTORY ZER</span><span class="o"></span></div>
+      <div class="kind">AI-NATIVE VENTURE STUDIO</div>
+    </div>
+    <div class="mid"><h1>We build companies that build themselves.</h1></div>
+    <div class="bottom">
+      <div class="sub">Creating and operating companies through a shared network of autonomous agents.</div>
+      <div>FACTORYZERO.VENTURES · FZ/01</div>
+    </div>
+  </div>
+  <div class="rule"></div>
+</div>
+<script>
+// Frozen frame of the hero network from assets/fz-app.js, at p = 0.72 ("SYSTEM RUNNING").
+(function () {
+  var c = document.getElementById('c'), ctx = c.getContext('2d');
+  var W = 1200, H = 630, N = 84, p = 0.72, now = 4200;
+  function rnd(n){ var x = Math.sin(n * 12.9898) * 43758.5453; return x - Math.floor(x); }
+  function ease(t){ return t < 0 ? 0 : t > 1 ? 1 : 1 - Math.pow(1 - t, 3); }
+  var nodes = [];
+  for (var i = 0; i < N; i++) nodes.push({
+    ang: i * 2.39996 + rnd(i) * 0.4,
+    r: 110 + (i % 6) * 52 + rnd(i + 9) * 40,
+    acc: i % 9 === 0,
+    sp: 0.17 + 0.38 * (i / N)
+  });
+  window.renderOg = function () {
+    ctx.clearRect(0, 0, W, H);
+    var cx = W * 0.76, cy = H * 0.5, scale = Math.min(1, W / 1400) * 0.92;
+    var q = 0, fade = 1;
+    ctx.beginPath();
+    ctx.arc(cx, cy, 58 * scale, -Math.PI / 2, -Math.PI / 2 + Math.PI * 2 * ease((p - 0.03) / 0.12));
+    ctx.strokeStyle = 'rgba(237,235,230,0.9)'; ctx.lineWidth = 1.5; ctx.stroke();
+    var pos = nodes.map(function (n, idx) {
+      var age = ease((p - n.sp) / 0.07); if (age <= 0) return null;
+      var drift = Math.sin(now / 1400 + idx) * 3;
+      return { x: cx + Math.cos(n.ang) * (n.r * scale * age + drift),
+               y: cy + Math.sin(n.ang) * (n.r * scale * age + drift),
+               a: age * fade, acc: n.acc };
+    });
+    var edges = [], reach = (105 * scale) * (105 * scale);
+    ctx.lineWidth = 1;
+    for (var a = 0; a < N; a++) { var A = pos[a]; if (!A) continue;
+      for (var b = a + 1; b < N; b++) { var B = pos[b]; if (!B) continue;
+        var dx = A.x - B.x, dy = A.y - B.y;
+        if (dx * dx + dy * dy < reach) { edges.push([A, B]);
+          ctx.strokeStyle = 'rgba(237,235,230,' + Math.min(A.a, B.a) * 0.22 + ')';
+          ctx.beginPath(); ctx.moveTo(A.x, A.y); ctx.lineTo(B.x, B.y); ctx.stroke(); } } }
+    for (var e = 0; e < Math.min(14, edges.length); e++) {
+      var pr = edges[(e * 7) % edges.length], t = ((now / 1500) + e * 0.37) % 1;
+      ctx.fillStyle = 'rgba(255,90,54,0.9)';
+      ctx.beginPath();
+      ctx.arc(pr[0].x + (pr[1].x - pr[0].x) * t, pr[0].y + (pr[1].y - pr[0].y) * t, 2.1, 0, 7);
+      ctx.fill();
+    }
+    pos.forEach(function (n) { if (!n) return;
+      ctx.fillStyle = n.acc ? 'rgba(255,90,54,' + n.a + ')' : 'rgba(237,235,230,' + n.a * 0.85 + ')';
+      ctx.beginPath(); ctx.arc(n.x, n.y, n.acc ? 2.8 : 1.9, 0, 7); ctx.fill(); });
+    document.documentElement.setAttribute('data-og-ready', '1');
+  };
+  if (document.fonts && document.fonts.ready) document.fonts.ready.then(window.renderOg);
+  else window.addEventListener('load', window.renderOg);
+})();
+</script>
+</body>
+</html>

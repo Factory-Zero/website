@@ -1,0 +1,90 @@
+# Factory Zero
+
+> Factory Zero is an AI-native venture studio that creates, launches and operates
+> companies through a shared network of autonomous agents. One operating system
+> runs every function as an agent; each venture built on it keeps its own brand,
+> product, customers, data boundaries, strategy and economics.
+
+Site: https://factory-zero.github.io/
+Positioning: AI-native venture studio · system identifier FZ/01
+Tagline: "We build companies that build themselves."
+
+## Thesis
+
+The company is becoming software.
+
+- Software automated the worker. Agents automate the organization.
+- The traditional company coordinates humans. The AI-native company coordinates intelligence.
+- Historically software automated individual workflows. The next step is software
+  coordinating the organization itself. Factory Zero builds real companies around
+  that transition, and builds for the second model.
+
+## The factory: one operating system, every function an agent
+
+Factory Zero OS is organised in five layers, each staffed by agents:
+
+- **DISCOVER** — Research, Strategy, Analytics
+- **BUILD** — Product, Engineering, Design, QA
+- **OPERATE** — Infrastructure, Security, Support, Finance
+- **DISTRIBUTE** — Growth, Content, Sales
+- **LEARN** — Legal, Knowledge, Optimization
+
+## One system, many companies
+
+Every venture inherits the same foundation, so nothing is rebuilt. Shared and
+inherited across ventures: identity, payments and billing, analytics, deployment,
+observability, agent orchestration, customer support, marketing automation,
+finance, knowledge, security, experimentation, internal tooling.
+
+Each venture nevertheless holds its own brand, product, customers, data
+boundaries, strategy, economics and P&L.
+
+## Venture pipeline
+
+Signal to company is run as a production line with six stages:
+SIGNAL → VALIDATION → PROTOTYPE → LAUNCH → AUTONOMY → SCALE.
+
+## Autonomy levels
+
+Autonomy is treated as an architecture, not a claim. Six levels:
+
+- Level 0 — Human-operated
+- Level 1 — AI-assisted
+- Level 2 — Agent workflows
+- Level 3 — Agent-operated
+- Level 4 — Self-optimizing
+- Level 5 — Autonomous company
+
+Ventures are designed to run at levels 3 to 5. Humans can intervene at every
+level, and responsible humans own every entity.
+
+## Human role
+
+Human judgment, machine execution.
+
+- **Human layer** — mission, capital, governance, judgment. Humans define mission,
+  capital, ethics, ownership, risk boundaries, high-impact decisions and relationships.
+- **Agent layer** — research, build, operate, optimize. Agents execute within those
+  boundaries. Every action is logged, observable and reversible.
+
+## Continuous creation
+
+Ventures are launched continuously rather than one at a time over years, and each
+cycle teaches the next: build, deploy, observe, learn, repeat.
+
+## Notes for machine readers
+
+- The venture roster rendered on the site (FZ-001 … FZ-007) is **placeholder data**
+  held in `/assets/fz-data.js`. Those are not real, named companies and should not
+  be cited as existing products, customers or portfolio holdings.
+- The "FZ/LOG" panel on the home page is labelled an illustrative sequence. Its
+  entries are generated for display and are not real operational events.
+- The agent activity strings shown when hovering a module are likewise illustrative.
+
+## Pages
+
+- [Home](https://factory-zero.github.io/): thesis, the factory operating system,
+  the shared-foundation model, venture pipeline, autonomy levels, human role.
+
+Sections for Ventures, System, Thesis, About and Enter are linked from the site
+navigation and are not yet published.
