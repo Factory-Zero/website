@@ -29,8 +29,8 @@ card og-system.png "Three layers. One factory." "SYSTEM / ARCHITECTURE" \
   "A shared core, venture services built on it, and isolated ventures."
 card og-thesis.png "The company is becoming software." "THESIS / WORKING PAPER" \
   "What changes when coordination costs fall toward the cost of compute."
-card og-about.png "An independent AI-native venture studio." "ABOUT / FZ" \
-  "Not a fund, an accelerator or an agency."
+card og-about.png "We build and own real companies." "ABOUT / FZ" \
+  "A network of autonomous agents does the work of running them. Not a fund, an accelerator or an agency."
 card og-enter.png "Enter Factory Zero" "ACCESS REQUEST" \
   "Build with us, invest, partner or join. A human reads every request."
 

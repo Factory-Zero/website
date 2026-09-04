@@ -7,7 +7,7 @@ window.FZ_DATA = {
     { id: 'FZ-001', name: 'Kontinuum', status: 'BUILDING', stage: 'PROTOTYPE', launched: '—', category: 'MUSIC', autonomy: null, site: '—', logo: 'kontinuum-animated.svg', logoW: 360, logoH: 264,
       desc: 'An AI composer performing on a deterministic real-time engine. Music written and performed continuously, personalised to the listener, and playable offline. Not a streaming app and not a DAW: a living instrument.' },
     { id: 'FZ-002', name: 'Undercover Rockstars', status: 'BUILDING', stage: 'LAUNCH', launched: '—', category: 'APPAREL', autonomy: null, site: '—', logo: 'undercover-rockstars-animated.svg', logoW: 100, logoH: 100,
-      desc: 'A clothing house built on one idea: every piece comes as a matched pair. One pattern is cut twice, once for the day and once for the night, so the fit never changes when the room does. Drop 01 is eight pairs, sixteen garments, cut in Italy.' },
+      desc: 'A clothing house built on one idea: every piece comes as a matched pair. One pattern is cut twice, once for the day and once for the night, so the fit never changes when the room does. Drop 01 is eight pairs, sixteen garments, cut in Bali.' },
     { id: 'FZ-003', name: 'Unannounced', status: 'UNANNOUNCED', stage: '—', launched: '—', category: '—', autonomy: null, site: '—',
       desc: 'Not yet announced.' }
   ],
