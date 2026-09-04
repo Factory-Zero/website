@@ -37,6 +37,7 @@
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Archivo:wght@300;400;500;600&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="/assets/fz.css">
+<script src="https://challenges.cloudflare.com/turnstile/v0/api.js" async defer></script>
 
 <script type="application/ld+json">
 {
@@ -121,16 +122,25 @@
       <label class="field">MESSAGE
         <textarea id="fz-msg" name="message" rows="4" placeholder="What are you building, funding or looking for?"></textarea>
       </label>
-      <button type="submit" class="transmit">
+      <div class="hp" aria-hidden="true">
+        <label>Company
+          <input type="text" name="company" id="fz-company" tabindex="-1" autocomplete="off">
+        </label>
+      </div>
+      <div class="field verify">
+        <div class="cf-turnstile" data-sitekey="0x4AAAAAAEnfXb-GqJxqHjcZ" data-theme="dark" data-size="flexible"></div>
+      </div>
+      <p class="form-error" id="fz-error" role="alert" hidden></p>
+      <button type="submit" class="transmit" id="fz-submit">
         <span>TRANSMIT &middot; <span id="fz-channel-name">BUILD WITH US</span></span><span aria-hidden="true">&rarr;</span>
       </button>
     </div>
 
     <div class="receipt" id="fz-receipt" tabindex="-1" hidden>
-      <p class="ok">DRAFT HANDED TO YOUR MAIL CLIENT</p>
-      <p class="big">Send it and a human will respond.</p>
+      <p class="ok">REQUEST RECEIVED</p>
+      <p class="big">A human will respond.</p>
       <p class="muted">CHANNEL &middot; <span id="fz-receipt-channel">BUILD WITH US</span></p>
-      <p class="muted">Nothing left this page on its own. If your mail client did not open, write to <a href="mailto:contact@factory0.ventures">contact@factory0.ventures</a>.</p>
+      <p class="muted">We reply to the address you gave. If you do not hear back, write to <a href="mailto:contact@factory0.ventures">contact@factory0.ventures</a>.</p>
       <p><button type="button" class="detail-link" id="fz-again" style="all:unset;cursor:pointer;color:#FF5A36;font-family:var(--mono);font-size:11px;letter-spacing:.14em">START ANOTHER &rarr;</button></p>
     </div>
 

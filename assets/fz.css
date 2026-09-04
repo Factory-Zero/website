@@ -1290,3 +1290,28 @@ canvas { display: block; }
 /* description lists used for spec/fact grids */
 .spec, .facts { margin: 0; }
 .spec dd { display: grid; gap: 14px; }
+
+/* ---------- enter: form plumbing ---------- */
+
+/* honeypot: off-screen for people, present for bots. Not display:none, which
+   many bots skip. */
+.hp {
+  position: absolute;
+  left: -9999px;
+  width: 1px;
+  height: 1px;
+  overflow: hidden;
+}
+.verify { padding: 20px; }
+.form-error {
+  margin: 0;
+  background: var(--bg);
+  padding: 16px 20px;
+  color: var(--accent);
+  font-family: var(--mono);
+  font-size: 11px;
+  letter-spacing: .1em;
+  line-height: 1.6;
+}
+.form-error a { color: var(--ink); text-decoration: underline; }
+.transmit[aria-busy="true"] { color: var(--muted); cursor: progress; }

@@ -207,12 +207,42 @@ preview runtime:
 
 ### The access-request form
 
-`/enter/` has no backend. Rather than fake a submission the way the design
-prototype did, the form composes a real `mailto:contact@factory0.ventures`
-with the channel, name, email and message pre-filled, and says plainly that
-nothing left the page on its own. The address is also shown directly under the
-form. Swap in a Cloudflare Pages Function later if you want true server-side
-handling.
+`/enter/` posts JSON to `functions/api/contact.js`, a Cloudflare Pages Function
+that verifies Turnstile and sends the mail through Resend.
+
+**Security properties**, since this is a public unauthenticated endpoint:
+
+| Concern | How it is handled |
+| :--- | :--- |
+| Open relay | The recipient is fixed server-side. It is never read from the request. |
+| Secret exposure | `RESEND_API_KEY` and `TURNSTILE_SECRET` are Pages secrets (encrypted). Only the public Turnstile sitekey appears in the HTML. |
+| Bots | Cloudflare Turnstile, verified server-side, plus an off-screen honeypot field that is silently accepted so bots learn nothing. |
+| Flooding | A zone rate-limit rule: 3 POSTs per 10s per IP. |
+| Header injection | Every value that could reach a mail header is stripped of CR, LF and NUL. |
+| DMARC | `from` is always our own verified domain. The submitter's address goes in `reply_to` only, never in `from`. |
+| Cross-origin abuse | Requests with a foreign `Origin` are rejected. |
+| Oversized input | Body capped at 20KB, message at 5,000 chars. |
+| Information leak | Client errors are generic. Detail is logged server-side only. |
+
+If Resend is unreachable or unconfigured the form falls back to showing
+`contact@factory0.ventures` rather than pretending the message was sent.
+
+**Setup that is not in this repo** (do not commit any of it):
+
+```sh
+npx wrangler pages secret put RESEND_API_KEY   --project-name factory-zero
+npx wrangler pages secret put TURNSTILE_SECRET --project-name factory-zero
+```
+
+Optional overrides, as plain Pages env vars: `CONTACT_TO` (default
+`contact@factory0.ventures`) and `CONTACT_FROM` (default
+`noreply@send.factory0.ventures`).
+
+**The sending domain must be verified in Resend**, and this is the part with a
+trap. Verify the **subdomain** `send.factory0.ventures`, not the apex.
+Verifying the apex makes Resend ask for MX records on `factory0.ventures`,
+which would displace Cloudflare Email Routing and **break inbound mail to
+contact@factory0.ventures**. Using a subdomain keeps the two entirely separate.
 
 ### Venture data
 

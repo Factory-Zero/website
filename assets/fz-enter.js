@@ -1,7 +1,7 @@
 /* Access request form.
-   There is no backend, so this composes a real mailto: rather than faking a
-   submission. The design's confirmation state is kept but reworded to describe
-   what actually happened. */
+   Posts JSON to the /api/contact Pages Function, which verifies Turnstile and
+   sends via Resend. No key or recipient is exposed here: the browser only ever
+   sends the form fields and the Turnstile token. */
 
 (function () {
   'use strict';
@@ -9,15 +9,19 @@
   var form = document.getElementById('fz-enter-form');
   if (!form) return;
 
-  var TO = 'contact@factory0.ventures';
+  var FALLBACK = 'contact@factory0.ventures';
+
   var channels = Array.prototype.slice.call(form.querySelectorAll('.channel'));
   var fields   = document.getElementById('fz-fields');
   var receipt  = document.getElementById('fz-receipt');
+  var errorBox = document.getElementById('fz-error');
+  var submit   = document.getElementById('fz-submit');
   var elChannel = document.getElementById('fz-channel-name');
   var elReceiptChannel = document.getElementById('fz-receipt-channel');
   var elName  = document.getElementById('fz-name');
   var elEmail = document.getElementById('fz-email');
   var elMsg   = document.getElementById('fz-msg');
+  var elCompany = document.getElementById('fz-company');
   var current = channels[0];
 
   function pick(btn) {
@@ -25,30 +29,87 @@
     current = btn;
     elChannel.textContent = btn.textContent.trim();
   }
-
   channels.forEach(function (btn) {
     btn.addEventListener('click', function () { pick(btn); });
   });
 
+  function showError(html) {
+    errorBox.innerHTML = html;
+    errorBox.hidden = false;
+  }
+  function clearError() {
+    errorBox.hidden = true;
+    errorBox.textContent = '';
+  }
+  function mailtoFallback() {
+    return 'Something went wrong sending that. Please write to ' +
+           '<a href="mailto:' + FALLBACK + '">' + FALLBACK + '</a>.';
+  }
+  function busy(on) {
+    submit.setAttribute('aria-busy', String(on));
+    submit.disabled = on;
+    submit.firstElementChild.textContent = on
+      ? 'TRANSMITTING…'
+      : 'TRANSMIT · ' + current.textContent.trim();
+  }
+
+  function turnstileToken() {
+    var input = form.querySelector('[name="cf-turnstile-response"]');
+    return input ? input.value : '';
+  }
+  function resetTurnstile() {
+    if (window.turnstile && typeof window.turnstile.reset === 'function') {
+      try { window.turnstile.reset(); } catch (e) { /* widget not rendered */ }
+    }
+  }
+
   form.addEventListener('submit', function (e) {
     e.preventDefault();
-    var channel = current.textContent.trim();
-    var subject = '[' + channel + '] Access request';
-    var body =
-      'Channel: ' + channel + '\n' +
-      'Name: ' + (elName.value || '') + '\n' +
-      'Email: ' + (elEmail.value || '') + '\n\n' +
-      (elMsg.value || '');
+    clearError();
 
-    window.location.href =
-      'mailto:' + TO +
-      '?subject=' + encodeURIComponent(subject) +
-      '&body=' + encodeURIComponent(body);
+    var payload = {
+      channel: current.textContent.trim(),
+      name: elName.value,
+      email: elEmail.value,
+      message: elMsg.value,
+      company: elCompany ? elCompany.value : '',
+      turnstileToken: turnstileToken()
+    };
 
-    elReceiptChannel.textContent = channel;
-    fields.hidden = true;
-    receipt.hidden = false;
-    receipt.focus();
+    if (!payload.email || !payload.message) {
+      showError('An email address and a message are both required.');
+      return;
+    }
+
+    busy(true);
+
+    fetch('/api/contact', {
+      method: 'POST',
+      headers: { 'content-type': 'application/json' },
+      body: JSON.stringify(payload)
+    })
+      .then(function (res) {
+        return res.json().then(function (data) { return { ok: res.ok, data: data }; });
+      })
+      .then(function (r) {
+        busy(false);
+        if (r.ok && r.data.ok) {
+          elReceiptChannel.textContent = payload.channel;
+          fields.hidden = true;
+          receipt.hidden = false;
+          receipt.focus();
+          return;
+        }
+        resetTurnstile();
+        var code = r.data && r.data.error;
+        if (code === 'not_configured' || code === 'send_failed') showError(mailtoFallback());
+        else showError(code || mailtoFallback());
+      })
+      .catch(function () {
+        busy(false);
+        resetTurnstile();
+        showError(mailtoFallback());
+      });
   });
 
   var again = document.getElementById('fz-again');
@@ -57,6 +118,8 @@
       receipt.hidden = true;
       fields.hidden = false;
       elName.value = elEmail.value = elMsg.value = '';
+      clearError();
+      resetTurnstile();
       elName.focus();
     });
   }
