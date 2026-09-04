@@ -1,4 +1,4 @@
-# Factory Zero — https://factory-zero.github.io
+# Factory Zero. https://factory0.ventures
 # Answer engines and AI crawlers are welcome. /llms.txt carries a
 # structured, plain-text summary written for machine readers.
 
@@ -45,4 +45,4 @@ Allow: /
 User-agent: meta-externalagent
 Allow: /
 
-Sitemap: https://factory-zero.github.io/sitemap.xml
+Sitemap: https://factory0.ventures/sitemap.xml

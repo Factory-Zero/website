@@ -3,4 +3,4 @@ Contact: mailto:contact@factory0.ventures
 Contact: https://github.com/Factory-Zero
 Expires: 2027-09-04T00:00:00.000Z
 Preferred-Languages: en
-Canonical: https://factory-zero.github.io/.well-known/security.txt
+Canonical: https://factory0.ventures/.well-known/security.txt

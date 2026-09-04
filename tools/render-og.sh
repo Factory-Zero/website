@@ -8,14 +8,17 @@ CHROME="${CHROME:-/Applications/Google Chrome.app/Contents/MacOS/Google Chrome}"
 TMP="$(mktemp -d)"
 trap 'rm -rf "$TMP"' EXIT
 
-shoot() { # src w h out
+shoot() { # src w h out [scale]
   "$CHROME" --headless --disable-gpu --no-sandbox --hide-scrollbars \
-    --force-device-scale-factor=1 --window-size="$2,$3" \
+    --force-device-scale-factor="${5:-1}" --window-size="$2,$3" \
     --virtual-time-budget=10000 --screenshot="$4" "file://$1" >/dev/null 2>&1
 }
 
 # 1200x630 Open Graph card
 shoot "$ROOT/tools/og-render.html" 1200 630 "$ROOT/assets/og.png"
+
+# README banner, rendered at 2x so it stays crisp on retina
+shoot "$ROOT/tools/banner-render.html" 1280 400 "$ROOT/assets/readme-banner.png" 2
 
 # Icon: Chrome ignores window widths under ~500px, so render at 512 and downscale.
 cat > "$TMP/icon.html" <<HTML
@@ -28,5 +31,6 @@ shoot "$TMP/icon.html" 512 512 "$TMP/icon512.png"
 cp "$TMP/icon512.png" "$ROOT/assets/icon-512.png"
 sips -z 180 180 "$TMP/icon512.png" --out "$ROOT/assets/apple-touch-icon.png" >/dev/null
 
+echo "readme-banner.png   $(sips -g pixelWidth -g pixelHeight "$ROOT/assets/readme-banner.png" | tail -2 | tr -d ' \n')"
 echo "og.png              $(sips -g pixelWidth -g pixelHeight "$ROOT/assets/og.png" | tail -2 | tr -d ' \n')"
 echo "apple-touch-icon    $(sips -g pixelWidth -g pixelHeight "$ROOT/assets/apple-touch-icon.png" | tail -2 | tr -d ' \n')"

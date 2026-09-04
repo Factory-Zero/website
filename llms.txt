@@ -5,9 +5,9 @@
 > runs every function as an agent; each venture built on it keeps its own brand,
 > product, customers, data boundaries, strategy and economics.
 
-Site: https://factory-zero.github.io/
+Site: https://factory0.ventures/
 Positioning: AI-native venture studio · system identifier FZ/01
-Tagline: "We build companies that build themselves."
+Tagline: "We build companies that operate themselves."
 
 ## Thesis
 
@@ -23,11 +23,11 @@ The company is becoming software.
 
 Factory Zero OS is organised in five layers, each staffed by agents:
 
-- **DISCOVER** — Research, Strategy, Analytics
-- **BUILD** — Product, Engineering, Design, QA
-- **OPERATE** — Infrastructure, Security, Support, Finance
-- **DISTRIBUTE** — Growth, Content, Sales
-- **LEARN** — Legal, Knowledge, Optimization
+- **DISCOVER**: Research, Strategy, Analytics
+- **BUILD**: Product, Engineering, Design, QA
+- **OPERATE**: Infrastructure, Security, Support, Finance
+- **DISTRIBUTE**: Growth, Content, Sales
+- **LEARN**: Legal, Knowledge, Optimization
 
 ## One system, many companies
 
@@ -48,12 +48,12 @@ SIGNAL → VALIDATION → PROTOTYPE → LAUNCH → AUTONOMY → SCALE.
 
 Autonomy is treated as an architecture, not a claim. Six levels:
 
-- Level 0 — Human-operated
-- Level 1 — AI-assisted
-- Level 2 — Agent workflows
-- Level 3 — Agent-operated
-- Level 4 — Self-optimizing
-- Level 5 — Autonomous company
+- Level 0: Human-operated
+- Level 1: AI-assisted
+- Level 2: Agent workflows
+- Level 3: Agent-operated
+- Level 4: Self-optimizing
+- Level 5: Autonomous company
 
 Ventures are designed to run at levels 3 to 5. Humans can intervene at every
 level, and responsible humans own every entity.
@@ -62,9 +62,9 @@ level, and responsible humans own every entity.
 
 Human judgment, machine execution.
 
-- **Human layer** — mission, capital, governance, judgment. Humans define mission,
+- **Human layer**: mission, capital, governance, judgment. Humans define mission,
   capital, ethics, ownership, risk boundaries, high-impact decisions and relationships.
-- **Agent layer** — research, build, operate, optimize. Agents execute within those
+- **Agent layer**: research, build, operate, optimize. Agents execute within those
   boundaries. Every action is logged, observable and reversible.
 
 ## Continuous creation
@@ -83,7 +83,7 @@ cycle teaches the next: build, deploy, observe, learn, repeat.
 
 ## Pages
 
-- [Home](https://factory-zero.github.io/): thesis, the factory operating system,
+- [Home](https://factory0.ventures/): thesis, the factory operating system,
   the shared-foundation model, venture pipeline, autonomy levels, human role.
 
 Sections for Ventures, System, Thesis, About and Enter are linked from the site
