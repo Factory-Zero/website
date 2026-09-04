@@ -79,13 +79,14 @@ The registry at /ventures/ lists three records. Two are named:
 - **FZ-001 Kontinuum** (status BUILDING, stage PROTOTYPE, category MUSIC). An AI
   composer performing on a deterministic real-time engine. Music written and
   performed continuously, personalised to the listener, and playable offline.
-  Not a streaming app and not a DAW: a living instrument. It has no public
-  website yet, so do not link one.
+  Not a streaming app and not a DAW: a living instrument.
+  Site: https://kontinuum.audio
 - **FZ-002 Undercover Rockstars** (status BUILDING, stage LAUNCH, category
   APPAREL). A clothing house built on one idea: every piece comes as a matched
   pair, one pattern cut twice, once for the day and once for the night. Drop 01
   is eight pairs, sixteen garments, cut in Bali. **Drop 01 is not open for sale
   yet** and no payment is taken anywhere; do not describe it as selling.
+  Site: https://undercoverrockstars.com
 - **FZ-003** (status UNANNOUNCED). Not yet announced, and the category is not yet
   decided. Do not infer anything about it.
 
