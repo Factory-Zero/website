@@ -64,6 +64,11 @@
       if (d.logo) {
         el.logo.src = '/assets/' + d.logo;
         el.logo.alt = d.name + ' logo';
+        // keep the box the right shape per logo, so swapping records does not jump
+        if (d.logoW && d.logoH) {
+          el.logo.width = 120;
+          el.logo.height = Math.round(120 * Number(d.logoH) / Number(d.logoW));
+        }
         el.logo.hidden = false;
       } else {
         el.logo.hidden = true;

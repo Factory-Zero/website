@@ -29,13 +29,13 @@ const pulses = s => s === 'LIVE' || s === 'SCALING';
 function row(v, i) {
   const c = STATUS_COLOR[v.status] || '#8A8A8E';
   const mark = v.logo
-    ? `<img class="venture-logo" src="/assets/${esc(v.logo)}" alt="" width="30" height="22">`
+    ? `<img class="venture-logo" src="/assets/${esc(v.logo)}" alt="" width="30" height="${Math.round(30 * (v.logoH || 1) / (v.logoW || 1))}">`
     : '';
   return `      <button type="button" class="record registry-cols" aria-pressed="${i === 0}" aria-controls="d-record"
         data-id="${esc(v.id)}" data-name="${esc(v.name)}" data-status="${esc(v.status)}" data-status-color="${c}"
         data-category="${esc(v.category)}" data-autonomy="${v.autonomy == null ? '' : v.autonomy}"
         data-launched="${esc(v.launched)}" data-stage="${esc(v.stage)}" data-site="${esc(v.site)}"
-        data-logo="${esc(v.logo || '')}" data-desc="${esc(v.desc)}">
+        data-logo="${esc(v.logo || '')}" data-logo-w="${v.logoW || ''}" data-logo-h="${v.logoH || ''}" data-desc="${esc(v.desc)}">
         <span class="rid">${esc(v.id)}</span>
         <span class="name">${mark}${esc(v.name)}</span>
         <span class="status${pulses(v.status) ? ' is-live' : ''}" style="color:${c}"><span class="dot"></span>${esc(v.status)}</span>
@@ -53,7 +53,7 @@ function detail(v) {
   const c = STATUS_COLOR[v.status] || '#8A8A8E';
   const hasSite = v.site && v.site !== '—';
   const logo = v.logo
-    ? `<img id="d-logo" class="venture-logo venture-logo--lg" src="/assets/${esc(v.logo)}" alt="${esc(v.name)} logo" width="120" height="88">`
+    ? `<img id="d-logo" class="venture-logo venture-logo--lg" src="/assets/${esc(v.logo)}" alt="${esc(v.name)} logo" width="120" height="${Math.round(120 * (v.logoH || 1) / (v.logoW || 1))}">`
     : `<img id="d-logo" class="venture-logo venture-logo--lg" alt="" hidden>`;
   return `      <div class="detail-id"><span id="d-id">${esc(v.id)}</span>${logo}</div>
       <h2 class="detail-name" id="d-name">${esc(v.name)}</h2>
