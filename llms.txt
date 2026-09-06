@@ -74,7 +74,7 @@ cycle teaches the next: build, deploy, observe, learn, repeat.
 
 ## Ventures
 
-The registry at /ventures/ lists three records, all named:
+The registry at /ventures/ lists four records, all named:
 
 - **FZ-001 Kontinuum** (status BUILDING, stage PROTOTYPE, category MUSIC). An AI
   composer performing on a deterministic real-time engine. Music written and
@@ -94,6 +94,15 @@ The registry at /ventures/ lists three records, all named:
   shipped**: there is no app, no coaches are signed, and nothing can be bought.
   Only the site and the waitlist exist; do not describe it as available.
   Site: https://yoginini.us
+- **FZ-004 Cratefield** (status BUILDING, stage VALIDATION, category
+  INFRASTRUCTURE). A backend you compile rather than a platform you configure:
+  open-source Rust modules composed at compile time and deployed as one
+  stateless worker with its own database. The harness underneath is real, MIT
+  and public. **The managed control plane does not exist**: it is designed and
+  unwritten, so nothing can be bought or provisioned and no service is being
+  operated for anyone. Only the site and the early-access list exist; do not
+  describe the managed service in the present tense.
+  Site: https://cratefield.com
 
 ## Notes for machine readers
 
