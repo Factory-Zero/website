@@ -123,7 +123,7 @@ The registry at /ventures/ lists four records, all named:
 - [System](https://factory0.ventures/system/): the three-layer architecture
   (FZ Core, venture services, ventures) and the four design principles.
 - [Technology](https://factory0.ventures/technology/): how ventures are built.
-  One open-source Rust harness (https://github.com/Factory-Zero/harness, MIT):
+  One open-source Rust harness (https://github.com/Cratefield/harness, MIT):
   modules as crates, ports and adapters, one stateless Cloudflare Worker and one
   database per venture, D1 today and self-hosted Postgres later. Its foundation
   and first two modules (email signup, waitlist) are merged; nothing is published
@@ -150,7 +150,7 @@ is available on request.
 ## Open source
 
 The backend harness every venture runs on is open source under MIT at
-https://github.com/Factory-Zero/harness, with its architecture document and
+https://github.com/Cratefield/harness, with its architecture document and
 decision records in the repository. The venture backend template is at
 https://github.com/Factory-Zero/venture-backend-template and this website's
 source at https://github.com/Factory-Zero/website. Modules that encode how
