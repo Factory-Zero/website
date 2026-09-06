@@ -154,6 +154,7 @@
     <div>
       <h2 class="claim">The factory floor is public. The recipes are not.</h2>
       <p>The harness, its runtime, its adapters and the first two modules are MIT licensed and developed in the open. Anyone can build a backend on them, and every venture we run does. The modules that encode how Factory Zero operates its companies stay private. Each venture's own backend is private too.</p>
+      <p>One venture is the harness itself. <a href="https://cratefield.com" rel="noopener">Cratefield</a> takes the open-source harness and adds the managed layer around it: it would provision the worker, the database and the secrets inside your own Cloudflare account and then operate them. The harness is real and running; that control plane is designed and not yet written.</p>
       <p>Decisions are written down as they are made. The architecture document and the decision records are in the repository, including the one recording why a first attempt was thrown away.</p>
     </div>
     <ul class="repo-list">
@@ -162,6 +163,7 @@
       <li><a href="https://github.com/Factory-Zero/harness/tree/main/docs/adr" rel="noopener"><span class="id">ADR</span><span>decision records</span><span class="muted">why Rust, why ports, why one database per venture</span></a></li>
       <li><a href="https://github.com/Factory-Zero/venture-backend-template" rel="noopener"><span class="id">MIT</span><span>venture backend template</span><span class="muted">what a new venture starts from</span></a></li>
       <li><a href="https://github.com/Factory-Zero/website" rel="noopener"><span class="id">SRC</span><span>this website</span><span class="muted">static, no build step, no dependencies</span></a></li>
+      <li><a href="https://cratefield.com" rel="noopener"><span class="id">FZ-004</span><span>Cratefield</span><span class="muted">the managed service being built on the harness</span></a></li>
       <li><a href="https://github.com/Factory-Zero" rel="noopener"><span class="id">ORG</span><span>github.com/Factory-Zero</span><span class="muted">everything above in one place</span></a></li>
     </ul>
   </div>
@@ -171,8 +173,8 @@
   <p class="eyebrow">STATUS</p>
   <dl class="facts">
     <div><dt>DESIGN</dt><dd>Adopted, nine decision records</dd></div>
-    <div><dt>FOUNDATION</dt><dd>Being built now</dd></div>
-    <div><dt>FIRST MODULES</dt><dd>Email signup, waitlist. Next</dd></div>
+    <div><dt>FOUNDATION</dt><dd>M0 merged, 7 crates</dd></div>
+    <div><dt>FIRST MODULES</dt><dd>Email signup and waitlist, merged</dd></div>
     <div><dt>PUBLISHED</dt><dd>Not yet on crates.io</dd></div>
   </dl>
   <p class="lede" style="max-width:48ch">Progress is tracked as issues and milestones in the open. When the first venture backend goes live, it will be this site's own signup.</p>

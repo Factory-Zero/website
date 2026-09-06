@@ -125,9 +125,12 @@ The registry at /ventures/ lists four records, all named:
 - [Technology](https://factory0.ventures/technology/): how ventures are built.
   One open-source Rust harness (https://github.com/Factory-Zero/harness, MIT):
   modules as crates, ports and adapters, one stateless Cloudflare Worker and one
-  database per venture, D1 today and self-hosted Postgres later. The harness is
-  being built; nothing is published to crates.io yet. Private operating modules
-  and each venture's own backend are not open.
+  database per venture, D1 today and self-hosted Postgres later. Its foundation
+  and first two modules (email signup, waitlist) are merged; nothing is published
+  to crates.io yet and no venture backend is deployed. Private operating modules
+  and each venture's own backend are not open. FZ-004 Cratefield is the venture
+  adding a managed control plane on top of the harness; that control plane is
+  designed and unwritten.
 - [Thesis](https://factory0.ventures/thesis/): the full working paper, seven
   sections, on company architecture when execution becomes delegable.
 - [About](https://factory0.ventures/about/): what Factory Zero is and is not.
