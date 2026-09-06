@@ -3,10 +3,19 @@
   'use strict';
   var y = document.getElementById('fz-year');
   if (y) y.textContent = String(new Date().getFullYear());
+  var root = document.documentElement;
+
+  /* Solid header once the page has scrolled past the hero's first band. */
+  var scrolled = null;
+  function onScroll() {
+    var now = window.scrollY > 24;
+    if (now !== scrolled) { scrolled = now; root.classList.toggle('scrolled', now); }
+  }
+  window.addEventListener('scroll', onScroll, { passive: true });
+  onScroll();
 
   /* Mobile menu. The <html class="js"> hook is set inline in <head> so the
      panel never flashes; without JS the nav simply wraps under the wordmark. */
-  var root = document.documentElement;
   var btn = document.querySelector('.nav-toggle');
   var nav = document.getElementById('site-nav');
   if (!btn || !nav) return;

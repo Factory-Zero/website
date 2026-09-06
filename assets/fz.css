@@ -150,6 +150,17 @@ canvas { display: block; }
   flex-wrap: wrap;
   padding: 22px var(--gut);
   mix-blend-mode: difference;
+  transition: background-color .25s, border-color .25s;
+  border-bottom: 1px solid transparent;
+}
+/* The difference blend reads over the dark hero and inverts to noise over
+   running text, so once the page has scrolled the bar becomes a solid ground. */
+html.scrolled .site-header {
+  mix-blend-mode: normal;
+  background: rgba(10, 10, 11, .88);
+  -webkit-backdrop-filter: blur(10px);
+  backdrop-filter: blur(10px);
+  border-bottom-color: var(--line);
 }
 .wordmark {
   display: flex;
@@ -720,7 +731,8 @@ canvas { display: block; }
 }
 
 @media (max-width: 900px) {
-  .site-header { flex-wrap: nowrap; }
+  /* Small screens: the bar is always solid; there is no room for the blend to work. */
+  .site-header { flex-wrap: nowrap; mix-blend-mode: normal; background: var(--bg); border-bottom-color: var(--line); }
   html.js .nav-toggle { display: inline-block; }
   /* Without JS the nav simply wraps under the wordmark; with JS it is a panel. */
   html.js .site-nav {
