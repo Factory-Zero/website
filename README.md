@@ -246,15 +246,21 @@ contact@factory0.ventures**. Using a subdomain keeps the two entirely separate.
 
 ### Venture data
 
-`FZ-001 Kontinuum` is a real venture: an AI composer performing on a
-deterministic real-time engine. It has no public website yet, so its record
-deliberately shows `NO PUBLIC SURFACE YET` and its `autonomy` is `null`, which
-renders as an em dash rather than an invented percentage. Set a figure in
-`fz-data.js` when there is one.
+Three ventures are listed, and all three are real and named:
 
-`FZ-002` (apparel) and `FZ-003` are real but unannounced, so they carry a
-status of `UNANNOUNCED`, no name and no invented details. Nothing else is
-listed: the registry shows only what exists.
+| | Venture | Stage | Site |
+| :--- | :--- | :--- | :--- |
+| `FZ-001` | Kontinuum | `PROTOTYPE` | [kontinuum.audio](https://kontinuum.audio) |
+| `FZ-002` | Undercover Rockstars | `LAUNCH` | [undercoverrockstars.com](https://undercoverrockstars.com) |
+| `FZ-003` | Yoginini | `VALIDATION` | [yoginini.us](https://yoginini.us) |
+
+`autonomy` is `null` on every one of them, which renders as an em dash rather
+than an invented percentage. Set a figure in `fz-data.js` when there is one.
+Nothing else is listed: the registry shows only what exists, so a venture with
+nothing public yet does not get a placeholder row.
+
+Neither Undercover Rockstars nor Yoginini can be bought from today, and their
+records and `llms.txt` say so — do not let either read as shipped.
 
 The FZ/LOG panel on the home page is still labelled an illustrative sequence,
 and the hero's `agentNetwork` figure (1,284, with simulated drift) is a design
