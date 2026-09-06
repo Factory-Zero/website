@@ -113,6 +113,12 @@ The registry at /ventures/ lists three records, all named:
   record per venture with status, category, pipeline stage and autonomy.
 - [System](https://factory0.ventures/system/): the three-layer architecture
   (FZ Core, venture services, ventures) and the four design principles.
+- [Technology](https://factory0.ventures/technology/): how ventures are built.
+  One open-source Rust harness (https://github.com/Factory-Zero/harness, MIT):
+  modules as crates, ports and adapters, one stateless Cloudflare Worker and one
+  database per venture, D1 today and self-hosted Postgres later. The harness is
+  being built; nothing is published to crates.io yet. Private operating modules
+  and each venture's own backend are not open.
 - [Thesis](https://factory0.ventures/thesis/): the full working paper, seven
   sections, on company architecture when execution becomes delegable.
 - [About](https://factory0.ventures/about/): what Factory Zero is and is not.
@@ -128,6 +134,15 @@ The registry at /ventures/ lists three records, all named:
 
 A small group of humans owns, governs and funds the factory. Team information
 is available on request.
+
+## Open source
+
+The backend harness every venture runs on is open source under MIT at
+https://github.com/Factory-Zero/harness, with its architecture document and
+decision records in the repository. The venture backend template is at
+https://github.com/Factory-Zero/venture-backend-template and this website's
+source at https://github.com/Factory-Zero/website. Modules that encode how
+Factory Zero operates its companies, and each venture's own backend, are private.
 
 ## Contact
 

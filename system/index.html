@@ -3,6 +3,7 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
+<script>document.documentElement.classList.add('js')</script>
 
 <title>System · Factory Zero</title>
 <meta name="description" content="The Factory Zero operating architecture: a shared core, venture services built on it, and isolated ventures that consume those services. Add a venture, not an organization.">
@@ -87,9 +88,11 @@
   <a class="wordmark" href="/" aria-label="Factory Zero home">
     <span>FACTORY ZER</span><span class="o" aria-hidden="true"></span>
   </a>
-  <nav class="site-nav" aria-label="Primary">
+  <button class="nav-toggle" type="button" aria-expanded="false" aria-controls="site-nav">MENU</button>
+  <nav class="site-nav" id="site-nav" aria-label="Primary">
     <a href="/ventures/">VENTURES</a>
     <a href="/system/" aria-current="page">SYSTEM</a>
+    <a href="/technology/">TECHNOLOGY</a>
     <a href="/thesis/">THESIS</a>
     <a href="/about/">ABOUT</a>
     <a href="/enter/" class="enter">ENTER →</a>
@@ -153,7 +156,7 @@
     <div class="principle"><p class="n">01</p><h2 class="claim">Every action is observable.</h2><p>Agents write to a shared event log. Humans can replay, audit and reverse.</p></div>
     <div class="principle"><p class="n">02</p><h2 class="claim">Permissions before autonomy.</h2><p>An agent's authority is scoped per venture, per function, per budget. Autonomy levels raise the scope, never remove the boundary.</p></div>
     <div class="principle"><p class="n">03</p><h2 class="claim">Ventures are tenants, not forks.</h2><p>Improvements to the core reach every venture. Learnings from a venture flow back into the core.</p></div>
-    <div class="principle"><p class="n">04</p><h2 class="claim">No mystery.</h2><p>The system is built from ordinary infrastructure, models and code. The novelty is in the coordination.</p></div>
+    <div class="principle"><p class="n">04</p><h2 class="claim">No mystery.</h2><p>The system is built from ordinary infrastructure, models and code. The novelty is in the coordination. The parts a venture runs on are open source: <a href="/technology/">see the technology</a>.</p></div>
   </div>
 </section>
 
@@ -166,6 +169,7 @@
       <a href="/thesis/">THESIS</a>
       <a href="/about/">ABOUT</a>
       <a href="/enter/">ENTER</a>
+      <a href="https://github.com/Factory-Zero" rel="noopener">GITHUB</a>
   </nav>
   <div>FACTORY0.VENTURES · FZ/01 · <span id="fz-year">2026</span></div>
 </footer>

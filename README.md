@@ -4,7 +4,7 @@
 
 <p align="center">
   <img src="https://img.shields.io/badge/STATUS-PRE--LAUNCH-FF5A36?style=flat-square&labelColor=0A0A0B" alt="Status: pre-launch">
-  <img src="https://img.shields.io/badge/PAGES-6-EDEBE6?style=flat-square&labelColor=0A0A0B" alt="Pages: 6">
+  <img src="https://img.shields.io/badge/PAGES-7-EDEBE6?style=flat-square&labelColor=0A0A0B" alt="Pages: 7">
   <img src="https://img.shields.io/badge/STACK-VANILLA%20JS-EDEBE6?style=flat-square&labelColor=0A0A0B" alt="Stack: vanilla JS">
   <img src="https://img.shields.io/badge/BUILD%20STEP-NONE-EDEBE6?style=flat-square&labelColor=0A0A0B" alt="Build step: none">
   <img src="https://img.shields.io/badge/DEPENDENCIES-ZERO-FF5A36?style=flat-square&labelColor=0A0A0B" alt="Dependencies: zero">

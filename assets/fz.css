@@ -177,6 +177,21 @@ canvas { display: block; }
   letter-spacing: .14em;
 }
 .site-nav .enter { color: var(--accent); }
+.nav-toggle {
+  display: none;
+  appearance: none;
+  background: none;
+  border: 1px solid var(--line-2);
+  color: var(--ink);
+  font-family: var(--mono);
+  font-size: 11px;
+  letter-spacing: .14em;
+  padding: 8px 12px;
+  cursor: pointer;
+  border-radius: 2px;
+}
+.nav-toggle:hover, .nav-toggle:focus-visible { border-color: var(--accent); color: var(--accent); outline: none; }
+.nav-toggle:focus-visible { box-shadow: 0 0 0 2px var(--bg), 0 0 0 4px var(--accent); }
 
 /* ---------- hero ---------- */
 
@@ -704,15 +719,40 @@ canvas { display: block; }
   .agent-readout { grid-template-columns: 1fr; gap: 10px; }
 }
 
+@media (max-width: 900px) {
+  .site-header { flex-wrap: nowrap; }
+  html.js .nav-toggle { display: inline-block; }
+  /* Without JS the nav simply wraps under the wordmark; with JS it is a panel. */
+  html.js .site-nav {
+    display: none;
+    position: fixed;
+    inset: 0;
+    z-index: 1;
+    padding: 96px var(--gut) 40px;
+    background: var(--bg);
+    flex-direction: column;
+    justify-content: flex-start;
+    gap: 0;
+    font-size: 15px;
+    letter-spacing: .12em;
+    overflow-y: auto;
+  }
+  html.js .site-nav a {
+    display: block;
+    padding: 20px 0;
+    border-top: 1px solid var(--line);
+  }
+  html.js .site-nav a:last-child { border-bottom: 1px solid var(--line); }
+  html.js.nav-open .site-nav { display: flex; animation: fzUp .25s both; }
+  html.js.nav-open { overflow: hidden; }
+  /* The header blends with the page (difference); an open panel must not. */
+  html.js.nav-open .site-header { background: var(--bg); mix-blend-mode: normal; }
+  html.js .site-header > .wordmark, html.js .site-header > .nav-toggle { position: relative; z-index: 2; }
+  html:not(.js) .site-nav { width: 100%; justify-content: space-between; gap: 10px; font-size: 10px; letter-spacing: .1em; }
+}
+
 @media (max-width: 760px) {
   .site-header { padding: 16px var(--gut); }
-  .site-nav {
-    width: 100%;
-    justify-content: space-between;
-    gap: 10px;
-    font-size: 10px;
-    letter-spacing: .1em;
-  }
   .hero { padding-top: 130px; }
   .branch-map { grid-template-columns: 1fr; gap: 24px; }
   .branch-join { display: none; }
@@ -1315,3 +1355,44 @@ canvas { display: block; }
 }
 .form-error a { color: var(--ink); text-decoration: underline; }
 .transmit[aria-busy="true"] { color: var(--muted); cursor: progress; }
+
+
+/* ---------- technology ---------- */
+
+.tech-split {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) minmax(0, 1.1fr);
+  gap: 48px;
+  align-items: start;
+}
+.tech-split h2.claim { margin-top: 0; }
+.tech-split p { color: var(--body); max-width: 52ch; line-height: 1.6; }
+.code {
+  margin: 0;
+  padding: 24px;
+  background: var(--panel);
+  border: 1px solid var(--line);
+  font-family: var(--mono);
+  font-size: 12.5px;
+  line-height: 1.6;
+  color: var(--ink);
+  overflow-x: auto;
+  min-width: 0;
+}
+.tech-facts dd { font-size: 17px; line-height: 1.4; }
+.repo-list { list-style: none; margin: 0; padding: 0; border-top: 1px solid var(--line); }
+.repo-list li { border-bottom: 1px solid var(--line); }
+.repo-list a {
+  display: grid;
+  grid-template-columns: 44px 1fr;
+  gap: 4px 16px;
+  padding: 16px 0;
+  color: var(--ink);
+  text-decoration: none;
+}
+.repo-list a:hover span:nth-child(2) { color: var(--accent); }
+.repo-list .id { font-family: var(--mono); font-size: 11px; letter-spacing: .12em; color: var(--accent); padding-top: 3px; grid-row: 1 / span 2; }
+.repo-list .muted { color: var(--muted); font-size: 14px; }
+@media (max-width: 900px) {
+  .tech-split { grid-template-columns: 1fr; gap: 28px; }
+}

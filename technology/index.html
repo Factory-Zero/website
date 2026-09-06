@@ -1,0 +1,199 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script>document.documentElement.classList.add('js')</script>
+<title>Technology · Factory Zero</title>
+<meta name="description" content="How Factory Zero ventures are built: one open-source Rust harness, modules as crates, one stateless worker and one database per venture. Ordinary parts, assembled once, reused by every company.">
+<link rel="canonical" href="https://factory0.ventures/technology/">
+<meta name="robots" content="index, follow, max-image-preview:large, max-snippet:-1">
+<meta name="theme-color" content="#0A0A0B">
+<meta name="color-scheme" content="dark">
+
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="Factory Zero">
+<meta property="og:locale" content="en_US">
+<meta property="og:url" content="https://factory0.ventures/technology/">
+<meta property="og:title" content="Technology · Factory Zero">
+<meta property="og:description" content="How Factory Zero ventures are built: one open-source Rust harness, modules as crates, one stateless worker and one database per venture.">
+<meta property="og:image" content="https://factory0.ventures/assets/og-technology.png">
+<meta property="og:image:type" content="image/png">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta property="og:image:alt" content="Technology · Factory Zero">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Technology · Factory Zero">
+<meta name="twitter:description" content="How Factory Zero ventures are built: one open-source Rust harness, modules as crates, one stateless worker and one database per venture.">
+<meta name="twitter:image" content="https://factory0.ventures/assets/og-technology.png">
+
+<link rel="icon" href="/assets/favicon.svg" type="image/svg+xml">
+<link rel="apple-touch-icon" href="/assets/apple-touch-icon.png">
+<link rel="manifest" href="/site.webmanifest">
+<link rel="alternate" type="text/plain" href="/llms.txt" title="llms.txt">
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Archivo:wght@300;400;500;600&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="/assets/fz.css">
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@graph": [
+    {
+      "@type": "WebPage",
+      "@id": "https://factory0.ventures/technology/#webpage",
+      "url": "https://factory0.ventures/technology/",
+      "name": "Technology · Factory Zero",
+      "description": "How Factory Zero ventures are built: one open-source Rust harness, modules as crates, one stateless worker and one database per venture.",
+      "isPartOf": { "@id": "https://factory0.ventures/#website" },
+      "about": { "@id": "https://github.com/Factory-Zero/harness#code" },
+      "breadcrumb": { "@id": "https://factory0.ventures/technology/#breadcrumb" }
+    },
+    {
+      "@type": "BreadcrumbList",
+      "@id": "https://factory0.ventures/technology/#breadcrumb",
+      "itemListElement": [
+        { "@type": "ListItem", "position": 1, "name": "Factory Zero", "item": "https://factory0.ventures/" },
+        { "@type": "ListItem", "position": 2, "name": "Technology", "item": "https://factory0.ventures/technology/" }
+      ]
+    },
+    {
+      "@type": "SoftwareSourceCode",
+      "@id": "https://github.com/Factory-Zero/harness#code",
+      "name": "Factory Zero harness",
+      "description": "Modular open-source backend harness for Factory Zero ventures: one stateless Cloudflare Worker per venture, modules as Rust crates.",
+      "codeRepository": "https://github.com/Factory-Zero/harness",
+      "programmingLanguage": "Rust",
+      "runtimePlatform": "Cloudflare Workers",
+      "license": "https://opensource.org/licenses/MIT",
+      "author": { "@id": "https://factory0.ventures/#organization" }
+    }
+  ]
+}
+</script>
+</head>
+<body>
+
+<a class="skip-link" href="#main">SKIP TO CONTENT</a>
+
+<header class="site-header">
+  <a class="wordmark" href="/" aria-label="Factory Zero home">
+    <span>FACTORY ZER</span><span class="o" aria-hidden="true"></span>
+  </a>
+  <button class="nav-toggle" type="button" aria-expanded="false" aria-controls="site-nav">MENU</button>
+  <nav class="site-nav" id="site-nav" aria-label="Primary">
+    <a href="/ventures/">VENTURES</a>
+    <a href="/system/">SYSTEM</a>
+    <a href="/technology/" aria-current="page">TECHNOLOGY</a>
+    <a href="/thesis/">THESIS</a>
+    <a href="/about/">ABOUT</a>
+    <a class="enter" href="/enter/">ENTER →</a>
+  </nav>
+</header>
+
+<main id="main">
+
+<section class="page">
+  <p class="eyebrow">TECHNOLOGY / OPEN SOURCE</p>
+  <h1 class="h-page" style="max-width:14ch">Ordinary parts. Assembled once.</h1>
+  <p class="lede" style="max-width:52ch;font-size:19px;line-height:1.5">Every venture needs a backend, and none of them should build one. The parts a company needs to exist are written once, as an open-source harness in Rust. A venture picks the modules it wants, wires them in one file, and ships as a single stateless worker with its own database.</p>
+  <p><a class="detail-link" href="https://github.com/Factory-Zero/harness" rel="noopener">GITHUB.COM/FACTORY-ZERO/HARNESS &rarr;</a></p>
+</section>
+
+<section class="section tech">
+  <p class="eyebrow">HOW A VENTURE IS BUILT</p>
+  <div class="tech-split">
+    <div>
+      <h2 class="claim">One file names the company.</h2>
+      <p>A venture backend is a small Rust project. It lists the modules it uses, the adapters that connect them to the world, and the venture's own name and domain. Everything else is the harness. Build it and the result is one worker that contains exactly those modules and nothing else.</p>
+      <p>If a module needs something the runtime cannot provide, or two modules claim the same table, the build fails before anything is deployed. A misconfigured venture cannot reach production.</p>
+    </div>
+    <pre class="code" aria-label="Venture composition in Rust"><code>Harness::builder()
+    .venture(Venture::new("factory0", "factory0.ventures")
+        .cors_origins(["https://factory0.ventures"]))
+    .module(EmailSignup::new().double_opt_in(true))
+    .module(Waitlist::new()
+        .products(["kontinuum", "undercover-rockstars"]))
+    .runtime(Cloudflare::new()
+        .db("DB")
+        .mailer(Resend::from_env())
+        .captcha(Turnstile::from_env()))
+    .build()?</code></pre>
+  </div>
+</section>
+
+<section class="section">
+  <p class="eyebrow">THE STACK</p>
+  <dl class="facts tech-facts">
+    <div><dt>LANGUAGE</dt><dd>Rust</dd></div>
+    <div><dt>COMPUTE</dt><dd>Cloudflare Workers, compiled to WebAssembly</dd></div>
+    <div><dt>DATABASE</dt><dd>Cloudflare D1 today, self-hosted Postgres later</dd></div>
+    <div><dt>ROUTER</dt><dd>axum, the same router on the edge and on a server</dd></div>
+    <div><dt>QUERIES</dt><dd>sea-query, one query rendered for SQLite or Postgres</dd></div>
+    <div><dt>MAIL</dt><dd>Resend, through a port the module never sees</dd></div>
+    <div><dt>ABUSE</dt><dd>Turnstile and per-address rate limits on every public write</dd></div>
+    <div><dt>SESSIONS</dt><dd>None. Signed tokens with key rotation</dd></div>
+  </dl>
+</section>
+
+<section class="section">
+  <p class="eyebrow">DESIGN RULES</p>
+  <div class="principles">
+    <div class="principle"><p class="n">01</p><h2 class="claim">Modules only see ports.</h2><p>A module asks for a database, a mailer, a captcha. It never touches a Cloudflare binding or a vendor client. Adapters answer. That one rule is what makes the later move off Cloudflare a change of a single crate.</p></div>
+    <div class="principle"><p class="n">02</p><h2 class="claim">Composition happens at compile time.</h2><p>No plugin loading, no registry service, no runtime surprises. The worker contains what the venture listed. The compiler is the first reviewer.</p></div>
+    <div class="principle"><p class="n">03</p><h2 class="claim">One venture, one database.</h2><p>Nothing is shared at runtime between companies. Each has its own worker, its own data, its own secrets. A venture can be backed up, moved or shut down without touching another.</p></div>
+    <div class="principle"><p class="n">04</p><h2 class="claim">Stateless by construction.</h2><p>Nothing survives a request except what is written to the database. Confirmation and unsubscribe links are signed tokens, so there is no session store to run, scale or leak.</p></div>
+  </div>
+</section>
+
+<section class="section">
+  <p class="eyebrow">WHAT IS OPEN</p>
+  <div class="tech-split">
+    <div>
+      <h2 class="claim">The factory floor is public. The recipes are not.</h2>
+      <p>The harness, its runtime, its adapters and the first two modules are MIT licensed and developed in the open. Anyone can build a backend on them, and every venture we run does. The modules that encode how Factory Zero operates its companies stay private. Each venture's own backend is private too.</p>
+      <p>Decisions are written down as they are made. The architecture document and the decision records are in the repository, including the one recording why a first attempt was thrown away.</p>
+    </div>
+    <ul class="repo-list">
+      <li><a href="https://github.com/Factory-Zero/harness" rel="noopener"><span class="id">MIT</span><span>harness</span><span class="muted">core, runtime, adapters, email signup, waitlist, CLI, test kit</span></a></li>
+      <li><a href="https://github.com/Factory-Zero/harness/blob/main/docs/ARCHITECTURE.md" rel="noopener"><span class="id">DOC</span><span>architecture</span><span class="muted">the full design, twelve sections</span></a></li>
+      <li><a href="https://github.com/Factory-Zero/harness/tree/main/docs/adr" rel="noopener"><span class="id">ADR</span><span>decision records</span><span class="muted">why Rust, why ports, why one database per venture</span></a></li>
+      <li><a href="https://github.com/Factory-Zero/venture-backend-template" rel="noopener"><span class="id">MIT</span><span>venture backend template</span><span class="muted">what a new venture starts from</span></a></li>
+      <li><a href="https://github.com/Factory-Zero/website" rel="noopener"><span class="id">SRC</span><span>this website</span><span class="muted">static, no build step, no dependencies</span></a></li>
+      <li><a href="https://github.com/Factory-Zero" rel="noopener"><span class="id">ORG</span><span>github.com/Factory-Zero</span><span class="muted">everything above in one place</span></a></li>
+    </ul>
+  </div>
+</section>
+
+<section class="section">
+  <p class="eyebrow">STATUS</p>
+  <dl class="facts">
+    <div><dt>DESIGN</dt><dd>Adopted, nine decision records</dd></div>
+    <div><dt>FOUNDATION</dt><dd>Being built now</dd></div>
+    <div><dt>FIRST MODULES</dt><dd>Email signup, waitlist. Next</dd></div>
+    <div><dt>PUBLISHED</dt><dd>Not yet on crates.io</dd></div>
+  </dl>
+  <p class="lede" style="max-width:48ch">Progress is tracked as issues and milestones in the open. When the first venture backend goes live, it will be this site's own signup.</p>
+  <p><a class="detail-link" href="https://github.com/Factory-Zero/harness/milestones" rel="noopener">MILESTONES &rarr;</a></p>
+</section>
+
+</main>
+
+<footer class="site-subfooter">
+  <nav aria-label="Footer">
+      <a href="/">HOME</a>
+      <a href="/ventures/">VENTURES</a>
+      <a href="/system/">SYSTEM</a>
+      <a href="/technology/">TECHNOLOGY</a>
+      <a href="/thesis/">THESIS</a>
+      <a href="/enter/">ENTER</a>
+      <a href="https://github.com/Factory-Zero" rel="noopener">GITHUB</a>
+  </nav>
+  <div>FACTORY0.VENTURES · FZ/01 · <span id="fz-year">2026</span></div>
+</footer>
+
+<script src="/assets/fz-common.js"></script>
+</body>
+</html>

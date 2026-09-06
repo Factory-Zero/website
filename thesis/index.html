@@ -3,6 +3,7 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
+<script>document.documentElement.classList.add('js')</script>
 
 <title>Thesis · Factory Zero</title>
 <meta name="description" content="The dominant company architecture was designed for human labor. A working paper on what changes when coordination costs fall toward the cost of compute.">
@@ -112,9 +113,11 @@
   <a class="wordmark" href="/" aria-label="Factory Zero home">
     <span>FACTORY ZER</span><span class="o" aria-hidden="true"></span>
   </a>
-  <nav class="site-nav" aria-label="Primary">
+  <button class="nav-toggle" type="button" aria-expanded="false" aria-controls="site-nav">MENU</button>
+  <nav class="site-nav" id="site-nav" aria-label="Primary">
     <a href="/ventures/">VENTURES</a>
     <a href="/system/">SYSTEM</a>
+    <a href="/technology/">TECHNOLOGY</a>
     <a href="/thesis/" aria-current="page">THESIS</a>
     <a href="/about/">ABOUT</a>
     <a href="/enter/" class="enter">ENTER →</a>
@@ -197,6 +200,7 @@
       <a href="/system/">SYSTEM</a>
       <a href="/about/">ABOUT</a>
       <a href="/enter/">ENTER</a>
+      <a href="https://github.com/Factory-Zero" rel="noopener">GITHUB</a>
   </nav>
   <div>FACTORY0.VENTURES · FZ/01 · <span id="fz-year">2026</span></div>
 </footer>
