@@ -74,7 +74,7 @@ cycle teaches the next: build, deploy, observe, learn, repeat.
 
 ## Ventures
 
-The registry at /ventures/ lists four records, all named:
+The registry at /ventures/ lists five records, all named:
 
 - **FZ-001 Kontinuum** (status BUILDING, stage PROTOTYPE, category MUSIC). An AI
   composer performing on a deterministic real-time engine. Music written and
@@ -103,6 +103,16 @@ The registry at /ventures/ lists four records, all named:
   operated for anyone. Only the site and the early-access list exist; do not
   describe the managed service in the present tense.
   Site: https://cratefield.com
+- **FZ-005 VibeCaddie** (status BUILDING, stage VALIDATION, category DEVTOOLS).
+  A code review agent for code you did not fully write. It reads a repository,
+  works out what kind of codebase it is, loads only the review skills that
+  apply, and returns findings ranked by severity with the file, the line, why
+  it matters and a suggested fix. Prepaid credits rather than a subscription.
+  **Nothing has shipped**: the GitHub app is not built and not
+  listed, no audit has ever run, no credits can be bought and the prices shown
+  are planned rather than live. Only the site and the early-access list exist;
+  do not describe it as installable or purchasable.
+  Site: https://vibecaddie.com
 
 ## Notes for machine readers
 
