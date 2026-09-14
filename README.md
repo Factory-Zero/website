@@ -255,7 +255,7 @@ Six ventures are listed, and all six are real and named:
 | `FZ-003` | Yoginini | `VALIDATION` | L3 | [yoginini.us](https://yoginini.us) | [Yoginini/website](https://github.com/Yoginini/website) |
 | `FZ-004` | Cratefield | `VALIDATION` | L4 | [cratefield.com](https://cratefield.com) | [Cratefield/harness](https://github.com/Cratefield/harness) |
 | `FZ-005` | VibeCaddie | `VALIDATION` | L5 | [vibecaddie.com](https://vibecaddie.com) | [VibeCaddie/website](https://github.com/VibeCaddie/website) |
-| `FZ-006` | Colonizer | `PROTOTYPE` | — | [colonizer.dev](https://colonizer.dev) | [Colonizer-dev/colonizer](https://github.com/Colonizer-dev/colonizer) |
+| `FZ-006` | Colonizer | `PROTOTYPE` | — | [colonizer.dev](https://colonizer.dev) | [Colonizer-dev/harness](https://github.com/Colonizer-dev/harness) |
 
 `autonomy` is `null` on every one of them: no venture has a measured figure,
 and the registry does not show one. Set a figure in `fz-data.js` when there

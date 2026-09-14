@@ -170,7 +170,7 @@ public source repositories. FZ-006 has no target or aims set yet.
   not describe any of them as available.
   Autonomy target: none set yet, and no aims are stated; do not infer either.
   Site: https://colonizer.dev
-  Source: https://github.com/Colonizer-dev/colonizer (MIT),
+  Source: https://github.com/Colonizer-dev/harness (MIT),
   https://github.com/Colonizer-dev
 
 ## Notes for machine readers
