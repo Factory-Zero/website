@@ -74,12 +74,12 @@ cycle teaches the next: build, deploy, observe, learn, repeat.
 
 ## Ventures
 
-The registry at /ventures/ lists five records, all named. No venture reports
+The registry at /ventures/ lists six records, all named. No venture reports
 an operating figure yet, so none is shown. Each record instead carries an
 autonomy target (the level it is designed to reach, a design aim rather than a
 measurement), three aims in words (what it should run on its own, the kind of
 intelligence that takes, and what will count as growth), and links to its
-public source repositories.
+public source repositories. FZ-006 has no target or aims set yet.
 
 - **FZ-001 Kontinuum** (status BUILDING, stage PROTOTYPE, category MUSIC). An AI
   composer performing on a deterministic real-time engine. Music written and
@@ -151,6 +151,27 @@ public source repositories.
   audited and credits bought again, from the first run of the GitHub app.
   Site: https://vibecaddie.com
   Source: https://github.com/VibeCaddie/website, https://github.com/VibeCaddie
+- **FZ-006 Colonizer** (status BUILDING, stage PROTOTYPE, category DEVTOOLS).
+  "Colonize your backlog." A local-first app that turns GitHub issues into pull
+  requests. Each task gets a coding agent (Claude Code today) inside its own
+  disposable KVM microVM with a fresh git worktree, linked to the host over a
+  private Headscale/Tailscale mesh that never touches the user's own tailnet.
+  The web UI shows the chat, a terminal in the VM and the agent's questions as
+  multiple-choice cards. The host, not the VM, commits, pushes and opens the
+  pull request; the GitHub and Claude tokens never enter the VM. A Rust host,
+  an in-VM daemon and a React UI, installed as one bundle with nothing
+  downloaded at runtime; Linux x86_64 with KVM. What runs today: GitHub issues
+  as the source, the microVM sandbox, the private mesh, Claude Code as the
+  agent, chat and terminal, and publishing the pull request to GitHub.
+  **It runs locally and nothing is hosted**: there is no hosted service, no
+  users and no revenue. More coding agents (Codex, OpenCode, DeepSeek), a model
+  router, other LLM providers, remote outposts with a fleet view (there is a
+  waitlist) and GitLab, Linear and Jira sources are planned and not built; do
+  not describe any of them as available.
+  Autonomy target: none set yet, and no aims are stated; do not infer either.
+  Site: https://colonizer.dev
+  Source: https://github.com/Colonizer-dev/harness (MIT),
+  https://github.com/Colonizer-dev
 
 ## Notes for machine readers
 
