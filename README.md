@@ -246,7 +246,7 @@ contact@factory0.ventures**. Using a subdomain keeps the two entirely separate.
 
 ### Venture data
 
-Five ventures are listed, and all five are real and named:
+Six ventures are listed, and all six are real and named:
 
 | | Venture | Stage | Target | Site | Source |
 | :--- | :--- | :--- | :--- | :--- | :--- |
@@ -255,6 +255,7 @@ Five ventures are listed, and all five are real and named:
 | `FZ-003` | Yoginini | `VALIDATION` | L3 | [yoginini.us](https://yoginini.us) | [Yoginini/website](https://github.com/Yoginini/website) |
 | `FZ-004` | Cratefield | `VALIDATION` | L4 | [cratefield.com](https://cratefield.com) | [Cratefield/harness](https://github.com/Cratefield/harness) |
 | `FZ-005` | VibeCaddie | `VALIDATION` | L5 | [vibecaddie.com](https://vibecaddie.com) | [VibeCaddie/website](https://github.com/VibeCaddie/website) |
+| `FZ-006` | Colonizer | `PROTOTYPE` | — | [colonizer.dev](https://colonizer.dev) | [Colonizer-dev/colonizer](https://github.com/Colonizer-dev/colonizer) |
 
 `autonomy` is `null` on every one of them: no venture has a measured figure,
 and the registry does not show one. Set a figure in `fz-data.js` when there
@@ -267,10 +268,14 @@ is one. What each record shows instead:
   will count as growth. The growth line names what gets counted, not a count.
 - `github`: public repositories only. Private backends are not linked.
 
+`FZ-006` Colonizer has no `target` and no `aims` yet. They are the
+founder's to set, and until they are, those rows show a dash rather than a
+guess.
+
 Nothing else is listed: the registry shows only what exists, so a venture with
 nothing public yet does not get a placeholder row.
 
-None of the five can be bought from today, and their records and `llms.txt`
+None of the six can be bought from today, and their records and `llms.txt`
 say so — do not let any of them read as shipped.
 
 The FZ/LOG panel on the home page is still labelled an illustrative sequence,

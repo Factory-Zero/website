@@ -104,10 +104,10 @@
 <section class="page">
   <div class="page-head">
     <p class="kicker">VENTURE REGISTRY</p>
-    <p class="count" id="fz-count">05 RECORDS &middot; 00 LIVE</p>
+    <p class="count" id="fz-count">06 RECORDS &middot; 00 LIVE</p>
   </div>
   <h1 class="h-page">Registry</h1>
-  <p class="lede" style="margin-bottom:6vh">Every record below runs on the same factory core. Select one to read its detail. No venture reports a figure yet, so none is shown. Each record states instead the autonomy level it is designed to reach, what it should run on its own, the kind of intelligence that takes, and what will count as growth once there is something to count.</p>
+  <p class="lede" style="margin-bottom:6vh">Every record below runs on the same factory core. Select one to read its detail. No venture reports a figure yet, so none is shown. Each record states instead the autonomy level it is designed to reach, what it should run on its own, the kind of intelligence that takes, and what will count as growth once there is something to count. A record that has not set these yet shows a dash in their place.</p>
   <div class="registry">
     <div class="registry-head registry-cols" aria-hidden="true">
       <span>ID</span><span>NAME</span><span>STATUS</span><span>CATEGORY</span><span class="aut">TARGET</span>
@@ -183,6 +183,20 @@
         <span class="cat">DEVTOOLS</span>
         <span class="aut">L5</span>
       </button>
+      <button type="button" class="record registry-cols" aria-pressed="false" aria-controls="d-record"
+        data-id="FZ-006" data-name="Colonizer" data-status="BUILDING" data-status-color="#A9A8A5"
+        data-category="DEVTOOLS" data-autonomy=""
+        data-target="" data-aim-operate=""
+        data-aim-intelligence="" data-aim-growth=""
+        data-github="[[&quot;COLONIZER-DEV/COLONIZER&quot;,&quot;https://github.com/Colonizer-dev/colonizer&quot;],[&quot;COLONIZER-DEV&quot;,&quot;https://github.com/Colonizer-dev&quot;]]"
+        data-launched="—" data-stage="PROTOTYPE" data-site="colonizer.dev"
+        data-logo="colonizer-animated.svg" data-logo-w="120" data-logo-h="120" data-desc="A local-first app that turns GitHub issues into pull requests. Each task gets a coding agent, Claude Code today, inside its own disposable KVM microVM with a fresh git worktree, linked to the host over a private mesh that never touches your own tailnet. The web UI shows the chat, a terminal in the VM and the agent’s questions as multiple-choice cards. The host, not the VM, commits, pushes and opens the pull request, so the GitHub and Claude tokens never enter it. The Rust host, the in-VM daemon and the React UI are open source under MIT and run locally on Linux x86_64 with KVM. There is no hosted service; more coding agents, a model router, remote outposts and GitLab, Linear and Jira sources are planned, not built.">
+        <span class="rid">FZ-006</span>
+        <span class="name"><img class="venture-logo" src="/assets/colonizer-animated.svg" alt="" width="30" height="30">Colonizer</span>
+        <span class="status" style="color:#A9A8A5"><span class="dot"></span>BUILDING</span>
+        <span class="cat">DEVTOOLS</span>
+        <span class="aut">&mdash;</span>
+      </button>
 <!-- fz:registry:end -->
   </div>
 </section>
@@ -226,6 +240,7 @@
       <a href="/about/">ABOUT</a>
       <a href="/enter/">ENTER</a>
       <a href="https://vibecaddie.com" rel="noopener">VIBECADDIE</a>
+      <a href="https://colonizer.dev" rel="noopener">COLONIZER</a>
       <a href="https://github.com/Factory-Zero" rel="noopener">GITHUB</a>
   </nav>
   <div>FACTORY0.VENTURES · FZ/01 · <span id="fz-year">2026</span></div>
