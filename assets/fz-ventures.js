@@ -10,6 +10,9 @@
   var rows = Array.prototype.slice.call(document.querySelectorAll('.record'));
   if (!rows.length) return;
 
+  // same order as LEVELS in fz-app.js and tools/sync-ventures.js
+  var LEVELS = ['HUMAN-OPERATED', 'AI-ASSISTED', 'AGENT WORKFLOWS', 'AGENT-OPERATED', 'SELF-OPTIMIZING', 'AUTONOMOUS COMPANY'];
+
   var el = {
     id:    document.getElementById('d-id'),
     logo:  document.getElementById('d-logo'),
@@ -17,8 +20,12 @@
     desc:  document.getElementById('d-desc'),
     link:  document.getElementById('d-link'),
     status: document.getElementById('d-status'),
-    aut:   document.getElementById('d-aut'),
+    target: document.getElementById('d-target'),
     meter: document.getElementById('d-meter'),
+    aimOperate: document.getElementById('d-aim-operate'),
+    aimIntelligence: document.getElementById('d-aim-intelligence'),
+    aimGrowth: document.getElementById('d-aim-growth'),
+    github: document.getElementById('d-github'),
     cat:   document.getElementById('d-cat'),
     launched: document.getElementById('d-launched'),
     stage: document.getElementById('d-stage'),
@@ -39,14 +46,37 @@
     el.launched.textContent = d.launched;
     el.stage.textContent = d.stage;
 
-    // autonomy is optional: a venture without a figure shows an em dash, not a zero
-    if (d.autonomy) {
-      el.aut.textContent = d.autonomy + '%';
+    // the autonomy target is a design aim, 0-5, never a measured share.
+    // A venture without one shows an em dash, not a zero.
+    if (d.target !== '') {
+      var lvl = Number(d.target);
+      el.target.textContent = 'LEVEL ' + lvl + ' · ' + LEVELS[lvl];
       el.meter.hidden = false;
-      el.meter.firstElementChild.style.width = d.autonomy + '%';
+      el.meter.firstElementChild.style.width = (lvl * 20) + '%';
     } else {
-      el.aut.textContent = '—';
+      el.target.textContent = '—';
       el.meter.hidden = true;
+    }
+    el.aimOperate.textContent = d.aimOperate || '—';
+    el.aimIntelligence.textContent = d.aimIntelligence || '—';
+    el.aimGrowth.textContent = d.aimGrowth || '—';
+
+    // public repositories only; the JSON in the attribute is written by sync-ventures.js
+    var repos = [];
+    try { repos = JSON.parse(d.github || '[]'); } catch (e) { repos = []; }
+    el.github.textContent = '';
+    if (repos.length) {
+      repos.forEach(function (r) {
+        var a = document.createElement('a');
+        a.href = r[1];
+        a.rel = 'noopener';
+        a.textContent = r[0] + ' →';
+        el.github.appendChild(a);
+      });
+    } else {
+      var s = document.createElement('span');
+      s.textContent = 'NO PUBLIC REPOSITORY';
+      el.github.appendChild(s);
     }
 
     if (d.site && d.site !== '—') {

@@ -26,6 +26,13 @@ const esc = s => String(s == null ? '' : s)
 
 const pulses = s => s === 'LIVE' || s === 'SCALING';
 
+// Autonomy levels, same order as LEVELS in assets/fz-app.js.
+const LEVELS = ['HUMAN-OPERATED', 'AI-ASSISTED', 'AGENT WORKFLOWS', 'AGENT-OPERATED', 'SELF-OPTIMIZING', 'AUTONOMOUS COMPANY'];
+const targetShort = v => v.target == null ? '&mdash;' : `L${v.target}`;
+const targetLong = v => v.target == null ? '&mdash;' : `LEVEL ${v.target} &middot; ${LEVELS[v.target]}`;
+const aims = v => v.aims || {};
+const gh = v => v.github || [];
+
 function row(v, i) {
   const c = STATUS_COLOR[v.status] || '#8A8A8E';
   const mark = v.logo
@@ -34,13 +41,16 @@ function row(v, i) {
   return `      <button type="button" class="record registry-cols" aria-pressed="${i === 0}" aria-controls="d-record"
         data-id="${esc(v.id)}" data-name="${esc(v.name)}" data-status="${esc(v.status)}" data-status-color="${c}"
         data-category="${esc(v.category)}" data-autonomy="${v.autonomy == null ? '' : v.autonomy}"
+        data-target="${v.target == null ? '' : v.target}" data-aim-operate="${esc(aims(v).operate)}"
+        data-aim-intelligence="${esc(aims(v).intelligence)}" data-aim-growth="${esc(aims(v).growth)}"
+        data-github="${esc(JSON.stringify(gh(v)))}"
         data-launched="${esc(v.launched)}" data-stage="${esc(v.stage)}" data-site="${esc(v.site)}"
         data-logo="${esc(v.logo || '')}" data-logo-w="${v.logoW || ''}" data-logo-h="${v.logoH || ''}" data-desc="${esc(v.desc)}">
         <span class="rid">${esc(v.id)}</span>
         <span class="name">${mark}${esc(v.name)}</span>
         <span class="status${pulses(v.status) ? ' is-live' : ''}" style="color:${c}"><span class="dot"></span>${esc(v.status)}</span>
         <span class="cat">${esc(v.category)}</span>
-        <span class="aut">${v.autonomy == null ? '&mdash;' : v.autonomy + '%'}</span>
+        <span class="aut">${targetShort(v)}</span>
       </button>`;
 }
 
@@ -65,10 +75,14 @@ function detail(v) {
 function spec(v) {
   const c = STATUS_COLOR[v.status] || '#8A8A8E';
   return `        <div><dt>STATUS</dt><dd id="d-status" style="color:${c}">${esc(v.status)}</dd></div>
-        <div><dt>AUTONOMY</dt><dd><span id="d-aut">${v.autonomy == null ? '&mdash;' : v.autonomy + '%'}</span><span class="meter" id="d-meter"${v.autonomy == null ? ' hidden' : ''}><i style="width:${v.autonomy || 0}%"></i></span></dd></div>
         <div><dt>CATEGORY</dt><dd id="d-cat">${esc(v.category)}</dd></div>
+        <div><dt>PIPELINE STAGE</dt><dd id="d-stage">${esc(v.stage)}</dd></div>
         <div><dt>LAUNCHED</dt><dd id="d-launched">${esc(v.launched)}</dd></div>
-        <div class="wide"><dt>PIPELINE STAGE</dt><dd id="d-stage">${esc(v.stage)}</dd></div>
+        <div class="wide target"><dt>AUTONOMY TARGET</dt><dd><span id="d-target">${targetLong(v)}</span><span class="meter" id="d-meter"${v.target == null ? ' hidden' : ''}><i style="width:${v.target == null ? 0 : v.target * 20}%"></i></span></dd></div>
+        <div class="wide aim"><dt>AIM &middot; AUTONOMOUS OPERATION</dt><dd id="d-aim-operate">${esc(aims(v).operate)}</dd></div>
+        <div class="wide aim"><dt>AIM &middot; INTELLIGENCE</dt><dd id="d-aim-intelligence">${esc(aims(v).intelligence)}</dd></div>
+        <div class="wide aim"><dt>AIM &middot; GROWTH</dt><dd id="d-aim-growth">${esc(aims(v).growth)}</dd></div>
+        <div class="wide source"><dt>SOURCE</dt><dd id="d-github">${gh(v).length ? gh(v).map(([l, u]) => `<a href="${esc(u)}" rel="noopener">${esc(l)} &rarr;</a>`).join('') : '<span>NO PUBLIC REPOSITORY</span>'}</dd></div>
         <div class="wide inherit"><dt>INHERITED FROM FACTORY</dt><dd>IDENTITY &middot; BILLING &middot; DEPLOYMENT &middot; OBSERVABILITY &middot; SUPPORT &middot; ANALYTICS &middot; SECURITY</dd></div>`;
 }
 

@@ -246,21 +246,32 @@ contact@factory0.ventures**. Using a subdomain keeps the two entirely separate.
 
 ### Venture data
 
-Three ventures are listed, and all three are real and named:
+Five ventures are listed, and all five are real and named:
 
-| | Venture | Stage | Site |
-| :--- | :--- | :--- | :--- |
-| `FZ-001` | Kontinuum | `PROTOTYPE` | [kontinuum.audio](https://kontinuum.audio) |
-| `FZ-002` | Undercover Rockstars | `LAUNCH` | [undercoverrockstars.com](https://undercoverrockstars.com) |
-| `FZ-003` | Yoginini | `VALIDATION` | [yoginini.us](https://yoginini.us) |
+| | Venture | Stage | Target | Site | Source |
+| :--- | :--- | :--- | :--- | :--- | :--- |
+| `FZ-001` | Kontinuum | `PROTOTYPE` | L4 | [kontinuum.audio](https://kontinuum.audio) | [Kontinuum-ai/kontinuum-engine](https://github.com/Kontinuum-ai/kontinuum-engine) |
+| `FZ-002` | Undercover Rockstars | `LAUNCH` | L3 | [undercoverrockstars.com](https://undercoverrockstars.com) | [Undercover-Rockstars/website](https://github.com/Undercover-Rockstars/website) |
+| `FZ-003` | Yoginini | `VALIDATION` | L3 | [yoginini.us](https://yoginini.us) | [Yoginini/website](https://github.com/Yoginini/website) |
+| `FZ-004` | Cratefield | `VALIDATION` | L4 | [cratefield.com](https://cratefield.com) | [Cratefield/harness](https://github.com/Cratefield/harness) |
+| `FZ-005` | VibeCaddie | `VALIDATION` | L5 | [vibecaddie.com](https://vibecaddie.com) | [VibeCaddie/website](https://github.com/VibeCaddie/website) |
 
-`autonomy` is `null` on every one of them, which renders as an em dash rather
-than an invented percentage. Set a figure in `fz-data.js` when there is one.
+`autonomy` is `null` on every one of them: no venture has a measured figure,
+and the registry does not show one. Set a figure in `fz-data.js` when there
+is one. What each record shows instead:
+
+- `target`: the autonomy level (0–5) the venture is designed to reach. A
+  stated aim, labelled `AUTONOMY TARGET`, never a measurement.
+- `aims.operate`, `aims.intelligence`, `aims.growth`: in words, what the
+  venture should run on its own, the kind of intelligence that takes, and what
+  will count as growth. The growth line names what gets counted, not a count.
+- `github`: public repositories only. Private backends are not linked.
+
 Nothing else is listed: the registry shows only what exists, so a venture with
 nothing public yet does not get a placeholder row.
 
-Neither Undercover Rockstars nor Yoginini can be bought from today, and their
-records and `llms.txt` say so — do not let either read as shipped.
+None of the five can be bought from today, and their records and `llms.txt`
+say so — do not let any of them read as shipped.
 
 The FZ/LOG panel on the home page is still labelled an illustrative sequence,
 and the hero's `agentNetwork` figure (1,284, with simulated drift) is a design

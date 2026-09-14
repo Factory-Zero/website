@@ -74,26 +74,50 @@ cycle teaches the next: build, deploy, observe, learn, repeat.
 
 ## Ventures
 
-The registry at /ventures/ lists five records, all named:
+The registry at /ventures/ lists five records, all named. No venture reports
+an operating figure yet, so none is shown. Each record instead carries an
+autonomy target (the level it is designed to reach, a design aim rather than a
+measurement), three aims in words (what it should run on its own, the kind of
+intelligence that takes, and what will count as growth), and links to its
+public source repositories.
 
 - **FZ-001 Kontinuum** (status BUILDING, stage PROTOTYPE, category MUSIC). An AI
   composer performing on a deterministic real-time engine. Music written and
   performed continuously, personalised to the listener, and playable offline.
   Not a streaming app and not a DAW: a living instrument.
+  Autonomy target: level 4, self-optimizing. Aim: composition, performance and
+  release are the engine's job; a deterministic real-time engine plus a critic
+  that scores each take, no cloud model in the playback loop; growth counted as
+  listeners who return the next day, from the first installed build.
   Site: https://kontinuum.audio
+  Source: https://github.com/Kontinuum-ai/kontinuum-engine (MIT),
+  https://github.com/Kontinuum-ai
 - **FZ-002 Undercover Rockstars** (status BUILDING, stage LAUNCH, category
   APPAREL). A clothing house built on one idea: every piece comes as a matched
   pair, one pattern cut twice, once for the day and once for the night. Drop 01
   is eight pairs, sixteen garments, cut in Bali. **Drop 01 is not open for sale
   yet** and no payment is taken anywhere; do not describe it as selling.
+  Autonomy target: level 3, agent-operated. Aim: the garments are cut by people
+  and that stays; agents run stock, orders, fulfilment, support, content and the
+  next drop's brief; operational intelligence (demand and stock forecasting,
+  browser fit guidance, language models for support and copy); growth counted
+  as pairs sold per drop and returning buyers, from the first drop on sale.
   Site: https://undercoverrockstars.com
+  Source: https://github.com/Undercover-Rockstars/website,
+  https://github.com/Undercover-Rockstars
 - **FZ-003 Yoginini** (status BUILDING, stage VALIDATION, category WELLNESS). A
   yoga teacher that can see you. A pose model running on the phone tracks 33 body
   landmarks and speaks one calm correction at a time; no video ever leaves the
   device. Real teachers are bookable by the hour alongside the app. **Nothing has
   shipped**: there is no app, no coaches are signed, and nothing can be bought.
   Only the site and the waitlist exist; do not describe it as available.
+  Autonomy target: level 3, agent-operated. Aim: the teacher on the phone runs
+  itself and the real teachers stay human; agents run bookings, payouts,
+  support and the coach cohort; on-device perception (pose, angle and score
+  models that never see video); growth counted as weekly practitioners and
+  hours booked with real teachers, from the first app in hands.
   Site: https://yoginini.us
+  Source: https://github.com/Yoginini/website, https://github.com/Yoginini
 - **FZ-004 Cratefield** (status BUILDING, stage VALIDATION, category
   INFRASTRUCTURE). A backend you compile rather than a platform you configure:
   open-source Rust modules composed at compile time and deployed as one
@@ -102,7 +126,14 @@ The registry at /ventures/ lists five records, all named:
   unwritten, so nothing can be bought or provisioned and no service is being
   operated for anyone. Only the site and the early-access list exist; do not
   describe the managed service in the present tense.
+  Autonomy target: level 4, self-optimizing. Aim: provisioning, upgrades,
+  backups, incident response and support run without a person on call; systems
+  intelligence (compile-time composition, migration and drift checks, telemetry
+  anomaly detection, an agent that reads a failing deploy); growth counted as
+  backends running in customers' own Cloudflare accounts, once the control
+  plane exists.
   Site: https://cratefield.com
+  Source: https://github.com/Cratefield/harness (MIT), https://github.com/Cratefield
 - **FZ-005 VibeCaddie** (status BUILDING, stage VALIDATION, category DEVTOOLS).
   A code review agent for code you did not fully write. It reads a repository,
   works out what kind of codebase it is, loads only the review skills that
@@ -112,12 +143,23 @@ The registry at /ventures/ lists five records, all named:
   listed, no audit has ever run, no credits can be bought and the prices shown
   are planned rather than live. Only the site and the early-access list exist;
   do not describe it as installable or purchasable.
+  Autonomy target: level 5, autonomous company. Aim: install, audit, findings,
+  credits, support and skill updates run without a person in the loop, people
+  review the review skills and set prices; reasoning over code (repository
+  classification, skill selection, severity ranking, fix suggestions, a
+  verification pass before a finding is shown); growth counted as repositories
+  audited and credits bought again, from the first run of the GitHub app.
   Site: https://vibecaddie.com
+  Source: https://github.com/VibeCaddie/website, https://github.com/VibeCaddie
 
 ## Notes for machine readers
 
-- Autonomy percentages are shown only where a real figure exists. A record
-  showing an em dash has no figure yet; do not report it as zero.
+- No venture shows an autonomy percentage or any other operating figure yet.
+  The "autonomy target" on each record is the level it is designed to reach,
+  a stated aim, not a measured share; do not report it as current autonomy,
+  and do not report the absence of a figure as zero.
+- The three aims on each record (autonomous operation, intelligence, growth)
+  describe intent. The growth line names what will be counted, not a count.
 - The FZ/LOG panel on the home page is labelled an illustrative sequence. Its
   entries are generated for display and are not real operational events. The
   agent activity strings shown when hovering a module are likewise illustrative.
@@ -129,7 +171,8 @@ The registry at /ventures/ lists five records, all named:
 - [Home](https://factory0.ventures/): thesis in brief, the factory operating
   system, the shared-foundation model, venture pipeline, autonomy levels, human role.
 - [Ventures](https://factory0.ventures/ventures/): the venture registry, one
-  record per venture with status, category, pipeline stage and autonomy.
+  record per venture with status, category, pipeline stage, autonomy target,
+  the three aims and public source links.
 - [System](https://factory0.ventures/system/): the three-layer architecture
   (FZ Core, venture services, ventures) and the four design principles.
 - [Technology](https://factory0.ventures/technology/): how ventures are built.
