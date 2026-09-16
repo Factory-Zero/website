@@ -59,9 +59,23 @@ window.FZ_DATA = {
       github: [['VIBECADDIE/WEBSITE', 'https://github.com/VibeCaddie/website'], ['VIBECADDIE', 'https://github.com/VibeCaddie']],
       desc: 'A code review agent for the code you did not fully write. It reads a repository, works out what kind of codebase it is, loads only the review skills that apply to it, and returns findings ranked by severity with the file, the line, why it matters and a suggested fix. Prepaid credits rather than a subscription, so the price of a run is known before it starts. The site and the early-access list are open; the GitHub app is not built.' },
     { id: 'FZ-006', name: 'Colonizer', status: 'BUILDING', stage: 'PROTOTYPE', launched: '—', category: 'DEVTOOLS', autonomy: null, site: 'colonizer.dev', logo: 'colonizer-animated.svg', logoW: 120, logoH: 120,
-      target: null,
+      target: 4,
+      aims: {
+        operate: 'The backlog is the thing that should clear itself. A person picks the issue and reviews the pull request; everything between — the sandbox, the worktree, the agent, the mesh, the commit and the push — is the automation target.',
+        intelligence: 'Isolation and judgement rather than a bigger model: one settler per colony, questions returned as multiple-choice cards instead of prose, a watchdog that notices a colony has stopped making progress, and a router that puts the right model on each slot.',
+        growth: 'Repository-led. Growth is repositories with colonies running and pull requests merged from them, counted from the first install that is not the author\u2019s.'
+      },
       github: [['COLONIZER-DEV/HARNESS', 'https://github.com/Colonizer-dev/harness'], ['COLONIZER-DEV', 'https://github.com/Colonizer-dev']],
-      desc: 'A local-first app that turns GitHub issues into pull requests. Each task gets a coding agent, Claude Code today, inside its own disposable KVM microVM with a fresh git worktree, linked to the host over a private mesh that never touches your own tailnet. The web UI shows the chat, a terminal in the VM and the agent\u2019s questions as multiple-choice cards. The host, not the VM, commits, pushes and opens the pull request, so the GitHub and Claude tokens never enter it. The Rust host, the in-VM daemon and the React UI are open source under MIT and run locally on Linux x86_64 with KVM. There is no hosted service; more coding agents, a model router, remote outposts and GitLab, Linear and Jira sources are planned, not built.' }
+      desc: 'A local-first app that turns GitHub issues into pull requests. Each task gets a coding agent, Claude Code today, inside its own disposable KVM microVM with a fresh git worktree, linked to the host over a private mesh that never touches your own tailnet. The web UI shows the chat, a terminal in the VM and the agent\u2019s questions as multiple-choice cards. The host, not the VM, commits, pushes and opens the pull request, so the GitHub and Claude tokens never enter it. The Rust host, the in-VM daemon and the React UI are open source under MIT and run locally on Linux x86_64 with KVM. There is no hosted service; more coding agents, a model router, remote outposts and GitLab, Linear and Jira sources are planned, not built.' },
+    { id: 'FZ-007', name: 'FindsYou', status: 'BUILDING', stage: 'VALIDATION', launched: '\u2014', category: 'CAREERS', autonomy: null, site: 'findsyou.work', logo: 'findsyou-animated.svg', logoW: 120, logoH: 120,
+      target: 4,
+      aims: {
+        operate: 'The search itself is the automation target: reading the boards, discarding what the person could never take, drafting the documents and tracking what was sent. The person decides what to apply for and presses send; nothing is ever submitted on their behalf.',
+        intelligence: 'Eligibility before relevance. A model of right to work, employment type, hours, travel and timezone decides what is even possible, a reading of the listing decides whether it is worth the time, and a provenance check refuses to print a number that is not in the person\u2019s own CV.',
+        growth: 'Outcome-led. Growth is replies received per person and people who come back for the next search, counted from the first scan that runs for someone else.'
+      },
+      github: [['FINDSYOU-WORK/WEBSITE', 'https://github.com/FindsYou-Work/website'], ['FINDSYOU-WORK', 'https://github.com/FindsYou-Work']],
+      desc: 'A job search that runs without the person doing the searching. It reads the boards continuously, throws out the listings they could never actually take \u2014 wrong residency, wrong hours, full-time only, no sponsorship, reposted ghost jobs \u2014 and hands back the few that survive with a CV and cover letter already written for each. The value is in what it removes: most of a week\u2019s listings, with the reason each one was discarded shown rather than hidden. The site and the waitlist are open; the scan, the filter and the documents are designed and not yet written.' }
   ],
   layers: [
     { name: 'DISCOVER', agents: [['RESEARCH', 'Analyzing 14,284 market signals'], ['STRATEGY', 'Scoring opportunity 0.91'], ['ANALYTICS', 'Cohort model refreshed']] },

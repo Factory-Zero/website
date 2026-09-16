@@ -104,7 +104,7 @@
 <section class="page">
   <div class="page-head">
     <p class="kicker">VENTURE REGISTRY</p>
-    <p class="count" id="fz-count">06 RECORDS &middot; 00 LIVE</p>
+    <p class="count" id="fz-count">07 RECORDS &middot; 00 LIVE</p>
   </div>
   <h1 class="h-page">Registry</h1>
   <p class="lede" style="margin-bottom:6vh">Every record below runs on the same factory core. Select one to read its detail. No venture reports a figure yet, so none is shown. Each record states instead the autonomy level it is designed to reach, what it should run on its own, the kind of intelligence that takes, and what will count as growth once there is something to count. A record that has not set these yet shows a dash in their place.</p>
@@ -186,8 +186,8 @@
       <button type="button" class="record registry-cols" aria-pressed="false" aria-controls="d-record"
         data-id="FZ-006" data-name="Colonizer" data-status="BUILDING" data-status-color="#A9A8A5"
         data-category="DEVTOOLS" data-autonomy=""
-        data-target="" data-aim-operate=""
-        data-aim-intelligence="" data-aim-growth=""
+        data-target="4" data-aim-operate="The backlog is the thing that should clear itself. A person picks the issue and reviews the pull request; everything between — the sandbox, the worktree, the agent, the mesh, the commit and the push — is the automation target."
+        data-aim-intelligence="Isolation and judgement rather than a bigger model: one settler per colony, questions returned as multiple-choice cards instead of prose, a watchdog that notices a colony has stopped making progress, and a router that puts the right model on each slot." data-aim-growth="Repository-led. Growth is repositories with colonies running and pull requests merged from them, counted from the first install that is not the author’s."
         data-github="[[&quot;COLONIZER-DEV/HARNESS&quot;,&quot;https://github.com/Colonizer-dev/harness&quot;],[&quot;COLONIZER-DEV&quot;,&quot;https://github.com/Colonizer-dev&quot;]]"
         data-launched="—" data-stage="PROTOTYPE" data-site="colonizer.dev"
         data-logo="colonizer-animated.svg" data-logo-w="120" data-logo-h="120" data-desc="A local-first app that turns GitHub issues into pull requests. Each task gets a coding agent, Claude Code today, inside its own disposable KVM microVM with a fresh git worktree, linked to the host over a private mesh that never touches your own tailnet. The web UI shows the chat, a terminal in the VM and the agent’s questions as multiple-choice cards. The host, not the VM, commits, pushes and opens the pull request, so the GitHub and Claude tokens never enter it. The Rust host, the in-VM daemon and the React UI are open source under MIT and run locally on Linux x86_64 with KVM. There is no hosted service; more coding agents, a model router, remote outposts and GitLab, Linear and Jira sources are planned, not built.">
@@ -195,7 +195,21 @@
         <span class="name"><img class="venture-logo" src="/assets/colonizer-animated.svg" alt="" width="30" height="30">Colonizer</span>
         <span class="status" style="color:#A9A8A5"><span class="dot"></span>BUILDING</span>
         <span class="cat">DEVTOOLS</span>
-        <span class="aut">&mdash;</span>
+        <span class="aut">L4</span>
+      </button>
+      <button type="button" class="record registry-cols" aria-pressed="false" aria-controls="d-record"
+        data-id="FZ-007" data-name="FindsYou" data-status="BUILDING" data-status-color="#A9A8A5"
+        data-category="CAREERS" data-autonomy=""
+        data-target="4" data-aim-operate="The search itself is the automation target: reading the boards, discarding what the person could never take, drafting the documents and tracking what was sent. The person decides what to apply for and presses send; nothing is ever submitted on their behalf."
+        data-aim-intelligence="Eligibility before relevance. A model of right to work, employment type, hours, travel and timezone decides what is even possible, a reading of the listing decides whether it is worth the time, and a provenance check refuses to print a number that is not in the person’s own CV." data-aim-growth="Outcome-led. Growth is replies received per person and people who come back for the next search, counted from the first scan that runs for someone else."
+        data-github="[[&quot;FINDSYOU-WORK/WEBSITE&quot;,&quot;https://github.com/FindsYou-Work/website&quot;],[&quot;FINDSYOU-WORK&quot;,&quot;https://github.com/FindsYou-Work&quot;]]"
+        data-launched="—" data-stage="VALIDATION" data-site="findsyou.work"
+        data-logo="findsyou-animated.svg" data-logo-w="120" data-logo-h="120" data-desc="A job search that runs without the person doing the searching. It reads the boards continuously, throws out the listings they could never actually take — wrong residency, wrong hours, full-time only, no sponsorship, reposted ghost jobs — and hands back the few that survive with a CV and cover letter already written for each. The value is in what it removes: most of a week’s listings, with the reason each one was discarded shown rather than hidden. The site and the waitlist are open; the scan, the filter and the documents are designed and not yet written.">
+        <span class="rid">FZ-007</span>
+        <span class="name"><img class="venture-logo" src="/assets/findsyou-animated.svg" alt="" width="30" height="30">FindsYou</span>
+        <span class="status" style="color:#A9A8A5"><span class="dot"></span>BUILDING</span>
+        <span class="cat">CAREERS</span>
+        <span class="aut">L4</span>
       </button>
 <!-- fz:registry:end -->
   </div>

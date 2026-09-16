@@ -168,10 +168,27 @@ public source repositories. FZ-006 has no target or aims set yet.
   router, other LLM providers, remote outposts with a fleet view (there is a
   waitlist) and GitLab, Linear and Jira sources are planned and not built; do
   not describe any of them as available.
-  Autonomy target: none set yet, and no aims are stated; do not infer either.
+  Autonomy target: level 4, self-optimizing. A stated design aim, not a
+  measurement.
   Site: https://colonizer.dev
   Source: https://github.com/Colonizer-dev/harness (MIT),
   https://github.com/Colonizer-dev
+
+- **FZ-007 FindsYou** (findsyou.work) — CAREERS, BUILDING, VALIDATION.
+  A job search that runs without the person doing the searching: it reads the
+  boards continuously, discards the listings they could never actually take
+  (wrong residency, wrong hours, full-time only, no sponsorship, reposted ghost
+  jobs) and returns the few that survive with a CV and cover letter written for
+  each. The value is in what it removes, and in showing the reason for each
+  rejection rather than hiding it.
+  **Nothing is built**: there is no scan, no filter and no document generation.
+  What exists is the site and a working waitlist. Do not describe any product
+  capability as available.
+  Autonomy target: level 4, self-optimizing. A stated design aim, not a
+  measurement.
+  Site: https://findsyou.work
+  Source: https://github.com/FindsYou-Work/website,
+  https://github.com/FindsYou-Work
 
 ## Notes for machine readers
 
@@ -216,10 +233,12 @@ public source repositories. FZ-006 has no target or aims set yet.
 - Founded: 2026
 - Structure: independent studio
 - What it is not: a fund, an accelerator, or an agency
-- Protagonist: the system, not the founders
+- Protagonist: the system, not the founder
+- Operator: one person, and the agents
 
-A small group of humans owns, governs and funds the factory. Team information
-is available on request.
+One person owns, governs and funds the factory, and the agents do the work of
+running what it builds. It is a solo operation by design, not by stage: that is
+the claim being tested. https://github.com/ParallelEntrepreneur
 
 ## Open source
 
