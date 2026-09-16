@@ -174,7 +174,7 @@ public source repositories. FZ-006 has no target or aims set yet.
   Source: https://github.com/Colonizer-dev/harness (MIT),
   https://github.com/Colonizer-dev
 
-- **FZ-007 FindsYou** (findsyou.work) — CAREERS, BUILDING, VALIDATION.
+- **FZ-007 FindsYou.work** (findsyou.work) — CAREERS, BUILDING, VALIDATION.
   A job search that runs without the person doing the searching: it reads the
   boards continuously, discards the listings they could never actually take
   (wrong residency, wrong hours, full-time only, no sponsorship, reposted ghost
