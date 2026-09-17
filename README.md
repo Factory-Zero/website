@@ -43,7 +43,7 @@ Factory Zero OS runs as five layers. Each function in each layer is an agent.
 | `DISTRIBUTE` | Growth · Content · Sales |
 | `LEARN` | Legal · Knowledge · Optimization |
 
-### One factory, many independent companies
+### One factory, many distinct ventures
 
 Every venture inherits the same foundation, so nothing is rebuilt. Identity,
 payments and billing, analytics, deployment, observability, agent
@@ -78,7 +78,7 @@ SIGNAL → VALIDATION → PROTOTYPE → LAUNCH → AUTONOMY → SCALE
 | `LEVEL 5` | Autonomous company | **target** |
 
 Ventures are designed to run at levels 3 to 5. Humans can intervene at every
-level, and responsible humans own every entity.
+level, and a named human is accountable for every venture.
 
 ### Human judgment, machine execution
 

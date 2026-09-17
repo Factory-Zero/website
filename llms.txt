@@ -56,7 +56,7 @@ Autonomy is treated as an architecture, not a claim. Six levels:
 - Level 5: Autonomous company
 
 Ventures are designed to run at levels 3 to 5. Humans can intervene at every
-level, and responsible humans own every entity.
+level, and a named human is accountable for every venture.
 
 ## Human role
 
