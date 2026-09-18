@@ -1,0 +1,30 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 120 120" width="120" height="120" role="img" aria-label="SupportGenius">
+  <title>SupportGenius</title>
+  <desc>The listening mark. Two open rings turn against each other around a pulse: one reading, one routing, the core awake.</desc>
+  <defs>
+    <linearGradient id="sg-tile" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#7FB4FF"/>
+      <stop offset="1" stop-color="#3F7FE6"/>
+    </linearGradient>
+  </defs>
+  <style>
+    /* Drawn from the site's nav mark. The rings turn at different speeds in
+       opposite directions and each has a quarter missing, so the movement
+       reads at 30px; the centre breathes on a two-second beat. */
+    .r { transform-origin: 60px 60px; transform-box: view-box; }
+    .out { animation: turn 3s linear infinite; }
+    .in  { animation: turn 2s linear infinite reverse; }
+    .dot { transform-origin: 60px 60px; transform-box: view-box; animation: beat 2s ease-in-out infinite; }
+    @keyframes turn { to { transform: rotate(360deg) } }
+    @keyframes beat { 0%, 100% { transform: scale(1); opacity: 1 } 50% { transform: scale(.7); opacity: .7 } }
+    /* with motion reduced the rings hold still and the mark is the static one */
+    @media (prefers-reduced-motion: reduce) { .out, .in, .dot { animation: none } }
+  </style>
+  <rect x="12" y="12" width="96" height="96" rx="30" fill="url(#sg-tile)"/>
+  <rect x="13.75" y="13.75" width="92.5" height="92.5" rx="28.25" fill="none" stroke="#FFFFFF" stroke-opacity=".25" stroke-width="3.5"/>
+  <!-- dashed ring, top quarter open -->
+  <path class="r out" d="M81.57 38.43 A30.5 30.5 0 1 1 38.43 38.43" fill="none" stroke="#0A0C10" stroke-opacity=".55" stroke-width="6" stroke-dasharray="11 7"/>
+  <!-- solid ring, bottom quarter open -->
+  <path class="r in" d="M48.9 71.1 A15.7 15.7 0 1 1 71.1 71.1" fill="none" stroke="#0A0C10" stroke-opacity=".35" stroke-width="5.5"/>
+  <circle class="dot" cx="60" cy="60" r="10" fill="#0A0C10"/>
+</svg>

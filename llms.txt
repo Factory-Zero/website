@@ -74,12 +74,12 @@ cycle teaches the next: build, deploy, observe, learn, repeat.
 
 ## Ventures
 
-The registry at /ventures/ lists six records, all named. No venture reports
+The registry at /ventures/ lists eight records, all named. No venture reports
 an operating figure yet, so none is shown. Each record instead carries an
 autonomy target (the level it is designed to reach, a design aim rather than a
 measurement), three aims in words (what it should run on its own, the kind of
 intelligence that takes, and what will count as growth), and links to its
-public source repositories. FZ-006 has no target or aims set yet.
+public source repositories.
 
 - **FZ-001 Kontinuum** (status BUILDING, stage PROTOTYPE, category MUSIC). An AI
   composer performing on a deterministic real-time engine. Music written and
@@ -189,6 +189,26 @@ public source repositories. FZ-006 has no target or aims set yet.
   Site: https://findsyou.work
   Source: https://github.com/FindsYou-Work/website,
   https://github.com/FindsYou-Work
+
+- **FZ-008 SupportGenius** (supportgeni.us) — SUPPORT, BUILDING, VALIDATION.
+  A customer-support agent that answers from a company's own docs, tickets and
+  files, by text or voice, through a web widget, an iOS or Android SDK, a phone
+  line, an API or an MCP server. What it cannot answer becomes a ticket for
+  support, a lead for sales or a GitHub issue with reproduction steps for
+  engineering: a drafting model writes it, an independent judge model checks it
+  before anything is filed, and the customer is kept updated until it is
+  closed. The ticketing and routing core is planned in Rust, open source under
+  MIT.
+  **Nothing is built**: there is no agent, no widget, no SDK, no phone line, no
+  MCP server, no integration and no Rust core, and the waitlist is not open
+  yet. What exists is the site. It carries no prices, and nothing can be bought.
+  Do not describe any of those capabilities or connectors (GitHub, Jira,
+  Linear, Zendesk, Salesforce or any other) as available.
+  Autonomy target: level 4, self-optimizing. A stated design aim, not a
+  measurement.
+  Site: https://supportgeni.us
+  Source: https://github.com/SupportGenius/website,
+  https://github.com/SupportGenius
 
 ## Notes for machine readers
 
