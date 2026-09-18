@@ -47,19 +47,19 @@
     el.stage.textContent = d.stage;
 
     // the autonomy target is a design aim, 0-5, never a measured share.
-    // A venture without one shows an em dash, not a zero.
+    // A venture without one says so in words, rather than showing a zero it has not earned.
     if (d.target !== '') {
       var lvl = Number(d.target);
       el.target.textContent = 'LEVEL ' + lvl + ' · ' + LEVELS[lvl];
       el.meter.hidden = false;
       el.meter.firstElementChild.style.width = (lvl * 20) + '%';
     } else {
-      el.target.textContent = '—';
+      el.target.textContent = 'NOT SET';
       el.meter.hidden = true;
     }
-    el.aimOperate.textContent = d.aimOperate || '—';
-    el.aimIntelligence.textContent = d.aimIntelligence || '—';
-    el.aimGrowth.textContent = d.aimGrowth || '—';
+    el.aimOperate.textContent = d.aimOperate || 'NOT SET';
+    el.aimIntelligence.textContent = d.aimIntelligence || 'NOT SET';
+    el.aimGrowth.textContent = d.aimGrowth || 'NOT SET';
 
     // public repositories only; the JSON in the attribute is written by sync-ventures.js
     var repos = [];
@@ -79,7 +79,7 @@
       el.github.appendChild(s);
     }
 
-    if (d.site && d.site !== '—') {
+    if (d.site) {
       el.link.textContent = d.site.toUpperCase() + ' →';
       el.link.href = 'https://' + d.site;
       el.link.removeAttribute('aria-disabled');
