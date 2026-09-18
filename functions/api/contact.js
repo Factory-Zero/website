@@ -1,5 +1,5 @@
 /**
- * POST /api/contact — Factory Zero access requests.
+ * POST /api/contact: Factory Zero access requests.
  *
  * Security posture:
  *  - The recipient is fixed server-side. It is never read from the request, so

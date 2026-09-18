@@ -274,7 +274,7 @@ Nothing else is listed: the registry shows only what exists, so a venture with
 nothing public yet does not get a placeholder row.
 
 None of the eight can be bought from today, and their records and `llms.txt`
-say so — do not let any of them read as shipped.
+say so, and do not let any of them read as shipped.
 
 The FZ/LOG panel on the home page is still labelled an illustrative sequence,
 and the hero's `agentNetwork` figure (1,284, with simulated drift) is a design

@@ -174,7 +174,7 @@ public source repositories.
   Source: https://github.com/Colonizer-dev/harness (MIT),
   https://github.com/Colonizer-dev
 
-- **FZ-007 FindsYou.work** (findsyou.work) — CAREERS, BUILDING, VALIDATION.
+- **FZ-007 FindsYou.work** (findsyou.work): CAREERS, BUILDING, VALIDATION.
   A job search that runs without the person doing the searching: it reads the
   boards continuously, discards the listings they could never actually take
   (wrong residency, wrong hours, full-time only, no sponsorship, reposted ghost
@@ -190,7 +190,7 @@ public source repositories.
   Source: https://github.com/FindsYou-Work/website,
   https://github.com/FindsYou-Work
 
-- **FZ-008 SupportGenius** (supportgeni.us) — SUPPORT, BUILDING, VALIDATION.
+- **FZ-008 SupportGenius** (supportgeni.us): SUPPORT, BUILDING, VALIDATION.
   A customer-support agent that answers from a company's own docs, tickets and
   files, by text or voice, through a web widget, an iOS or Android SDK, a phone
   line, an API or an MCP server. What it cannot answer becomes a ticket for

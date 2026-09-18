@@ -1,4 +1,4 @@
-/* Factory Zero — runtime.
+/* Factory Zero runtime.
    Vanilla port of the `DCLogic` component in the Claude Design source
    `Factory Zero.dc.html`. No framework, no build step. Timings, easing,
    geometry and colour thresholds are carried over unchanged. */
@@ -112,7 +112,7 @@
         var btn = el('button', {
           type: 'button',
           class: 'agent',
-          'aria-label': agent.name + ' agent — ' + agent.msg
+          'aria-label': agent.name + ' agent, ' + agent.msg
         }, [
           el('span', { text: agent.name }),
           el('span', { class: 'dot', 'aria-hidden': 'true' })

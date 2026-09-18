@@ -1,4 +1,4 @@
-// Factory Zero — central data model. Add real ventures here.
+// Factory Zero central data model. Add real ventures here.
 window.FZ_DATA = {
   ventures: [
     // Only real records belong here. `autonomy: null` renders as an em dash
@@ -61,7 +61,7 @@ window.FZ_DATA = {
     { id: 'FZ-006', name: 'Colonizer', status: 'BUILDING', stage: 'PROTOTYPE', launched: '—', category: 'DEVTOOLS', autonomy: null, site: 'colonizer.dev', logo: 'colonizer-animated.svg', logoW: 120, logoH: 120,
       target: 4,
       aims: {
-        operate: 'The backlog is the thing that should clear itself. A person picks the issue and reviews the pull request; everything between — the sandbox, the worktree, the agent, the mesh, the commit and the push — is the automation target.',
+        operate: 'The backlog is the thing that should clear itself. A person picks the issue and reviews the pull request; everything between (the sandbox, the worktree, the agent, the mesh, the commit and the push) is the automation target.',
         intelligence: 'Isolation and judgement rather than a bigger model: one settler per colony, questions returned as multiple-choice cards instead of prose, a watchdog that notices a colony has stopped making progress, and a router that puts the right model on each slot.',
         growth: 'Repository-led. Growth is repositories with colonies running and pull requests merged from them, counted from the first install that is not the author\u2019s.'
       },
@@ -75,7 +75,7 @@ window.FZ_DATA = {
         growth: 'Outcome-led. Growth is replies received per person and people who come back for the next search, counted from the first scan that runs for someone else.'
       },
       github: [['FINDSYOU-WORK/WEBSITE', 'https://github.com/FindsYou-Work/website'], ['FINDSYOU-WORK', 'https://github.com/FindsYou-Work']],
-      desc: 'A job search that runs without the person doing the searching. It reads the boards continuously, throws out the listings they could never actually take \u2014 wrong residency, wrong hours, full-time only, no sponsorship, reposted ghost jobs \u2014 and hands back the few that survive with a CV and cover letter already written for each. The value is in what it removes: most of a week\u2019s listings, with the reason each one was discarded shown rather than hidden. The site and the waitlist are open; the scan, the filter and the documents are designed and not yet written.' },
+      desc: 'A job search that runs without the person doing the searching. It reads the boards continuously, throws out the listings they could never actually take (wrong residency, wrong hours, full-time only, no sponsorship, reposted ghost jobs) and hands back the few that survive with a CV and cover letter already written for each. The value is in what it removes: most of a week\u2019s listings, with the reason each one was discarded shown rather than hidden. The site and the waitlist are open; the scan, the filter and the documents are designed and not yet written.' },
     { id: 'FZ-008', name: 'SupportGenius', status: 'BUILDING', stage: 'VALIDATION', launched: '\u2014', category: 'SUPPORT', autonomy: null, site: 'supportgeni.us', logo: 'supportgenius-animated.svg', logoW: 120, logoH: 120,
       target: 4,
       aims: {
