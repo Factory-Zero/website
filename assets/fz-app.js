@@ -137,7 +137,7 @@
     live.slice(0, 5).forEach(function (v) {
       branchHost.appendChild(el('div', null, [
         el('span', { class: 'id', text: v.id }),
-        el('span', { class: 'own', text: 'OWN BRAND · OWN P&L' })
+        el('span', { class: 'own', text: 'OWN BRAND · OWN STRATEGY' })
       ]));
     });
     branchHost.appendChild(el('div', null, [el('span', { class: 'next', text: 'FZ-N' })]));

@@ -50,8 +50,8 @@ payments and billing, analytics, deployment, observability, agent
 orchestration, customer support, marketing automation, finance, knowledge,
 security, experimentation and internal tooling are all shared.
 
-Each venture still holds its own brand, product, customers, data boundaries,
-strategy, economics and P&L.
+Each venture runs with its own brand, product, customers, data boundaries
+and strategy.
 
 ### First venture
 

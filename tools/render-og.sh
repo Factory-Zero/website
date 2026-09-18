@@ -24,7 +24,7 @@ card() { # out title kicker sub
     1200 630 "$ROOT/assets/$1"
 }
 card og-ventures.png "Every venture runs on the same factory core." "VENTURE REGISTRY" \
-  "Each keeps its own brand, customers, data boundaries and economics."
+  "Each keeps its own brand, customers, data boundaries and strategy."
 card og-system.png "Three layers. One factory." "SYSTEM / ARCHITECTURE" \
   "A shared core, venture services built on it, and isolated ventures."
 card og-thesis.png "The company is becoming software." "THESIS / WORKING PAPER" \

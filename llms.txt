@@ -3,7 +3,7 @@
 > Factory Zero is an AI-native venture studio that creates, launches and operates
 > companies through a shared network of autonomous agents. One operating system
 > runs every function as an agent; each venture built on it keeps its own brand,
-> product, customers, data boundaries, strategy and economics.
+> product, customers, data boundaries and strategy.
 
 Site: https://factory0.ventures/
 Positioning: AI-native venture studio · system identifier FZ/01
@@ -29,15 +29,15 @@ Factory Zero OS is organised in five layers, each staffed by agents:
 - **DISTRIBUTE**: Growth, Content, Sales
 - **LEARN**: Legal, Knowledge, Optimization
 
-## One system, many companies
+## One system, many ventures
 
 Every venture inherits the same foundation, so nothing is rebuilt. Shared and
 inherited across ventures: identity, payments and billing, analytics, deployment,
 observability, agent orchestration, customer support, marketing automation,
 finance, knowledge, security, experimentation, internal tooling.
 
-Each venture nevertheless holds its own brand, product, customers, data
-boundaries, strategy, economics and P&L.
+Each venture nevertheless runs with its own brand, product, customers, data
+boundaries and strategy.
 
 ## Venture pipeline
 
