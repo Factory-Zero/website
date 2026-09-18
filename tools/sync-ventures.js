@@ -28,8 +28,8 @@ const pulses = s => s === 'LIVE' || s === 'SCALING';
 
 // Autonomy levels, same order as LEVELS in assets/fz-app.js.
 const LEVELS = ['HUMAN-OPERATED', 'AI-ASSISTED', 'AGENT WORKFLOWS', 'AGENT-OPERATED', 'SELF-OPTIMIZING', 'AUTONOMOUS COMPANY'];
-const targetShort = v => v.target == null ? '&mdash;' : `L${v.target}`;
-const targetLong = v => v.target == null ? '&mdash;' : `LEVEL ${v.target} &middot; ${LEVELS[v.target]}`;
+const targetShort = v => v.target == null ? 'NOT SET' : `L${v.target}`;
+const targetLong = v => v.target == null ? 'NOT SET' : `LEVEL ${v.target} &middot; ${LEVELS[v.target]}`;
 const aims = v => v.aims || {};
 const gh = v => v.github || [];
 
@@ -44,7 +44,7 @@ function row(v, i) {
         data-target="${v.target == null ? '' : v.target}" data-aim-operate="${esc(aims(v).operate)}"
         data-aim-intelligence="${esc(aims(v).intelligence)}" data-aim-growth="${esc(aims(v).growth)}"
         data-github="${esc(JSON.stringify(gh(v)))}"
-        data-launched="${esc(v.launched)}" data-stage="${esc(v.stage)}" data-site="${esc(v.site)}"
+        data-launched="${esc(v.launched || 'NOT YET')}" data-stage="${esc(v.stage)}" data-site="${esc(v.site)}"
         data-logo="${esc(v.logo || '')}" data-logo-w="${v.logoW || ''}" data-logo-h="${v.logoH || ''}" data-desc="${esc(v.desc)}">
         <span class="rid">${esc(v.id)}</span>
         <span class="name">${mark}${esc(v.name)}</span>
@@ -61,7 +61,7 @@ function chip(v) {
 
 function detail(v) {
   const c = STATUS_COLOR[v.status] || '#8A8A8E';
-  const hasSite = v.site && v.site !== '—';
+  const hasSite = Boolean(v.site);
   const logo = v.logo
     ? `<img id="d-logo" class="venture-logo venture-logo--lg" src="/assets/${esc(v.logo)}" alt="${esc(v.name)} logo" width="120" height="${Math.round(120 * (v.logoH || 1) / (v.logoW || 1))}">`
     : `<img id="d-logo" class="venture-logo venture-logo--lg" alt="" hidden>`;
@@ -77,7 +77,7 @@ function spec(v) {
   return `        <div><dt>STATUS</dt><dd id="d-status" style="color:${c}">${esc(v.status)}</dd></div>
         <div><dt>CATEGORY</dt><dd id="d-cat">${esc(v.category)}</dd></div>
         <div><dt>PIPELINE STAGE</dt><dd id="d-stage">${esc(v.stage)}</dd></div>
-        <div><dt>LAUNCHED</dt><dd id="d-launched">${esc(v.launched)}</dd></div>
+        <div><dt>LAUNCHED</dt><dd id="d-launched">${esc(v.launched || 'NOT YET')}</dd></div>
         <div class="wide target"><dt>AUTONOMY TARGET</dt><dd><span id="d-target">${targetLong(v)}</span><span class="meter" id="d-meter"${v.target == null ? ' hidden' : ''}><i style="width:${v.target == null ? 0 : v.target * 20}%"></i></span></dd></div>
         <div class="wide aim"><dt>AIM &middot; AUTONOMOUS OPERATION</dt><dd id="d-aim-operate">${esc(aims(v).operate)}</dd></div>
         <div class="wide aim"><dt>AIM &middot; INTELLIGENCE</dt><dd id="d-aim-intelligence">${esc(aims(v).intelligence)}</dd></div>
