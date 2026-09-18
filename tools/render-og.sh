@@ -29,7 +29,7 @@ card og-system.png "Three layers. One factory." "SYSTEM / ARCHITECTURE" \
   "A shared core, venture services built on it, and isolated ventures."
 card og-thesis.png "The company is becoming software." "THESIS / WORKING PAPER" \
   "What changes when coordination costs fall toward the cost of compute."
-card og-about.png "We build and own real companies." "ABOUT / FZ" \
+card og-about.png "We build and own real ventures." "ABOUT / FZ" \
   "A network of autonomous agents does the work of running them. Not a fund, an accelerator or an agency."
 card og-technology.png "Ordinary parts. Assembled once." "TECHNOLOGY / OPEN SOURCE" \
   "One open-source Rust harness. Every venture compiles its own backend and ships as one stateless worker with its own database."
