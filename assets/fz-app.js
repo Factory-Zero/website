@@ -38,6 +38,12 @@
   /* ---------------------------------------------------------------- state */
 
   var live = D.ventures.filter(function (v) { return v.status !== 'ARCHIVED'; });
+  // The hero network resolves into the next company off the line, so its label
+  // is the first unused record id rather than a hard-coded one that a real
+  // venture can later take.
+  var nextId = 'FZ-' + ('00' + (D.ventures.reduce(function (m, v) {
+    return Math.max(m, parseInt(String(v.id).replace(/\D/g, ''), 10) || 0);
+  }, 0) + 1)).slice(-3);
   var allAgents = D.layers.reduce(function (acc, l) {
     return acc.concat(l.agents.map(function (a) {
       return { layer: l.name, name: a[0], msg: a[1] };
@@ -324,7 +330,7 @@
         ctx.strokeRect(cx - rw / 2, cy - rh / 2, rw, rh);
         ctx.font = '11px "IBM Plex Mono", monospace';
         ctx.fillStyle = 'rgba(237,235,230,' + q * fade + ')';
-        ctx.fillText('FZ-008  ·  COMPANY', cx - rw / 2, cy + rh / 2 + 22);
+        ctx.fillText(nextId + '  ·  COMPANY', cx - rw / 2, cy + rh / 2 + 22);
       }
 
       var per = 2 * (rw + rh);
