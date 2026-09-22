@@ -18,6 +18,12 @@
     logo:  document.getElementById('d-logo'),
     name:  document.getElementById('d-name'),
     desc:  document.getElementById('d-desc'),
+    problem: document.getElementById('d-problem'),
+    solution: document.getElementById('d-solution'),
+    how:   document.getElementById('d-how'),
+    offer: document.getElementById('d-offer'),
+    saves: document.getElementById('d-saves'),
+    now:   document.getElementById('d-now'),
     link:  document.getElementById('d-link'),
     status: document.getElementById('d-status'),
     target: document.getElementById('d-target'),
@@ -40,6 +46,22 @@
     el.record.textContent = 'RECORD / ' + d.id;
     el.name.textContent = d.name;
     el.desc.textContent = d.desc;
+    // the plain-language pitch: problem, what it does, how, the offer, the time it saves
+    if (el.problem) {
+      el.problem.textContent = d.problem || '';
+      el.solution.textContent = d.solution || '';
+      el.offer.textContent = d.offer || '';
+      el.saves.textContent = d.saves || '';
+      el.now.textContent = d.now || '';
+      var how = [];
+      try { how = JSON.parse(d.how || '[]'); } catch (e) { how = []; }
+      el.how.textContent = '';
+      how.forEach(function (h) {
+        var li = document.createElement('li');
+        li.textContent = h;
+        el.how.appendChild(li);
+      });
+    }
     el.status.textContent = d.status;
     el.status.style.color = d.statusColor;
     el.cat.textContent = d.category;

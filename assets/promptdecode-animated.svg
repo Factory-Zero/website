@@ -1,6 +1,6 @@
 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 120 120" width="120" height="120" role="img" aria-label="promptdecode">
   <title>promptdecode</title>
-  <desc>Three character slots on an amber tile. They resolve from empty boxes into solid glyphs, left to right, then empty again: text a reviewer cannot read being decoded.</desc>
+  <desc>Three character slots on an amber tile, decoded into solid glyphs. Now and then they drop back to empty boxes and decode again, left to right: text a reviewer cannot read being decoded.</desc>
   <style>
     /* Drawn from the site's nav mark and its hero, where the wordmark's letters
        start as the empty boxes a reviewer sees and resolve one at a time. Each
@@ -11,23 +11,23 @@
       stroke: #14161A;
       stroke-opacity: .5;
       stroke-width: 3.5;
-      fill-opacity: 0;
+      fill-opacity: 1;
       transform-box: fill-box;
       transform-origin: center;
       animation: resolve 3s ease-in-out infinite;
     }
     .s2 { animation-delay: .28s }
     .s3 { animation-delay: .56s }
+    /* rests fully decoded (all three solid); once a cycle the slots empty and
+       resolve again left to right, so at 30px the mark reads as filled */
     @keyframes resolve {
-      0%, 10%   { fill-opacity: 0; transform: scaleY(.62) }
-      26%, 68%  { fill-opacity: 1; transform: scaleY(1) }
-      84%, 100% { fill-opacity: 0; transform: scaleY(.62) }
+      0%, 58%   { fill-opacity: 1; transform: scaleY(1) }
+      68%, 76%  { fill-opacity: 0; transform: scaleY(.62) }
+      90%, 100% { fill-opacity: 1; transform: scaleY(1) }
     }
-    /* with motion reduced the mark holds the static one: first glyph decoded,
-       the other two still boxed */
+    /* with motion reduced the mark holds the static, fully filled one */
     @media (prefers-reduced-motion: reduce) {
-      .s { animation: none }
-      .s1 { fill-opacity: 1; transform: none }
+      .s { animation: none; fill-opacity: 1; transform: none }
     }
   </style>
   <rect x="12" y="12" width="96" height="96" rx="30" fill="#F2B53A"/>

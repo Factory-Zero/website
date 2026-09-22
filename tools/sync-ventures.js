@@ -32,6 +32,7 @@ const targetShort = v => v.target == null ? 'NOT SET' : `L${v.target}`;
 const targetLong = v => v.target == null ? 'NOT SET' : `LEVEL ${v.target} &middot; ${LEVELS[v.target]}`;
 const aims = v => v.aims || {};
 const gh = v => v.github || [];
+const pitch = v => v.pitch || {};
 
 function row(v, i) {
   const c = STATUS_COLOR[v.status] || '#8A8A8E';
@@ -45,7 +46,9 @@ function row(v, i) {
         data-aim-intelligence="${esc(aims(v).intelligence)}" data-aim-growth="${esc(aims(v).growth)}"
         data-github="${esc(JSON.stringify(gh(v)))}"
         data-launched="${esc(v.launched || 'NOT YET')}" data-stage="${esc(v.stage)}" data-site="${esc(v.site)}"
-        data-logo="${esc(v.logo || '')}" data-logo-w="${v.logoW || ''}" data-logo-h="${v.logoH || ''}" data-desc="${esc(v.desc)}">
+        data-logo="${esc(v.logo || '')}" data-logo-w="${v.logoW || ''}" data-logo-h="${v.logoH || ''}" data-desc="${esc(v.desc)}"
+        data-problem="${esc(pitch(v).problem)}" data-solution="${esc(pitch(v).solution)}" data-how="${esc(JSON.stringify(pitch(v).how || []))}"
+        data-offer="${esc(pitch(v).offer)}" data-saves="${esc(pitch(v).saves)}" data-now="${esc(pitch(v).now)}">
         <span class="rid">${esc(v.id)}</span>
         <span class="name">${mark}${esc(v.name)}</span>
         <span class="status${pulses(v.status) ? ' is-live' : ''}" style="color:${c}"><span class="dot"></span>${esc(v.status)}</span>
@@ -67,9 +70,16 @@ function detail(v) {
     : `<img id="d-logo" class="venture-logo venture-logo--lg" alt="" hidden>`;
   return `      <div class="detail-id"><span id="d-id">${esc(v.id)}</span>${logo}</div>
       <h2 class="detail-name" id="d-name">${esc(v.name)}</h2>
-      <p class="detail-desc" id="d-desc">${esc(v.desc)}</p>
+      <div class="pitch">
+        <section><h3 class="pitch-k">THE PROBLEM</h3><p class="pitch-problem" id="d-problem">${esc(pitch(v).problem)}</p></section>
+        <section><h3 class="pitch-k">WHAT IT DOES</h3><p class="pitch-solution" id="d-solution">${esc(pitch(v).solution)}</p></section>
+        <section><h3 class="pitch-k">HOW IT WORKS</h3><ul class="pitch-how" id="d-how">${(pitch(v).how || []).map(h => `<li>${esc(h)}</li>`).join('')}</ul></section>
+        <section class="pitch-deal"><p class="pitch-offer" id="d-offer">${esc(pitch(v).offer)}</p><p class="pitch-saves" id="d-saves">${esc(pitch(v).saves)}</p></section>
+        <p class="pitch-now"><span class="pitch-k">TODAY</span> <span id="d-now">${esc(pitch(v).now)}</span></p>
+      </div>
       <a class="detail-link" id="d-link"${hasSite ? ` href="https://${esc(v.site)}"` : ' aria-disabled="true"'}>${
-        hasSite ? esc(v.site.toUpperCase()) + ' &rarr;' : 'NO PUBLIC SURFACE YET'}</a>`;
+        hasSite ? esc(v.site.toUpperCase()) + ' &rarr;' : 'NO PUBLIC SURFACE YET'}</a>
+      <details class="detail-more"><summary>THE TECHNICAL DETAIL</summary><p class="detail-desc" id="d-desc">${esc(v.desc)}</p></details>`;
 }
 
 function spec(v) {

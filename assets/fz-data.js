@@ -21,6 +21,14 @@ window.FZ_DATA = {
         growth: 'Listener-led. One listener, one continuous stream; growth is listeners who come back the next day, counted from the first installed build and not before.'
       },
       github: [['KONTINUUM-AI/KONTINUUM-ENGINE', 'https://github.com/Kontinuum-ai/kontinuum-engine'], ['KONTINUUM-AI', 'https://github.com/Kontinuum-ai']],
+      pitch: {
+        problem: "Playlists run out, repeat themselves, or break the mood you were in.",
+        solution: "Kontinuum plays music that never ends and never repeats. It is written while you listen.",
+        how: ["A real-time music engine composes and plays each moment as it goes", "Plays on your device, offline, with nothing to stream or buffer", "Designed to learn which moments you keep and lean towards them"],
+        offer: "The engine is free and open source (MIT). Try it in your browser at kontinuum.audio.",
+        saves: "No more skipping, shuffling or building playlists.",
+        now: "Browser demo works today. The app is still being built; there is no download yet."
+      },
       desc: 'An AI composer performing on a deterministic real-time engine. Music written and performed continuously, personalised to the listener, and playable offline. Not a streaming app and not a DAW: a living instrument.' },
     { id: 'FZ-002', name: 'Undercover Rockstars', status: 'BUILDING', stage: 'LAUNCH', launched: null, category: 'APPAREL', autonomy: null, site: 'undercoverrockstars.com', logo: 'undercover-rockstars-animated.svg', logoW: 100, logoH: 100,
       target: 3,
@@ -30,6 +38,14 @@ window.FZ_DATA = {
         growth: 'Drop by drop. Growth is pairs sold per drop and buyers who return for the next one, counted from the first drop that is open for sale.'
       },
       github: [['UNDERCOVER-ROCKSTARS/WEBSITE', 'https://github.com/Undercover-Rockstars/website'], ['UNDERCOVER-ROCKSTARS', 'https://github.com/Undercover-Rockstars']],
+      pitch: {
+        problem: "Clothes that look right in the day look wrong at night, so you change, pack a second outfit or compromise.",
+        solution: "Every Undercover Rockstars piece comes as a matched pair: one cut for the day, the same cut for the night.",
+        how: ["One pattern, cut twice, so the fit never changes", "Drop 01: eight pairs, sixteen garments", "Cut in small runs in Bali"],
+        offer: "Drop 01 is not on sale yet. The collection is on the site.",
+        saves: "One fit, two looks. No second outfit.",
+        now: "The site is live. Nothing can be bought yet."
+      },
       desc: 'A clothing house built on one idea: every piece comes as a matched pair. One pattern is cut twice, once for the day and once for the night, so the fit never changes when the room does. Drop 01 is eight pairs, sixteen garments, cut in Bali.' },
     { id: 'FZ-003', name: 'Yoginini', status: 'BUILDING', stage: 'VALIDATION', launched: null, category: 'WELLNESS', autonomy: null, site: 'yoginini.us', logo: 'yoginini-animated.svg', logoW: 120, logoH: 120,
       target: 3,
@@ -39,6 +55,14 @@ window.FZ_DATA = {
         growth: 'Practice-led. Growth is people who practise every week and the hours booked with real teachers, counted from the first app in hands.'
       },
       github: [['YOGININI/WEBSITE', 'https://github.com/Yoginini/website'], ['YOGININI', 'https://github.com/Yoginini']],
+      pitch: {
+        problem: "Yoga videos can’t see you. Nobody tells you when your knee drifts or your back rounds.",
+        solution: "Yoginini is a yoga teacher on your phone that watches your pose and gives one calm correction at a time.",
+        how: ["Follows 33 points on your body through the phone camera", "Speaks one correction at a time, like a teacher across the room", "Video never leaves your phone. Book a real teacher by the hour when you want one"],
+        offer: "Free to join the waitlist.",
+        saves: "Private-lesson feedback without booking a private lesson.",
+        now: "Being built. The site and the waitlist are open; the app is not out yet."
+      },
       desc: 'A yoga teacher that can see you. A pose model running on the phone tracks 33 body landmarks and speaks one calm correction at a time, and no video ever leaves the device. Real teachers are bookable by the hour alongside it. The site and the waitlist are open; the app is not built.' },
     { id: 'FZ-004', name: 'Cratefield', status: 'BUILDING', stage: 'VALIDATION', launched: null, category: 'INFRASTRUCTURE', autonomy: null, site: 'cratefield.com', logo: 'cratefield-animated.svg', logoW: 120, logoH: 120,
       target: 4,
@@ -48,6 +72,14 @@ window.FZ_DATA = {
         growth: 'Developer-led. Growth is backends running in customers\u2019 own Cloudflare accounts and harness crates in use, counted once the control plane exists.'
       },
       github: [['CRATEFIELD/HARNESS', 'https://github.com/Cratefield/harness'], ['CRATEFIELD', 'https://github.com/Cratefield']],
+      pitch: {
+        problem: "Every new product starts with weeks of the same plumbing: sign-ups, database, emails, deploys, secrets.",
+        solution: "Cratefield is a backend you compile. Pick the modules you need and ship one small service to your own Cloudflare account.",
+        how: ["Modules plug in at build time, so you ship only what you use", "One service and one database per product, in an account you own", "Email sign-up and waitlist modules work today"],
+        offer: "Free and open source (MIT). A managed version that runs it for you is planned.",
+        saves: "Skip weeks of backend setup on every new product.",
+        now: "The open-source core works today. The managed service is not built yet."
+      },
       desc: 'A backend you compile rather than a platform you configure. The Rust harness underneath is open source, MIT and running today; the managed control plane, which would provision the worker, the database and the secrets inside your own Cloudflare account and then operate them, is designed and not yet written. The site and the early-access list are open.' },
     { id: 'FZ-005', name: 'VibeCaddie', status: 'BUILDING', stage: 'VALIDATION', launched: null, category: 'DEVTOOLS', autonomy: null, site: 'vibecaddie.com', logo: 'vibecaddie-animated.svg', logoW: 120, logoH: 120,
       target: 5,
@@ -57,6 +89,14 @@ window.FZ_DATA = {
         growth: 'Usage-led. Growth is repositories audited and credits bought again, counted from the first run of the GitHub app.'
       },
       github: [['VIBECADDIE/WEBSITE', 'https://github.com/VibeCaddie/website'], ['VIBECADDIE', 'https://github.com/VibeCaddie']],
+      pitch: {
+        problem: "You shipped code you didn’t fully write, and nobody has really reviewed it.",
+        solution: "VibeCaddie reviews your repository and tells you what to fix first.",
+        how: ["Works out what kind of codebase it is and checks only what applies", "Every finding comes with the file, the line, why it matters and a fix", "Double-checks each finding before showing it, so you get fewer false alarms"],
+        offer: "Pay per run with prepaid credits, so you know the price before it starts. Early access is open.",
+        saves: "Built to turn days of waiting for a review into minutes.",
+        now: "Being built. The site and early-access list are open; the GitHub app is not out yet."
+      },
       desc: 'A code review agent for the code you did not fully write. It reads a repository, works out what kind of codebase it is, loads only the review skills that apply to it, and returns findings ranked by severity with the file, the line, why it matters and a suggested fix. Prepaid credits rather than a subscription, so the price of a run is known before it starts. The site and the early-access list are open; the GitHub app is not built.' },
     { id: 'FZ-006', name: 'Colonizer', status: 'BUILDING', stage: 'PROTOTYPE', launched: null, category: 'DEVTOOLS', autonomy: null, site: 'colonizer.dev', logo: 'colonizer-animated.svg', logoW: 120, logoH: 120,
       target: 4,
@@ -66,6 +106,14 @@ window.FZ_DATA = {
         growth: 'Repository-led. Growth is repositories with colonies running and pull requests merged from them, counted from the first install that is not the author\u2019s.'
       },
       github: [['COLONIZER-DEV/HARNESS', 'https://github.com/Colonizer-dev/harness'], ['COLONIZER-DEV', 'https://github.com/Colonizer-dev']],
+      pitch: {
+        problem: "Working through GitHub issues takes hours you’d rather spend building.",
+        solution: "Colonizer sends coding agents to solve your GitHub issues and hands back pull requests you can review and merge.",
+        how: ["Each agent works in its own isolated VM, away from your machine and your keys", "Runs locally, on your own computer", "Returns ready-to-review pull requests"],
+        offer: "Free and open source (MIT). Runs on your own machine; nothing is hosted.",
+        saves: "Save yourself hours of coding work on every backlog.",
+        now: "Works today on Linux, with Claude Code as the agent."
+      },
       desc: 'A local-first app that turns GitHub issues into pull requests. Each task gets a coding agent, Claude Code today, inside its own disposable KVM microVM with a fresh git worktree, linked to the host over a private mesh that never touches your own tailnet. The web UI shows the chat, a terminal in the VM and the agent\u2019s questions as multiple-choice cards. The host, not the VM, commits, pushes and opens the pull request, so the GitHub and Claude tokens never enter it. The Rust host, the in-VM daemon and the React UI are open source under MIT and run locally on Linux x86_64 with KVM. There is no hosted service; more coding agents, a model router, remote outposts and GitLab, Linear and Jira sources are planned, not built.' },
     { id: 'FZ-007', name: 'FindsYou.work', status: 'BUILDING', stage: 'VALIDATION', launched: null, category: 'CAREERS', autonomy: null, site: 'findsyou.work', logo: 'findsyou-animated.svg', logoW: 120, logoH: 120,
       target: 4,
@@ -75,6 +123,14 @@ window.FZ_DATA = {
         growth: 'Outcome-led. Growth is replies received per person and people who come back for the next search, counted from the first scan that runs for someone else.'
       },
       github: [['FINDSYOU-WORK/WEBSITE', 'https://github.com/FindsYou-Work/website'], ['FINDSYOU-WORK', 'https://github.com/FindsYou-Work']],
+      pitch: {
+        problem: "Job hunting means scrolling hundreds of listings you could never actually take.",
+        solution: "FindsYou reads the job boards for you and hands back only the jobs you can really get, with a CV and cover letter written for each.",
+        how: ["Drops listings that don’t fit: wrong country, hours, visa, or jobs that are not really open", "Shows why each one was dropped", "Writes a matching CV and cover letter for every job that’s left"],
+        offer: "Free to join the waitlist.",
+        saves: "Most of a week of job-board scrolling, gone.",
+        now: "Being built. The site and waitlist are open; the search is not running yet."
+      },
       desc: 'A job search that runs without the person doing the searching. It reads the boards continuously, throws out the listings they could never actually take (wrong residency, wrong hours, full-time only, no sponsorship, reposted ghost jobs) and hands back the few that survive with a CV and cover letter already written for each. The value is in what it removes: most of a week\u2019s listings, with the reason each one was discarded shown rather than hidden. The site and the waitlist are open; the scan, the filter and the documents are designed and not yet written.' },
     { id: 'FZ-008', name: 'SupportGenius', status: 'BUILDING', stage: 'VALIDATION', launched: null, category: 'SUPPORT', autonomy: null, site: 'supportgeni.us', logo: 'supportgenius-animated.svg', logoW: 120, logoH: 120,
       target: 4,
@@ -84,6 +140,14 @@ window.FZ_DATA = {
         growth: 'Resolution-led. Growth is conversations resolved without a handoff and escalations filed without a correction, counted from the first widget that runs on a site that is not the author\u2019s.'
       },
       github: [['SUPPORTGENIUS/WEBSITE', 'https://github.com/SupportGenius/website'], ['SUPPORTGENIUS', 'https://github.com/SupportGenius']],
+      pitch: {
+        problem: "Customers wait for answers already in your docs, and real bugs get lost in the inbox.",
+        solution: "SupportGenius answers customers from your own docs and files, and turns what it can’t answer into a proper ticket.",
+        how: ["Answers by chat, voice or phone, from your docs, tickets and files", "What it can’t answer becomes a support ticket, a sales lead or a GitHub issue with steps to reproduce", "Every ticket is checked a second time before it is filed, and the customer gets updates until it is closed"],
+        offer: "The core is planned as free and open source (MIT).",
+        saves: "Built to take repeat questions and ticket triage off your week.",
+        now: "Being built. Only the site exists; the waitlist opens soon."
+      },
       desc: 'A customer-support agent that answers from a company\u2019s own docs, tickets and files, by text or voice, through a web widget, an iOS or Android SDK, a phone line, an API or an MCP server. What it cannot answer becomes a ticket for support, a lead for sales or a GitHub issue with reproduction steps for engineering: a drafting model writes it, an independent judge model checks it before anything is filed, and the customer hears back as it moves until it is closed. The ticketing and routing core is planned in Rust, open source under MIT. Only the site exists. The agent, the widget, the SDKs, the phone line, the integrations and the core are designed and not yet written, and the waitlist is not open yet.' },
     { id: 'FZ-009', name: 'promptdecode', status: 'BUILDING', stage: 'VALIDATION', launched: null, category: 'SECURITY', autonomy: null, site: 'promptdeco.de', logo: 'promptdecode-animated.svg', logoW: 120, logoH: 120,
       target: 4,
@@ -93,6 +157,14 @@ window.FZ_DATA = {
         growth: 'Evidence-led, and slower for it. No percentage of attacks blocked is published, because character-level evasion rates move too far with technique for one number to mean anything. What gets published is deterministic coverage of a named list of Unicode classes and recall at a stated false-positive rate on a named corpus, with the corpus and the harness in the open. Growth is repositories scanned per week once the Action exists.'
       },
       github: [['PROMPTDECODE/WEBSITE', 'https://github.com/PromptDecode/website'], ['PROMPTDECODE', 'https://github.com/PromptDecode']],
+      pitch: {
+        problem: "Hidden text in a pull request or issue can tell a coding agent to approve or merge, and the human reviewer can’t see it.",
+        solution: "promptdecode finds invisible text and shows you, in plain words, what it says.",
+        how: ["Paste any text and it reveals hidden characters and decodes their message", "Runs entirely in your browser; nothing is sent anywhere", "Next: a scanner and a GitHub Action that check every pull request"],
+        offer: "Free to use today at promptdeco.de.",
+        saves: "Catch a hidden instruction before your agent acts on it.",
+        now: "The decoder works today. The scanner and the GitHub Action are being built."
+      },
       desc: 'Finds text that is invisible to a human reviewer and fully legible to a language model, and decodes it. Hidden instructions in a pull request title, an issue body or a repository file can tell a coding agent to approve, merge or comment, while the diff shows nothing unusual. One part exists and works today: the decoder on the site, which reads three named classes of code point (the Unicode tag block, bidi controls and overrides, variation selectors), reconstructs the payload they encode, and runs entirely in the reader\u2019s browser, sending nothing anywhere. The rest is designed and unwritten: a config engine that taints untrusted workflow input to an agent step holding a write token, a content engine that decodes payloads across a repository, a command-line scanner, a GitHub Action, and an open benchmark. If a class is not on the published list, it is not detected; the list is the claim.' },
     { id: 'FZ-010', name: 'Groove Guru', status: 'BUILDING', stage: 'VALIDATION', launched: null, category: 'MUSIC', autonomy: null, site: 'groove.guru', logo: 'groove-guru-animated.svg', logoW: 120, logoH: 120,
       target: 4,
@@ -102,6 +174,14 @@ window.FZ_DATA = {
         growth: 'Practice-led. Free, open-source harness first, a $6.99 a month Pro tier for hosted history and sessions at launch. Growth is drills completed on real gear, counted from the first booth that is not the author’s.'
       },
       github: [['GROOVE-GURU/WEBSITE', 'https://github.com/Groove-Guru/website'], ['GROOVE-GURU', 'https://github.com/Groove-Guru']],
+      pitch: {
+        problem: "Learning to DJ on your own, nobody tells you why the mix sounded off.",
+        solution: "Groove Guru listens to your Pioneer decks and tells you, in a calm voice, when the key clashes, the blend misses the phrase or the beat drifts.",
+        how: ["A small app on the booth network reads your CDJs and mixer, and never touches your mix", "Mirrors your decks in the browser", "Six drills take you from zero to your first mix, free on the site today"],
+        offer: "The booth app will be free and open source (MIT). Pro coaching at launch: $6.99 a month.",
+        saves: "Stop guessing what went wrong in your practice sets.",
+        now: "The drills work today. The booth app and the coach are being built. Needs Pioneer Pro DJ Link gear."
+      },
       desc: 'A DJ tutor for Pioneer Pro DJ Link gear. A harness on a machine plugged into the booth switch listens to the CDJs and mixer on UDP 50000 to 50002, mirrors the decks in a browser, and coaches key, phrase and timing in a calm voice, then gets out of the way. It needs the gear: it is not a browser DJ app. One part exists and works today: the site at groove.guru, with six zero-to-booth drills that run in the browser on a visual beat clock (count the bar, cue on the one, ride the phrase, blend on the Camelot wheel, the first mix). The rest is designed and unwritten: the harness, one Rust binary under MIT; the spoken coach; Pro on Cloudflare; and an iPad and iPhone companion over local Wi-Fi or Cloudflare. Independent, and not affiliated with Pioneer DJ.' }
   ],
   layers: [
