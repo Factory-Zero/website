@@ -74,7 +74,7 @@ cycle teaches the next: build, deploy, observe, learn, repeat.
 
 ## Ventures
 
-The registry at /ventures/ lists eight records, all named. No venture reports
+The registry at /ventures/ lists ten records, all named. No venture reports
 an operating figure yet, so none is shown. Each record instead carries an
 autonomy target (the level it is designed to reach, a design aim rather than a
 measurement), three aims in words (what it should run on its own, the kind of
@@ -209,6 +209,41 @@ public source repositories.
   Site: https://supportgeni.us
   Source: https://github.com/SupportGenius/website,
   https://github.com/SupportGenius
+
+- **FZ-009 promptdecode** (promptdeco.de): SECURITY, BUILDING, VALIDATION.
+  Finds text that is invisible to a human reviewer and fully legible to a
+  language model, and decodes it: hidden instructions in a pull request, an
+  issue or a repository file that tell a coding agent to approve, merge or
+  comment while the diff shows nothing unusual.
+  **One part works today**: the decoder on the site, which reads three named
+  classes of code point (the Unicode tag block, bidi controls and overrides,
+  variation selectors), reconstructs the payload and runs entirely in the
+  reader's browser, sending nothing anywhere. The config and content scan
+  engines, the command-line scanner, the GitHub Action and the open benchmark
+  are designed and not written. No detection rate is published; do not
+  describe any scanner as available or quote a percentage of attacks blocked.
+  Autonomy target: level 4, self-optimizing. A stated design aim, not a
+  measurement.
+  Site: https://promptdeco.de
+  Source: https://github.com/PromptDecode/website,
+  https://github.com/PromptDecode
+
+- **FZ-010 Groove Guru** (groove.guru): MUSIC, BUILDING, VALIDATION.
+  A DJ tutor for Pioneer Pro DJ Link gear. A harness on a machine plugged into
+  the booth switch listens to the CDJs and mixer on UDP 50000 to 50002,
+  mirrors the decks in a browser and coaches key, phrase and timing in a calm
+  voice. It listens and never sends control. It needs the gear: it is not a
+  browser DJ app. Independent, and not affiliated with Pioneer DJ.
+  **One part works today**: the six zero-to-booth drills on the site, which
+  run in the browser on a visual beat clock. The harness (one Rust binary,
+  MIT), the spoken coach, Pro and an iPad and iPhone companion are designed
+  and not written. Pro is priced at $6.99 a month for launch but cannot be
+  bought; do not describe the harness, the coach or Pro as available.
+  Autonomy target: level 4, self-optimizing. A stated design aim, not a
+  measurement.
+  Site: https://groove.guru
+  Source: https://github.com/Groove-Guru/website,
+  https://github.com/Groove-Guru
 
 ## Notes for machine readers
 
