@@ -1,0 +1,30 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 120 120" width="120" height="120" role="img" aria-label="Groove Guru">
+  <title>Groove Guru</title>
+  <desc>A platter with the groove line cut through it. The spindle keeps a 124 bpm beat and the line redraws once a bar.</desc>
+  <style>
+    /* 124 bpm: one beat is 0.484s, one bar 1.935s. The spindle pulses on every
+       beat; the groove line wipes off and redraws over the bar, so at 30px the
+       mark reads as a deck that is playing. */
+    .dot  { fill: #F2F0EA; transform-origin: 60px 60px; transform-box: view-box; animation: beat .484s ease-out infinite; }
+    .line { fill: none; stroke: #F2F0EA; stroke-width: 8.25; stroke-linecap: round; stroke-linejoin: round;
+            stroke-dasharray: 100 100; animation: bar 1.935s cubic-bezier(.45,0,.55,1) infinite; }
+    .ring { transform-origin: 60px 60px; transform-box: view-box; animation: spin 7.74s linear infinite; }
+    @keyframes beat { 0% { transform: scale(1.28) } 60%, 100% { transform: scale(1) } }
+    @keyframes bar  { 0% { stroke-dashoffset: 100 } 55%, 100% { stroke-dashoffset: 0 } }
+    @keyframes spin { to { transform: rotate(360deg) } }
+    /* with motion reduced the deck stops and the mark is the static one */
+    @media (prefers-reduced-motion: reduce) { .dot, .line, .ring { animation: none } .line { stroke-dasharray: none } }
+  </style>
+  <defs>
+    <mask id="gg-cut" maskUnits="userSpaceOnUse" x="0" y="0" width="120" height="120">
+      <rect width="120" height="120" fill="#fff"/>
+      <path d="M11.25 86.25l22.5-7.5 11.25 11.25 18.75-30 11.25 15 33.75-33.75" fill="none" stroke="#000" stroke-width="22.5" stroke-linecap="round" stroke-linejoin="round"/>
+    </mask>
+  </defs>
+  <g mask="url(#gg-cut)" fill="none" stroke="#F2F0EA">
+    <circle cx="60" cy="60" r="48.75" stroke-width="11.25"/>
+    <g class="ring"><circle cx="60" cy="60" r="30" stroke-width="5.6" opacity=".6" stroke-dasharray="150 38.5"/></g>
+  </g>
+  <circle class="dot" cx="60" cy="60" r="12"/>
+  <path class="line" pathLength="100" d="M11.25 86.25l22.5-7.5 11.25 11.25 18.75-30 11.25 15 33.75-33.75"/>
+</svg>
