@@ -1,5 +1,5 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 120 120" width="120" height="120" role="img" aria-label="PosPlug">
-  <title>PosPlug</title>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 120 120" width="120" height="120" role="img" aria-label="PosPlugin">
+  <title>PosPlugin</title>
   <desc>A plug: a cable, the plug body and two prongs. Data pulses down the cable, the status light blinks, and the plug seats itself once a cycle.</desc>
   <style>
     /* One 2.4s cycle: a pulse runs down the cable into the body, the plug

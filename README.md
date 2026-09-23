@@ -286,7 +286,7 @@ Eleven ventures are listed, and all eleven are real and named:
 | `FZ-008` | SupportGenius | `VALIDATION` | L4 | [supportgeni.us](https://supportgeni.us) | [SupportGenius/website](https://github.com/SupportGenius/website) |
 | `FZ-009` | promptdecode | `VALIDATION` | L4 | [promptdeco.de](https://promptdeco.de) | [PromptDecode/website](https://github.com/PromptDecode/website) |
 | `FZ-010` | Groove Guru | `VALIDATION` | L4 | [groove.guru](https://groove.guru) | [Groove-Guru/website](https://github.com/Groove-Guru/website) |
-| `FZ-011` | PosPlug | `VALIDATION` | L4 | [posplug.in](https://posplug.in) | [POSplugin/website](https://github.com/POSplugin/website) |
+| `FZ-011` | PosPlugin | `VALIDATION` | L4 | [posplug.in](https://posplug.in) | [POSplugin/website](https://github.com/POSplugin/website) |
 
 `autonomy` is `null` on every one of them: no venture has a measured figure,
 and the registry does not show one. Set a figure in `fz-data.js` when there

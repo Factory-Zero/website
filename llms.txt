@@ -245,7 +245,7 @@ public source repositories.
   Source: https://github.com/Groove-Guru/website,
   https://github.com/Groove-Guru
 
-- **FZ-011 PosPlug** (posplug.in): INTEGRATIONS, BUILDING, VALIDATION.
+- **FZ-011 PosPlugin** (posplug.in): INTEGRATIONS, BUILDING, VALIDATION.
   An integration layer for point-of-sale systems. It connects to a merchant's
   POS with OAuth or an API key, pulls sample data read-only, and a model maps
   the POS's fields to one data model (orders, payments, catalog items,
