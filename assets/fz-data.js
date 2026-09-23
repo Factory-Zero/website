@@ -183,7 +183,7 @@ window.FZ_DATA = {
         now: "The drills work today. The booth app and the coach are being built. Needs Pioneer Pro DJ Link gear."
       },
       desc: 'A DJ tutor for Pioneer Pro DJ Link gear. A harness on a machine plugged into the booth switch listens to the CDJs and mixer on UDP 50000 to 50002, mirrors the decks in a browser, and coaches key, phrase and timing in a calm voice, then gets out of the way. It needs the gear: it is not a browser DJ app. One part exists and works today: the site at groove.guru, with six zero-to-booth drills that run in the browser on a visual beat clock (count the bar, cue on the one, ride the phrase, blend on the Camelot wheel, the first mix). The rest is designed and unwritten: the harness, one Rust binary under MIT; the spoken coach; Pro on Cloudflare; and an iPad and iPhone companion over local Wi-Fi or Cloudflare. Independent, and not affiliated with Pioneer DJ.' },
-    { id: 'FZ-011', name: 'PosPlug', status: 'BUILDING', stage: 'VALIDATION', launched: null, category: 'INTEGRATIONS', autonomy: null, site: 'posplug.in', logo: 'posplug-animated.svg', logoW: 120, logoH: 120,
+    { id: 'FZ-011', name: 'PosPlugin', status: 'BUILDING', stage: 'VALIDATION', launched: null, category: 'INTEGRATIONS', autonomy: null, site: 'posplug.in', logo: 'posplug-animated.svg', logoW: 120, logoH: 120,
       target: 4,
       aims: {
         operate: 'Integration upkeep is the automation target. Connecting a merchant’s point-of-sale system is meant to be a guided half hour instead of a custom project, and keeping it connected is meant to need nobody: a monitor watches every sync for schema drift and failures, proposes the mapping fix, and tells ops what broke and why.',
@@ -193,7 +193,7 @@ window.FZ_DATA = {
       github: [['POSPLUGIN/WEBSITE', 'https://github.com/POSplugin/website'], ['POSPLUGIN', 'https://github.com/POSplugin']],
       pitch: {
         problem: "Every app that needs a merchant’s sales data has to build a new integration for each point-of-sale system, and each one breaks when the vendor changes its API.",
-        solution: "PosPlug connects to any POS once and gives your app all of them through one API.",
+        solution: "PosPlugin connects to any POS once and gives your app all of them through one API.",
         how: ["Connect a merchant’s POS with a login or an API key; nothing is written to it", "AI maps its fields to one clean model, and a person confirms anything it is unsure of", "Your app reads orders, payments, menus and locations through one REST API and webhooks"],
         offer: "A free sandbox for developers at launch; live pricing per connected location.",
         saves: "Connect a new merchant in half an hour instead of weeks of integration work.",

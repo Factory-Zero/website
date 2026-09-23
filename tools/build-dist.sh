@@ -9,7 +9,7 @@ rm -rf dist
 mkdir -p dist
 
 # top-level files
-for f in index.html 404.html robots.txt sitemap.xml llms.txt site.webmanifest _headers; do
+for f in index.html 404.html robots.txt sitemap.xml llms.txt site.webmanifest _headers _redirects; do
   cp "$f" dist/
 done
 

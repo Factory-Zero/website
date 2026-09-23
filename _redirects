@@ -1,0 +1,4 @@
+# Cloudflare Pages redirects.
+# FZ-011 was renamed PosPlug -> PosPlugin on 2026-09-23; keep the first URL working.
+/ventures/posplug/   /ventures/posplugin/   301
+/ventures/posplug    /ventures/posplugin/   301
