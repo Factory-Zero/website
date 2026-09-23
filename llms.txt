@@ -74,7 +74,7 @@ cycle teaches the next: build, deploy, observe, learn, repeat.
 
 ## Ventures
 
-The registry at /ventures/ lists eleven records, all named. No venture reports
+The registry at /ventures/ lists twelve records, all named. No venture reports
 an operating figure yet, so none is shown. Each record instead carries an
 autonomy target (the level it is designed to reach, a design aim rather than a
 measurement), three aims in words (what it should run on its own, the kind of
@@ -263,6 +263,24 @@ public source repositories.
   Site: https://posplug.in
   Source: https://github.com/POSplugin/website,
   https://github.com/POSplugin
+
+- **FZ-012 Keep Shipping** (keepshipping.run): DEVTOOLS, BUILDING, VALIDATION.
+  A deploy workflow engine. Each repository gets one typed workflow file that
+  builds and signs OCI images, plans and applies Terraform or OpenTofu, waits
+  for a human where the file says so, and rolls out to Kubernetes, VMs or
+  serverless. The file is type-checked before anything runs, and the same
+  engine runs it on a laptop and in CI. A policy in the file scopes what
+  coding agents may do alone; a decide step asks Jev (TypeSafe AI) to rate a
+  plan's risk, and destroys always go to a human.
+  **Only the site exists**, with its early-access list (by email). The
+  engine, the CLI, the built-in steps and the runner are designed and not
+  written; the workflow files, CLI output and timings on the site show the
+  design, not measurements. Pricing is not set.
+  Autonomy target: level 4, self-optimizing. A stated design aim, not a
+  measurement.
+  Site: https://keepshipping.run
+  Source: https://github.com/Keep-Shipping/website,
+  https://github.com/Keep-Shipping
 
 ## Notes for machine readers
 

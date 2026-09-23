@@ -110,7 +110,7 @@
 <section class="page">
   <div class="page-head">
     <p class="kicker">VENTURE REGISTRY</p>
-    <p class="count" id="fz-count">11 RECORDS &middot; 00 LIVE</p>
+    <p class="count" id="fz-count">12 RECORDS &middot; 00 LIVE</p>
   </div>
   <h1 class="h-page">Registry</h1>
   <p class="lede" style="margin-bottom:6vh">Every venture below runs on the same factory core. Select one to see the problem it solves, what it does, how it works, and what you can use today. The technical detail and the design aims sit underneath. No venture reports a figure yet, so none is shown.</p>
@@ -293,6 +293,22 @@
         <span class="name"><img class="venture-logo" src="/assets/posplug-animated.svg" alt="" width="30" height="30">PosPlugin</span>
         <span class="status" style="color:#A9A8A5"><span class="dot"></span>BUILDING</span>
         <span class="cat">INTEGRATIONS</span>
+        <span class="aut">L4</span>
+      </button>
+      <button type="button" class="record registry-cols" aria-pressed="false" aria-controls="d-record"
+        data-id="FZ-012" data-slug="keep-shipping" data-name="Keep Shipping" data-status="BUILDING" data-status-color="#A9A8A5"
+        data-category="DEVTOOLS" data-autonomy=""
+        data-target="4" data-aim-operate="Deploys are the automation target. One typed workflow file per repository builds the images, plans and applies the infrastructure and rolls out, and it is checked before anything runs, so a broken pipeline is caught on the laptop instead of in the tenth CI run. The same engine runs locally and in CI, so nobody has to push to find out."
+        data-aim-intelligence="Coding agents can write, check and run the workflow, fenced by a policy in the same file: what they may do alone, what waits for a named person. A decide step asks Jev, a typed decision model, how risky a plan is; it answers with one of the answers you defined and a confidence score, low-risk changes can go through, and destroys always wait for a human. The engine itself is plain code." data-aim-growth="Developer-led. An early-access list first, opened in small batches; typed, versioned blocks that one team writes and forty repos reuse carry it inside a company. Pricing is not set. Growth is repositories shipping through it, counted from the first team that is not a pilot."
+        data-github="[[&quot;KEEP-SHIPPING/WEBSITE&quot;,&quot;https://github.com/Keep-Shipping/website&quot;],[&quot;KEEP-SHIPPING&quot;,&quot;https://github.com/Keep-Shipping&quot;]]"
+        data-launched="NOT YET" data-stage="VALIDATION" data-site="keepshipping.run"
+        data-logo="keepshipping-animated.svg" data-logo-w="120" data-logo-h="120" data-desc="A deploy workflow engine. Each repository gets one typed workflow file that builds and signs OCI images, plans and applies Terraform or OpenTofu (apply runs the exact plan a reviewer approved), waits for a human where the file says so, and rolls out to Kubernetes, VMs over SSH or serverless. Every step has typed inputs and outputs, so a tag wired where a digest belongs or a misspelled step fails the check before anything runs, and the same engine runs the file on a laptop and in CI. Steps can be packaged as typed, versioned blocks and reused across repos; a step that needs real code is a TypeScript function with typed inputs. For coding agents, a policy in the file says what they may do alone and what waits for a named person, and a decide step asks Jev (TypeSafe AI) to rate a plan, with destroys always going to a human. What exists today is the site at keepshipping.run and its early-access list; the engine, the CLI, the steps and the runner are designed and not yet written."
+        data-problem="Changing a deploy pipeline takes a string of “fix ci” commits: hundreds of lines of YAML nobody fully understands, glued to Terraform and Docker with shell scripts, and the only test is to push and wait." data-solution="Keep Shipping replaces that with one readable workflow file per repo that is checked before it runs." data-how="[&quot;Build images, plan and apply Terraform or OpenTofu, and deploy, as typed steps instead of scripts&quot;,&quot;Run the exact same pipeline on your laptop before you push it&quot;,&quot;Let agents ship too: a policy decides what waits for a person&quot;]"
+        data-offer="Early access by invite, in small batches." data-saves="Stop spending afternoons on eleven commits to change one pipeline." data-now="The site and the early-access list are open. The engine, the CLI and the built-in steps are being built.">
+        <span class="rid">FZ-012</span>
+        <span class="name"><img class="venture-logo" src="/assets/keepshipping-animated.svg" alt="" width="30" height="30">Keep Shipping</span>
+        <span class="status" style="color:#A9A8A5"><span class="dot"></span>BUILDING</span>
+        <span class="cat">DEVTOOLS</span>
         <span class="aut">L4</span>
       </button>
 <!-- fz:registry:end -->
