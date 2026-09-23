@@ -173,7 +173,15 @@ Nearly everything is data:
   (binding `ACTIVITY`, declared in `wrangler.toml`). Visitors are always served
   that copy; once it is a day old the next request refreshes it in the
   background, and a failed refresh keeps the old copy and retries in 10 minutes,
-  so a GitHub outage or expired token makes the chart older, never empty. It only queries the
+  so a GitHub outage or expired token makes the chart older, never empty.
+- **Private repositories count, by number only.** With the `GH_APP_ID` and
+  `GH_APP_PRIVATE_KEY` (PKCS#8 PEM) Pages secrets set, every venture org that
+  installed the read-only *Factory Zero Activity* GitHub App (Metadata: read,
+  Issues: read) is read through that app, so its private repositories add to
+  the commit and issue totals. Private repository names, issue titles and links
+  are never published: the issue list shows public repositories only and error
+  messages carry status codes, not names. Orgs without the app count public
+  repositories only. It only queries the
   owners and repositories in `activity-sources.json`. Set a `GITHUB_TOKEN` Pages
   secret (a fine-grained token with no permissions is enough) to lift GitHub's
   60-requests-an-hour anonymous limit.
