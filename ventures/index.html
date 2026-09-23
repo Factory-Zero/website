@@ -104,7 +104,7 @@
 <section class="page">
   <div class="page-head">
     <p class="kicker">VENTURE REGISTRY</p>
-    <p class="count" id="fz-count">10 RECORDS &middot; 00 LIVE</p>
+    <p class="count" id="fz-count">11 RECORDS &middot; 00 LIVE</p>
   </div>
   <h1 class="h-page">Registry</h1>
   <p class="lede" style="margin-bottom:6vh">Every venture below runs on the same factory core. Select one to see the problem it solves, what it does, how it works, and what you can use today. The technical detail and the design aims sit underneath. No venture reports a figure yet, so none is shown.</p>
@@ -271,6 +271,22 @@
         <span class="name"><img class="venture-logo" src="/assets/groove-guru-animated.svg" alt="" width="30" height="30">Groove Guru</span>
         <span class="status" style="color:#A9A8A5"><span class="dot"></span>BUILDING</span>
         <span class="cat">MUSIC</span>
+        <span class="aut">L4</span>
+      </button>
+      <button type="button" class="record registry-cols" aria-pressed="false" aria-controls="d-record"
+        data-id="FZ-011" data-slug="posplug" data-name="PosPlug" data-status="BUILDING" data-status-color="#A9A8A5"
+        data-category="INTEGRATIONS" data-autonomy=""
+        data-target="4" data-aim-operate="Integration upkeep is the automation target. Connecting a merchant’s point-of-sale system is meant to be a guided half hour instead of a custom project, and keeping it connected is meant to need nobody: a monitor watches every sync for schema drift and failures, proposes the mapping fix, and tells ops what broke and why."
+        data-aim-intelligence="A model reads a POS’s API docs, specs or sample payloads and proposes how each field maps to one data model, with a confidence score on every field. It proposes and a person confirms: a low-confidence mapping never goes live on its own, and every decision is kept in an audit log. Moving the data is plain code." data-aim-growth="Developer-led. A free sandbox with test POS data first, then pricing per connected location, set with the first customers. Restaurants are the first vertical. Growth is merchant locations connected, counted from the first customer that is not a pilot."
+        data-github="[[&quot;POSPLUGIN/WEBSITE&quot;,&quot;https://github.com/POSplugin/website&quot;],[&quot;POSPLUGIN&quot;,&quot;https://github.com/POSplugin&quot;]]"
+        data-launched="NOT YET" data-stage="VALIDATION" data-site="posplug.in"
+        data-logo="posplug-animated.svg" data-logo-w="120" data-logo-h="120" data-desc="An integration layer for point-of-sale systems. It connects to a merchant’s POS with OAuth or an API key, pulls sample data read-only, and a model maps the POS’s fields to one data model (orders, payments, catalog items, locations) with a confidence score on every field; a person confirms the uncertain ones. Apps then read every merchant through one REST API and one webhook stream, with the original POS payload kept on each record, and write orders back where the POS allows. A monitor watches for schema drift and failing syncs. Card numbers never pass through it. The first vertical is restaurants. What exists today is the site at posplug.in and its early-access list; the connectors, the mapping engine, the unified API and the sandbox are designed and not yet written."
+        data-problem="Every app that needs a merchant’s sales data has to build a new integration for each point-of-sale system, and each one breaks when the vendor changes its API." data-solution="PosPlug connects to any POS once and gives your app all of them through one API." data-how="[&quot;Connect a merchant’s POS with a login or an API key; nothing is written to it&quot;,&quot;AI maps its fields to one clean model, and a person confirms anything it is unsure of&quot;,&quot;Your app reads orders, payments, menus and locations through one REST API and webhooks&quot;]"
+        data-offer="A free sandbox for developers at launch; live pricing per connected location." data-saves="Connect a new merchant in half an hour instead of weeks of integration work." data-now="The site and the early-access list are open. The connectors, the mapping engine and the API are being built.">
+        <span class="rid">FZ-011</span>
+        <span class="name"><img class="venture-logo" src="/assets/posplug-animated.svg" alt="" width="30" height="30">PosPlug</span>
+        <span class="status" style="color:#A9A8A5"><span class="dot"></span>BUILDING</span>
+        <span class="cat">INTEGRATIONS</span>
         <span class="aut">L4</span>
       </button>
 <!-- fz:registry:end -->

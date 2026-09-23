@@ -78,5 +78,13 @@
     "repos": [
       "groove-guru/website"
     ]
+  },
+  "FZ-011": {
+    "owners": [
+      "posplugin"
+    ],
+    "repos": [
+      "posplugin/website"
+    ]
   }
 }

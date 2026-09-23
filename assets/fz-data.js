@@ -182,7 +182,24 @@ window.FZ_DATA = {
         saves: "Stop guessing what went wrong in your practice sets.",
         now: "The drills work today. The booth app and the coach are being built. Needs Pioneer Pro DJ Link gear."
       },
-      desc: 'A DJ tutor for Pioneer Pro DJ Link gear. A harness on a machine plugged into the booth switch listens to the CDJs and mixer on UDP 50000 to 50002, mirrors the decks in a browser, and coaches key, phrase and timing in a calm voice, then gets out of the way. It needs the gear: it is not a browser DJ app. One part exists and works today: the site at groove.guru, with six zero-to-booth drills that run in the browser on a visual beat clock (count the bar, cue on the one, ride the phrase, blend on the Camelot wheel, the first mix). The rest is designed and unwritten: the harness, one Rust binary under MIT; the spoken coach; Pro on Cloudflare; and an iPad and iPhone companion over local Wi-Fi or Cloudflare. Independent, and not affiliated with Pioneer DJ.' }
+      desc: 'A DJ tutor for Pioneer Pro DJ Link gear. A harness on a machine plugged into the booth switch listens to the CDJs and mixer on UDP 50000 to 50002, mirrors the decks in a browser, and coaches key, phrase and timing in a calm voice, then gets out of the way. It needs the gear: it is not a browser DJ app. One part exists and works today: the site at groove.guru, with six zero-to-booth drills that run in the browser on a visual beat clock (count the bar, cue on the one, ride the phrase, blend on the Camelot wheel, the first mix). The rest is designed and unwritten: the harness, one Rust binary under MIT; the spoken coach; Pro on Cloudflare; and an iPad and iPhone companion over local Wi-Fi or Cloudflare. Independent, and not affiliated with Pioneer DJ.' },
+    { id: 'FZ-011', name: 'PosPlug', status: 'BUILDING', stage: 'VALIDATION', launched: null, category: 'INTEGRATIONS', autonomy: null, site: 'posplug.in', logo: 'posplug-animated.svg', logoW: 120, logoH: 120,
+      target: 4,
+      aims: {
+        operate: 'Integration upkeep is the automation target. Connecting a merchant’s point-of-sale system is meant to be a guided half hour instead of a custom project, and keeping it connected is meant to need nobody: a monitor watches every sync for schema drift and failures, proposes the mapping fix, and tells ops what broke and why.',
+        intelligence: 'A model reads a POS’s API docs, specs or sample payloads and proposes how each field maps to one data model, with a confidence score on every field. It proposes and a person confirms: a low-confidence mapping never goes live on its own, and every decision is kept in an audit log. Moving the data is plain code.',
+        growth: 'Developer-led. A free sandbox with test POS data first, then pricing per connected location, set with the first customers. Restaurants are the first vertical. Growth is merchant locations connected, counted from the first customer that is not a pilot.'
+      },
+      github: [['POSPLUGIN/WEBSITE', 'https://github.com/POSplugin/website'], ['POSPLUGIN', 'https://github.com/POSplugin']],
+      pitch: {
+        problem: "Every app that needs a merchant’s sales data has to build a new integration for each point-of-sale system, and each one breaks when the vendor changes its API.",
+        solution: "PosPlug connects to any POS once and gives your app all of them through one API.",
+        how: ["Connect a merchant’s POS with a login or an API key; nothing is written to it", "AI maps its fields to one clean model, and a person confirms anything it is unsure of", "Your app reads orders, payments, menus and locations through one REST API and webhooks"],
+        offer: "A free sandbox for developers at launch; live pricing per connected location.",
+        saves: "Connect a new merchant in half an hour instead of weeks of integration work.",
+        now: "The site and the early-access list are open. The connectors, the mapping engine and the API are being built."
+      },
+      desc: 'An integration layer for point-of-sale systems. It connects to a merchant’s POS with OAuth or an API key, pulls sample data read-only, and a model maps the POS’s fields to one data model (orders, payments, catalog items, locations) with a confidence score on every field; a person confirms the uncertain ones. Apps then read every merchant through one REST API and one webhook stream, with the original POS payload kept on each record, and write orders back where the POS allows. A monitor watches for schema drift and failing syncs. Card numbers never pass through it. The first vertical is restaurants. What exists today is the site at posplug.in and its early-access list; the connectors, the mapping engine, the unified API and the sandbox are designed and not yet written.' }
   ],
   layers: [
     { name: 'DISCOVER', agents: [['RESEARCH', 'Analyzing 14,284 market signals'], ['STRATEGY', 'Scoring opportunity 0.91'], ['ANALYTICS', 'Cohort model refreshed']] },
