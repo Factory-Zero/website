@@ -1,0 +1,82 @@
+{
+  "FZ-001": {
+    "owners": [
+      "kontinuum-ai"
+    ],
+    "repos": [
+      "kontinuum-ai/kontinuum-engine"
+    ]
+  },
+  "FZ-002": {
+    "owners": [
+      "undercover-rockstars"
+    ],
+    "repos": [
+      "undercover-rockstars/website"
+    ]
+  },
+  "FZ-003": {
+    "owners": [
+      "yoginini"
+    ],
+    "repos": [
+      "yoginini/website"
+    ]
+  },
+  "FZ-004": {
+    "owners": [
+      "cratefield"
+    ],
+    "repos": [
+      "cratefield/harness"
+    ]
+  },
+  "FZ-005": {
+    "owners": [
+      "vibecaddie"
+    ],
+    "repos": [
+      "vibecaddie/website"
+    ]
+  },
+  "FZ-006": {
+    "owners": [
+      "colonizer-dev"
+    ],
+    "repos": [
+      "colonizer-dev/harness"
+    ]
+  },
+  "FZ-007": {
+    "owners": [
+      "findsyou-work"
+    ],
+    "repos": [
+      "findsyou-work/website"
+    ]
+  },
+  "FZ-008": {
+    "owners": [
+      "supportgenius"
+    ],
+    "repos": [
+      "supportgenius/website"
+    ]
+  },
+  "FZ-009": {
+    "owners": [
+      "promptdecode"
+    ],
+    "repos": [
+      "promptdecode/website"
+    ]
+  },
+  "FZ-010": {
+    "owners": [
+      "groove-guru"
+    ],
+    "repos": [
+      "groove-guru/website"
+    ]
+  }
+}

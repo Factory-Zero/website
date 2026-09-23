@@ -161,7 +161,19 @@ Nearly everything is data:
   `system/index.html` as static HTML so they are indexable with JavaScript off.
   That script regenerates them from `fz-data.js`, which stays the only place
   venture data is authored. It only rewrites the regions between the
-  `<!-- fz:*:start -->` / `<!-- fz:*:end -->` markers.
+  `<!-- fz:*:start -->` / `<!-- fz:*:end -->` markers. The same run writes one
+  page per venture at `ventures/<slug>/index.html` (the registry with that record
+  selected, plus its own title, description and canonical URL), the venture
+  entries in `sitemap.xml`, and `functions/api/activity-sources.json`. Commit
+  all of it; never edit the generated venture pages by hand.
+- **GitHub activity.** The detail panel charts weekly commits across a
+  venture's public repositories (its `github` links; an owner-only link means
+  all of that owner's public, non-fork repositories). `functions/api/activity.js`
+  fetches them from GitHub and Cloudflare's edge cache keeps each result for 24
+  hours, so it refreshes at most once a day per data centre. It only queries the
+  owners and repositories in `activity-sources.json`. Set a `GITHUB_TOKEN` Pages
+  secret (a fine-grained token with no permissions is enough) to lift GitHub's
+  60-requests-an-hour anonymous limit.
 - **`window.FZ_CONFIG`** at the bottom of the same file holds the headline,
   factory status, venture count and agent-network number. These mirror the
   editable `data-props` from the design source.

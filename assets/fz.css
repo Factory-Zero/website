@@ -1031,6 +1031,21 @@ html.scrolled .site-header {
 .spec .source a { color: var(--accent); }
 .spec .source span { color: var(--muted); }
 
+/* GitHub activity: weekly commits, filled in by fz-ventures.js from /api/activity.
+   Without JavaScript there is nothing to draw, so the row is not shown at all. */
+html:not(.js) .spec .activity { display: none; }
+.spec .activity dd { gap: 8px; font-size: 11px; max-width: 62ch; }
+.spec .activity dd > span { color: var(--muted); }
+.spec .activity .activity-readout { color: var(--ink); letter-spacing: .08em; }
+.activity-plot { display: block; width: 100%; height: 72px; overflow: visible; }
+.activity-base { stroke: var(--line-2); stroke-width: 1; vector-effect: non-scaling-stroke; }
+.activity-bar { fill: var(--accent); opacity: .85; }
+.activity-plot .is-hot .activity-bar { opacity: 1; }
+.activity-plot .is-hot .activity-hit { fill: var(--ink); fill-opacity: .06; }
+.activity-hit { fill: transparent; }
+.spec .activity .activity-axis { display: flex; justify-content: space-between; color: var(--dim); font-size: 10px; letter-spacing: .1em; }
+.spec .activity .activity-note { color: var(--muted); font-size: 10px; }
+
 /* ---------- system: architecture stack ---------- */
 
 .stack {
