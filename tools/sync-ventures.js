@@ -97,6 +97,7 @@ function spec(v) {
         <div class="wide aim"><dt>AIM &middot; GROWTH</dt><dd id="d-aim-growth">${esc(aims(v).growth)}</dd></div>
         <div class="wide source"><dt>SOURCE</dt><dd id="d-github">${gh(v).length ? gh(v).map(([l, u]) => `<a href="${esc(u)}" rel="noopener">${esc(l)} &rarr;</a>`).join('') : '<span>NO PUBLIC REPOSITORY</span>'}</dd></div>
         <div class="wide activity"><dt>ACTIVITY &middot; COMMITS PER WEEK</dt><dd id="d-activity">${gh(v).length ? '<span>LOADING</span>' : '<span>NO PUBLIC REPOSITORY</span>'}</dd></div>
+        <div class="wide activity"><dt>ISSUES &middot; OPENED AND CLOSED PER WEEK</dt><dd id="d-issues">${gh(v).length ? '<span>LOADING</span>' : '<span>NO PUBLIC REPOSITORY</span>'}</dd></div>
         <div class="wide inherit"><dt>INHERITED FROM FACTORY</dt><dd>IDENTITY &middot; BILLING &middot; DEPLOYMENT &middot; OBSERVABILITY &middot; SUPPORT &middot; ANALYTICS &middot; SECURITY</dd></div>`;
 }
 

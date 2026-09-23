@@ -166,7 +166,7 @@ Nearly everything is data:
   selected, plus its own title, description and canonical URL), the venture
   entries in `sitemap.xml`, and `functions/api/activity-sources.json`. Commit
   all of it; never edit the generated venture pages by hand.
-- **GitHub activity.** The detail panel charts weekly commits across a
+- **GitHub activity.** The detail panel charts weekly commits and issues (open count, opened/closed per week, the five newest open ones; titles that look like security reports are left out of that list) across a
   venture's public repositories (its `github` links; an owner-only link means
   all of that owner's public, non-fork repositories). `functions/api/activity.js`
   fetches them from GitHub and Cloudflare's edge cache keeps each result for 24

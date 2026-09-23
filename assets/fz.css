@@ -1037,7 +1037,7 @@ html:not(.js) .spec .activity { display: none; }
 .spec .activity dd { gap: 8px; font-size: 11px; max-width: 62ch; }
 .spec .activity dd > span { color: var(--muted); }
 .spec .activity .activity-readout { color: var(--ink); letter-spacing: .08em; }
-.activity-plot { display: block; width: 100%; height: 72px; overflow: visible; }
+.activity-plot { display: block; width: 100%; overflow: visible; }
 .activity-base { stroke: var(--line-2); stroke-width: 1; vector-effect: non-scaling-stroke; }
 .activity-bar { fill: var(--accent); opacity: .85; }
 .activity-plot .is-hot .activity-bar { opacity: 1; }
@@ -1045,6 +1045,19 @@ html:not(.js) .spec .activity { display: none; }
 .activity-hit { fill: transparent; }
 .spec .activity .activity-axis { display: flex; justify-content: space-between; color: var(--dim); font-size: 10px; letter-spacing: .1em; }
 .spec .activity .activity-note { color: var(--muted); font-size: 10px; }
+/* issues: opened rises above the baseline in the accent, closed hangs below in neutral */
+.activity-bar.is-closed { fill: var(--body); opacity: .7; }
+.activity-plot .is-hot .activity-bar.is-closed { opacity: 1; }
+.spec .activity .activity-legend { display: flex; gap: 18px; font-size: 10px; letter-spacing: .1em; }
+.activity-legend .key { display: inline-flex; align-items: center; gap: 6px; color: var(--muted); }
+.activity-legend .key::before { content: ''; width: 8px; height: 8px; border-radius: 2px; }
+.activity-legend .key--opened::before { background: var(--accent); }
+.activity-legend .key--closed::before { background: var(--body); }
+.activity-issues { list-style: none; margin: 4px 0 0; padding: 0; display: grid; gap: 8px; }
+.activity-issues a { display: grid; gap: 2px; color: var(--ink); }
+.activity-issues a:hover .issue-title { color: var(--accent); }
+.activity-issues .issue-ref { color: var(--muted); font-size: 10px; letter-spacing: .08em; }
+.activity-issues .issue-title { font-family: var(--sans); font-size: 14px; letter-spacing: 0; line-height: 1.4; overflow-wrap: anywhere; }
 
 /* ---------- system: architecture stack ---------- */
 

@@ -1,6 +1,7 @@
 /**
- * GET /api/activity?id=FZ-001: weekly commit counts for one venture's public
- * GitHub repositories, summed, for the last 52 weeks.
+ * GET /api/activity?id=FZ-001: one venture's public GitHub activity for the
+ * last 52 weeks: weekly commits summed across its repositories, and its issues
+ * (open count, the latest open ones, and opened/closed per week).
  *
  * Caching: the result is stored in Cloudflare's edge cache for 24 hours
  * (s-maxage). The first request after it expires refetches from GitHub, so the
@@ -23,6 +24,7 @@ import SOURCES from './activity-sources.json';
 const WEEKS = 52;
 const DAY = 86400;
 const MAX_REPOS = 40; // Workers allow 50 subrequests per invocation on the free plan
+const ISSUE_PAGES = 2; // up to 200 issues touched in the window, which covers every venture today
 
 const json = (status, obj, ttl) =>
   new Response(JSON.stringify(obj), {
@@ -97,21 +99,85 @@ export async function onRequestGet(context) {
       return { week: d.toISOString().slice(0, 10), commits };
     });
 
+    // Issues come from search, which ORs user:/repo: qualifiers, so one query
+    // covers every source. A failure here leaves the commit chart standing.
+    let issues = null;
+    try {
+      issues = await issueActivity(gh, sources, weeks);
+    } catch (e) {
+      console.log('activity issues', id, e.message);
+    }
+
     // A partial answer is cached for minutes, not a day, so it fills in soon.
-    const ttl = pending ? 600 : DAY;
+    const ttl = pending || !issues ? 600 : DAY;
     res = json(200, {
       id,
       repos: list.length,
       total: weekly.reduce((a, b) => a + b, 0),
       weeks,
+      issues,
       pending,
       updated: new Date().toISOString(),
     }, ttl);
   } catch (e) {
     console.log('activity', id, e.message);
-    res = json(502, { error: 'unavailable' }, 900);
+    // 503, not 502: on the custom domain Cloudflare swaps a 502 body for its own error page
+    res = json(503, { error: 'unavailable', upstream: e.message }, 900);
   }
 
   context.waitUntil(cache.put(key, res.clone()));
   return res;
 }
+
+// Open issues (count and the five newest) and, per week in `weeks`, how many
+// were opened and closed. Adds `opened` and `closed` to each week in place.
+async function issueActivity(gh, sources, weeks) {
+  const q = [...sources.owners.map(o => `user:${o}`), ...sources.repos.map(r => `repo:${r}`), 'is:issue'].join(' ');
+  const search = (extra, params) =>
+    gh(`/search/issues?q=${encodeURIComponent(`${q} ${extra}`)}&${params}`).then(r => {
+      if (!r.ok) throw new Error(`search ${r.status}`);
+      return r.json();
+    });
+
+  // 30, not 5: the list below drops some before keeping the newest five
+  const open = await search('is:open', 'sort=created&order=desc&per_page=30');
+
+  const from = weeks[0].week;
+  const index = new Map(weeks.map((w, i) => [w.week, i]));
+  weeks.forEach(w => { w.opened = 0; w.closed = 0; });
+  const bucket = (iso, field) => {
+    if (!iso || iso.slice(0, 10) < from) return;
+    const d = new Date(iso);
+    d.setUTCDate(d.getUTCDate() - d.getUTCDay());
+    const i = index.get(d.toISOString().slice(0, 10));
+    if (i !== undefined) weeks[i][field]++;
+  };
+  for (let page = 1; page <= ISSUE_PAGES; page++) {
+    const r = await search(`updated:>=${from}`, `sort=updated&order=desc&per_page=100&page=${page}`);
+    for (const it of r.items || []) {
+      bucket(it.created_at, 'opened');
+      bucket(it.closed_at, 'closed');
+    }
+    if ((r.items || []).length < 100) break;
+  }
+
+  return {
+    open: open.total_count || 0,
+    // Open security reports are public on GitHub but are not advertised here:
+    // they still count in `open` and the weekly bars, just not in the list.
+    latest: (open.items || [])
+      .filter(it => /^https:\/\/github\.com\//.test(it.html_url) && !sensitive(it))
+      .slice(0, 5)
+      .map(it => ({
+        title: String(it.title || '').slice(0, 200),
+        url: it.html_url,
+        repo: it.repository_url.split('/').slice(-2).join('/'),
+        number: it.number,
+        created: it.created_at,
+      })),
+  };
+}
+
+const SENSITIVE = /secur|vulnerab|\bcve\b|exploit|\bauth\b|unauth|leak|injection|\bxss\b|\bssrf\b|\brce\b/i;
+const sensitive = it =>
+  SENSITIVE.test(it.title || '') || (it.labels || []).some(l => SENSITIVE.test(l.name || ''));

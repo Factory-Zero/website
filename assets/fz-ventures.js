@@ -33,6 +33,7 @@
     aimGrowth: document.getElementById('d-aim-growth'),
     github: document.getElementById('d-github'),
     activity: document.getElementById('d-activity'),
+    issues: document.getElementById('d-issues'),
     cat:   document.getElementById('d-cat'),
     launched: document.getElementById('d-launched'),
     stage: document.getElementById('d-stage'),
@@ -147,11 +148,11 @@
     return 'WEEK OF ' + Number(p[2]) + ' ' + MONTHS[Number(p[1]) - 1] + ' ' + p[0];
   }
 
-  function note(text) {
-    el.activity.textContent = '';
+  function note(host, text) {
+    host.textContent = '';
     var s = document.createElement('span');
     s.textContent = text;
-    el.activity.appendChild(s);
+    host.appendChild(s);
   }
 
   function svg(tag, attrs) {
@@ -160,80 +161,142 @@
     return n;
   }
 
+  function span(cls, text) {
+    var s = document.createElement('span');
+    if (cls) s.className = cls;
+    s.textContent = text;
+    return s;
+  }
+
+  function both(text) {
+    note(el.activity, text);
+    if (el.issues) note(el.issues, text);
+  }
+
   function activity(id, hasRepos) {
     shownId = id;
-    if (!hasRepos) { note('NO PUBLIC REPOSITORY'); return; }
-    note('LOADING');
+    if (!hasRepos) { both('NO PUBLIC REPOSITORY'); return; }
+    both('LOADING');
     if (!fetched[id]) {
       fetched[id] = fetch('/api/activity?id=' + encodeURIComponent(id))
         .then(function (r) { if (!r.ok) throw new Error(r.status); return r.json(); });
     }
     fetched[id].then(function (data) {
-      if (shownId === id) chart(data);   // the reader may have moved on to another record
+      if (shownId !== id) return;   // the reader may have moved on to another record
+      // Most ventures are months old, not a year: drop the empty weeks before the
+      // first commit or issue so the bars have room, but keep at least 12 weeks.
+      var weeks = data.weeks || [];
+      var first = weeks.findIndex(function (w) { return w.commits || w.opened || w.closed; });
+      if (first > 0) weeks = weeks.slice(Math.min(first, Math.max(0, weeks.length - 12)));
+      commitChart(data, weeks);
+      if (el.issues) {
+        if (data.issues) issueChart(data.issues, weeks);
+        else note(el.issues, 'ISSUES UNAVAILABLE');
+      }
     }, function () {
       delete fetched[id];
-      if (shownId === id) note('ACTIVITY UNAVAILABLE');
+      if (shownId === id) both('ACTIVITY UNAVAILABLE');
     });
   }
 
-  function chart(data) {
-    // Most ventures are months old, not a year: drop the empty weeks before the
-    // first commit so the bars have room, but keep at least 12 weeks of context.
-    var weeks = data.weeks || [];
-    var first = weeks.findIndex(function (w) { return w.commits > 0; });
-    if (first > 0) weeks = weeks.slice(Math.min(first, Math.max(0, weeks.length - 12)));
-    var W = 520, H = 72, n = weeks.length, step = W / n, bar = Math.min(step - 2, 16);  // thin bars, at least a 2px gap
-    var peak = weeks.reduce(function (m, w) { return Math.max(m, w.commits); }, 0);
-    var summary = data.total + ' COMMITS · LAST ' + n + ' WEEKS · ' +
-      data.repos + (data.repos === 1 ? ' REPOSITORY' : ' REPOSITORIES');
+  // Bars on one shared weekly scale. `series` is one or two {key, cls}; the
+  // second, if present, hangs below the baseline so the two never stack or
+  // share a mark, and both are read against the same peak.
+  function bars(weeks, series, hover, rest, readout) {
+    var W = 520, n = weeks.length, step = W / n, bar = Math.min(step - 2, 16);  // thin bars, at least a 2px gap
+    var half = series.length > 1 ? 36 : 72, H = half * series.length;
+    var peak = 0;
+    weeks.forEach(function (w) { series.forEach(function (s) { peak = Math.max(peak, w[s.key] || 0); }); });
 
-    el.activity.textContent = '';
-    var readout = document.createElement('span');
-    readout.className = 'activity-readout';
-    readout.textContent = summary;
-
-    var plot = svg('svg', { viewBox: '0 0 ' + W + ' ' + H, preserveAspectRatio: 'none', role: 'img',
-      'aria-label': summary + (peak ? ', peak ' + peak + ' in one week' : '') });
+    var plot = svg('svg', { viewBox: '0 0 ' + W + ' ' + H, preserveAspectRatio: 'none', role: 'img', 'aria-label': rest });
     plot.setAttribute('class', 'activity-plot');
-    plot.appendChild(svg('line', { x1: 0, x2: W, y1: H - 0.5, y2: H - 0.5, class: 'activity-base' }));
+    plot.style.height = H + 'px';
+    plot.appendChild(svg('line', { x1: 0, x2: W, y1: half - 0.5, y2: half - 0.5, class: 'activity-base' }));
 
     weeks.forEach(function (w, i) {
-      var h = peak ? Math.max(w.commits ? 2 : 0, Math.round((H - 4) * w.commits / peak)) : 0;
       var x = i * step + (step - bar) / 2;
       var g = svg('g', {});
-      if (h) {
+      series.forEach(function (s, k) {
+        var v = w[s.key] || 0;
+        var h = peak ? Math.max(v ? 2 : 0, Math.round((half - 4) * v / peak)) : 0;
+        if (!h) return;
         // rounded at the data end only, square on the baseline
-        var r = Math.min(2, h / 2);
-        g.appendChild(svg('path', { class: 'activity-bar', d:
-          'M' + x + ' ' + H + 'V' + (H - h + r) + 'q0 -' + r + ' ' + r + ' -' + r +
-          'H' + (x + bar - r) + 'q' + r + ' 0 ' + r + ' ' + r + 'V' + H + 'Z' }));
-      }
+        var r = Math.min(2, h / 2), y0 = half, sgn = k === 0 ? -1 : 1;
+        g.appendChild(svg('path', { class: 'activity-bar ' + s.cls, d:
+          'M' + x + ' ' + y0 + 'V' + (y0 + sgn * (h - r)) +
+          'q0 ' + (sgn * r) + ' ' + r + ' ' + (sgn * r) +
+          'H' + (x + bar - r) + 'q' + r + ' 0 ' + r + ' ' + (-sgn * r) + 'V' + y0 + 'Z' }));
+      });
       // a full-height hit target, wider than the bar, drives the readout
       var hit = svg('rect', { x: i * step, y: 0, width: step, height: H, class: 'activity-hit' });
-      var text = weekLabel(w.week) + ' · ' + w.commits + (w.commits === 1 ? ' COMMIT' : ' COMMITS');
-      hit.addEventListener('pointerenter', function () { readout.textContent = text; g.setAttribute('class', 'is-hot'); });
-      hit.addEventListener('pointerleave', function () { readout.textContent = summary; g.removeAttribute('class'); });
+      hit.addEventListener('pointerenter', function () { readout.textContent = hover(w); g.setAttribute('class', 'is-hot'); });
+      hit.addEventListener('pointerleave', function () { readout.textContent = rest; g.removeAttribute('class'); });
       g.appendChild(hit);
       plot.appendChild(g);
     });
 
-    var axis = document.createElement('span');
-    axis.className = 'activity-axis';
-    var from = document.createElement('span');
-    from.textContent = n ? weekLabel(weeks[0].week).replace('WEEK OF ', '') : '';
-    var to = document.createElement('span');
-    to.textContent = 'THIS WEEK';
-    axis.appendChild(from);
-    axis.appendChild(to);
+    var axis = span('activity-axis', '');
+    axis.appendChild(span('', n ? weekLabel(weeks[0].week).replace('WEEK OF ', '') : ''));
+    axis.appendChild(span('', 'THIS WEEK'));
+    return [plot, axis];
+  }
 
+  function plural(n, one, many) { return n + ' ' + (n === 1 ? one : many); }
+
+  function commitChart(data, weeks) {
+    var total = weeks.reduce(function (a, w) { return a + w.commits; }, 0);
+    var rest = plural(total, 'COMMIT', 'COMMITS') + ' · LAST ' + weeks.length + ' WEEKS · ' +
+      plural(data.repos, 'REPOSITORY', 'REPOSITORIES');
+    var readout = span('activity-readout', rest);
+    el.activity.textContent = '';
     el.activity.appendChild(readout);
-    el.activity.appendChild(plot);
-    el.activity.appendChild(axis);
+    bars(weeks, [{ key: 'commits', cls: '' }], function (w) {
+      return weekLabel(w.week) + ' · ' + plural(w.commits, 'COMMIT', 'COMMITS');
+    }, rest, readout).forEach(function (n) { el.activity.appendChild(n); });
     if (data.pending) {
-      var p = document.createElement('span');
-      p.className = 'activity-note';
-      p.textContent = 'GITHUB IS STILL COUNTING SOME REPOSITORIES; THIS FILLS IN WITHIN MINUTES.';
-      el.activity.appendChild(p);
+      el.activity.appendChild(span('activity-note',
+        'GITHUB IS STILL COUNTING SOME REPOSITORIES; THIS FILLS IN WITHIN MINUTES.'));
+    }
+  }
+
+  function issueChart(issues, weeks) {
+    var opened = 0, closed = 0;
+    weeks.forEach(function (w) { opened += w.opened || 0; closed += w.closed || 0; });
+    var rest = issues.open + ' OPEN · ' + opened + ' OPENED · ' + closed + ' CLOSED · LAST ' + weeks.length + ' WEEKS';
+    var readout = span('activity-readout', rest);
+    el.issues.textContent = '';
+    el.issues.appendChild(readout);
+
+    // two series, so a legend; the counts in the readout carry the numbers
+    var legend = span('activity-legend', '');
+    legend.appendChild(span('key key--opened', 'OPENED'));
+    legend.appendChild(span('key key--closed', 'CLOSED'));
+    el.issues.appendChild(legend);
+
+    if (opened || closed) {
+      bars(weeks, [{ key: 'opened', cls: 'is-opened' }, { key: 'closed', cls: 'is-closed' }], function (w) {
+        return weekLabel(w.week) + ' · ' + (w.opened || 0) + ' OPENED · ' + (w.closed || 0) + ' CLOSED';
+      }, rest, readout).forEach(function (n) { el.issues.appendChild(n); });
+    }
+
+    // the newest open issues; titles are other people's text, so textContent only
+    if (issues.latest && issues.latest.length) {
+      var list = document.createElement('ul');
+      list.className = 'activity-issues';
+      issues.latest.forEach(function (it) {
+        if (!/^https:\/\/github\.com\//.test(it.url)) return;
+        var li = document.createElement('li');
+        var a = document.createElement('a');
+        a.href = it.url;
+        a.rel = 'noopener';
+        a.appendChild(span('issue-ref', it.repo.toUpperCase() + ' #' + it.number));
+        a.appendChild(span('issue-title', it.title));
+        li.appendChild(a);
+        list.appendChild(li);
+      });
+      el.issues.appendChild(list);
+    } else if (!issues.open) {
+      el.issues.appendChild(span('activity-note', 'NO OPEN ISSUES.'));
     }
   }
 
