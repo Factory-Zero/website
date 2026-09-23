@@ -317,6 +317,12 @@
     return null;
   }
 
+  var detailEl = document.querySelector('.record-detail');
+  var reduceMotion = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  function toDetail(smooth) {
+    if (detailEl) detailEl.scrollIntoView({ block: 'start', behavior: smooth && !reduceMotion ? 'smooth' : 'auto' });
+  }
+
   function open(row, push) {
     select(row);
     document.title = row.dataset.name + ' · ' + BASE_TITLE;
@@ -325,9 +331,10 @@
   }
 
   rows.forEach(function (row) {
-    row.addEventListener('click', function () { open(row, true); });
+    // choosing a record takes the reader to it, since the detail sits below the list
+    row.addEventListener('click', function () { open(row, true); toDetail(true); });
     row.addEventListener('keydown', function (e) {
-      if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); open(row, true); }
+      if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); open(row, true); toDetail(true); }
     });
   });
 
@@ -341,8 +348,5 @@
   // on a deep link, brings the record into view.
   var initial = rowForPath();
   select(initial || rows.filter(function (r) { return r.getAttribute('aria-pressed') === 'true'; })[0] || rows[0]);
-  if (initial) {
-    var detail = document.querySelector('.record-detail');
-    if (detail) detail.scrollIntoView({ block: 'start' });
-  }
+  if (initial) toDetail(false);
 })();

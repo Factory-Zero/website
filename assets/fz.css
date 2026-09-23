@@ -1228,6 +1228,8 @@ html:not(.js) .spec .activity { display: none; }
   text-wrap: balance;
 }
 .clause { display: grid; gap: 18px; scroll-margin-top: 120px; }
+/* the site header is fixed; land the venture detail below it */
+.record-detail { scroll-margin-top: 90px; }
 .clause .n {
   font-family: var(--mono);
   font-size: 11px;
