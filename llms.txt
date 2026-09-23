@@ -215,12 +215,13 @@ public source repositories.
   language model, and decodes it: hidden instructions in a pull request, an
   issue or a repository file that tell a coding agent to approve, merge or
   comment while the diff shows nothing unusual.
-  **One part works today**: the decoder on the site, which reads three named
+  **Two parts work today**: the decoder on the site, which reads three named
   classes of code point (the Unicode tag block, bidi controls and overrides,
   variation selectors), reconstructs the payload and runs entirely in the
-  reader's browser, sending nothing anywhere. The config and content scan
-  engines, the command-line scanner, the GitHub Action and the open benchmark
-  are designed and not written. No detection rate is published; do not
+  reader's browser, sending nothing anywhere; and the config scanner, which
+  traces untrusted GitHub workflow input to an agent step holding a write
+  token and runs from source, with no release yet. The content engine, the
+  GitHub Action and the open benchmark are designed and not written. No detection rate is published; do not
   describe any scanner as available or quote a percentage of attacks blocked.
   Autonomy target: level 4, self-optimizing. A stated design aim, not a
   measurement.
