@@ -1,0 +1,14 @@
+# Cloudflare Pages project config for factory-zero. Read by `wrangler pages
+# deploy` and `wrangler pages dev`; once this file exists it, not the dashboard,
+# is the source of truth for bindings. Secrets (RESEND_API_KEY,
+# TURNSTILE_SECRET, CONTACT_*, GITHUB_TOKEN) stay in the dashboard / `wrangler
+# pages secret put` and are not affected.
+name = "factory-zero"
+compatibility_date = "2026-09-04"
+pages_build_output_dir = "dist"
+
+# Last good GitHub activity per venture (functions/api/activity.js). One copy
+# for every data centre, kept until a refresh succeeds.
+[[kv_namespaces]]
+binding = "ACTIVITY"
+id = "6f2cf15691dc4edab3d730cae11b7464"

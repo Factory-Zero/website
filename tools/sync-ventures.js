@@ -97,8 +97,19 @@ function spec(v) {
         <div class="wide aim"><dt>AIM &middot; GROWTH</dt><dd id="d-aim-growth">${esc(aims(v).growth)}</dd></div>
         <div class="wide source"><dt>SOURCE</dt><dd id="d-github">${gh(v).length ? gh(v).map(([l, u]) => `<a href="${esc(u)}" rel="noopener">${esc(l)} &rarr;</a>`).join('') : '<span>NO PUBLIC REPOSITORY</span>'}</dd></div>
         <div class="wide activity"><dt>ACTIVITY &middot; COMMITS PER WEEK</dt><dd id="d-activity">${gh(v).length ? '<span>LOADING</span>' : '<span>NO PUBLIC REPOSITORY</span>'}</dd></div>
+        <div class="wide activity"><dt>ISSUES &middot; OPENED AND CLOSED PER WEEK</dt><dd id="d-issues">${gh(v).length ? '<span>LOADING</span>' : '<span>NO PUBLIC REPOSITORY</span>'}</dd></div>
         <div class="wide inherit"><dt>INHERITED FROM FACTORY</dt><dd>IDENTITY &middot; BILLING &middot; DEPLOYMENT &middot; OBSERVABILITY &middot; SUPPORT &middot; ANALYTICS &middot; SECURITY</dd></div>`;
 }
+
+// Home-page carousel: logo, name and category, each linking to the venture's page.
+function reelItem(v, copy) {
+  const logo = v.logo
+    ? `<img src="/assets/${esc(v.logo)}" alt="" width="44" height="${Math.round(44 * (v.logoH || 1) / (v.logoW || 1))}" loading="lazy">`
+    : `<span class="reel-mono" aria-hidden="true">${esc(v.name.slice(0, 1))}</span>`;
+  return `      <li><a href="/ventures/${slug(v)}/"${copy ? ' tabindex="-1"' : ''}>${logo}<span class="reel-name">${esc(v.name)}</span><span class="reel-meta">${esc(v.id)} &middot; ${esc(v.category)}</span></a></li>`;
+}
+const reel = vs => [false, true].map(copy =>
+  `    <ul class="reel-track"${copy ? ' aria-hidden="true"' : ''}>\n${vs.map(v => reelItem(v, copy)).join('\n')}\n    </ul>`).join('\n');
 
 function replaceRegion(src, key, body) {
   const re = new RegExp(`(<!-- fz:${key}:start -->)[\\s\\S]*?(<!-- fz:${key}:end -->)`);
@@ -219,6 +230,7 @@ for (const [re, val, label] of [
   if (!re.test(hs)) throw new Error(`${label} marker not found in index.html`);
   hs = hs.replace(re, `$1${val}`);
 }
+hs = replaceRegion(hs, 'reel', reel(live));
 fs.writeFileSync(hp, hs);
 
 // system/index.html
