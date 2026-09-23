@@ -246,7 +246,7 @@
   function commitChart(data, weeks) {
     var total = weeks.reduce(function (a, w) { return a + w.commits; }, 0);
     var rest = plural(total, 'COMMIT', 'COMMITS') + ' · LAST ' + weeks.length + ' WEEKS · ' +
-      plural(data.repos, 'REPOSITORY', 'REPOSITORIES');
+      plural(data.repos, 'REPOSITORY', 'REPOSITORIES') + (data.private ? ', ' + data.private + ' PRIVATE' : '');
     var readout = span('activity-readout', rest);
     el.activity.textContent = '';
     el.activity.appendChild(readout);
