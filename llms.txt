@@ -74,7 +74,7 @@ cycle teaches the next: build, deploy, observe, learn, repeat.
 
 ## Ventures
 
-The registry at /ventures/ lists ten records, all named. No venture reports
+The registry at /ventures/ lists eleven records, all named. No venture reports
 an operating figure yet, so none is shown. Each record instead carries an
 autonomy target (the level it is designed to reach, a design aim rather than a
 measurement), three aims in words (what it should run on its own, the kind of
@@ -244,6 +244,25 @@ public source repositories.
   Site: https://groove.guru
   Source: https://github.com/Groove-Guru/website,
   https://github.com/Groove-Guru
+
+- **FZ-011 PosPlug** (posplug.in): INTEGRATIONS, BUILDING, VALIDATION.
+  An integration layer for point-of-sale systems. It connects to a merchant's
+  POS with OAuth or an API key, pulls sample data read-only, and a model maps
+  the POS's fields to one data model (orders, payments, catalog items,
+  locations) with a confidence score on every field; a person confirms the
+  uncertain ones. Apps read every merchant through one REST API and one
+  webhook stream. Card numbers never pass through it. First vertical:
+  restaurants.
+  **Only the site exists**, with its early-access list. The connectors, the
+  mapping engine, the unified API and the sandbox are designed and not
+  written; the API shown on the site is the planned shape, not a public
+  endpoint. Live pricing is per connected location and not set. Do not
+  describe any POS connector as available or the 30-minute setup as measured.
+  Autonomy target: level 4, self-optimizing. A stated design aim, not a
+  measurement.
+  Site: https://posplug.in
+  Source: https://github.com/POSplugin/website,
+  https://github.com/POSplugin
 
 ## Notes for machine readers
 

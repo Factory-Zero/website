@@ -1,0 +1,25 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 120 120" width="120" height="120" role="img" aria-label="PosPlug">
+  <title>PosPlug</title>
+  <desc>A plug: a cable, the plug body and two prongs. Data pulses down the cable, the status light blinks, and the plug seats itself once a cycle.</desc>
+  <style>
+    /* One 2.4s cycle: a pulse runs down the cable into the body, the plug
+       nudges forward into its socket, and the light on the body blinks. */
+    .cable { fill: none; stroke: #F2F0EA; stroke-width: 8; }
+    .pulse { fill: none; stroke: #0B0B0B; stroke-width: 4; stroke-dasharray: 6 94; animation: run 2.4s linear infinite; }
+    .plug  { animation: seat 2.4s cubic-bezier(.7,0,.2,1.25) infinite; }
+    .led   { fill: #0B0B0B; animation: led 1.2s steps(2) infinite; }
+    @keyframes run  { from { stroke-dashoffset: 100 } to { stroke-dashoffset: 0 } }
+    @keyframes seat { 0%, 60%, 100% { transform: translateX(0) } 75% { transform: translateX(5px) } }
+    @keyframes led  { 50% { opacity: .15 } }
+    /* with motion reduced the plug sits still */
+    @media (prefers-reduced-motion: reduce) { .pulse, .plug, .led { animation: none } .pulse { display: none } }
+  </style>
+  <path class="cable" d="M6 60H36"/>
+  <path class="pulse" pathLength="100" d="M6 60H36"/>
+  <g class="plug">
+    <rect x="36" y="32" width="48" height="56" fill="#F2F0EA"/>
+    <rect class="led" x="44" y="40" width="9" height="9"/>
+    <rect x="84" y="42" width="28" height="9" fill="#F2F0EA"/>
+    <rect x="84" y="69" width="28" height="9" fill="#F2F0EA"/>
+  </g>
+</svg>
