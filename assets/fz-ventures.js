@@ -257,6 +257,9 @@
       el.activity.appendChild(span('activity-note',
         'GITHUB IS STILL COUNTING SOME REPOSITORIES; THIS FILLS IN WITHIN MINUTES.'));
     }
+    // normally under a day old; older means refreshes are failing and the last good copy is shown
+    var age = Math.floor((Date.now() - Date.parse(data.updated)) / 86400000);
+    if (age >= 2) el.activity.appendChild(span('activity-note', 'AS OF ' + age + ' DAYS AGO.'));
   }
 
   function issueChart(issues, weeks) {

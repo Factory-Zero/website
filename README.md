@@ -169,8 +169,11 @@ Nearly everything is data:
 - **GitHub activity.** The detail panel charts weekly commits and issues (open count, opened/closed per week, the five newest open ones; titles that look like security reports are left out of that list) across a
   venture's public repositories (its `github` links; an owner-only link means
   all of that owner's public, non-fork repositories). `functions/api/activity.js`
-  fetches them from GitHub and Cloudflare's edge cache keeps each result for 24
-  hours, so it refreshes at most once a day per data centre. It only queries the
+  fetches them from GitHub and keeps the last good result in Workers KV
+  (binding `ACTIVITY`, declared in `wrangler.toml`). Visitors are always served
+  that copy; once it is a day old the next request refreshes it in the
+  background, and a failed refresh keeps the old copy and retries in 10 minutes,
+  so a GitHub outage or expired token makes the chart older, never empty. It only queries the
   owners and repositories in `activity-sources.json`. Set a `GITHUB_TOKEN` Pages
   secret (a fine-grained token with no permissions is enough) to lift GitHub's
   60-requests-an-hour anonymous limit.
