@@ -145,6 +145,9 @@
 
   /* -------------------------------------------------------- 04 pipeline */
 
+  // a venture's own page, /ventures/<slug>/; same rule as slug() in tools/sync-ventures.js
+  function slug(v) { return v.name.toLowerCase().replace(/[^a-z0-9]+/g, '-').replace(/^-|-$/g, ''); }
+
   var STAGES = ['SIGNAL', 'VALIDATION', 'PROTOTYPE', 'LAUNCH', 'AUTONOMY', 'SCALE'];
   var STATUS_COLOR = {
     LIVE: INK, SCALING: ACCENT, BUILDING: '#A9A8A5',
@@ -156,7 +159,7 @@
     STAGES.forEach(function (name, i) {
       var body = el('div', { class: 'stage-body' });
       live.filter(function (v) { return v.stage === name; }).forEach(function (v) {
-        body.appendChild(el('a', { class: 'unit', href: '/ventures/' }, [
+        body.appendChild(el('a', { class: 'unit', href: '/ventures/' + slug(v) + '/' }, [
           el('span', { text: v.id }),
           el('span', { text: v.status, color: STATUS_COLOR[v.status] || MUTED })
         ]));
