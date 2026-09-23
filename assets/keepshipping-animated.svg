@@ -1,0 +1,18 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 120 120" width="120" height="120" role="img" aria-label="Keep Shipping">
+  <title>Keep Shipping</title>
+  <desc>A deploy route: push on the left, deploy on the right, the review gate in the middle. A change runs down the route, waits at the gate until it opens, then ships.</desc>
+  <style>
+    /* One 4s cycle: the change runs to the gate, holds while the gate turns
+       from outline to filled (approved), then runs on and ships. */
+    .run  { fill: #FFFFFF; animation: run 4s cubic-bezier(.6,0,.4,1) infinite; }
+    .gate { fill: #1950CC; animation: gate 4s steps(1) infinite; }
+    @keyframes run  { 0% { transform: translateX(0); opacity: 0 } 6% { opacity: 1 } 35%, 60% { transform: translateX(42px) } 94% { opacity: 1 } 100% { transform: translateX(84px); opacity: 0 } }
+    @keyframes gate { 0%, 45% { fill: #1950CC } 45.01%, 100% { fill: #FFFFFF } }
+    /* with motion reduced the route is the static mark */
+    @media (prefers-reduced-motion: reduce) { .run, .gate { animation: none } .run { display: none } }
+  </style>
+  <rect x="10" y="10" width="100" height="100" fill="#1950CC"/>
+  <path d="M18 60H102" stroke="#FFFFFF" stroke-width="6"/>
+  <rect class="gate" x="49" y="49" width="22" height="22" transform="rotate(45 60 60)" stroke="#FFFFFF" stroke-width="6"/>
+  <rect class="run" x="14" y="56" width="8" height="8"/>
+</svg>
