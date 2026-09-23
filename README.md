@@ -181,7 +181,10 @@ Nearly everything is data:
   the commit and issue totals. Private repository names, issue titles and links
   are never published: the issue list shows public repositories only and error
   messages carry status codes, not names. Orgs without the app count public
-  repositories only. It only queries the
+  repositories only.
+  Set it up with `node tools/setup-github-app.mjs` (creates the app, stores both
+  secrets without writing the key to disk, opens the install page); after a
+  deploy, `node tools/setup-github-app.mjs --refresh` makes every venture refetch. It only queries the
   owners and repositories in `activity-sources.json`. Set a `GITHUB_TOKEN` Pages
   secret (a fine-grained token with no permissions is enough) to lift GitHub's
   60-requests-an-hour anonymous limit.
