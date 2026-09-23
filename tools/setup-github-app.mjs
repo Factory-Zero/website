@@ -3,11 +3,15 @@
  * repositories (numbers only; see functions/api/activity.js).
  *
  *   node tools/setup-github-app.mjs            create the app, store its secrets
+ *   node tools/setup-github-app.mjs --install  open the install page for every
+ *                                              venture org not yet installed, each
+ *                                              with its org preselected (needs gh)
  *   node tools/setup-github-app.mjs --refresh  after a deploy: drop the stored
  *                                              activity so every venture refetches
  *
  * Options: --org <login> (default Factory-Zero) owns the app;
- *          --name <name> (default "Factory Zero Activity") if the name is taken.
+ *          --name <name> (default "Factory Zero Activity") if the name is taken;
+ *          --slug <slug> (default factory-zero-activity) for --install.
  *
  * Creating the app uses GitHub's manifest flow: a local page posts the app
  * definition to GitHub, you click "Create GitHub App", and GitHub redirects
@@ -19,6 +23,7 @@ import http from 'node:http';
 import crypto from 'node:crypto';
 import { spawn, spawnSync } from 'node:child_process';
 import path from 'node:path';
+import { readFileSync } from 'node:fs';
 import { fileURLToPath } from 'node:url';
 
 const ROOT = path.join(path.dirname(fileURLToPath(import.meta.url)), '..');
@@ -30,6 +35,7 @@ const opt = (flag, fallback) => {
 };
 const ORG = opt('--org', 'Factory-Zero');
 const NAME = opt('--name', 'Factory Zero Activity');
+const SLUG = opt('--slug', 'factory-zero-activity');
 
 const esc = s => String(s).replace(/[&<>"']/g, c => `&#${c.charCodeAt(0)};`);
 const openUrl = url => spawn(process.platform === 'darwin' ? 'open' : 'xdg-open', [url], { stdio: 'ignore', detached: true }).unref();
@@ -47,7 +53,35 @@ function wrangler(argv, input) {
 }
 
 if (args.includes('--refresh')) refresh();
+else if (args.includes('--install')) install();
 else await create();
+
+/* ---------- --install ----------
+   GitHub has no API to install an app on an org; each org consents in the
+   browser. This opens one install page per venture org that lacks the app,
+   with the org already chosen, so each is a single "Install" click. */
+
+function install() {
+  const gh = a => {
+    const r = spawnSync('gh', ['api', ...a], { encoding: 'utf8' });
+    return r.status === 0 ? r.stdout.trim() : null;
+  };
+  const sources = JSON.parse(readFileSync(path.join(ROOT, 'functions/api/activity-sources.json'), 'utf8'));
+  const owners = [...new Set(Object.values(sources).flatMap(s => s.owners))].sort();
+  let opened = 0;
+  for (const owner of owners) {
+    const installed = gh([`orgs/${owner}/installations`, '-q', `[.installations[] | select(.app_slug == "${SLUG}")] | length`]);
+    if (installed && Number(installed) > 0) { console.log(`${owner}: already installed`); continue; }
+    const id = gh([`orgs/${owner}`, '-q', '.id']);
+    if (!id) { console.log(`${owner}: could not look up the org (not an org, or no access)`); continue; }
+    openUrl(`https://github.com/apps/${SLUG}/installations/new/permissions?target_id=${id}`);
+    console.log(`${owner}: install page opened`);
+    opened++;
+  }
+  console.log(opened
+    ? `\nIn each tab: keep "All repositories", click Install. Then run this again to confirm.`
+    : '\nThe app is installed on every venture org.');
+}
 
 /* ---------- --refresh ---------- */
 
