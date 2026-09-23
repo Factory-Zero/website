@@ -871,7 +871,11 @@ html.scrolled .site-header {
   letter-spacing: .14em;
   color: var(--muted);
 }
-.site-subfooter nav { display: flex; gap: 28px; flex-wrap: wrap; }
+.site-subfooter nav { display: flex; gap: 28px; flex-wrap: wrap; align-items: center; }
+/* icon-only link (GitHub); the label lives in aria-label */
+.footer-icon { display: inline-flex; color: var(--muted); }
+.footer-icon:hover, .footer-icon:focus-visible { color: var(--accent); }
+.footer-icon svg { display: block; width: 16px; height: 16px; }
 
 /* ---------- ventures: registry ---------- */
 
