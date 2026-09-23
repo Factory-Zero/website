@@ -77,6 +77,54 @@ canvas { display: block; }
   }
 }
 
+/* ---------- home: venture carousel ---------- */
+
+.reel-band { padding: 10vh 0; border-top: 1px solid var(--line); }
+.reel-head {
+  display: flex; justify-content: space-between; align-items: baseline; gap: 16px;
+  padding: 0 var(--gut); margin-bottom: 40px;
+}
+.reel-all { font-family: var(--mono); font-size: 11px; letter-spacing: .14em; color: var(--muted); }
+.reel {
+  display: flex;
+  overflow: hidden;
+  /* fade the ends so items slide in and out rather than being cut */
+  -webkit-mask-image: linear-gradient(90deg, transparent, #000 6%, #000 94%, transparent);
+          mask-image: linear-gradient(90deg, transparent, #000 6%, #000 94%, transparent);
+}
+.reel-track {
+  display: flex; flex-shrink: 0; gap: 12px;
+  margin: 0; padding: 0 12px 0 0; list-style: none;
+  animation: reel 70s linear infinite;
+}
+.reel-track li { display: flex; }
+/* stop to read or click, by pointer or keyboard */
+.reel:hover .reel-track,
+.reel:focus-within .reel-track { animation-play-state: paused; }
+@keyframes reel { to { transform: translateX(-100%); } }
+
+.reel-track a {
+  display: grid; justify-items: start; align-content: start; gap: 6px;
+  width: 220px; min-height: 150px; padding: 22px;
+  background: var(--panel); border: 1px solid var(--line);
+  transition: border-color .2s, background .2s;
+}
+.reel-track a:hover, .reel-track a:focus-visible { border-color: var(--accent); background: var(--panel-2); }
+.reel-track img { height: 44px; width: auto; max-width: 120px; margin-bottom: 14px; }
+.reel-mono {
+  display: grid; place-items: center; width: 44px; height: 44px; margin-bottom: 14px;
+  border: 1px solid var(--line-2); font-family: var(--mono); color: var(--ink);
+}
+.reel-name { font-size: 20px; font-weight: 500; color: var(--ink); }
+.reel-meta { font-family: var(--mono); font-size: 10px; letter-spacing: .12em; color: var(--muted); }
+
+/* reduced motion: a still row the reader scrolls, with no duplicate */
+@media (prefers-reduced-motion: reduce) {
+  .reel { overflow-x: auto; -webkit-mask-image: none; mask-image: none; padding: 0 var(--gut); }
+  .reel-track { animation: none; }
+  .reel-track[aria-hidden="true"] { display: none; }
+}
+
 /* ---------- shared type ---------- */
 
 .mono {
