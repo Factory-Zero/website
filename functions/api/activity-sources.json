@@ -94,5 +94,23 @@
     "repos": [
       "keep-shipping/website"
     ]
+  },
+  "FZ-013": {
+    "owners": [
+      "owlpost-to"
+    ],
+    "repos": []
+  },
+  "FZ-014": {
+    "owners": [
+      "bloodrank"
+    ],
+    "repos": []
+  },
+  "FZ-015": {
+    "owners": [
+      "rateclaim"
+    ],
+    "repos": []
   }
 }

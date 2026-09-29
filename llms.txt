@@ -74,7 +74,7 @@ cycle teaches the next: build, deploy, observe, learn, repeat.
 
 ## Ventures
 
-The registry at /ventures/ lists twelve records, all named. No venture reports
+The registry at /ventures/ lists fifteen records, all named. No venture reports
 an operating figure yet, so none is shown. Each record instead carries an
 autonomy target (the level it is designed to reach, a design aim rather than a
 measurement), three aims in words (what it should run on its own, the kind of
@@ -282,6 +282,44 @@ public source repositories.
   Site: https://keepshipping.run
   Source: https://github.com/Keep-Shipping/website,
   https://github.com/Keep-Shipping
+
+- **FZ-013 Owlpost** (owlpost.pages.dev): EMAIL, BUILDING, VALIDATION.
+  An email API for apps and AI agents: send transactional and marketing
+  email, receive inbound mail as JSON by webhook, and create persistent
+  inboxes for agents. Built in Rust on the Cratefield harness and
+  Cloudflare's email service. Its first job is replacing Resend inside the
+  Factory Zero ventures.
+  **Only the site exists.** The API, SDKs and inboxes are being built; the
+  customer logos, testimonial and trust line on the site are placeholders.
+  Pricing is a plan, not charged.
+  Autonomy target: level 4, self-optimizing. A stated design aim, not a
+  measurement.
+  Site: https://owlpost.pages.dev
+  Source: https://github.com/Owlpost-to
+
+- **FZ-014 Bloodrank** (bloodrank.pages.dev): COMMUNITY, BUILDING, VALIDATION.
+  A leaderboard for builders who run several AI coding agents at once,
+  scored 0 to 1000 on AI spend (40%, log-scaled), verified shipped work (40%,
+  through GitHub and Stripe) and late-night use (20%), with a Sunlight board
+  for days offline.
+  **Only the concept site exists**, with sample data it labels as such. The
+  service and `npx bloodrank` are not built.
+  Autonomy target: level 3. A stated design aim, not a measurement.
+  Site: https://bloodrank.pages.dev
+  Source: https://github.com/Bloodrank
+
+- **FZ-015 ratecla.im** (rateclaim.pages.dev): TRAVEL, BUILDING, VALIDATION.
+  An AI agent, which says it is one, asks a hotel's reservations desk for its
+  best unpublished rate and returns a quote held for 24 hours, sent only if
+  it beats the lowest public price found for the same stay. Free for
+  travellers; hotels pay five percent after the stay.
+  **Only the site exists**; it says requests are not open. The agent, the
+  backend and the browser extension are being built on the Cratefield
+  harness.
+  Autonomy target: level 4, self-optimizing. A stated design aim, not a
+  measurement.
+  Site: https://rateclaim.pages.dev
+  Source: https://github.com/Rateclaim
 
 ## Notes for machine readers
 
