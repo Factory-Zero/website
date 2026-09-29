@@ -106,10 +106,20 @@ function reelItem(v, copy) {
   const logo = v.logo
     ? `<img src="/assets/${esc(v.logo)}" alt="" width="44" height="${Math.round(44 * (v.logoH || 1) / (v.logoW || 1))}" loading="lazy">`
     : `<span class="reel-mono" aria-hidden="true">${esc(v.name.slice(0, 1))}</span>`;
-  return `      <li><a href="/ventures/${slug(v)}/"${copy ? ' tabindex="-1"' : ''}>${logo}<span class="reel-name">${esc(v.name)}</span><span class="reel-meta">${esc(v.id)} &middot; ${esc(v.category)}</span></a></li>`;
+  return `      <li${copy ? ' aria-hidden="true"' : ''}><a href="/ventures/${slug(v)}/"${copy ? ' tabindex="-1"' : ''}>${logo}<span class="reel-name">${esc(v.name)}</span><span class="reel-meta">${esc(v.id)} &middot; ${esc(v.category)}</span></a></li>`;
 }
-const reel = vs => [false, true].map(copy =>
-  `    <ul class="reel-track"${copy ? ' aria-hidden="true"' : ''}>\n${vs.map(v => reelItem(v, copy)).join('\n')}\n    </ul>`).join('\n');
+// Two rows moving in opposite directions; ventures alternate between them.
+// Each track holds its row twice so a short row still covers a wide screen,
+// and a second, hidden track follows it so the loop has no seam. Only the
+// first copy in the first track is reachable by keyboard and screen readers.
+const reelTrack = (vs, hidden) =>
+  `      <ul class="reel-track"${hidden ? ' aria-hidden="true"' : ''}>\n` +
+  [...vs.map(v => reelItem(v, hidden)), ...vs.map(v => reelItem(v, true))].map(l => '  ' + l).join('\n') +
+  `\n      </ul>`;
+const reel = vs => [0, 1].map(r => {
+  const row = vs.filter((_, i) => i % 2 === r);
+  return `    <div class="reel${r ? ' reel--rev' : ''}">\n${reelTrack(row, false)}\n${reelTrack(row, true)}\n    </div>`;
+}).join('\n');
 
 function replaceRegion(src, key, body) {
   const re = new RegExp(`(<!-- fz:${key}:start -->)[\\s\\S]*?(<!-- fz:${key}:end -->)`);
@@ -226,6 +236,7 @@ let hs = fs.readFileSync(hp, 'utf8');
 for (const [re, val, label] of [
   [/(id="fz-ventures"[^>]*>)[^<]*/, `${String(live.length).padStart(2, '0')} ACTIVE`, 'fz-ventures'],
   [/(id="fz-pipeline-count"[^>]*>)[^<]*/, `LINE 01 &middot; ${String(live.length).padStart(2, '0')} UNITS IN PROCESS`, 'fz-pipeline-count'],
+  [/(id="fz-reel-count"[^>]*>)[^<]*/, String(live.length), 'fz-reel-count'],
 ]) {
   if (!re.test(hs)) throw new Error(`${label} marker not found in index.html`);
   hs = hs.replace(re, `$1${val}`);

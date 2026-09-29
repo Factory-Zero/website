@@ -85,6 +85,7 @@ canvas { display: block; }
   padding: 0 var(--gut); margin-bottom: 40px;
 }
 .reel-all { font-family: var(--mono); font-size: 11px; letter-spacing: .14em; color: var(--muted); }
+.reels { display: grid; gap: 12px; }
 .reel {
   display: flex;
   overflow: hidden;
@@ -102,6 +103,8 @@ canvas { display: block; }
 .reel:hover .reel-track,
 .reel:focus-within .reel-track { animation-play-state: paused; }
 @keyframes reel { to { transform: translateX(-100%); } }
+/* the second row runs the other way */
+.reel--rev .reel-track { animation-direction: reverse; }
 
 .reel-track a {
   display: grid; justify-items: start; align-content: start; gap: 6px;
@@ -122,7 +125,7 @@ canvas { display: block; }
 @media (prefers-reduced-motion: reduce) {
   .reel { overflow-x: auto; -webkit-mask-image: none; mask-image: none; padding: 0 var(--gut); }
   .reel-track { animation: none; }
-  .reel-track[aria-hidden="true"] { display: none; }
+  .reel-track[aria-hidden="true"], .reel-track li[aria-hidden="true"] { display: none; }
 }
 
 /* ---------- shared type ---------- */
