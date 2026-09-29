@@ -286,8 +286,8 @@ public source repositories.
 - **FZ-013 Owlpost** (owlpost.pages.dev): EMAIL, BUILDING, VALIDATION.
   An email API for apps and AI agents: send transactional and marketing
   email, receive inbound mail as JSON by webhook, and create persistent
-  inboxes for agents. Built in Rust on the Cratefield harness and
-  Cloudflare's email service. Its first job is replacing Resend inside the
+  inboxes for agents. Built in Rust on the Cratefield harness, sending through
+  Amazon SES. Its first job is replacing Resend inside the
   Factory Zero ventures.
   **Only the site exists.** The API, SDKs and inboxes are being built; the
   customer logos, testimonial and trust line on the site are placeholders.

@@ -231,7 +231,7 @@ window.FZ_DATA = {
         how: ["Transactional and marketing email from one SDK, with a timeline for every message", "Inbound email parsed to JSON and posted to your webhook", "Real inboxes for AI agents, created with one API call"],
         offer: "The plan is a free tier of 5,000 emails a month; paid plans are not open.",
         saves: "Stop stitching a sending service, an inbound parser and a mailbox together.",
-        now: "The site is live. The sending API is being built on Cratefield and Cloudflare, and its first job is to replace Resend in the Factory Zero ventures."
+        now: "The site is live. The sending API is being built on Cratefield and Amazon SES, and its first job is to replace Resend in the Factory Zero ventures."
       },
       desc: 'An email API for apps and AI agents. One key sends transactional and marketing email, receives inbound mail as JSON by webhook, and creates persistent inboxes for agents on owlpost.to or your own domain. Deliverability is part of the path: separate transactional and marketing streams, DKIM, SPF and DMARC records set up for you, a suppression list checked before every send, one-click unsubscribe. It is built in Rust on the Cratefield harness and Cloudflare’s email service. What exists today is the site; the API, the SDKs and the inboxes are being built, starting with replacing Resend inside Factory Zero.' },
     { id: 'FZ-014', name: 'Bloodrank', status: 'BUILDING', stage: 'VALIDATION', launched: null, category: 'COMMUNITY', autonomy: null, site: 'bloodrank.pages.dev', logo: 'bloodrank-animated.svg', logoW: 120, logoH: 120,
