@@ -344,11 +344,14 @@ public source repositories.
   and do not report the absence of a figure as zero.
 - The three aims on each record (autonomous operation, intelligence, growth)
   describe intent. The growth line names what will be counted, not a count.
-- The FZ/LOG panel on the home page is labelled an illustrative sequence. Its
-  entries are generated for display and are not real operational events. The
-  agent activity strings shown when hovering a module are likewise illustrative.
-- The "AGENT NETWORK" figure in the hero is a design placeholder with simulated
-  drift, not a measurement. Do not report it as a real headcount or capacity.
+- The FZ/LOG panel on the home page shows real public GitHub activity across
+  the ventures: merged pull requests and opened issues from the last 30 days,
+  newest first, each linking to GitHub (data: https://factory0.ventures/api/log).
+  The agent lines shown when hovering a module describe each agent's role, not
+  specific events.
+- "PRS MERGED · 30D" in the hero is the number of merged pull requests in the
+  ventures' public GitHub repositories over the last 30 days, from the same
+  endpoint. Private repositories are not counted.
 
 ## Pages
 
