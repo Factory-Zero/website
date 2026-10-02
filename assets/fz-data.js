@@ -288,9 +288,9 @@ window.FZ_DATA = {
     { id: 'FZ-017', name: 'release.show', status: 'BUILDING', stage: 'VALIDATION', launched: null, category: 'VIDEO', autonomy: null, site: 'release.show', logo: 'releaseshow-animated.svg', logoW: 120, logoH: 120,
       target: 4,
       aims: {
-        operate: 'Release announcements are the automation target. Once a project connects GitHub, nobody has to write them: a merged pull request, a published release or a change to the site is picked up on its own, and the video, blog post, release widget, social posts and email digest follow from it. A person approves what goes out under their name.',
+        operate: 'Release announcements are the automation target. Once a project connects GitHub, nobody has to write them: a merged pull request, a published release or a change to the site is picked up on its own, and the video, blog post, release widget, social posts and email digest follow from it.',
         intelligence: 'Models read what changed in the code and on the site and write the story of the release: the script, the captions, the blog post and the social copy, in the project’s own brand. An AI-avatar presenter can front the video. Detecting changes and rendering the output are plain code.',
-        growth: 'Developer-led: every release video is posted where the project’s users already are, and every project gets a public channel page at release.show/<project>. An early-access waitlist first. Growth is projects publishing through it, counted from the first project that is not a pilot.'
+        growth: 'Developer-led: every release video is ready to post to X, LinkedIn or YouTube, and every project gets a public channel page at release.show/<project>. An early-access waitlist first. Growth is projects publishing through it, counted from the first project that is not a pilot.'
       },
       github: [['RELEASE-SHOW', 'https://github.com/Release-Show']],
       pitch: {
