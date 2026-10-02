@@ -306,7 +306,7 @@ window.FZ_DATA = {
       target: 4,
       aims: {
         operate: 'The wiki is the thing that should keep itself: conversations become pages with their sources linked, and a nightly pass merges duplicates, surfaces contradictions and refreshes stale facts, with no one assigned to tend it. People ask questions and correct it; they do not write it.',
-        intelligence: 'Models read team conversations and write the pages, citing the source message for every fact; the nightly passes reconcile what changed, and a learning layer models how each person works. Teams choose their own models, LiteLLM included. Reading is always done with the asker’s own access.',
+        intelligence: 'Models read team conversations and write the pages, citing the source message for every fact; the nightly passes reconcile what changed, and a learning layer models how each person works. Teams bring their own LLM, LiteLLM included. Reading is always done with the asker’s own access.',
         growth: 'Team-led, inside the tools people already use: Slack, coding agents over MCP and the terminal. A free self-hosted tier for small teams first. Growth is workspaces with a wiki that is being kept, counted from the first one that is not ours.'
       },
       github: [['LIVINGBRAIN-WIKI/LIVINGBRAIN', 'https://github.com/Livingbrain-wiki/livingbrain'], ['LIVINGBRAIN-WIKI', 'https://github.com/Livingbrain-wiki']],
@@ -314,7 +314,7 @@ window.FZ_DATA = {
         problem: "What a team knows is spread across Slack threads and people’s heads, and the wiki meant to hold it is written once and then goes stale.",
         solution: "Living Brain is planned as a brain for your team that writes its own company wiki and keeps improving it: in Slack, in your coding agent over MCP, and in your terminal with one fast Rust binary.",
         how: ["Team conversations would become Markdown pages for people, projects, decisions and customers, every fact linked to its source message", "Nightly passes would merge duplicates, surface contradictions and refresh stale facts", "It would read only with the asker’s own access, in Slack, over MCP and in the CLI alike"],
-        offer: "Planned pricing per workspace, models of your choice on every plan: Community free (self-hosted, up to 5 people, your own storage), Teams $5 a month (10 GB hosted), Crew $9 a month (hosted, DeepSeek included, 25 GB). Nothing is on sale.",
+        offer: "Planned pricing per workspace, models of your choice on every plan: Community free (self-hosted, up to 5 people, your own storage), Teams $5 a month (10 GB hosted), Crew $9 a month (hosted, $3 of DeepSeek credit a month, 25 GB). Hosted usage is metered like memory: writing $1 per million tokens, reading unlimited, harder questions from $0.001 each. Nothing is on sale.",
         saves: "Stop writing the wiki by hand and finding it out of date.",
         now: "In design. The plan is four epics and 38 issues in the open product repository; nothing is built, and early access is a waitlist at livingbrain.wiki."
       },
