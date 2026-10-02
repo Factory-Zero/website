@@ -272,7 +272,7 @@ contact@factory0.ventures**. Using a subdomain keeps the two entirely separate.
 
 ### Venture data
 
-Twelve ventures are listed, and all twelve are real and named:
+Sixteen ventures are listed, and all sixteen are real and named:
 
 | | Venture | Stage | Target | Site | Source |
 | :--- | :--- | :--- | :--- | :--- | :--- |
@@ -288,6 +288,10 @@ Twelve ventures are listed, and all twelve are real and named:
 | `FZ-010` | Groove Guru | `VALIDATION` | L4 | [groove.guru](https://groove.guru) | [Groove-Guru/website](https://github.com/Groove-Guru/website) |
 | `FZ-011` | PosPlugin | `VALIDATION` | L4 | [posplug.in](https://posplug.in) | [POSplugin/website](https://github.com/POSplugin/website) |
 | `FZ-012` | Keep Shipping | `VALIDATION` | L4 | [keepshipping.run](https://keepshipping.run) | [Keep-Shipping/website](https://github.com/Keep-Shipping/website) |
+| `FZ-013` | Owlpost | `VALIDATION` | L4 | [owlpost.to](https://owlpost.to) | [Owlpost-to](https://github.com/Owlpost-to) |
+| `FZ-014` | Bloodrank | `VALIDATION` | L3 | [bloodrank.dev](https://bloodrank.dev) | [Bloodrank](https://github.com/Bloodrank) |
+| `FZ-015` | ratecla.im | `VALIDATION` | L4 | [ratecla.im](https://ratecla.im) | [Rateclaim](https://github.com/Rateclaim) |
+| `FZ-016` | Sealbin | `VALIDATION` | L4 | [sealb.in](https://sealb.in) | [sealbin](https://github.com/sealbin) |
 
 `autonomy` is `null` on every one of them: no venture has a measured figure,
 and the registry does not show one. Set a figure in `fz-data.js` when there
@@ -303,7 +307,7 @@ is one. What each record shows instead:
 Nothing else is listed: the registry shows only what exists, so a venture with
 nothing public yet does not get a placeholder row.
 
-None of the twelve can be bought from today, and their records and `llms.txt`
+None of the sixteen can be bought from today, and their records and `llms.txt`
 say so, and do not let any of them read as shipped.
 
 The FZ/LOG panel on the home page is still labelled an illustrative sequence,

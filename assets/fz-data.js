@@ -216,7 +216,75 @@ window.FZ_DATA = {
         saves: "Stop spending afternoons on eleven commits to change one pipeline.",
         now: "The site and the early-access list are open. The engine, the CLI and the built-in steps are being built."
       },
-      desc: 'A deploy workflow engine. Each repository gets one typed workflow file that builds and signs OCI images, plans and applies Terraform or OpenTofu (apply runs the exact plan a reviewer approved), waits for a human where the file says so, and rolls out to Kubernetes, VMs over SSH or serverless. Every step has typed inputs and outputs, so a tag wired where a digest belongs or a misspelled step fails the check before anything runs, and the same engine runs the file on a laptop and in CI. Steps can be packaged as typed, versioned blocks and reused across repos; a step that needs real code is a TypeScript function with typed inputs. For coding agents, a policy in the file says what they may do alone and what waits for a named person, and a decide step asks Jev (TypeSafe AI) to rate a plan, with destroys always going to a human. What exists today is the site at keepshipping.run and its early-access list; the engine, the CLI, the steps and the runner are designed and not yet written.' }
+      desc: 'A deploy workflow engine. Each repository gets one typed workflow file that builds and signs OCI images, plans and applies Terraform or OpenTofu (apply runs the exact plan a reviewer approved), waits for a human where the file says so, and rolls out to Kubernetes, VMs over SSH or serverless. Every step has typed inputs and outputs, so a tag wired where a digest belongs or a misspelled step fails the check before anything runs, and the same engine runs the file on a laptop and in CI. Steps can be packaged as typed, versioned blocks and reused across repos; a step that needs real code is a TypeScript function with typed inputs. For coding agents, a policy in the file says what they may do alone and what waits for a named person, and a decide step asks Jev (TypeSafe AI) to rate a plan, with destroys always going to a human. What exists today is the site at keepshipping.run and its early-access list; the engine, the CLI, the steps and the runner are designed and not yet written.' },
+    { id: 'FZ-013', name: 'Owlpost', status: 'BUILDING', stage: 'VALIDATION', launched: null, category: 'EMAIL', autonomy: null, site: 'owlpost.to', logo: 'owlpost-animated.svg', logoW: 120, logoH: 120,
+      target: 4,
+      aims: {
+        operate: 'Sending runs itself: a message is accepted, split, signed, delivered and watched, and bounces and complaints feed the suppression list with no one in the loop. People set limits and look at the dashboard; they do not push mail through by hand.',
+        intelligence: 'Mostly plain code. Models help at the edges: an AI panel that edits a template and shows every change as a diff to accept or reject, and screening that holds a suspicious inbound message before an agent reads it.',
+        growth: 'Developer-led, and first inside Factory Zero: Owlpost replaces Resend in the ventures that send mail today. Growth is emails sent and agent inboxes in use by teams outside Factory Zero, counted from the first of those.'
+      },
+      github: [['OWLPOST-TO', 'https://github.com/Owlpost-to']],
+      pitch: {
+        problem: "Apps send email through one service, parse replies with another, and AI agents have no real inbox at all.",
+        solution: "Owlpost is one email API: send, receive inbound mail as JSON, and give an agent its own address.",
+        how: ["Transactional and marketing email from one SDK, with a timeline for every message", "Inbound email parsed to JSON and posted to your webhook", "Real inboxes for AI agents, created with one API call"],
+        offer: "The plan is a free tier of 5,000 emails a month; paid plans are not open.",
+        saves: "Stop stitching a sending service, an inbound parser and a mailbox together.",
+        now: "The site is live. The sending API is being built on Cratefield and Amazon SES, and its first job is to replace Resend in the Factory Zero ventures."
+      },
+      desc: 'An email API for apps and AI agents. One key sends transactional and marketing email, receives inbound mail as JSON by webhook, and creates persistent inboxes for agents on owlpost.to or your own domain. Deliverability is part of the path: separate transactional and marketing streams, DKIM, SPF and DMARC records set up for you, a suppression list checked before every send, one-click unsubscribe. It is built in Rust on the Cratefield harness and Cloudflare’s email service. What exists today is the site; the API, the SDKs and the inboxes are being built, starting with replacing Resend inside Factory Zero.' },
+    { id: 'FZ-014', name: 'Bloodrank', status: 'BUILDING', stage: 'VALIDATION', launched: null, category: 'COMMUNITY', autonomy: null, site: 'bloodrank.dev', logo: 'bloodrank-animated.svg', logoW: 120, logoH: 120,
+      target: 3,
+      aims: {
+        operate: 'The boards keep themselves: spend and shipped work are read from the tools and from GitHub and Stripe, scored, ranked and published every night without anyone entering numbers.',
+        intelligence: 'Plain scoring code, log-scaled and published. A model only helps check that a claimed kill (a deploy, a launch, revenue) is real before it counts.',
+        growth: 'Community-led: builders share their coffin cards. Growth is verified profiles on the public board, counted from the first one that is not ours.'
+      },
+      github: [['BLOODRANK', 'https://github.com/Bloodrank']],
+      pitch: {
+        problem: "Token leaderboards reward spending, not shipping, and most teams that ran them dropped them.",
+        solution: "Bloodrank ranks people who run AI coding agents on what they spend and what they actually ship, side by side.",
+        how: ["Blood: monthly AI spend, log-scaled so a big budget cannot buy the top", "Kills: deploys, launches and revenue, verified through GitHub and Stripe", "A Sunlight board for days fully offline"],
+        offer: "The public board is planned to be free.",
+        saves: "Stop guessing whether your agent spend is paying off.",
+        now: "The site is live with sample data, labelled as such. The service, the board and `npx bloodrank` are not built."
+      },
+      desc: 'A leaderboard for AI vampires: builders who run several AI coding agents at once. Each profile gets a Vampire Score from 0 to 1000: 40% blood (monthly AI spend, log-scaled), 40% kills (deploys, launches, merged features and revenue, verified through GitHub and Stripe) and 20% night (parallel agents and late-night usage), with ranks from Thrall to Count. A Sunlight board counts days fully offline, because the essay that coined the term was about burnout. What exists today is the concept site with sample data; the service is not built.' },
+    { id: 'FZ-015', name: 'ratecla.im', status: 'BUILDING', stage: 'VALIDATION', launched: null, category: 'TRAVEL', autonomy: null, site: 'ratecla.im', logo: 'rateclaim-animated.svg', logoW: 120, logoH: 120,
+      target: 4,
+      aims: {
+        operate: 'A request runs itself: find the hotel’s reservations desk, ask, wait, read the reply, check it beats the lowest public price for the same stay, hold it for 24 hours, and bill the hotel after the stay. A person steps in only when a reply is unclear.',
+        intelligence: 'An agent that says it is an AI in every message, drafts the email and reads the reply into a checked quote. It never invents a price: anything uncertain goes to a human. The workflow around it is a plain, durable state machine.',
+        growth: 'Traveller-led, with hotels following: every quote is a reason for a hotel to list itself. Growth is accepted quotes at hotels that list with ratecla.im, counted from the first stay.'
+      },
+      github: [['RATECLAIM', 'https://github.com/Rateclaim']],
+      pitch: {
+        problem: "Hotels pay booking platforms 15 to 25 percent, and the lower rate they could give you directly is never published.",
+        solution: "ratecla.im asks the hotel for that rate on your behalf and brings back a quote held for 24 hours.",
+        how: ["Paste a hotel link, or use the browser extension on the page you are on", "An AI agent, which says it is one, asks the reservations desk directly", "You only see a quote that beats the lowest public price found for the same stay"],
+        offer: "Free for travellers; hotels pay five percent after the stay.",
+        saves: "Stop overpaying for a rate the hotel would have given you if you asked.",
+        now: "The site is live and says requests are not open yet. The agent, the backend and the extension are being built."
+      },
+      desc: 'Hotel rates nobody publishes. A traveller pastes a hotel link; an AI agent that identifies itself contacts the hotel’s reservations desk directly, asks for availability and its best unpublished rate, checks it against the lowest public price for the same stay, and returns a quote held for 24 hours. Free for travellers; hotels pay five percent after the stay instead of the 15 to 25 percent booking platforms charge. Built on the Cratefield harness. What exists today is the site; requests, the agent and the extension are being built.' },
+    { id: 'FZ-016', name: 'Sealbin', status: 'BUILDING', stage: 'VALIDATION', launched: null, category: 'SECURITY', autonomy: null, site: 'sealb.in', logo: 'sealbin-animated.svg', logoW: 120, logoH: 120,
+      target: 4,
+      aims: {
+        operate: 'The service runs itself: sealing, one-time opens, expiry and deletion are plain state on Cloudflare with no human in the path. Signup, keys, billing and abuse handling are automated; a person steps in only for security reports and enterprise contracts.',
+        intelligence: 'No model ever sees a handoff: everything is end-to-end encrypted on the sender’s machine. Agents are the customers, not the operators. The skill teaches them when to seal and how to read a handoff index-first.',
+        growth: 'Developer-led: every sealed link one agent sends is a sealb.in link another agent opens. Growth is agents with a key, counted from the first seal, and paid plans when those agents run in CI or production.'
+      },
+      github: [['SEALBIN', 'https://github.com/sealbin']],
+      pitch: {
+        problem: "Agents hand each other context, files and secrets through prompts, chat threads and public pastes: leaky, permanent and too big for a prompt.",
+        solution: "sealb.in seals the handoff on the sender’s machine and gives one link that the receiving agent opens once, then it is deleted.",
+        how: ["/seal ./context.tar in Claude Code, Codex or any agent with a shell", "The key stays in the link’s #fragment; the server only holds ciphertext", "/open puts the files on disk, burns the link, and leaves no copies behind"],
+        offer: "Open source under Apache-2.0; free to start, then priced per agent, not per seal.",
+        saves: "Stop leaving tokens in chat history and pasting megabytes of context into prompts.",
+        now: "The site is live and early access is a waitlist. The CLI, MCP server, skill and hosted service are being built."
+      },
+      desc: 'The sealed handoff between AI agents. The sending agent encrypts files, context or secrets on its own machine and uploads only ciphertext; the key travels in the link’s #fragment and never reaches the server. The receiving agent opens the link once, the contents land on disk, and the ciphertext is deleted. Burn-after-read by default, or a TTL, with an optional password. A CLI, an MCP server with seal and open tools, an agent skill and a REST API; open source under Apache-2.0 with a hosted service on Cloudflare. What exists today is the site and the early-access waitlist; the product is being built.' }
   ],
   layers: [
     { name: 'DISCOVER', agents: [['RESEARCH', 'Analyzing 14,284 market signals'], ['STRATEGY', 'Scoring opportunity 0.91'], ['ANALYTICS', 'Cohort model refreshed']] },
