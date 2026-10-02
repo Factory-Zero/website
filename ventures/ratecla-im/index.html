@@ -110,7 +110,7 @@
 <section class="page">
   <div class="page-head">
     <p class="kicker">VENTURE REGISTRY</p>
-    <p class="count" id="fz-count">15 RECORDS &middot; 00 LIVE</p>
+    <p class="count" id="fz-count">16 RECORDS &middot; 00 LIVE</p>
   </div>
   <h1 class="h-page">Registry</h1>
   <p class="lede" style="margin-bottom:6vh">Every venture below runs on the same factory core. Select one to see the problem it solves, what it does, how it works, and what you can use today. The technical detail and the design aims sit underneath. No venture reports a figure yet, so none is shown.</p>
@@ -317,7 +317,7 @@
         data-target="4" data-aim-operate="Sending runs itself: a message is accepted, split, signed, delivered and watched, and bounces and complaints feed the suppression list with no one in the loop. People set limits and look at the dashboard; they do not push mail through by hand."
         data-aim-intelligence="Mostly plain code. Models help at the edges: an AI panel that edits a template and shows every change as a diff to accept or reject, and screening that holds a suspicious inbound message before an agent reads it." data-aim-growth="Developer-led, and first inside Factory Zero: Owlpost replaces Resend in the ventures that send mail today. Growth is emails sent and agent inboxes in use by teams outside Factory Zero, counted from the first of those."
         data-github="[[&quot;OWLPOST-TO&quot;,&quot;https://github.com/Owlpost-to&quot;]]"
-        data-launched="NOT YET" data-stage="VALIDATION" data-site="owlpost.pages.dev"
+        data-launched="NOT YET" data-stage="VALIDATION" data-site="owlpost.to"
         data-logo="owlpost-animated.svg" data-logo-w="120" data-logo-h="120" data-desc="An email API for apps and AI agents. One key sends transactional and marketing email, receives inbound mail as JSON by webhook, and creates persistent inboxes for agents on owlpost.to or your own domain. Deliverability is part of the path: separate transactional and marketing streams, DKIM, SPF and DMARC records set up for you, a suppression list checked before every send, one-click unsubscribe. It is built in Rust on the Cratefield harness and Cloudflare’s email service. What exists today is the site; the API, the SDKs and the inboxes are being built, starting with replacing Resend inside Factory Zero."
         data-problem="Apps send email through one service, parse replies with another, and AI agents have no real inbox at all." data-solution="Owlpost is one email API: send, receive inbound mail as JSON, and give an agent its own address." data-how="[&quot;Transactional and marketing email from one SDK, with a timeline for every message&quot;,&quot;Inbound email parsed to JSON and posted to your webhook&quot;,&quot;Real inboxes for AI agents, created with one API call&quot;]"
         data-offer="The plan is a free tier of 5,000 emails a month; paid plans are not open." data-saves="Stop stitching a sending service, an inbound parser and a mailbox together." data-now="The site is live. The sending API is being built on Cratefield and Amazon SES, and its first job is to replace Resend in the Factory Zero ventures.">
@@ -333,7 +333,7 @@
         data-target="3" data-aim-operate="The boards keep themselves: spend and shipped work are read from the tools and from GitHub and Stripe, scored, ranked and published every night without anyone entering numbers."
         data-aim-intelligence="Plain scoring code, log-scaled and published. A model only helps check that a claimed kill (a deploy, a launch, revenue) is real before it counts." data-aim-growth="Community-led: builders share their coffin cards. Growth is verified profiles on the public board, counted from the first one that is not ours."
         data-github="[[&quot;BLOODRANK&quot;,&quot;https://github.com/Bloodrank&quot;]]"
-        data-launched="NOT YET" data-stage="VALIDATION" data-site="bloodrank.pages.dev"
+        data-launched="NOT YET" data-stage="VALIDATION" data-site="bloodrank.dev"
         data-logo="bloodrank-animated.svg" data-logo-w="120" data-logo-h="120" data-desc="A leaderboard for AI vampires: builders who run several AI coding agents at once. Each profile gets a Vampire Score from 0 to 1000: 40% blood (monthly AI spend, log-scaled), 40% kills (deploys, launches, merged features and revenue, verified through GitHub and Stripe) and 20% night (parallel agents and late-night usage), with ranks from Thrall to Count. A Sunlight board counts days fully offline, because the essay that coined the term was about burnout. What exists today is the concept site with sample data; the service is not built."
         data-problem="Token leaderboards reward spending, not shipping, and most teams that ran them dropped them." data-solution="Bloodrank ranks people who run AI coding agents on what they spend and what they actually ship, side by side." data-how="[&quot;Blood: monthly AI spend, log-scaled so a big budget cannot buy the top&quot;,&quot;Kills: deploys, launches and revenue, verified through GitHub and Stripe&quot;,&quot;A Sunlight board for days fully offline&quot;]"
         data-offer="The public board is planned to be free." data-saves="Stop guessing whether your agent spend is paying off." data-now="The site is live with sample data, labelled as such. The service, the board and `npx bloodrank` are not built.">
@@ -349,7 +349,7 @@
         data-target="4" data-aim-operate="A request runs itself: find the hotel’s reservations desk, ask, wait, read the reply, check it beats the lowest public price for the same stay, hold it for 24 hours, and bill the hotel after the stay. A person steps in only when a reply is unclear."
         data-aim-intelligence="An agent that says it is an AI in every message, drafts the email and reads the reply into a checked quote. It never invents a price: anything uncertain goes to a human. The workflow around it is a plain, durable state machine." data-aim-growth="Traveller-led, with hotels following: every quote is a reason for a hotel to list itself. Growth is accepted quotes at hotels that list with ratecla.im, counted from the first stay."
         data-github="[[&quot;RATECLAIM&quot;,&quot;https://github.com/Rateclaim&quot;]]"
-        data-launched="NOT YET" data-stage="VALIDATION" data-site="rateclaim.pages.dev"
+        data-launched="NOT YET" data-stage="VALIDATION" data-site="ratecla.im"
         data-logo="rateclaim-animated.svg" data-logo-w="120" data-logo-h="120" data-desc="Hotel rates nobody publishes. A traveller pastes a hotel link; an AI agent that identifies itself contacts the hotel’s reservations desk directly, asks for availability and its best unpublished rate, checks it against the lowest public price for the same stay, and returns a quote held for 24 hours. Free for travellers; hotels pay five percent after the stay instead of the 15 to 25 percent booking platforms charge. Built on the Cratefield harness. What exists today is the site; requests, the agent and the extension are being built."
         data-problem="Hotels pay booking platforms 15 to 25 percent, and the lower rate they could give you directly is never published." data-solution="ratecla.im asks the hotel for that rate on your behalf and brings back a quote held for 24 hours." data-how="[&quot;Paste a hotel link, or use the browser extension on the page you are on&quot;,&quot;An AI agent, which says it is one, asks the reservations desk directly&quot;,&quot;You only see a quote that beats the lowest public price found for the same stay&quot;]"
         data-offer="Free for travellers; hotels pay five percent after the stay." data-saves="Stop overpaying for a rate the hotel would have given you if you asked." data-now="The site is live and says requests are not open yet. The agent, the backend and the extension are being built.">
@@ -357,6 +357,22 @@
         <span class="name"><img class="venture-logo" src="/assets/rateclaim-animated.svg" alt="" width="30" height="30">ratecla.im</span>
         <span class="status" style="color:#A9A8A5"><span class="dot"></span>BUILDING</span>
         <span class="cat">TRAVEL</span>
+        <span class="aut">L4</span>
+      </button>
+      <button type="button" class="record registry-cols" aria-pressed="false" aria-controls="d-record"
+        data-id="FZ-016" data-slug="sealbin" data-name="Sealbin" data-status="BUILDING" data-status-color="#A9A8A5"
+        data-category="SECURITY" data-autonomy=""
+        data-target="4" data-aim-operate="The service runs itself: sealing, one-time opens, expiry and deletion are plain state on Cloudflare with no human in the path. Signup, keys, billing and abuse handling are automated; a person steps in only for security reports and enterprise contracts."
+        data-aim-intelligence="No model ever sees a handoff: everything is end-to-end encrypted on the sender’s machine. Agents are the customers, not the operators. The skill teaches them when to seal and how to read a handoff index-first." data-aim-growth="Developer-led: every sealed link one agent sends is a sealb.in link another agent opens. Growth is agents with a key, counted from the first seal, and paid plans when those agents run in CI or production."
+        data-github="[[&quot;SEALBIN&quot;,&quot;https://github.com/sealbin&quot;]]"
+        data-launched="NOT YET" data-stage="VALIDATION" data-site="sealb.in"
+        data-logo="sealbin-animated.svg" data-logo-w="120" data-logo-h="120" data-desc="The sealed handoff between AI agents. The sending agent encrypts files, context or secrets on its own machine and uploads only ciphertext; the key travels in the link’s #fragment and never reaches the server. The receiving agent opens the link once, the contents land on disk, and the ciphertext is deleted. Burn-after-read by default, or a TTL, with an optional password. A CLI, an MCP server with seal and open tools, an agent skill and a REST API; open source under Apache-2.0 with a hosted service on Cloudflare. What exists today is the site and the early-access waitlist; the product is being built."
+        data-problem="Agents hand each other context, files and secrets through prompts, chat threads and public pastes: leaky, permanent and too big for a prompt." data-solution="sealb.in seals the handoff on the sender’s machine and gives one link that the receiving agent opens once, then it is deleted." data-how="[&quot;/seal ./context.tar in Claude Code, Codex or any agent with a shell&quot;,&quot;The key stays in the link’s #fragment; the server only holds ciphertext&quot;,&quot;/open puts the files on disk, burns the link, and leaves no copies behind&quot;]"
+        data-offer="Open source under Apache-2.0; free to start, then priced per agent, not per seal." data-saves="Stop leaving tokens in chat history and pasting megabytes of context into prompts." data-now="The site is live and early access is a waitlist. The CLI, MCP server, skill and hosted service are being built.">
+        <span class="rid">FZ-016</span>
+        <span class="name"><img class="venture-logo" src="/assets/sealbin-animated.svg" alt="" width="30" height="30">Sealbin</span>
+        <span class="status" style="color:#A9A8A5"><span class="dot"></span>BUILDING</span>
+        <span class="cat">SECURITY</span>
         <span class="aut">L4</span>
       </button>
 <!-- fz:registry:end -->
@@ -377,7 +393,7 @@
         <section class="pitch-deal"><p class="pitch-offer" id="d-offer">Free for travellers; hotels pay five percent after the stay.</p><p class="pitch-saves" id="d-saves">Stop overpaying for a rate the hotel would have given you if you asked.</p></section>
         <p class="pitch-now"><span class="pitch-k">TODAY</span> <span id="d-now">The site is live and says requests are not open yet. The agent, the backend and the extension are being built.</span></p>
       </div>
-      <a class="detail-link" id="d-link" href="https://rateclaim.pages.dev">RATECLAIM.PAGES.DEV &rarr;</a>
+      <a class="detail-link" id="d-link" href="https://ratecla.im">RATECLA.IM &rarr;</a>
       <details class="detail-more"><summary>THE TECHNICAL DETAIL</summary><p class="detail-desc" id="d-desc">Hotel rates nobody publishes. A traveller pastes a hotel link; an AI agent that identifies itself contacts the hotel’s reservations desk directly, asks for availability and its best unpublished rate, checks it against the lowest public price for the same stay, and returns a quote held for 24 hours. Free for travellers; hotels pay five percent after the stay instead of the 15 to 25 percent booking platforms charge. Built on the Cratefield harness. What exists today is the site; requests, the agent and the extension are being built.</p></details>
 <!-- fz:detail:end -->
     </div>

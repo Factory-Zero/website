@@ -74,7 +74,7 @@ cycle teaches the next: build, deploy, observe, learn, repeat.
 
 ## Ventures
 
-The registry at /ventures/ lists fifteen records, all named. No venture reports
+The registry at /ventures/ lists sixteen records, all named. No venture reports
 an operating figure yet, so none is shown. Each record instead carries an
 autonomy target (the level it is designed to reach, a design aim rather than a
 measurement), three aims in words (what it should run on its own, the kind of
@@ -283,7 +283,7 @@ public source repositories.
   Source: https://github.com/Keep-Shipping/website,
   https://github.com/Keep-Shipping
 
-- **FZ-013 Owlpost** (owlpost.pages.dev): EMAIL, BUILDING, VALIDATION.
+- **FZ-013 Owlpost** (owlpost.to): EMAIL, BUILDING, VALIDATION.
   An email API for apps and AI agents: send transactional and marketing
   email, receive inbound mail as JSON by webhook, and create persistent
   inboxes for agents. Built in Rust on the Cratefield harness, sending through
@@ -294,10 +294,10 @@ public source repositories.
   Pricing is a plan, not charged.
   Autonomy target: level 4, self-optimizing. A stated design aim, not a
   measurement.
-  Site: https://owlpost.pages.dev
+  Site: https://owlpost.to
   Source: https://github.com/Owlpost-to
 
-- **FZ-014 Bloodrank** (bloodrank.pages.dev): COMMUNITY, BUILDING, VALIDATION.
+- **FZ-014 Bloodrank** (bloodrank.dev): COMMUNITY, BUILDING, VALIDATION.
   A leaderboard for builders who run several AI coding agents at once,
   scored 0 to 1000 on AI spend (40%, log-scaled), verified shipped work (40%,
   through GitHub and Stripe) and late-night use (20%), with a Sunlight board
@@ -305,10 +305,10 @@ public source repositories.
   **Only the concept site exists**, with sample data it labels as such. The
   service and `npx bloodrank` are not built.
   Autonomy target: level 3. A stated design aim, not a measurement.
-  Site: https://bloodrank.pages.dev
+  Site: https://bloodrank.dev
   Source: https://github.com/Bloodrank
 
-- **FZ-015 ratecla.im** (rateclaim.pages.dev): TRAVEL, BUILDING, VALIDATION.
+- **FZ-015 ratecla.im** (ratecla.im): TRAVEL, BUILDING, VALIDATION.
   An AI agent, which says it is one, asks a hotel's reservations desk for its
   best unpublished rate and returns a quote held for 24 hours, sent only if
   it beats the lowest public price found for the same stay. Free for
@@ -318,8 +318,23 @@ public source repositories.
   harness.
   Autonomy target: level 4, self-optimizing. A stated design aim, not a
   measurement.
-  Site: https://rateclaim.pages.dev
+  Site: https://ratecla.im
   Source: https://github.com/Rateclaim
+
+- **FZ-016 Sealbin** (sealb.in): SECURITY, BUILDING, VALIDATION.
+  The sealed handoff between AI agents: the sending agent encrypts files,
+  context or secrets on its own machine and uploads only ciphertext; the key
+  travels in the link's #fragment and never reaches the server. The
+  receiving agent opens the link once, the contents land on disk, and the
+  ciphertext is deleted. Planned as a CLI, an MCP server with seal and open
+  tools, an agent skill and a REST API, open source under Apache-2.0.
+  **Only the site and its early-access waitlist exist.** The CLI, MCP
+  server, skill, hosted service and pricing are plans; nothing can be
+  installed yet.
+  Autonomy target: level 4, self-optimizing. A stated design aim, not a
+  measurement.
+  Site: https://sealb.in
+  Source: https://github.com/sealbin
 
 ## Notes for machine readers
 
