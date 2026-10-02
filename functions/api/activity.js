@@ -9,6 +9,9 @@
  *    been fetched once.
  *  - When that copy is due (24 hours after a complete fetch, 10 minutes after
  *    a partial one), the request that notices refreshes it in the background.
+ *    Issues change far more often than the weekly commit chart and cost only a
+ *    couple of searches, so they are refreshed on their own every 10 minutes
+ *    (`issuesNext`) while the commit chart keeps its daily schedule.
  *  - A refresh that fails leaves the old copy in place and tries again in 10
  *    minutes. A GitHub outage, a rate limit or an expired GITHUB_TOKEN makes
  *    the chart older, never empty. Only a venture that has never been fetched
@@ -28,6 +31,7 @@ import SOURCES from './activity-sources.json';
 const WEEKS = 52;
 const DAY = 86400e3;
 const RETRY = 600e3;   // after a failed or partial refresh
+const ISSUES_FRESH = 600e3; // issues are cheap (a couple of searches): refresh them every 10 minutes
 const MAX_REPOS = 40;  // Workers allow 50 subrequests per invocation on the free plan
 const ISSUE_PAGES = 2; // up to 200 issues touched in the window, which covers every venture today
 
@@ -61,7 +65,14 @@ export async function onRequestGet(context) {
   const stored = kv ? await kv.get(key, { type: 'json', cacheTtl: 60 }) : null;
 
   if (stored && stored.data) {
-    if (Date.now() >= stored.next) {
+    const now = Date.now();
+    if (now < stored.next && now >= (stored.issuesNext || 0)) {
+      context.waitUntil((async () => {
+        await kv.put(key, JSON.stringify({ ...stored, issuesNext: now + ISSUES_FRESH }));
+        await refreshIssues(env, id, sources, stored);
+      })().catch(e => console.log('activity issues refresh', id, e.message)));
+    }
+    if (now >= stored.next) {
       // Claim the refresh first so the next few visitors do not start their
       // own; KV is eventually consistent, so this narrows the race, no more.
       context.waitUntil((async () => {
@@ -93,6 +104,7 @@ async function refresh(env, id, sources, previous) {
     await env.ACTIVITY.put(`activity:${id}`, JSON.stringify({
       data: keep,
       next: Date.now() + (complete ? DAY : RETRY),
+      issuesNext: Date.now() + ISSUES_FRESH,
     }));
   }
   return keep;
@@ -114,7 +126,9 @@ function github(env) {
     });
 }
 
-async function fetchActivity(env, id, sources) {
+// Every repository to count, with the token that can read it, and which of them
+// are public. Shared by the full refresh and the issues-only refresh.
+async function listRepos(env, sources) {
   const gh = github(env);
   const app = await appTokens(env, sources.owners.concat(sources.repos.map(r => r.split('/')[0])));
 
@@ -154,7 +168,11 @@ async function fetchActivity(env, id, sources) {
     if (!repos.has(full)) repos.set(full, app.get(full.split('/')[0]) || null);
     publicRepos.add(full);
   }
+  return { gh, app, repos, publicRepos };
+}
 
+async function fetchActivity(env, id, sources) {
+  const { gh, app, repos, publicRepos } = await listRepos(env, sources);
   const list = [...repos.keys()].slice(0, MAX_REPOS);
   const weekly = new Array(WEEKS).fill(0);
   let pending = false;
@@ -194,6 +212,17 @@ async function fetchActivity(env, id, sources) {
     pending,
     updated: new Date().toISOString(),
   };
+}
+
+// Issues only: re-run the searches on top of the stored commit chart. A failure
+// keeps the stored issues; the next attempt is due at the issuesNext set above.
+async function refreshIssues(env, id, sources, stored) {
+  const { gh, app, publicRepos } = await listRepos(env, sources);
+  const weeks = stored.data.weeks.map(w => ({ week: w.week, commits: w.commits }));
+  const issues = await issueActivity(gh, sources, app, publicRepos, weeks);
+  const data = { ...stored.data, weeks, issues, updated: new Date().toISOString() };
+  await env.ACTIVITY.put(`activity:${id}`, JSON.stringify({ ...stored, data, issuesNext: Date.now() + ISSUES_FRESH }));
+  return data;
 }
 
 // Open issues (count, and the five newest in PUBLIC repositories) and, per
