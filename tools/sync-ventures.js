@@ -242,6 +242,16 @@ for (const [re, val, label] of [
   hs = hs.replace(re, `$1${val}`);
 }
 hs = replaceRegion(hs, 'reel', reel(live));
+// The venture timeline, from assets/timeline-data.json (refresh that with
+// tools/sync-timeline.js). Ventures without an org in the data are left out.
+const tdp = path.join(ROOT, 'assets/timeline-data.json');
+if (fs.existsSync(tdp)) {
+  const tl = require('./timeline.js')(live, JSON.parse(fs.readFileSync(tdp, 'utf8')), slug);
+  hs = replaceRegion(hs, 'timeline', tl.svg);
+  const RANGE_RE = /(<span class="tl-span">)[^<]*/;
+  if (!RANGE_RE.test(hs)) throw new Error('tl-span marker not found in index.html');
+  hs = hs.replace(RANGE_RE, `$1${tl.range} &middot; WITA`);
+}
 fs.writeFileSync(hp, hs);
 
 // system/index.html
