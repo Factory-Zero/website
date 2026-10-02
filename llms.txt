@@ -74,7 +74,7 @@ cycle teaches the next: build, deploy, observe, learn, repeat.
 
 ## Ventures
 
-The registry at /ventures/ lists sixteen records, all named. No venture reports
+The registry at /ventures/ lists seventeen records, all named. No venture reports
 an operating figure yet, so none is shown. Each record instead carries an
 autonomy target (the level it is designed to reach, a design aim rather than a
 measurement), three aims in words (what it should run on its own, the kind of
@@ -335,6 +335,20 @@ public source repositories.
   measurement.
   Site: https://sealb.in
   Source: https://github.com/sealbin
+
+- **FZ-017 release.show** (release.show): VIDEO, BUILDING, VALIDATION.
+  "Every release deserves a premiere." Turns GitHub releases, merged pull
+  requests and website changes into 30 to 90 second videos, branded,
+  captioned and ready to post. Each release also becomes an AI-avatar
+  presenter video, a blog post, an in-app release widget, social posts and
+  an email digest, and every project gets a public channel page at
+  release.show/<project>.
+  **Only the site and its early-access waitlist exist.** The product has not
+  launched; nothing can be used yet.
+  Autonomy target: level 4, self-optimizing. A stated design aim, not a
+  measurement.
+  Site: https://release.show
+  Source: https://github.com/Release-Show
 
 ## Notes for machine readers
 

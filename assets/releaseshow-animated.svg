@@ -1,0 +1,31 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 120 120" width="120" height="120" role="img" aria-label="release.show">
+  <title>release.show</title>
+  <desc>The release.show mark: a dark rounded square with an amber play triangle and a red on-air dot. The triangle plays out, the two halves of the square close like a curtain, part again, and the triangle plays back in.</desc>
+  <style>
+    /* One 6s cycle, ported from the mark on release.show and started at its
+       hold, so the first frame (and any static grab) is the full mark: the
+       triangle plays out, the curtain halves close, open again, and the
+       triangle grows back in. The on-air dot blinks on its own beat. */
+    .top, .bot, .tri { transform-box: fill-box; animation: 6s cubic-bezier(.7,0,.2,1) infinite; }
+    .top { animation-name: top; }
+    .bot { animation-name: bot; }
+    .tri { transform-origin: center; animation-name: tri; }
+    .dot { animation: blink 1.4s infinite; }
+    @keyframes top { 0%, 52% { transform: translateY(-82%) } 66%, 78% { transform: translateY(0) } 92%, 100% { transform: translateY(-82%) } }
+    @keyframes bot { 0%, 52% { transform: translateY(82%) } 66%, 78% { transform: translateY(0) } 92%, 100% { transform: translateY(82%) } }
+    @keyframes tri { 0%, 48% { transform: scale(1) translateX(0); opacity: 1 } 62% { transform: scale(.3) translateX(40%); opacity: 0 } 63%, 82% { transform: scale(.3) translateX(-40%); opacity: 0 } 100% { transform: scale(1) translateX(0); opacity: 1 } }
+    @keyframes blink { 0%, 100% { opacity: 1 } 50% { opacity: .2 } }
+    /* with motion reduced the mark is static: curtain open, triangle showing */
+    @media (prefers-reduced-motion: reduce) { .top, .bot, .tri, .dot { animation: none } .top, .bot { display: none } }
+  </style>
+  <defs>
+    <clipPath id="rs"><rect x="10" y="10" width="100" height="100" rx="26.6"/></clipPath>
+  </defs>
+  <g clip-path="url(#rs)">
+    <rect x="10" y="10" width="100" height="100" fill="#15120F"/>
+    <path class="tri" d="M45.9 37.3L83.4 60L45.9 82.7Z" fill="#F2B544"/>
+    <g class="top"><rect x="10" y="10" width="100" height="50" fill="#15120F"/><rect x="10" y="59" width="100" height="1" fill="#EFE8DC" fill-opacity=".18"/></g>
+    <g class="bot"><rect x="10" y="60" width="100" height="50" fill="#15120F"/><rect x="10" y="60" width="100" height="1" fill="#EFE8DC" fill-opacity=".18"/></g>
+    <circle class="dot" cx="89.7" cy="30.3" r="6.25" fill="#E5484D"/>
+  </g>
+</svg>

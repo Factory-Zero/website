@@ -284,7 +284,24 @@ window.FZ_DATA = {
         saves: "Stop leaving tokens in chat history and pasting megabytes of context into prompts.",
         now: "The site is live and early access is a waitlist. The CLI, MCP server, skill and hosted service are being built."
       },
-      desc: 'The sealed handoff between AI agents. The sending agent encrypts files, context or secrets on its own machine and uploads only ciphertext; the key travels in the link’s #fragment and never reaches the server. The receiving agent opens the link once, the contents land on disk, and the ciphertext is deleted. Burn-after-read by default, or a TTL, with an optional password. A CLI, an MCP server with seal and open tools, an agent skill and a REST API; open source under Apache-2.0 with a hosted service on Cloudflare. What exists today is the site and the early-access waitlist; the product is being built.' }
+      desc: 'The sealed handoff between AI agents. The sending agent encrypts files, context or secrets on its own machine and uploads only ciphertext; the key travels in the link’s #fragment and never reaches the server. The receiving agent opens the link once, the contents land on disk, and the ciphertext is deleted. Burn-after-read by default, or a TTL, with an optional password. A CLI, an MCP server with seal and open tools, an agent skill and a REST API; open source under Apache-2.0 with a hosted service on Cloudflare. What exists today is the site and the early-access waitlist; the product is being built.' },
+    { id: 'FZ-017', name: 'release.show', status: 'BUILDING', stage: 'VALIDATION', launched: null, category: 'VIDEO', autonomy: null, site: 'release.show', logo: 'releaseshow-animated.svg', logoW: 120, logoH: 120,
+      target: 4,
+      aims: {
+        operate: 'Release announcements are the automation target. Once a project connects GitHub, nobody has to write them: a merged pull request, a published release or a change to the site is picked up on its own, and the video, blog post, release widget, social posts and email digest follow from it. A person approves what goes out under their name.',
+        intelligence: 'Models read what changed in the code and on the site and write the story of the release: the script, the captions, the blog post and the social copy, in the project’s own brand. An AI-avatar presenter can front the video. Detecting changes and rendering the output are plain code.',
+        growth: 'Developer-led: every release video is posted where the project’s users already are, and every project gets a public channel page at release.show/<project>. An early-access waitlist first. Growth is projects publishing through it, counted from the first project that is not a pilot.'
+      },
+      github: [['RELEASE-SHOW', 'https://github.com/Release-Show']],
+      pitch: {
+        problem: "A release ships with a changelog entry, and turning it into a video, a post and an email for the people it was built for is a separate job that rarely gets done.",
+        solution: "release.show turns GitHub releases, merged pull requests and website changes into 30 to 90 second videos: branded, captioned and ready to post. Every release deserves a premiere.",
+        how: ["Each release becomes a short branded, captioned video", "The same release also becomes an AI-avatar presenter video, a blog post, an in-app release widget, social posts and an email digest", "Every project gets a public channel page at release.show/<project>"],
+        offer: "Early access by waitlist.",
+        saves: "Ship the release; the announcements come with it.",
+        now: "Early access is a waitlist at release.show. The product has not launched."
+      },
+      desc: 'Release videos made from the work itself. release.show reads GitHub releases, merged pull requests and website changes and turns them into 30 to 90 second videos, branded, captioned and ready to post. Each release also becomes an AI-avatar presenter video, a blog post, an in-app release widget, social posts and an email digest, and every project gets a public channel page at release.show/<project>. What exists today is the site and its early-access waitlist; the product has not launched.' }
   ],
   layers: [
     { name: 'DISCOVER', agents: [['RESEARCH', 'Reads markets and competitors'], ['STRATEGY', 'Scores opportunities against the thesis'], ['ANALYTICS', 'Keeps the usage models current']] },
