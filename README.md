@@ -118,6 +118,8 @@ assets/
   fz-common.js          loaded on every page
   fz-app.js             home: hero canvas, rolling log, agent rotation
   fz-ventures.js        registry selection
+  fz-timeline.js        home: plays the venture timeline
+  timeline-data.json    org creation dates and commits per day (counts only)
   fz-enter.js           access-request form
   kontinuum-animated.svg  FZ-001 brand mark (animated, self-contained)
   favicon.svg
@@ -136,6 +138,8 @@ tools/
   banner-render.html    README banner
   render-og.sh          regenerates every raster asset
   sync-ventures.js      writes fz-data.js into the static HTML
+  timeline.js           draws the home-page venture timeline (used by sync-ventures.js)
+  sync-timeline.js      rebuilds timeline-data.json from the GitHub API
   build-dist.sh         assembles dist/ (allowlist + cache-bust stamping)
 ```
 
@@ -167,6 +171,15 @@ Nearly everything is data:
   selected, plus its own title, description and canonical URL), the venture
   entries in `sitemap.xml`, and `functions/api/activity-sources.json`. Commit
   all of it; never edit the generated venture pages by hand.
+- **The venture timeline** on the home page (under the venture reel) is static
+  SVG that `sync-ventures.js` draws from `assets/timeline-data.json`: one row per
+  venture, its logo on the day its GitHub org was created, ticks for its
+  commits per day. The file holds counts only, never repository names; private
+  repositories count by number, as in the activity chart. Refresh it with
+  `node tools/sync-timeline.js` (needs `gh` logged in; it rewrites the data and
+  reruns `sync-ventures.js`). `assets/fz-timeline.js` plays it as a slow sweep
+  once it is in view; with JavaScript off or motion reduced the finished chart
+  shows.
 - **GitHub activity.** The detail panel charts weekly commits and issues (open count, opened/closed per week, the five newest open ones; titles that look like security reports are left out of that list) across a
   venture's public repositories (its `github` links; an owner-only link means
   all of that owner's public, non-fork repositories). `functions/api/activity.js`
@@ -318,7 +331,9 @@ newest first, each linking to GitHub) from `functions/api/log.js`, and the
 hero's "PRS MERGED · 30D" is the count of merged pull requests in the ventures'
 public repositories over the last 30 days, from the same endpoint. Both are
 cached in KV (`log:v1`) and refreshed every 15 minutes. Only public
-repositories are searched, so no private name or title can appear.
+repositories are searched, so no private name or title can appear. The
+venture timeline under the reel is a dated snapshot of commit counts, private
+repositories included by number only; its date range is printed above it.
 
 ### Deployment
 
