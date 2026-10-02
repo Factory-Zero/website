@@ -118,5 +118,11 @@
       "sealbin"
     ],
     "repos": []
+  },
+  "FZ-017": {
+    "owners": [
+      "release-show"
+    ],
+    "repos": []
   }
 }
