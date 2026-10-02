@@ -68,12 +68,7 @@
     if (elHeadline) elHeadline.textContent = C.headline;
   }
 
-  function renderAgentCount() {
-    if (!elAgents) return;
-    var base = C.agentNetwork != null ? C.agentNetwork : 1284;
-    elAgents.textContent = (base + state.drift).toLocaleString('en-US');
-  }
-  renderAgentCount();
+  function renderAgentCount() {}
 
   /* ------------------------------------------------- 02 layers and agents */
 
@@ -99,7 +94,7 @@
     if (elReadoutId) elReadoutId.textContent = agentId(agent);
     if (elReadoutMsg) elReadoutMsg.textContent = agent ? agent.msg : '';
     if (elReadoutTime) {
-      elReadoutTime.textContent = agent ? agent.layer + ' · T+' + pad2((state.tick * 3) % 60) + 's' : '';
+      elReadoutTime.textContent = agent ? agent.layer : '';
     }
   }
 
@@ -199,33 +194,61 @@
   }
 
   /* ------------------------------------------------------------- 07 log */
+  // Real public GitHub activity across the ventures (/api/log): merged pull
+  // requests and opened issues, newest first, each linking to GitHub. Nothing
+  // here is simulated; when the feed is unavailable the panel says so.
 
   var logHost = $('fz-log');
-  var logSeconds = 21 * 3600 + 4 * 60 + 18;
-  var logIndex = 0;
-  var KEY_LINE = /approval|signal identified/;
+  var elMerged = $('fz-merged');
 
-  function pushLog() {
-    if (!logHost) return;
-    logSeconds += 4 + Math.floor(Math.random() * 700);
-    var h = pad2(Math.floor(logSeconds / 3600) % 24);
-    var m = pad2(Math.floor(logSeconds / 60) % 60);
-    var s = pad2(logSeconds % 60);
-    var msg = D.logPool[logIndex % D.logPool.length];
-    logIndex++;
-
-    logHost.appendChild(el('div', {
-      class: 'log-line' + (KEY_LINE.test(msg) ? ' is-key' : '')
-    }, [
-      el('span', { class: 't', text: h + ':' + m + ':' + s }),
-      el('span', { text: msg })
-    ]));
-
-    while (logHost.children.length > 9) logHost.removeChild(logHost.firstChild);
+  function ago(iso) {
+    var s = Math.max(0, (Date.now() - Date.parse(iso)) / 1000);
+    if (s < 3600) return Math.max(1, Math.round(s / 60)) + 'm';
+    if (s < 86400) return Math.round(s / 3600) + 'h';
+    return Math.round(s / 86400) + 'd';
   }
+  var venturesById = {};
+  (D.ventures || []).forEach(function (v) { venturesById[v.id] = v; });
 
-  for (var seed = 0; seed < 6; seed++) pushLog();
-  setInterval(pushLog, reduced ? 4000 : 1600);
+  function renderLog(data) {
+    if (!logHost) return;
+    logHost.textContent = '';
+    var items = (data && data.items) || [];
+    if (!items.length) {
+      logHost.appendChild(el('div', { class: 'log-line' }, [el('span', { text: 'No public activity in the last 30 days.' })]));
+      return;
+    }
+    // At most two lines per repository, so one busy repo (or a batch of filed
+    // issues) cannot fill the panel on its own.
+    var perRepo = {}, shown = [];
+    items.forEach(function (it) {
+      if (shown.length >= 9) return;
+      perRepo[it.repo] = (perRepo[it.repo] || 0) + 1;
+      if (perRepo[it.repo] <= 2) shown.push(it);
+    });
+    shown.forEach(function (it) {
+      var v = venturesById[it.venture];
+      var a = el('a', { class: 'log-line' + (it.kind === 'merged' ? ' is-key' : ''), href: it.url, rel: 'noopener' }, [
+        el('span', { class: 't', text: ago(it.t) }),
+        el('span', { text: (v ? v.name : it.repo) + ' · ' + (it.kind === 'merged' ? 'merged' : 'opened') + ' #' + it.number + ' ' + it.title })
+      ]);
+      a.title = it.repo + '#' + it.number + ' · ' + new Date(it.t).toLocaleString();
+      logHost.appendChild(a);
+    });
+  }
+  function loadLog() {
+    if (!window.fetch) return;
+    fetch('/api/log').then(function (r) { if (!r.ok) throw new Error(r.status); return r.json(); })
+      .then(function (data) {
+        renderLog(data);
+        if (elMerged && typeof data.merged30d === 'number') elMerged.textContent = data.merged30d.toLocaleString('en-US');
+      })
+      .catch(function () {
+        if (logHost) { logHost.textContent = ''; logHost.appendChild(el('div', { class: 'log-line' }, [el('span', { text: 'Activity is unavailable right now.' })])); }
+      });
+  }
+  loadLog();
+  setInterval(loadLog, 5 * 60e3);
 
   /* ----------------------------------------------------------- rotation */
 
@@ -239,12 +262,7 @@
   }
 
   setInterval(function () {
-    state.drift += Math.random() < 0.6 ? 1 : -1;
     state.tick += 1;
-    renderAgentCount();
-    if (elReadoutTime && state.active) {
-      elReadoutTime.textContent = state.active.layer + ' · T+' + pad2((state.tick * 3) % 60) + 's';
-    }
   }, 3000);
 
   /* ------------------------------------------------------------- canvas */

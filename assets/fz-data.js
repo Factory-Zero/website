@@ -287,25 +287,17 @@ window.FZ_DATA = {
       desc: 'The sealed handoff between AI agents. The sending agent encrypts files, context or secrets on its own machine and uploads only ciphertext; the key travels in the link’s #fragment and never reaches the server. The receiving agent opens the link once, the contents land on disk, and the ciphertext is deleted. Burn-after-read by default, or a TTL, with an optional password. A CLI, an MCP server with seal and open tools, an agent skill and a REST API; open source under Apache-2.0 with a hosted service on Cloudflare. What exists today is the site and the early-access waitlist; the product is being built.' }
   ],
   layers: [
-    { name: 'DISCOVER', agents: [['RESEARCH', 'Analyzing 14,284 market signals'], ['STRATEGY', 'Scoring opportunity 0.91'], ['ANALYTICS', 'Cohort model refreshed']] },
-    { name: 'BUILD', agents: [['PRODUCT', 'Specification v7 generated'], ['ENGINEERING', 'Deploying build 4218'], ['DESIGN', 'Interface variant 3 rendered'], ['QA', '1,102 tests passing']] },
-    { name: 'OPERATE', agents: [['INFRASTRUCTURE', 'Region eu-west scaled to 4 nodes'], ['SECURITY', 'Policy audit complete'], ['SUPPORT', 'Resolution generated · ticket 3,314'], ['FINANCE', 'Ledger reconciled']] },
-    { name: 'DISTRIBUTE', agents: [['GROWTH', 'Experiment 882 running'], ['CONTENT', 'Release note published'], ['SALES', 'Outbound sequence adjusted']] },
-    { name: 'LEARN', agents: [['LEGAL', 'Terms update drafted for review'], ['KNOWLEDGE', 'Playbook updated · 3 patterns'], ['OPTIMIZATION', 'Retention delta +2.1%']] }
+    { name: 'DISCOVER', agents: [['RESEARCH', 'Reads markets and competitors'], ['STRATEGY', 'Scores opportunities against the thesis'], ['ANALYTICS', 'Keeps the usage models current']] },
+    { name: 'BUILD', agents: [['PRODUCT', 'Turns decisions into specifications'], ['ENGINEERING', 'Writes the code and ships it'], ['DESIGN', 'Drafts interface variants'], ['QA', 'Writes and runs the tests']] },
+    { name: 'OPERATE', agents: [['INFRASTRUCTURE', 'Runs deployments and capacity'], ['SECURITY', 'Audits code and access policies'], ['SUPPORT', 'Answers support from the docs'], ['FINANCE', 'Reconciles payments and the ledger']] },
+    { name: 'DISTRIBUTE', agents: [['GROWTH', 'Designs growth experiments'], ['CONTENT', 'Writes release notes and posts'], ['SALES', 'Drafts outreach for review']] },
+    { name: 'LEARN', agents: [['LEGAL', 'Drafts terms for human review'], ['KNOWLEDGE', 'Turns what worked into playbooks'], ['OPTIMIZATION', 'Looks for what keeps users']] }
   ],
-  logPool: [
-    'market signal identified', 'research swarm deployed', 'opportunity score 0.91', 'venture workspace created',
-    'product specification generated', 'prototype build started', 'infrastructure provisioned', 'identity layer attached',
-    'billing configured', 'first deploy successful', 'observability online', 'support agent initialized',
-    'growth experiment 001 scheduled', 'first customer session recorded', 'retention model trained', 'weekly review generated',
-    'human approval requested', 'approval granted', 'autonomy level raised to 3', 'next signal queued'
-  ]
 };
 
 // Editable presentation values. In the Claude Design source these were `data-props`
 // on the component; here they are plain overrides you can edit without touching logic.
 window.FZ_CONFIG = {
   headline: 'We build companies that operate and grow themselves.', // also rendered statically in index.html
-  factoryStatus: 'ONLINE',   // ONLINE | MAINTENANCE | INITIALIZING
-  agentNetwork: 1284
+  factoryStatus: 'ONLINE'    // ONLINE | MAINTENANCE | INITIALIZING
 };

@@ -695,7 +695,10 @@ html.scrolled .site-header {
   color: var(--ink);
   animation: fzIn .5s both;
 }
-.log-line .t { color: var(--muted); flex: none; }
+.log-line .t { color: var(--muted); flex: none; min-width: 3ch; }
+a.log-line { color: inherit; text-decoration: none; }
+a.log-line:hover span:last-child { text-decoration: underline; text-underline-offset: 3px; }
+.log-line span:last-child { overflow: hidden; text-overflow: ellipsis; white-space: nowrap; min-width: 0; }
 .log-line.is-key { color: var(--accent); }
 
 /* ---------- footer ---------- */

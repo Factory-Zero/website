@@ -153,8 +153,9 @@ Paths are absolute (`/assets/...`), so open it through a server rather than
 
 Nearly everything is data:
 
-- **`assets/fz-data.js`** holds `ventures`, `layers` (the agent grid) and
-  `logPool` (the FZ/LOG strings). Add real ventures there. The pipeline, the
+- **`assets/fz-data.js`** holds `ventures` and `layers` (the agent grid; each
+  agent's line says what it does, never a made-up event or number). Add real
+  ventures there. The pipeline, the
   branch list and the hero counters all derive from that array.
 - **After editing `ventures`, run `node tools/sync-ventures.js`.** The registry
   rows and the default detail panel are written into `ventures/index.html` and
@@ -310,10 +311,13 @@ nothing public yet does not get a placeholder row.
 None of the sixteen can be bought from today, and their records and `llms.txt`
 say so, and do not let any of them read as shipped.
 
-The FZ/LOG panel on the home page is still labelled an illustrative sequence,
-and the hero's `agentNetwork` figure (1,284, with simulated drift) is a design
-placeholder rather than a measurement. `llms.txt` says so, so answer engines do
-not report either as fact.
+Nothing on the home page is simulated. The FZ/LOG panel shows real public
+GitHub activity across the ventures (merged pull requests and opened issues,
+newest first, each linking to GitHub) from `functions/api/log.js`, and the
+hero's "PRS MERGED · 30D" is the count of merged pull requests in the ventures'
+public repositories over the last 30 days, from the same endpoint. Both are
+cached in KV (`log:v1`) and refreshed every 15 minutes. Only public
+repositories are searched, so no private name or title can appear.
 
 ### Deployment
 
