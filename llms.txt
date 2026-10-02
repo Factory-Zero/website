@@ -74,7 +74,7 @@ cycle teaches the next: build, deploy, observe, learn, repeat.
 
 ## Ventures
 
-The registry at /ventures/ lists seventeen records, all named. No venture reports
+The registry at /ventures/ lists eighteen records, all named. No venture reports
 an operating figure yet, so none is shown. Each record instead carries an
 autonomy target (the level it is designed to reach, a design aim rather than a
 measurement), three aims in words (what it should run on its own, the kind of
@@ -349,6 +349,32 @@ public source repositories.
   measurement.
   Site: https://release.show
   Source: https://github.com/Release-Show
+
+- **FZ-018 Living Brain** (livingbrain.wiki): DEVTOOLS, BUILDING, VALIDATION.
+  "A brain for your team that writes its own company wiki and keeps improving
+  it." Planned to turn team conversations into Markdown pages for people,
+  projects, decisions and customers, with every fact linked to its source
+  message; nightly passes would merge duplicates, surface contradictions and
+  refresh stale facts, and a learning layer would model how each person
+  works. Reachable in Slack, from coding agents through an MCP server and a
+  Claude Code plugin, and from the terminal through the `livingbrain` CLI (one
+  Rust binary); an installable app (PWA) and a 3D graph view are planned too.
+  Bigger jobs would go to a Colonizer colony that returns a pull request;
+  email digests and an inbox would go through Owlpost. Bring your own model,
+  LiteLLM included; it would read only with the asker's own access. Built in
+  Rust as a Cratefield venture on Cloudflare Workers (D1, R2, KV, Durable
+  Objects). Open core: Apache-2.0, with an `ee/` directory under a commercial
+  licence.
+  **Nothing is built.** The product is in design: the plan is four epics and
+  38 issues in the public repository, and early access is a waitlist. Planned
+  pricing per workspace (Community free and self-hosted for up to 5 people,
+  Teams $5 a month, Crew $9 a month hosted with the model included) is a plan;
+  nothing is sold.
+  Autonomy target: level 4, self-optimizing. A stated design aim, not a
+  measurement.
+  Site: https://livingbrain.wiki
+  Source: https://github.com/Livingbrain-wiki/livingbrain (Apache-2.0 core),
+  https://github.com/Livingbrain-wiki
 
 ## Notes for machine readers
 

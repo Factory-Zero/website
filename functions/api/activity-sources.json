@@ -124,5 +124,13 @@
       "release-show"
     ],
     "repos": []
+  },
+  "FZ-018": {
+    "owners": [
+      "livingbrain-wiki"
+    ],
+    "repos": [
+      "livingbrain-wiki/livingbrain"
+    ]
   }
 }
