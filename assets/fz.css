@@ -742,8 +742,14 @@ html.scrolled .site-header {
   line-height: 1.9;
   min-height: 360px;
   display: grid;
+  /* one column that may shrink below its content, so a long line is cut with
+     an ellipsis instead of widening the panel and the page */
+  grid-template-columns: minmax(0, 1fr);
   align-content: end;
+  min-width: 0;
+  overflow: hidden;
 }
+#fz-log { min-width: 0; overflow: hidden; }
 .log-head {
   color: var(--muted);
   margin-bottom: 12px;
@@ -755,6 +761,7 @@ html.scrolled .site-header {
 .log-line {
   display: flex;
   gap: 20px;
+  min-width: 0;
   color: var(--ink);
   animation: fzIn .5s both;
 }
