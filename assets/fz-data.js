@@ -301,7 +301,24 @@ window.FZ_DATA = {
         saves: "Ship the release; the announcements come with it.",
         now: "Early access is a waitlist at release.show. The product has not launched."
       },
-      desc: 'Release videos made from the work itself. release.show reads GitHub releases, merged pull requests and website changes and turns them into 30 to 90 second videos, branded, captioned and ready to post. Each release also becomes an AI-avatar presenter video, a blog post, an in-app release widget, social posts and an email digest, and every project gets a public channel page at release.show/<project>. What exists today is the site and its early-access waitlist; the product has not launched.' }
+      desc: 'Release videos made from the work itself. release.show reads GitHub releases, merged pull requests and website changes and turns them into 30 to 90 second videos, branded, captioned and ready to post. Each release also becomes an AI-avatar presenter video, a blog post, an in-app release widget, social posts and an email digest, and every project gets a public channel page at release.show/<project>. What exists today is the site and its early-access waitlist; the product has not launched.' },
+    { id: 'FZ-018', name: 'Living Brain', status: 'BUILDING', stage: 'VALIDATION', launched: null, category: 'DEVTOOLS', autonomy: null, site: 'livingbrain.wiki', logo: 'livingbrain-animated.svg', logoW: 120, logoH: 120,
+      target: 4,
+      aims: {
+        operate: 'The wiki is the thing that should keep itself: conversations become pages with their sources linked, and a nightly pass merges duplicates, surfaces contradictions and refreshes stale facts, with no one assigned to tend it. People ask questions and correct it; they do not write it.',
+        intelligence: 'Models read team conversations and write the pages, citing the source message for every fact; the nightly passes reconcile what changed, and a learning layer models how each person works. Bring your own model, LiteLLM included. Reading is always done with the asker’s own access.',
+        growth: 'Team-led, inside the tools people already use: Slack, coding agents over MCP and the terminal. A free self-hosted tier for small teams first. Growth is workspaces with a wiki that is being kept, counted from the first one that is not ours.'
+      },
+      github: [['LIVINGBRAIN-WIKI/LIVINGBRAIN', 'https://github.com/Livingbrain-wiki/livingbrain'], ['LIVINGBRAIN-WIKI', 'https://github.com/Livingbrain-wiki']],
+      pitch: {
+        problem: "What a team knows is spread across Slack threads and people’s heads, and the wiki meant to hold it is written once and then goes stale.",
+        solution: "Living Brain is planned as a brain for your team that writes its own company wiki and keeps improving it: in Slack, in your coding agent over MCP, and in your terminal with one fast Rust binary.",
+        how: ["Team conversations would become Markdown pages for people, projects, decisions and customers, every fact linked to its source message", "Nightly passes would merge duplicates, surface contradictions and refresh stale facts", "It would read only with the asker’s own access, in Slack, over MCP and in the CLI alike"],
+        offer: "Planned pricing per workspace: Community free (self-hosted, up to 5 people), Teams $5 a month, Crew $9 a month (hosted, model included). Nothing is on sale.",
+        saves: "Stop writing the wiki by hand and finding it out of date.",
+        now: "In design. The plan is four epics and 38 issues in the open product repository; nothing is built, and early access is a waitlist at livingbrain.wiki."
+      },
+      desc: 'A company wiki that writes and maintains itself. The plan: Living Brain turns team conversations into Markdown pages for people, projects, decisions and customers, with every fact linked to the message it came from; nightly passes merge duplicates, surface contradictions and refresh stale facts, and a learning layer models how each person works. It would be reachable in Slack, from coding agents through an MCP server and a Claude Code plugin, and from the terminal through the `livingbrain` CLI, one Rust binary; an installable app (PWA) and a 3D graph view sit alongside. Bigger jobs would go to a Colonizer colony that returns a pull request, and email (digests and an inbox) would go through Owlpost. Bring your own model, LiteLLM included, and it reads only with the asker’s own access. Built in Rust as a Cratefield venture on Cloudflare Workers (D1, R2, KV, Durable Objects); open core, Apache-2.0 with an `ee/` directory under a commercial licence. What exists today is the site, its early-access waitlist and the plan as issues; nothing is built and nothing is sold.' }
   ],
   layers: [
     { name: 'DISCOVER', agents: [['RESEARCH', 'Reads markets and competitors'], ['STRATEGY', 'Scores opportunities against the thesis'], ['ANALYTICS', 'Keeps the usage models current']] },
