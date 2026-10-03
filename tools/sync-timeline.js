@@ -17,9 +17,7 @@
  * its author date in WITA (UTC+8). Only counts are written, never
  * repository names, so nothing private can leak through this file.
  *
- * The committed file was first built from the same GitHub history plus local
- * clones, so a rebuild from the API alone can come out slightly lower on days
- * with commits that were never pushed.
+ * Commits that were never pushed are not counted.
  */
 'use strict';
 const fs = require('fs');
@@ -39,18 +37,27 @@ const OUT = path.resolve(arg('--out', DEFAULT_OUT)); // another path: write ther
 const sinceUtc = new Date(Date.parse(since + 'T00:00:00Z') - TZ_MS).toISOString();
 const untilUtc = new Date(Date.parse(until + 'T00:00:00Z') + 86400000 - TZ_MS).toISOString();
 
+// A network hiccup (timeout, reset, 5xx) is retried a few times, so one
+// dropped request does not throw away a run that takes minutes.
+const TRANSIENT = /timeout|timed out|ECONNRESET|EOF|connection reset|HTTP 5\d\d|HTTP 429/i;
 function gh(route, paginate) {
   const args = ['api', '-H', 'Accept: application/vnd.github+json', route];
   if (paginate) args.splice(1, 0, '--paginate', '--slurp');
-  try {
-    const out = execFileSync('gh', args, { encoding: 'utf8', maxBuffer: 256 << 20, stdio: ['ignore', 'pipe', 'pipe'] });
-    const j = JSON.parse(out);
-    return paginate ? j.flat() : j;
-  } catch (e) {
-    const msg = String(e.stderr || e.message);
-    // an empty repository answers 409; treat as no commits
-    if (/HTTP 409/.test(msg)) return [];
-    throw new Error(`gh api ${route}: ${msg.trim().split('\n').pop()}`);
+  for (let attempt = 1; ; attempt++) {
+    try {
+      const out = execFileSync('gh', args, { encoding: 'utf8', maxBuffer: 256 << 20, stdio: ['ignore', 'pipe', 'pipe'] });
+      const j = JSON.parse(out);
+      return paginate ? j.flat() : j;
+    } catch (e) {
+      const msg = String(e.stderr || e.message);
+      // an empty repository answers 409; treat as no commits
+      if (/HTTP 409/.test(msg)) return [];
+      if (attempt < 4 && TRANSIENT.test(msg)) {
+        execFileSync('sleep', [String(attempt * 3)]);
+        continue;
+      }
+      throw new Error(`gh api ${route}: ${msg.trim().split('\n').pop()}`);
+    }
   }
 }
 
@@ -93,7 +100,7 @@ for (const [key, name] of owners) {
   const acct = gh(`users/${name}`);
   const isOrg = acct.type === 'Organization';
   const repos = gh(isOrg ? `orgs/${name}/repos?type=all&per_page=100` : `users/${name}/repos?type=owner&per_page=100`, true)
-    .filter(r => !r.fork && r.size > 0);
+    .filter(r => !r.fork); // not by size: GitHub reports 0 for a new repository for a while
   const seen = new Set(), days = {};
   for (const r of repos) {
     repoCommits(r.full_name, r.default_branch, c => {

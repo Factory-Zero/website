@@ -132,5 +132,13 @@
     "repos": [
       "livingbrain-wiki/livingbrain"
     ]
+  },
+  "FZ-019": {
+    "owners": [
+      "shoal-ing"
+    ],
+    "repos": [
+      "shoal-ing/website"
+    ]
   }
 }
