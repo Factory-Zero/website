@@ -32,6 +32,7 @@
     aimIntelligence: document.getElementById('d-aim-intelligence'),
     aimGrowth: document.getElementById('d-aim-growth'),
     github: document.getElementById('d-github'),
+    uses: document.getElementById('d-uses'),
     activity: document.getElementById('d-activity'),
     issues: document.getElementById('d-issues'),
     cat:   document.getElementById('d-cat'),
@@ -101,6 +102,45 @@
       var s = document.createElement('span');
       s.textContent = 'NO PUBLIC REPOSITORY';
       el.github.appendChild(s);
+    }
+
+    // what it is built with: [label, name, href, 'live' | 'planned', note], written by sync-ventures.js
+    if (el.uses) {
+      var used = [];
+      try { used = JSON.parse(d.uses || '[]'); } catch (e) { used = []; }
+      el.uses.textContent = '';
+      if (used.length) {
+        var ul = document.createElement('ul');
+        ul.className = 'uses';
+        used.forEach(function (u) {
+          var li = document.createElement('li');
+          li.className = 'use';
+          var role = document.createElement('span');
+          role.className = 'use-role';
+          role.textContent = u[0];
+          var a = document.createElement('a');
+          a.className = 'use-name';
+          a.href = u[2];
+          if (u[2].charAt(0) !== '/') a.rel = 'noopener';
+          a.textContent = u[1];
+          var tag = document.createElement('span');
+          tag.className = 'use-tag use-tag--' + u[3];
+          tag.textContent = String(u[3]).toUpperCase();
+          li.appendChild(role); li.appendChild(a); li.appendChild(tag);
+          if (u[4]) {
+            var note = document.createElement('span');
+            note.className = 'use-note';
+            note.textContent = u[4];
+            li.appendChild(note);
+          }
+          ul.appendChild(li);
+        });
+        el.uses.appendChild(ul);
+      } else {
+        var none = document.createElement('span');
+        none.textContent = 'NOT RECORDED';
+        el.uses.appendChild(none);
+      }
     }
 
     if (el.activity) activity(d.id, repos.length > 0);

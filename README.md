@@ -129,6 +129,7 @@ assets/
 robots.txt              allows AI and answer-engine crawlers explicitly
 sitemap.xml             all six pages
 llms.txt                plain-text summary for machine readers
+stack.json              what each venture is built with (generated)
 site.webmanifest
 _headers                Cloudflare Pages response headers
 .well-known/
@@ -171,6 +172,18 @@ Nearly everything is data:
   selected, plus its own title, description and canonical URL), the venture
   entries in `sitemap.xml`, and `functions/api/activity-sources.json`. Commit
   all of it; never edit the generated venture pages by hand.
+- **What each venture is built with** is the `uses` array on its record in
+  `assets/fz-data.js`: sister ventures by id (`FZ-013`) and third parties by a
+  key of `services` (`polar`, `cloudflare`, `aws-ses`, …), each with a role
+  (`framework`, `email`, `support`, `bug-reports`, `payments`,
+  `security-screening`, `secrets-handoff`, `deploys`, `hosting`) and a status,
+  `live` (in use today, and checked) or `planned`. `sync-ventures.js` renders it
+  as the "Built with" row on each venture page and writes `/stack.json`, which
+  each venture site vendors into a footer strip and its subprocessors list with
+  its own `tools/` script (no runtime fetch). An unknown id, role or status
+  stops the sync. The evidence for every entry is in `tools/STACK-SOURCES.md`
+  (not published); update it with the entry, and never mark an entry `live`
+  without a check you could repeat.
 - **The venture timeline** on the home page (under the venture reel) is static
   SVG that `sync-ventures.js` draws from `assets/timeline-data.json`: one row per
   venture, its logo on the day its GitHub org was created, ticks for its
