@@ -30,6 +30,14 @@
       "label": "SECURITY SCREENING",
       "phrase": "Screened by"
     },
+    "screening-engine": {
+      "label": "SECURITY SCREENING",
+      "phrase": "Screens with the method of"
+    },
+    "inbound-email": {
+      "label": "INBOUND EMAIL",
+      "phrase": "Inbound mail by"
+    },
     "secrets-handoff": {
       "label": "SECRETS HANDOFF",
       "phrase": "Handoffs sealed by"
@@ -295,8 +303,8 @@
           "name": "promptdecode",
           "kind": "factory-zero",
           "url": "https://promptdeco.de/",
-          "role": "security-screening",
-          "phrase": "Screened by",
+          "role": "screening-engine",
+          "phrase": "Screens with the method of",
           "status": "live",
           "note": "Colony output is screened before a pull request opens by the screen module’s promptdecode provider, a built-in decoder for promptdecode’s three code-point classes."
         },
@@ -644,7 +652,17 @@
           "role": "framework",
           "phrase": "Built with",
           "status": "live",
-          "note": "The email API is a Cratefield venture. Its staging Worker is deployed; the production API is not."
+          "note": "The email API is a Cratefield venture, deployed at api.owlpost.to."
+        },
+        {
+          "id": "aws-ses",
+          "name": "Amazon SES",
+          "kind": "third-party",
+          "url": "https://aws.amazon.com/ses/",
+          "role": "inbound-email",
+          "phrase": "Inbound mail by",
+          "status": "live",
+          "note": "Receives inbound mail for agents.owlpost.to in production."
         },
         {
           "id": "aws-ses",
@@ -653,8 +671,8 @@
           "url": "https://aws.amazon.com/ses/",
           "role": "email",
           "phrase": "Email by",
-          "status": "live",
-          "note": "Receives inbound mail for agents.owlpost.to on the staging deployment. Outbound sending goes through SES too and is not public yet."
+          "status": "planned",
+          "note": "Outbound sending through SES, once AWS lifts the sandbox on the account."
         },
         {
           "id": "FZ-008",
@@ -694,7 +712,7 @@
           "role": "hosting",
           "phrase": "Hosted on",
           "status": "live",
-          "note": "The site, Email Routing, and the staging API Worker with D1 and R2."
+          "note": "The site, Email Routing, and the API Worker with D1 and R2."
         }
       ]
     },

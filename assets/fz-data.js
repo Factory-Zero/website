@@ -141,7 +141,7 @@ window.FZ_DATA = {
         { id: 'FZ-013', role: 'email', status: 'planned', note: 'Waitlist confirmation mail. Double opt-in is off today, so no mail is sent yet.' },
         { id: 'FZ-008', role: 'bug-reports', status: 'planned', note: 'Errors and bug reports become deduplicated GitHub issues, through the Cratefield error reporter.' },
         { id: 'polar', role: 'payments', status: 'planned', note: 'Paid plans through Polar as Merchant of Record, via the Cratefield Payments port. Nothing is on sale yet.' },
-        { id: 'FZ-009', role: 'security-screening', status: 'live', note: 'Colony output is screened before a pull request opens by the screen module\u2019s promptdecode provider, a built-in decoder for promptdecode\u2019s three code-point classes.' },
+        { id: 'FZ-009', role: 'screening-engine', status: 'live', note: 'Colony output is screened before a pull request opens by the screen module\u2019s promptdecode provider, a built-in decoder for promptdecode\u2019s three code-point classes.' },
         { id: 'FZ-016', role: 'secrets-handoff', status: 'planned', note: 'Optional sealed handoffs between colonies on different machines.' },
         { id: 'FZ-012', role: 'deploys', status: 'planned', note: 'Every venture site and Worker deployed from the Keep Shipping console.' },
         { id: 'cloudflare', role: 'hosting', status: 'live', note: 'The site and the waitlist Worker.' }
@@ -303,12 +303,13 @@ window.FZ_DATA = {
     { id: 'FZ-013', name: 'Owlpost', status: 'BUILDING', stage: 'VALIDATION', launched: null, category: 'EMAIL', autonomy: null, site: 'owlpost.to', logo: 'owlpost-animated.svg', logoW: 120, logoH: 120,
       target: 4,
       uses: [
-        { id: 'FZ-004', role: 'framework', status: 'live', note: 'The email API is a Cratefield venture. Its staging Worker is deployed; the production API is not.' },
-        { id: 'aws-ses', role: 'email', status: 'live', note: 'Receives inbound mail for agents.owlpost.to on the staging deployment. Outbound sending goes through SES too and is not public yet.' },
+        { id: 'FZ-004', role: 'framework', status: 'live', note: 'The email API is a Cratefield venture, deployed at api.owlpost.to.' },
+        { id: 'aws-ses', role: 'inbound-email', status: 'live', note: 'Receives inbound mail for agents.owlpost.to in production.' },
+        { id: 'aws-ses', role: 'email', status: 'planned', note: 'Outbound sending through SES, once AWS lifts the sandbox on the account.' },
         { id: 'FZ-008', role: 'bug-reports', status: 'planned', note: 'Errors and bug reports become deduplicated GitHub issues, through the Cratefield error reporter.' },
         { id: 'polar', role: 'payments', status: 'planned', note: 'Paid plans and usage through Polar as Merchant of Record. Nothing is on sale yet.' },
         { id: 'FZ-012', role: 'deploys', status: 'planned', note: 'Every venture site and Worker deployed from the Keep Shipping console.' },
-        { id: 'cloudflare', role: 'hosting', status: 'live', note: 'The site, Email Routing, and the staging API Worker with D1 and R2.' }
+        { id: 'cloudflare', role: 'hosting', status: 'live', note: 'The site, Email Routing, and the API Worker with D1 and R2.' }
       ],
       aims: {
         operate: 'Sending runs itself: a message is accepted, split, signed, delivered and watched, and bounces and complaints feed the suppression list with no one in the loop. People set limits and look at the dashboard; they do not push mail through by hand.',
@@ -466,6 +467,8 @@ window.FZ_DATA = {
     'bug-reports': { label: 'BUG REPORTS', phrase: 'Bug reports to' },
     payments: { label: 'PAYMENTS', phrase: 'Payments by' },
     'security-screening': { label: 'SECURITY SCREENING', phrase: 'Screened by' },
+    'screening-engine': { label: 'SECURITY SCREENING', phrase: 'Screens with the method of' },
+    'inbound-email': { label: 'INBOUND EMAIL', phrase: 'Inbound mail by' },
     'secrets-handoff': { label: 'SECRETS HANDOFF', phrase: 'Handoffs sealed by' },
     deploys: { label: 'DEPLOYS', phrase: 'Deploys by' },
     hosting: { label: 'HOSTING', phrase: 'Hosted on' }
