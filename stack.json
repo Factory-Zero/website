@@ -1035,6 +1035,13 @@
           "note": "The site."
         }
       ]
+    },
+    {
+      "id": "FZ-019",
+      "name": "Shoal",
+      "site": "https://shoal.ing/",
+      "page": "https://factory0.ventures/ventures/shoal/",
+      "uses": []
     }
   ]
 }

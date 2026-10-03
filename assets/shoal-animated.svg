@@ -1,0 +1,25 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 120 120" width="120" height="120" role="img" aria-label="Shoal">
+  <title>Shoal</title>
+  <desc>The Shoal mark: three teal chevron strokes, a small shoal of fish, on a dark navy rounded square. Each fish in turn darts a little forward and settles back.</desc>
+  <style>
+    /* Each keyframe cycle starts and ends on the mark at rest, and the delays
+       are positive, so the first frame (and any static grab) is the full mark.
+       The fish dart forward one after another, then the shoal holds. */
+    .f { animation: dart 4.8s cubic-bezier(.45,0,.25,1) infinite both; }
+    .f1 { animation-delay: .4s; }
+    .f2 { animation-delay: .65s; }
+    .f3 { animation-delay: .9s; }
+    @keyframes dart {
+      0%, 34%, 100% { transform: translateX(0); }
+      12% { transform: translateX(1.6px); }
+      22% { transform: translateX(-.4px); }
+    }
+    @media (prefers-reduced-motion: reduce) { .f { animation: none; } }
+  </style>
+  <rect x="10" y="10" width="100" height="100" rx="23.4" fill="#04121C"/>
+  <g fill="none" stroke="#5EF2D6" stroke-width="2.3" stroke-linecap="round" stroke-linejoin="round" transform="translate(24.69 23.75) scale(3.047)">
+    <path class="f f1" d="M3 7l3 5-3 5" opacity=".7"/>
+    <path class="f f2" d="M10 5l4 7-4 7"/>
+    <path class="f f3" d="M18 8l2.5 4-2.5 4" opacity=".85"/>
+  </g>
+</svg>

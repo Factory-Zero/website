@@ -74,7 +74,7 @@ cycle teaches the next: build, deploy, observe, learn, repeat.
 
 ## Ventures
 
-The registry at /ventures/ lists eighteen records, all named. No venture reports
+The registry at /ventures/ lists nineteen records, all named. No venture reports
 an operating figure yet, so none is shown. Each record instead carries an
 autonomy target (the level it is designed to reach, a design aim rather than a
 measurement), three aims in words (what it should run on its own, the kind of
@@ -375,6 +375,22 @@ public source repositories.
   Site: https://livingbrain.wiki
   Source: https://github.com/Livingbrain-wiki/livingbrain (Apache-2.0 core),
   https://github.com/Livingbrain-wiki
+
+- **FZ-019 Shoal** (shoal.ing): SIMULATION, BUILDING, VALIDATION.
+  "Rehearse your launch." Paste a launch post or README, and thousands of
+  simulated developers read it, vote and argue about it on a simulated Hacker
+  News, Reddit or X; you get the predicted thread, the top objections and the
+  edits that change the outcome. Seed, simulate, score. Planned as a single
+  open-core binary written in Rust, self-hostable, with a local model or an
+  API: Jev is the deterministic engine, and a language model writes text only
+  when an agent posts.
+  **Only the site and its early-access waitlist exist.** The CLI is in
+  development and cannot be installed yet.
+  Autonomy target: level 4, self-optimizing. A stated design aim, not a
+  measurement.
+  Site: https://shoal.ing
+  Source: https://github.com/shoal-ing/website,
+  https://github.com/shoal-ing
 
 ## Notes for machine readers
 

@@ -299,7 +299,7 @@ contact@factory0.ventures**. Using a subdomain keeps the two entirely separate.
 
 ### Venture data
 
-Eighteen ventures are listed, and all eighteen are real and named:
+Nineteen ventures are listed, and all nineteen are real and named:
 
 | | Venture | Stage | Target | Site | Source |
 | :--- | :--- | :--- | :--- | :--- | :--- |
@@ -321,6 +321,7 @@ Eighteen ventures are listed, and all eighteen are real and named:
 | `FZ-016` | Sealbin | `VALIDATION` | L4 | [sealb.in](https://sealb.in) | [sealbin](https://github.com/sealbin) |
 | `FZ-017` | release.show | `VALIDATION` | L4 | [release.show](https://release.show) | [Release-Show](https://github.com/Release-Show) |
 | `FZ-018` | Living Brain | `VALIDATION` | L4 | [livingbrain.wiki](https://livingbrain.wiki) | [Livingbrain-wiki/livingbrain](https://github.com/Livingbrain-wiki/livingbrain) |
+| `FZ-019` | Shoal | `VALIDATION` | L4 | [shoal.ing](https://shoal.ing) | [shoal-ing/website](https://github.com/shoal-ing/website) |
 
 `autonomy` is `null` on every one of them: no venture has a measured figure,
 and the registry does not show one. Set a figure in `fz-data.js` when there
@@ -336,7 +337,7 @@ is one. What each record shows instead:
 Nothing else is listed: the registry shows only what exists, so a venture with
 nothing public yet does not get a placeholder row.
 
-None of the eighteen can be bought from today, and their records and `llms.txt`
+None of the nineteen can be bought from today, and their records and `llms.txt`
 say so, and do not let any of them read as shipped.
 
 Nothing on the home page is simulated. The FZ/LOG panel shows real public
