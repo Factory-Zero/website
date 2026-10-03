@@ -15,6 +15,8 @@ const ROOT = path.join(__dirname, '..');
 global.window = {};
 require(path.join(ROOT, 'assets/fz-data.js'));
 const V = global.window.FZ_DATA.ventures;
+const SERVICES = global.window.FZ_DATA.services || {};
+const ROLES = global.window.FZ_DATA.roles || {};
 
 const STATUS_COLOR = {
   LIVE: '#EDEBE6', SCALING: '#FF5A36', BUILDING: '#A9A8A5',
@@ -37,6 +39,33 @@ const SITE = 'https://factory0.ventures';
 const gh = v => v.github || [];
 const pitch = v => v.pitch || {};
 
+// `uses`: what a venture is built with. A sister venture resolves by id to its
+// own record, a third party by key to SERVICES. Anything unknown stops the run,
+// so a typo can never publish a wrong claim.
+const BY_ID = new Map(V.map(v => [v.id, v]));
+const STATUSES = new Set(['live', 'planned']);
+function uses(v) {
+  return (v.uses || []).map(u => {
+    const sister = BY_ID.get(u.id), svc = SERVICES[u.id], role = ROLES[u.role];
+    if (!sister && !svc) throw new Error(`${v.id}: uses unknown product or service "${u.id}"`);
+    if (sister === v) throw new Error(`${v.id}: lists itself in uses`);
+    if (!role) throw new Error(`${v.id}: unknown role "${u.role}" for ${u.id}`);
+    if (!STATUSES.has(u.status)) throw new Error(`${v.id}: status for ${u.id} must be live or planned, not "${u.status}"`);
+    return {
+      id: u.id,
+      name: sister ? sister.name : svc.name,
+      kind: sister ? 'factory-zero' : 'third-party',
+      url: sister ? (sister.site ? `https://${sister.site}/` : `${SITE}/ventures/${slug(sister)}/`) : svc.url,
+      page: sister ? `/ventures/${slug(sister)}/` : null,
+      role: u.role, label: role.label, phrase: role.phrase,
+      status: u.status, note: u.note || ''
+    };
+  });
+}
+// The rendered list, shared by the static page and (through data-uses) fz-ventures.js.
+const useItem = u => `<li class="use"><span class="use-role">${esc(u.label)}</span><a class="use-name" href="${esc(u.page || u.url)}"${u.page ? '' : ' rel="noopener"'}>${esc(u.name)}</a><span class="use-tag use-tag--${u.status}">${u.status.toUpperCase()}</span>${u.note ? `<span class="use-note">${esc(u.note)}</span>` : ''}</li>`;
+const useList = v => uses(v).length ? `<ul class="uses">${uses(v).map(useItem).join('')}</ul>` : '<span>NOT RECORDED</span>';
+
 function row(v, i) {
   const c = STATUS_COLOR[v.status] || '#8A8A8E';
   const mark = v.logo
@@ -47,7 +76,7 @@ function row(v, i) {
         data-category="${esc(v.category)}" data-autonomy="${v.autonomy == null ? '' : v.autonomy}"
         data-target="${v.target == null ? '' : v.target}" data-aim-operate="${esc(aims(v).operate)}"
         data-aim-intelligence="${esc(aims(v).intelligence)}" data-aim-growth="${esc(aims(v).growth)}"
-        data-github="${esc(JSON.stringify(gh(v)))}"
+        data-github="${esc(JSON.stringify(gh(v)))}" data-uses="${esc(JSON.stringify(uses(v).map(u => [u.label, u.name, u.page || u.url, u.status, u.note])))}"
         data-launched="${esc(v.launched || 'NOT YET')}" data-stage="${esc(v.stage)}" data-site="${esc(v.site)}"
         data-logo="${esc(v.logo || '')}" data-logo-w="${v.logoW || ''}" data-logo-h="${v.logoH || ''}" data-desc="${esc(v.desc)}"
         data-problem="${esc(pitch(v).problem)}" data-solution="${esc(pitch(v).solution)}" data-how="${esc(JSON.stringify(pitch(v).how || []))}"
@@ -98,6 +127,7 @@ function spec(v) {
         <div class="wide source"><dt>SOURCE</dt><dd id="d-github">${gh(v).length ? gh(v).map(([l, u]) => `<a href="${esc(u)}" rel="noopener">${esc(l)} &rarr;</a>`).join('') : '<span>NO PUBLIC REPOSITORY</span>'}</dd></div>
         <div class="wide activity"><dt>ACTIVITY &middot; COMMITS PER WEEK</dt><dd id="d-activity">${gh(v).length ? '<span>LOADING</span>' : '<span>NO PUBLIC REPOSITORY</span>'}</dd></div>
         <div class="wide activity"><dt>ISSUES &middot; OPENED AND CLOSED PER WEEK</dt><dd id="d-issues">${gh(v).length ? '<span>LOADING</span>' : '<span>NO PUBLIC REPOSITORY</span>'}</dd></div>
+        <div class="wide built"><dt>BUILT WITH &middot; LIVE OR PLANNED</dt><dd id="d-uses">${useList(v)}</dd></div>
         <div class="wide inherit"><dt>INHERITED FROM FACTORY</dt><dd>IDENTITY &middot; BILLING &middot; DEPLOYMENT &middot; OBSERVABILITY &middot; SUPPORT &middot; ANALYTICS &middot; SECURITY</dd></div>`;
 }
 
@@ -229,6 +259,21 @@ for (const v of V) {
 }
 fs.writeFileSync(path.join(ROOT, 'functions/api/activity-sources.json'), JSON.stringify(sources, null, 2) + '\n');
 
+// stack.json: every venture's `uses`, public, for machine readers and for the
+// venture sites, which vendor their own entry into a footer strip
+// (no runtime fetch). Deterministic: no timestamp, so it only changes with the data.
+const stack = {
+  description: 'What each Factory Zero venture is built with: sister ventures and third parties, by role, each live (in use today) or planned. Generated from assets/fz-data.js by tools/sync-ventures.js.',
+  source: `${SITE}/stack.json`,
+  statuses: { live: 'In use today.', planned: 'Decided and tracked, not in use yet.' },
+  roles: ROLES,
+  ventures: V.map(v => ({
+    id: v.id, name: v.name, site: v.site ? `https://${v.site}/` : null, page: `${SITE}/ventures/${slug(v)}/`,
+    uses: uses(v).map(u => ({ id: u.id, name: u.name, kind: u.kind, url: u.url, role: u.role, phrase: u.phrase, status: u.status, note: u.note || undefined }))
+  }))
+};
+fs.writeFileSync(path.join(ROOT, 'stack.json'), JSON.stringify(stack, null, 2) + '\n');
+
 // index.html: the static hero placeholders must not drift from the data,
 // since that is what crawlers and no-JS visitors read.
 const hp = path.join(ROOT, 'index.html');
@@ -260,4 +305,4 @@ let ss = fs.readFileSync(sp, 'utf8');
 ss = replaceRegion(ss, 'ventures', live.map(chip).join('\n'));
 fs.writeFileSync(sp, ss);
 
-console.log(`synced ${V.length} records into ventures/index.html, ${V.length} venture pages, the sitemap and activity sources, and ${live.length} into system/index.html`);
+console.log(`synced ${V.length} records into ventures/index.html, ${V.length} venture pages, the sitemap, activity sources and stack.json, and ${live.length} into system/index.html`);

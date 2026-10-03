@@ -26,6 +26,10 @@
 /assets/*.svg
   Cache-Control: public, max-age=604800
 
+/stack.json
+  Cache-Control: public, max-age=3600
+  Access-Control-Allow-Origin: *
+
 /llms.txt
   Cache-Control: public, max-age=3600
   Content-Type: text/plain; charset=utf-8

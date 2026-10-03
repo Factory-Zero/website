@@ -393,6 +393,15 @@ public source repositories.
   ventures' public GitHub repositories over the last 30 days, from the same
   endpoint. Private repositories are not counted.
 
+- What each venture is built with is at https://factory0.ventures/stack.json:
+  sister ventures (Cratefield, Owlpost, SupportGenius, promptdecode, Sealbin,
+  Keep Shipping) and third parties (Cloudflare, Polar, Amazon SES, Resend,
+  Stripe), by role (framework, email, support, bug reports, payments, security
+  screening, secrets handoff, deploys, hosting). Every entry is marked "live"
+  (in use today) or "planned" (decided and tracked, not in use yet). Do not
+  report a planned entry as in use. The same list is on each venture's page
+  under "Built with", and in the footer of each venture's own site.
+
 ## Pages
 
 - [Home](https://factory0.ventures/): thesis in brief, the factory operating
@@ -406,8 +415,10 @@ public source repositories.
   One open-source Rust harness (https://github.com/Cratefield/harness, MIT):
   modules as crates, ports and adapters, one stateless Cloudflare Worker and one
   database per venture, D1 today and self-hosted Postgres later. Its foundation
-  and first two modules (email signup, waitlist) are merged; nothing is published
-  to crates.io yet and no venture backend is deployed. Private operating modules
+  and first modules (email signup, waitlist) are merged and published on
+  crates.io. The only venture backends running on it in production are waitlist
+  Workers (sealb.in, release.show, colonizer.dev, findsyou.work, posplug.in,
+  cratefield.com); no venture product backend is in production. Private operating modules
   and each venture's own backend are not open. FZ-004 Cratefield is the venture
   adding a managed control plane on top of the harness; that control plane is
   designed and unwritten.

@@ -1,0 +1,1040 @@
+{
+  "description": "What each Factory Zero venture is built with: sister ventures and third parties, by role, each live (in use today) or planned. Generated from assets/fz-data.js by tools/sync-ventures.js.",
+  "source": "https://factory0.ventures/stack.json",
+  "statuses": {
+    "live": "In use today.",
+    "planned": "Decided and tracked, not in use yet."
+  },
+  "roles": {
+    "framework": {
+      "label": "FRAMEWORK",
+      "phrase": "Built with"
+    },
+    "email": {
+      "label": "EMAIL",
+      "phrase": "Email by"
+    },
+    "support": {
+      "label": "SUPPORT",
+      "phrase": "Support by"
+    },
+    "bug-reports": {
+      "label": "BUG REPORTS",
+      "phrase": "Bug reports to"
+    },
+    "payments": {
+      "label": "PAYMENTS",
+      "phrase": "Payments by"
+    },
+    "security-screening": {
+      "label": "SECURITY SCREENING",
+      "phrase": "Screened by"
+    },
+    "screening-engine": {
+      "label": "SECURITY SCREENING",
+      "phrase": "Screens with the method of"
+    },
+    "inbound-email": {
+      "label": "INBOUND EMAIL",
+      "phrase": "Inbound mail by"
+    },
+    "secrets-handoff": {
+      "label": "SECRETS HANDOFF",
+      "phrase": "Handoffs sealed by"
+    },
+    "deploys": {
+      "label": "DEPLOYS",
+      "phrase": "Deploys by"
+    },
+    "hosting": {
+      "label": "HOSTING",
+      "phrase": "Hosted on"
+    }
+  },
+  "ventures": [
+    {
+      "id": "FZ-001",
+      "name": "Kontinuum",
+      "site": "https://kontinuum.audio/",
+      "page": "https://factory0.ventures/ventures/kontinuum/",
+      "uses": [
+        {
+          "id": "FZ-012",
+          "name": "Keep Shipping",
+          "kind": "factory-zero",
+          "url": "https://keepshipping.run/",
+          "role": "deploys",
+          "phrase": "Deploys by",
+          "status": "planned",
+          "note": "Every venture site and Worker deployed from the Keep Shipping console."
+        },
+        {
+          "id": "cloudflare",
+          "name": "Cloudflare",
+          "kind": "third-party",
+          "url": "https://www.cloudflare.com",
+          "role": "hosting",
+          "phrase": "Hosted on",
+          "status": "live",
+          "note": "The site."
+        }
+      ]
+    },
+    {
+      "id": "FZ-002",
+      "name": "Undercover Rockstars",
+      "site": "https://undercoverrockstars.com/",
+      "page": "https://factory0.ventures/ventures/undercover-rockstars/",
+      "uses": [
+        {
+          "id": "FZ-012",
+          "name": "Keep Shipping",
+          "kind": "factory-zero",
+          "url": "https://keepshipping.run/",
+          "role": "deploys",
+          "phrase": "Deploys by",
+          "status": "planned",
+          "note": "Every venture site and Worker deployed from the Keep Shipping console."
+        },
+        {
+          "id": "cloudflare",
+          "name": "Cloudflare",
+          "kind": "third-party",
+          "url": "https://www.cloudflare.com",
+          "role": "hosting",
+          "phrase": "Hosted on",
+          "status": "live",
+          "note": "The site and its forms."
+        }
+      ]
+    },
+    {
+      "id": "FZ-003",
+      "name": "Yoginini",
+      "site": "https://yoginini.us/",
+      "page": "https://factory0.ventures/ventures/yoginini/",
+      "uses": [
+        {
+          "id": "FZ-004",
+          "name": "Cratefield",
+          "kind": "factory-zero",
+          "url": "https://cratefield.com/",
+          "role": "framework",
+          "phrase": "Built with",
+          "status": "planned",
+          "note": "The bookings backend is being written to run on the Cratefield harness; it is not deployed."
+        },
+        {
+          "id": "FZ-008",
+          "name": "SupportGenius",
+          "kind": "factory-zero",
+          "url": "https://supportgeni.us/",
+          "role": "bug-reports",
+          "phrase": "Bug reports to",
+          "status": "planned",
+          "note": "Errors and bug reports become deduplicated GitHub issues, through the Cratefield error reporter."
+        },
+        {
+          "id": "FZ-012",
+          "name": "Keep Shipping",
+          "kind": "factory-zero",
+          "url": "https://keepshipping.run/",
+          "role": "deploys",
+          "phrase": "Deploys by",
+          "status": "planned",
+          "note": "Every venture site and Worker deployed from the Keep Shipping console."
+        },
+        {
+          "id": "cloudflare",
+          "name": "Cloudflare",
+          "kind": "third-party",
+          "url": "https://www.cloudflare.com",
+          "role": "hosting",
+          "phrase": "Hosted on",
+          "status": "live",
+          "note": "The site and its forms."
+        }
+      ]
+    },
+    {
+      "id": "FZ-004",
+      "name": "Cratefield",
+      "site": "https://cratefield.com/",
+      "page": "https://factory0.ventures/ventures/cratefield/",
+      "uses": [
+        {
+          "id": "resend",
+          "name": "Resend",
+          "kind": "third-party",
+          "url": "https://resend.com",
+          "role": "email",
+          "phrase": "Email by",
+          "status": "live",
+          "note": "Waitlist confirmation mail (double opt-in) from send.cratefield.com."
+        },
+        {
+          "id": "FZ-013",
+          "name": "Owlpost",
+          "kind": "factory-zero",
+          "url": "https://owlpost.to/",
+          "role": "email",
+          "phrase": "Email by",
+          "status": "planned",
+          "note": "Owlpost replaces Resend, through an Owlpost adapter in the harness."
+        },
+        {
+          "id": "FZ-008",
+          "name": "SupportGenius",
+          "kind": "factory-zero",
+          "url": "https://supportgeni.us/",
+          "role": "bug-reports",
+          "phrase": "Bug reports to",
+          "status": "planned",
+          "note": "Errors and bug reports become deduplicated GitHub issues, through the Cratefield error reporter."
+        },
+        {
+          "id": "polar",
+          "name": "Polar",
+          "kind": "third-party",
+          "url": "https://polar.sh",
+          "role": "payments",
+          "phrase": "Payments by",
+          "status": "planned",
+          "note": "Polar as Merchant of Record behind the harness Payments port, for the managed service. Nothing is on sale yet."
+        },
+        {
+          "id": "FZ-012",
+          "name": "Keep Shipping",
+          "kind": "factory-zero",
+          "url": "https://keepshipping.run/",
+          "role": "deploys",
+          "phrase": "Deploys by",
+          "status": "planned",
+          "note": "Every venture site and Worker deployed from the Keep Shipping console."
+        },
+        {
+          "id": "cloudflare",
+          "name": "Cloudflare",
+          "kind": "third-party",
+          "url": "https://www.cloudflare.com",
+          "role": "hosting",
+          "phrase": "Hosted on",
+          "status": "live",
+          "note": "The site, and the waitlist Worker with its D1 database."
+        }
+      ]
+    },
+    {
+      "id": "FZ-005",
+      "name": "VibeCaddie",
+      "site": "https://vibecaddie.com/",
+      "page": "https://factory0.ventures/ventures/vibecaddie/",
+      "uses": [
+        {
+          "id": "FZ-012",
+          "name": "Keep Shipping",
+          "kind": "factory-zero",
+          "url": "https://keepshipping.run/",
+          "role": "deploys",
+          "phrase": "Deploys by",
+          "status": "planned",
+          "note": "Every venture site and Worker deployed from the Keep Shipping console."
+        },
+        {
+          "id": "cloudflare",
+          "name": "Cloudflare",
+          "kind": "third-party",
+          "url": "https://www.cloudflare.com",
+          "role": "hosting",
+          "phrase": "Hosted on",
+          "status": "live",
+          "note": "The site and its forms."
+        }
+      ]
+    },
+    {
+      "id": "FZ-006",
+      "name": "Colonizer",
+      "site": "https://colonizer.dev/",
+      "page": "https://factory0.ventures/ventures/colonizer/",
+      "uses": [
+        {
+          "id": "FZ-004",
+          "name": "Cratefield",
+          "kind": "factory-zero",
+          "url": "https://cratefield.com/",
+          "role": "framework",
+          "phrase": "Built with",
+          "status": "live",
+          "note": "The fleet waitlist Worker at api.colonizer.dev runs on the Cratefield harness, and the app uses its telemetry module."
+        },
+        {
+          "id": "FZ-013",
+          "name": "Owlpost",
+          "kind": "factory-zero",
+          "url": "https://owlpost.to/",
+          "role": "email",
+          "phrase": "Email by",
+          "status": "planned",
+          "note": "Waitlist confirmation mail. Double opt-in is off today, so no mail is sent yet."
+        },
+        {
+          "id": "FZ-008",
+          "name": "SupportGenius",
+          "kind": "factory-zero",
+          "url": "https://supportgeni.us/",
+          "role": "bug-reports",
+          "phrase": "Bug reports to",
+          "status": "planned",
+          "note": "Errors and bug reports become deduplicated GitHub issues, through the Cratefield error reporter."
+        },
+        {
+          "id": "polar",
+          "name": "Polar",
+          "kind": "third-party",
+          "url": "https://polar.sh",
+          "role": "payments",
+          "phrase": "Payments by",
+          "status": "planned",
+          "note": "Paid plans through Polar as Merchant of Record, via the Cratefield Payments port. Nothing is on sale yet."
+        },
+        {
+          "id": "FZ-009",
+          "name": "promptdecode",
+          "kind": "factory-zero",
+          "url": "https://promptdeco.de/",
+          "role": "screening-engine",
+          "phrase": "Screens with the method of",
+          "status": "live",
+          "note": "Colony output is screened before a pull request opens by the screen module’s promptdecode provider, a built-in decoder for promptdecode’s three code-point classes."
+        },
+        {
+          "id": "FZ-016",
+          "name": "Sealbin",
+          "kind": "factory-zero",
+          "url": "https://sealb.in/",
+          "role": "secrets-handoff",
+          "phrase": "Handoffs sealed by",
+          "status": "planned",
+          "note": "Optional sealed handoffs between colonies on different machines."
+        },
+        {
+          "id": "FZ-012",
+          "name": "Keep Shipping",
+          "kind": "factory-zero",
+          "url": "https://keepshipping.run/",
+          "role": "deploys",
+          "phrase": "Deploys by",
+          "status": "planned",
+          "note": "Every venture site and Worker deployed from the Keep Shipping console."
+        },
+        {
+          "id": "cloudflare",
+          "name": "Cloudflare",
+          "kind": "third-party",
+          "url": "https://www.cloudflare.com",
+          "role": "hosting",
+          "phrase": "Hosted on",
+          "status": "live",
+          "note": "The site and the waitlist Worker."
+        }
+      ]
+    },
+    {
+      "id": "FZ-007",
+      "name": "FindsYou.work",
+      "site": "https://findsyou.work/",
+      "page": "https://factory0.ventures/ventures/findsyou-work/",
+      "uses": [
+        {
+          "id": "FZ-004",
+          "name": "Cratefield",
+          "kind": "factory-zero",
+          "url": "https://cratefield.com/",
+          "role": "framework",
+          "phrase": "Built with",
+          "status": "live",
+          "note": "The waitlist Worker at api.findsyou.work runs on the Cratefield harness waitlist module."
+        },
+        {
+          "id": "FZ-013",
+          "name": "Owlpost",
+          "kind": "factory-zero",
+          "url": "https://owlpost.to/",
+          "role": "email",
+          "phrase": "Email by",
+          "status": "planned",
+          "note": "Waitlist confirmation mail. Double opt-in is off today, so no mail is sent yet."
+        },
+        {
+          "id": "stripe",
+          "name": "Stripe",
+          "kind": "third-party",
+          "url": "https://stripe.com",
+          "role": "payments",
+          "phrase": "Payments by",
+          "status": "planned",
+          "note": "A paywall through the Cratefield Stripe adapter. Nothing is on sale yet."
+        },
+        {
+          "id": "FZ-008",
+          "name": "SupportGenius",
+          "kind": "factory-zero",
+          "url": "https://supportgeni.us/",
+          "role": "bug-reports",
+          "phrase": "Bug reports to",
+          "status": "planned",
+          "note": "Errors and bug reports become deduplicated GitHub issues, through the Cratefield error reporter."
+        },
+        {
+          "id": "FZ-012",
+          "name": "Keep Shipping",
+          "kind": "factory-zero",
+          "url": "https://keepshipping.run/",
+          "role": "deploys",
+          "phrase": "Deploys by",
+          "status": "planned",
+          "note": "Every venture site and Worker deployed from the Keep Shipping console."
+        },
+        {
+          "id": "cloudflare",
+          "name": "Cloudflare",
+          "kind": "third-party",
+          "url": "https://www.cloudflare.com",
+          "role": "hosting",
+          "phrase": "Hosted on",
+          "status": "live",
+          "note": "The site and the waitlist Worker."
+        }
+      ]
+    },
+    {
+      "id": "FZ-008",
+      "name": "SupportGenius",
+      "site": "https://supportgeni.us/",
+      "page": "https://factory0.ventures/ventures/supportgenius/",
+      "uses": [
+        {
+          "id": "FZ-004",
+          "name": "Cratefield",
+          "kind": "factory-zero",
+          "url": "https://cratefield.com/",
+          "role": "framework",
+          "phrase": "Built with",
+          "status": "planned",
+          "note": "The ticketing and routing core is being written on the Cratefield harness; it is not deployed."
+        },
+        {
+          "id": "polar",
+          "name": "Polar",
+          "kind": "third-party",
+          "url": "https://polar.sh",
+          "role": "payments",
+          "phrase": "Payments by",
+          "status": "planned",
+          "note": "Paid plans through Polar as Merchant of Record, via the Cratefield Payments port. Nothing is on sale yet."
+        },
+        {
+          "id": "FZ-009",
+          "name": "promptdecode",
+          "kind": "factory-zero",
+          "url": "https://promptdeco.de/",
+          "role": "security-screening",
+          "phrase": "Screened by",
+          "status": "planned",
+          "note": "Free text in bug reports is screened for hidden instructions before a model drafts the ticket."
+        },
+        {
+          "id": "FZ-012",
+          "name": "Keep Shipping",
+          "kind": "factory-zero",
+          "url": "https://keepshipping.run/",
+          "role": "deploys",
+          "phrase": "Deploys by",
+          "status": "planned",
+          "note": "Every venture site and Worker deployed from the Keep Shipping console."
+        },
+        {
+          "id": "cloudflare",
+          "name": "Cloudflare",
+          "kind": "third-party",
+          "url": "https://www.cloudflare.com",
+          "role": "hosting",
+          "phrase": "Hosted on",
+          "status": "live",
+          "note": "The site."
+        }
+      ]
+    },
+    {
+      "id": "FZ-009",
+      "name": "promptdecode",
+      "site": "https://promptdeco.de/",
+      "page": "https://factory0.ventures/ventures/promptdecode/",
+      "uses": [
+        {
+          "id": "polar",
+          "name": "Polar",
+          "kind": "third-party",
+          "url": "https://polar.sh",
+          "role": "payments",
+          "phrase": "Payments by",
+          "status": "planned",
+          "note": "Paid tiers (the GitHub Action, private repositories) through Polar as Merchant of Record. Nothing is on sale yet."
+        },
+        {
+          "id": "FZ-012",
+          "name": "Keep Shipping",
+          "kind": "factory-zero",
+          "url": "https://keepshipping.run/",
+          "role": "deploys",
+          "phrase": "Deploys by",
+          "status": "planned",
+          "note": "Every venture site and Worker deployed from the Keep Shipping console."
+        },
+        {
+          "id": "cloudflare",
+          "name": "Cloudflare",
+          "kind": "third-party",
+          "url": "https://www.cloudflare.com",
+          "role": "hosting",
+          "phrase": "Hosted on",
+          "status": "live",
+          "note": "The site, where the decoder runs in the browser."
+        }
+      ]
+    },
+    {
+      "id": "FZ-010",
+      "name": "Groove Guru",
+      "site": "https://groove.guru/",
+      "page": "https://factory0.ventures/ventures/groove-guru/",
+      "uses": [
+        {
+          "id": "FZ-012",
+          "name": "Keep Shipping",
+          "kind": "factory-zero",
+          "url": "https://keepshipping.run/",
+          "role": "deploys",
+          "phrase": "Deploys by",
+          "status": "planned",
+          "note": "Every venture site and Worker deployed from the Keep Shipping console."
+        },
+        {
+          "id": "cloudflare",
+          "name": "Cloudflare",
+          "kind": "third-party",
+          "url": "https://www.cloudflare.com",
+          "role": "hosting",
+          "phrase": "Hosted on",
+          "status": "live",
+          "note": "The site."
+        }
+      ]
+    },
+    {
+      "id": "FZ-011",
+      "name": "PosPlugin",
+      "site": "https://posplug.in/",
+      "page": "https://factory0.ventures/ventures/posplugin/",
+      "uses": [
+        {
+          "id": "FZ-004",
+          "name": "Cratefield",
+          "kind": "factory-zero",
+          "url": "https://cratefield.com/",
+          "role": "framework",
+          "phrase": "Built with",
+          "status": "live",
+          "note": "The waitlist Worker at api.posplug.in runs on the Cratefield harness waitlist module."
+        },
+        {
+          "id": "FZ-013",
+          "name": "Owlpost",
+          "kind": "factory-zero",
+          "url": "https://owlpost.to/",
+          "role": "email",
+          "phrase": "Email by",
+          "status": "planned",
+          "note": "Waitlist confirmation mail. Double opt-in is off today, so no mail is sent yet."
+        },
+        {
+          "id": "FZ-008",
+          "name": "SupportGenius",
+          "kind": "factory-zero",
+          "url": "https://supportgeni.us/",
+          "role": "bug-reports",
+          "phrase": "Bug reports to",
+          "status": "planned",
+          "note": "Errors and bug reports become deduplicated GitHub issues, through the Cratefield error reporter."
+        },
+        {
+          "id": "FZ-012",
+          "name": "Keep Shipping",
+          "kind": "factory-zero",
+          "url": "https://keepshipping.run/",
+          "role": "deploys",
+          "phrase": "Deploys by",
+          "status": "planned",
+          "note": "Every venture site and Worker deployed from the Keep Shipping console."
+        },
+        {
+          "id": "cloudflare",
+          "name": "Cloudflare",
+          "kind": "third-party",
+          "url": "https://www.cloudflare.com",
+          "role": "hosting",
+          "phrase": "Hosted on",
+          "status": "live",
+          "note": "The site and the waitlist Worker."
+        }
+      ]
+    },
+    {
+      "id": "FZ-012",
+      "name": "Keep Shipping",
+      "site": "https://keepshipping.run/",
+      "page": "https://factory0.ventures/ventures/keep-shipping/",
+      "uses": [
+        {
+          "id": "FZ-004",
+          "name": "Cratefield",
+          "kind": "factory-zero",
+          "url": "https://cratefield.com/",
+          "role": "framework",
+          "phrase": "Built with",
+          "status": "planned",
+          "note": "The hosted parts (waitlist, approvals, run logs) are planned as a Cratefield venture."
+        },
+        {
+          "id": "FZ-008",
+          "name": "SupportGenius",
+          "kind": "factory-zero",
+          "url": "https://supportgeni.us/",
+          "role": "bug-reports",
+          "phrase": "Bug reports to",
+          "status": "planned",
+          "note": "Errors and bug reports become deduplicated GitHub issues, through the Cratefield error reporter."
+        },
+        {
+          "id": "polar",
+          "name": "Polar",
+          "kind": "third-party",
+          "url": "https://polar.sh",
+          "role": "payments",
+          "phrase": "Payments by",
+          "status": "planned",
+          "note": "Paid plans through Polar as Merchant of Record, via the Cratefield Payments port. Nothing is on sale yet."
+        },
+        {
+          "id": "cloudflare",
+          "name": "Cloudflare",
+          "kind": "third-party",
+          "url": "https://www.cloudflare.com",
+          "role": "hosting",
+          "phrase": "Hosted on",
+          "status": "live",
+          "note": "The site."
+        }
+      ]
+    },
+    {
+      "id": "FZ-013",
+      "name": "Owlpost",
+      "site": "https://owlpost.to/",
+      "page": "https://factory0.ventures/ventures/owlpost/",
+      "uses": [
+        {
+          "id": "FZ-004",
+          "name": "Cratefield",
+          "kind": "factory-zero",
+          "url": "https://cratefield.com/",
+          "role": "framework",
+          "phrase": "Built with",
+          "status": "live",
+          "note": "The email API is a Cratefield venture, deployed at api.owlpost.to."
+        },
+        {
+          "id": "aws-ses",
+          "name": "Amazon SES",
+          "kind": "third-party",
+          "url": "https://aws.amazon.com/ses/",
+          "role": "inbound-email",
+          "phrase": "Inbound mail by",
+          "status": "live",
+          "note": "Receives inbound mail for agents.owlpost.to in production."
+        },
+        {
+          "id": "aws-ses",
+          "name": "Amazon SES",
+          "kind": "third-party",
+          "url": "https://aws.amazon.com/ses/",
+          "role": "email",
+          "phrase": "Email by",
+          "status": "planned",
+          "note": "Outbound sending through SES, once AWS lifts the sandbox on the account."
+        },
+        {
+          "id": "FZ-008",
+          "name": "SupportGenius",
+          "kind": "factory-zero",
+          "url": "https://supportgeni.us/",
+          "role": "bug-reports",
+          "phrase": "Bug reports to",
+          "status": "planned",
+          "note": "Errors and bug reports become deduplicated GitHub issues, through the Cratefield error reporter."
+        },
+        {
+          "id": "polar",
+          "name": "Polar",
+          "kind": "third-party",
+          "url": "https://polar.sh",
+          "role": "payments",
+          "phrase": "Payments by",
+          "status": "planned",
+          "note": "Paid plans and usage through Polar as Merchant of Record. Nothing is on sale yet."
+        },
+        {
+          "id": "FZ-012",
+          "name": "Keep Shipping",
+          "kind": "factory-zero",
+          "url": "https://keepshipping.run/",
+          "role": "deploys",
+          "phrase": "Deploys by",
+          "status": "planned",
+          "note": "Every venture site and Worker deployed from the Keep Shipping console."
+        },
+        {
+          "id": "cloudflare",
+          "name": "Cloudflare",
+          "kind": "third-party",
+          "url": "https://www.cloudflare.com",
+          "role": "hosting",
+          "phrase": "Hosted on",
+          "status": "live",
+          "note": "The site, Email Routing, and the API Worker with D1 and R2."
+        }
+      ]
+    },
+    {
+      "id": "FZ-014",
+      "name": "Bloodrank",
+      "site": "https://bloodrank.dev/",
+      "page": "https://factory0.ventures/ventures/bloodrank/",
+      "uses": [
+        {
+          "id": "FZ-012",
+          "name": "Keep Shipping",
+          "kind": "factory-zero",
+          "url": "https://keepshipping.run/",
+          "role": "deploys",
+          "phrase": "Deploys by",
+          "status": "planned",
+          "note": "Every venture site and Worker deployed from the Keep Shipping console."
+        },
+        {
+          "id": "cloudflare",
+          "name": "Cloudflare",
+          "kind": "third-party",
+          "url": "https://www.cloudflare.com",
+          "role": "hosting",
+          "phrase": "Hosted on",
+          "status": "live",
+          "note": "The site."
+        }
+      ]
+    },
+    {
+      "id": "FZ-015",
+      "name": "ratecla.im",
+      "site": "https://ratecla.im/",
+      "page": "https://factory0.ventures/ventures/ratecla-im/",
+      "uses": [
+        {
+          "id": "FZ-004",
+          "name": "Cratefield",
+          "kind": "factory-zero",
+          "url": "https://cratefield.com/",
+          "role": "framework",
+          "phrase": "Built with",
+          "status": "planned",
+          "note": "The request backend is being written on the Cratefield harness; it is not deployed."
+        },
+        {
+          "id": "FZ-008",
+          "name": "SupportGenius",
+          "kind": "factory-zero",
+          "url": "https://supportgeni.us/",
+          "role": "bug-reports",
+          "phrase": "Bug reports to",
+          "status": "planned",
+          "note": "Errors and bug reports become deduplicated GitHub issues, through the Cratefield error reporter."
+        },
+        {
+          "id": "FZ-012",
+          "name": "Keep Shipping",
+          "kind": "factory-zero",
+          "url": "https://keepshipping.run/",
+          "role": "deploys",
+          "phrase": "Deploys by",
+          "status": "planned",
+          "note": "Every venture site and Worker deployed from the Keep Shipping console."
+        },
+        {
+          "id": "cloudflare",
+          "name": "Cloudflare",
+          "kind": "third-party",
+          "url": "https://www.cloudflare.com",
+          "role": "hosting",
+          "phrase": "Hosted on",
+          "status": "live",
+          "note": "The site."
+        }
+      ]
+    },
+    {
+      "id": "FZ-016",
+      "name": "Sealbin",
+      "site": "https://sealb.in/",
+      "page": "https://factory0.ventures/ventures/sealbin/",
+      "uses": [
+        {
+          "id": "FZ-004",
+          "name": "Cratefield",
+          "kind": "factory-zero",
+          "url": "https://cratefield.com/",
+          "role": "framework",
+          "phrase": "Built with",
+          "status": "live",
+          "note": "The waitlist Worker at api.sealb.in runs on the Cratefield harness waitlist module."
+        },
+        {
+          "id": "FZ-013",
+          "name": "Owlpost",
+          "kind": "factory-zero",
+          "url": "https://owlpost.to/",
+          "role": "email",
+          "phrase": "Email by",
+          "status": "planned",
+          "note": "Sealed links delivered to agent inboxes, and waitlist mail. Double opt-in is off today, so no mail is sent yet."
+        },
+        {
+          "id": "FZ-008",
+          "name": "SupportGenius",
+          "kind": "factory-zero",
+          "url": "https://supportgeni.us/",
+          "role": "bug-reports",
+          "phrase": "Bug reports to",
+          "status": "planned",
+          "note": "Errors and bug reports become deduplicated GitHub issues, through the Cratefield error reporter."
+        },
+        {
+          "id": "polar",
+          "name": "Polar",
+          "kind": "third-party",
+          "url": "https://polar.sh",
+          "role": "payments",
+          "phrase": "Payments by",
+          "status": "planned",
+          "note": "Pro and Team subscriptions through Polar as Merchant of Record. Nothing is on sale yet."
+        },
+        {
+          "id": "FZ-009",
+          "name": "promptdecode",
+          "kind": "factory-zero",
+          "url": "https://promptdeco.de/",
+          "role": "security-screening",
+          "phrase": "Screened by",
+          "status": "planned",
+          "note": "Optional local promptdecode scan when a handoff is opened."
+        },
+        {
+          "id": "FZ-012",
+          "name": "Keep Shipping",
+          "kind": "factory-zero",
+          "url": "https://keepshipping.run/",
+          "role": "deploys",
+          "phrase": "Deploys by",
+          "status": "planned",
+          "note": "Every venture site and Worker deployed from the Keep Shipping console."
+        },
+        {
+          "id": "cloudflare",
+          "name": "Cloudflare",
+          "kind": "third-party",
+          "url": "https://www.cloudflare.com",
+          "role": "hosting",
+          "phrase": "Hosted on",
+          "status": "live",
+          "note": "The site and the waitlist Worker."
+        }
+      ]
+    },
+    {
+      "id": "FZ-017",
+      "name": "release.show",
+      "site": "https://release.show/",
+      "page": "https://factory0.ventures/ventures/release-show/",
+      "uses": [
+        {
+          "id": "FZ-004",
+          "name": "Cratefield",
+          "kind": "factory-zero",
+          "url": "https://cratefield.com/",
+          "role": "framework",
+          "phrase": "Built with",
+          "status": "live",
+          "note": "The waitlist Worker at api.release.show runs on the Cratefield harness waitlist module."
+        },
+        {
+          "id": "FZ-013",
+          "name": "Owlpost",
+          "kind": "factory-zero",
+          "url": "https://owlpost.to/",
+          "role": "email",
+          "phrase": "Email by",
+          "status": "planned",
+          "note": "Release digests and transactional notices. No mail is sent today."
+        },
+        {
+          "id": "FZ-008",
+          "name": "SupportGenius",
+          "kind": "factory-zero",
+          "url": "https://supportgeni.us/",
+          "role": "bug-reports",
+          "phrase": "Bug reports to",
+          "status": "planned",
+          "note": "Errors and bug reports become deduplicated GitHub issues, through the Cratefield error reporter."
+        },
+        {
+          "id": "polar",
+          "name": "Polar",
+          "kind": "third-party",
+          "url": "https://polar.sh",
+          "role": "payments",
+          "phrase": "Payments by",
+          "status": "planned",
+          "note": "Paid plans through Polar as Merchant of Record, via the Cratefield Payments port. Nothing is on sale yet."
+        },
+        {
+          "id": "FZ-009",
+          "name": "promptdecode",
+          "kind": "factory-zero",
+          "url": "https://promptdeco.de/",
+          "role": "security-screening",
+          "phrase": "Screened by",
+          "status": "planned",
+          "note": "Untrusted release text is screened before any model reads it."
+        },
+        {
+          "id": "FZ-012",
+          "name": "Keep Shipping",
+          "kind": "factory-zero",
+          "url": "https://keepshipping.run/",
+          "role": "deploys",
+          "phrase": "Deploys by",
+          "status": "planned",
+          "note": "Every venture site and Worker deployed from the Keep Shipping console."
+        },
+        {
+          "id": "cloudflare",
+          "name": "Cloudflare",
+          "kind": "third-party",
+          "url": "https://www.cloudflare.com",
+          "role": "hosting",
+          "phrase": "Hosted on",
+          "status": "live",
+          "note": "The site and the waitlist Worker."
+        }
+      ]
+    },
+    {
+      "id": "FZ-018",
+      "name": "Living Brain",
+      "site": "https://livingbrain.wiki/",
+      "page": "https://factory0.ventures/ventures/living-brain/",
+      "uses": [
+        {
+          "id": "FZ-004",
+          "name": "Cratefield",
+          "kind": "factory-zero",
+          "url": "https://cratefield.com/",
+          "role": "framework",
+          "phrase": "Built with",
+          "status": "planned",
+          "note": "Built in Rust as a Cratefield venture; nothing is deployed yet, including the waitlist."
+        },
+        {
+          "id": "FZ-013",
+          "name": "Owlpost",
+          "kind": "factory-zero",
+          "url": "https://owlpost.to/",
+          "role": "email",
+          "phrase": "Email by",
+          "status": "planned",
+          "note": "Waitlist confirmation, digests and the brain’s own inbox."
+        },
+        {
+          "id": "FZ-008",
+          "name": "SupportGenius",
+          "kind": "factory-zero",
+          "url": "https://supportgeni.us/",
+          "role": "support",
+          "phrase": "Support by",
+          "status": "planned",
+          "note": "Customer-safe answers and tickets routed back in from SupportGenius."
+        },
+        {
+          "id": "FZ-008",
+          "name": "SupportGenius",
+          "kind": "factory-zero",
+          "url": "https://supportgeni.us/",
+          "role": "bug-reports",
+          "phrase": "Bug reports to",
+          "status": "planned",
+          "note": "Errors and bug reports become deduplicated GitHub issues, through the Cratefield error reporter."
+        },
+        {
+          "id": "polar",
+          "name": "Polar",
+          "kind": "third-party",
+          "url": "https://polar.sh",
+          "role": "payments",
+          "phrase": "Payments by",
+          "status": "planned",
+          "note": "Hosted plans through Polar as Merchant of Record. Nothing is on sale yet."
+        },
+        {
+          "id": "FZ-009",
+          "name": "promptdecode",
+          "kind": "factory-zero",
+          "url": "https://promptdeco.de/",
+          "role": "security-screening",
+          "phrase": "Screened by",
+          "status": "planned",
+          "note": "Every way in and out screened for hidden text with the promptdecode engine."
+        },
+        {
+          "id": "FZ-012",
+          "name": "Keep Shipping",
+          "kind": "factory-zero",
+          "url": "https://keepshipping.run/",
+          "role": "deploys",
+          "phrase": "Deploys by",
+          "status": "planned",
+          "note": "Every venture site and Worker deployed from the Keep Shipping console."
+        },
+        {
+          "id": "cloudflare",
+          "name": "Cloudflare",
+          "kind": "third-party",
+          "url": "https://www.cloudflare.com",
+          "role": "hosting",
+          "phrase": "Hosted on",
+          "status": "live",
+          "note": "The site."
+        }
+      ]
+    }
+  ]
+}
