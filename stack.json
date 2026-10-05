@@ -969,6 +969,16 @@
           "note": "Built in Rust as a Cratefield venture; nothing is deployed yet, including the waitlist."
         },
         {
+          "id": "FZ-006",
+          "name": "Colonizer",
+          "kind": "factory-zero",
+          "url": "https://colonizer.dev/",
+          "role": "agents",
+          "phrase": "Agents run on",
+          "status": "planned",
+          "note": "Colonizer colonies take the bigger jobs and open a pull request; nothing is dispatched yet."
+        },
+        {
           "id": "FZ-013",
           "name": "Owlpost",
           "kind": "factory-zero",

@@ -426,6 +426,7 @@ window.FZ_DATA = {
       target: 4,
       uses: [
         { id: 'FZ-004', role: 'framework', status: 'planned', note: 'Built in Rust as a Cratefield venture; nothing is deployed yet, including the waitlist.' },
+        { id: 'FZ-006', role: 'agents', status: 'planned', note: 'Colonizer colonies take the bigger jobs and open a pull request; nothing is dispatched yet.' },
         { id: 'FZ-013', role: 'email', status: 'planned', note: 'Waitlist confirmation, digests and the brain\u2019s own inbox.' },
         { id: 'FZ-008', role: 'support', status: 'planned', note: 'Customer-safe answers and tickets routed back in from SupportGenius.' },
         { id: 'FZ-008', role: 'bug-reports', status: 'planned', note: 'Errors and bug reports become deduplicated GitHub issues, through the Cratefield error reporter.' },
