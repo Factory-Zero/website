@@ -2,8 +2,9 @@
 
 The evidence behind every `uses` entry in `assets/fz-data.js` (published as
 `/stack.json` and the "Built with" row on each venture page). Checked
-2026-10-03. This file is not published (it is not in the `build-dist.sh`
-allowlist). Private repositories are described, not named.
+2026-10-03 (Google Fonts entries 2026-10-05). This file is not published (it
+is not in the `build-dist.sh` allowlist). Private repositories are described,
+not named.
 
 **The rule.** `live` means in use today and checked: a Worker answering on its
 route, a mailer that actually sends, a module merged and running. A mailer
@@ -21,6 +22,34 @@ entry is left out. Re-check an entry before flipping it to `live`.
 | SupportGenius error and bug intake (`bug-reports`, planned) | [SupportGenius/core#65](https://github.com/SupportGenius/core/issues/65) (intake API) and [Cratefield/harness#692](https://github.com/Cratefield/harness/issues/692) (`module-error-reporting`, "every venture built on Cratefield"). Listed for every venture that runs on, or is being built on, Cratefield. |
 | Polar payments (`payments`, planned) | Billing issues filed 2026-10-02/03 for the nine approved ventures, e.g. [Sealbin/sealbin#16](https://github.com/Sealbin/sealbin/issues/16), [Colonizer-dev/harness#941](https://github.com/Colonizer-dev/harness/issues/941), [Livingbrain-wiki/livingbrain#32](https://github.com/Livingbrain-wiki/livingbrain/issues/32), [Cratefield/harness#690](https://github.com/Cratefield/harness/issues/690) (`adapter-polar`); the rest are in private repos (Owlpost, Keep Shipping, promptdecode, release.show) or decided without an issue yet (SupportGenius). |
 | Keep Shipping deploys (`deploys`, planned) | Keep Shipping's harness issue #172 (private), "Deploy every site and Worker from the console": "Each venture repo gets a `ship.ks` for its site". |
+| Google Fonts on the sites that load it (`fonts`, live) | Fifteen of the twenty sites load their typefaces from Google, so every visitor's IP reaches Google (2026-10-05). Each home page carries a `<link href="https://fonts.googleapis.com/css2?family=…">` next to a `<link rel="preconnect" href="https://fonts.googleapis.com">`; the stylesheet it serves pulls the font files from `fonts.gstatic.com`. Fetched with `curl -sSL -A <browser UA> https://<site>/` and grepped. The families per site are named in the note of each entry, below. The other five self-host or use system fonts, so they have no entry. |
+
+## Google Fonts per venture
+
+Checked 2026-10-05 with `curl -sSL -A <browser UA> https://<site>/ | grep
+fonts.googleapis`. The matching line on each home page is
+`<link href="https://fonts.googleapis.com/css2?family=…" rel="stylesheet">`
+(the link order is reversed on yoginini.us, groove.guru, keepshipping.run,
+posplug.in and ratecla.im). `/404` was checked for yoginini.us, shoal.ing and
+cratefield.com and carries the same link.
+
+| Venture | Site | Families |
+| :--- | :--- | :--- |
+| FZ-002 Undercover Rockstars | undercoverrockstars.com | Archivo, JetBrains Mono |
+| FZ-003 Yoginini | yoginini.us | Cormorant Garamond, Figtree, Space Mono |
+| FZ-004 Cratefield | cratefield.com | Archivo, IBM Plex Mono |
+| FZ-005 VibeCaddie | vibecaddie.com | Sora, IBM Plex Mono |
+| FZ-006 Colonizer | colonizer.dev | Instrument Sans, JetBrains Mono |
+| FZ-007 FindsYou.work | findsyou.work | Instrument Serif, Manrope, IBM Plex Mono |
+| FZ-008 SupportGenius | supportgeni.us | Geist, Geist Mono |
+| FZ-009 promptdecode | promptdeco.de | Instrument Serif, Instrument Sans, JetBrains Mono |
+| FZ-010 Groove Guru | groove.guru | Big Shoulders Display, Big Shoulders Stencil Display, Instrument Sans, JetBrains Mono |
+| FZ-011 PosPlugin | posplug.in | Archivo, IBM Plex Mono |
+| FZ-012 Keep Shipping | keepshipping.run | Bricolage Grotesque, DM Mono |
+| FZ-014 Bloodrank | bloodrank.dev | Big Shoulders Display, Grenze Gotisch, Jolly Lodger, Cormorant Garamond, Geist, Geist Mono |
+| FZ-015 ratecla.im | ratecla.im | Plus Jakarta Sans, JetBrains Mono |
+| FZ-017 release.show | release.show | Geist, Geist Mono |
+| FZ-019 Shoal | shoal.ing | Geist, Geist Mono, Instrument Serif |
 
 ## Per venture
 
@@ -54,6 +83,16 @@ entry is left out. Re-check an entry before flipping it to `live`.
 
 ## Left out on purpose
 
+- **Google Fonts for Kontinuum, Living Brain, Owlpost, Sealbin and Tokker.**
+  None of the five references `fonts.googleapis.com` or `fonts.gstatic.com`
+  (2026-10-05). Kontinuum's `style.css` has no `@font-face` and no `@import`
+  at all: it asks for the system stacks (`--sans: -apple-system, BlinkMacSystemFont,
+  "Segoe UI", Inter, Roboto, sans-serif`, `--mono: ui-monospace, …`). The other
+  four self-host their woff2 files under `/assets/fonts/` (livingbrain.wiki:
+  bricolage-grotesque, hanken-grotesk, jetbrains-mono; owlpost.to: satoshi,
+  jetbrains-mono; sealb.in: bricolage-grotesque, geist, geist-mono; tokker.dev:
+  schibsted-grotesk, archivo, jetbrains-mono), which stay on the venture's own
+  domain. No entry, rather than an entry for fonts nobody loads from Google.
 - **Resend for Undercover Rockstars, VibeCaddie and Yoginini.** Their Pages
   Functions call Resend when `RESEND_API_KEY` is set, but nothing in their
   repos shows the key is set, so no live claim is made.
