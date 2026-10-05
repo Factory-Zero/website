@@ -3,7 +3,8 @@
    so with JavaScript off or motion reduced nothing here needs to run for it to
    read. With motion allowed, once the chart is in view a playhead sweeps from
    the first day to the last; each day's commit ticks light as it passes and a
-   venture's logo comes in on the day its org was created. It holds on the full
+   venture's logo, already drawn a little dimmed, lights up with a short pop on
+   the day its org was created. It holds on the full
    chart, fades back and runs again. Hover or focus pauses it. */
 
 (function () {
