@@ -158,17 +158,21 @@ canvas { display: block; }
 .tl-row:focus-visible .tl-hit { fill: var(--panel-2); }
 .tl-head { stroke: var(--accent); stroke-opacity: .5; stroke-width: 1; display: none; }
 
-/* playing: what the playhead has not reached yet is nearly invisible */
+/* playing: the playhead lights each day and each venture as it passes */
 .tl.is-anim .tl-head { display: inline; }
-.tl.is-anim .tl-tick { fill: var(--line); }
+/* Every logo, name and lane is always drawn: until the playhead reaches a
+   row it rests a little dimmed, never hidden, so a sweep that never runs
+   (a throttled tab, no IntersectionObserver) still shows the whole chart. */
+.tl.is-anim .tl-tick { fill: #2C2C30; }
 .tl.is-anim .tl-tick.is-on { fill: #3A3A3E; }
 .tl.is-anim .tl-tick.is-hot { fill: var(--accent); transition: none; }
-.tl.is-anim .tl-row:hover .tl-tick.is-on, .tl.is-anim .tl-row:focus-visible .tl-tick.is-on { fill: var(--body); }
-.tl.is-anim .tl-logo { opacity: 0; transform: scale(.4); transition: opacity .6s, transform .6s cubic-bezier(.2, .8, .2, 1.3); }
-.tl.is-anim .tl-logo.is-on { opacity: 1; transform: none; }
-.tl.is-anim .tl-name, .tl.is-anim .tl-lane { opacity: 0; transition: opacity .6s; }
-.tl.is-anim .tl-lane.is-on { opacity: 1; }
-.tl.is-anim .tl-name.is-on { opacity: 1; }
+.tl.is-anim .tl-row:hover .tl-tick, .tl.is-anim .tl-row:focus-visible .tl-tick { fill: var(--body); }
+.tl.is-anim .tl-logo, .tl.is-anim .tl-name, .tl.is-anim .tl-lane { opacity: .6; transition: opacity .6s; }
+.tl.is-anim .tl-logo.is-on, .tl.is-anim .tl-name.is-on, .tl.is-anim .tl-lane.is-on { opacity: 1; }
+.tl.is-anim .tl-row:hover :is(.tl-logo, .tl-name, .tl-lane), .tl.is-anim .tl-row:focus-visible :is(.tl-logo, .tl-name, .tl-lane) { opacity: 1; }
+/* the moment the playhead reaches a venture: a short pop */
+.tl.is-anim .tl-logo.is-on { animation: tlPop .7s cubic-bezier(.2, .8, .2, 1.3); }
+@keyframes tlPop { 0% { transform: scale(1.5) } 100% { transform: none } }
 
 .tl-tip {
   position: absolute; z-index: 2; pointer-events: none;
