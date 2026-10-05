@@ -432,10 +432,10 @@ public source repositories.
 
 - What each venture is built with is at https://factory0.ventures/stack.json:
   sister ventures (Cratefield, Owlpost, SupportGenius, promptdecode, Sealbin,
-  Keep Shipping) and third parties (Cloudflare, Polar, Amazon SES, Resend,
-  Stripe), by role (framework, email, support, bug reports, payments, security
-  screening, secrets handoff, deploys, hosting). Every entry is marked "live"
-  (in use today) or "planned" (decided and tracked, not in use yet). Do not
+  Keep Shipping) and third parties (Cloudflare, Google Fonts, Polar, Amazon SES,
+  Resend, Stripe), by role (framework, email, support, bug reports, payments,
+  security screening, secrets handoff, deploys, fonts, hosting). Every entry is
+  marked "live" (in use today) or "planned" (decided and tracked, not in use yet). Do not
   report a planned entry as in use. The same list is on each venture's page
   under "Built with", and in the footer of each venture's own site.
 

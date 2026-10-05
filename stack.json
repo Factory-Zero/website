@@ -50,6 +50,10 @@
       "label": "DEPLOYS",
       "phrase": "Deploys by"
     },
+    "fonts": {
+      "label": "FONTS",
+      "phrase": "Typefaces from"
+    },
     "hosting": {
       "label": "HOSTING",
       "phrase": "Hosted on"
@@ -101,6 +105,16 @@
           "note": "Every venture site and Worker deployed from the Keep Shipping console."
         },
         {
+          "id": "google-fonts",
+          "name": "Google Fonts",
+          "kind": "third-party",
+          "url": "https://fonts.google.com",
+          "role": "fonts",
+          "phrase": "Typefaces from",
+          "status": "live",
+          "note": "The site’s typefaces (Archivo, JetBrains Mono), loaded from Google."
+        },
+        {
           "id": "cloudflare",
           "name": "Cloudflare",
           "kind": "third-party",
@@ -147,6 +161,16 @@
           "phrase": "Deploys by",
           "status": "planned",
           "note": "Every venture site and Worker deployed from the Keep Shipping console."
+        },
+        {
+          "id": "google-fonts",
+          "name": "Google Fonts",
+          "kind": "third-party",
+          "url": "https://fonts.google.com",
+          "role": "fonts",
+          "phrase": "Typefaces from",
+          "status": "live",
+          "note": "The site’s typefaces (Cormorant Garamond, Figtree, Space Mono), loaded from Google."
         },
         {
           "id": "cloudflare",
@@ -217,6 +241,16 @@
           "note": "Every venture site and Worker deployed from the Keep Shipping console."
         },
         {
+          "id": "google-fonts",
+          "name": "Google Fonts",
+          "kind": "third-party",
+          "url": "https://fonts.google.com",
+          "role": "fonts",
+          "phrase": "Typefaces from",
+          "status": "live",
+          "note": "The site’s typefaces (Archivo, IBM Plex Mono), loaded from Google."
+        },
+        {
           "id": "cloudflare",
           "name": "Cloudflare",
           "kind": "third-party",
@@ -243,6 +277,16 @@
           "phrase": "Deploys by",
           "status": "planned",
           "note": "Every venture site and Worker deployed from the Keep Shipping console."
+        },
+        {
+          "id": "google-fonts",
+          "name": "Google Fonts",
+          "kind": "third-party",
+          "url": "https://fonts.google.com",
+          "role": "fonts",
+          "phrase": "Typefaces from",
+          "status": "live",
+          "note": "The site’s typefaces (Sora, IBM Plex Mono), loaded from Google."
         },
         {
           "id": "cloudflare",
@@ -333,6 +377,16 @@
           "note": "Every venture site and Worker deployed from the Keep Shipping console."
         },
         {
+          "id": "google-fonts",
+          "name": "Google Fonts",
+          "kind": "third-party",
+          "url": "https://fonts.google.com",
+          "role": "fonts",
+          "phrase": "Typefaces from",
+          "status": "live",
+          "note": "The site’s typefaces (Instrument Sans, JetBrains Mono), loaded from Google."
+        },
+        {
           "id": "cloudflare",
           "name": "Cloudflare",
           "kind": "third-party",
@@ -401,6 +455,16 @@
           "note": "Every venture site and Worker deployed from the Keep Shipping console."
         },
         {
+          "id": "google-fonts",
+          "name": "Google Fonts",
+          "kind": "third-party",
+          "url": "https://fonts.google.com",
+          "role": "fonts",
+          "phrase": "Typefaces from",
+          "status": "live",
+          "note": "The site’s typefaces (Instrument Serif, Manrope, IBM Plex Mono), loaded from Google."
+        },
+        {
           "id": "cloudflare",
           "name": "Cloudflare",
           "kind": "third-party",
@@ -459,6 +523,16 @@
           "note": "Every venture site and Worker deployed from the Keep Shipping console."
         },
         {
+          "id": "google-fonts",
+          "name": "Google Fonts",
+          "kind": "third-party",
+          "url": "https://fonts.google.com",
+          "role": "fonts",
+          "phrase": "Typefaces from",
+          "status": "live",
+          "note": "The site’s typefaces (Geist, Geist Mono), loaded from Google."
+        },
+        {
           "id": "cloudflare",
           "name": "Cloudflare",
           "kind": "third-party",
@@ -497,6 +571,16 @@
           "note": "Every venture site and Worker deployed from the Keep Shipping console."
         },
         {
+          "id": "google-fonts",
+          "name": "Google Fonts",
+          "kind": "third-party",
+          "url": "https://fonts.google.com",
+          "role": "fonts",
+          "phrase": "Typefaces from",
+          "status": "live",
+          "note": "The site’s typefaces (Instrument Serif, Instrument Sans, JetBrains Mono), loaded from Google."
+        },
+        {
           "id": "cloudflare",
           "name": "Cloudflare",
           "kind": "third-party",
@@ -523,6 +607,16 @@
           "phrase": "Deploys by",
           "status": "planned",
           "note": "Every venture site and Worker deployed from the Keep Shipping console."
+        },
+        {
+          "id": "google-fonts",
+          "name": "Google Fonts",
+          "kind": "third-party",
+          "url": "https://fonts.google.com",
+          "role": "fonts",
+          "phrase": "Typefaces from",
+          "status": "live",
+          "note": "The site’s typefaces (Big Shoulders Display, Big Shoulders Stencil Display, Instrument Sans, JetBrains Mono), loaded from Google."
         },
         {
           "id": "cloudflare",
@@ -583,6 +677,16 @@
           "note": "Every venture site and Worker deployed from the Keep Shipping console."
         },
         {
+          "id": "google-fonts",
+          "name": "Google Fonts",
+          "kind": "third-party",
+          "url": "https://fonts.google.com",
+          "role": "fonts",
+          "phrase": "Typefaces from",
+          "status": "live",
+          "note": "The site’s typefaces (Archivo, IBM Plex Mono), loaded from Google."
+        },
+        {
           "id": "cloudflare",
           "name": "Cloudflare",
           "kind": "third-party",
@@ -629,6 +733,16 @@
           "phrase": "Payments by",
           "status": "planned",
           "note": "Paid plans through Polar as Merchant of Record, via the Cratefield Payments port. Nothing is on sale yet."
+        },
+        {
+          "id": "google-fonts",
+          "name": "Google Fonts",
+          "kind": "third-party",
+          "url": "https://fonts.google.com",
+          "role": "fonts",
+          "phrase": "Typefaces from",
+          "status": "live",
+          "note": "The site’s typefaces (Bricolage Grotesque, DM Mono), loaded from Google."
         },
         {
           "id": "cloudflare",
@@ -737,6 +851,16 @@
           "note": "Every venture site and Worker deployed from the Keep Shipping console."
         },
         {
+          "id": "google-fonts",
+          "name": "Google Fonts",
+          "kind": "third-party",
+          "url": "https://fonts.google.com",
+          "role": "fonts",
+          "phrase": "Typefaces from",
+          "status": "live",
+          "note": "The site’s typefaces (Big Shoulders Display, Grenze Gotisch, Jolly Lodger, Cormorant Garamond, Geist, Geist Mono), loaded from Google."
+        },
+        {
           "id": "cloudflare",
           "name": "Cloudflare",
           "kind": "third-party",
@@ -783,6 +907,16 @@
           "phrase": "Deploys by",
           "status": "planned",
           "note": "Every venture site and Worker deployed from the Keep Shipping console."
+        },
+        {
+          "id": "google-fonts",
+          "name": "Google Fonts",
+          "kind": "third-party",
+          "url": "https://fonts.google.com",
+          "role": "fonts",
+          "phrase": "Typefaces from",
+          "status": "live",
+          "note": "The site’s typefaces (Plus Jakarta Sans, JetBrains Mono), loaded from Google."
         },
         {
           "id": "cloudflare",
@@ -941,6 +1075,16 @@
           "note": "Every venture site and Worker deployed from the Keep Shipping console."
         },
         {
+          "id": "google-fonts",
+          "name": "Google Fonts",
+          "kind": "third-party",
+          "url": "https://fonts.google.com",
+          "role": "fonts",
+          "phrase": "Typefaces from",
+          "status": "live",
+          "note": "The site’s typefaces (Geist, Geist Mono), loaded from Google."
+        },
+        {
           "id": "cloudflare",
           "name": "Cloudflare",
           "kind": "third-party",
@@ -1045,7 +1189,18 @@
       "name": "Shoal",
       "site": "https://shoal.ing/",
       "page": "https://factory0.ventures/ventures/shoal/",
-      "uses": []
+      "uses": [
+        {
+          "id": "google-fonts",
+          "name": "Google Fonts",
+          "kind": "third-party",
+          "url": "https://fonts.google.com",
+          "role": "fonts",
+          "phrase": "Typefaces from",
+          "status": "live",
+          "note": "The site’s typefaces (Geist, Geist Mono, Instrument Serif), loaded from Google."
+        }
+      ]
     },
     {
       "id": "FZ-020",

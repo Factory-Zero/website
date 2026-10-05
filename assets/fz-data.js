@@ -48,6 +48,7 @@ window.FZ_DATA = {
       target: 3,
       uses: [
         { id: 'FZ-012', role: 'deploys', status: 'planned', note: 'Every venture site and Worker deployed from the Keep Shipping console.' },
+        { id: 'google-fonts', role: 'fonts', status: 'live', note: 'The site\u2019s typefaces (Archivo, JetBrains Mono), loaded from Google.' },
         { id: 'cloudflare', role: 'hosting', status: 'live', note: 'The site and its forms.' }
       ],
       aims: {
@@ -71,6 +72,7 @@ window.FZ_DATA = {
         { id: 'FZ-004', role: 'framework', status: 'planned', note: 'The bookings backend is being written to run on the Cratefield harness; it is not deployed.' },
         { id: 'FZ-008', role: 'bug-reports', status: 'planned', note: 'Errors and bug reports become deduplicated GitHub issues, through the Cratefield error reporter.' },
         { id: 'FZ-012', role: 'deploys', status: 'planned', note: 'Every venture site and Worker deployed from the Keep Shipping console.' },
+        { id: 'google-fonts', role: 'fonts', status: 'live', note: 'The site\u2019s typefaces (Cormorant Garamond, Figtree, Space Mono), loaded from Google.' },
         { id: 'cloudflare', role: 'hosting', status: 'live', note: 'The site and its forms.' }
       ],
       aims: {
@@ -96,6 +98,7 @@ window.FZ_DATA = {
         { id: 'FZ-008', role: 'bug-reports', status: 'planned', note: 'Errors and bug reports become deduplicated GitHub issues, through the Cratefield error reporter.' },
         { id: 'polar', role: 'payments', status: 'planned', note: 'Polar as Merchant of Record behind the harness Payments port, for the managed service. Nothing is on sale yet.' },
         { id: 'FZ-012', role: 'deploys', status: 'planned', note: 'Every venture site and Worker deployed from the Keep Shipping console.' },
+        { id: 'google-fonts', role: 'fonts', status: 'live', note: 'The site\u2019s typefaces (Archivo, IBM Plex Mono), loaded from Google.' },
         { id: 'cloudflare', role: 'hosting', status: 'live', note: 'The site, and the waitlist Worker with its D1 database.' }
       ],
       aims: {
@@ -117,6 +120,7 @@ window.FZ_DATA = {
       target: 5,
       uses: [
         { id: 'FZ-012', role: 'deploys', status: 'planned', note: 'Every venture site and Worker deployed from the Keep Shipping console.' },
+        { id: 'google-fonts', role: 'fonts', status: 'live', note: 'The site\u2019s typefaces (Sora, IBM Plex Mono), loaded from Google.' },
         { id: 'cloudflare', role: 'hosting', status: 'live', note: 'The site and its forms.' }
       ],
       aims: {
@@ -144,6 +148,7 @@ window.FZ_DATA = {
         { id: 'FZ-009', role: 'screening-engine', status: 'live', note: 'Colony output is screened before a pull request opens by the screen module\u2019s promptdecode provider, a built-in decoder for promptdecode\u2019s three code-point classes.' },
         { id: 'FZ-016', role: 'secrets-handoff', status: 'planned', note: 'Optional sealed handoffs between colonies on different machines.' },
         { id: 'FZ-012', role: 'deploys', status: 'planned', note: 'Every venture site and Worker deployed from the Keep Shipping console.' },
+        { id: 'google-fonts', role: 'fonts', status: 'live', note: 'The site\u2019s typefaces (Instrument Sans, JetBrains Mono), loaded from Google.' },
         { id: 'cloudflare', role: 'hosting', status: 'live', note: 'The site and the waitlist Worker.' }
       ],
       aims: {
@@ -169,6 +174,7 @@ window.FZ_DATA = {
         { id: 'stripe', role: 'payments', status: 'planned', note: 'A paywall through the Cratefield Stripe adapter. Nothing is on sale yet.' },
         { id: 'FZ-008', role: 'bug-reports', status: 'planned', note: 'Errors and bug reports become deduplicated GitHub issues, through the Cratefield error reporter.' },
         { id: 'FZ-012', role: 'deploys', status: 'planned', note: 'Every venture site and Worker deployed from the Keep Shipping console.' },
+        { id: 'google-fonts', role: 'fonts', status: 'live', note: 'The site\u2019s typefaces (Instrument Serif, Manrope, IBM Plex Mono), loaded from Google.' },
         { id: 'cloudflare', role: 'hosting', status: 'live', note: 'The site and the waitlist Worker.' }
       ],
       aims: {
@@ -193,6 +199,7 @@ window.FZ_DATA = {
         { id: 'polar', role: 'payments', status: 'planned', note: 'Paid plans through Polar as Merchant of Record, via the Cratefield Payments port. Nothing is on sale yet.' },
         { id: 'FZ-009', role: 'security-screening', status: 'planned', note: 'Free text in bug reports is screened for hidden instructions before a model drafts the ticket.' },
         { id: 'FZ-012', role: 'deploys', status: 'planned', note: 'Every venture site and Worker deployed from the Keep Shipping console.' },
+        { id: 'google-fonts', role: 'fonts', status: 'live', note: 'The site\u2019s typefaces (Geist, Geist Mono), loaded from Google.' },
         { id: 'cloudflare', role: 'hosting', status: 'live', note: 'The site.' }
       ],
       aims: {
@@ -215,6 +222,7 @@ window.FZ_DATA = {
       uses: [
         { id: 'polar', role: 'payments', status: 'planned', note: 'Paid tiers (the GitHub Action, private repositories) through Polar as Merchant of Record. Nothing is on sale yet.' },
         { id: 'FZ-012', role: 'deploys', status: 'planned', note: 'Every venture site and Worker deployed from the Keep Shipping console.' },
+        { id: 'google-fonts', role: 'fonts', status: 'live', note: 'The site\u2019s typefaces (Instrument Serif, Instrument Sans, JetBrains Mono), loaded from Google.' },
         { id: 'cloudflare', role: 'hosting', status: 'live', note: 'The site, where the decoder runs in the browser.' }
       ],
       aims: {
@@ -236,6 +244,7 @@ window.FZ_DATA = {
       target: 4,
       uses: [
         { id: 'FZ-012', role: 'deploys', status: 'planned', note: 'Every venture site and Worker deployed from the Keep Shipping console.' },
+        { id: 'google-fonts', role: 'fonts', status: 'live', note: 'The site\u2019s typefaces (Big Shoulders Display, Big Shoulders Stencil Display, Instrument Sans, JetBrains Mono), loaded from Google.' },
         { id: 'cloudflare', role: 'hosting', status: 'live', note: 'The site.' }
       ],
       aims: {
@@ -260,6 +269,7 @@ window.FZ_DATA = {
         { id: 'FZ-013', role: 'email', status: 'planned', note: 'Waitlist confirmation mail. Double opt-in is off today, so no mail is sent yet.' },
         { id: 'FZ-008', role: 'bug-reports', status: 'planned', note: 'Errors and bug reports become deduplicated GitHub issues, through the Cratefield error reporter.' },
         { id: 'FZ-012', role: 'deploys', status: 'planned', note: 'Every venture site and Worker deployed from the Keep Shipping console.' },
+        { id: 'google-fonts', role: 'fonts', status: 'live', note: 'The site\u2019s typefaces (Archivo, IBM Plex Mono), loaded from Google.' },
         { id: 'cloudflare', role: 'hosting', status: 'live', note: 'The site and the waitlist Worker.' }
       ],
       aims: {
@@ -283,6 +293,7 @@ window.FZ_DATA = {
         { id: 'FZ-004', role: 'framework', status: 'planned', note: 'The hosted parts (waitlist, approvals, run logs) are planned as a Cratefield venture.' },
         { id: 'FZ-008', role: 'bug-reports', status: 'planned', note: 'Errors and bug reports become deduplicated GitHub issues, through the Cratefield error reporter.' },
         { id: 'polar', role: 'payments', status: 'planned', note: 'Paid plans through Polar as Merchant of Record, via the Cratefield Payments port. Nothing is on sale yet.' },
+        { id: 'google-fonts', role: 'fonts', status: 'live', note: 'The site\u2019s typefaces (Bricolage Grotesque, DM Mono), loaded from Google.' },
         { id: 'cloudflare', role: 'hosting', status: 'live', note: 'The site.' }
       ],
       aims: {
@@ -330,6 +341,7 @@ window.FZ_DATA = {
       target: 3,
       uses: [
         { id: 'FZ-012', role: 'deploys', status: 'planned', note: 'Every venture site and Worker deployed from the Keep Shipping console.' },
+        { id: 'google-fonts', role: 'fonts', status: 'live', note: 'The site\u2019s typefaces (Big Shoulders Display, Grenze Gotisch, Jolly Lodger, Cormorant Garamond, Geist, Geist Mono), loaded from Google.' },
         { id: 'cloudflare', role: 'hosting', status: 'live', note: 'The site.' }
       ],
       aims: {
@@ -353,6 +365,7 @@ window.FZ_DATA = {
         { id: 'FZ-004', role: 'framework', status: 'planned', note: 'The request backend is being written on the Cratefield harness; it is not deployed.' },
         { id: 'FZ-008', role: 'bug-reports', status: 'planned', note: 'Errors and bug reports become deduplicated GitHub issues, through the Cratefield error reporter.' },
         { id: 'FZ-012', role: 'deploys', status: 'planned', note: 'Every venture site and Worker deployed from the Keep Shipping console.' },
+        { id: 'google-fonts', role: 'fonts', status: 'live', note: 'The site\u2019s typefaces (Plus Jakarta Sans, JetBrains Mono), loaded from Google.' },
         { id: 'cloudflare', role: 'hosting', status: 'live', note: 'The site.' }
       ],
       aims: {
@@ -405,6 +418,7 @@ window.FZ_DATA = {
         { id: 'polar', role: 'payments', status: 'planned', note: 'Paid plans through Polar as Merchant of Record, via the Cratefield Payments port. Nothing is on sale yet.' },
         { id: 'FZ-009', role: 'security-screening', status: 'planned', note: 'Untrusted release text is screened before any model reads it.' },
         { id: 'FZ-012', role: 'deploys', status: 'planned', note: 'Every venture site and Worker deployed from the Keep Shipping console.' },
+        { id: 'google-fonts', role: 'fonts', status: 'live', note: 'The site\u2019s typefaces (Geist, Geist Mono), loaded from Google.' },
         { id: 'cloudflare', role: 'hosting', status: 'live', note: 'The site and the waitlist Worker.' }
       ],
       aims: {
@@ -451,6 +465,9 @@ window.FZ_DATA = {
       desc: 'A company wiki that writes and maintains itself. The plan: Living Brain turns team conversations into Markdown pages for people, projects, decisions and customers, with every fact linked to the message it came from; nightly passes merge duplicates, surface contradictions and refresh stale facts, and a learning layer models how each person works. It would be reachable from coding agents through an MCP server and a Claude Code plugin, from the terminal through the `livingbrain` CLI, one Rust binary, and in team chat (Slack and Discord, with WhatsApp and Telegram later); an installable app (PWA) and a 3D graph view sit alongside. Bigger jobs would go to a Colonizer colony that returns a pull request, and email (digests and an inbox) would go through Owlpost. Bring your own model, LiteLLM included, and it reads only with the asker’s own access. Built in Rust as a Cratefield venture on Cloudflare Workers (D1, R2, KV, Durable Objects); open core, Apache-2.0 with an `ee/` directory under a commercial licence. What exists today is the site, its early-access waitlist and the plan as issues; nothing is built and nothing is sold.' },
     { id: 'FZ-019', name: 'Shoal', status: 'BUILDING', stage: 'VALIDATION', launched: null, category: 'SIMULATION', autonomy: null, site: 'shoal.ing', logo: 'shoal-animated.svg', logoW: 120, logoH: 120,
       target: 4,
+      uses: [
+        { id: 'google-fonts', role: 'fonts', status: 'live', note: 'The site\u2019s typefaces (Geist, Geist Mono, Instrument Serif), loaded from Google.' }
+      ],
       aims: {
         operate: 'A rehearsal should need nobody to run it: paste a launch post or README, and seeding the crowd, simulating the thread and scoring the outcome happen on their own, on your own machine or server. The person decides what to change and when to launch.',
         intelligence: 'Jev, a deterministic engine, runs the simulated developers: who reads, who votes, who argues. A language model writes text only when an agent posts, from a local model or an API. The predicted thread, the top objections and the edits that change the outcome come out of that run.',
@@ -497,6 +514,7 @@ window.FZ_DATA = {
   // here: they resolve to their own record (name and site) by id.
   services: {
     cloudflare: { name: 'Cloudflare', url: 'https://www.cloudflare.com' },
+    'google-fonts': { name: 'Google Fonts', url: 'https://fonts.google.com' },
     'aws-ses': { name: 'Amazon SES', url: 'https://aws.amazon.com/ses/' },
     resend: { name: 'Resend', url: 'https://resend.com' },
     polar: { name: 'Polar', url: 'https://polar.sh' },
@@ -515,6 +533,7 @@ window.FZ_DATA = {
     'secrets-handoff': { label: 'SECRETS HANDOFF', phrase: 'Handoffs sealed by' },
     agents: { label: 'AGENTS', phrase: 'Agents run on' },
     deploys: { label: 'DEPLOYS', phrase: 'Deploys by' },
+    fonts: { label: 'FONTS', phrase: 'Typefaces from' },
     hosting: { label: 'HOSTING', phrase: 'Hosted on' }
   },
   layers: [

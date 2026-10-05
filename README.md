@@ -174,9 +174,10 @@ Nearly everything is data:
   all of it; never edit the generated venture pages by hand.
 - **What each venture is built with** is the `uses` array on its record in
   `assets/fz-data.js`: sister ventures by id (`FZ-013`) and third parties by a
-  key of `services` (`polar`, `cloudflare`, `aws-ses`, …), each with a role
+  key of `services` (`polar`, `cloudflare`, `google-fonts`, `aws-ses`, …), each with a role
   (`framework`, `email`, `support`, `bug-reports`, `payments`,
-  `security-screening`, `secrets-handoff`, `agents`, `deploys`, `hosting`) and a status,
+  `security-screening`, `secrets-handoff`, `agents`, `deploys`, `fonts`,
+  `hosting`) and a status,
   `live` (in use today, and checked) or `planned`. `sync-ventures.js` renders it
   as the "Built with" row on each venture page and writes `/stack.json`, which
   each venture site vendors into a footer strip and its subprocessors list with
