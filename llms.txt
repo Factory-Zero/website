@@ -289,7 +289,8 @@ public source repositories.
   inboxes for agents. Built in Rust on the Cratefield harness, sending through
   Amazon SES. Its first job is replacing Resend inside the
   Factory Zero ventures.
-  **Only the site exists.** The API, SDKs and inboxes are being built; the
+  **The site, the API at api.owlpost.to and inbound mail are live.** Sending
+  waits on Amazon SES production access and the SDKs are still being built; the
   customer logos, testimonial and trust line on the site are placeholders.
   Pricing is a plan, not charged.
   Autonomy target: level 4, self-optimizing. A stated design aim, not a

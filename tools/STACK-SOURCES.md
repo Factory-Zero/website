@@ -65,7 +65,7 @@ cratefield.com and carries the same link.
 | FZ-008 SupportGenius | Cratefield framework | planned | [SupportGenius/core `Cargo.toml`](https://github.com/SupportGenius/core/blob/main/Cargo.toml) on `cratefield-core` 0.6; `api.supportgeni.us` does not answer and the site's form is `data-open="false"`. |
 | FZ-008 SupportGenius | promptdecode screening | planned | [SupportGenius/core#65](https://github.com/SupportGenius/core/issues/65): "PromptDecode screening on free text". |
 | FZ-012 Keep Shipping | Cratefield framework | planned | Private harness: `ventures/keepshipping/Cargo.toml` on `cratefield-module-waitlist`; epic #144 "hosted parts as a Cratefield venture"; `api.keepshipping.run` does not answer. |
-| FZ-013 Owlpost | Cratefield framework | live (staging) | Private backend README: "Rust, consumed as a Cratefield venture"; `Cargo.toml` on `cratefield-core` 0.6; "Staging is deployed on workers.dev … Production (`api.owlpost.to`) is not deployed yet." |
+| FZ-013 Owlpost | Cratefield framework | live | `curl -sI https://api.owlpost.to/` answers with `x-harness-api: 1` (2026-10-05); private backend README: "Rust, consumed as a Cratefield venture"; `Cargo.toml` on `cratefield-core` 0.6. |
 | FZ-013 Owlpost | Amazon SES | live (receiving, staging) | Private backend README: "SES receiving live for `agents.owlpost.to` (AWS account …0903, eu-west-1)"; `tools/ses-receiving.sh`. Sending through SES is built but not public. |
 | FZ-015 ratecla.im | Cratefield framework | planned | Private backend `Cargo.toml` on `cratefield-core` 0.6; `api.ratecla.im` does not answer. |
 | FZ-016 Sealbin | Owlpost email | planned | [Sealbin/sealbin#45](https://github.com/Sealbin/sealbin/issues/45) (agent inboxes via Owlpost). |
