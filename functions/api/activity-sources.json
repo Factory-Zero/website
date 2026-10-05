@@ -140,5 +140,13 @@
     "repos": [
       "shoal-ing/website"
     ]
+  },
+  "FZ-020": {
+    "owners": [
+      "tokker-dev"
+    ],
+    "repos": [
+      "tokker-dev/tokker"
+    ]
   }
 }

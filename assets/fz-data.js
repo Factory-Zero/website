@@ -465,7 +465,33 @@ window.FZ_DATA = {
         saves: "Find the objections before the launch thread does.",
         now: "Early access is a waitlist at shoal.ing. The CLI is in development and cannot be installed yet."
       },
-      desc: 'Launch rehearsal. Paste a launch post or README, and thousands of simulated developers read it, vote and argue about it on a simulated Hacker News, Reddit or X; you get the predicted thread, the top objections and the edits that change the outcome. Seed, simulate, score. Planned as a single open-core binary written in Rust, self-hostable, with a local model or an API: Jev is the deterministic engine, and a language model writes text only when an agent posts. What exists today is the site and its early-access waitlist; the CLI is in development and cannot be installed yet.' }
+      desc: 'Launch rehearsal. Paste a launch post or README, and thousands of simulated developers read it, vote and argue about it on a simulated Hacker News, Reddit or X; you get the predicted thread, the top objections and the edits that change the outcome. Seed, simulate, score. Planned as a single open-core binary written in Rust, self-hostable, with a local model or an API: Jev is the deterministic engine, and a language model writes text only when an agent posts. What exists today is the site and its early-access waitlist; the CLI is in development and cannot be installed yet.' },
+    { id: 'FZ-020', name: 'Tokker', status: 'BUILDING', stage: 'VALIDATION', launched: null, category: 'PRICING', autonomy: null, site: 'tokker.dev', logo: 'tokker-animated.svg', logoW: 120, logoH: 120,
+      target: 4,
+      uses: [
+        { id: 'FZ-004', role: 'framework', status: 'planned', note: 'The API and MCP server are planned as a Rust Worker on the Cratefield harness; nothing is deployed yet.' },
+        { id: 'FZ-006', role: 'agents', status: 'planned', note: 'Scheduled Colonizer loops re-check every price source and open a pull request when a price moves. Not running yet.' },
+        { id: 'FZ-013', role: 'email', status: 'planned', note: 'Price-drop alerts, the weekly change email and waitlist confirmation. No mail is sent today.' },
+        { id: 'FZ-008', role: 'bug-reports', status: 'planned', note: 'Errors and bug reports become deduplicated GitHub issues, through the Cratefield error reporter.' },
+        { id: 'polar', role: 'payments', status: 'planned', note: 'A paid API tier later, through Polar. The index is free and nothing is on sale.' },
+        { id: 'FZ-012', role: 'deploys', status: 'planned', note: 'Every venture site and Worker deployed from the Keep Shipping console.' },
+        { id: 'cloudflare', role: 'hosting', status: 'live', note: 'The site.' }
+      ],
+      aims: {
+        operate: 'Keeping the prices true is the job that should run on its own: scheduled agents re-check every source, save the page as evidence, confirm a change with a second fetch and open a pull request, and small confirmed changes merge by themselves. A person reviews changes to limits, units or fair-use wording, and anything from a secondary source.',
+        intelligence: 'Mostly plain code: an extractor per source, the diff, the currency conversion and the token math that turns published limits into $ per 1M. A language model is only the fallback extractor, its output checked against the saved page and always sent to review.',
+        growth: 'Developer- and agent-led: a free JSON API and an MCP server, so coding agents can ask which provider is cheapest, and price-drop alerts by email. Free and open, with no affiliate links at launch. Growth is people and agents using the index, counted from the first API call that is not ours.'
+      },
+      github: [['TOKKER-DEV/TOKKER', 'https://github.com/Tokker-dev/tokker'], ['TOKKER-DEV', 'https://github.com/Tokker-dev']],
+      pitch: {
+        problem: "AI token prices are hard to compare: about 60 API providers price them differently, and subscriptions hide their limits in 5-hour windows and weekly caps.",
+        solution: "Tokker is a free, open price index for AI tokens. It puts every model API and every AI subscription on one scale, US dollars per 1M tokens, so you can see the cheapest way to get the tokens you need.",
+        how: ["Compares API prices per 1M tokens across about 60 providers, each number linked to its source and the date it was checked", "Turns subscription limits (5-hour windows, weekly caps) into real tokens and $ per 1M at full use", "Scheduled agents are planned to re-check every source and update a price when it moves"],
+        offer: "Free and open: the data is in a public repository, and there are no affiliate links at launch.",
+        saves: "Stop working out by hand whether a plan or an API is cheaper for the way you use AI.",
+        now: "The homepage is live at tokker.dev with an early index (prices as of 5 Oct 2026). The API, MCP server, scheduled re-checks and price-drop alerts are planned and do not work yet."
+      },
+      desc: 'An open, sourced price index for AI tokens and subscriptions. Tokker lists what AI model APIs cost in US dollars per 1M tokens across about 60 providers, and turns subscription limits (5-hour windows, weekly caps, credit pools) into real tokens and an estimated $ per 1M at full use, so an API and a $200 plan sit on one scale. Every number carries its source and the date it was checked; what a provider does not publish is marked unknown. Scheduled agents on Colonizer are planned to keep the prices fresh, and a free JSON API, an MCP server and price-drop alerts by email through Owlpost are planned on a Rust Worker on the Cratefield harness. Free and open, with no affiliate links at launch; the code is Apache-2.0 and the data CC BY 4.0 (proposed). What exists today is the homepage and an early index (62 providers and 103 plans, prices as of 5 Oct 2026); the API, MCP server and alerts do not work yet.' }
   ],
   // Third parties named in a venture's `uses`. Sister ventures are not listed
   // here: they resolve to their own record (name and site) by id.
@@ -487,6 +513,7 @@ window.FZ_DATA = {
     'screening-engine': { label: 'SECURITY SCREENING', phrase: 'Screens with the method of' },
     'inbound-email': { label: 'INBOUND EMAIL', phrase: 'Inbound mail by' },
     'secrets-handoff': { label: 'SECRETS HANDOFF', phrase: 'Handoffs sealed by' },
+    agents: { label: 'AGENTS', phrase: 'Agents run on' },
     deploys: { label: 'DEPLOYS', phrase: 'Deploys by' },
     hosting: { label: 'HOSTING', phrase: 'Hosted on' }
   },

@@ -42,6 +42,10 @@
       "label": "SECRETS HANDOFF",
       "phrase": "Handoffs sealed by"
     },
+    "agents": {
+      "label": "AGENTS",
+      "phrase": "Agents run on"
+    },
     "deploys": {
       "label": "DEPLOYS",
       "phrase": "Deploys by"
@@ -1042,6 +1046,84 @@
       "site": "https://shoal.ing/",
       "page": "https://factory0.ventures/ventures/shoal/",
       "uses": []
+    },
+    {
+      "id": "FZ-020",
+      "name": "Tokker",
+      "site": "https://tokker.dev/",
+      "page": "https://factory0.ventures/ventures/tokker/",
+      "uses": [
+        {
+          "id": "FZ-004",
+          "name": "Cratefield",
+          "kind": "factory-zero",
+          "url": "https://cratefield.com/",
+          "role": "framework",
+          "phrase": "Built with",
+          "status": "planned",
+          "note": "The API and MCP server are planned as a Rust Worker on the Cratefield harness; nothing is deployed yet."
+        },
+        {
+          "id": "FZ-006",
+          "name": "Colonizer",
+          "kind": "factory-zero",
+          "url": "https://colonizer.dev/",
+          "role": "agents",
+          "phrase": "Agents run on",
+          "status": "planned",
+          "note": "Scheduled Colonizer loops re-check every price source and open a pull request when a price moves. Not running yet."
+        },
+        {
+          "id": "FZ-013",
+          "name": "Owlpost",
+          "kind": "factory-zero",
+          "url": "https://owlpost.to/",
+          "role": "email",
+          "phrase": "Email by",
+          "status": "planned",
+          "note": "Price-drop alerts, the weekly change email and waitlist confirmation. No mail is sent today."
+        },
+        {
+          "id": "FZ-008",
+          "name": "SupportGenius",
+          "kind": "factory-zero",
+          "url": "https://supportgeni.us/",
+          "role": "bug-reports",
+          "phrase": "Bug reports to",
+          "status": "planned",
+          "note": "Errors and bug reports become deduplicated GitHub issues, through the Cratefield error reporter."
+        },
+        {
+          "id": "polar",
+          "name": "Polar",
+          "kind": "third-party",
+          "url": "https://polar.sh",
+          "role": "payments",
+          "phrase": "Payments by",
+          "status": "planned",
+          "note": "A paid API tier later, through Polar. The index is free and nothing is on sale."
+        },
+        {
+          "id": "FZ-012",
+          "name": "Keep Shipping",
+          "kind": "factory-zero",
+          "url": "https://keepshipping.run/",
+          "role": "deploys",
+          "phrase": "Deploys by",
+          "status": "planned",
+          "note": "Every venture site and Worker deployed from the Keep Shipping console."
+        },
+        {
+          "id": "cloudflare",
+          "name": "Cloudflare",
+          "kind": "third-party",
+          "url": "https://www.cloudflare.com",
+          "role": "hosting",
+          "phrase": "Hosted on",
+          "status": "live",
+          "note": "The site."
+        }
+      ]
     }
   ]
 }
