@@ -73,6 +73,7 @@ cratefield.com and carries the same link.
 | FZ-017 release.show | Owlpost email | planned | Product issues #41 (digests) and #42 (transactional notices), private repo. |
 | FZ-017 release.show | promptdecode screening | planned | Product issue #10, private repo. |
 | FZ-018 Living Brain | Cratefield framework | planned | [Cargo.toml](https://github.com/Livingbrain-wiki/livingbrain/blob/main/Cargo.toml) on the harness; website README: the waitlist Worker is "Not deployed". |
+| FZ-018 Living Brain | Colonizer agents | planned | [#22](https://github.com/Livingbrain-wiki/livingbrain/issues/22), "Epic 3: Agents, Colonizer, Owlpost and the 3D brain": "Colonizer colonies do the bigger jobs"; the "open a pull request" clause comes from the venture's own `desc` in `assets/fz-data.js`: "Bigger jobs would go to a Colonizer colony that returns a pull request" (2026-10-05). |
 | FZ-018 Living Brain | Owlpost email | planned | [#23](https://github.com/Livingbrain-wiki/livingbrain/issues/23), [#28](https://github.com/Livingbrain-wiki/livingbrain/issues/28), [#29](https://github.com/Livingbrain-wiki/livingbrain/issues/29). |
 | FZ-018 Living Brain | SupportGenius support | planned | [#51](https://github.com/Livingbrain-wiki/livingbrain/issues/51). |
 | FZ-018 Living Brain | promptdecode screening | planned | [#50](https://github.com/Livingbrain-wiki/livingbrain/issues/50). |
@@ -100,7 +101,4 @@ cratefield.com and carries the same link.
   mailer is a no-op until a key is set (above).
 - **Stripe for Undercover Rockstars.** The waitlist function can read a payment
   link, but nothing can be bought, so there is no payments entry.
-- **Living Brain on Colonizer** (bigger jobs as colonies, Living Brain #22).
-  Planned. The `agents` role (added with FZ-020) could carry it; not added
-  without a fresh check.
 - **Owlpost's own inbound screening** is Owlpost's own code, not promptdecode.
