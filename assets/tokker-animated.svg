@@ -1,0 +1,30 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 120 120" width="120" height="120" role="img" aria-label="Tokker">
+  <title>Tokker</title>
+  <desc>The Tokker mark: the letters t and k in amber on two split-flap cards, like a departures board, on a dark rounded square. Each card in turn flips over and settles, as a price board does when a number changes.</desc>
+  <style>
+    /* Each keyframe cycle starts and ends on the card at rest, and the delays
+       are positive, so the first frame (and any static grab) is the full mark.
+       The two cards flip one after the other, then the board holds. */
+    .c { transform-box: fill-box; transform-origin: 50% 50%; animation: flip 5.2s cubic-bezier(.45,0,.25,1) infinite both; }
+    .c1 { animation-delay: .5s; }
+    .c2 { animation-delay: .8s; }
+    @keyframes flip {
+      0%, 16%, 100% { transform: scaleY(1); }
+      6% { transform: scaleY(.06); }
+      11% { transform: scaleY(1.04); }
+    }
+    @media (prefers-reduced-motion: reduce) { .c { animation: none; } }
+  </style>
+  <g transform="translate(10 10) scale(1.5625)">
+    <rect width="64" height="64" rx="14" fill="#15181D"/>
+    <g class="c c1">
+      <rect x="6" y="12" width="25" height="40" rx="4" fill="#2A3038"/>
+      <path fill="#F2B84B" d="M15.6 21h4.8v6h4.1v4.4h-4.1v8.3c0 1.4.6 2 1.9 2h2.2V46h-3.4c-4 0-5.5-1.9-5.5-5.9v-8.7h-2.7V27h2.7z"/>
+    </g>
+    <g class="c c2">
+      <rect x="33" y="12" width="25" height="40" rx="4" fill="#2A3038"/>
+      <path fill="#F2B84B" transform="translate(-2 0)" d="M39.2 18.5H44v15.2l6-6.7h5.7l-7 7.6L56 46h-5.6l-5-8.2-1.4 1.5V46h-4.8z"/>
+    </g>
+    <path d="M6 31.5h52v1H6z" fill="#000" opacity=".6"/>
+  </g>
+</svg>

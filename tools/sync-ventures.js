@@ -154,7 +154,8 @@ const reel = vs => [0, 1].map(r => {
 function replaceRegion(src, key, body) {
   const re = new RegExp(`(<!-- fz:${key}:start -->)[\\s\\S]*?(<!-- fz:${key}:end -->)`);
   if (!re.test(src)) throw new Error(`region fz:${key} not found`);
-  return src.replace(re, `$1\n${body}\n$2`);
+  // A function replacer, so a "$" in the data ("$200") is never read as a $1/$2 pattern.
+  return src.replace(re, (m, start, end) => `${start}\n${body}\n${end}`);
 }
 
 const live = V.filter(v => v.status !== 'ARCHIVED');
@@ -212,14 +213,14 @@ for (const v of V) {
              `aria-pressed="true" aria-controls="d-record"\n        data-id="${v.id}"`)
     .replace(/(RECORD \/ )FZ-\d+/, `$1${v.id}`)
     .replace(/<title>[^<]*<\/title>/, `<title>${title}</title>`)
-    .replace(/(<meta name="description" content=")[^"]*/, `$1${esc(summary(v))}`)
+    .replace(/(<meta name="description" content=")[^"]*/, (m, a) => a + esc(summary(v)))
     .replace(/(<link rel="canonical" href=")[^"]*/, `$1${url}`)
     .replace(/(<meta property="og:url" content=")[^"]*/, `$1${url}`)
     .replace(/(<meta property="og:title" content=")[^"]*/, `$1${title}`)
-    .replace(/(<meta property="og:description" content=")[^"]*/, `$1${esc(summary(v))}`)
+    .replace(/(<meta property="og:description" content=")[^"]*/, (m, a) => a + esc(summary(v)))
     .replace(/(<meta name="twitter:title" content=")[^"]*/, `$1${title}`)
-    .replace(/(<meta name="twitter:description" content=")[^"]*/, `$1${esc(summary(v))}`)
-    .replace(/<script type="application\/ld\+json">[\s\S]*?<\/script>/, `<script type="application/ld+json">\n${jsonld(v)}\n</script>`)
+    .replace(/(<meta name="twitter:description" content=")[^"]*/, (m, a) => a + esc(summary(v)))
+    .replace(/<script type="application\/ld\+json">[\s\S]*?<\/script>/, () => `<script type="application/ld+json">\n${jsonld(v)}\n</script>`)
     .replace('<html lang="en">', `<html lang="en">\n${GENERATED}`);
   if (!page.includes(`data-id="${v.id}"`) || !page.includes('aria-pressed="true"')) {
     throw new Error(`could not select ${v.id} on its own page`);

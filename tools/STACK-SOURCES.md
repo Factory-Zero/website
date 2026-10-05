@@ -15,7 +15,7 @@ entry is left out. Re-check an entry before flipping it to `live`.
 
 | Claim | Evidence |
 | :--- | :--- |
-| Cloudflare hosts every venture site (`hosting`, live) | `curl -sI https://<site>/` answers `server: cloudflare` for all eighteen sites (2026-10-03); each site repo deploys to Cloudflare Pages or a static-assets Worker. |
+| Cloudflare hosts every venture site (`hosting`, live) | `curl -sI https://<site>/` answers `server: cloudflare` for all eighteen sites (2026-10-03), and for tokker.dev (2026-10-05); each site repo deploys to Cloudflare Pages or a static-assets Worker. |
 | Cratefield waitlist Workers are live (`framework`, live) | `GET https://api.<domain>/v1/waitlist` answers `405` (the route exists and takes POST) for sealb.in, release.show, colonizer.dev, findsyou.work, posplug.in and cratefield.com (2026-10-03). Each private waitlist backend's `Cargo.toml` depends on `cratefield-module-waitlist` (or its earlier `factory0-module-waitlist` name, from `Cratefield/harness`) and its `wrangler.toml` routes `api.<domain>`. |
 | Waitlist confirmation mail is not live (`email`, planned) | Each waitlist backend's `src/lib.rs` uses a `NoopMailer` until a `RESEND_API_KEY` secret is set, and its README says double opt-in is off; the sites set `data-double-opt-in="false"` or promise only "one email when early access opens". Cratefield is the exception (below). |
 | SupportGenius error and bug intake (`bug-reports`, planned) | [SupportGenius/core#65](https://github.com/SupportGenius/core/issues/65) (intake API) and [Cratefield/harness#692](https://github.com/Cratefield/harness/issues/692) (`module-error-reporting`, "every venture built on Cratefield"). Listed for every venture that runs on, or is being built on, Cratefield. |
@@ -47,6 +47,10 @@ entry is left out. Re-check an entry before flipping it to `live`.
 | FZ-018 Living Brain | Owlpost email | planned | [#23](https://github.com/Livingbrain-wiki/livingbrain/issues/23), [#28](https://github.com/Livingbrain-wiki/livingbrain/issues/28), [#29](https://github.com/Livingbrain-wiki/livingbrain/issues/29). |
 | FZ-018 Living Brain | SupportGenius support | planned | [#51](https://github.com/Livingbrain-wiki/livingbrain/issues/51). |
 | FZ-018 Living Brain | promptdecode screening | planned | [#50](https://github.com/Livingbrain-wiki/livingbrain/issues/50). |
+| FZ-020 Tokker | Cratefield framework | planned | [Tokker-dev/tokker#15](https://github.com/Tokker-dev/tokker/issues/15) (`tokker-worker` on the harness), [#16](https://github.com/Tokker-dev/tokker/issues/16); README: "Nothing is deployed." |
+| FZ-020 Tokker | Colonizer agents | planned | README "How it stays true": scheduled Colonizer loops; [#39](https://github.com/Tokker-dev/tokker/issues/39)–[#42](https://github.com/Tokker-dev/tokker/issues/42) (the loops), [#44](https://github.com/Tokker-dev/tokker/issues/44) ("Turn the loops on", open). |
+| FZ-020 Tokker | Owlpost email | planned | [#17](https://github.com/Tokker-dev/tokker/issues/17) (waitlist confirmation), [#48](https://github.com/Tokker-dev/tokker/issues/48) (alerts), [#49](https://github.com/Tokker-dev/tokker/issues/49) (weekly email). |
+| FZ-020 Tokker | Polar payments | planned | [#57](https://github.com/Tokker-dev/tokker/issues/57), [#58](https://github.com/Tokker-dev/tokker/issues/58) (paid API tier, label `later`). |
 
 ## Left out on purpose
 
@@ -58,5 +62,6 @@ entry is left out. Re-check an entry before flipping it to `live`.
 - **Stripe for Undercover Rockstars.** The waitlist function can read a payment
   link, but nothing can be bought, so there is no payments entry.
 - **Living Brain on Colonizer** (bigger jobs as colonies, Living Brain #22).
-  Planned, but there is no `uses` role for it yet.
+  Planned. The `agents` role (added with FZ-020) could carry it; not added
+  without a fresh check.
 - **Owlpost's own inbound screening** is Owlpost's own code, not promptdecode.

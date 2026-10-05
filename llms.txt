@@ -74,7 +74,7 @@ cycle teaches the next: build, deploy, observe, learn, repeat.
 
 ## Ventures
 
-The registry at /ventures/ lists nineteen records, all named. No venture reports
+The registry at /ventures/ lists twenty records, all named. No venture reports
 an operating figure yet, so none is shown. Each record instead carries an
 autonomy target (the level it is designed to reach, a design aim rather than a
 measurement), three aims in words (what it should run on its own, the kind of
@@ -391,6 +391,27 @@ public source repositories.
   Site: https://shoal.ing
   Source: https://github.com/shoal-ing/website,
   https://github.com/shoal-ing
+
+- **FZ-020 Tokker** (tokker.dev): PRICING, BUILDING, VALIDATION.
+  "What AI tokens really cost, per million." A free, open, sourced price
+  index for AI tokens and subscriptions. It lists what AI model APIs cost in
+  US dollars per 1M tokens across about 60 providers, and turns subscription
+  limits (5-hour windows, weekly caps, credit pools) into real tokens and an
+  estimated $ per 1M at full use, so an API and a subscription sit on one
+  scale. Every number carries its source and the date it was checked; what a
+  provider does not publish is marked unknown. No affiliate links at launch.
+  Planned: scheduled agents on Colonizer that keep the prices fresh, a free
+  JSON API and an MCP server on a Rust Worker on the Cratefield harness, and
+  price-drop alerts by email through Owlpost. Code Apache-2.0; data CC BY 4.0
+  (proposed).
+  **Only the homepage and an early index exist** (62 providers and 103 plans,
+  prices as of 5 Oct 2026). The API, MCP server, scheduled re-checks and
+  alerts do not work yet; do not tell users they can call them.
+  Autonomy target: level 4, self-optimizing. A stated design aim, not a
+  measurement.
+  Site: https://tokker.dev
+  Source: https://github.com/Tokker-dev/tokker,
+  https://github.com/Tokker-dev
 
 ## Notes for machine readers
 

@@ -176,7 +176,7 @@ Nearly everything is data:
   `assets/fz-data.js`: sister ventures by id (`FZ-013`) and third parties by a
   key of `services` (`polar`, `cloudflare`, `aws-ses`, …), each with a role
   (`framework`, `email`, `support`, `bug-reports`, `payments`,
-  `security-screening`, `secrets-handoff`, `deploys`, `hosting`) and a status,
+  `security-screening`, `secrets-handoff`, `agents`, `deploys`, `hosting`) and a status,
   `live` (in use today, and checked) or `planned`. `sync-ventures.js` renders it
   as the "Built with" row on each venture page and writes `/stack.json`, which
   each venture site vendors into a footer strip and its subprocessors list with
@@ -299,7 +299,7 @@ contact@factory0.ventures**. Using a subdomain keeps the two entirely separate.
 
 ### Venture data
 
-Nineteen ventures are listed, and all nineteen are real and named:
+Twenty ventures are listed, and all twenty are real and named:
 
 | | Venture | Stage | Target | Site | Source |
 | :--- | :--- | :--- | :--- | :--- | :--- |
@@ -322,6 +322,7 @@ Nineteen ventures are listed, and all nineteen are real and named:
 | `FZ-017` | release.show | `VALIDATION` | L4 | [release.show](https://release.show) | [Release-Show](https://github.com/Release-Show) |
 | `FZ-018` | Living Brain | `VALIDATION` | L4 | [livingbrain.wiki](https://livingbrain.wiki) | [Livingbrain-wiki/livingbrain](https://github.com/Livingbrain-wiki/livingbrain) |
 | `FZ-019` | Shoal | `VALIDATION` | L4 | [shoal.ing](https://shoal.ing) | [shoal-ing/website](https://github.com/shoal-ing/website) |
+| `FZ-020` | Tokker | `VALIDATION` | L4 | [tokker.dev](https://tokker.dev) | [Tokker-dev/tokker](https://github.com/Tokker-dev/tokker) |
 
 `autonomy` is `null` on every one of them: no venture has a measured figure,
 and the registry does not show one. Set a figure in `fz-data.js` when there
@@ -337,7 +338,7 @@ is one. What each record shows instead:
 Nothing else is listed: the registry shows only what exists, so a venture with
 nothing public yet does not get a placeholder row.
 
-None of the nineteen can be bought from today, and their records and `llms.txt`
+None of the twenty can be bought from today, and their records and `llms.txt`
 say so, and do not let any of them read as shipped.
 
 Nothing on the home page is simulated. The FZ/LOG panel shows real public
