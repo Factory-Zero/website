@@ -243,6 +243,8 @@ canvas { display: block; }
   color: var(--body);
   font-weight: 300;
 }
+/* The registry intro is four sentences; at 44ch it broke into a narrow column. */
+.lede--wide { max-width: 76ch; }
 
 .section {
   padding: 16vh var(--gut);
