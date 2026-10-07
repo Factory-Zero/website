@@ -338,12 +338,12 @@ html.scrolled .site-header {
 .hero { isolation: isolate; }
 .hero::before { content: ""; position: absolute; z-index: -1; top: 0; bottom: 0; left: 0; width: min(64%, 980px); pointer-events: none;
   background:
-    linear-gradient(90deg, rgba(10,10,11,.35) 0%, rgba(10,10,11,.55) 45%, var(--bg) 100%),
-    linear-gradient(180deg, rgba(10,10,11,.7) 0%, rgba(10,10,11,.25) 30%, rgba(10,10,11,.45) 72%, var(--bg) 100%),
+    linear-gradient(90deg, rgba(10,10,11,.05) 0%, rgba(10,10,11,.3) 50%, var(--bg) 100%),
+    linear-gradient(180deg, rgba(10,10,11,.6) 0%, rgba(10,10,11,0) 28%, rgba(10,10,11,.15) 72%, var(--bg) 100%),
     url("/assets/img/home-hero.webp") left center / cover no-repeat; }
 @media (max-width: 760px) {
   .hero::before { width: 100%; background:
-    linear-gradient(180deg, rgba(10,10,11,.75) 0%, rgba(10,10,11,.6) 40%, var(--bg) 100%),
+    linear-gradient(180deg, rgba(10,10,11,.55) 0%, rgba(10,10,11,.35) 40%, var(--bg) 100%),
     url("/assets/img/home-hero-960.webp") 30% center / cover no-repeat; }
 }
 .hero-canvas {
