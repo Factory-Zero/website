@@ -1783,8 +1783,8 @@ html:not(.js) .spec .activity { display: none; }
   animation: fzIn 1.6s 2.2s both;
 }
 .h3d-legend .k { display: inline-flex; align-items: center; gap: 8px; }
-.h3d-legend .l, .h3d-legend .p { display: inline-block; width: 22px; height: 0; border-top: 2px solid var(--ink); }
-.h3d-legend .p { border-top: 1px dashed var(--muted); }
+.h3d-legend .l, .h3d-legend .p { display: inline-block; width: 22px; height: 0; border-top: 1px solid var(--ink); }
+.h3d-legend .p { border-top: 1px solid var(--dim); }
 .h3d-legend .h { color: var(--dim); }
 @media (max-width: 900px) {
   .h3d-legend { left: var(--gut); right: auto; top: 78px; bottom: auto; gap: 14px; flex-wrap: wrap; font-size: 9px; }
