@@ -561,6 +561,15 @@
     return right;
   }
 
+  function headlineTop() {
+    var h1 = document.getElementById('fz-headline');
+    if (!h1) return 0;
+    var r = document.createRange(); r.selectNodeContents(h1);
+    var rects = r.getClientRects(), t = 1e9;
+    for (var i = 0; i < rects.length; i++) t = Math.min(t, rects[i].top);
+    return t === 1e9 ? 0 : t;
+  }
+
   function resize() {
     var w = canvas.clientWidth, h = canvas.clientHeight;
     if (!w || !h) return false;
@@ -579,14 +588,20 @@
       var free = headlineRight() + 28, edge = W - 22;
       var EXT = 1.12;                      // projected half-width of the cluster, in Rpx
       var fit = (edge - free) / 2 / EXT;
-      Rpx = Math.max(Math.min(W * 0.235, H * 0.37, fit), 96);
+      Rpx = Math.max(Math.min(W * 0.235, H * 0.335, fit), 96);
       cxPx = Math.min(edge - Rpx * EXT, Math.max(free + Rpx * EXT, W * 0.62));
       if (cxPx - Rpx * EXT < free) cxPx = free + Rpx * EXT;
-      cyPx = H * 0.47;
+      cyPx = H * 0.44;
     } else {
+      // phone: use the gap between the readout and the headline, and let the
+      // cluster tuck a little way behind the first line of the headline
+      var box = canvas.getBoundingClientRect(), ro = document.querySelector('.readout'), top = H * 0.2, bot = H * 0.55;
+      if (ro) top = ro.getBoundingClientRect().bottom - box.top + 6;
+      var tt = headlineTop();
+      if (tt) bot = tt - box.top + 44;
       cxPx = W * 0.5;
-      cyPx = H * 0.39;
-      Rpx = Math.min(W * 0.37, H * 0.2);
+      Rpx = clamp((bot - top) / 2 / 1.1, 80, W * 0.37);
+      cyPx = (top + bot) / 2;
     }
     nodePx = Rpx * (wide ? 0.2 : 0.215);
     dirty = true;

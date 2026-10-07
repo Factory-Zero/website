@@ -1729,6 +1729,7 @@ html:not(.js) .spec .activity { display: none; }
   .hero-proof { gap: 20px; width: 100%; justify-content: space-between; }
   .hero-proof dt { max-width: 13ch; }
   .hero-phase { display: none; }
+}
 
 /* ---------- hero 3D network (assets/fz-hero3d.js) ---------- */
 
