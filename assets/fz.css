@@ -1826,3 +1826,5 @@ html:not(.js) .spec .activity { display: none; }
 .vp-t { margin: 0; max-width: 36ch; font-size: 15px; line-height: 1.55; font-weight: 300; color: var(--body); }
 .vision-link { font-family: var(--mono); font-size: 11px; letter-spacing: .14em; color: var(--muted); }
 .vision-link:hover { color: var(--accent); }
+
+.hero--3d.is-dragging, .hero--3d.is-dragging * { -webkit-user-select: none; user-select: none; }
