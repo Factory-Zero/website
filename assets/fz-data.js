@@ -500,7 +500,7 @@ window.FZ_DATA = {
         now: "Early access is a waitlist at shoal.ing. The CLI is in development and cannot be installed yet."
       },
       desc: 'Launch rehearsal. Paste a launch post or README, and thousands of simulated developers read it, vote and argue about it on a simulated Hacker News, Reddit or X; you get the predicted thread, the top objections and the edits that change the outcome. Seed, simulate, score. Planned as a single open-core binary written in Rust, self-hostable, with a local model or an API: Jev is the deterministic engine, and a language model writes text only when an agent posts. What exists today is the site and its early-access waitlist; the CLI is in development and cannot be installed yet.' },
-    { id: 'FZ-020', name: 'Tokker', status: 'BUILDING', stage: 'VALIDATION', launched: null, category: 'PRICING', stack: false, autonomy: null, site: 'tokker.dev', logo: 'tokker-animated.svg', logoW: 120, logoH: 120,
+    { id: 'FZ-020', name: 'Tokker', status: 'BUILDING', stage: 'VALIDATION', launched: null, category: 'PRICING', stack: true, stackRole: 'AI token prices', stackGroup: 'Content & AI', open_source: true, license: 'Apache-2.0', autonomy: null, site: 'tokker.dev', logo: 'tokker-animated.svg', logoW: 120, logoH: 120,
       target: 4,
       uses: [
         { id: 'FZ-004', role: 'framework', status: 'planned', note: 'The API and MCP server are planned as a Rust Worker on the Cratefield harness; nothing is deployed yet.' },
@@ -609,6 +609,6 @@ window.FZ_DATA = {
 // Editable presentation values. In the Claude Design source these were `data-props`
 // on the component; here they are plain overrides you can edit without touching logic.
 window.FZ_CONFIG = {
-  headline: 'We launch ventures at\u00a0scale.', // also rendered statically in index.html
+  headline: 'The foundation to launch ventures at\u00a0scale.', // also rendered statically in index.html
   factoryStatus: 'ONLINE'    // ONLINE | MAINTENANCE | INITIALIZING
 };
