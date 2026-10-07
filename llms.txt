@@ -74,7 +74,7 @@ cycle teaches the next: build, deploy, observe, learn, repeat.
 
 ## Ventures
 
-The registry at /ventures/ lists twenty-one records, all named. No venture reports
+The registry at /ventures/ lists twenty-two records, all named. No venture reports
 an operating figure yet, so none is shown. Each record instead carries an
 autonomy target (the level it is designed to reach, a design aim rather than a
 measurement), three aims in words (what it should run on its own, the kind of
@@ -432,6 +432,22 @@ public source repositories.
   measurement.
   Site: https://ledgers.sh
   Source: https://github.com/Ledgers-sh
+
+- **FZ-022 Ghostwritin'** (ghostwrit.in): WRITING, BUILDING, VALIDATION.
+  "Your words. No fingerprints." Rewrites AI-assisted drafts into the
+  writer's own voice (Casual, Professional, Academic, or My voice from three
+  to five samples) and checks that the meaning stayed the same: names,
+  numbers, quotes and code stay locked, a diff shows every change, and a human
+  score (a detector estimate, a guide not a guarantee) is shown before and
+  after. Planned: web app, REST API, CLI and MCP server on one MIT-licensed
+  engine, self-hosted or hosted. Users are told to follow their school's,
+  client's or publisher's rules.
+  **Only the homepage exists.** Nothing is released and the npm packages are
+  not published; do not tell users they can use it.
+  Autonomy target: level 4, self-optimizing. A stated design aim, not a
+  measurement.
+  Site: https://ghostwrit.in
+  Source: https://github.com/Ghostwritin
 
 ## Notes for machine readers
 

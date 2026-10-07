@@ -531,7 +531,29 @@ window.FZ_DATA = {
         saves: "Stop typing invoices into your books and only look at the few entries an agent isn’t sure about.",
         now: "The homepage is live at ledgers.sh. The crates, CLI, MCP server, app, waitlist and managed plans are planned and do not exist yet."
       },
-      desc: 'Open-source, double-entry accounting built for AI agents. Agents extract vendor bills, propose invoice, order, receipt and payment matches with confidence scores, and draft journal entries; each agent key has a tier (read, draft, post within limits) and per-currency amount limits, and paying money out, closing a period and filing tax always need a person. Every action is audited and reversible, and a dry run shows each debit and credit before anything posts. Agents work through a CLI and MCP tools, people supervise in a browser and phone app (PWA, offline, push approvals), and an HTTP API shares the same commands. Multi-currency and right-to-left from the start; one company, internal units or a group with consolidation. Eight modules (ledger, invoice, bills, matching, bank, tax, documents, reports) are planned as Rust crates on the Cratefield harness, MIT-licensed, self-hosted or managed. What exists today is the homepage; nothing is released.' }
+      desc: 'Open-source, double-entry accounting built for AI agents. Agents extract vendor bills, propose invoice, order, receipt and payment matches with confidence scores, and draft journal entries; each agent key has a tier (read, draft, post within limits) and per-currency amount limits, and paying money out, closing a period and filing tax always need a person. Every action is audited and reversible, and a dry run shows each debit and credit before anything posts. Agents work through a CLI and MCP tools, people supervise in a browser and phone app (PWA, offline, push approvals), and an HTTP API shares the same commands. Multi-currency and right-to-left from the start; one company, internal units or a group with consolidation. Eight modules (ledger, invoice, bills, matching, bank, tax, documents, reports) are planned as Rust crates on the Cratefield harness, MIT-licensed, self-hosted or managed. What exists today is the homepage; nothing is released.' },
+    { id: 'FZ-022', name: "Ghostwritin'", status: 'BUILDING', stage: 'VALIDATION', launched: null, category: 'WRITING', autonomy: null, site: 'ghostwrit.in', logo: 'ghostwritin-animated.svg', logoW: 120, logoH: 120,
+      target: 4,
+      uses: [
+        { id: 'FZ-004', role: 'framework', status: 'planned', note: 'The open-source app (engine, API Worker, CLI, MCP server) is being built on the Cratefield harness, with the meaning lock and diff offered upstream as generic Cratefield modules.' },
+        { id: 'google-fonts', role: 'fonts', status: 'live', note: 'The site’s typefaces (Newsreader, JetBrains Mono), loaded from Google.' },
+        { id: 'cloudflare', role: 'hosting', status: 'live', note: 'The site.' }
+      ],
+      aims: {
+        operate: 'The rewriting is the work meant to run on its own: drafts come in through the web app, API, CLI or MCP server, the engine rewrites them in the chosen voice, checks the result against the original and returns the diff and scores. People handle what a machine should not decide: support, abuse reports and the use policy.',
+        intelligence: 'A language model does the rewrite; plain code does the checking. The meaning lock compares names, numbers, quotes and code against the original, and a rewrite that moved one is rejected. The human score is a detector estimate shown as a guide, never a promise.',
+        growth: 'Open source first: the engine, CLI and MCP server are planned under MIT, so writers and developers can self-host with their own model key. Growth is people moving to hosted plans for My voice and the score, counted from the first rewrite that is not ours.'
+      },
+      github: [['GHOSTWRITIN', 'https://github.com/Ghostwritin']],
+      pitch: {
+        problem: "A tool helped with your first draft, and now it doesn’t sound like you, and your own writing sometimes gets misread as AI-written.",
+        solution: "Ghostwritin’ rewrites AI-assisted drafts into your own natural voice, then checks that the meaning stayed exactly the same.",
+        how: ["Choose a voice (Casual, Professional, Academic, or My voice, learned from three to five of your samples) and a strength", "Names, numbers, quotes and code stay locked, and every rewrite is checked against your original", "A diff shows every change, with a human score before and after; the web app, API, CLI and MCP server share one engine"],
+        offer: "Planned to be open source (MIT): self-host with your own model key, or use the hosted version, with a free tier of 500 words a day.",
+        saves: "Stop rewriting a tool’s draft line by line until it sounds like you again.",
+        now: "The homepage is live. The web app, API, CLI, MCP server, waitlist and hosted plans are planned and do not exist yet."
+      },
+      desc: 'Rewrites AI-assisted drafts into the writer’s own voice and checks that the meaning stayed the same. A draft of up to 10,000 words is pasted in and the passages a detector would flag are marked; the writer picks a voice (Casual, Professional, Academic, or My voice built from three to five of their own samples) and a strength from light polish to a full rewrite. A meaning lock keeps names, numbers, quotes and code exactly as written and checks each rewrite against the original; a diff shows every change, with a human score (a detector estimate, a guide not a guarantee) before and after. Web app, REST API, CLI and MCP server are planned on one MIT-licensed engine, self-hosted or hosted. Intended for writers whose own work gets misread and for drafts a tool helped with; users are told to follow their school’s, client’s or publisher’s rules. What exists today is the homepage; nothing is released.' }
   ],
   // Third parties named in a venture's `uses`. Sister ventures are not listed
   // here: they resolve to their own record (name and site) by id.
