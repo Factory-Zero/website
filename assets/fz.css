@@ -237,7 +237,7 @@ canvas { display: block; }
 }
 .lede {
   margin: 0;
-  max-width: 44ch;
+  max-width: 60ch;
   font-size: 17px;
   line-height: 1.55;
   color: var(--body);
@@ -402,8 +402,8 @@ html.scrolled .site-header {
 .hero-copy { display: grid; gap: 32px; justify-items: start; min-width: 0; }
 .hero-sub {
   margin: 0;
-  max-width: 52ch;
-  font-size: clamp(17px, 1.45vw, 21px);
+  max-width: 68ch;
+  font-size: clamp(17px, 1.4vw, 20px);
   line-height: 1.5;
   font-weight: 300;
   color: var(--body);
@@ -484,7 +484,7 @@ html.scrolled .site-header {
   font-weight: 400;
 }
 .couplet .was { color: var(--muted); }
-.thesis-grid .lede { max-width: 40ch; }
+.thesis-grid .lede { max-width: 52ch; }
 .thesis-grid .lede strong { color: var(--ink); font-weight: 300; }
 
 /* ---------- 02 the factory ---------- */
@@ -785,7 +785,7 @@ html.scrolled .site-header {
 
 .cycle { padding: 16vh var(--gut) 20vh; border-top: 1px solid var(--line); }
 .cycle h2 { margin-bottom: 40px; }
-.cycle .lede { max-width: 40ch; }
+.cycle .lede { max-width: 56ch; }
 .cadence {
   margin-top: 40px;
   display: flex;
@@ -1783,8 +1783,8 @@ html:not(.js) .spec .activity { display: none; }
   animation: fzIn 1.6s 2.2s both;
 }
 .h3d-legend .k { display: inline-flex; align-items: center; gap: 8px; }
-.h3d-legend .l, .h3d-legend .p { display: inline-block; width: 22px; height: 0; border-top: 2px solid var(--ink); }
-.h3d-legend .p { border-top: 1px dashed var(--muted); }
+.h3d-legend .l, .h3d-legend .p { display: inline-block; width: 22px; height: 0; border-top: 1px solid var(--ink); }
+.h3d-legend .p { border-top: 1px solid var(--dim); }
 .h3d-legend .h { color: var(--dim); }
 @media (max-width: 900px) {
   .h3d-legend { left: var(--gut); right: auto; top: 78px; bottom: auto; gap: 14px; flex-wrap: wrap; font-size: 9px; }
@@ -1798,3 +1798,31 @@ html:not(.js) .spec .activity { display: none; }
 @media (prefers-reduced-motion: reduce) {
   .hero-canvas--3d { transition: none; }
 }
+
+/* ---------- vision, just below the hero ---------- */
+
+.vision { padding: 16vh var(--gut) 14vh; border-top: 1px solid var(--line); }
+.vision h2 { margin: 0 0 32px; max-width: 24ch; text-wrap: balance; }
+.vision-lede {
+  margin: 0 0 56px;
+  max-width: 64ch;
+  font-size: clamp(17px, 1.5vw, 21px);
+  line-height: 1.55;
+  font-weight: 300;
+  color: var(--body);
+  text-wrap: pretty;
+}
+.vision-pillars {
+  list-style: none;
+  margin: 0 0 40px;
+  padding: 0;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(min(240px, 100%), 1fr));
+  gap: 32px 4vw;
+  max-width: 1200px;
+}
+.vision-pillars li { border-top: 1px solid var(--line-2); padding-top: 18px; min-width: 0; }
+.vp-k { margin: 0 0 12px; font-family: var(--mono); font-size: 11px; letter-spacing: .14em; color: var(--ink); }
+.vp-t { margin: 0; max-width: 36ch; font-size: 15px; line-height: 1.55; font-weight: 300; color: var(--body); }
+.vision-link { font-family: var(--mono); font-size: 11px; letter-spacing: .14em; color: var(--muted); }
+.vision-link:hover { color: var(--accent); }

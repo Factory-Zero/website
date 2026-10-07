@@ -5,10 +5,14 @@
    (bright when live, dashed and dim when planned), and the Factory Zero core
    in the middle. Edges are not hand-drawn.
 
+   Look: a quiet diagram. Marks are small, flat and monochrome and take their
+   colour on hover; only live links are drawn until a venture is hovered, when
+   its planned links appear; a thin ring and one orange dot are the core; one
+   or two slow orange pulses at a time.
+
    Cost model: one atlas texture for every mark, rasterised once from the
-   venture SVGs. Six draw calls a frame (dust, edges, pulses, core, nodes,
-   labels), each of them one instanced or indexed call. No post-processing: the
-   core's glow is a single additive sprite. It starts after `load` and idle, so
+   venture SVGs. Five draw calls a frame (edges, pulses, core, nodes, labels),
+   each of them one instanced or indexed call. No post-processing. It starts after `load` and idle, so
    first paint and LCP never wait for it, and it hands back to the 2D
    constellation in fz-app.js when WebGL2 is missing or the context is lost. */
 
@@ -27,7 +31,8 @@
   var MAXN = 32;           // ventures the shader arrays hold
   var MAXE = 128;          // edges (venture pairs + spokes)
   var SEG = 14;            // segments per edge ribbon
-  var TRAIL = 7;           // points per pulse
+  var TRAIL = 5; var PGATE = '3.4';   // a pulse is on its link for 1/3.4 of its cycle
+          // points per pulse
   var CELL = 160, COLS = 6;          // logo atlas
   var LCW = 256, LCH = 40, LCOLS = 4; // label atlas
 
@@ -160,174 +165,127 @@
   var PRE = '#version 300 es\nprecision highp float;\n' +
     'uniform mat4 uV, uP; uniform vec3 uNP[' + (MAXN + 1) + ']; uniform vec3 uNS[' + (MAXN + 1) + '];\n' +
     'uniform float uE[' + MAXE + ']; uniform vec2 uRes; uniform float uDpr, uD, uR, uTime;\n' +
-    'const vec3 ACC = vec3(1.0, 0.353, 0.212);\n' +
-    'float fogF(float z){ return mix(0.4, 1.0, 1.0 - smoothstep(uD - uR * 0.9, uD + uR * 1.15, z)); }\n';
+    'const vec3 ACC = vec3(1.0, 0.353, 0.212);\n';
   var PREF = '#version 300 es\nprecision highp float;\n' +
-    'uniform float uDpr, uD, uR, uTime;\nconst vec3 ACC = vec3(1.0, 0.353, 0.212);\n' +
-    'float fogF(float z){ return mix(0.4, 1.0, 1.0 - smoothstep(uD - uR * 0.9, uD + uR * 1.15, z)); }\n';
+    'uniform float uDpr, uD, uR, uTime;\nconst vec3 ACC = vec3(1.0, 0.353, 0.212);\n';
   var BEZ = 'vec3 bez(vec3 a, vec3 b, float t, float k){\n' +
-    '  vec3 m = (a + b) * 0.5; vec3 c = k > 1.5 ? m : m * 0.8;\n' +
+    '  vec3 m = (a + b) * 0.5; vec3 c = k > 1.5 ? m : m * 0.88;\n' +
     '  float u = 1.0 - t; return u * u * a + 2.0 * u * t * c + t * t * b;\n}\n';
 
   var SRC = {};
 
-  // edges: screen-space ribbons so live and planned links can have a real width
+  // edges: one-pixel ribbons. Live links are always drawn; planned links and
+  // the factory's spokes only appear when a venture (or the core) is hovered.
   SRC.edgeV = PRE + BEZ +
     'in vec4 aE; in vec2 aT;\n' +
-    'out float vT, vDepth, vH, vK, vL, vAp, vX, vHW;\n' +
+    'out float vH, vK, vAp, vX;\n' +
     'vec2 scr(vec4 c){ return c.xy / c.w * uRes * 0.5; }\n' +
     'void main(){\n' +
     '  int ia = int(aE.x + 0.5), ib = int(aE.y + 0.5);\n' +
     '  vec3 A = uNP[ia], B = uNP[ib]; float k = aE.w;\n' +
-    '  vec4 vp = uV * vec4(bez(A, B, aT.x, k), 1.0); vec4 c0 = uP * vp;\n' +
+    '  vec4 c0 = uP * (uV * vec4(bez(A, B, aT.x, k), 1.0));\n' +
     '  float t2 = aT.x < 0.97 ? aT.x + 0.03 : aT.x - 0.03; float sg = aT.x < 0.97 ? 1.0 : -1.0;\n' +
     '  vec4 c1 = uP * (uV * vec4(bez(A, B, t2, k), 1.0));\n' +
     '  vec2 dir = normalize((scr(c1) - scr(c0)) * sg + vec2(1e-5));\n' +
-    '  float hw = (k > 1.5 ? 0.45 : k > 0.5 ? 0.95 : 0.55);\n' +
-    '  float h = uE[int(aE.z + 0.5)];\n' +
-    '  hw += max(h, 0.0) * 0.45;\n' +
-    '  vec2 off = vec2(-dir.y, dir.x) * aT.y * (hw + 0.7);\n' +
+    '  vec2 off = vec2(-dir.y, dir.x) * aT.y * 1.0;\n' +
     '  gl_Position = c0 + vec4(off / uRes * 2.0 * c0.w, 0.0, 0.0);\n' +
-    '  vT = aT.x; vDepth = -vp.z; vH = h; vK = k; vL = distance(A, B); vAp = min(uNS[ia].z, uNS[ib].z);\n' +
-    '  vX = aT.y * (hw + 0.7); vHW = hw;\n}\n';
+    '  vH = uE[int(aE.z + 0.5)]; vK = k; vAp = min(uNS[ia].z, uNS[ib].z); vX = aT.y;\n}\n';
   SRC.edgeF = PREF +
-    'in float vT, vDepth, vH, vK, vL, vAp, vX, vHW; out vec4 o;\n' +
+    'in float vH, vK, vAp, vX; out vec4 o;\n' +
     'void main(){\n' +
-    '  float cov = clamp(vHW + 0.5 - abs(vX), 0.0, 1.0);\n' +
-    '  float k = vK; float h = vH;\n' +
-    '  float a = k > 1.5 ? 0.17 : k > 0.5 ? 0.95 : 0.55;\n' +
-    '  float dash = 1.0;\n' +
-    '  if (k < 0.5) dash = smoothstep(0.38, 0.5, fract(vT * vL * 10.0)) * (1.0 - smoothstep(0.92, 1.0, fract(vT * vL * 10.0)));\n' +
-    '  if (k > 1.5) dash = step(0.5, fract(vT * vL * 30.0));\n' +
-    '  if (h > 0.0) a = mix(a, k > 1.5 ? 0.6 : k > 0.5 ? 1.0 : 0.85, h); else a *= 1.0 + h * 0.92;\n' +
-    '  a *= dash * cov * fogF(vDepth) * vAp;\n' +
-    '  vec3 col = k > 0.5 && k < 1.5 ? mix(vec3(0.93, 0.92, 0.9), ACC, 0.18) : vec3(0.66);\n' +
-    '  col = mix(col, ACC, clamp(h, 0.0, 1.0) * 0.92);\n' +
+    '  float cov = clamp(1.0 - abs(vX) * 0.8, 0.0, 1.0);\n' +
+    '  float k = vK, h = vH; bool live = k > 0.5 && k < 1.5;\n' +
+    '  float a = live ? 0.3 : 0.0;\n' +
+    '  if (h > 0.0) a = live ? a + 0.3 * h : (k < 0.5 ? 0.24 : 0.16) * h;\n' +
+    '  else a *= 1.0 + h * 0.85;\n' +
+    '  a *= cov * vAp;\n' +
+    '  vec3 col = mix(vec3(0.93, 0.92, 0.9), ACC, live ? 0.3 * clamp(h, 0.0, 1.0) : 0.0);\n' +
     '  o = vec4(col * a, a);\n}\n';
 
-  // pulses: instanced points riding the same curves, a short trail each
+  // pulses: a few small orange points on live links, a short trail each
   SRC.pulseV = PRE + BEZ +
     'in vec4 aP; in vec4 aS;\n' +
-    'out float vA, vK;\n' +
+    'out float vA;\n' +
     'void main(){\n' +
     '  int k = gl_InstanceID % ' + TRAIL + ';\n' +
-    '  float ph = fract(uTime * aS.x + aS.y) * 1.75;\n' +
-    '  float t = ph - float(k) * 0.016;\n' +
+    '  float ph = fract(uTime * aS.x + aS.y) * ' + PGATE + ';\n' +
+    '  float t = ph - float(k) * 0.022;\n' +
     '  float h = uE[int(aP.z + 0.5)];\n' +
-    '  if (t < 0.0 || t > 1.0 || uNS[int(aP.x + 0.5)].z < 0.99 || uNS[int(aP.y + 0.5)].z < 0.99) { gl_Position = vec4(2.0, 2.0, 2.0, 1.0); gl_PointSize = 0.0; vA = 0.0; vK = 0.0; return; }\n' +
+    '  if (t < 0.0 || t > 1.0 || uNS[int(aP.x + 0.5)].z < 0.99 || uNS[int(aP.y + 0.5)].z < 0.99) { gl_Position = vec4(2.0, 2.0, 2.0, 1.0); gl_PointSize = 0.0; vA = 0.0; return; }\n' +
     '  vec3 p = bez(uNP[int(aP.x + 0.5)], uNP[int(aP.y + 0.5)], t, aP.w);\n' +
     '  vec4 vp = uV * vec4(p, 1.0); gl_Position = uP * vp;\n' +
     '  float f = float(k) / ' + TRAIL + '.0;\n' +
-    '  gl_PointSize = aS.z * uDpr * (uD / -vp.z) * (1.0 - f * 0.65) * (1.0 + max(h, 0.0) * 0.5);\n' +
-    '  vA = (1.0 - f) * (1.0 - f) * smoothstep(0.0, 0.07, t) * (1.0 - smoothstep(0.9, 1.0, t)) * (h < 0.0 ? 1.0 + h * 0.95 : 1.0 + h * 0.6);\n' +
-    '  vK = aP.w;\n}\n';
+    '  gl_PointSize = aS.z * uDpr * (1.0 - f * 0.55);\n' +
+    '  vA = (1.0 - f) * smoothstep(0.0, 0.1, t) * (1.0 - smoothstep(0.88, 1.0, t)) * (h < 0.0 ? 1.0 + h * 0.9 : 1.0);\n}\n';
   SRC.pulseF = PREF +
-    'in float vA, vK; out vec4 o;\n' +
+    'in float vA; out vec4 o;\n' +
     'void main(){\n' +
     '  float d = length(gl_PointCoord - 0.5) * 2.0; if (d > 1.0) discard;\n' +
-    '  float g = pow(1.0 - d, 1.6);\n' +
-    '  vec3 col = vK > 1.5 ? vec3(1.0, 0.78, 0.66) : mix(ACC * 1.15, vec3(1.0, 0.9, 0.82), pow(1.0 - d, 3.0));\n' +
-    '  float a = g * vA * (vK > 1.5 ? 0.62 : 1.0);\n' +
-    '  o = vec4(col * a, 0.0);\n}\n';
+    '  float a = (1.0 - smoothstep(0.55, 1.0, d)) * vA * 0.95;\n' +
+    '  o = vec4(ACC * a, a);\n}\n';
 
-  // the core: a billboard that draws the zero, its halo and a rotating comet
+  // the core: a one-pixel ring and a small dot, nothing else
   SRC.coreV = PRE +
-    'in vec2 aC; uniform float uSz; out vec2 vC; out float vDepth;\n' +
+    'in vec2 aC; uniform float uSz; out vec2 vC;\n' +
     'void main(){\n' +
-    '  vec4 vp = uV * vec4(0.0, 0.0, 0.0, 1.0); vec4 c = uP * vp;\n' +
-    '  float px = uSz * uD / -vp.z;\n' +
-    '  gl_Position = c + vec4(aC * px / uRes * 2.0 * c.w, 0.0, 0.0);\n' +
-    '  vC = aC; vDepth = -vp.z;\n}\n';
+    '  vec4 c = uP * (uV * vec4(0.0, 0.0, 0.0, 1.0));\n' +
+    '  gl_Position = c + vec4(aC * uSz / uRes * 2.0 * c.w, 0.0, 0.0);\n' +
+    '  vC = aC;\n}\n';
   SRC.coreF = PREF +
-    'in vec2 vC; in float vDepth; uniform float uFl, uEm, uAp; out vec4 o;\n' +
+    'in vec2 vC; uniform float uSz, uRc, uEm, uAp; out vec4 o;\n' +
     'void main(){\n' +
-    '  float r = length(vC); float aa = fwidth(r) * 1.2;\n' +
-    '  float ang = atan(vC.y, vC.x);\n' +
-    '  float comet = pow(0.5 + 0.5 * cos(ang - uTime * 0.9), 6.0);\n' +
-    '  float R0 = 0.285;\n' +
-    '  float ring = 1.0 - smoothstep(0.011, 0.011 + aa + 0.004, abs(r - R0));\n' +
-    '  float ringA = ring * (0.58 + 0.42 * comet + uFl * 0.4);\n' +
-    '  float R1 = 0.43; float tk = step(0.5, fract((ang + uTime * -0.07) * 7.639));\n' +
-    '  float ticks = (1.0 - smoothstep(0.005, 0.005 + aa, abs(r - R1))) * tk * 0.42;\n' +
-    '  float R2 = 0.56; float arc = (1.0 - smoothstep(0.003, 0.003 + aa, abs(r - R2))) * step(0.0, sin(ang * 2.0 + uTime * 0.2)) * 0.25;\n' +
-    '  float glow = exp(-r * r * 9.0) * 0.34 + exp(-r * r * 2.4) * 0.13 + exp(-r * r * 40.0) * 0.3;\n' +
-    '  float nuc = 1.0 - smoothstep(0.016, 0.016 + aa, r);\n' +
-    '  float lit = 1.0 + uEm * 0.7 + uFl * 0.8;\n' +
-    '  vec3 white = vec3(0.96, 0.94, 0.9);\n' +
-    '  vec3 col = white * (ringA + ticks + arc + nuc) + ACC * glow * lit + mix(ACC, white, 0.5) * (comet * ring * 0.4);\n' +
-    '  float edge = 1.0 - smoothstep(0.78, 1.0, r);\n' +
-    '  o = vec4(col * edge * uAp, 0.0);\n}\n';
+    '  float d = length(vC) * uSz;\n' +
+    '  float ring = 1.0 - smoothstep(0.35, 1.0, abs(d - uRc));\n' +
+    '  float nuc = 1.0 - smoothstep(1.6, 2.6, d);\n' +
+    '  float ra = (0.5 + 0.4 * clamp(uEm, 0.0, 1.0)) * ring;\n' +
+    '  vec3 col = vec3(0.93, 0.92, 0.9) * ra + ACC * nuc;\n' +
+    '  o = vec4(col * uAp, max(ra, nuc) * uAp);\n}\n';
 
-  // nodes: one instanced quad per venture, mark read from the atlas
+  // nodes: one instanced quad per venture; flat monochrome mark, colour on hover
   SRC.nodeV = PRE +
     'in vec2 aC; in float aId; uniform float uSz;\n' +
-    'out vec2 vC; out float vDepth, vId, vEm, vFl, vAp;\n' +
+    'out vec2 vC; out float vId, vEm, vAp;\n' +
     'void main(){\n' +
     '  int id = int(aId + 0.5);\n' +
     '  vec4 vp = uV * vec4(uNP[id], 1.0); vec4 c = uP * vp;\n' +
     '  vec3 s = uNS[id];\n' +
-    '  float size = uSz * uD / -vp.z * (0.4 + 0.6 * s.z) * (1.0 + 0.2 * max(s.x, 0.0) + 0.1 * s.y);\n' +
-    '  gl_Position = c + vec4(aC * size * 0.5 * 1.4 / uRes * 2.0 * c.w, 0.0, 0.0);\n' +
-    '  vC = aC; vDepth = -vp.z; vId = aId; vEm = s.x; vFl = s.y; vAp = s.z;\n}\n';
+    '  float size = uSz * (1.0 + (uD / -vp.z - 1.0) * 0.5) * (0.5 + 0.5 * s.z) * (1.0 + 0.25 * max(s.x, 0.0));\n' +
+    '  gl_Position = c + vec4(aC * size * 0.5 / uRes * 2.0 * c.w, 0.0, 0.0);\n' +
+    '  vC = aC; vId = aId; vEm = s.x; vAp = s.z;\n}\n';
   SRC.nodeF = PREF +
-    'in vec2 vC; in float vDepth, vId, vEm, vFl, vAp; uniform sampler2D uAt; uniform vec2 uGrid; out vec4 o;\n' +
+    'in vec2 vC; in float vId, vEm, vAp; uniform sampler2D uAt; uniform vec2 uGrid; out vec4 o;\n' +
     'void main(){\n' +
-    '  vec2 p = vC * 1.4; float r = length(p);\n' +
-    '  float blur = clamp(abs(vDepth - uD) / uR - 0.15, 0.0, 1.4);\n' +
-    '  float aa = fwidth(r) * (1.0 + blur * 2.5);\n' +
     '  float col = floor(vId + 0.5); float row = floor(col / uGrid.x); col = col - row * uGrid.x;\n' +
-    '  vec2 uv = (vec2(col, row) + clamp(vec2(p.x, -p.y) * 0.5 + 0.5, 0.01, 0.99)) / uGrid;\n' +
-    '  vec4 t = texture(uAt, uv, blur * 2.4 - 0.2);\n' +
-    '  t *= 1.0 - smoothstep(1.0 - aa, 1.0 + aa, r);\n' +
+    '  vec2 uv = (vec2(col, row) + clamp(vec2(vC.x, -vC.y) * 0.5 + 0.5, 0.01, 0.99)) / uGrid;\n' +
+    '  vec4 t = texture(uAt, uv, -0.2);\n' +
     '  float em = vEm; float hl = clamp(em, 0.0, 1.0);\n' +
-    '  float dim = em < 0.0 ? mix(1.0, 0.2, -em) : 1.0;\n' +
-    '  float fog = fogF(vDepth); float k = dim * fog * vAp;\n' +
-    '  float lit = max(hl, vFl);\n' +
-    '  float rw = 0.014 + blur * 0.04;\n' +
-    '  float ring = 1.0 - smoothstep(rw, rw + aa + 0.01, abs(r - 1.1));\n' +
-    '  float ringA = ring * (0.16 + 0.84 * max(hl, vFl * 0.6)) * k;\n' +
-    '  vec3 ringC = mix(vec3(0.93, 0.92, 0.9), ACC, lit);\n' +
-    '  float glow = 0.3 * lit * exp(-max(r - 1.0, 0.0) * 4.5) * (1.0 - smoothstep(1.2, 1.4, r)) * k;\n' +
-    '  vec3 rgb = t.rgb * k * (1.0 + 0.25 * hl) + ringC * ringA + ACC * glow;\n' +
-    '  float a = clamp(t.a * k + ringA + glow * 0.4, 0.0, 1.0);\n' +
-    '  o = vec4(rgb, a);\n}\n';
+    '  float dim = em < 0.0 ? mix(1.0, 0.22, -em) : 1.0;\n' +
+    '  float al = max(t.a, 1e-3);\n' +
+    '  vec3 rgb = t.rgb / al;\n' +
+    '  float lum = dot(rgb, vec3(0.299, 0.587, 0.114));\n' +
+    '  vec3 mono = vec3(0.93, 0.92, 0.9) * mix(0.34, 1.0, clamp(lum * 1.6, 0.0, 1.0)) * 0.72;\n' +
+    '  vec3 c = mix(mono, rgb, hl);\n' +
+    '  float k = dim * vAp;\n' +
+    '  o = vec4(c * t.a * k, t.a * k);\n}\n';
 
-  // labels: names from a second atlas, under the nodes
+  // labels: a name under a neighbouring node while a venture is hovered
   SRC.labV = PRE +
     'in vec2 aC; in float aId; uniform float uSz; uniform vec2 uLab; uniform vec2 uLGrid;\n' +
-    'out vec2 vUV; out float vA, vEm;\n' +
+    'out vec2 vUV; out float vA;\n' +
     'void main(){\n' +
     '  int id = int(aId + 0.5);\n' +
     '  vec4 vp = uV * vec4(uNP[id], 1.0); vec4 c = uP * vp; vec3 s = uNS[id];\n' +
-    '  float rad = uSz * uD / -vp.z * (0.4 + 0.6 * s.z) * (1.0 + 0.2 * max(s.x, 0.0)) * 0.5;\n' +
-    '  vec2 px = aC * uLab * 0.5 + vec2(0.0, -(rad * 1.22 + uLab.y * 0.5 + 6.0));\n' +
+    '  float rad = uSz * (1.0 + (uD / -vp.z - 1.0) * 0.5) * (0.5 + 0.5 * s.z) * 0.5;\n' +
+    '  vec2 px = aC * uLab * 0.5 + vec2(0.0, -(rad + uLab.y * 0.5 + 7.0));\n' +
     '  gl_Position = c + vec4(px / uRes * 2.0 * c.w, 0.0, 0.0);\n' +
-    '  float front = 1.0 - smoothstep(uD - uR * 0.9, uD + uR * 0.9, -vp.z);\n' +
-    '  float a = fogF(-vp.z) * s.z * (0.2 + 0.55 * front * front) * step(17.0, uLab.y);\n' +
     '  float em = s.x;\n' +
-    '  a = em >= 0.0 ? mix(a, 1.0, clamp(em * 1.3, 0.0, 1.0)) : a * (1.0 + em);\n' +
-    '  if (em > 0.95) a = 0.0;\n' +
+    '  vA = (em > 0.3 && em < 0.95) ? clamp((em - 0.3) * 2.0, 0.0, 1.0) * s.z : 0.0;\n' +
     '  float col = aId, row = floor(col / uLGrid.x); col -= row * uLGrid.x;\n' +
-    '  vUV = (vec2(col, row) + vec2(aC.x * 0.5 + 0.5, 0.5 - aC.y * 0.5)) / uLGrid;\n' +
-    '  vA = a * (1.0 - 0.0); vEm = em;\n}\n';
+    '  vUV = (vec2(col, row) + vec2(aC.x * 0.5 + 0.5, 0.5 - aC.y * 0.5)) / uLGrid;\n}\n';
   SRC.labF = PREF +
-    'in vec2 vUV; in float vA, vEm; uniform sampler2D uAt; out vec4 o;\n' +
+    'in vec2 vUV; in float vA; uniform sampler2D uAt; out vec4 o;\n' +
     'void main(){\n' +
-    '  float t = texture(uAt, vUV).a;\n' +
-    '  vec3 c = mix(vec3(0.96, 0.95, 0.92), vec3(1.0, 0.72, 0.62), clamp(vEm, 0.0, 1.0) * 0.5);\n' +
-    '  float a = t * vA; o = vec4(c * a, a);\n}\n';
-
-  // dust: a faint shell of points for depth
-  SRC.dustV = PRE +
-    'in vec4 aD; out float vA;\n' +
-    'void main(){\n' +
-    '  vec4 vp = uV * vec4(aD.xyz, 1.0); gl_Position = uP * vp;\n' +
-    '  float tw = 0.65 + 0.35 * sin(uTime * (0.4 + aD.w) + aD.w * 40.0);\n' +
-    '  gl_PointSize = (0.8 + aD.w * 1.3) * uDpr;\n' +
-    '  vA = fogF(-vp.z) * tw * (0.1 + 0.32 * aD.w) * uNS[' + MAXN + '].z;\n}\n';
-  SRC.dustF = PREF +
-    'in float vA; out vec4 o;\n' +
-    'void main(){ float d = length(gl_PointCoord - 0.5) * 2.0; float a = vA * (1.0 - smoothstep(0.5, 1.0, d)); o = vec4(vec3(0.93, 0.92, 0.9) * a, a); }\n';
+    '  float a = texture(uAt, vUV).a * vA * 0.85; o = vec4(vec3(0.93, 0.92, 0.9) * a, a);\n}\n';
 
   /* ------------------------------------------------------------- bring-up */
 
@@ -379,12 +337,6 @@
     var c = cv.getContext('2d');
     var jobs = ventures.map(function (v, i) {
       var cx = (i % COLS) * CELL + CELL / 2, cy = Math.floor(i / COLS) * CELL + CELL / 2;
-      // the disc the mark sits on
-      var R = CELL * 0.465;
-      var g = c.createRadialGradient(cx - R * 0.3, cy - R * 0.4, R * 0.1, cx, cy, R);
-      g.addColorStop(0, '#17171a'); g.addColorStop(1, '#0c0c0e');
-      c.beginPath(); c.arc(cx, cy, R, 0, 7); c.fillStyle = g; c.fill();
-      c.lineWidth = 1.5; c.strokeStyle = 'rgba(237,235,230,.16)'; c.stroke();
       if (!v.logo) return Promise.resolve();
       var url = '/assets/' + v.logo;
       return fetch(url).then(function (r) { return r.ok ? r.text() : Promise.reject(); }).then(function (txt) {
@@ -401,9 +353,15 @@
         });
       }).then(function (img) {
         var lw = v.logoW || 120, lh = v.logoH || 120;
-        var box = CELL * 0.56, s = Math.min(box / lw, box / lh);
+        var box = CELL * 0.84, s = Math.min(box / lw, box / lh);
         var w = lw * s, h = lh * s;
         c.drawImage(img, cx - w / 2, cy - h / 2, w, h);
+        // some marks are drawn in thin, translucent strokes; as a flat
+        // monochrome mark they would vanish, so thicken the faint ones
+        var x0 = Math.round(cx - CELL / 2), y0 = Math.round(cy - CELL / 2);
+        var px = c.getImageData(x0, y0, CELL, CELL).data, sum = 0, n = 0, q;
+        for (q = 3; q < px.length; q += 4) if (px[q] > 6) { sum += px[q]; n++; }
+        if (n && sum / n < 110) for (q = 0; q < 3; q++) c.drawImage(img, cx - w / 2, cy - h / 2, w, h);
       }).catch(function () { /* the disc alone is still a node */ });
     });
     return Promise.all(jobs).then(function () { return cv; });
@@ -453,7 +411,6 @@
     progs.core = compile(SRC.coreV, SRC.coreF);
     progs.node = compile(SRC.nodeV, SRC.nodeF);
     progs.lab = compile(SRC.labV, SRC.labF);
-    progs.dust = compile(SRC.dustV, SRC.dustF);
 
     // edge ribbons: (SEG+1) * 2 vertices per edge, indexed triangles
     var nv = (SEG + 1) * 2, ev = new Float32Array(ALL.length * nv * 6), ei = new Uint16Array(ALL.length * SEG * 6);
@@ -477,19 +434,17 @@
 
     // pulses: live links carry the signals; the factory feeds every venture
     var rnd = mulberry(7);
-    var perLive = phone ? 1 : 2;
-    edges.forEach(function (e, k) {
-      if (!e.live) return;
+    // at most a couple of pulses are on screen: each live link carries one,
+    // slowly, and the gate keeps most of them off the link at any moment
+    var liveList = [];
+    edges.forEach(function (e, k) { if (e.live) liveList.push(k); });
+    liveList.forEach(function (k, n) {
+      if (phone && n % 2) return;
+      var e = edges[k];
       var u = e.uses.filter(function (x) { return x.live; })[0];
       var out = OUTBOUND[u.role];
       var from = out ? u.user : u.provider, to = out ? u.provider : u.user;
-      for (var n = 0; n < perLive; n++) pulses.push({ a: from, b: to, edge: k, kind: 1, speed: 0.15 + rnd() * 0.1, off: (n + rnd() * 0.5) / perLive, prev: 0, size: 9.5 });
-    });
-    var spokeEvery = phone ? 3 : 1;
-    ventures.forEach(function (v, i) {
-      if (i % spokeEvery) return;
-      var inward = rnd() < 0.3;
-      pulses.push({ a: inward ? i : CORE, b: inward ? CORE : i, edge: edges.length + i, kind: 2, speed: 0.1 + rnd() * 0.1, off: rnd(), prev: 0, size: 6.5 });
+      pulses.push({ a: from, b: to, edge: k, kind: 1, speed: 0.055 + rnd() * 0.02, off: n / liveList.length + rnd() * 0.05, prev: 0, size: 4.5 });
     });
     pulseData = new Float32Array(pulses.length * 8);
     pulses.forEach(function (p, i) {
@@ -512,15 +467,6 @@
     gl.bindBuffer(gl.ARRAY_BUFFER, quad); attr(progs.lab, 'aC', 2, 8, 0);
     gl.bindBuffer(gl.ARRAY_BUFFER, bufs.ids); attr(progs.lab, 'aId', 1, 4, 0, 1);
 
-    // dust
-    var nd = phone ? 90 : 190, dd = new Float32Array(nd * 4);
-    for (var i = 0; i < nd; i++) {
-      var th = rnd() * 6.2832, ph = Math.acos(2 * rnd() - 1), rr = 1.25 + Math.pow(rnd(), 0.7) * 2.1;
-      dd.set([rr * Math.sin(ph) * Math.cos(th), rr * Math.cos(ph) * 0.8, rr * Math.sin(ph) * Math.sin(th), rnd()], i * 4);
-    }
-    vaos.dust = gl.createVertexArray(); gl.bindVertexArray(vaos.dust);
-    bufs.dust = buf(gl.ARRAY_BUFFER, dd); attr(progs.dust, 'aD', 4, 16, 0);
-    vaos.dustCount = nd;
     gl.bindVertexArray(null);
 
     gl.activeTexture(gl.TEXTURE0); tex.marks = upload(markCanvas, true);
@@ -603,7 +549,7 @@
       Rpx = clamp((bot - top) / 2 / 1.1, 80, W * 0.37);
       cyPx = (top + bot) / 2;
     }
-    nodePx = Rpx * (wide ? 0.2 : 0.215);
+    nodePx = Math.max(Rpx * (wide ? 0.135 : 0.19), 24);
     dirty = true;
     return true;
   }
@@ -665,8 +611,8 @@
 
     if (!reduced) {
       st.intro = Math.min(1, st.intro + dt / 2.6);
-      st.yaw += dt * 0.07 * st.rot;
-      st.rot += ((active >= 0 ? 0.12 : 1) - st.rot) * (1 - Math.exp(-dt * 3));
+      st.yaw += dt * 0.016 * st.rot;
+      st.rot += ((active >= 0 ? 0.08 : 1) - st.rot) * (1 - Math.exp(-dt * 3));
     } else st.intro = 1;
     var kp = reduced ? 1 : 1 - Math.exp(-dt * 4);
     st.px += (st.tx - st.px) * kp; st.py += (st.ty - st.py) * kp;
@@ -690,27 +636,16 @@
     // node positions: layout, a slow drift, and the intro bloom out of the core
     for (i = 0; i < N; i++) {
       var ap = ease3(st.intro * 1.7 - (i / N) * 0.7);
-      var b = base[i], dr = reduced ? 0 : 0.028;
+      var b = base[i], dr = reduced ? 0 : 0.01;
       var s = 0.12 + 0.88 * ap;
-      NP[i * 3] = (b[0] + Math.sin(t * 0.43 + i * 1.7) * dr) * s;
-      NP[i * 3 + 1] = (b[1] + Math.sin(t * 0.37 + i * 2.3) * dr) * s;
-      NP[i * 3 + 2] = (b[2] + Math.sin(t * 0.31 + i * 0.9) * dr) * s;
+      NP[i * 3] = (b[0] + Math.sin(t * 0.21 + i * 1.7) * dr) * s;
+      NP[i * 3 + 1] = (b[1] + Math.sin(t * 0.17 + i * 2.3) * dr) * s;
+      NP[i * 3 + 2] = (b[2] + Math.sin(t * 0.15 + i * 0.9) * dr) * s;
       NS[i * 3] = emC[i]; NS[i * 3 + 1] = flash[i]; NS[i * 3 + 2] = ap;
     }
     NP[CORE * 3] = NP[CORE * 3 + 1] = NP[CORE * 3 + 2] = 0;
     NS[CORE * 3] = emC[CORE]; NS[CORE * 3 + 1] = st.coreFlash; NS[CORE * 3 + 2] = ease3(st.intro * 3);
     for (k = 0; k < MAXE; k++) EM[k] = edC[k];
-
-    // pulse arrivals light the node they reach
-    if (!reduced) {
-      for (i = 0; i < pulses.length; i++) {
-        var p = pulses[i], x = t * p.speed + p.off, f = (x - Math.floor(x)) * 1.75;
-        if (p.prev < 1 && f >= 1 && NS[p.b * 3 + 2] > 0.99) {
-          if (p.b === CORE) st.coreFlash = Math.min(1, st.coreFlash + 0.5); else flash[p.b] = Math.min(1, flash[p.b] + 0.9);
-        }
-        p.prev = f;
-      }
-    }
 
     // sort back to front for the painter's pass, and keep screen positions for picking
     order.length = 0;
@@ -746,10 +681,6 @@
     };
     gl.blendFunc(gl.ONE, gl.ONE_MINUS_SRC_ALPHA);
 
-    glob(progs.dust);
-    gl.bindVertexArray(vaos.dust);
-    gl.drawArrays(gl.POINTS, 0, vaos.dustCount);
-
     glob(progs.edge);
     gl.bindVertexArray(vaos.edge);
     gl.drawElements(gl.TRIANGLES, vaos.edgeCount, gl.UNSIGNED_SHORT, 0);
@@ -760,8 +691,9 @@
     gl.drawArraysInstanced(gl.POINTS, 0, 1, pulses.length * TRAIL);
 
     glob(progs.core);
-    gl.uniform1f(U(progs.core, 'uSz'), Rpx * 0.5);
-    gl.uniform1f(U(progs.core, 'uFl'), st.coreFlash);
+    var rc = clamp(Rpx * 0.07, 7, 20);
+    gl.uniform1f(U(progs.core, 'uSz'), rc + 6);
+    gl.uniform1f(U(progs.core, 'uRc'), rc);
     gl.uniform1f(U(progs.core, 'uEm'), Math.max(emC[CORE], 0));
     gl.uniform1f(U(progs.core, 'uAp'), NS[CORE * 3 + 2]);
     gl.bindVertexArray(vaos.core);
@@ -780,7 +712,7 @@
 
     glob(progs.lab);
     gl.uniform1f(U(progs.lab, 'uSz'), nodePx);
-    gl.uniform2f(U(progs.lab, 'uLab'), phone ? 104 : 124, phone ? 15.5 : 19);
+    gl.uniform2f(U(progs.lab, 'uLab'), phone ? 100 : 118, phone ? 15 : 18);
     gl.uniform2f(U(progs.lab, 'uLGrid'), LCOLS, Math.ceil((N + 1) / LCOLS));
     gl.uniform1i(U(progs.lab, 'uAt'), 1);
     gl.bindVertexArray(vaos.lab);
@@ -795,7 +727,7 @@
     for (i = 0; i < N; i++) {
       var s = scr[i];
       if (!s) continue;
-      var rad = Math.max(nodePx * camD / s.z * 0.55 * (0.4 + 0.6 * NS[i * 3 + 2]), touch ? 24 : 14);
+      var rad = Math.max(nodePx * 0.62 * (0.5 + 0.5 * NS[i * 3 + 2]), touch ? 24 : 15);
       var dx = x - s.x, dy = y - s.y;
       // when marks overlap under the pointer, the nearer one wins
       if (dx * dx + dy * dy < rad * rad && s.z < bz) { best = i; bz = s.z; }
@@ -889,7 +821,7 @@
     var s = scr[tipFor];
     if (!s) return;
     var tw = tip.offsetWidth || 270, th = tip.offsetHeight || 160;
-    var rad = tipFor === CORE ? Rpx * 0.1 : nodePx * camD / s.z * 0.7;
+    var rad = tipFor === CORE ? Rpx * 0.1 : nodePx * 0.7;
     var x = s.x + rad + 14, y = s.y - 26;
     if (x + tw > W - 12) x = s.x - rad - 14 - tw;
     if (x < 12) x = Math.max(12, Math.min(W - tw - 12, s.x - tw / 2));
@@ -905,7 +837,7 @@
     legend.setAttribute('aria-hidden', 'true');
     var planned = edges.length - liveCount;
     legend.innerHTML = '<span class="k"><i class="l"></i>LIVE LINK · ' + liveCount + '</span>' +
-      '<span class="k"><i class="p"></i>PLANNED · ' + planned + '</span>' +
+      '<span class="k"><i class="p"></i>PLANNED · ' + planned + ' ON HOVER</span>' +
       '<span class="h">' + (window.matchMedia('(hover: none)').matches ? 'TAP A VENTURE' : 'HOVER A VENTURE') + '</span>';
     hero.appendChild(legend);
   }
