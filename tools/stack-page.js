@@ -80,7 +80,7 @@ module.exports = function stackPage(ctx) {
     ['What do live and planned mean?', 'Live means in use today, and checked. Planned means decided and tracked, not in use yet. Most links between ventures are still planned, and each venture’s page says which are live.']
   ];
 
-  const hero = 'Every new venture is built on the same set of products, so it launches with email, payments, deploys, support, agents and more on day one.';
+  const hero = 'Every new venture is built on the same set of products, so it launches with email, deploys, support, agents, point of sale and more on day one.';
   const desc = 'The Factory Zero stack: the products every new venture is built on, what each one does, and which ventures use it.';
   const title = 'The stack · Factory Zero';
   const url = `${SITE}/stack/`;
