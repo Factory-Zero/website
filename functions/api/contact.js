@@ -4,14 +4,21 @@
  * Security posture:
  *  - The recipient is fixed server-side. It is never read from the request, so
  *    this endpoint cannot be used as an open relay.
- *  - RESEND_API_KEY and TURNSTILE_SECRET are Cloudflare Pages secrets. Neither
- *    is ever sent to the browser.
+ *  - OWLPOST_API_KEY and TURNSTILE_SECRET are Cloudflare Pages secrets. Neither
+ *    is ever sent to the browser. Mail goes through Owlpost's Resend-compatible
+ *    POST /v1/emails (OWLPOST_BASE_URL overrides https://api.owlpost.to) on
+ *    the transactional stream. Without OWLPOST_API_KEY this answers 503
+ *    not_configured and the form shows the direct address.
  *  - Turnstile is verified server-side before anything is sent.
  *  - Every value that could reach a mail header is stripped of CR/LF, so a
  *    submitter cannot inject headers.
  *  - `from` is always our own verified domain. The submitter's address goes in
  *    reply_to only; spoofing their domain would fail DMARC.
  *  - Errors returned to the client are generic. Detail is logged server-side.
+ *  - The send carries an Idempotency-Key derived from the submission, so a
+ *    retried or double-submitted request is mailed once. Owlpost answers a
+ *    reused key whose body differs (another country) with 409
+ *    idempotency-conflict, which means it was already sent: that is success.
  */
 
 const LIMITS = { name: 200, email: 254, message: 5000, body: 20000 };
@@ -37,6 +44,17 @@ const oneLine = (v, max) =>
   String(v ?? '').replace(/[\r\n\0]+/g, ' ').trim().slice(0, max);
 
 const EMAIL_RE = /^[^@\s]+@[^@\s.]+\.[^@\s]+$/;
+const OWLPOST_DEFAULT = 'https://api.owlpost.to';
+
+const sha256Hex = async (s) => {
+  const d = await crypto.subtle.digest('SHA-256', new TextEncoder().encode(s));
+  return [...new Uint8Array(d)].map((b) => b.toString(16).padStart(2, '0')).join('');
+};
+
+// 409 with this problem type means the key was already used: the request was
+// mailed before. Anything else non-2xx is a real failure.
+const isIdempotencyReplay = (status, detail) =>
+  status === 409 && /idempotency-conflict/.test(detail);
 
 export async function onRequest(context) {
   const { request, env } = context;
@@ -101,7 +119,7 @@ export async function onRequest(context) {
     }
   }
 
-  if (!env.RESEND_API_KEY) return json(503, { error: 'not_configured' });
+  if (!env.OWLPOST_API_KEY) return json(503, { error: 'not_configured' });
 
   const to = env.CONTACT_TO || 'contact@factory0.ventures';
   const from = env.CONTACT_FROM || 'Factory Zero <noreply@send.factory0.ventures>';
@@ -118,28 +136,39 @@ export async function onRequest(context) {
     `Sent by the factory0.ventures contact form.`,
   ];
 
+  const base = (env.OWLPOST_BASE_URL || OWLPOST_DEFAULT).replace(/\/+$/, '');
+  const key = `factory0-contact-${await sha256Hex(
+    JSON.stringify(['contact', channel, name, email.toLowerCase(), message])
+  )}`;
+
   try {
-    const res = await fetch('https://api.resend.com/emails', {
+    const res = await fetch(`${base}/v1/emails`, {
       method: 'POST',
       headers: {
-        authorization: `Bearer ${env.RESEND_API_KEY}`,
+        authorization: `Bearer ${env.OWLPOST_API_KEY}`,
         'content-type': 'application/json',
+        'idempotency-key': key,
       },
       body: JSON.stringify({
         from,
         to: [to],            // fixed server-side, never from the request
         reply_to: email,
         subject: `[${channel}] ${name || email}`,
+        stream: 'transactional',
+        tags: [{ name: 'form', value: 'contact' }],
         text: lines.join('\n'),
       }),
     });
 
     if (!res.ok) {
-      console.log('resend failed', res.status, await res.text());
-      return json(502, { error: 'send_failed' });
+      const detail = await res.text();
+      if (!isIdempotencyReplay(res.status, detail)) {
+        console.log('owlpost failed', res.status, detail);
+        return json(502, { error: 'send_failed' });
+      }
     }
   } catch (e) {
-    console.log('resend unreachable', e.message);
+    console.log('owlpost unreachable', e.message);
     return json(502, { error: 'send_failed' });
   }
 

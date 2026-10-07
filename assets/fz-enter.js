@@ -1,6 +1,6 @@
 /* Access request form.
    Posts JSON to the /api/contact Pages Function, which verifies Turnstile and
-   sends via Resend. No key or recipient is exposed here: the browser only ever
+   sends via Owlpost. No key or recipient is exposed here: the browser only ever
    sends the form fields and the Turnstile token. */
 
 (function () {

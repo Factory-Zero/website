@@ -262,14 +262,17 @@ preview runtime:
 ### The access-request form
 
 `/enter/` posts JSON to `functions/api/contact.js`, a Cloudflare Pages Function
-that verifies Turnstile and sends the mail through Resend.
+that verifies Turnstile and sends the mail through Owlpost (`POST
+https://api.owlpost.to/v1/emails`, Factory Zero's own email API, FZ-013) on the
+transactional stream, with an `Idempotency-Key` derived from the submission so
+a retry or double submit is mailed once.
 
 **Security properties**, since this is a public unauthenticated endpoint:
 
 | Concern | How it is handled |
 | :--- | :--- |
 | Open relay | The recipient is fixed server-side. It is never read from the request. |
-| Secret exposure | `RESEND_API_KEY` and `TURNSTILE_SECRET` are Pages secrets (encrypted). Only the public Turnstile sitekey appears in the HTML. |
+| Secret exposure | `OWLPOST_API_KEY` and `TURNSTILE_SECRET` are Pages secrets (encrypted). Only the public Turnstile sitekey appears in the HTML. |
 | Bots | Cloudflare Turnstile, verified server-side, plus an off-screen honeypot field that is silently accepted so bots learn nothing. |
 | Flooding | A zone rate-limit rule: 3 POSTs per 10s per IP. |
 | Header injection | Every value that could reach a mail header is stripped of CR, LF and NUL. |
@@ -278,24 +281,25 @@ that verifies Turnstile and sends the mail through Resend.
 | Oversized input | Body capped at 20KB, message at 5,000 chars. |
 | Information leak | Client errors are generic. Detail is logged server-side only. |
 
-If Resend is unreachable or unconfigured the form falls back to showing
+If Owlpost is unreachable or unconfigured the form falls back to showing
 `contact@factory0.ventures` rather than pretending the message was sent.
 
 **Setup that is not in this repo** (do not commit any of it):
 
 ```sh
-npx wrangler pages secret put RESEND_API_KEY   --project-name factory-zero
+npx wrangler pages secret put OWLPOST_API_KEY  --project-name factory-zero
 npx wrangler pages secret put TURNSTILE_SECRET --project-name factory-zero
 ```
 
 Optional overrides, as plain Pages env vars: `CONTACT_TO` (default
-`contact@factory0.ventures`) and `CONTACT_FROM` (default
-`noreply@send.factory0.ventures`).
+`contact@factory0.ventures`), `CONTACT_FROM` (default
+`noreply@send.factory0.ventures`) and `OWLPOST_BASE_URL` (default
+`https://api.owlpost.to`).
 
-**The sending domain must be verified in Resend**, and this is the part with a
+**The sending domain must be verified in Owlpost**, and this is the part with a
 trap. Verify the **subdomain** `send.factory0.ventures`, not the apex.
-Verifying the apex makes Resend ask for MX records on `factory0.ventures`,
-which would displace Cloudflare Email Routing and **break inbound mail to
+Verifying the apex puts sending records on `factory0.ventures` itself, and an
+MX there would displace Cloudflare Email Routing and **break inbound mail to
 contact@factory0.ventures**. Using a subdomain keeps the two entirely separate.
 
 ### Venture data
