@@ -12,6 +12,15 @@ window.FZ_DATA = {
     // that takes, and how it grows. None of it carries a figure, and the
     // growth line names what will be counted rather than a count. A record
     // with `target: null` and no `aims` shows a dash in each of those rows.
+    // `stack` is true for a venture that is part of the Factory Zero stack:
+    // the ventures other ventures are built on, so each one adds to the shared
+    // foundation. It is derived from `uses` (any venture that another venture
+    // lists there) and reviewed by hand; tools/sync-ventures.js stops the run
+    // if a venture used by another is not marked, so the label can never
+    // drift from the links. The rest of the ventures inherit the foundation
+    // and do not add to it. PosPlugin and Ledgers are marked by hand: no venture lists
+    // them in `uses` yet, but PosPlugin is an integration layer the others are meant
+    // to use, and the registry intro names Ledgers as the part that keeps the books.
     // `github` lists public repositories only; private ones are not linked.
     //
     // `uses` is what the venture is built with: sister ventures (by id) and
@@ -23,7 +32,7 @@ window.FZ_DATA = {
     // tools/sync-ventures.js renders it on each venture page and writes
     // /stack.json, which the venture sites vendor into their footers.
     // The evidence behind each entry is in tools/STACK-SOURCES.md.
-    { id: 'FZ-001', name: 'Kontinuum', status: 'BUILDING', stage: 'PROTOTYPE', launched: null, category: 'MUSIC', autonomy: null, site: 'kontinuum.audio', logo: 'kontinuum-animated.svg', logoW: 360, logoH: 264,
+    { id: 'FZ-001', name: 'Kontinuum', status: 'BUILDING', stage: 'PROTOTYPE', launched: null, category: 'MUSIC', stack: false, autonomy: null, site: 'kontinuum.audio', logo: 'kontinuum-animated.svg', logoW: 360, logoH: 264,
       target: 4,
       uses: [
         { id: 'FZ-012', role: 'deploys', status: 'planned', note: 'Every venture site and Worker deployed from the Keep Shipping console.' },
@@ -44,7 +53,7 @@ window.FZ_DATA = {
         now: "Browser demo works today. The app is still being built; there is no download yet."
       },
       desc: 'An AI composer performing on a deterministic real-time engine. Music written and performed continuously, personalised to the listener, and playable offline. Not a streaming app and not a DAW: a living instrument.' },
-    { id: 'FZ-002', name: 'Undercover Rockstars', status: 'BUILDING', stage: 'LAUNCH', launched: null, category: 'APPAREL', autonomy: null, site: 'undercoverrockstars.com', logo: 'undercover-rockstars-animated.svg', logoW: 100, logoH: 100,
+    { id: 'FZ-002', name: 'Undercover Rockstars', status: 'BUILDING', stage: 'LAUNCH', launched: null, category: 'APPAREL', stack: false, autonomy: null, site: 'undercoverrockstars.com', logo: 'undercover-rockstars-animated.svg', logoW: 100, logoH: 100,
       target: 3,
       uses: [
         { id: 'FZ-012', role: 'deploys', status: 'planned', note: 'Every venture site and Worker deployed from the Keep Shipping console.' },
@@ -66,7 +75,7 @@ window.FZ_DATA = {
         now: "The site is live. Nothing can be bought yet."
       },
       desc: 'A clothing house built on one idea: every piece comes as a matched pair. One pattern is cut twice, once for the day and once for the night, so the fit never changes when the room does. Drop 01 is eight pairs, sixteen garments, cut in Bali.' },
-    { id: 'FZ-003', name: 'Yoginini', status: 'BUILDING', stage: 'VALIDATION', launched: null, category: 'WELLNESS', autonomy: null, site: 'yoginini.us', logo: 'yoginini-animated.svg', logoW: 120, logoH: 120,
+    { id: 'FZ-003', name: 'Yoginini', status: 'BUILDING', stage: 'VALIDATION', launched: null, category: 'WELLNESS', stack: false, autonomy: null, site: 'yoginini.us', logo: 'yoginini-animated.svg', logoW: 120, logoH: 120,
       target: 3,
       uses: [
         { id: 'FZ-004', role: 'framework', status: 'planned', note: 'The bookings backend is being written to run on the Cratefield harness; it is not deployed.' },
@@ -90,7 +99,7 @@ window.FZ_DATA = {
         now: "Being built. The site and the waitlist are open; the app is not out yet."
       },
       desc: 'A yoga teacher that can see you. A pose model running on the phone tracks 33 body landmarks and speaks one calm correction at a time, and no video ever leaves the device. Real teachers are bookable by the hour alongside it. The site and the waitlist are open; the app is not built.' },
-    { id: 'FZ-004', name: 'Cratefield', status: 'BUILDING', stage: 'VALIDATION', launched: null, category: 'INFRASTRUCTURE', autonomy: null, site: 'cratefield.com', logo: 'cratefield-animated.svg', logoW: 120, logoH: 120,
+    { id: 'FZ-004', name: 'Cratefield', status: 'BUILDING', stage: 'VALIDATION', launched: null, category: 'INFRASTRUCTURE', stack: true, autonomy: null, site: 'cratefield.com', logo: 'cratefield-animated.svg', logoW: 120, logoH: 120,
       target: 4,
       uses: [
         { id: 'resend', role: 'email', status: 'live', note: 'Waitlist confirmation mail (double opt-in) from send.cratefield.com.' },
@@ -116,7 +125,7 @@ window.FZ_DATA = {
         now: "The open-source core works today. The managed service is not built yet."
       },
       desc: 'A backend you compile rather than a platform you configure. The Rust harness underneath is open source, MIT and running today; the managed control plane, which would provision the worker, the database and the secrets inside your own Cloudflare account and then operate them, is designed and not yet written. The site and the early-access list are open.' },
-    { id: 'FZ-005', name: 'VibeCaddie', status: 'BUILDING', stage: 'VALIDATION', launched: null, category: 'DEVTOOLS', autonomy: null, site: 'vibecaddie.com', logo: 'vibecaddie-animated.svg', logoW: 120, logoH: 120,
+    { id: 'FZ-005', name: 'VibeCaddie', status: 'BUILDING', stage: 'VALIDATION', launched: null, category: 'DEVTOOLS', stack: false, autonomy: null, site: 'vibecaddie.com', logo: 'vibecaddie-animated.svg', logoW: 120, logoH: 120,
       target: 5,
       uses: [
         { id: 'FZ-012', role: 'deploys', status: 'planned', note: 'Every venture site and Worker deployed from the Keep Shipping console.' },
@@ -138,7 +147,7 @@ window.FZ_DATA = {
         now: "Being built. The site and early-access list are open; the GitHub app is not out yet."
       },
       desc: 'A code review agent for the code you did not fully write. It reads a repository, works out what kind of codebase it is, loads only the review skills that apply to it, and returns findings ranked by severity with the file, the line, why it matters and a suggested fix. Prepaid credits rather than a subscription, so the price of a run is known before it starts. The site and the early-access list are open; the GitHub app is not built.' },
-    { id: 'FZ-006', name: 'Colonizer', status: 'BUILDING', stage: 'PROTOTYPE', launched: null, category: 'DEVTOOLS', autonomy: null, site: 'colonizer.dev', logo: 'colonizer-animated.svg', logoW: 120, logoH: 120,
+    { id: 'FZ-006', name: 'Colonizer', status: 'BUILDING', stage: 'PROTOTYPE', launched: null, category: 'DEVTOOLS', stack: true, autonomy: null, site: 'colonizer.dev', logo: 'colonizer-animated.svg', logoW: 120, logoH: 120,
       target: 4,
       uses: [
         { id: 'FZ-004', role: 'framework', status: 'live', note: 'The fleet waitlist Worker at api.colonizer.dev runs on the Cratefield harness, and the app uses its telemetry module.' },
@@ -166,7 +175,7 @@ window.FZ_DATA = {
         now: "Works today on Linux, with Claude Code as the agent."
       },
       desc: 'A local-first app that turns GitHub issues into pull requests. Each task gets a coding agent, Claude Code today, inside its own disposable KVM microVM with a fresh git worktree, linked to the host over a private mesh that never touches your own tailnet. The web UI shows the chat, a terminal in the VM and the agent\u2019s questions as multiple-choice cards. The host, not the VM, commits, pushes and opens the pull request, so the GitHub and Claude tokens never enter it. The Rust host, the in-VM daemon and the React UI are open source under MIT and run locally on Linux x86_64 with KVM. There is no hosted service; more coding agents, a model router, remote outposts and GitLab, Linear and Jira sources are planned, not built.' },
-    { id: 'FZ-007', name: 'FindsYou.work', status: 'BUILDING', stage: 'VALIDATION', launched: null, category: 'CAREERS', autonomy: null, site: 'findsyou.work', logo: 'findsyou-animated.svg', logoW: 120, logoH: 120,
+    { id: 'FZ-007', name: 'FindsYou.work', status: 'BUILDING', stage: 'VALIDATION', launched: null, category: 'CAREERS', stack: false, autonomy: null, site: 'findsyou.work', logo: 'findsyou-animated.svg', logoW: 120, logoH: 120,
       target: 4,
       uses: [
         { id: 'FZ-004', role: 'framework', status: 'live', note: 'The waitlist Worker at api.findsyou.work runs on the Cratefield harness waitlist module.' },
@@ -192,7 +201,7 @@ window.FZ_DATA = {
         now: "Being built. The site and waitlist are open; the search is not running yet."
       },
       desc: 'A job search that runs without the person doing the searching. It reads the boards continuously, throws out the listings they could never actually take (wrong residency, wrong hours, full-time only, no sponsorship, reposted ghost jobs) and hands back the few that survive with a CV and cover letter already written for each. The value is in what it removes: most of a week\u2019s listings, with the reason each one was discarded shown rather than hidden. The site and the waitlist are open; the scan, the filter and the documents are designed and not yet written.' },
-    { id: 'FZ-008', name: 'SupportGenius', status: 'BUILDING', stage: 'VALIDATION', launched: null, category: 'SUPPORT', autonomy: null, site: 'supportgeni.us', logo: 'supportgenius-animated.svg', logoW: 120, logoH: 120,
+    { id: 'FZ-008', name: 'SupportGenius', status: 'BUILDING', stage: 'VALIDATION', launched: null, category: 'SUPPORT', stack: true, autonomy: null, site: 'supportgeni.us', logo: 'supportgenius-animated.svg', logoW: 120, logoH: 120,
       target: 4,
       uses: [
         { id: 'FZ-004', role: 'framework', status: 'planned', note: 'The ticketing and routing core is being written on the Cratefield harness; it is not deployed.' },
@@ -217,7 +226,7 @@ window.FZ_DATA = {
         now: "Being built. Only the site exists; the waitlist opens soon."
       },
       desc: 'A customer-support agent that answers from a company\u2019s own docs, tickets and files, by text or voice, through a web widget, an iOS or Android SDK, a phone line, an API or an MCP server. What it cannot answer becomes a ticket for support, a lead for sales or a GitHub issue with reproduction steps for engineering: a drafting model writes it, an independent judge model checks it before anything is filed, and the customer hears back as it moves until it is closed. The ticketing and routing core is planned in Rust, open source under MIT. Only the site exists. The agent, the widget, the SDKs, the phone line, the integrations and the core are designed and not yet written, and the waitlist is not open yet.' },
-    { id: 'FZ-009', name: 'promptdecode', status: 'BUILDING', stage: 'VALIDATION', launched: null, category: 'SECURITY', autonomy: null, site: 'promptdeco.de', logo: 'promptdecode-animated.svg', logoW: 120, logoH: 120,
+    { id: 'FZ-009', name: 'promptdecode', status: 'BUILDING', stage: 'VALIDATION', launched: null, category: 'SECURITY', stack: true, autonomy: null, site: 'promptdeco.de', logo: 'promptdecode-animated.svg', logoW: 120, logoH: 120,
       target: 4,
       uses: [
         { id: 'polar', role: 'payments', status: 'planned', note: 'Paid tiers (the GitHub Action, private repositories) through Polar as Merchant of Record. Nothing is on sale yet.' },
@@ -240,7 +249,7 @@ window.FZ_DATA = {
         now: "The decoder works today, and the config scanner runs from source (no release yet). The content scanner and the GitHub Action are being built."
       },
       desc: 'Finds text that is invisible to a human reviewer and fully legible to a language model, and decodes it. Hidden instructions in a pull request title, an issue body or a repository file can tell a coding agent to approve, merge or comment, while the diff shows nothing unusual. Two parts work today. The decoder on the site, which reads three named classes of code point (the Unicode tag block, bidi controls and overrides, variation selectors), reconstructs the payload they encode, and runs entirely in the reader\u2019s browser, sending nothing anywhere. And the config scanner, which traces untrusted workflow input to an agent step holding a write token, and runs from source with no release yet. The rest is designed and unwritten: a content engine that decodes payloads across a repository, a command-line scanner, a GitHub Action, and an open benchmark. If a class is not on the published list, it is not detected; the list is the claim.' },
-    { id: 'FZ-010', name: 'Groove Guru', status: 'BUILDING', stage: 'VALIDATION', launched: null, category: 'MUSIC', autonomy: null, site: 'groove.guru', logo: 'groove-guru-animated.svg', logoW: 120, logoH: 120,
+    { id: 'FZ-010', name: 'Groove Guru', status: 'BUILDING', stage: 'VALIDATION', launched: null, category: 'MUSIC', stack: false, autonomy: null, site: 'groove.guru', logo: 'groove-guru-animated.svg', logoW: 120, logoH: 120,
       target: 4,
       uses: [
         { id: 'FZ-012', role: 'deploys', status: 'planned', note: 'Every venture site and Worker deployed from the Keep Shipping console.' },
@@ -262,7 +271,7 @@ window.FZ_DATA = {
         now: "The drills work today. The booth app and the coach are being built. Needs Pioneer Pro DJ Link gear."
       },
       desc: 'A DJ tutor for Pioneer Pro DJ Link gear. A harness on a machine plugged into the booth switch listens to the CDJs and mixer on UDP 50000 to 50002, mirrors the decks in a browser, and coaches key, phrase and timing in a calm voice, then gets out of the way. It needs the gear: it is not a browser DJ app. One part exists and works today: the site at groove.guru, with six zero-to-booth drills that run in the browser on a visual beat clock (count the bar, cue on the one, ride the phrase, blend on the Camelot wheel, the first mix). The rest is designed and unwritten: the harness, one Rust binary under MIT; the spoken coach; Pro on Cloudflare; and an iPad and iPhone companion over local Wi-Fi or Cloudflare. Independent, and not affiliated with Pioneer DJ.' },
-    { id: 'FZ-011', name: 'PosPlugin', status: 'BUILDING', stage: 'VALIDATION', launched: null, category: 'INTEGRATIONS', autonomy: null, site: 'posplug.in', logo: 'posplug-animated.svg', logoW: 120, logoH: 120,
+    { id: 'FZ-011', name: 'PosPlugin', status: 'BUILDING', stage: 'VALIDATION', launched: null, category: 'INTEGRATIONS', stack: true, autonomy: null, site: 'posplug.in', logo: 'posplug-animated.svg', logoW: 120, logoH: 120,
       target: 4,
       uses: [
         { id: 'FZ-004', role: 'framework', status: 'live', note: 'The waitlist Worker at api.posplug.in runs on the Cratefield harness waitlist module.' },
@@ -287,7 +296,7 @@ window.FZ_DATA = {
         now: "The site and the early-access list are open. The connectors, the mapping engine and the API are being built."
       },
       desc: 'An integration layer for point-of-sale systems. It connects to a merchant’s POS with OAuth or an API key, pulls sample data read-only, and a model maps the POS’s fields to one data model (orders, payments, catalog items, locations) with a confidence score on every field; a person confirms the uncertain ones. Apps then read every merchant through one REST API and one webhook stream, with the original POS payload kept on each record, and write orders back where the POS allows. A monitor watches for schema drift and failing syncs. Card numbers never pass through it. The first vertical is restaurants. What exists today is the site at posplug.in and its early-access list; the connectors, the mapping engine, the unified API and the sandbox are designed and not yet written.' },
-    { id: 'FZ-012', name: 'Keep Shipping', status: 'BUILDING', stage: 'VALIDATION', launched: null, category: 'DEVTOOLS', autonomy: null, site: 'keepshipping.run', logo: 'keepshipping-animated.svg', logoW: 120, logoH: 120,
+    { id: 'FZ-012', name: 'Keep Shipping', status: 'BUILDING', stage: 'VALIDATION', launched: null, category: 'DEVTOOLS', stack: true, autonomy: null, site: 'keepshipping.run', logo: 'keepshipping-animated.svg', logoW: 120, logoH: 120,
       target: 4,
       uses: [
         { id: 'FZ-004', role: 'framework', status: 'planned', note: 'The hosted parts (waitlist, approvals, run logs) are planned as a Cratefield venture.' },
@@ -311,7 +320,7 @@ window.FZ_DATA = {
         now: "The site and the early-access list are open. The engine, the CLI and the built-in steps are being built."
       },
       desc: 'A deploy workflow engine. Each repository gets one typed workflow file that builds and signs OCI images, plans and applies Terraform or OpenTofu (apply runs the exact plan a reviewer approved), waits for a human where the file says so, and rolls out to Kubernetes, VMs over SSH or serverless. Every step has typed inputs and outputs, so a tag wired where a digest belongs or a misspelled step fails the check before anything runs, and the same engine runs the file on a laptop and in CI. Steps can be packaged as typed, versioned blocks and reused across repos; a step that needs real code is a TypeScript function with typed inputs. For coding agents, a policy in the file says what they may do alone and what waits for a named person, and a decide step asks Jev (TypeSafe AI) to rate a plan, with destroys always going to a human. What exists today is the site at keepshipping.run and its early-access list; the engine, the CLI, the steps and the runner are designed and not yet written.' },
-    { id: 'FZ-013', name: 'Owlpost', status: 'BUILDING', stage: 'VALIDATION', launched: null, category: 'EMAIL', autonomy: null, site: 'owlpost.to', logo: 'owlpost-animated.svg', logoW: 120, logoH: 120,
+    { id: 'FZ-013', name: 'Owlpost', status: 'BUILDING', stage: 'VALIDATION', launched: null, category: 'EMAIL', stack: true, autonomy: null, site: 'owlpost.to', logo: 'owlpost-animated.svg', logoW: 120, logoH: 120,
       target: 4,
       uses: [
         { id: 'FZ-004', role: 'framework', status: 'live', note: 'The email API is a Cratefield venture, deployed at api.owlpost.to.' },
@@ -337,7 +346,7 @@ window.FZ_DATA = {
         now: "The site and the API at api.owlpost.to are live, and inbound mail reaches inboxes. Sending waits on Amazon SES production access; its first job is to replace Resend in the Factory Zero ventures."
       },
       desc: 'An email API for apps and AI agents. One key sends transactional and marketing email, receives inbound mail as JSON by webhook, and creates persistent inboxes for agents on owlpost.to or your own domain. Deliverability is part of the path: separate transactional and marketing streams, DKIM, SPF and DMARC records set up for you, a suppression list checked before every send, one-click unsubscribe. It is built in Rust on the Cratefield harness and Cloudflare’s email service. What exists today is the site, the API at api.owlpost.to and inbound mail into inboxes; sending waits on Amazon SES production access, and the SDKs are still being built. Its first job is to replace Resend inside Factory Zero.' },
-    { id: 'FZ-014', name: 'Bloodrank', status: 'BUILDING', stage: 'VALIDATION', launched: null, category: 'COMMUNITY', autonomy: null, site: 'bloodrank.dev', logo: 'bloodrank-animated.svg', logoW: 120, logoH: 120,
+    { id: 'FZ-014', name: 'Bloodrank', status: 'BUILDING', stage: 'VALIDATION', launched: null, category: 'COMMUNITY', stack: false, autonomy: null, site: 'bloodrank.dev', logo: 'bloodrank-animated.svg', logoW: 120, logoH: 120,
       target: 3,
       uses: [
         { id: 'FZ-012', role: 'deploys', status: 'planned', note: 'Every venture site and Worker deployed from the Keep Shipping console.' },
@@ -359,7 +368,7 @@ window.FZ_DATA = {
         now: "The site is live with sample data, labelled as such. The service, the board and `npx bloodrank` are not built."
       },
       desc: 'A leaderboard for AI vampires: builders who run several AI coding agents at once. Each profile gets a Vampire Score from 0 to 1000: 40% blood (monthly AI spend, log-scaled), 40% kills (deploys, launches, merged features and revenue, verified through GitHub and Stripe) and 20% night (parallel agents and late-night usage), with ranks from Thrall to Count. A Sunlight board counts days fully offline, because the essay that coined the term was about burnout. What exists today is the concept site with sample data; the service is not built.' },
-    { id: 'FZ-015', name: 'ratecla.im', status: 'BUILDING', stage: 'VALIDATION', launched: null, category: 'TRAVEL', autonomy: null, site: 'ratecla.im', logo: 'rateclaim-animated.svg', logoW: 120, logoH: 120,
+    { id: 'FZ-015', name: 'ratecla.im', status: 'BUILDING', stage: 'VALIDATION', launched: null, category: 'TRAVEL', stack: false, autonomy: null, site: 'ratecla.im', logo: 'rateclaim-animated.svg', logoW: 120, logoH: 120,
       target: 4,
       uses: [
         { id: 'FZ-004', role: 'framework', status: 'planned', note: 'The request backend is being written on the Cratefield harness; it is not deployed.' },
@@ -383,7 +392,7 @@ window.FZ_DATA = {
         now: "The site is live and says requests are not open yet. The agent, the backend and the extension are being built."
       },
       desc: 'Hotel rates nobody publishes. A traveller pastes a hotel link; an AI agent that identifies itself contacts the hotel’s reservations desk directly, asks for availability and its best unpublished rate, checks it against the lowest public price for the same stay, and returns a quote held for 24 hours. Free for travellers; hotels pay five percent after the stay instead of the 15 to 25 percent booking platforms charge. Built on the Cratefield harness. What exists today is the site; requests, the agent and the extension are being built.' },
-    { id: 'FZ-016', name: 'Sealbin', status: 'BUILDING', stage: 'VALIDATION', launched: null, category: 'SECURITY', autonomy: null, site: 'sealb.in', logo: 'sealbin-animated.svg', logoW: 120, logoH: 120,
+    { id: 'FZ-016', name: 'Sealbin', status: 'BUILDING', stage: 'VALIDATION', launched: null, category: 'SECURITY', stack: true, autonomy: null, site: 'sealb.in', logo: 'sealbin-animated.svg', logoW: 120, logoH: 120,
       target: 4,
       uses: [
         { id: 'FZ-004', role: 'framework', status: 'live', note: 'The waitlist Worker at api.sealb.in runs on the Cratefield harness waitlist module.' },
@@ -409,7 +418,7 @@ window.FZ_DATA = {
         now: "The site is live and early access is a waitlist. The CLI, MCP server, skill and hosted service are being built."
       },
       desc: 'The sealed handoff between AI agents. The sending agent encrypts files, context or secrets on its own machine and uploads only ciphertext; the key travels in the link’s #fragment and never reaches the server. The receiving agent opens the link once, the contents land on disk, and the ciphertext is deleted. Burn-after-read by default, or a TTL, with an optional password. A CLI, an MCP server with seal and open tools, an agent skill and a REST API; open source under Apache-2.0 with a hosted service on Cloudflare. What exists today is the site and the early-access waitlist; the product is being built.' },
-    { id: 'FZ-017', name: 'release.show', status: 'BUILDING', stage: 'VALIDATION', launched: null, category: 'VIDEO', autonomy: null, site: 'release.show', logo: 'releaseshow-animated.svg', logoW: 120, logoH: 120,
+    { id: 'FZ-017', name: 'release.show', status: 'BUILDING', stage: 'VALIDATION', launched: null, category: 'VIDEO', stack: false, autonomy: null, site: 'release.show', logo: 'releaseshow-animated.svg', logoW: 120, logoH: 120,
       target: 4,
       uses: [
         { id: 'FZ-004', role: 'framework', status: 'live', note: 'The waitlist Worker at api.release.show runs on the Cratefield harness waitlist module.' },
@@ -436,7 +445,7 @@ window.FZ_DATA = {
         now: "Early access is a waitlist at release.show. The product has not launched."
       },
       desc: 'Release videos made from the work itself. release.show reads GitHub releases, merged pull requests and website changes and turns them into 30 to 90 second videos, branded, captioned and ready to post. Each release also becomes an AI-avatar presenter video, a blog post, an in-app release widget, social posts and an email digest, and every project gets a public channel page at release.show/<project>. What exists today is the site and its early-access waitlist; the product has not launched.' },
-    { id: 'FZ-018', name: 'Living Brain', status: 'BUILDING', stage: 'VALIDATION', launched: null, category: 'DEVTOOLS', autonomy: null, site: 'livingbrain.wiki', logo: 'livingbrain-animated.svg', logoW: 120, logoH: 120,
+    { id: 'FZ-018', name: 'Living Brain', status: 'BUILDING', stage: 'VALIDATION', launched: null, category: 'DEVTOOLS', stack: false, autonomy: null, site: 'livingbrain.wiki', logo: 'livingbrain-animated.svg', logoW: 120, logoH: 120,
       target: 4,
       uses: [
         { id: 'FZ-004', role: 'framework', status: 'planned', note: 'Built in Rust as a Cratefield venture; nothing is deployed yet, including the waitlist.' },
@@ -464,7 +473,7 @@ window.FZ_DATA = {
         now: "In design. The plan is four epics and 38 issues in the open product repository; nothing is built, and early access is a waitlist at livingbrain.wiki."
       },
       desc: 'A company wiki that writes and maintains itself. The plan: Living Brain turns team conversations into Markdown pages for people, projects, decisions and customers, with every fact linked to the message it came from; nightly passes merge duplicates, surface contradictions and refresh stale facts, and a learning layer models how each person works. It would be reachable from coding agents through an MCP server and a Claude Code plugin, from the terminal through the `livingbrain` CLI, one Rust binary, and in team chat (Slack and Discord, with WhatsApp and Telegram later); an installable app (PWA) and a 3D graph view sit alongside. Bigger jobs would go to a Colonizer colony that returns a pull request, and email (digests and an inbox) would go through Owlpost. Bring your own model, LiteLLM included, and it reads only with the asker’s own access. Built in Rust as a Cratefield venture on Cloudflare Workers (D1, R2, KV, Durable Objects); open core, Apache-2.0 with an `ee/` directory under a commercial licence. What exists today is the site, its early-access waitlist and the plan as issues; nothing is built and nothing is sold.' },
-    { id: 'FZ-019', name: 'Shoal', status: 'BUILDING', stage: 'VALIDATION', launched: null, category: 'SIMULATION', autonomy: null, site: 'shoal.ing', logo: 'shoal-animated.svg', logoW: 120, logoH: 120,
+    { id: 'FZ-019', name: 'Shoal', status: 'BUILDING', stage: 'VALIDATION', launched: null, category: 'SIMULATION', stack: false, autonomy: null, site: 'shoal.ing', logo: 'shoal-animated.svg', logoW: 120, logoH: 120,
       target: 4,
       uses: [
         { id: 'google-fonts', role: 'fonts', status: 'live', note: 'The site\u2019s typefaces (Geist, Geist Mono, Instrument Serif), loaded from Google.' }
@@ -484,7 +493,7 @@ window.FZ_DATA = {
         now: "Early access is a waitlist at shoal.ing. The CLI is in development and cannot be installed yet."
       },
       desc: 'Launch rehearsal. Paste a launch post or README, and thousands of simulated developers read it, vote and argue about it on a simulated Hacker News, Reddit or X; you get the predicted thread, the top objections and the edits that change the outcome. Seed, simulate, score. Planned as a single open-core binary written in Rust, self-hostable, with a local model or an API: Jev is the deterministic engine, and a language model writes text only when an agent posts. What exists today is the site and its early-access waitlist; the CLI is in development and cannot be installed yet.' },
-    { id: 'FZ-020', name: 'Tokker', status: 'BUILDING', stage: 'VALIDATION', launched: null, category: 'PRICING', autonomy: null, site: 'tokker.dev', logo: 'tokker-animated.svg', logoW: 120, logoH: 120,
+    { id: 'FZ-020', name: 'Tokker', status: 'BUILDING', stage: 'VALIDATION', launched: null, category: 'PRICING', stack: false, autonomy: null, site: 'tokker.dev', logo: 'tokker-animated.svg', logoW: 120, logoH: 120,
       target: 4,
       uses: [
         { id: 'FZ-004', role: 'framework', status: 'planned', note: 'The API and MCP server are planned as a Rust Worker on the Cratefield harness; nothing is deployed yet.' },
@@ -510,7 +519,7 @@ window.FZ_DATA = {
         now: "The homepage is live at tokker.dev with an early index (prices as of 5 Oct 2026). The API, MCP server, scheduled re-checks and price-drop alerts are planned and do not work yet."
       },
       desc: 'An open, sourced price index for AI tokens and subscriptions. Tokker lists what AI model APIs cost in US dollars per 1M tokens across about 60 providers, and turns subscription limits (5-hour windows, weekly caps, credit pools) into real tokens and an estimated $ per 1M at full use, so an API and a $200 plan sit on one scale. Every number carries its source and the date it was checked; what a provider does not publish is marked unknown. Scheduled agents on Colonizer are planned to keep the prices fresh, and a free JSON API, an MCP server and price-drop alerts by email through Owlpost are planned on a Rust Worker on the Cratefield harness. Free and open, with no affiliate links at launch; the code is Apache-2.0 and the data CC BY 4.0 (proposed). What exists today is the homepage and an early index (62 providers and 103 plans, prices as of 5 Oct 2026); the API, MCP server and alerts do not work yet.' },
-    { id: 'FZ-021', name: 'Ledgers', status: 'BUILDING', stage: 'VALIDATION', launched: null, category: 'ACCOUNTING', autonomy: null, site: 'ledgers.sh', logo: 'ledgers-animated.svg', logoW: 120, logoH: 120,
+    { id: 'FZ-021', name: 'Ledgers', status: 'BUILDING', stage: 'VALIDATION', launched: null, category: 'ACCOUNTING', stack: true, autonomy: null, site: 'ledgers.sh', logo: 'ledgers-animated.svg', logoW: 120, logoH: 120,
       target: 4,
       uses: [
         { id: 'FZ-004', role: 'framework', status: 'planned', note: 'Every module (ledger, invoice, bills, matching, bank, tax, documents, reports) is planned as a Rust crate on the Cratefield harness. Nothing is published yet.' },
@@ -532,7 +541,7 @@ window.FZ_DATA = {
         now: "The homepage is live at ledgers.sh. The crates, CLI, MCP server, app, waitlist and managed plans are planned and do not exist yet."
       },
       desc: 'Open-source, double-entry accounting built for AI agents. Agents extract vendor bills, propose invoice, order, receipt and payment matches with confidence scores, and draft journal entries; each agent key has a tier (read, draft, post within limits) and per-currency amount limits, and paying money out, closing a period and filing tax always need a person. Every action is audited and reversible, and a dry run shows each debit and credit before anything posts. Agents work through a CLI and MCP tools, people supervise in a browser and phone app (PWA, offline, push approvals), and an HTTP API shares the same commands. Multi-currency and right-to-left from the start; one company, internal units or a group with consolidation. Eight modules (ledger, invoice, bills, matching, bank, tax, documents, reports) are planned as Rust crates on the Cratefield harness, MIT-licensed, self-hosted or managed. What exists today is the homepage; nothing is released.' },
-    { id: 'FZ-022', name: "Ghostwritin'", status: 'BUILDING', stage: 'VALIDATION', launched: null, category: 'WRITING', autonomy: null, site: 'ghostwrit.in', logo: 'ghostwritin-animated.svg', logoW: 120, logoH: 120,
+    { id: 'FZ-022', name: "Ghostwritin'", status: 'BUILDING', stage: 'VALIDATION', launched: null, category: 'WRITING', stack: false, autonomy: null, site: 'ghostwrit.in', logo: 'ghostwritin-animated.svg', logoW: 120, logoH: 120,
       target: 4,
       uses: [
         { id: 'FZ-004', role: 'framework', status: 'planned', note: 'The open-source app (engine, API Worker, CLI, MCP server) is being built on the Cratefield harness, with the meaning lock and diff offered upstream as generic Cratefield modules.' },
