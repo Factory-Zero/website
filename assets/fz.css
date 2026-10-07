@@ -1930,9 +1930,9 @@ a.fzs:hover { background: rgba(255, 90, 54, .12); color: var(--accent); }
 
 /* the app icon: a squircle, about 22% radius; a mark with its own tile fills it, a bare mark sits padded on a dark one */
 .as-icon { position: relative; display: grid; place-items: center; flex: none; width: 56px; height: 56px; border-radius: 22%; overflow: hidden; background: #101013; border: 1px solid var(--line-2); }
-.as-icon img { width: 62%; height: 62%; object-fit: contain; display: block; }
+.as-icon img { width: calc(76% * var(--z, 1)); height: calc(76% * var(--z, 1)); max-width: none; object-fit: contain; display: block; }
 .as-icon--bg { border-color: transparent; background: transparent; }
-.as-icon--bg img { width: 120%; height: 120%; max-width: none; }
+.as-icon--bg img { width: calc(120% * var(--z, 1)); height: calc(120% * var(--z, 1)); }
 .as-icon--lg { width: 84px; height: 84px; }
 .as-icon--initial { font-family: var(--mono); font-size: 22px; color: var(--ink); }
 

@@ -9,6 +9,8 @@ const path = require('path');
 
 const esc = s => String(s == null ? '' : s).replace(/[&<>"]/g, c => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;' }[c]));
 const FOUNDATION = 'The foundation';
+// marks whose artwork sits small inside their own box get zoomed so every icon has a similar weight
+const ZOOM = { 'Ledgers': 1.18, 'Sealbin': 1.35, 'PosPlugin': 1.25, 'Kontinuum': 1.2 };
 
 module.exports = function stackPage(ctx) {
   const { V, ROOT, SITE, slug, pitch } = ctx;
@@ -23,9 +25,12 @@ module.exports = function stackPage(ctx) {
     if (!v.logo) return `<span class="${cls} as-icon--initial" aria-hidden="true">${esc(v.name.slice(0, 1))}</span>`;
     const src = fs.readFileSync(path.join(ROOT, 'assets', v.logo), 'utf8');
     // frozen on a lit frame: the marks animate on the registry, here they sit still
-    const frame = v.name === 'Kontinuum' ? 4.2 : 1.35;
+    // Kontinuum's trail is many dots with staggered delays: keep those delays, only pause, and show its loop
+    const frozen = v.name === 'Kontinuum'
+      ? '*{animation-play-state:paused!important}.kg{animation:none!important;opacity:.9!important}'
+      : '*{animation-play-state:paused!important;animation-delay:-1.35s!important}';
     fs.writeFileSync(path.join(ROOT, 'assets', 'logos', `${slug(v)}.svg`),
-      src.replace(/<svg\b[^>]*>/, mm => mm + `<style>*{animation-play-state:paused!important;animation-delay:-${frame}s!important}</style>`));
+      src.replace(/<svg\b[^>]*>/, mm => mm + `<style>${frozen}</style>`));
     const vb = src.match(/viewBox="([^"]+)"/), vw = vb ? parseFloat(vb[1].split(/[ ,]+/)[2]) : 120;
     let bg = false;
     src.replace(/<rect\b[^>]*>/g, m => {
@@ -33,7 +38,8 @@ module.exports = function stackPage(ctx) {
       if (w && h && +w[1] >= vw * 0.45 && +h[1] >= vw * 0.2) bg = true;
       return m;
     });
-    return `<span class="${cls}${bg ? ' as-icon--bg' : ''}" aria-hidden="true"><img src="/assets/logos/${slug(v)}.svg" alt="" width="64" height="64" loading="lazy" decoding="async"></span>`;
+    const z = ZOOM[v.name];
+    return `<span class="${cls}${bg ? ' as-icon--bg' : ''}"${z ? ` style="--z:${z}"` : ''} aria-hidden="true"><img src="/assets/logos/${slug(v)}.svg" alt="" width="64" height="64" loading="lazy" decoding="async"></span>`;
   };
   const one = v => {
     const s = pitch(v).solution || v.desc || '';
@@ -59,7 +65,7 @@ module.exports = function stackPage(ctx) {
   const ranked = stack.slice().sort((a, b) => users.get(b.id).length - users.get(a.id).length || a.name.localeCompare(b.name));
   const chart = ranked.map((v, i) => {
     const n = users.get(v.id).length, live = users.get(v.id).filter(x => x.live).length;
-    return `<li><a class="as-row as-row--chart" href="/ventures/${slug(v)}/"><span class="as-rank">${i + 1}</span>${icon(v)}<span class="as-txt"><span class="as-name">${esc(v.name)}</span><span class="as-sub">${n ? `${n} ${n === 1 ? 'venture uses' : 'ventures use'} it${live ? ` \u00b7 ${live} live` : ''}` : 'No venture lists it yet'}</span></span><span class="as-pill">Open</span></a></li>`;
+    return `<li><a class="as-row as-row--chart" href="/ventures/${slug(v)}/"><span class="as-rank">${i + 1}</span>${icon(v)}<span class="as-txt"><span class="as-name">${esc(v.name)}</span><span class="as-sub">${n ? `${n} ${n === 1 ? 'venture uses' : 'ventures use'} it${live ? ` \u00b7 ${live} live` : ''}` : esc(v.stackRole)}</span></span><span class="as-pill">Open</span></a></li>`;
   }).join('\n');
 
   const osN = stack.filter(v => v.open_source).length;
