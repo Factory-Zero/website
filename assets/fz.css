@@ -374,30 +374,85 @@ html.scrolled .site-header {
   position: relative;
   display: flex;
   align-items: flex-end;
-  padding-bottom: 6vh;
+  padding-bottom: 5vh;
   pointer-events: none;
 }
+/* Two lines on desktop, three on a phone: big enough to own the screen,
+   short enough that the subline and the calls to action stay above the fold. */
 .hero-title {
   margin: 0;
-  max-width: 13ch;
+  max-width: 14ch;
   font-weight: 400;
-  font-size: clamp(48px, 7.6vw, 128px);
-  line-height: .94;
-  letter-spacing: -.04em;
+  font-size: clamp(52px, 8.2vw, 148px);
+  line-height: .92;
+  letter-spacing: -.045em;
   text-wrap: balance;
   animation: fzUp 1.4s .6s both;
 }
 .hero-foot {
   position: relative;
-  display: flex;
-  justify-content: space-between;
-  align-items: flex-end;
-  gap: 40px;
-  flex-wrap: wrap;
-  animation: fzIn 1.6s 1.4s both;
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) auto;
+  align-items: end;
+  gap: 40px 6vw;
+  padding-top: 32px;
+  border-top: 1px solid var(--line-2);
+  animation: fzIn 1.6s 1.1s both;
 }
-.hero-foot .lede { color: var(--body); }
+.hero-copy { display: grid; gap: 32px; justify-items: start; min-width: 0; }
+.hero-sub {
+  margin: 0;
+  max-width: 52ch;
+  font-size: clamp(17px, 1.45vw, 21px);
+  line-height: 1.5;
+  font-weight: 300;
+  color: var(--body);
+  text-wrap: pretty;
+}
+.hero-cta { display: flex; flex-wrap: wrap; gap: 12px; }
+.btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 12px;
+  min-height: 48px;
+  padding: 0 22px;
+  border: 1px solid var(--line-2);
+  font-family: var(--mono);
+  font-size: 12px;
+  letter-spacing: .14em;
+  text-transform: uppercase;
+  color: var(--ink);
+  transition: background-color .2s, border-color .2s, color .2s;
+}
+.btn span { font-size: 14px; transition: transform .2s; }
+.btn--primary { background: var(--accent); border-color: var(--accent); color: var(--bg); }
+.btn--primary:hover, .btn--primary:focus-visible { background: var(--ink); border-color: var(--ink); color: var(--bg); }
+.btn--primary:hover span { transform: translateY(2px); }
+.btn--ghost:hover, .btn--ghost:focus-visible { border-color: var(--ink); color: var(--ink); }
+.btn:focus-visible { outline: none; box-shadow: 0 0 0 2px var(--bg), 0 0 0 4px var(--accent); }
+.hero-side { display: grid; gap: 28px; justify-items: end; }
+.hero-proof {
+  margin: 0;
+  display: flex;
+  gap: 40px;
+  font-family: var(--mono);
+  font-size: 10px;
+  letter-spacing: .14em;
+  color: var(--muted);
+}
+.hero-proof > div { display: grid; gap: 10px; align-content: start; min-width: 0; }
+.hero-proof dt { margin: 0; line-height: 1.5; }
+.hero-proof dd {
+  margin: 0;
+  order: -1;
+  font-family: var(--sans);
+  font-size: clamp(32px, 3vw, 44px);
+  line-height: 1;
+  letter-spacing: -.03em;
+  color: var(--ink);
+}
 .hero-phase {
+  margin: 0;
   font-family: var(--mono);
   font-size: 11px;
   letter-spacing: .14em;
@@ -406,6 +461,10 @@ html.scrolled .site-header {
 }
 .hero-phase b { display: block; font-weight: 400; color: var(--accent); margin-top: 6px; }
 
+@media (max-width: 900px) {
+  .hero-foot { grid-template-columns: 1fr; }
+  .hero-side { justify-items: start; }
+}
 /* ---------- 01 thesis ---------- */
 
 .thesis { padding: 22vh var(--gut); border-top: 1px solid var(--line); }
@@ -1652,4 +1711,22 @@ html:not(.js) .spec .activity { display: none; }
 .repo-list .muted { color: var(--muted); font-size: 14px; }
 @media (max-width: 900px) {
   .tech-split { grid-template-columns: 1fr; gap: 28px; }
+}
+
+/* Phone hero. Last in the file so it wins over the generic 760/900px rules. */
+@media (max-width: 560px) {
+  .hero { padding-top: 104px; padding-bottom: 32px; }
+  .readout, .readout-group { flex-direction: row; gap: 28px; }
+  .readout { justify-content: flex-start; }
+  .readout-group > div:nth-child(2) { display: none; }
+  .hero-title-wrap { padding-top: 96px; }
+  .hero-title { font-size: clamp(46px, 13.4vw, 64px); }
+  .hero-foot { padding-top: 24px; gap: 28px; }
+  .hero-copy { gap: 24px; }
+  .hero-sub { font-size: 16px; }
+  .hero-cta { width: 100%; }
+  .hero-cta .btn { flex: 1 1 auto; justify-content: center; padding: 0 16px; }
+  .hero-proof { gap: 20px; width: 100%; justify-content: space-between; }
+  .hero-proof dt { max-width: 13ch; }
+  .hero-phase { display: none; }
 }

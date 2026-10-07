@@ -1,5 +1,5 @@
 <p align="center">
-  <img src="assets/readme-banner.png" alt="Factory Zero. We build companies that operate and grow themselves." width="100%">
+  <img src="assets/readme-banner.png" alt="Factory Zero. We launch ventures at scale." width="100%">
 </p>
 
 <p align="center">
@@ -216,9 +216,14 @@ Nearly everything is data:
   owners and repositories in `activity-sources.json`. Set a `GITHUB_TOKEN` Pages
   secret (a fine-grained token with no permissions is enough) to lift GitHub's
   60-requests-an-hour anonymous limit.
-- **`window.FZ_CONFIG`** at the bottom of the same file holds the headline,
-  factory status, venture count and agent-network number. These mirror the
-  editable `data-props` from the design source.
+- **`window.FZ_CONFIG`** at the bottom of the same file holds the headline
+  and factory status. These mirror the editable `data-props` from the design
+  source; the headline is also written statically in `index.html`.
+- **The hero proof row** (ventures, sectors, ventures that already run on a
+  sister venture) is counted from `ventures` by `sync-ventures.js` and written
+  between the `fz:proof` markers in `index.html`. "Run on a sister venture"
+  counts records with at least one `uses` entry that names another venture
+  and is `live`, so a `planned` link never inflates it.
 - All prose (thesis, human role, footer) is plain HTML in `index.html`.
 
 ### Regenerating raster assets

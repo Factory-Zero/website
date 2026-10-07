@@ -57,12 +57,10 @@
   /* ------------------------------------------------------------ hero meta */
 
   var elStatus = $('fz-status');
-  var elVentures = $('fz-ventures');
   var elAgents = $('fz-agents');
   var elPhase = $('fz-phase');
 
   if (elStatus) elStatus.textContent = C.factoryStatus || 'ONLINE';
-  if (elVentures) elVentures.textContent = pad2(C.activeVentures != null ? C.activeVentures : live.length) + ' ACTIVE';
   if (C.headline) {
     var elHeadline = $('fz-headline');
     if (elHeadline) elHeadline.textContent = C.headline;
@@ -280,7 +278,15 @@
       H = canvas.clientHeight;
       canvas.width = Math.round(W * dpr);
       canvas.height = Math.round(H * dpr);
+      // On a narrow screen the headline fills the middle, so the network sits
+      // in the open band between the readout and the headline instead.
+      var ro = document.querySelector('.hero .readout'), ht = $('fz-headline');
+      if (ro && ht) {
+        var top = canvas.getBoundingClientRect().top;
+        narrowCy = (ro.getBoundingClientRect().bottom + ht.getBoundingClientRect().top) / 2 - top;
+      }
     }
+    var narrowCy = 0;
     resize();
 
     function rnd(n) {
@@ -327,7 +333,7 @@
 
       var wide = W > 900;
       var cx = (wide ? W * 0.68 : W * 0.5) + mouse.x * 14;
-      var cy = H * (wide ? 0.5 : 0.42) + mouse.y * 10;
+      var cy = (wide ? H * 0.5 : (narrowCy || H * 0.42)) + mouse.y * 10;
       var scale = Math.min(1, W / 1400) * (wide ? 1 : 0.7);
       var q = ease((p - 0.76) / 0.13);
       var fade = p > 0.92 ? 1 - (p - 0.92) / 0.08 : 1;

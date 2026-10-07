@@ -7,7 +7,7 @@
 
 Site: https://factory0.ventures/
 Positioning: AI-native venture studio · system identifier FZ/01
-Tagline: "We build companies that operate and grow themselves."
+Tagline: "We launch ventures at scale."
 
 ## Thesis
 

@@ -571,6 +571,6 @@ window.FZ_DATA = {
 // Editable presentation values. In the Claude Design source these were `data-props`
 // on the component; here they are plain overrides you can edit without touching logic.
 window.FZ_CONFIG = {
-  headline: 'We build companies that operate and grow themselves.', // also rendered statically in index.html
+  headline: 'We launch ventures at\u00a0scale.', // also rendered statically in index.html
   factoryStatus: 'ONLINE'    // ONLINE | MAINTENANCE | INITIALIZING
 };
