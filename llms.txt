@@ -74,7 +74,7 @@ cycle teaches the next: build, deploy, observe, learn, repeat.
 
 ## Ventures
 
-The registry at /ventures/ lists twenty records, all named. No venture reports
+The registry at /ventures/ lists twenty-one records, all named. No venture reports
 an operating figure yet, so none is shown. Each record instead carries an
 autonomy target (the level it is designed to reach, a design aim rather than a
 measurement), three aims in words (what it should run on its own, the kind of
@@ -413,6 +413,25 @@ public source repositories.
   Site: https://tokker.dev
   Source: https://github.com/Tokker-dev/tokker,
   https://github.com/Tokker-dev
+
+- **FZ-021 Ledgers** (ledgers.sh): ACCOUNTING, BUILDING, VALIDATION.
+  "Agents do the books. People keep control." Open-source, double-entry
+  accounting built for AI agents. Agents read invoices, match them to orders,
+  receipts and payments, and draft journal entries; each agent key has a tier
+  (read, draft, post within limits) and per-currency amount limits; paying
+  money out, closing a period and filing tax always need a person. Every
+  action is audited and reversible, and a dry run shows every debit and credit
+  before anything posts. Agents use a CLI and MCP tools, people a browser and
+  phone app, and an HTTP API shares the same commands. Planned: eight modules
+  as Rust crates on the Cratefield harness, MIT-licensed, self-hosted or
+  managed.
+  **Only the homepage exists.** No crate, CLI, MCP server, app or waitlist is
+  released; do not tell users they can install or use Ledgers. The crate name
+  `ledgers` on crates.io belongs to an unrelated project.
+  Autonomy target: level 4, self-optimizing. A stated design aim, not a
+  measurement.
+  Site: https://ledgers.sh
+  Source: https://github.com/Ledgers-sh
 
 ## Notes for machine readers
 
