@@ -303,7 +303,7 @@
     '  vec2 px = aC * uLab * 0.5 + vec2(0.0, -(rad * 1.22 + uLab.y * 0.5 + 6.0));\n' +
     '  gl_Position = c + vec4(px / uRes * 2.0 * c.w, 0.0, 0.0);\n' +
     '  float front = 1.0 - smoothstep(uD - uR * 0.9, uD + uR * 0.9, -vp.z);\n' +
-    '  float a = fogF(-vp.z) * s.z * (0.03 + 0.4 * front * front * front) * step(17.0, uLab.y);\n' +
+    '  float a = fogF(-vp.z) * s.z * (0.2 + 0.55 * front * front) * step(17.0, uLab.y);\n' +
     '  float em = s.x;\n' +
     '  a = em >= 0.0 ? mix(a, 1.0, clamp(em * 1.3, 0.0, 1.0)) : a * (1.0 + em);\n' +
     '  if (em > 0.95) a = 0.0;\n' +
@@ -314,7 +314,7 @@
     'in vec2 vUV; in float vA, vEm; uniform sampler2D uAt; out vec4 o;\n' +
     'void main(){\n' +
     '  float t = texture(uAt, vUV).a;\n' +
-    '  vec3 c = mix(vec3(0.93, 0.92, 0.9), vec3(1.0, 0.72, 0.62), clamp(vEm, 0.0, 1.0) * 0.5);\n' +
+    '  vec3 c = mix(vec3(0.96, 0.95, 0.92), vec3(1.0, 0.72, 0.62), clamp(vEm, 0.0, 1.0) * 0.5);\n' +
     '  float a = t * vA; o = vec4(c * a, a);\n}\n';
 
   // dust: a faint shell of points for depth
@@ -552,6 +552,15 @@
 
   function ease3(x) { x = clamp(x, 0, 1); return 1 - Math.pow(1 - x, 3); }
 
+  function headlineRight() {
+    var h1 = document.getElementById('fz-headline');
+    if (!h1) return 0;
+    var r = document.createRange(); r.selectNodeContents(h1);
+    var rects = r.getClientRects(), right = 0, left = canvas.getBoundingClientRect().left;
+    for (var i = 0; i < rects.length; i++) right = Math.max(right, rects[i].right - left);
+    return right;
+  }
+
   function resize() {
     var w = canvas.clientWidth, h = canvas.clientHeight;
     if (!w || !h) return false;
@@ -564,9 +573,21 @@
       gl.viewport(0, 0, canvas.width, canvas.height);
     }
     var wide = W > 900;
-    cxPx = wide ? W * 0.72 : W * 0.5;
-    cyPx = H * (wide ? 0.47 : 0.39);
-    Rpx = wide ? Math.min(W * 0.235, H * 0.37) : Math.min(W * 0.37, H * 0.2);
+    if (wide) {
+      // Fit the cluster into the space right of the headline's text, not
+      // its box: measure where each line of the h1 actually ends.
+      var free = headlineRight() + 28, edge = W - 22;
+      var EXT = 1.12;                      // projected half-width of the cluster, in Rpx
+      var fit = (edge - free) / 2 / EXT;
+      Rpx = Math.max(Math.min(W * 0.235, H * 0.37, fit), 96);
+      cxPx = Math.min(edge - Rpx * EXT, Math.max(free + Rpx * EXT, W * 0.62));
+      if (cxPx - Rpx * EXT < free) cxPx = free + Rpx * EXT;
+      cyPx = H * 0.47;
+    } else {
+      cxPx = W * 0.5;
+      cyPx = H * 0.39;
+      Rpx = Math.min(W * 0.37, H * 0.2);
+    }
     nodePx = Rpx * (wide ? 0.2 : 0.215);
     dirty = true;
     return true;
@@ -1019,6 +1040,7 @@
       buildTip(); buildLegend(); buildList(); bind();
       if (!W) resize();
       started = true;
+      if (document.fonts && document.fonts.ready) document.fonts.ready.then(function () { if (resize()) kick(true); });
       window.FZ_HERO3D = true;
       hero.classList.add('hero--3d');
       requestAnimationFrame(function () { canvas.classList.add('is-on'); });
