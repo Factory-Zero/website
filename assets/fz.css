@@ -237,7 +237,7 @@ canvas { display: block; }
 }
 .lede {
   margin: 0;
-  max-width: 44ch;
+  max-width: 60ch;
   font-size: 17px;
   line-height: 1.55;
   color: var(--body);
@@ -402,8 +402,8 @@ html.scrolled .site-header {
 .hero-copy { display: grid; gap: 32px; justify-items: start; min-width: 0; }
 .hero-sub {
   margin: 0;
-  max-width: 52ch;
-  font-size: clamp(17px, 1.45vw, 21px);
+  max-width: 68ch;
+  font-size: clamp(17px, 1.4vw, 20px);
   line-height: 1.5;
   font-weight: 300;
   color: var(--body);
@@ -484,7 +484,7 @@ html.scrolled .site-header {
   font-weight: 400;
 }
 .couplet .was { color: var(--muted); }
-.thesis-grid .lede { max-width: 40ch; }
+.thesis-grid .lede { max-width: 52ch; }
 .thesis-grid .lede strong { color: var(--ink); font-weight: 300; }
 
 /* ---------- 02 the factory ---------- */
@@ -785,7 +785,7 @@ html.scrolled .site-header {
 
 .cycle { padding: 16vh var(--gut) 20vh; border-top: 1px solid var(--line); }
 .cycle h2 { margin-bottom: 40px; }
-.cycle .lede { max-width: 40ch; }
+.cycle .lede { max-width: 56ch; }
 .cadence {
   margin-top: 40px;
   display: flex;
