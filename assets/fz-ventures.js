@@ -38,7 +38,8 @@
     cat:   document.getElementById('d-cat'),
     launched: document.getElementById('d-launched'),
     stage: document.getElementById('d-stage'),
-    record: document.getElementById('d-record')
+    record: document.getElementById('d-record'),
+    stack: document.getElementById('d-stack')
   };
 
   function select(row) {
@@ -48,6 +49,7 @@
     el.id.textContent = d.id;
     el.record.textContent = 'RECORD / ' + d.id;
     el.name.textContent = d.name;
+    if (el.stack) el.stack.hidden = d.stack !== '1';
     el.desc.textContent = d.desc;
     // the plain-language pitch: problem, what it does, how, the offer, the time it saves
     if (el.problem) {
@@ -382,6 +384,14 @@
     var row = rowForPath();
     if (row) open(row, false);
     else { select(rows[0]); document.title = BASE_TITLE; }
+  });
+
+  // FZ STACK filter: show only the ventures other ventures are built on
+  var stackBtn = document.getElementById('fz-stack-filter');
+  if (stackBtn) stackBtn.addEventListener('click', function () {
+    var on = stackBtn.getAttribute('aria-pressed') !== 'true';
+    stackBtn.setAttribute('aria-pressed', String(on));
+    rows.forEach(function (r) { r.hidden = on && r.dataset.stack !== '1'; });
   });
 
   // The HTML already shows the right record; this only fills its chart and,
