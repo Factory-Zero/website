@@ -118,7 +118,7 @@ assets/
   fz-common.js          loaded on every page
   fz-app.js             home: hero canvas, rolling log, agent rotation
   fz-hero3d.js          home: the 3D venture network (plain WebGL2, no library; loads after `load`, falls back to the 2D canvas)
-  fz-ventures.js        registry selection
+  fz-ventures.js        registry selection and the FZ STACK filter
   fz-timeline.js        home: plays the venture timeline
   timeline-data.json    org creation dates and commits per day (counts only)
   fz-enter.js           access-request form

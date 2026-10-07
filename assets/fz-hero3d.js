@@ -223,32 +223,55 @@
 
   // nodes: one instanced quad per venture; flat monochrome mark, colour on hover
   SRC.nodeV = PRE +
-    'in vec2 aC; in float aId; uniform float uSz;\n' +
-    'out vec2 vC; out float vId, vEm, vAp, vSt;\n' +
+    'in vec2 aC; in float aId; uniform float uSz, uRp;\n' +
+    'out vec2 vC, vTl; out float vId, vEm, vAp, vSt;\n' +
     'void main(){\n' +
     '  int id = int(aId + 0.5);\n' +
-    '  vec4 vp = uV * vec4(uNP[id], 1.0); vec4 c = uP * vp;\n' +
-    '  vec3 s = uNS[id];\n' +
-    '  float size = uSz * (1.0 + (uD / -vp.z - 1.0) * 0.5) * (0.5 + 0.5 * s.z) * (1.0 + 0.25 * max(s.x, 0.0));\n' +
-    '  gl_Position = c + vec4(aC * size * 0.5 / uRes * 2.0 * c.w, 0.0, 0.0);\n' +
-    '  vC = aC; vId = aId; vEm = s.x; vAp = s.z; vSt = s.y;\n}\n';
+    '  vec4 vp = uV * vec4(uNP[id], 1.0); vec3 s = uNS[id];\n' +
+    '  vec4 cc = uP * (uV * vec4(0.0, 0.0, 0.0, 1.0)); vec4 c0 = uP * vp;\n' +
+    '  vec2 rel = c0.xy / c0.w - cc.xy / cc.w;\n' +
+    // tiles face the camera a little, more so as they pass the front of the orbit; the hovered one squares up
+    '  float front = 1.0 - smoothstep(uD - 0.9, uD + 0.9, -vp.z);\n' +
+    '  float lean = (0.3 + 0.7 * front) * (1.0 - 0.8 * smoothstep(0.4, 1.0, s.x));\n' +
+    '  float ry = -rel.x * 0.55 * lean + 0.05 * sin(uTime * 0.4 + aId * 1.7);\n' +
+    '  float rx = -rel.y * 0.55 * lean + 0.04 * sin(uTime * 0.33 + aId * 2.3);\n' +
+    '  float hw = uSz * 0.5 / uRp * (0.5 + 0.5 * s.z) * (1.0 + 0.25 * max(s.x, 0.0));\n' +
+    '  vec3 q = vec3(aC * hw, 0.0);\n' +
+    '  q = vec3(q.x, q.y * cos(rx), q.y * sin(rx));\n' +
+    '  q = vec3(q.x * cos(ry), q.y, q.z - q.x * sin(ry));\n' +
+    '  gl_Position = uP * vec4(vp.xyz + q, 1.0);\n' +
+    '  vC = aC; vTl = vec2(ry, rx); vId = aId; vEm = s.x; vAp = s.z; vSt = s.y;\n}\n';
   SRC.nodeF = PREF +
-    'in vec2 vC; in float vId, vEm, vAp, vSt; uniform sampler2D uAt; uniform vec2 uGrid; out vec4 o;\n' +
+    'in vec2 vC, vTl; in float vId, vEm, vAp, vSt; uniform sampler2D uAt, uAc; uniform vec2 uGrid; out vec4 o;\n' +
     'void main(){\n' +
+    '  vec2 p = vC;\n' +
+    // the tile: a rounded square, radius 28% of its side, hairline border, a soft inner highlight on the lit edge
+    '  vec2 qd = abs(p) - vec2(0.9 - 0.504); float d = length(max(qd, 0.0)) + min(max(qd.x, qd.y), 0.0) - 0.504;\n' +
+    '  float aa = fwidth(d) + 1e-4;\n' +
+    '  float inside = 1.0 - smoothstep(-aa, aa, d);\n' +
+    '  float border = (1.0 - smoothstep(0.3 * aa, 1.1 * aa, abs(d + 0.9 * aa)));\n' +
+    '  vec2 nd = normalize(p + vec2(1e-4));\n' +
+    '  float lit = clamp(0.5 + 0.5 * dot(nd, normalize(vec2(-0.55 + vTl.x * 1.4, 0.83 - vTl.y * 1.4))), 0.0, 1.0);\n' +
+    '  float rim = (1.0 - smoothstep(0.0, 0.2, -d)) * inside * lit * lit;\n' +
     '  float col = floor(vId + 0.5); float row = floor(col / uGrid.x); col = col - row * uGrid.x;\n' +
-    '  vec2 uv = (vec2(col, row) + clamp(vec2(vC.x, -vC.y) * 0.5 + 0.5, 0.01, 0.99)) / uGrid;\n' +
-    '  vec4 t = texture(uAt, uv, -0.2);\n' +
+    '  vec2 uv = (vec2(col, row) + clamp(vec2(p.x, -p.y) * 0.5 + 0.5, 0.01, 0.99)) / uGrid;\n' +
+    '  vec4 tl = texture(uAt, uv, -0.2); vec4 tc = texture(uAc, uv, -0.2) * inside;\n' +
     '  float em = vEm;\n' +
     '  float dim = em < 0.0 ? mix(1.0, 0.5, -em) : 1.0;\n' +
     '  float hv = smoothstep(0.75, 1.0, em);\n' +
     '  float nb = smoothstep(0.1, 0.6, clamp(em, 0.0, 1.0));\n' +
-    '  float al = max(t.a, 1e-3); vec3 rgb = t.rgb / al;\n' +
+    '  float r = mix(mix(0.5 + 0.2 * vSt, 0.75, nb), 1.0, hv) * dim * vAp;\n' +
+    '  float al = max(tl.a, 1e-3); vec3 rgb = tl.rgb / al;\n' +
     '  float lum = dot(rgb, vec3(0.299, 0.587, 0.114));\n' +
-    '  float tone = mix(0.6, 1.0, clamp(lum * 1.6, 0.0, 1.0));\n' +
-    '  vec3 tint = mix(ACC, vec3(1.0, 0.82, 0.7), clamp(lum - 0.55, 0.0, 0.45)) * tone;\n' +
-    // at rest a translucent orange silhouette; linked ventures at about 70%; the hovered one in its real colour
-    '  float a = t.a * mix(mix(0.42 + 0.2 * vSt, 0.7, nb), 1.0, hv) * dim * vAp;\n' +
-    '  o = vec4(mix(tint, rgb, hv) * a, a);\n}\n';
+    '  vec3 tint = mix(ACC, vec3(1.0, 0.82, 0.7), clamp(lum - 0.6, 0.0, 0.4)) * mix(0.7, 1.0, clamp(lum * 1.5, 0.0, 1.0));\n' +
+    // rest: orange line art on a faint orange tile; hover: the real mark on a dark tile
+    '  vec3 tcol = mix(ACC, vec3(0.95, 0.93, 0.9), hv * 0.75);\n' +
+    '  float ta = (0.07 * (1.0 - hv) * inside + 0.55 * border + 0.3 * rim) * r;\n' +
+    '  vec4 tile = vec4(tcol * ta, ta);\n' +
+    '  float bgA = 0.9 * hv * inside * vAp * dim;\n' +
+    '  tile = vec4(vec3(0.05, 0.05, 0.055) * bgA, bgA) + tile * (1.0 - bgA);\n' +
+    '  vec4 g = vec4(mix(tint * tl.a, tc.rgb, hv), mix(tl.a, tc.a, hv)) * r;\n' +
+    '  o = g + tile * (1.0 - g.a);\n}\n';
 
   // labels: a name under a neighbouring node while a venture is hovered
   SRC.labV = PRE +
@@ -312,41 +335,69 @@
     gl.vertexAttribDivisor(loc, divisor || 0);
   }
 
+  // Per mark, decided by looking at each at display size: most read better as
+  // line art (a 4 px outline of the SVG shapes, round caps and joins); simple
+  // solid shapes keep a solid white glyph; the ones made of many small filled
+  // pieces or soft tones keep their own colours as a filled glyph. Every mark's
+  // own background tile is dropped, because the hero draws its own.
+  var MODE = { 'VibeCaddie': 'solid', 'release.show': 'solid', 'promptdecode': 'solid', 'ratecla.im': 'solid',
+    'Sealbin': 'plain', 'Tokker': 'plain' };
+  var SWK = 4.2;
+  function lineArtSvg(txt, frame, mode) {
+    var vb = txt.match(/viewBox="([^"]+)"/), vw = vb ? parseFloat(vb[1].split(/[ ,]+/)[2]) : 120, bg = 0, keep = [];
+    txt = txt.replace(/<clipPath[\s\S]*?<\/clipPath>/g, function (m) { keep.push(m); return '\u0001' + (keep.length - 1) + '\u0002'; });
+    // the mark's own background tile goes: the hero draws its own
+    txt = txt.replace(/<rect\b[^>]*>/g, function (m) {
+      var w = m.match(/\bwidth="([\d.]+)"/), h = m.match(/\bheight="([\d.]+)"/);
+      if (w && h && +w[1] >= vw * 0.45 && +h[1] >= vw * 0.2) { bg = 1; return ''; }
+      return m;
+    });
+    txt = txt.replace(/<circle\b[^>]*fill="url\([^>]*>/g, '');
+    txt = txt.replace(/\u0001(\d+)\u0002/g, function (m, i) { return keep[+i]; });
+    var css = '*{animation-play-state:paused!important;animation-delay:-' + frame + 's!important}' +
+      (mode === 'plain' ? '' : mode === 'solid' ? 'svg *{fill:#fff!important;stroke:none!important;opacity:1!important}' : 'svg *{fill:none!important;stroke:#fff!important;stroke-width:' + SWK + 'px!important;stroke-linecap:round!important;stroke-linejoin:round!important;vector-effect:non-scaling-stroke!important;opacity:1!important}');
+    return { svg: txt.replace(/<svg\b[^>]*>/, function (m) { return m + '<style>' + css + '</style>'; }), bg: bg };
+  }
+  function toImg(txt) {
+    return new Promise(function (res, rej) {
+      var img = new Image();
+      img.onload = function () { res(img); };
+      img.onerror = rej;
+      img.src = 'data:image/svg+xml;charset=utf-8,' + encodeURIComponent(txt);
+    });
+  }
+
+  // Two atlases of the same layout: line art for the resting state, the real
+  // mark (frozen on a lit frame) for hover.
   function loadMarks() {
-    var cv = document.createElement('canvas');
     var rows = Math.ceil(N / COLS);
-    cv.width = COLS * CELL; cv.height = rows * CELL;
-    var c = cv.getContext('2d');
+    function mkc() { var cv = document.createElement('canvas'); cv.width = COLS * CELL; cv.height = rows * CELL; return cv; }
+    var A = mkc(), B = mkc(), ca = A.getContext('2d'), cb = B.getContext('2d');
     var jobs = ventures.map(function (v, i) {
       var cx = (i % COLS) * CELL + CELL / 2, cy = Math.floor(i / COLS) * CELL + CELL / 2;
       if (!v.logo) return Promise.resolve();
-      var url = '/assets/' + v.logo;
-      return fetch(url).then(function (r) { return r.ok ? r.text() : Promise.reject(); }).then(function (txt) {
-        // The marks are animated SVGs. Freeze each on a lit frame so the
-        // atlas shows a legible mark rather than the t=0 frame, which is dim.
-        txt = txt.replace(/<svg\b[^>]*>/, function (m) {
-          return m + '<style>*{animation-play-state:paused!important;animation-delay:-' + (v.name === 'Kontinuum' ? 4.2 : 1.35) + 's!important}</style>';
+      return fetch('/assets/' + v.logo).then(function (r) { return r.ok ? r.text() : Promise.reject(); }).then(function (txt) {
+        var frame = v.name === 'Kontinuum' ? 4.2 : 1.35;
+        var la = lineArtSvg(txt, frame, MODE[v.name]);
+        var froz = txt.replace(/<svg\b[^>]*>/, function (m) {
+          return m + '<style>*{animation-play-state:paused!important;animation-delay:-' + frame + 's!important}</style>';
         });
-        return new Promise(function (res, rej) {
-          var img = new Image();
-          img.onload = function () { res(img); };
-          img.onerror = rej;
-          img.src = 'data:image/svg+xml;charset=utf-8,' + encodeURIComponent(txt);
+        return Promise.all([toImg(la.svg), toImg(froz)]).then(function (im) {
+          var lw = v.logoW || 120, lh = v.logoH || 120;
+          function draw(c, img, box) {
+            var sc = Math.min(box / lw, box / lh), w = lw * sc, h = lh * sc;
+            c.save(); c.beginPath(); c.rect(cx - CELL / 2, cy - CELL / 2, CELL, CELL); c.clip();
+            c.drawImage(img, cx - w / 2, cy - h / 2, w, h); c.restore();
+          }
+          var gbox = CELL * 0.66;
+          // resting glyph: line art, a solid glyph, or the mark's own colours (see MODE)
+          draw(ca, im[0], gbox);
+          // hover: the real mark; one with its own rounded tile fills ours, the rest sit inside it
+          draw(cb, v.name === 'Kontinuum' ? im[0] : im[1], la.bg ? CELL * 0.9 * 1.2 : gbox);
         });
-      }).then(function (img) {
-        var lw = v.logoW || 120, lh = v.logoH || 120;
-        var box = CELL * 0.84, s = Math.min(box / lw, box / lh);
-        var w = lw * s, h = lh * s;
-        c.drawImage(img, cx - w / 2, cy - h / 2, w, h);
-        // some marks are drawn in thin, translucent strokes; as a flat
-        // monochrome mark they would vanish, so thicken the faint ones
-        var x0 = Math.round(cx - CELL / 2), y0 = Math.round(cy - CELL / 2);
-        var px = c.getImageData(x0, y0, CELL, CELL).data, sum = 0, n = 0, q;
-        for (q = 3; q < px.length; q += 4) if (px[q] > 6) { sum += px[q]; n++; }
-        if (n && sum / n < 110) for (q = 0; q < 3; q++) c.drawImage(img, cx - w / 2, cy - h / 2, w, h);
-      }).catch(function () { /* the disc alone is still a node */ });
+      }).catch(function () { /* the tile alone is still a node */ });
     });
-    return Promise.all(jobs).then(function () { return cv; });
+    return Promise.all(jobs).then(function () { return { line: A, color: B }; });
   }
 
   function labelAtlas() {
@@ -385,7 +436,7 @@
 
   var ringCount = 0;
 
-  function buildGPU(markCanvas) {
+  function buildGPU(marks) {
     // programs
     progs.edge = compile(SRC.edgeV, SRC.edgeF);
     progs.ring = compile(SRC.ringV, SRC.ringF);
@@ -448,7 +499,8 @@
 
     gl.bindVertexArray(null);
 
-    gl.activeTexture(gl.TEXTURE0); tex.marks = upload(markCanvas, true);
+    gl.activeTexture(gl.TEXTURE0); tex.marks = upload(marks.line, true);
+    gl.activeTexture(gl.TEXTURE2); tex.color = upload(marks.color, true);
     gl.activeTexture(gl.TEXTURE1); tex.labels = upload(labelAtlas(), false);
     gl.pixelStorei(gl.UNPACK_PREMULTIPLY_ALPHA_WEBGL, false);
     gl.enable(gl.BLEND);
@@ -532,7 +584,7 @@
       Rpx = clamp((bot - top) / 2 / 1.1, 80, W * 0.37);
       cyPx = (top + bot) / 2;
     }
-    nodePx = Math.max(Rpx * (wide ? 0.15 : 0.2), 26);
+    nodePx = Math.max(Rpx * (wide ? 0.17 : 0.23), 30);
     dirty = true;
     return true;
   }
@@ -694,6 +746,8 @@
     gl.uniform1f(U(progs.node, 'uSz'), nodePx);
     gl.uniform2f(U(progs.node, 'uGrid'), COLS, Math.ceil(N / COLS));
     gl.uniform1i(U(progs.node, 'uAt'), 0);
+    gl.uniform1i(U(progs.node, 'uAc'), 2);
+    gl.uniform1f(U(progs.node, 'uRp'), Rpx);
     gl.bindVertexArray(vaos.node);
     gl.drawArraysInstanced(gl.TRIANGLE_STRIP, 0, 4, N);
 
@@ -714,7 +768,7 @@
     for (i = 0; i < N; i++) {
       var s = scr[i];
       if (!s) continue;
-      var rad = Math.max(nodePx * 0.62 * (0.5 + 0.5 * NS[i * 3 + 2]), touch ? 24 : 15);
+      var rad = Math.max(nodePx * camD / s.z * 0.5 * (0.5 + 0.5 * NS[i * 3 + 2]), touch ? 24 : 15);
       var dx = x - s.x, dy = y - s.y;
       // when marks overlap under the pointer, the nearer one wins
       if (dx * dx + dy * dy < rad * rad && s.z < bz) { best = i; bz = s.z; }
@@ -786,6 +840,7 @@
       tip._id.textContent = v.id; tip._cat.textContent = v.category || v.status;
       tip._name.textContent = v.name;
       tip._stack.hidden = !v.stack;
+      if (v.stack) tip._stack.textContent = 'PART OF THE FACTORY ZERO STACK \u00b7 ' + String(v.stackRole || '').toUpperCase() + (v.open_source ? ' \u00b7 OPEN SOURCE' : '');
       tip._one.textContent = oneLiner(v);
       var us = usesOf(a), shown = us.slice(0, 5);
       if (!us.length) {
@@ -811,7 +866,7 @@
     var s = scr[tipFor];
     if (!s) return;
     var tw = tip.offsetWidth || 270, th = tip.offsetHeight || 160;
-    var rad = tipFor === CORE ? Rpx * 0.1 : nodePx * 0.7;
+    var rad = tipFor === CORE ? Rpx * 0.1 : nodePx * camD / s.z * 0.62;
     var x = s.x + rad + 14, y = s.y - 26;
     if (x + tw > W - 12) x = s.x - rad - 14 - tw;
     if (x < 12) x = Math.max(12, Math.min(W - tw - 12, s.x - tw / 2));
@@ -828,7 +883,7 @@
     var planned = edges.length - liveCount;
     legend.innerHTML = '<span class="k"><i class="l"></i>LIVE LINK · ' + liveCount + '</span>' +
       '<span class="k"><i class="p"></i>PLANNED · ' + planned + ' ON HOVER</span>' +
-      (stackN ? '<span class="k"><i class="s"></i>FZ STACK · ' + stackN + '</span>' : '') +
+      (stackN ? '<span class="k"><i class="s"></i>FZ STACK · ' + stackN + '<button type="button" class="fzs-i" aria-label="What is FZ STACK?" aria-haspopup="dialog" aria-expanded="false">i</button></span>' : '') +
       '<span class="h">' + (window.matchMedia('(hover: none)').matches ? 'TAP A VENTURE' : 'HOVER A VENTURE') + '</span>';
     hero.appendChild(legend);
   }
@@ -844,7 +899,7 @@
       a.addEventListener('focus', function () { st.focus = i; dirty = true; showTip(); kick(); });
       a.addEventListener('blur', function () { if (st.focus === i) { st.focus = -1; dirty = true; showTip(); kick(); } });
       li.appendChild(a);
-      li.appendChild(document.createTextNode('. ' + (v.stack ? 'Part of the Factory Zero stack. ' : '') + oneLiner(v) + ' '));
+      li.appendChild(document.createTextNode('. ' + (v.stack ? 'Part of the Factory Zero stack: ' + v.stackRole + '. ' : '') + oneLiner(v) + ' '));
       var us = usesOf(i);
       if (us.length) {
         li.appendChild(document.createTextNode(us.map(function (u) { return u.phrase + ' ' + u.name + (u.live ? ' (live)' : ' (planned)'); }).join('; ') + '.'));

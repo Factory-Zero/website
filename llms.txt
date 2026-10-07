@@ -482,6 +482,9 @@ public source repositories.
 - [Ventures](https://factory0.ventures/ventures/): the venture registry, one
   record per venture with status, category, pipeline stage, autonomy target,
   the three aims and public source links.
+- [The stack](https://factory0.ventures/stack/): the Factory Zero stack, the
+  ventures other ventures are built on, each with its role, whether it is open
+  source, and which ventures use it.
 - [System](https://factory0.ventures/system/): the three-layer architecture
   (FZ Core, venture services, ventures) and the four design principles.
 - [Technology](https://factory0.ventures/technology/): how ventures are built.

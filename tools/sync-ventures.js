@@ -67,13 +67,17 @@ function uses(v) {
 // venture's `uses`, so the label cannot drift from the links.
 for (const v of V) {
   if (typeof v.stack !== 'boolean') throw new Error(`${v.id}: stack must be true or false`);
+  if (v.stack && !v.stackRole) throw new Error(`${v.id}: a stack venture needs a stackRole`);
+  if (v.stack && typeof v.open_source !== 'boolean') throw new Error(`${v.id}: a stack venture needs open_source true or false`);
+  if (v.open_source && !v.license) throw new Error(`${v.id}: open_source needs the licence`);
   for (const u of v.uses || []) {
     const p = BY_ID.get(u.id);
     if (p && !p.stack) throw new Error(`${p.id} (${p.name}) is used by ${v.id} but is not marked stack: true`);
   }
 }
 const STACK_COUNT = V.filter(v => v.stack).length;
-const fzs = v => v.stack ? '<span class="fzs">FZ STACK</span>' : '';
+const fzs = v => v.stack ? `<span class="fzs">FZ STACK</span><span class="fzs-role">${esc(v.stackRole)}</span>${v.open_source ? `<span class="fzs-os" title="${esc(v.license)} licence">OPEN SOURCE</span>` : ''}` : '';
+const INFO_BTN = '<button type="button" class="fzs-i" aria-label="What is FZ STACK?" aria-haspopup="dialog" aria-expanded="false">i</button>';
 // The rendered list, shared by the static page and (through data-uses) fz-ventures.js.
 const useItem = u => `<li class="use"><span class="use-role">${esc(u.label)}</span><a class="use-name" href="${esc(u.page || u.url)}"${u.page ? '' : ' rel="noopener"'}>${esc(u.name)}</a><span class="use-tag use-tag--${u.status}">${u.status.toUpperCase()}</span>${u.note ? `<span class="use-note">${esc(u.note)}</span>` : ''}</li>`;
 const useList = v => uses(v).length ? `<ul class="uses">${uses(v).map(useItem).join('')}</ul>` : '<span>NOT RECORDED</span>';
@@ -84,7 +88,7 @@ function row(v, i) {
     ? `<img class="venture-logo" src="/assets/${esc(v.logo)}" alt="" width="30" height="${Math.round(30 * (v.logoH || 1) / (v.logoW || 1))}">`
     : '';
   return `      <button type="button" class="record registry-cols" aria-pressed="${i === 0}" aria-controls="d-record"
-        data-id="${esc(v.id)}" data-stack="${v.stack ? 1 : 0}" data-slug="${slug(v)}" data-name="${esc(v.name)}" data-status="${esc(v.status)}" data-status-color="${c}"
+        data-id="${esc(v.id)}" data-stack="${v.stack ? 1 : 0}" data-stack-role="${esc(v.stackRole || '')}" data-license="${esc(v.open_source ? v.license : '')}" data-slug="${slug(v)}" data-name="${esc(v.name)}" data-status="${esc(v.status)}" data-status-color="${c}"
         data-category="${esc(v.category)}" data-autonomy="${v.autonomy == null ? '' : v.autonomy}"
         data-target="${v.target == null ? '' : v.target}" data-aim-operate="${esc(aims(v).operate)}"
         data-aim-intelligence="${esc(aims(v).intelligence)}" data-aim-growth="${esc(aims(v).growth)}"
@@ -114,7 +118,7 @@ function detail(v) {
     : `<img id="d-logo" class="venture-logo venture-logo--lg" alt="" hidden>`;
   return `      <div class="detail-id"><span id="d-id">${esc(v.id)}</span>${logo}</div>
       <h2 class="detail-name" id="d-name">${esc(v.name)}</h2>
-      <p class="fzs-line" id="d-stack"${v.stack ? '' : ' hidden'}><span class="fzs">FZ STACK</span>Other ventures are built on this one.</p>
+      <p class="fzs-line" id="d-stack"${v.stack ? '' : ' hidden'}><a class="fzs" href="/stack/">FZ STACK</a><span class="fzs-role" id="d-stack-role">${esc(v.stackRole || '')}</span><span class="fzs-os" id="d-stack-os" title="${esc(v.license || '')} licence"${v.open_source ? '' : ' hidden'}>OPEN SOURCE</span>${INFO_BTN}<span class="fzs-note">Other ventures are built on this one.</span></p>
       <div class="pitch">
         <section><h3 class="pitch-k">THE PROBLEM</h3><p class="pitch-problem" id="d-problem">${esc(pitch(v).problem)}</p></section>
         <section><h3 class="pitch-k">WHAT IT DOES</h3><p class="pitch-solution" id="d-solution">${esc(pitch(v).solution)}</p></section>
@@ -149,7 +153,7 @@ function reelItem(v, copy) {
   const logo = v.logo
     ? `<img src="/assets/${esc(v.logo)}" alt="" width="44" height="${Math.round(44 * (v.logoH || 1) / (v.logoW || 1))}" loading="lazy">`
     : `<span class="reel-mono" aria-hidden="true">${esc(v.name.slice(0, 1))}</span>`;
-  return `      <li${copy ? ' aria-hidden="true"' : ''}><a href="/ventures/${slug(v)}/"${copy ? ' tabindex="-1"' : ''}>${logo}<span class="reel-name">${esc(v.name)}</span><span class="reel-meta">${esc(v.id)} &middot; ${esc(v.category)}</span>${fzs(v) ? fzs(v).replace('class="fzs"', 'class="fzs reel-stack"') : ''}</a></li>`;
+  return `      <li${copy ? ' aria-hidden="true"' : ''}><a href="/ventures/${slug(v)}/"${copy ? ' tabindex="-1"' : ''}>${logo}<span class="reel-name">${esc(v.name)}</span><span class="reel-meta">${esc(v.id)} &middot; ${esc(v.category)}</span>${v.stack ? `<span class="reel-stack-row">${fzs(v)}</span>` : ''}</a></li>`;
 }
 // Two rows moving in opposite directions; ventures alternate between them.
 // Each track holds its row twice so a short row still covers a wide screen,
@@ -177,7 +181,7 @@ const live = V.filter(v => v.status !== 'ARCHIVED');
 const vp = path.join(ROOT, 'ventures/index.html');
 let vs = fs.readFileSync(vp, 'utf8');
 vs = replaceRegion(vs, 'registry', V.map(row).join('\n'));
-vs = replaceRegion(vs, 'stackbar', `    <div class="registry-filter"><button type="button" class="fzs-filter" id="fz-stack-filter" aria-pressed="false">FZ STACK &middot; ${String(STACK_COUNT).padStart(2, '0')}</button><p class="fzs-hint">The ventures other ventures are built on. They add to the shared foundation; the others inherit it.</p></div>`);
+vs = replaceRegion(vs, 'stackbar', `    <div class="registry-filter"><button type="button" class="fzs-filter" id="fz-stack-filter" aria-pressed="false">FZ STACK &middot; ${String(STACK_COUNT).padStart(2, '0')}</button>${INFO_BTN}<p class="fzs-hint">The ventures other ventures are built on. They add to the shared foundation; the others inherit it. <a href="/stack/">See the stack &rarr;</a></p></div>`);
 vs = replaceRegion(vs, 'detail', detail(V[0]));
 vs = replaceRegion(vs, 'spec', spec(V[0]));
 const COUNT_RE = /(id="fz-count"[^>]*>)[^<]*/;
@@ -250,12 +254,18 @@ for (const d of fs.readdirSync(path.join(ROOT, 'ventures'), { withFileTypes: tru
   }
 }
 
+// stack/index.html: the stack page, from the same data
+const stackPage = require('./stack-page.js');
+fs.mkdirSync(path.join(ROOT, 'stack'), { recursive: true });
+fs.writeFileSync(path.join(ROOT, 'stack', 'index.html'), stackPage({ V, ROOT, SITE, slug, pitch, uses }));
+
 // sitemap.xml: one entry per venture page
 const smp = path.join(ROOT, 'sitemap.xml');
 const today = new Date().toISOString().slice(0, 10);
 let sm = fs.readFileSync(smp, 'utf8');
 sm = replaceRegion(sm, 'venture-pages', V.map(v =>
   `  <url><loc>${SITE}/ventures/${slug(v)}/</loc><lastmod>${today}</lastmod><changefreq>weekly</changefreq><priority>0.7</priority></url>`).join('\n'));
+if (!sm.includes(`${SITE}/stack/`)) sm = sm.replace(/(  <url><loc>[^<]*\/ventures\/<\/loc>[^\n]*\n)/, `$1  <url><loc>${SITE}/stack/</loc><lastmod>${today}</lastmod><changefreq>weekly</changefreq><priority>0.8</priority></url>\n`);
 fs.writeFileSync(smp, sm);
 
 // functions/api/activity-sources.json: the only GitHub owners and repositories

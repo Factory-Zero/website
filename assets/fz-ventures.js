@@ -49,7 +49,13 @@
     el.id.textContent = d.id;
     el.record.textContent = 'RECORD / ' + d.id;
     el.name.textContent = d.name;
-    if (el.stack) el.stack.hidden = d.stack !== '1';
+    if (el.stack) {
+      el.stack.hidden = d.stack !== '1';
+      var sr = document.getElementById('d-stack-role');
+      if (sr) sr.textContent = d.stackRole || '';
+      var so = document.getElementById('d-stack-os');
+      if (so) { so.hidden = !d.license; so.title = d.license + ' licence'; }
+    }
     el.desc.textContent = d.desc;
     // the plain-language pitch: problem, what it does, how, the offer, the time it saves
     if (el.problem) {
@@ -388,11 +394,15 @@
 
   // FZ STACK filter: show only the ventures other ventures are built on
   var stackBtn = document.getElementById('fz-stack-filter');
-  if (stackBtn) stackBtn.addEventListener('click', function () {
-    var on = stackBtn.getAttribute('aria-pressed') !== 'true';
+  function setStackFilter(on) {
     stackBtn.setAttribute('aria-pressed', String(on));
     rows.forEach(function (r) { r.hidden = on && r.dataset.stack !== '1'; });
-  });
+  }
+  if (stackBtn) {
+    stackBtn.addEventListener('click', function () { setStackFilter(stackBtn.getAttribute('aria-pressed') !== 'true'); });
+    // /ventures/?stack=1 arrives with the filter on (the stack page and the popover link here)
+    if (/[?&]stack=1\b/.test(location.search)) setStackFilter(true);
+  }
 
   // The HTML already shows the right record; this only fills its chart and,
   // on a deep link, brings the record into view.
