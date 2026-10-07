@@ -14,7 +14,7 @@ for f in index.html 404.html robots.txt sitemap.xml llms.txt stack.json site.web
 done
 
 # directories served as-is
-for d in assets .well-known ventures system technology thesis about enter; do
+for d in assets .well-known ventures stack system technology thesis about enter; do
   cp -R "$d" "dist/$d"
 done
 
