@@ -1327,6 +1327,44 @@
           "note": "The site."
         }
       ]
+    },
+    {
+      "id": "FZ-022",
+      "name": "Ghostwritin'",
+      "site": "https://ghostwrit.in/",
+      "page": "https://factory0.ventures/ventures/ghostwritin/",
+      "uses": [
+        {
+          "id": "FZ-004",
+          "name": "Cratefield",
+          "kind": "factory-zero",
+          "url": "https://cratefield.com/",
+          "role": "framework",
+          "phrase": "Built with",
+          "status": "planned",
+          "note": "The open-source app (engine, API Worker, CLI, MCP server) is being built on the Cratefield harness, with the meaning lock and diff offered upstream as generic Cratefield modules."
+        },
+        {
+          "id": "google-fonts",
+          "name": "Google Fonts",
+          "kind": "third-party",
+          "url": "https://fonts.google.com",
+          "role": "fonts",
+          "phrase": "Typefaces from",
+          "status": "live",
+          "note": "The site’s typefaces (Newsreader, JetBrains Mono), loaded from Google."
+        },
+        {
+          "id": "cloudflare",
+          "name": "Cloudflare",
+          "kind": "third-party",
+          "url": "https://www.cloudflare.com",
+          "role": "hosting",
+          "phrase": "Hosted on",
+          "status": "live",
+          "note": "The site."
+        }
+      ]
     }
   ]
 }
