@@ -1920,6 +1920,17 @@ a.fzs:hover { background: rgba(255, 90, 54, .12); color: var(--accent); }
 .as { overflow-x: clip; }
 .as-wrap { width: 100%; max-width: 1240px; margin: 0 auto; padding-left: var(--gut); padding-right: var(--gut); }
 .as-hero { padding-top: clamp(120px, 17vh, 170px); padding-bottom: clamp(32px, 6vh, 64px); }
+.as-hero { position: relative; isolation: isolate; }
+.as-hero::before { content: ""; position: absolute; z-index: -1; top: 0; bottom: 0; left: 50%; width: 100vw; transform: translateX(-50%);
+  background:
+    linear-gradient(90deg, var(--bg) 0%, rgba(10,10,11,.92) 30%, rgba(10,10,11,.55) 58%, rgba(10,10,11,.15) 100%),
+    linear-gradient(180deg, rgba(10,10,11,.6) 0%, rgba(10,10,11,0) 30%, rgba(10,10,11,0) 70%, var(--bg) 100%),
+    url("/assets/img/stack-hero.webp") right center / cover no-repeat; }
+@media (max-width: 760px) {
+  .as-hero::before { background:
+    linear-gradient(180deg, rgba(10,10,11,.55) 0%, rgba(10,10,11,.82) 45%, var(--bg) 100%),
+    url("/assets/img/stack-hero-960.webp") 70% center / cover no-repeat; }
+}
 .as-h1 { margin: 0 0 24px; max-width: 14ch; font-weight: 400; font-size: clamp(44px, 7vw, 112px); line-height: .96; letter-spacing: -.04em; text-wrap: balance; overflow-wrap: break-word; }
 .as-lede { margin: 0; max-width: 56ch; font-size: clamp(17px, 1.5vw, 21px); line-height: 1.5; font-weight: 300; color: var(--body); text-wrap: pretty; }
 .sk-os-line { display: flex; flex-wrap: wrap; align-items: center; gap: 10px; margin: 24px 0 0; font-family: var(--mono); font-size: 12px; letter-spacing: .08em; color: var(--body); }
