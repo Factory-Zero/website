@@ -1289,6 +1289,44 @@
           "note": "The site."
         }
       ]
+    },
+    {
+      "id": "FZ-021",
+      "name": "Ledgers",
+      "site": "https://ledgers.sh/",
+      "page": "https://factory0.ventures/ventures/ledgers/",
+      "uses": [
+        {
+          "id": "FZ-004",
+          "name": "Cratefield",
+          "kind": "factory-zero",
+          "url": "https://cratefield.com/",
+          "role": "framework",
+          "phrase": "Built with",
+          "status": "planned",
+          "note": "Every module (ledger, invoice, bills, matching, bank, tax, documents, reports) is planned as a Rust crate on the Cratefield harness. Nothing is published yet."
+        },
+        {
+          "id": "google-fonts",
+          "name": "Google Fonts",
+          "kind": "third-party",
+          "url": "https://fonts.google.com",
+          "role": "fonts",
+          "phrase": "Typefaces from",
+          "status": "live",
+          "note": "The site’s typefaces (Source Sans 3, Source Code Pro), loaded from Google."
+        },
+        {
+          "id": "cloudflare",
+          "name": "Cloudflare",
+          "kind": "third-party",
+          "url": "https://www.cloudflare.com",
+          "role": "hosting",
+          "phrase": "Hosted on",
+          "status": "live",
+          "note": "The site."
+        }
+      ]
     }
   ]
 }

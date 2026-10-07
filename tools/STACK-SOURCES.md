@@ -16,13 +16,13 @@ entry is left out. Re-check an entry before flipping it to `live`.
 
 | Claim | Evidence |
 | :--- | :--- |
-| Cloudflare hosts every venture site (`hosting`, live) | `curl -sI https://<site>/` answers `server: cloudflare` for all eighteen sites (2026-10-03), and for tokker.dev (2026-10-05); each site repo deploys to Cloudflare Pages or a static-assets Worker. |
+| Cloudflare hosts every venture site (`hosting`, live) | `curl -sI https://<site>/` answers `server: cloudflare` for all eighteen sites (2026-10-03), for tokker.dev (2026-10-05), and for ledgers.sh (2026-10-08); each site repo deploys to Cloudflare Pages or a static-assets Worker. |
 | Cratefield waitlist Workers are live (`framework`, live) | `GET https://api.<domain>/v1/waitlist` answers `405` (the route exists and takes POST) for sealb.in, release.show, colonizer.dev, findsyou.work, posplug.in and cratefield.com (2026-10-03). Each private waitlist backend's `Cargo.toml` depends on `cratefield-module-waitlist` (or its earlier `factory0-module-waitlist` name, from `Cratefield/harness`) and its `wrangler.toml` routes `api.<domain>`. |
 | Waitlist confirmation mail is not live (`email`, planned) | Each waitlist backend's `src/lib.rs` uses a `NoopMailer` until a `RESEND_API_KEY` secret is set, and its README says double opt-in is off; the sites set `data-double-opt-in="false"` or promise only "one email when early access opens". Cratefield is the exception (below). |
 | SupportGenius error and bug intake (`bug-reports`, planned) | [SupportGenius/core#65](https://github.com/SupportGenius/core/issues/65) (intake API) and [Cratefield/harness#692](https://github.com/Cratefield/harness/issues/692) (`module-error-reporting`, "every venture built on Cratefield"). Listed for every venture that runs on, or is being built on, Cratefield. |
 | Polar payments (`payments`, planned) | Billing issues filed 2026-10-02/03 for the nine approved ventures, e.g. [Sealbin/sealbin#16](https://github.com/Sealbin/sealbin/issues/16), [Colonizer-dev/harness#941](https://github.com/Colonizer-dev/harness/issues/941), [Livingbrain-wiki/livingbrain#32](https://github.com/Livingbrain-wiki/livingbrain/issues/32), [Cratefield/harness#690](https://github.com/Cratefield/harness/issues/690) (`adapter-polar`); the rest are in private repos (Owlpost, Keep Shipping, promptdecode, release.show) or decided without an issue yet (SupportGenius). |
 | Keep Shipping deploys (`deploys`, planned) | Keep Shipping's harness issue #172 (private), "Deploy every site and Worker from the console": "Each venture repo gets a `ship.ks` for its site". |
-| Google Fonts on the sites that load it (`fonts`, live) | Fifteen of the twenty sites load their typefaces from Google, so every visitor's IP reaches Google (2026-10-05). Each home page carries a `<link href="https://fonts.googleapis.com/css2?family=…">` next to a `<link rel="preconnect" href="https://fonts.googleapis.com">`; the stylesheet it serves pulls the font files from `fonts.gstatic.com`. Fetched with `curl -sSL -A <browser UA> https://<site>/` and grepped. The families per site are named in the note of each entry, below. The other five self-host or use system fonts, so they have no entry. |
+| Google Fonts on the sites that load it (`fonts`, live) | Sixteen of the twenty-one sites load their typefaces from Google, so every visitor's IP reaches Google (2026-10-05). Each home page carries a `<link href="https://fonts.googleapis.com/css2?family=…">` next to a `<link rel="preconnect" href="https://fonts.googleapis.com">`; the stylesheet it serves pulls the font files from `fonts.gstatic.com`. Fetched with `curl -sSL -A <browser UA> https://<site>/` and grepped. The families per site are named in the note of each entry, below. The other five self-host or use system fonts, so they have no entry. |
 
 ## Google Fonts per venture
 
@@ -50,6 +50,7 @@ cratefield.com and carries the same link.
 | FZ-015 ratecla.im | ratecla.im | Plus Jakarta Sans, JetBrains Mono |
 | FZ-017 release.show | release.show | Geist, Geist Mono |
 | FZ-019 Shoal | shoal.ing | Geist, Geist Mono, Instrument Serif |
+| FZ-021 Ledgers | ledgers.sh | Source Sans 3, Source Code Pro |
 
 ## Per venture
 
@@ -81,6 +82,7 @@ cratefield.com and carries the same link.
 | FZ-020 Tokker | Colonizer agents | planned | README "How it stays true": scheduled Colonizer loops; [#39](https://github.com/Tokker-dev/tokker/issues/39)–[#42](https://github.com/Tokker-dev/tokker/issues/42) (the loops), [#44](https://github.com/Tokker-dev/tokker/issues/44) ("Turn the loops on", open). |
 | FZ-020 Tokker | Owlpost email | planned | [#17](https://github.com/Tokker-dev/tokker/issues/17) (waitlist confirmation), [#48](https://github.com/Tokker-dev/tokker/issues/48) (alerts), [#49](https://github.com/Tokker-dev/tokker/issues/49) (weekly email). |
 | FZ-020 Tokker | Polar payments | planned | [#57](https://github.com/Tokker-dev/tokker/issues/57), [#58](https://github.com/Tokker-dev/tokker/issues/58) (paid API tier, label `later`). |
+| FZ-021 Ledgers | Cratefield framework | planned | ledgers.sh `#modules` and `Ledgers-sh/website` README: eight modules planned as Rust crates on Cratefield; nothing published (2026-10-08). |
 
 ## Left out on purpose
 
