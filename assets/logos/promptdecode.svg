@@ -1,4 +1,4 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 120 120" role="img" aria-label="promptdecode"><style>*{animation-play-state:paused!important;animation-delay:-1.35s!important}svg *{fill:#FF5A36!important;stroke:none!important;opacity:1!important}</style>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 120 120" width="120" height="120" role="img" aria-label="promptdecode"><style>*{animation-play-state:paused!important;animation-delay:-1.35s!important}</style>
   <title>promptdecode</title>
   <desc>Three character slots on an amber tile, decoded into solid glyphs. Now and then they drop back to empty boxes and decode again, left to right: text a reviewer cannot read being decoded.</desc>
   <style>
@@ -30,8 +30,8 @@
       .s { animation: none; fill-opacity: 1; transform: none }
     }
   </style>
-  
-  
+  <rect x="12" y="12" width="96" height="96" rx="30" fill="#F2B53A"/>
+  <rect x="13.75" y="13.75" width="92.5" height="92.5" rx="28.25" fill="none" stroke="#FFFFFF" stroke-opacity=".25" stroke-width="3.5"/>
   <rect class="s s1" x="28" y="42" width="16" height="36" rx="4"/>
   <rect class="s s2" x="52" y="42" width="16" height="36" rx="4"/>
   <rect class="s s3" x="76" y="42" width="16" height="36" rx="4"/>

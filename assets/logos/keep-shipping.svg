@@ -1,4 +1,4 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 120 120" role="img" aria-label="Keep Shipping"><style>*{animation-play-state:paused!important;animation-delay:-1.35s!important}svg *{fill:none!important;stroke:#FF5A36!important;stroke-width:4.2px!important;stroke-linecap:round!important;stroke-linejoin:round!important;opacity:1!important}</style>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 120 120" width="120" height="120" role="img" aria-label="Keep Shipping"><style>*{animation-play-state:paused!important;animation-delay:-1.35s!important}</style>
   <title>Keep Shipping</title>
   <desc>A deploy route: push on the left, deploy on the right, the review gate in the middle. A change runs down the route, waits at the gate until it opens, then ships.</desc>
   <style>
@@ -11,7 +11,7 @@
     /* with motion reduced the route is the static mark */
     @media (prefers-reduced-motion: reduce) { .run, .gate { animation: none } .run { display: none } }
   </style>
-  
+  <rect x="10" y="10" width="100" height="100" fill="#1950CC"/>
   <path d="M18 60H102" stroke="#FFFFFF" stroke-width="6"/>
   <rect class="gate" x="49" y="49" width="22" height="22" transform="rotate(45 60 60)" stroke="#FFFFFF" stroke-width="6"/>
   <rect class="run" x="14" y="56" width="8" height="8"/>

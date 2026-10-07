@@ -1,4 +1,4 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 120 120" role="img" aria-label="Living Brain"><style>*{animation-play-state:paused!important;animation-delay:-1.35s!important}svg *{fill:none!important;stroke:#FF5A36!important;stroke-width:4.2px!important;stroke-linecap:round!important;stroke-linejoin:round!important;opacity:1!important}</style>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 120 120" width="120" height="120" role="img" aria-label="Living Brain"><style>*{animation-play-state:paused!important;animation-delay:-1.35s!important}</style>
   <title>Living Brain</title>
   <desc>The Living Brain mark: a ring around one glowing green node, on a dark square, with four smaller nodes linked to it. A pulse travels along one edge into the centre, the node glows brighter, and a second pulse follows from the opposite corner.</desc>
   <style>
@@ -20,7 +20,7 @@
   <defs>
     <filter id="lb-blur" x="-100%" y="-100%" width="300%" height="300%"><feGaussianBlur stdDeviation="5"/></filter>
   </defs>
-  
+  <rect x="10" y="10" width="100" height="100" rx="30" fill="#0E1719"/>
   <g stroke="#E8EFF0" stroke-opacity=".22" stroke-width="1.5">
     <line x1="28" y1="34" x2="60" y2="60"/>
     <line x1="91" y1="31" x2="60" y2="60"/>

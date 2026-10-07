@@ -1,4 +1,4 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 120 120" role="img" aria-label="VibeCaddie"><style>*{animation-play-state:paused!important;animation-delay:-1.35s!important}svg *{fill:#FF5A36!important;stroke:none!important;opacity:1!important}</style>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 120 120" width="120" height="120" role="img" aria-label="VibeCaddie"><style>*{animation-play-state:paused!important;animation-delay:-1.35s!important}</style>
   <title>VibeCaddie</title>
   <desc>The caddie mark. A club held on the green while an audit sweeps across it, pass after pass.</desc>
   <style>
@@ -24,7 +24,7 @@
       <stop offset="100%" stop-color="#EDEBE6" stop-opacity="0"/>
     </linearGradient>
   </defs>
-  
+  <rect x="10" y="10" width="100" height="100" rx="28" fill="#4ADE80"/>
   <g clip-path="url(#vc-plate)">
     <rect class="club" x="50.9" y="28.2" width="18.2" height="63.6" rx="9.1" fill="#0A0C0B" transform="rotate(20 60 60)"/>
     <circle class="ball" cx="34" cy="86" r="6" fill="#0A0C0B" opacity=".3"/>
