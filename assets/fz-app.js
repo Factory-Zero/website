@@ -312,6 +312,7 @@
 
     var start = performance.now();
     var lastPhase = '';
+    var yielded = false;
 
     function draw(now) {
       if (!W || !H) { resize(); if (!reduced) requestAnimationFrame(draw); return; }
@@ -327,6 +328,15 @@
         state.phase = phase;
         if (elPhase) elPhase.textContent = phase;
       }
+
+      // fz-hero3d.js draws the hero when WebGL2 is available; this canvas then
+      // only keeps the phase label turning, and wakes up again if 3D is lost.
+      if (window.FZ_HERO3D) {
+        if (!yielded) { ctx.clearRect(0, 0, canvas.width, canvas.height); yielded = true; }
+        if (!reduced) setTimeout(function () { requestAnimationFrame(draw); }, 400);
+        return;
+      }
+      yielded = false;
 
       ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
       ctx.clearRect(0, 0, W, H);

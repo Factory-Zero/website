@@ -24,7 +24,7 @@ find dist -name '.DS_Store' -delete
 # alone cannot invalidate a cached CSS/JS file and visitors keep running the old
 # one. Stamp each reference with a short content hash here; _headers can then
 # cache /assets/*.css and *.js immutably because the URL changes when they do.
-for f in fz.css fz-common.js fz-data.js fz-app.js fz-timeline.js fz-ventures.js fz-enter.js; do
+for f in fz.css fz-common.js fz-data.js fz-app.js fz-timeline.js fz-hero3d.js fz-ventures.js fz-enter.js; do
   h=$(shasum -a 256 "dist/assets/$f" | cut -c1-8)
   find dist -name '*.html' -exec sed -i '' "s|/assets/$f\"|/assets/$f?v=$h\"|g" {} +
 done
