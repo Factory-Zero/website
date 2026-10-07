@@ -111,7 +111,7 @@ ${header}
 
 <section class="as-wrap as-hero">
   <p class="eyebrow">THE FACTORY ZERO STACK &middot; ${String(stack.length).padStart(2, '0')} OF ${String(V.length).padStart(2, '0')} VENTURES</p>
-  <h1 class="as-h1">One foundation, many launches.</h1>
+  <h1 class="as-h1">We launch ventures at&nbsp;scale.</h1>
   <p class="as-lede">${esc(hero)}</p>
   <p class="sk-os-line"><span class="fzs-os">OPEN SOURCE</span>${esc(osLine)}</p>
 </section>
