@@ -280,7 +280,6 @@ fs.writeFileSync(path.join(ROOT, 'stack.json'), JSON.stringify(stack, null, 2) +
 const hp = path.join(ROOT, 'index.html');
 let hs = fs.readFileSync(hp, 'utf8');
 for (const [re, val, label] of [
-  [/(id="fz-ventures"[^>]*>)[^<]*/, `${String(live.length).padStart(2, '0')} ACTIVE`, 'fz-ventures'],
   [/(id="fz-pipeline-count"[^>]*>)[^<]*/, `LINE 01 &middot; ${String(live.length).padStart(2, '0')} UNITS IN PROCESS`, 'fz-pipeline-count'],
   [/(id="fz-reel-count"[^>]*>)[^<]*/, String(live.length), 'fz-reel-count'],
 ]) {
@@ -288,6 +287,22 @@ for (const [re, val, label] of [
   hs = hs.replace(re, `$1${val}`);
 }
 hs = replaceRegion(hs, 'reel', reel(live));
+// The hero proof row: counts only, each one derived from the records above,
+// so it can never claim more than the registry shows.
+function proof(vs) {
+  const ids = new Set(vs.map(v => v.id));
+  const sectors = new Set(vs.map(v => v.category).filter(Boolean)).size;
+  // Ventures that already run on a sister venture, by a `uses` entry checked live.
+  const onSister = vs.filter(v => (v.uses || []).some(u => ids.has(u.id) && u.status === 'live')).length;
+  const row = (n, label) => `        <div><dt>${label}</dt><dd>${String(n).padStart(2, '0')}</dd></div>`;
+  return [
+    row(vs.length, 'VENTURES'),
+    row(sectors, 'SECTORS'),
+    row(onSister, 'RUN ON A SISTER VENTURE'),
+  ].join('\n');
+}
+hs = replaceRegion(hs, 'proof', proof(live));
+
 // The venture timeline, from assets/timeline-data.json (refresh that with
 // tools/sync-timeline.js). Ventures without an org in the data are left out.
 const tdp = path.join(ROOT, 'assets/timeline-data.json');
