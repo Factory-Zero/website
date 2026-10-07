@@ -1,4 +1,4 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 120 120" role="img" aria-label="PosPlugin"><style>*{animation-play-state:paused!important;animation-delay:-1.35s!important}svg *{fill:none!important;stroke:#FF5A36!important;stroke-width:4.2px!important;stroke-linecap:round!important;stroke-linejoin:round!important;opacity:1!important}</style>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 120 120" width="120" height="120" role="img" aria-label="PosPlugin"><style>*{animation-play-state:paused!important;animation-delay:-1.35s!important}</style>
   <title>PosPlugin</title>
   <desc>A plug: a cable, the plug body and two prongs. Data pulses down the cable, the status light blinks, and the plug seats itself once a cycle.</desc>
   <style>

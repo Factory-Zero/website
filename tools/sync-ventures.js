@@ -68,6 +68,7 @@ function uses(v) {
 for (const v of V) {
   if (typeof v.stack !== 'boolean') throw new Error(`${v.id}: stack must be true or false`);
   if (v.stack && !v.stackRole) throw new Error(`${v.id}: a stack venture needs a stackRole`);
+  if (v.stack && !v.stackGroup) throw new Error(`${v.id}: a stack venture needs a stackGroup`);
   if (v.stack && typeof v.open_source !== 'boolean') throw new Error(`${v.id}: a stack venture needs open_source true or false`);
   if (v.open_source && !v.license) throw new Error(`${v.id}: open_source needs the licence`);
   for (const u of v.uses || []) {

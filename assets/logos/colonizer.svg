@@ -1,4 +1,4 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 120 120" role="img" aria-label="Colonizer"><style>*{animation-play-state:paused!important;animation-delay:-1.35s!important}svg *{fill:none!important;stroke:#FF5A36!important;stroke-width:4.2px!important;stroke-linecap:round!important;stroke-linejoin:round!important;opacity:1!important}</style>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 120 120" width="120" height="120" role="img" aria-label="Colonizer"><style>*{animation-play-state:paused!important;animation-delay:-1.35s!important}</style>
   <title>Colonizer</title>
   <desc>The outpost mark. A settler leaves each corner in turn and comes back, while the outpost holds.</desc>
   <style>
