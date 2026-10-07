@@ -102,8 +102,19 @@
   var CORE = N;            // index of the core in the node arrays
 
   // edge list for the GPU: venture pairs first, then one spoke per venture
-  var ALL = edges.map(function (e) { return { a: e.a, b: e.b, kind: e.live ? 1 : 0 }; });
-  ventures.forEach(function (v, i) { ALL.push({ a: CORE, b: i, kind: 2 }); });
+  // `off` staggers the beams; a live link's kind is 1 when it carries traffic
+  // from its first venture to its second and 1.25 when it runs the other way
+  var liveN = Math.max(1, liveCount), liveI = 0;
+  var ALL = edges.map(function (e, k) {
+    var kind = 0, off = (k * 0.381) % 1;
+    if (e.live) {
+      var u = e.uses.filter(function (x) { return x.live; })[0];
+      kind = (OUTBOUND[u.role] ? u.user : u.provider) === e.a ? 1 : 1.25;
+      off = liveI++ / liveN;
+    }
+    return { a: e.a, b: e.b, kind: kind, off: off };
+  });
+  ventures.forEach(function (v, i) { ALL.push({ a: CORE, b: i, kind: 2, off: (i * 0.381) % 1 }); });
 
   /* ---------------------------------------------------------------- mats */
 
@@ -137,8 +148,8 @@
   // edges: one-pixel ribbons. Live links are always drawn; planned links and
   // the factory's spokes only appear when a venture (or the core) is hovered.
   SRC.edgeV = PRE + BEZ +
-    'in vec4 aE; in vec2 aT;\n' +
-    'out float vH, vK, vAp, vX, vW, vT, vPh, vHd;\n' +
+    'in vec4 aE; in vec2 aT; in float aB; uniform float uG;\n' +
+    'out float vH, vK, vAp, vX, vW, vU, vP, vOn;\n' +
     'vec2 scr(vec4 c){ return c.xy / c.w * uRes * 0.5; }\n' +
     'void main(){\n' +
     '  int ia = int(aE.x + 0.5), ib = int(aE.y + 0.5);\n' +
@@ -147,40 +158,51 @@
     '  float t2 = aT.x < 0.97 ? aT.x + 0.03 : aT.x - 0.03; float sg = aT.x < 0.97 ? 1.0 : -1.0;\n' +
     '  vec4 c1 = uP * (uV * vec4(bez(A, B, t2, k), 1.0));\n' +
     '  vec2 dir = normalize((scr(c1) - scr(c0)) * sg + vec2(1e-5));\n' +
-    '  float ph = fract(uTime * 0.05 + aE.z * 0.213) * 1.6;\n' +
-    '  float head = (k > 0.5 && k < 1.5 && ph < 1.0) ? exp(-pow((aT.x - ph) / 0.03, 2.0)) : 0.0;\n' +
-    '  float w = 1.0 + head * 1.1;\n' +
+    '  float h = uE[int(aE.z + 0.5)]; float hov = clamp(h, 0.0, 1.0);\n' +
+    // a beam is on its link for 1.18/uG of its cycle (all of it while the link is hovered)
+    '  float p = fract(uTime * 0.11 + aB) * mix(uG, 1.18, hov);\n' +
+    '  float on = p <= 1.18 ? 1.0 : 0.0;\n' +
+    '  float ds = (k > 1.1 && k < 1.5) ? -1.0 : (k < 0.5 ? (mod(aE.z, 2.0) < 1.0 ? 1.0 : -1.0) : 1.0);\n' +
+    '  float u = ds > 0.0 ? aT.x : 1.0 - aT.x;\n' +
+    '  float hp = p - 0.18; float d = hp - u;\n' +
+    '  float shown = ((k > 0.5 && k < 1.5) || hov > 0.0) ? 1.0 : 0.0;\n' +
+    '  float w = 1.0 + 0.8 * on * shown * exp(-pow((d - 0.03) / 0.07, 2.0));\n' +
     '  vec2 off = vec2(-dir.y, dir.x) * aT.y * w;\n' +
     '  gl_Position = c0 + vec4(off / uRes * 2.0 * c0.w, 0.0, 0.0);\n' +
-    '  vH = uE[int(aE.z + 0.5)]; vK = k; vAp = min(uNS[ia].z, uNS[ib].z); vX = aT.y; vW = w; vT = aT.x; vPh = ph; vHd = head;\n}\n';
+    '  vH = h; vK = k; vAp = min(uNS[ia].z, uNS[ib].z); vX = aT.y; vW = w; vU = u; vP = hp; vOn = on;\n}\n';
   SRC.edgeF = PREF +
-    'in float vH, vK, vAp, vX, vW, vT, vPh, vHd; out vec4 o;\n' +
+    'in float vH, vK, vAp, vX, vW, vU, vP, vOn; out vec4 o;\n' +
     'void main(){\n' +
     '  float cov = clamp(vW * (1.2 - abs(vX)), 0.0, 1.0);\n' +
     '  float k = vK, h = vH; bool live = k > 0.5 && k < 1.5;\n' +
-    '  float grow = vPh < 1.0 ? 1.0 - smoothstep(vPh - 0.01, vPh + 0.01, vT) : 1.0;\n' +
-    '  float fade = vPh > 1.3 ? 1.0 - smoothstep(1.3, 1.6, vPh) : 1.0;\n' +
-    '  float a = live ? 0.34 * grow * fade : 0.0;\n' +
-    '  if (h > 0.0) a = live ? max(a, 0.5 * h) : (k < 0.5 ? 0.24 : 0.16) * h;\n' +
+    '  float a = live ? 0.26 : 0.0;\n' +
+    '  if (h > 0.0) a = live ? max(a, 0.46 * h) : (k < 0.5 ? 0.2 : 0.14) * h;\n' +
     '  else a *= 1.0 + h * 0.85;\n' +
-    '  a *= cov * vAp;\n' +
-    '  vec3 col = mix(vec3(0.93, 0.92, 0.9), ACC, vHd * 0.95);\n' +
+    // a soft orange streak: a short fade in front of the head, a tail of 18% of the arc behind it
+    '  float d = vP - vU;\n' +
+    '  float beam = vOn * smoothstep(-0.012, 0.0, d) * pow(1.0 - clamp(d / 0.18, 0.0, 1.0), 1.8);\n' +
+    '  beam *= (live || h > 0.0) ? (h < 0.0 ? 1.0 + h : 1.0 + 0.35 * clamp(h, 0.0, 1.0)) : 0.0;\n' +
+    '  a = (a + 0.75 * beam) * cov * vAp;\n' +
+    '  vec3 col = mix(vec3(0.93, 0.92, 0.9), ACC, clamp(beam * 1.4, 0.0, 1.0));\n' +
     '  o = vec4(col * a, a);\n}\n';
 
   // the orbits: one-pixel ribbons, brighter for the orbit of the hovered venture
   SRC.ringV = PRE +
-    'in vec3 aP, aQ; in vec2 aS; out float vX, vO;\n' +
+    'in vec3 aP, aQ; in vec3 aS; out float vX, vO, vT;\n' +
     'vec2 scr(vec4 c){ return c.xy / c.w * uRes * 0.5; }\n' +
     'void main(){\n' +
     '  vec4 c0 = uP * (uV * vec4(aP, 1.0)), c1 = uP * (uV * vec4(aQ, 1.0));\n' +
     '  vec2 dir = normalize(scr(c1) - scr(c0) + vec2(1e-5));\n' +
     '  gl_Position = c0 + vec4(vec2(-dir.y, dir.x) * aS.x / uRes * 2.0 * c0.w, 0.0, 0.0);\n' +
-    '  vX = aS.x; vO = aS.y;\n}\n';
+    '  vX = aS.x; vO = aS.y; vT = aS.z;\n}\n';
   SRC.ringF = PREF +
-    'in float vX, vO; uniform float uRO[3]; uniform float uIn; out vec4 o;\n' +
+    'in float vX, vO, vT; uniform float uRO[3]; uniform float uIn; out vec4 o;\n' +
     'void main(){\n' +
-    '  float a = (0.14 + 0.24 * uRO[int(vO + 0.5)]) * clamp(1.2 - abs(vX), 0.0, 1.0) * uIn;\n' +
-    '  o = vec4(vec3(0.93, 0.92, 0.9) * a, a);\n}\n';
+    '  float u = fract(uTime * 0.035 + vO * 0.31);\n' +
+    '  float d = fract(mod(vO, 2.0) < 0.5 ? u - vT + 1.0 : vT - u + 1.0);\n' +
+    '  float beam = pow(1.0 - clamp(d / 0.2, 0.0, 1.0), 2.0);\n' +
+    '  float a = (0.14 + 0.24 * uRO[int(vO + 0.5)] + 0.2 * beam) * clamp(1.2 - abs(vX), 0.0, 1.0) * uIn;\n' +
+    '  o = vec4(mix(vec3(0.93, 0.92, 0.9), ACC, beam * 0.85) * a, a);\n}\n';
 
   // the core: a one-pixel ring and a small dot, nothing else
   SRC.coreV = PRE +
@@ -202,29 +224,31 @@
   // nodes: one instanced quad per venture; flat monochrome mark, colour on hover
   SRC.nodeV = PRE +
     'in vec2 aC; in float aId; uniform float uSz;\n' +
-    'out vec2 vC; out float vId, vEm, vAp;\n' +
+    'out vec2 vC; out float vId, vEm, vAp, vSt;\n' +
     'void main(){\n' +
     '  int id = int(aId + 0.5);\n' +
     '  vec4 vp = uV * vec4(uNP[id], 1.0); vec4 c = uP * vp;\n' +
     '  vec3 s = uNS[id];\n' +
     '  float size = uSz * (1.0 + (uD / -vp.z - 1.0) * 0.5) * (0.5 + 0.5 * s.z) * (1.0 + 0.25 * max(s.x, 0.0));\n' +
     '  gl_Position = c + vec4(aC * size * 0.5 / uRes * 2.0 * c.w, 0.0, 0.0);\n' +
-    '  vC = aC; vId = aId; vEm = s.x; vAp = s.z;\n}\n';
+    '  vC = aC; vId = aId; vEm = s.x; vAp = s.z; vSt = s.y;\n}\n';
   SRC.nodeF = PREF +
-    'in vec2 vC; in float vId, vEm, vAp; uniform sampler2D uAt; uniform vec2 uGrid; out vec4 o;\n' +
+    'in vec2 vC; in float vId, vEm, vAp, vSt; uniform sampler2D uAt; uniform vec2 uGrid; out vec4 o;\n' +
     'void main(){\n' +
     '  float col = floor(vId + 0.5); float row = floor(col / uGrid.x); col = col - row * uGrid.x;\n' +
     '  vec2 uv = (vec2(col, row) + clamp(vec2(vC.x, -vC.y) * 0.5 + 0.5, 0.01, 0.99)) / uGrid;\n' +
     '  vec4 t = texture(uAt, uv, -0.2);\n' +
-    '  float em = vEm; float hl = clamp(em, 0.0, 1.0);\n' +
-    '  float dim = em < 0.0 ? mix(1.0, 0.22, -em) : 1.0;\n' +
-    '  float al = max(t.a, 1e-3);\n' +
-    '  vec3 rgb = t.rgb / al;\n' +
+    '  float em = vEm;\n' +
+    '  float dim = em < 0.0 ? mix(1.0, 0.5, -em) : 1.0;\n' +
+    '  float hv = smoothstep(0.75, 1.0, em);\n' +
+    '  float nb = smoothstep(0.1, 0.6, clamp(em, 0.0, 1.0));\n' +
+    '  float al = max(t.a, 1e-3); vec3 rgb = t.rgb / al;\n' +
     '  float lum = dot(rgb, vec3(0.299, 0.587, 0.114));\n' +
-    '  vec3 mono = vec3(0.93, 0.92, 0.9) * mix(0.34, 1.0, clamp(lum * 1.6, 0.0, 1.0)) * 0.72;\n' +
-    '  vec3 c = mix(mono, rgb, hl);\n' +
-    '  float k = dim * vAp;\n' +
-    '  o = vec4(c * t.a * k, t.a * k);\n}\n';
+    '  float tone = mix(0.6, 1.0, clamp(lum * 1.6, 0.0, 1.0));\n' +
+    '  vec3 tint = mix(ACC, vec3(1.0, 0.82, 0.7), clamp(lum - 0.55, 0.0, 0.45)) * tone;\n' +
+    // at rest a translucent orange silhouette; linked ventures at about 70%; the hovered one in its real colour
+    '  float a = t.a * mix(mix(0.42 + 0.2 * vSt, 0.7, nb), 1.0, hv) * dim * vAp;\n' +
+    '  o = vec4(mix(tint, rgb, hv) * a, a);\n}\n';
 
   // labels: a name under a neighbouring node while a venture is hovered
   SRC.labV = PRE +
@@ -370,12 +394,12 @@
     progs.lab = compile(SRC.labV, SRC.labF);
 
     // edge ribbons: (SEG+1) * 2 vertices per edge, indexed triangles
-    var nv = (SEG + 1) * 2, ev = new Float32Array(ALL.length * nv * 6), ei = new Uint16Array(ALL.length * SEG * 6);
+    var nv = (SEG + 1) * 2, ev = new Float32Array(ALL.length * nv * 7), ei = new Uint16Array(ALL.length * SEG * 6);
     ALL.forEach(function (e, k) {
       for (var s = 0; s <= SEG; s++) for (var sd = 0; sd < 2; sd++) {
-        var o = (k * nv + s * 2 + sd) * 6;
+        var o = (k * nv + s * 2 + sd) * 7;
         ev[o] = e.a; ev[o + 1] = e.b; ev[o + 2] = k; ev[o + 3] = e.kind;
-        ev[o + 4] = s / SEG; ev[o + 5] = sd ? 1 : -1;
+        ev[o + 4] = s / SEG; ev[o + 5] = sd ? 1 : -1; ev[o + 6] = e.off;
       }
       for (var q = 0; q < SEG; q++) {
         var v0 = k * nv + q * 2, io = (k * SEG + q) * 6;
@@ -385,26 +409,28 @@
     });
     vaos.edge = gl.createVertexArray(); gl.bindVertexArray(vaos.edge);
     bufs.edge = buf(gl.ARRAY_BUFFER, ev);
-    attr(progs.edge, 'aE', 4, 24, 0); attr(progs.edge, 'aT', 2, 24, 16);
+    attr(progs.edge, 'aE', 4, 28, 0); attr(progs.edge, 'aT', 2, 28, 16); attr(progs.edge, 'aB', 1, 28, 24);
     bufs.edgeI = buf(gl.ELEMENT_ARRAY_BUFFER, ei);
     vaos.edgeCount = ei.length;
 
     // the three orbits as ribbons in model space
-    var M = 180, rv = new Float32Array(3 * M * 2 * 8), ri = new Uint16Array(3 * M * 6);
+    var M = 180, rv = new Float32Array(3 * (M + 1) * 2 * 9), ri = new Uint16Array(3 * M * 6);
     for (var ro = 0; ro < 3; ro++) {
-      for (var rk = 0; rk < M; rk++) {
+      for (var rk = 0; rk <= M; rk++) {
         var P0 = orbitPos(ro, rk / M * 6.2832), Q0 = orbitPos(ro, (rk + 1) / M * 6.2832);
         for (var sd = 0; sd < 2; sd++) {
-          rv.set([P0[0], P0[1], P0[2], Q0[0], Q0[1], Q0[2], sd ? 1 : -1, ro], ((ro * M + rk) * 2 + sd) * 8);
+          rv.set([P0[0], P0[1], P0[2], Q0[0], Q0[1], Q0[2], sd ? 1 : -1, ro, rk / M], ((ro * (M + 1) + rk) * 2 + sd) * 9);
         }
-        var b0 = (ro * M + rk) * 2, b1 = (ro * M + (rk + 1) % M) * 2, io = (ro * M + rk) * 6;
-        ri.set([b0, b0 + 1, b1, b0 + 1, b1 + 1, b1], io);
+        if (rk < M) {
+          var b0 = (ro * (M + 1) + rk) * 2, b1 = b0 + 2, io = (ro * M + rk) * 6;
+          ri.set([b0, b0 + 1, b1, b0 + 1, b1 + 1, b1], io);
+        }
       }
     }
     ringCount = ri.length;
     vaos.ring = gl.createVertexArray(); gl.bindVertexArray(vaos.ring);
     bufs.ring = buf(gl.ARRAY_BUFFER, rv);
-    attr(progs.ring, 'aP', 3, 32, 0); attr(progs.ring, 'aQ', 3, 32, 12); attr(progs.ring, 'aS', 2, 32, 24);
+    attr(progs.ring, 'aP', 3, 36, 0); attr(progs.ring, 'aQ', 3, 36, 12); attr(progs.ring, 'aS', 3, 36, 24);
     bufs.ringI = buf(gl.ELEMENT_ARRAY_BUFFER, ri);
 
     // quad shared by core, nodes, labels
@@ -443,6 +469,9 @@
   var EM = new Float32Array(MAXE);
   var emT = new Float32Array(N + 1), emC = new Float32Array(N + 1), edT = new Float32Array(MAXE), edC = new Float32Array(MAXE);
   var flash = new Float32Array(N + 1);
+  // ventures that are part of the Factory Zero stack (the registry's `stack` field) rest a little brighter
+  var stackOf = ventures.map(function (v) { return v.stack ? 1 : 0; });
+  var stackN = stackOf.reduce(function (a, b) { return a + b; }, 0);
   var roC = new Float32Array(3);
   var scr = [];               // projected nodes for hit testing
   var order = [];
@@ -595,7 +624,7 @@
       NP[i * 3] = q[0] * s + V[2] * lift;
       NP[i * 3 + 1] = q[1] * s + V[6] * lift;
       NP[i * 3 + 2] = q[2] * s + V[10] * lift;
-      NS[i * 3] = emC[i]; NS[i * 3 + 1] = flash[i]; NS[i * 3 + 2] = ap;
+      NS[i * 3] = emC[i]; NS[i * 3 + 1] = stackOf[i]; NS[i * 3 + 2] = ap;
     }
     for (var og2 = 0; og2 < 3; og2++) roC[og2] += (((active >= 0 && active < N && orbOf[active] === og2) ? 1 : 0) - roC[og2]) * ke;
     NP[CORE * 3] = NP[CORE * 3 + 1] = NP[CORE * 3 + 2] = 0;
@@ -643,6 +672,7 @@
     gl.drawElements(gl.TRIANGLES, ringCount, gl.UNSIGNED_SHORT, 0);
 
     glob(progs.edge);
+    gl.uniform1f(U(progs.edge, 'uG'), phone ? 2.75 : 1.7);   // about 5 of 7 beams at once on a desktop, 3 on a phone
     gl.bindVertexArray(vaos.edge);
     gl.drawElements(gl.TRIANGLES, vaos.edgeCount, gl.UNSIGNED_SHORT, 0);
 
@@ -729,10 +759,11 @@
     tip._id = mk('span', 'h3d-id'); tip._cat = mk('span', 'h3d-cat');
     tip._h.appendChild(tip._id); tip._h.appendChild(tip._cat);
     tip._name = mk('div', 'h3d-name');
+    tip._stack = mk('p', 'h3d-stack', 'PART OF THE FACTORY ZERO STACK');
     tip._one = mk('p', 'h3d-one');
     tip._uses = mk('ul', 'h3d-uses');
     tip._go = mk('a', 'h3d-go', 'OPEN VENTURE →');
-    tip.appendChild(tip._h); tip.appendChild(tip._name); tip.appendChild(tip._one); tip.appendChild(tip._uses); tip.appendChild(tip._go);
+    tip.appendChild(tip._h); tip.appendChild(tip._name); tip.appendChild(tip._stack); tip.appendChild(tip._one); tip.appendChild(tip._uses); tip.appendChild(tip._go);
     hero.appendChild(tip);
   }
   var tipFor = -2;
@@ -745,6 +776,7 @@
     if (a === CORE) {
       tip._id.textContent = 'FZ/01'; tip._cat.textContent = 'THE FACTORY';
       tip._name.textContent = 'Factory Zero';
+      tip._stack.hidden = true;
       tip._one.textContent = 'The shared foundation every venture inherits: identity, payments, deploys, observability and the agent network.';
       var li = mk('li', 'live'); li.appendChild(mk('i')); li.appendChild(document.createTextNode(N + ' ventures, one factory'));
       tip._uses.appendChild(li);
@@ -753,6 +785,7 @@
       var v = ventures[a];
       tip._id.textContent = v.id; tip._cat.textContent = v.category || v.status;
       tip._name.textContent = v.name;
+      tip._stack.hidden = !v.stack;
       tip._one.textContent = oneLiner(v);
       var us = usesOf(a), shown = us.slice(0, 5);
       if (!us.length) {
@@ -795,6 +828,7 @@
     var planned = edges.length - liveCount;
     legend.innerHTML = '<span class="k"><i class="l"></i>LIVE LINK · ' + liveCount + '</span>' +
       '<span class="k"><i class="p"></i>PLANNED · ' + planned + ' ON HOVER</span>' +
+      (stackN ? '<span class="k"><i class="s"></i>FZ STACK · ' + stackN + '</span>' : '') +
       '<span class="h">' + (window.matchMedia('(hover: none)').matches ? 'TAP A VENTURE' : 'HOVER A VENTURE') + '</span>';
     hero.appendChild(legend);
   }
@@ -810,7 +844,7 @@
       a.addEventListener('focus', function () { st.focus = i; dirty = true; showTip(); kick(); });
       a.addEventListener('blur', function () { if (st.focus === i) { st.focus = -1; dirty = true; showTip(); kick(); } });
       li.appendChild(a);
-      li.appendChild(document.createTextNode('. ' + oneLiner(v) + ' '));
+      li.appendChild(document.createTextNode('. ' + (v.stack ? 'Part of the Factory Zero stack. ' : '') + oneLiner(v) + ' '));
       var us = usesOf(i);
       if (us.length) {
         li.appendChild(document.createTextNode(us.map(function (u) { return u.phrase + ' ' + u.name + (u.live ? ' (live)' : ' (planned)'); }).join('; ') + '.'));

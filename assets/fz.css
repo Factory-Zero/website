@@ -1789,6 +1789,7 @@ html:not(.js) .spec .activity { display: none; }
 @media (max-width: 900px) {
   .h3d-legend { left: var(--gut); right: auto; top: 78px; bottom: auto; gap: 14px; flex-wrap: wrap; font-size: 9px; }
   .h3d-legend .h { display: none; }
+  .h3d-legend .k:nth-of-type(3) { display: none; }
 }
 @media (max-width: 600px) {
   .h3d-tip { width: 232px; padding: 12px 14px; }
@@ -1859,3 +1860,6 @@ html:not(.js) .spec .activity { display: none; }
 .fzs-filter:hover { border-color: var(--accent); color: var(--ink); }
 .fzs-filter[aria-pressed="true"] { border-color: var(--accent); color: var(--accent); }
 .fzs-hint { margin: 0; max-width: 60ch; font-size: 14px; line-height: 1.5; color: var(--muted); }
+
+.h3d-stack { margin: -2px 0 8px; font-family: var(--mono); font-size: 10px; letter-spacing: .12em; color: var(--accent); }
+.h3d-legend .s { display: inline-block; width: 8px; height: 8px; background: var(--accent); opacity: .85; }
