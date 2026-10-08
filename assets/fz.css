@@ -1296,6 +1296,31 @@ html:not(.js) .spec .activity { display: none; }
 .activity-issues .issue-ref { color: var(--muted); font-size: 10px; letter-spacing: .08em; }
 .activity-issues .issue-title { font-family: var(--sans); font-size: 14px; letter-spacing: 0; line-height: 1.4; overflow-wrap: anywhere; }
 
+/* Merged PRs by author: one stacked bar per week, from /api/authors. Drawn by
+   the shared renderer in fz-ventures.js and used on the home page too. */
+.authors-wrap { display: grid; gap: 64px; }
+.authors { position: relative; border: 1px solid var(--line); background: var(--panel); padding: 24px; font-family: var(--mono); min-width: 0; }
+html:not(.js) #fz-authors { display: none; }
+.activity-head { font-family: var(--sans); font-size: 17px; line-height: 1.45; letter-spacing: 0; color: var(--ink); margin: 0 0 4px; }
+.spec .activity dd > .activity-head { font-size: 15px; }
+/* containing block for the hidden data table in the row built by fz-ventures.js;
+   scoped to that row so the commit and issue charts are left alone */
+#d-authors { position: relative; }
+.authors .activity-head { font-size: 17px; }
+.authors .activity-readout { display: block; color: var(--ink); letter-spacing: .08em; margin-bottom: 12px; }
+.authors .activity-legend { display: flex; flex-wrap: wrap; gap: 18px; font-size: 10px; letter-spacing: .1em; margin-bottom: 10px; }
+.authors .activity-axis { display: flex; justify-content: space-between; color: var(--dim); font-size: 10px; letter-spacing: .1em; }
+.authors-lead { font-family: var(--sans); font-size: 15px; letter-spacing: 0; color: var(--muted); margin: 0; }
+/* stacked series: the colonizer keeps the accent on the baseline, people read
+   as the neutral middle, bots as the dimmest top */
+.activity-bar.is-people { fill: var(--body); opacity: .7; }
+.activity-plot .is-hot .activity-bar.is-people { opacity: 1; }
+.activity-bar.is-bots { fill: var(--muted); opacity: .55; }
+.activity-plot .is-hot .activity-bar.is-bots { opacity: 1; }
+.activity-legend .key--colonizer::before { background: var(--accent); }
+.activity-legend .key--people::before { background: var(--body); }
+.activity-legend .key--bots::before { background: var(--muted); }
+
 /* ---------- system: architecture stack ---------- */
 
 .stack {
@@ -1752,6 +1777,18 @@ html:not(.js) .spec .activity { display: none; }
   clip: rect(0 0 0 0);
   clip-path: inset(50%);
   white-space: nowrap;
+  border: 0;
+}
+/* A table treats width:1px as a suggestion and grows to its min-content, which
+   widens the whole page on a phone. So the table keeps .sr-only for the clip and
+   sits in one of these, which really is 1px and hides the overflow. */
+.sr-only-box {
+  position: absolute !important;
+  width: 1px; height: 1px;
+  margin: -1px; padding: 0;
+  overflow: hidden;
+  clip: rect(0 0 0 0);
+  clip-path: inset(50%);
   border: 0;
 }
 .hero-canvas--3d { opacity: 0; transition: opacity 1.4s ease; pointer-events: none; }
