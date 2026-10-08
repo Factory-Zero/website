@@ -248,6 +248,27 @@
   loadLog();
   setInterval(loadLog, 5 * 60e3);
 
+  /* --------------------------------------------------- 07b who merges */
+  // Merged pull requests split by colonizer, people and bots, weekly, from
+  // /api/authors. The chart itself lives in fz-ventures.js (window.FZStack),
+  // which both this page and every venture page load. When the feed is
+  // unavailable the panel is removed rather than left showing a zero: an empty
+  // axis and a "0%" would both claim the ventures stopped shipping.
+
+  var elAuthors = $('fz-authors');
+  var elAuthorsChart = $('fz-authors-chart');
+
+  function loadAuthors() {
+    if (!elAuthors || !window.FZStack) return;
+    window.FZStack.loadAuthors().then(function (data) {
+      if (!window.FZStack.chartPanel(elAuthorsChart, data)) { elAuthors.hidden = true; return; }
+      elAuthors.hidden = false;
+    }, function () {
+      elAuthors.hidden = true;
+    });
+  }
+  loadAuthors();
+
   /* ----------------------------------------------------------- rotation */
 
   var cycleIndex = 0;

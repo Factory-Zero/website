@@ -465,6 +465,17 @@ public source repositories.
 - "PRS MERGED · 30D" in the hero is the number of merged pull requests in the
   ventures' public GitHub repositories over the last 30 days, from the same
   endpoint. Private repositories are not counted.
+- "MERGED PRS · COLONIZER VS PEOPLE · LAST 12 WEEKS", under the FZ/LOG panel on
+  the home page and in the spec of each venture page, splits merged pull requests
+  each week into colonizer, people and bots (data:
+  https://factory0.ventures/api/authors). The line above the chart gives the
+  colonizer's share of the merges made by people and bots, colonizer divided by
+  colonizer plus people, bots aside; it is a percentage of those two series only,
+  not of every merged pull request. The window is the last 12 weeks, not a
+  quarter or a year. Private repositories are not counted in the per-week
+  series, so the totals the chart reports can be lower than the organisation's
+  real merged total. When the endpoint is unavailable the panel is not shown, so
+  its absence means no data, not zero activity.
 
 - What each venture is built with is at https://factory0.ventures/stack.json:
   sister ventures (Cratefield, Owlpost, SupportGenius, promptdecode, Sealbin,
