@@ -310,7 +310,7 @@ contact@factory0.ventures**. Using a subdomain keeps the two entirely separate.
 
 ### Venture data
 
-Twenty-two ventures are listed, and all twenty-two are real and named:
+Twenty-three ventures are listed, and all twenty-three are real and named:
 
 | | Venture | Stage | Target | Site | Source |
 | :--- | :--- | :--- | :--- | :--- | :--- |
@@ -336,6 +336,7 @@ Twenty-two ventures are listed, and all twenty-two are real and named:
 | `FZ-020` | Tokker | `VALIDATION` | L4 | [tokker.dev](https://tokker.dev) | [Tokker-dev/tokker](https://github.com/Tokker-dev/tokker) |
 | `FZ-021` | Ledgers | `VALIDATION` | L4 | [ledgers.sh](https://ledgers.sh) | [Ledgers-sh](https://github.com/Ledgers-sh) |
 | `FZ-022` | Ghostwritin' | `VALIDATION` | L4 | [ghostwrit.in](https://ghostwrit.in) | [Ghostwritin](https://github.com/Ghostwritin) |
+| `FZ-023` | Squeezin | `VALIDATION` | L4 | [squeez.in](https://squeez.in) | [Sqeezin](https://github.com/Sqeezin) |
 
 `autonomy` is `null` on every one of them: no venture has a measured figure,
 and the registry does not show one. Set a figure in `fz-data.js` when there
@@ -351,7 +352,7 @@ is one. What each record shows instead:
 Nothing else is listed: the registry shows only what exists, so a venture with
 nothing public yet does not get a placeholder row.
 
-None of the twenty-two can be bought from today, and their records and `llms.txt`
+None of the twenty-three can be bought from today, and their records and `llms.txt`
 say so, and do not let any of them read as shipped.
 
 Nothing on the home page is simulated. The FZ/LOG panel shows real public
