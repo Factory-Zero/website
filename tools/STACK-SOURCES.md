@@ -16,13 +16,13 @@ entry is left out. Re-check an entry before flipping it to `live`.
 
 | Claim | Evidence |
 | :--- | :--- |
-| Cloudflare hosts every venture site (`hosting`, live) | `curl -sI https://<site>/` answers `server: cloudflare` for all eighteen sites (2026-10-03), for tokker.dev (2026-10-05), for ledgers.sh (2026-10-08), and for ghostwritin.pages.dev (2026-10-08; ghostwrit.in is not on Cloudflare DNS yet); each site repo deploys to Cloudflare Pages or a static-assets Worker. |
+| Cloudflare hosts every venture site (`hosting`, live) | `curl -sI https://<site>/` answers `server: cloudflare` for all eighteen sites (2026-10-03), for tokker.dev (2026-10-05), for ledgers.sh (2026-10-08), and for ghostwritin.pages.dev (2026-10-08; ghostwrit.in is not on Cloudflare DNS yet), and squeezin.pages.dev (2026-10-09; squeez.in is not on Cloudflare DNS yet); each site repo deploys to Cloudflare Pages or a static-assets Worker. |
 | Cratefield waitlist Workers are live (`framework`, live) | `GET https://api.<domain>/v1/waitlist` answers `405` (the route exists and takes POST) for sealb.in, release.show, colonizer.dev, findsyou.work, posplug.in and cratefield.com (2026-10-03). Each private waitlist backend's `Cargo.toml` depends on `cratefield-module-waitlist` (or its earlier `factory0-module-waitlist` name, from `Cratefield/harness`) and its `wrangler.toml` routes `api.<domain>`. |
 | Waitlist confirmation mail is not live (`email`, planned) | Each waitlist backend's `src/lib.rs` uses a `NoopMailer` until a `RESEND_API_KEY` secret is set, and its README says double opt-in is off; the sites set `data-double-opt-in="false"` or promise only "one email when early access opens". Cratefield is the exception (below). |
 | SupportGenius error and bug intake (`bug-reports`, planned) | [SupportGenius/core#65](https://github.com/SupportGenius/core/issues/65) (intake API) and [Cratefield/harness#692](https://github.com/Cratefield/harness/issues/692) (`module-error-reporting`, "every venture built on Cratefield"). Listed for every venture that runs on, or is being built on, Cratefield. |
 | Polar payments (`payments`, planned) | Billing issues filed 2026-10-02/03 for the nine approved ventures, e.g. [Sealbin/sealbin#16](https://github.com/Sealbin/sealbin/issues/16), [Colonizer-dev/harness#941](https://github.com/Colonizer-dev/harness/issues/941), [Livingbrain-wiki/livingbrain#32](https://github.com/Livingbrain-wiki/livingbrain/issues/32), [Cratefield/harness#690](https://github.com/Cratefield/harness/issues/690) (`adapter-polar`); the rest are in private repos (Owlpost, Keep Shipping, promptdecode, release.show) or decided without an issue yet (SupportGenius). |
 | Keep Shipping deploys (`deploys`, planned) | Keep Shipping's harness issue #172 (private), "Deploy every site and Worker from the console": "Each venture repo gets a `ship.ks` for its site". |
-| Google Fonts on the sites that load it (`fonts`, live) | Seventeen of the twenty-two sites load their typefaces from Google, so every visitor's IP reaches Google (2026-10-05). Each home page carries a `<link href="https://fonts.googleapis.com/css2?family=…">` next to a `<link rel="preconnect" href="https://fonts.googleapis.com">`; the stylesheet it serves pulls the font files from `fonts.gstatic.com`. Fetched with `curl -sSL -A <browser UA> https://<site>/` and grepped. The families per site are named in the note of each entry, below. The other five self-host or use system fonts, so they have no entry. |
+| Google Fonts on the sites that load it (`fonts`, live) | Eighteen of the twenty-three sites load their typefaces from Google, so every visitor's IP reaches Google (2026-10-05). Each home page carries a `<link href="https://fonts.googleapis.com/css2?family=…">` next to a `<link rel="preconnect" href="https://fonts.googleapis.com">`; the stylesheet it serves pulls the font files from `fonts.gstatic.com`. Fetched with `curl -sSL -A <browser UA> https://<site>/` and grepped. The families per site are named in the note of each entry, below. The other five self-host or use system fonts, so they have no entry. |
 
 ## Google Fonts per venture
 
@@ -52,6 +52,7 @@ cratefield.com and carries the same link.
 | FZ-019 Shoal | shoal.ing | Geist, Geist Mono, Instrument Serif |
 | FZ-021 Ledgers | ledgers.sh | Source Sans 3, Source Code Pro |
 | FZ-022 Ghostwritin' | ghostwrit.in | Newsreader, JetBrains Mono |
+| FZ-023 Squeezin | squeez.in | Archivo, Instrument Sans, JetBrains Mono |
 
 ## Per venture
 

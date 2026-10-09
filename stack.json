@@ -1365,6 +1365,34 @@
           "note": "The site."
         }
       ]
+    },
+    {
+      "id": "FZ-023",
+      "name": "Squeezin",
+      "site": "https://squeez.in/",
+      "page": "https://factory0.ventures/ventures/squeezin/",
+      "uses": [
+        {
+          "id": "google-fonts",
+          "name": "Google Fonts",
+          "kind": "third-party",
+          "url": "https://fonts.google.com",
+          "role": "fonts",
+          "phrase": "Typefaces from",
+          "status": "live",
+          "note": "The site’s typefaces (Archivo, Instrument Sans, JetBrains Mono), loaded from Google."
+        },
+        {
+          "id": "cloudflare",
+          "name": "Cloudflare",
+          "kind": "third-party",
+          "url": "https://www.cloudflare.com",
+          "role": "hosting",
+          "phrase": "Hosted on",
+          "status": "live",
+          "note": "The site."
+        }
+      ]
     }
   ]
 }

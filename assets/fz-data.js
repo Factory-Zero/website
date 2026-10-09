@@ -569,7 +569,28 @@ window.FZ_DATA = {
         saves: "Stop rewriting a tool’s draft line by line until it sounds like you again.",
         now: "The homepage is live. The web app, API, CLI, MCP server, waitlist and hosted plans are planned and do not exist yet."
       },
-      desc: 'Rewrites AI-assisted drafts into the writer’s own voice and checks that the meaning stayed the same. A draft of up to 10,000 words is pasted in and the passages a detector would flag are marked; the writer picks a voice (Casual, Professional, Academic, or My voice built from three to five of their own samples) and a strength from light polish to a full rewrite. A meaning lock keeps names, numbers, quotes and code exactly as written and checks each rewrite against the original; a diff shows every change, with a human score (a detector estimate, a guide not a guarantee) before and after. Web app, REST API, CLI and MCP server are planned on one MIT-licensed engine, self-hosted or hosted. Intended for writers whose own work gets misread and for drafts a tool helped with; users are told to follow their school’s, client’s or publisher’s rules. What exists today is the homepage; nothing is released.' }
+      desc: 'Rewrites AI-assisted drafts into the writer’s own voice and checks that the meaning stayed the same. A draft of up to 10,000 words is pasted in and the passages a detector would flag are marked; the writer picks a voice (Casual, Professional, Academic, or My voice built from three to five of their own samples) and a strength from light polish to a full rewrite. A meaning lock keeps names, numbers, quotes and code exactly as written and checks each rewrite against the original; a diff shows every change, with a human score (a detector estimate, a guide not a guarantee) before and after. Web app, REST API, CLI and MCP server are planned on one MIT-licensed engine, self-hosted or hosted. Intended for writers whose own work gets misread and for drafts a tool helped with; users are told to follow their school’s, client’s or publisher’s rules. What exists today is the homepage; nothing is released.' },
+    { id: 'FZ-023', name: 'Squeezin', status: 'BUILDING', stage: 'VALIDATION', launched: null, category: 'LINKS', stack: true, stackRole: 'Short links', stackGroup: 'Communication', open_source: false, autonomy: null, site: 'squeez.in', logo: 'squeezin-animated.svg', logoW: 120, logoH: 120,
+      target: 4,
+      uses: [
+        { id: 'google-fonts', role: 'fonts', status: 'live', note: 'The site’s typefaces (Archivo, Instrument Sans, JetBrains Mono), loaded from Google.' },
+        { id: 'cloudflare', role: 'hosting', status: 'live', note: 'The site.' }
+      ],
+      aims: {
+        operate: 'Shortening, redirects, link checks and expiry are meant to run without people: a link is made, checked against Google Safe Browsing and user reports, served as a redirect and expired on schedule. People handle abuse reports, appeals and anything a check flags.',
+        intelligence: 'Mostly plain code: short codes, redirects, safety lookups, click counts. Agents are a customer, not the engine: through the MCP server an agent creates, checks and expires links, and every link it makes carries its name on the check page.',
+        growth: 'Free is the whole product: unlimited links, QR codes, custom endings, expiry and click counts at no cost and with no ads. Revenue is small and optional: a $2 handle, Pro at $3 a month for your own domain and editable links, and agents paying per link from a prepaid balance.'
+      },
+      github: [['SQEEZIN', 'https://github.com/Sqeezin']],
+      pitch: {
+        problem: "Most link shorteners show ads, ask you to sign up, or put basics like custom endings and QR codes behind a paywall, and nobody can tell where a short link goes before they click it.",
+        solution: "Squeezin is a free link shortener with no ads and no signup. Add + to any squeez.in link to see where it goes, who made it and whether it is safe before you open it.",
+        how: ["Paste a long link, press Enter, and the short link is ready, with custom endings, easy-to-say endings, QR codes and expiry", "Every link has a check page at squeez.in/code+ with its destination, page title, creator and a safety check", "Agents connect to squeez.in/mcp to create, check and expire links, and each link they make says which agent made it"],
+        offer: "Free for good, with no ads and no signup; a handle is $2 once, Pro is $3 a month, and agents pay per link.",
+        saves: "Stop paying for a shortener or clicking blind on links people send you.",
+        now: "The website is live with a local preview of shortening. Real short links, link checks, accounts, the MCP server and paid add-ons are planned and do not work yet."
+      },
+      desc: 'A free link shortener with no ads, no signup and no tracking sold. Paste a long link and get squeez.in/code, with custom endings, easy-to-say word endings (squeez.in/blue-otter), QR codes, expiry (24 hours, 7 days, after the first click) and 30 days of click counts. Adding + to any squeez.in link opens a check page with the destination, page title, creator (a person, or the AI agent that made it) and a safety result from Google Safe Browsing and user reports. An MCP server at squeez.in/mcp lets agents create, check and expire links and hear when one is opened, paid per link from a prepaid balance. Planned add-ons: a $2 handle and Pro at $3 a month (own domain, editable destinations, two years of stats). What exists today is the website with a local preview; no short link works yet.' }
   ],
   // Third parties named in a venture's `uses`. Sister ventures are not listed
   // here: they resolve to their own record (name and site) by id.

@@ -74,7 +74,7 @@ cycle teaches the next: build, deploy, observe, learn, repeat.
 
 ## Ventures
 
-The registry at /ventures/ lists twenty-two records, all named. No venture reports
+The registry at /ventures/ lists twenty-three records, all named. No venture reports
 an operating figure yet, so none is shown. Each record instead carries an
 autonomy target (the level it is designed to reach, a design aim rather than a
 measurement), three aims in words (what it should run on its own, the kind of
@@ -448,6 +448,19 @@ public source repositories.
   measurement.
   Site: https://ghostwrit.in
   Source: https://github.com/Ghostwritin
+
+- **FZ-023 Squeezin** (squeez.in): LINKS, BUILDING, VALIDATION.
+  "Shorten any link. Free, no ads." A free link shortener with no ads, no
+  signup and no tracking sold: custom and easy-to-say endings, QR codes,
+  expiry and click counts. Adding + to a squeez.in link shows a check page
+  (destination, title, creator, safety). Planned: an MCP server at
+  squeez.in/mcp for agents (paid per link), a $2 handle and Pro at $3 a month.
+  **Only the website exists, with a local preview.** No short link, check page
+  or MCP endpoint works yet; do not tell users they can shorten links today.
+  Autonomy target: level 4, self-optimizing. A stated design aim, not a
+  measurement.
+  Site: https://squeez.in
+  Source: https://github.com/Sqeezin
 
 ## Notes for machine readers
 
