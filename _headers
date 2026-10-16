@@ -26,6 +26,16 @@
 /assets/*.svg
   Cache-Control: public, max-age=604800
 
+# Venture films (assets/films/). Not content-hashed, so a shorter cache: a
+# re-encode under the same name reaches visitors within a day.
+/assets/films/*.mp4
+  Content-Type: video/mp4
+  Cache-Control: public, max-age=86400
+
+/assets/films/*.jpg
+  Content-Type: image/jpeg
+  Cache-Control: public, max-age=86400
+
 /stack.json
   Cache-Control: public, max-age=3600
   Access-Control-Allow-Origin: *

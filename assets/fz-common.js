@@ -121,3 +121,13 @@
   var onWide = function (m) { if (m.matches) setOpen(false); };
   if (mq.addEventListener) mq.addEventListener('change', onWide); else mq.addListener(onWide);
 })();
+
+// Venture films: when one starts playing, pause the others. `play` does not bubble,
+// so this listens in the capture phase. Without JS the native controls still work.
+document.addEventListener('play', function (e) {
+  var t = e.target;
+  if (!t || !t.classList || !t.classList.contains('fz-film')) return;
+  document.querySelectorAll('video.fz-film').forEach(function (v) {
+    if (v !== t && !v.paused) v.pause();
+  });
+}, true);

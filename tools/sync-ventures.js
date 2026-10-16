@@ -26,6 +26,29 @@ const esc = s => String(s == null ? '' : s)
   .replace(/&/g, '&amp;').replace(/</g, '&lt;')
   .replace(/>/g, '&gt;').replace(/"/g, '&quot;');
 
+// A film: a native player, no autoplay, the poster until the viewer presses play.
+// The page script (assets/fz-common.js) pauses any other film when one starts.
+function filmFigure(f, linkName) {
+  const v = BY_ID.get(f.venture);
+  const src = `/assets/films/${esc(f.video)}`;
+  const name = linkName
+    ? `<a class="film-name" href="/ventures/${slug(v)}/">${esc(v.name)}</a>${f.title !== v.name ? `<span class="film-title">${esc(f.title)}</span>` : ''}`
+    : `<span class="film-title">${esc(f.title)}</span>`;
+  return `<figure class="film" id="film-${esc(f.id)}">
+  <video class="fz-film" controls playsinline preload="none" poster="/assets/films/${esc(f.poster)}" width="1920" height="1080" aria-label="${esc(f.title)} film">
+    <source src="${src}" type="video/mp4">
+    <a href="${src}">Download the ${esc(f.title)} film (MP4)</a>
+  </video>
+  <figcaption class="film-cap">${name}<span class="film-line">${esc(f.caption)}</span></figcaption>
+</figure>`;
+}
+// The home-page section: every film, as a grid of cards.
+const filmsSection = () => `  <ul class="films-grid">\n${FILMS.map(f => `    <li>${filmFigure(f, true)}</li>`).join('\n')}\n  </ul>`;
+// A venture's own films, shown in its detail panel. Every film is written out, and
+// fz-ventures.js shows the ones whose data-film-for matches the selected record.
+const filmsFor = v => `      <div class="venture-films">\n${FILMS.map(f =>
+  `        <div class="venture-film" data-film-for="${esc(f.venture)}"${f.venture === v.id ? '' : ' hidden'}>${filmFigure(f, false)}</div>`).join('\n')}\n      </div>`;
+
 const pulses = s => s === 'LIVE' || s === 'SCALING';
 
 // Autonomy levels, same order as LEVELS in assets/fz-app.js.
@@ -74,6 +97,23 @@ for (const v of V) {
   for (const u of v.uses || []) {
     const p = BY_ID.get(u.id);
     if (p && !p.stack) throw new Error(`${p.id} (${p.name}) is used by ${v.id} but is not marked stack: true`);
+  }
+}
+// Venture films (assets/fz-data.js `films`). Each names a real venture record and
+// two files in assets/films/; a typo or a missing or oversized file stops the run.
+const FILMS = global.window.FZ_DATA.films || [];
+const FILM_DIR = path.join(ROOT, 'assets/films');
+const FILM_MAX_BYTES = 25 * 1024 * 1024;
+const filmIds = new Set();
+for (const f of FILMS) {
+  if (!/^[a-z0-9-]+$/.test(f.id) || filmIds.has(f.id)) throw new Error(`film id "${f.id}" is empty, not a slug, or not unique`);
+  filmIds.add(f.id);
+  if (!BY_ID.has(f.venture)) throw new Error(`film ${f.id}: unknown venture "${f.venture}"`);
+  if (!f.title || !f.caption) throw new Error(`film ${f.id}: needs a title and a caption`);
+  for (const file of [f.video, f.poster]) {
+    const fp = path.join(FILM_DIR, file);
+    if (!fs.existsSync(fp)) throw new Error(`film ${f.id}: missing file assets/films/${file}`);
+    if (fs.statSync(fp).size > FILM_MAX_BYTES) throw new Error(`film ${f.id}: assets/films/${file} is over 25 MiB`);
   }
 }
 const STACK_COUNT = V.filter(v => v.stack).length;
@@ -129,6 +169,7 @@ function detail(v) {
       </div>
       <a class="detail-link" id="d-link"${hasSite ? ` href="https://${esc(v.site)}"` : ' aria-disabled="true"'}>${
         hasSite ? esc(v.site.toUpperCase()) + ' &rarr;' : 'NO PUBLIC SURFACE YET'}</a>
+${filmsFor(v)}
       <details class="detail-more"><summary>THE TECHNICAL DETAIL</summary><p class="detail-desc" id="d-desc">${esc(v.desc)}</p></details>`;
 }
 
@@ -327,6 +368,7 @@ function proof(vs) {
   ].join('\n');
 }
 hs = replaceRegion(hs, 'proof', proof(live));
+hs = replaceRegion(hs, 'films', filmsSection());
 
 // The venture timeline, from assets/timeline-data.json (refresh that with
 // tools/sync-timeline.js). Ventures without an org in the data are left out.

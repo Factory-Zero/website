@@ -2044,3 +2044,26 @@ a:hover > .as-pill, a:focus-visible > .as-pill { background: var(--accent); colo
   .as-feat .as-pill--lg { flex: 1 0 100%; text-align: center; }
 }
 @media (prefers-reduced-motion: reduce) { .sk-reveal { transition: none; } .as-shelf { scroll-behavior: auto; } }
+
+/* ---------- venture films ---------- */
+/* Native players (controls, no autoplay). The poster shows until play; one plays at a time (fz-common.js). */
+.films-grid {
+  list-style: none; margin: 0; padding: 0; margin-top: 64px;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(min(100%, 340px), 1fr));
+  gap: 56px 28px;
+}
+.films-grid > li,
+.film { min-width: 0; margin: 0; }
+.film .fz-film {
+  display: block; width: 100%; height: auto; aspect-ratio: 16 / 9;
+  border: 1px solid var(--line); border-radius: 16px; background: var(--panel); object-fit: cover;
+}
+.film-cap { display: grid; gap: 6px; padding-top: 16px; }
+.film-name { font-size: 22px; font-weight: 500; line-height: 1.2; color: var(--ink); text-decoration: none; }
+.film-name:hover, .film-name:focus-visible { color: var(--accent); }
+.film-title { font-family: var(--mono); font-size: 10px; letter-spacing: .12em; text-transform: uppercase; color: var(--muted); }
+.film-line { font-size: 15px; line-height: 1.5; font-weight: 300; color: var(--body); }
+.venture-films { margin: 32px 0 8px; }
+.venture-film[hidden] { display: none; }
+.venture-film .film-cap { padding-top: 12px; }
