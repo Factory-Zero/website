@@ -634,7 +634,7 @@ window.FZ_DATA = {
     { id: 'shoal', venture: 'FZ-019', title: 'Shoal', caption: 'Rehearse your launch.', video: 'shoal-film.mp4', poster: 'shoal-poster.jpg' },
     { id: 'rateclaim', venture: 'FZ-015', title: 'ratecla.im', caption: 'The rate they don\u2019t publish.', video: 'rateclaim-film.mp4', poster: 'rateclaim-poster.jpg' },
     { id: 'kontinuum-v3', venture: 'FZ-001', title: 'Kontinuum', caption: 'A new way of producing.', video: 'kontinuum-v3.mp4', poster: 'kontinuum-v3-poster.jpg' },
-    { id: 'kontinuum-djs', venture: 'FZ-001', title: 'Kontinuum for DJs and producers', caption: 'Music as code.', video: 'kontinuum-djs-film.mp4', poster: 'kontinuum-djs-poster.jpg' },
+    { id: 'kontinuum-djs', venture: 'FZ-001', title: 'Kontinuum for DJs and producers', caption: 'Your decks are still composing.', video: 'kontinuum-djs-film.mp4', poster: 'kontinuum-djs-poster.jpg' },
     { id: 'colonizer', venture: 'FZ-006', title: 'Colonizer', caption: 'Colonize your backlog.', video: 'colonizer-promo.mp4', poster: 'colonizer-poster.jpg' },
     { id: 'yoginini', venture: 'FZ-003', title: 'Yoginini', caption: 'A yoga teacher who can see you.', video: 'yoginini-promo-v2.mp4', poster: 'yoginini-poster-v2.jpg' },
     { id: 'posplug', venture: 'FZ-011', title: 'PosPlugin', caption: 'Any POS. One API.', video: 'posplug-promo.mp4', poster: 'posplug-promo-poster.jpg' },
