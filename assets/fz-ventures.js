@@ -286,6 +286,12 @@
     el.launched.textContent = d.launched;
     el.stage.textContent = d.stage;
 
+    // the venture's own films: show the ones for this record, and pause the rest
+    document.querySelectorAll('[data-film-for]').forEach(function (g) {
+      g.hidden = g.dataset.filmFor !== d.id;
+      if (g.hidden) g.querySelectorAll('video').forEach(function (v) { v.pause(); });
+    });
+
     // the autonomy target is a design aim, 0-5, never a measured share.
     // A venture without one says so in words, rather than showing a zero it has not earned.
     if (d.target !== '') {

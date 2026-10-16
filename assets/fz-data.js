@@ -625,6 +625,17 @@ window.FZ_DATA = {
     { name: 'DISTRIBUTE', agents: [['GROWTH', 'Designs growth experiments'], ['CONTENT', 'Writes release notes and posts'], ['SALES', 'Drafts outreach for review']] },
     { name: 'LEARN', agents: [['LEGAL', 'Drafts terms for human review'], ['KNOWLEDGE', 'Turns what worked into playbooks'], ['OPTIMIZATION', 'Looks for what keeps users']] }
   ],
+  // Venture films: short films shown on the home page (#films) and in each
+  // venture's detail panel. `venture` is a record id above; `video` and `poster`
+  // are files in assets/films/. tools/sync-ventures.js checks both exist.
+  films: [
+    { id: 'livingbrain', venture: 'FZ-018', title: 'Living Brain', caption: 'A brain for your team.', video: 'livingbrain-film.mp4', poster: 'livingbrain-poster.jpg' },
+    { id: 'owlpost', venture: 'FZ-013', title: 'Owlpost', caption: 'Email for apps and agents.', video: 'owlpost-film.mp4', poster: 'owlpost-poster.jpg' },
+    { id: 'shoal', venture: 'FZ-019', title: 'Shoal', caption: 'Rehearse your launch.', video: 'shoal-film.mp4', poster: 'shoal-poster.jpg' },
+    { id: 'rateclaim', venture: 'FZ-015', title: 'ratecla.im', caption: 'The rate they don\u2019t publish.', video: 'rateclaim-film.mp4', poster: 'rateclaim-poster.jpg' },
+    { id: 'kontinuum', venture: 'FZ-001', title: 'Kontinuum', caption: 'Music as code.', video: 'kontinuum-film.mp4', poster: 'kontinuum-poster.jpg' },
+    { id: 'kontinuum-djs', venture: 'FZ-001', title: 'Kontinuum for DJs and producers', caption: 'Music as code.', video: 'kontinuum-djs-film.mp4', poster: 'kontinuum-djs-poster.jpg' }
+  ],
 };
 
 // Editable presentation values. In the Claude Design source these were `data-props`

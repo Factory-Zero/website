@@ -122,6 +122,7 @@ assets/
   fz-timeline.js        home: plays the venture timeline
   timeline-data.json    org creation dates and commits per day (counts only)
   fz-enter.js           access-request form
+  films/                  venture films (MP4 + poster); listed in fz-data.js `films`
   kontinuum-animated.svg  FZ-001 brand mark (animated, self-contained)
   favicon.svg
   og.png, og-*.png      per-page 1200x630 Open Graph cards (generated)
@@ -217,6 +218,11 @@ Nearly everything is data:
   owners and repositories in `activity-sources.json`. Set a `GITHUB_TOKEN` Pages
   secret (a fine-grained token with no permissions is enough) to lift GitHub's
   60-requests-an-hour anonymous limit.
+- **Venture films** are the `films` array in `assets/fz-data.js`: each names a
+  venture record and a film and poster in `assets/films/`. `sync-ventures.js`
+  writes the home-page "Films" grid and each venture's own film panel, and it
+  stops if a film's venture is unknown or a file is missing or over 25 MiB.
+  Add a film there, then run the sync.
 - **`window.FZ_CONFIG`** at the bottom of the same file holds the headline
   and factory status. These mirror the editable `data-props` from the design
   source; the headline is also written statically in `index.html`.

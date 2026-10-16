@@ -462,6 +462,18 @@ public source repositories.
   Site: https://squeez.in
   Source: https://github.com/Sqeezin
 
+## Venture films
+
+Short films for six ventures, each a 30-second MP4 with a poster, on the home
+page under "Films from the ventures" and on that venture's page:
+
+- Living Brain (FZ-018): "A brain for your team." https://factory0.ventures/ventures/living-brain/
+- Owlpost (FZ-013): "Email for apps and agents." https://factory0.ventures/ventures/owlpost/
+- Shoal (FZ-019): "Rehearse your launch." https://factory0.ventures/ventures/shoal/
+- ratecla.im (FZ-015): "The rate they don't publish." https://factory0.ventures/ventures/ratecla-im/
+- Kontinuum (FZ-001): "Music as code." https://factory0.ventures/ventures/kontinuum/
+- Kontinuum for DJs and producers (FZ-001): "Music as code." https://factory0.ventures/ventures/kontinuum/
+
 ## Notes for machine readers
 
 - No venture shows an autonomy percentage or any other operating figure yet.
