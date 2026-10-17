@@ -212,33 +212,45 @@ button, input { font: inherit; color: inherit; }
 @media (max-width: 760px) { .vsearch { margin-left: 0; width: 100%; } .vsearch input { width: 100%; } }
 .vcount { font: 400 12px var(--mono); color: var(--fg-3); letter-spacing: .06em; }
 
-.vgrid { display: grid; grid-template-columns: repeat(auto-fill, minmax(min(100%, 236px), 1fr)); border-top: 1px solid var(--hair); border-left: 1px solid var(--hair); }
-.vgrid > li { border-right: 1px solid var(--hair); border-bottom: 1px solid var(--hair); min-width: 0; }
-.vcard { position: relative; aspect-ratio: 1 / 1; display: flex; flex-direction: column; padding: 22px; background: var(--bg); transition: background .3s var(--ease); overflow: hidden; min-width: 0; }
-.vcard::after { content: ''; position: absolute; inset: 0; pointer-events: none; box-shadow: inset 0 0 0 1px transparent; transition: box-shadow .3s; }
-.vcard:hover, .vcard:focus-visible { background: var(--bg-1); }
-.vcard:hover::after, .vcard:focus-visible::after { box-shadow: inset 0 0 0 1px rgba(198, 255, 61, .55), 0 0 40px -10px var(--acc-glow); }
-.vcard:focus-visible { outline: none; }
-.vcard-top { display: flex; align-items: flex-start; justify-content: space-between; gap: 10px; }
-.vicon { width: 64px; height: 64px; flex: none; display: grid; place-items: center; background: var(--bg-2); border: 1px solid var(--hair-2); transition: transform .4s var(--ease); }
-.vicon img { width: 46px; height: 46px; transform: scale(var(--z, 1)); }
-.vicon--mono { font: 500 26px var(--sans); color: var(--fg-2); }
-.vcard:hover .vicon { transform: translateY(-3px); }
+.vgrid { display: grid; grid-template-columns: repeat(5, minmax(0, 1fr)); gap: 12px; }
+.vgrid > li { min-width: 0; transition: translate .45s var(--ease); }
+/* The tile: pure black, square, one hairline. Only the mark is at rest. */
+.vcard { position: relative; display: block; aspect-ratio: 1 / 1; container-type: inline-size; background: #000; border: 1px solid var(--hair-2); color: var(--fg); text-decoration: none; min-width: 0; transition: border-color .3s var(--ease); }
+.vcard::before { content: ''; position: absolute; inset: 0; pointer-events: none; background: radial-gradient(circle at 50% 46%, rgba(237, 240, 230, .09), transparent 62%); }
+.vcard:focus-visible { outline: 2px solid var(--acc); outline-offset: 4px; }
+.vcard .vicon { position: absolute; inset: 0; width: auto; height: auto; display: grid; place-items: center; background: none; border: 0; transition: scale .5s var(--ease); }
+.vcard .vicon img { width: 50cqi; height: auto; }
+.vcard .vicon--mono { font: 300 44cqi/1 var(--sans); letter-spacing: -.04em; color: var(--fg); }
+/* Hover and focus overlay: name, id, category and chips over a dark gradient. */
+.vover { position: absolute; left: 0; right: 0; bottom: 0; display: flex; flex-direction: column; align-items: flex-start; gap: 4px; padding: 44px 14px 14px; background: linear-gradient(to top, rgba(0, 0, 0, .94), rgba(0, 0, 0, .62) 52%, rgba(0, 0, 0, 0)); opacity: 0; transition: opacity .35s var(--ease); pointer-events: none; }
 .vid { font: 400 11px var(--mono); letter-spacing: .08em; color: var(--fg-3); }
-.vname { margin-top: auto; font-size: 21px; line-height: 1.15; letter-spacing: -.02em; font-weight: 500; }
-.vcat { margin-top: 4px; font: 400 12px var(--mono); letter-spacing: .06em; color: var(--fg-3); text-transform: uppercase; }
-.vdesc { margin-top: 10px; font-size: 14px; line-height: 1.45; color: var(--fg-2); display: -webkit-box; -webkit-line-clamp: 3; -webkit-box-orient: vertical; overflow: hidden; }
-.vcard .chips { margin-top: 14px; }
-.vgo { position: absolute; right: 20px; bottom: 20px; width: 28px; height: 28px; display: grid; place-items: center; border: 1px solid var(--hair-2); color: var(--fg-3); opacity: 0; transform: translate(-4px, 0); transition: all .3s var(--ease); }
-.vcard:hover .vgo, .vcard:focus-visible .vgo { opacity: 1; transform: none; color: var(--acc); border-color: rgba(198, 255, 61, .5); }
-.vempty { padding: 48px 0; color: var(--fg-3); }
-@media (max-width: 560px) {
-  .vgrid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
-  .vcard { padding: 14px; }
-  .vicon { width: 48px; height: 48px; } .vicon img { width: 34px; height: 34px; }
-  .vname { font-size: 17px; }
-  .vdesc, .vcard .chips, .vgo, .vid { display: none; }
+.vname { font-size: 17px; line-height: 1.15; letter-spacing: -.02em; font-weight: 500; color: var(--fg); max-width: 100%; }
+.vcat { font: 400 11px var(--mono); letter-spacing: .06em; color: var(--fg-3); text-transform: uppercase; }
+.vcard .chips { margin-top: 6px; gap: 4px; }
+.vcard .chip { height: 22px; padding: 0 6px; font-size: 10px; background: rgba(0, 0, 0, .45); }
+.vcard:focus-visible .vover { opacity: 1; }
+@media (hover: hover) {
+  .vgrid > li:hover { translate: 0 -3px; }
+  .vcard:hover { border-color: rgba(237, 240, 230, .42); }
+  .vcard:hover .vicon { scale: 1.06; }
+  .vcard:hover .vover { opacity: 1; }
 }
+.vgrid > li:focus-within { translate: 0 -3px; }
+/* Touch: no hover, so the name sits under the tile and the rest of the overlay is hidden. */
+@media (hover: none) {
+  .vgrid > li { padding-bottom: 44px; }
+  .vgrid > li:focus-within { translate: none; }
+  .vover { top: 100%; bottom: auto; padding: 8px 0 0; background: none; opacity: 1; }
+  .vid, .vcat, .vcard .chips { display: none; }
+  .vname { font-size: 14px; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; width: 100%; }
+}
+@media (max-width: 1024px) { .vgrid { grid-template-columns: repeat(3, minmax(0, 1fr)); } }
+@media (max-width: 600px) { .vgrid { grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 8px; } }
+@media (prefers-reduced-motion: reduce) {
+  .vgrid > li, .vcard .vicon, .vover, .vcard { transition: none !important; }
+  .vgrid > li, .vgrid > li:hover, .vgrid > li:focus-within, .vcard:hover .vicon { translate: none; scale: none; }
+}
+.vempty { padding: 48px 0; color: var(--fg-3); }
 
 /* ---------- media band (generated imagery) ---------- */
 .band { position: relative; overflow: hidden; border-top: 1px solid var(--hair); border-bottom: 1px solid var(--hair); }

@@ -86,7 +86,7 @@ compete. The orange of the previous system is retired.
 | Hero | `.hero .hero-media .hero-grid .hero-in .hero-copy .hero-cards .hcard` | full-bleed image + loop video, gradient from the left, 120px grid lines fading out; up to three floating `.hcard`s from real data (hidden under 1100px) |
 | Stats band | `.stats` (`--n` columns) `.stat .stat-n[data-count] .stat-k` | numbers count up once in view |
 | Marquee | `.marquee .marquee-track` | each item twice, the copy `aria-hidden` + `tabindex=-1`; pauses on hover; static under reduced motion |
-| Venture card | `.vgrid > li > a.vcard` with `.vcard-top .vicon .vid .vname .vcat .vdesc .chips .vgo` | square (`aspect-ratio: 1`), lime hairline glow on hover; written by `UI.vcard()` |
+| Venture card | `.vgrid > li > a.vcard` with `.vicon` (the logo, centred) and `.vover` (`.vid .vname .vcat .chips`, shown on hover and focus, under the tile on touch) | square black tile, one hairline, mark only at rest; 5 columns, 3 under 1024px, 2 under 600px; the link text is `.vh` (name + description); written by `UI.vcard()`, with `UI.icon()` giving the initial monogram for a venture without a logo |
 | Grid tools | `.vtools .vfilter button[data-f] .vsearch input[data-vsearch]`, `[data-vempty]`, `[data-vreset]` | `fz-ui.js` filters by `data-stage`, `data-stack` and free text in `data-q`; `?stack=1` preselects FZ stack |
 | Cards | `.cards2 > .card` (`.card--acc` for the highlighted one), `.card-k` | hairline grid of text cards |
 | Steps | `ol.steps > li.step .step-n h3 ul` | numbered diamonds, like lemon.io's "you ask / we do the rest / you choose" |
