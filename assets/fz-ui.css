@@ -755,7 +755,7 @@ html.js.rv-on [data-rv].in { opacity: 1; transform: none; }
 }
 
 /* ---------- Venture-as-a-service ticker (top of the home hero) + offer card ---------- */
-.ticker { position: absolute; top: 0; left: 0; right: 0; z-index: 3; display: block; overflow: hidden; border-bottom: 1px solid rgba(198, 255, 61, .28); background: linear-gradient(90deg, rgba(198, 255, 61, .10), rgba(185, 168, 255, .08)); -webkit-backdrop-filter: blur(10px); backdrop-filter: blur(10px); color: var(--fg); }
+.ticker { position: absolute; bottom: 0; left: 0; right: 0; z-index: 3; display: block; overflow: hidden; border-top: 1px solid rgba(198, 255, 61, .28); background: linear-gradient(90deg, rgba(198, 255, 61, .10), rgba(185, 168, 255, .08)); -webkit-backdrop-filter: blur(10px); backdrop-filter: blur(10px); color: var(--fg); }
 .ticker-track { display: flex; width: max-content; animation: marq 48s linear infinite; }
 .ticker:hover .ticker-track, .ticker:focus-visible .ticker-track { animation-play-state: paused; }
 .ticker-item { display: inline-flex; align-items: center; gap: 12px; padding: 11px 28px; white-space: nowrap; font-size: 14px; color: var(--fg-2); }
@@ -764,10 +764,17 @@ html.js.rv-on [data-rv].in { opacity: 1; transform: none; }
 .tick-dot { width: 4px; height: 4px; background: var(--fg-3); margin: 0 6px; }
 .tick-go { font: 500 12px/1 var(--mono); letter-spacing: .08em; color: var(--acc); margin-left: 8px; }
 .ticker:focus-visible { outline: 2px solid var(--acc); outline-offset: -2px; }
-.hero .hero-in { padding-top: max(clamp(96px, 14vh, 160px), 120px); }
+/* Home: the first screen is the whole viewport, the ticker runs along its bottom edge. */
+.hero--home { min-height: calc(100vh - 64px); min-height: calc(100svh - 64px); }
+.hero--home { overflow: clip; }
+/* The ticker is the hero's last row and sticks to the bottom of the viewport while
+   the hero is on screen, so it is visible on the first screen at any height. */
+.hero--home .ticker { position: sticky; bottom: 0; top: auto; grid-column: 1 / -1; align-self: end; }
+.hero--home .hero-cards { transform: translateY(calc(-46% - 23px)); }
 .hcard--offer { border-color: rgba(198, 255, 61, .55); background: linear-gradient(160deg, rgba(198, 255, 61, .14), rgba(15, 17, 15, .82) 55%); box-shadow: 0 0 0 1px rgba(198, 255, 61, .08), 0 18px 60px -20px rgba(198, 255, 61, .35); }
 .hcard--offer .acc { color: var(--acc); }
 .hcard-price { margin-top: 10px; font-weight: 300; font-size: 30px; line-height: 1; letter-spacing: -.02em; color: var(--fg); }
 .hcard--offer .hcard-sub { margin-top: 8px; }
 .hcard-go { margin-top: 10px; font: 500 12px/1 var(--mono); letter-spacing: .08em; color: var(--acc); }
 @media (prefers-reduced-motion: reduce) { .ticker-track { animation: none; } }
+@media (max-width: 1100px) { .hero.hero--home { min-height: calc(100vh - 64px); min-height: calc(100svh - 64px); } }
