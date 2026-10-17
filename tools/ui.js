@@ -16,7 +16,7 @@ const headAssets = () => `<link rel="preconnect" href="https://fonts.googleapis.
 <link rel="stylesheet" href="/assets/fz-ui.css">`;
 
 const NAV = [
-  ['/ventures/', 'Ventures'], ['/stack/', 'Stack'], ['/system/', 'System'],
+  ['/venture-as-a-service/', 'Services'], ['/ventures/', 'Ventures'], ['/stack/', 'Stack'], ['/system/', 'System'],
   ['/technology/', 'Technology'], ['/thesis/', 'Thesis'], ['/about/', 'About']
 ];
 
@@ -51,6 +51,7 @@ function footer(stackVentures, slug) {
       <div class="foot-col">
         <h3>Factory</h3>
         <ul>
+          <li><a href="/venture-as-a-service/">Services</a></li>
           <li><a href="/ventures/">Ventures</a></li>
           <li><a href="/stack/">Stack</a></li>
           <li><a href="/system/">System</a></li>
