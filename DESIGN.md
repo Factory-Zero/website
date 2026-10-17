@@ -155,26 +155,21 @@ prompt names a venture that is not on the stack, if there are fewer than 20 prom
 stack venture is never lit by any prompt, so the scene can never claim a venture the stack does
 not contain. Hand edits to `heroPrompts` are data changes: run `node tools/sync-ventures.js`.
 
-## Home background: the venture grid and the block field
+## Home background: black, with venture logos that pop up
 
-The home page sits on one fixed, full-viewport grid of venture tiles (`.gc-layer`, written by
-`tools/hero-scene.js` into the `fz:herogrid` region right after `<body>`). Every live venture is
-a square tile with its monochrome logo, in a fixed shuffled order that repeats to fill the
-viewport. At rest the tiles are 3.5% opacity. A timer lights one tile a second to about 11% and
-lets it fade back. The tiles of the ventures lit by the hero prompt go to 8.5% in lime. The layer
-is behind all content (z-index -1), the home body is transparent so it shows, and each section
-keeps its ground transparent. The cards keep their own opaque ground for contrast. Reduced motion
-and Save-Data keep the grid still. Only the home page has the layer.
+The home page ground is black. There is no grey wash and no tile grid. The only things on it
+are the focused block scene on the right (with its prompt bar and "built with" line) and the
+venture logos that pop up over the page.
 
-Behind the hero text, the same floor plan is drawn as plain faces (`fz:herobg`, `.hb-bg`) at
-low contrast, cropped by the hero and faded toward the right, where the lit scene sits. A dark
-veil (`.hb-veil`) behind the text column keeps the headline and offer at AA contrast.
+The logos are full colour, each with its venture name in small mono under it. They are created
+on the fly in the fixed layer `.gc-layer` (behind all content, `aria-hidden`). At any moment
+there are about 3 to 6 of them, each on free space away from the text, the offer card and the
+scene. Each fades and scales in, holds for 3 to 5 seconds, and fades out. When a prompt lights
+blocks, the logos of those ventures pop up next. Reduced motion and Save-Data show none: the
+page stays black. Nothing is in the DOM at rest.
 
-Motion (CSS transforms and opacity, plus one rAF loop that runs only while the hero is on screen
-and the tab is visible): the blocks bob out of phase; the floor seams carry slow lime pulses; a
-spark runs from the floor's front corner to each block the prompt names, and that block rises
-on a spring after the spark arrives; the other blocks dip slightly. The field drifts on a slow
-figure and follows the pointer on fine pointers.
+The block scene keeps its size at every width: its container is the page's content width
+(1320px), so at 1920 and 2560 it is capped rather than growing.
 
 ## Motion
 

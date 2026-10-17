@@ -226,28 +226,16 @@ button, input { font: inherit; color: inherit; }
   .ho-go { justify-self: start; }
 }
 
-/* ---------- page-wide venture grid (home): one fixed layer behind all content ---------- */
-.gc-layer { position: fixed; inset: 0; z-index: -1; pointer-events: none; overflow: hidden; --gc-cell: clamp(64px, 6.4vw, 104px);
-  display: grid; grid-template-columns: repeat(auto-fill, var(--gc-cell)); grid-auto-rows: var(--gc-cell); justify-content: center; align-content: start; }
-.gc { position: relative; display: block; width: var(--gc-cell); height: var(--gc-cell); border: 1px solid rgba(237, 239, 232, .06); color: var(--fg); opacity: .035; transition: opacity 1.4s var(--ease), color 1.4s var(--ease); }
-.gc svg { position: absolute; inset: 0; display: block; width: 100%; height: 100%; }
-.gc.is-match { opacity: .085; color: var(--acc); }
-.gc.is-shim { animation: gcShim 4.2s ease-in-out 1 both; }
-@keyframes gcShim { 0%, 100% { opacity: .035; } 45%, 55% { opacity: .11; } }
-/* The body is transparent on the home page: html keeps the ground, so the fixed grid (z-index -1) sits above it. */
+/* ---------- the home page: black ground, and the venture logos that pop up over it ---------- */
+/* The body is transparent on the home page only so the fixed layer below can show. */
 body.has-gc { background: transparent; }
-/* The ground of a home section is transparent so the grid shows through; cards keep theirs. */
 .has-gc .chip-band { background: transparent; }
-.has-gc .chip-band::before { background: linear-gradient(rgba(10, 11, 10, .0), rgba(10, 11, 10, 0)); }
-.has-gc .chip-band::after { background: linear-gradient(rgba(10, 11, 10, 0), rgba(10, 11, 10, 0)); }
-
-/* ---------- hero background: the plain block field and the veil over the text ---------- */
-.hb-bg { position: absolute; inset: -6% -4%; z-index: 0; pointer-events: none; overflow: hidden;
-  -webkit-mask-image: linear-gradient(90deg, #000 0%, rgba(0, 0, 0, .5) 55%, rgba(0, 0, 0, .3) 100%); mask-image: linear-gradient(90deg, #000 0%, rgba(0, 0, 0, .5) 55%, rgba(0, 0, 0, .3) 100%); }
-.hero--home::before { display: none; }
-.hb-bgsvg { display: block; width: 100%; height: 100%; opacity: .85; will-change: transform; }
-.hb-veil { position: absolute; inset: 0; z-index: 1; pointer-events: none;
-  background: linear-gradient(90deg, rgba(10, 11, 10, .93) 0%, rgba(10, 11, 10, .8) 36%, rgba(10, 11, 10, .18) 70%, rgba(10, 11, 10, .05) 100%); }
+.gc-layer { position: fixed; inset: 0; z-index: -1; pointer-events: none; overflow: hidden; }
+.fl { position: absolute; margin: 0; display: grid; justify-items: center; gap: 10px; opacity: 0; transform: translate3d(0, 8px, 0) scale(.94); transition: opacity .9s var(--ease), transform .9s var(--ease); }
+.fl.is-in { opacity: 1; transform: none; }
+.fl.is-out { opacity: 0; transform: translate3d(0, -6px, 0) scale(.98); transition: opacity 1s var(--ease), transform 1s var(--ease); }
+.fl img { display: block; height: auto; }
+.fl figcaption { font: 500 11px/1 var(--mono); letter-spacing: .12em; text-transform: uppercase; color: var(--fg-2); white-space: nowrap; }
 .hero--home .hero-in { position: relative; z-index: 2; }
 .hero--home .hero-grid { z-index: 0; }
 
@@ -266,11 +254,8 @@ body.has-gc { background: transparent; }
 .hb-scene.has-lit .hb:not(.is-lit) { transform: translateY(4px); }
 .hb-tag.is-lit { transition: transform 1.05s cubic-bezier(.3, 1.6, .5, 1) .55s, opacity .5s var(--ease); }
 @media (prefers-reduced-motion: reduce) {
-  .hb-bob, .hb-seam.hb-pulse, .hb-spark.is-go, .gc.is-shim { animation: none !important; }
+  .hb-bob, .hb-seam.hb-pulse, .hb-spark.is-go { animation: none !important; }
   .hb-scene.has-lit .hb:not(.is-lit) { transform: none; }
-}
-@media (max-width: 900px) {
-  .hb-veil { background: linear-gradient(180deg, rgba(10, 11, 10, .72) 0%, rgba(10, 11, 10, .9) 46%, rgba(10, 11, 10, .94) 100%); }
 }
 
 /* ---------- stats band ---------- */

@@ -1,16 +1,8 @@
 'use strict';
 /* The home hero's block scene and the background layers behind the home page.
  *
- * Called by tools/sync-ventures.js, which writes four things into index.html:
- *   heroSymbols  -> the logo symbols (one per live venture), in a hidden defs SVG
- *   heroScene    -> the bright, lit block scene and the prompt bar (fz:heroscene)
- *   heroField    -> the plain block field behind the hero text (fz:herobg)
- *   gridTiles    -> the fixed page-wide grid of venture tiles (fz:herogrid)
- * Pure functions of the data: a fixed shuffle, no randomness, no network.
- *
- * Each block is three faces (top, left, right) over one seamless stone texture
- * (assets/ui/block-stone.webp), shaded per face. The venture's logo is carved into the top
- * face: drawn in the face's own plane, with a lit lower edge and a dark recess.
+ * Called by tools/sync-ventures.js, which writes the lit scene, the prompt bar and the logo
+ * symbols into index.html (fz:heroscene). Pure functions of the data: no randomness, no network.
  */
 const fs = require('fs');
 const path = require('path');
@@ -176,42 +168,4 @@ ${svg.replace(/<g class="(hb|hb-tag)" data-venture="([^"]+)"/g, (m, cls, id) => 
   return { html, names };
 }
 
-// The background field behind the hero text: the same floor plan with plain faces (no
-// logos, no lights), drawn larger and cropped by the hero. Decorative.
-function heroField({ stack, slugOf }) {
-  const F = floor();
-  const cells = cellsOf(stack);
-  const boxes = [...F.plate];
-  const out = [], pats = [];
-  cells.forEach(({ i, j, v }, n) => {
-    const g = geom(i, j, v.stackGroup === 'The foundation' ? 2 : 1);
-    boxes.push(...g.tp, ...g.left, ...g.right);
-    const pat = `hbf-st-${n}`;
-    pats.push(patDef(pat, n + 7));
-    out.push(`<g class="hb-bob" style="--d:${n}">${faceMarkup(g, pat, 'rgba(237,239,232,.09)')}</g>`);
-  });
-  const vbMinX = Math.min(...boxes.map(p => p[0])) - 30, vbMaxX = Math.max(...boxes.map(p => p[0])) + 30;
-  const vbMinY = Math.min(...boxes.map(p => p[1])) - 30, vbMaxY = Math.max(...boxes.map(p => p[1])) + 30;
-  const vb = [num(vbMinX), num(vbMinY), num(vbMaxX - vbMinX), num(vbMaxY - vbMinY)].join(' ');
-  return `<svg class="hb-bgsvg" viewBox="${vb}" aria-hidden="true" focusable="false" preserveAspectRatio="xMidYMid slice">
-  <defs>${pats.join('')}</defs>
-${out.join('\n')}
-</svg>`;
-}
-
-// The page-wide grid: square tiles, one per slot, cycling through every live venture in a
-// fixed shuffled order, so each venture appears evenly. Decorative; the logos are <use>s.
-function gridTiles({ ventures, slugOf, count = 300 }) {
-  const order = ventures.slice();
-  let seed = 7;
-  const rnd = () => (seed = (seed * 1103515245 + 12345) & 0x7fffffff) / 0x7fffffff;
-  for (let k = order.length - 1; k > 0; k--) { const r = Math.floor(rnd() * (k + 1)); [order[k], order[r]] = [order[r], order[k]]; }
-  const tiles = [];
-  for (let k = 0; k < count; k++) {
-    const v = order[k % order.length];
-    tiles.push(`<span class="gc" data-v="${esc(v.id)}" title=""><svg viewBox="0 0 120 120" width="100%" height="100%"><use href="#gl-${esc(slugOf(v))}" x="18" y="18" width="84" height="84"/></svg></span>`);
-  }
-  return tiles.join('');
-}
-
-module.exports = { heroSymbols, heroScene, heroField, gridTiles, LAYOUT };
+module.exports = { heroSymbols, heroScene, LAYOUT };
