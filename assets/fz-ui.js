@@ -58,6 +58,53 @@
     if (c && !c.dataset.done && !calm) { c.dataset.done = '1'; countUp(c); }
   }
 
+  /* ---------- home hero: the prompt bar types, the foundation blocks light ----------
+     The static page already shows prompt 0 with its blocks lit. The loop runs only while
+     the scene is on screen and the tab is visible, pauses under the pointer or focus, and
+     never runs with reduced motion or Save-Data. Timers, not frames: nothing moves per frame. */
+  var scene = document.querySelector('[data-hero-scene]');
+  var PROMPTS = (window.FZ_DATA && window.FZ_DATA.heroPrompts) || [];
+  if (scene && PROMPTS.length && !calm && !saveData) {
+    var typed = scene.querySelector('[data-typed]');
+    var built = scene.querySelector('[data-built]');
+    var blocks = [].slice.call(scene.querySelectorAll('.hb'));
+    var inView = false, paused = false, timer = 0, nextFn = null, idx = 0, cur = null, n = 0;
+    var ready = function () { return inView && !paused && !document.hidden; };
+    var go = function (ms, fn) { nextFn = fn; if (timer) clearTimeout(timer); timer = setTimeout(tick, ms); };
+    var tick = function () { timer = 0; if (ready() && nextFn) nextFn(); };
+    var kick = function () { if (!timer && nextFn && ready()) go(350, nextFn); };
+    var setLit = function (ids) {
+      blocks.forEach(function (g) { g.classList.toggle('is-lit', ids.indexOf(g.getAttribute('data-venture')) >= 0); });
+    };
+    var typeStep = function () {
+      if (n <= cur.text.length) { typed.textContent = cur.text.slice(0, n); n++; go(34 + Math.random() * 30, typeStep); }
+      else go(480, litStep);
+    };
+    var startPrompt = function () { cur = PROMPTS[idx]; n = 0; typed.textContent = ''; typeStep(); };
+    var litStep = function () {
+      setLit(cur.ventures);
+      built.textContent = '→ built with: ' + cur.ventures.map(function (id) {
+        var g = scene.querySelector('.hb[data-venture="' + id + '"]'); return g ? g.getAttribute('data-name') : id;
+      }).join(' · ');
+      go(3900, unlightStep);
+    };
+    var unlightStep = function () {
+      setLit([]); built.textContent = '';
+      idx = (idx + 1) % PROMPTS.length;
+      go(750, startPrompt);
+    };
+    nextFn = startPrompt;
+    if ('IntersectionObserver' in window) {
+      new IntersectionObserver(function (es) { inView = es[0].isIntersecting; if (inView) kick(); }, { threshold: 0.25 }).observe(scene);
+    } else { inView = true; }
+    document.addEventListener('visibilitychange', function () { if (!document.hidden) kick(); });
+    scene.addEventListener('pointerenter', function () { paused = true; });
+    scene.addEventListener('pointerleave', function () { paused = false; kick(); });
+    scene.addEventListener('focusin', function () { paused = true; });
+    scene.addEventListener('focusout', function () { paused = false; kick(); });
+    kick();
+  }
+
   /* ---------- hero loops (home .hero-media and every .ph-media page hero) ----------
      Page heroes ship without <source>: data-webm / data-mp4 are attached only after the
      page has loaded and the browser is idle, never with reduced motion, Save-Data or a

@@ -651,6 +651,37 @@ window.FZ_DATA = {
     { id: 'squeezin', venture: 'FZ-023', title: 'Squeezin', caption: 'Shorten any link. Free, no ads.', video: 'squeezin-promo.mp4', poster: 'squeezin-poster.jpg', duration: 41 },
     { id: 'sealbin', venture: 'FZ-016', title: 'sealb.in', caption: 'The sealed handoff between agents.', video: 'sealbin-promo.mp4', poster: 'sealbin-poster.jpg', duration: 39 }
   ],
+  // The home hero's prompt bar. Each prompt is a thing a founder might ask for, and
+  // `ventures` lists the Factory Zero stack ventures (stack: true, by id) whose stackRole
+  // does that job. tools/sync-ventures.js rejects an unknown id or a non-stack venture.
+  // The order mixes the foundation with the shelves so every block lights up in a cycle.
+  heroPrompts: [
+    { text: 'A waitlist with email confirmation and an admin page', ventures: ['FZ-004', 'FZ-013'] },
+    { text: 'Let my coding agents ship PRs from issues', ventures: ['FZ-006', 'FZ-012'] },
+    { text: 'Answer customers from our docs', ventures: ['FZ-008', 'FZ-018'] },
+    { text: 'Keep the books for our agents', ventures: ['FZ-021'] },
+    { text: 'A company wiki that writes itself', ventures: ['FZ-018'] },
+    { text: 'Check links before anyone opens them', ventures: ['FZ-023'] },
+    { text: 'Hand secrets between agents safely', ventures: ['FZ-016'] },
+    { text: 'Screen uploaded documents for hidden instructions', ventures: ['FZ-009'] },
+    { text: 'Review every pull request before a human looks', ventures: ['FZ-005'] },
+    { text: 'Add a music bed that reacts to the app', ventures: ['FZ-001', 'FZ-004'] },
+    { text: 'Sell at the counter and keep the books automatically', ventures: ['FZ-011', 'FZ-021'] },
+    { text: 'Rehearse the launch before we flip the switch', ventures: ['FZ-019'] },
+    { text: 'Turn this week\'s releases into a video', ventures: ['FZ-017', 'FZ-012'] },
+    { text: 'Write the newsletter in the founder\'s voice', ventures: ['FZ-022'] },
+    { text: 'Price every model call before the agent runs it', ventures: ['FZ-020'] },
+    { text: 'Send transactional email with tracked short links', ventures: ['FZ-013', 'FZ-023'] },
+    { text: 'Stand up a new app with auth, a database and email', ventures: ['FZ-004', 'FZ-013'] },
+    { text: 'Let a field agent take orders on a tablet', ventures: ['FZ-011', 'FZ-004'] },
+    { text: 'Deploy every merged change to staging, then rehearse production', ventures: ['FZ-012', 'FZ-019'] },
+    { text: 'Let a bug report open its own pull request', ventures: ['FZ-008', 'FZ-006'] },
+    { text: 'Log every agent action and the reason for it', ventures: ['FZ-021', 'FZ-018'] },
+    { text: 'Share one API key with a contractor, then burn it', ventures: ['FZ-016'] },
+    { text: 'Make a walkthrough of the feature we just shipped', ventures: ['FZ-022', 'FZ-017'] },
+    { text: 'Get a security review before the launch', ventures: ['FZ-005', 'FZ-009'] },
+    { text: 'Give a new agent a repo, a budget and a team', ventures: ['FZ-006', 'FZ-004', 'FZ-018'] }
+  ],
 };
 
 // Editable presentation values. In the Claude Design source these were `data-props`
