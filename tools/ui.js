@@ -7,13 +7,16 @@ const esc = s => String(s == null ? '' : s)
   .replace(/&/g, '&amp;').replace(/</g, '&lt;')
   .replace(/>/g, '&gt;').replace(/"/g, '&quot;');
 
-const FONTS = 'https://fonts.googleapis.com/css2?family=Inter+Tight:wght@300;400;500;600&family=IBM+Plex+Mono:wght@400;500&display=swap';
+// Speculation Rules: hovering or touching an internal link prerenders its page, so
+// the next navigation is instant. API routes are excluded; they are never cacheable.
+const SPECULATION_WHERE = '{"and":[{"href_matches":"/*"},{"not":{"href_matches":"/api/*"}}]}';
+const SPECULATION = `<script type="speculationrules">{"prerender":[{"where":${SPECULATION_WHERE},"eagerness":"moderate"}],"prefetch":[{"where":${SPECULATION_WHERE},"eagerness":"moderate"}]}</script>`;
 
-// <head> pieces after the per-page meta: fonts and the one stylesheet.
-const headAssets = () => `<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="${FONTS}" rel="stylesheet">
-<link rel="stylesheet" href="/assets/fz-ui.css">`;
+// <head> pieces after the per-page meta: the self-hosted type (Latin, assets/fonts/),
+// the one stylesheet, and the speculation rules. Fonts are the files named in fz-ui.css.
+const headAssets = () => `<link rel="preload" href="/assets/fonts/inter-tight-latin-wght.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="stylesheet" href="/assets/fz-ui.css">
+${SPECULATION}`;
 
 const NAV = [
   ['/venture-as-a-service/', 'Services'], ['/ventures/', 'Ventures'], ['/stack/', 'Stack'], ['/system/', 'System'],
@@ -139,4 +142,4 @@ function pageHero(slug, variant) {
 </div>`;
 }
 
-module.exports = { pageHero, esc, headAssets, header, footer, icon, vcard, vtools, ARROW, FONTS };
+module.exports = { pageHero, esc, headAssets, header, footer, icon, vcard, vtools, ARROW, SPECULATION };

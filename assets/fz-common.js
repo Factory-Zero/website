@@ -116,3 +116,16 @@ document.addEventListener('play', function (e) {
     if (v !== t && !v.paused) v.pause();
   });
 }, true);
+
+// A venture's own film: its poster is requested only as the player nears the viewport
+// (the markup carries data-poster, not poster). Without IntersectionObserver it loads at once.
+(function () {
+  var posters = document.querySelectorAll('video[data-poster]');
+  if (!posters.length) return;
+  function set(v) { v.poster = v.getAttribute('data-poster'); }
+  if (!('IntersectionObserver' in window)) { posters.forEach(set); return; }
+  var io = new IntersectionObserver(function (es) {
+    es.forEach(function (e) { if (e.isIntersecting) { set(e.target); io.unobserve(e.target); } });
+  }, { rootMargin: '400px 0px' });
+  posters.forEach(function (v) { io.observe(v); });
+})();

@@ -1,5 +1,6 @@
 /* Factory Zero UI behaviour, for pages on assets/fz-ui.css. Dependency-free.
-   - scroll reveal and count-up (only when motion is allowed)
+   - scroll reveal and count-up (only below the fold, and only once JS runs)
+   - the home films: poster cards open one shared player
    - the hero loop video (never with reduced motion or data saver)
    - venture grid filters and search
    - the home page's live GitHub log, merged-PR count and authors chart
@@ -25,20 +26,35 @@
     }
     requestAnimationFrame(step);
   }
-  if (!calm && 'IntersectionObserver' in window) {
-    root.classList.add('rv-on');
-    var io = new IntersectionObserver(function (es) {
-      es.forEach(function (e) {
-        if (!e.isIntersecting) return;
-        e.target.classList.add('in');
-        var c = e.target.matches('[data-count]') ? e.target : e.target.querySelector('[data-count]');
-        if (c && !c.dataset.done) { c.dataset.done = '1'; countUp(c); }
-        io.unobserve(e.target);
-      });
-    }, { rootMargin: '0px 0px -8% 0px' });
-    rv.forEach(function (n) { io.observe(n); });
-    // a reveal that never fires (throttled tab) must not leave content hidden
-    setTimeout(function () { rv.forEach(function (n) { n.classList.add('in'); }); }, 4000);
+  /* Only elements below the first viewport are hidden, and only once html.rv-on is set
+     here, so everything above the fold is painted without waiting for an observer.
+     Without JS, or with reduced motion, nothing is hidden at all. */
+  if (!calm && 'IntersectionObserver' in window && rv.length) {
+    var vh = window.innerHeight || root.clientHeight;
+    var below = [];
+    rv.forEach(function (n) {
+      var r = n.getBoundingClientRect();
+      if (r.top < vh * 0.92) { revealNow(n); } else { below.push(n); }
+    });
+    if (below.length) {
+      root.classList.add('rv-on');
+      var io = new IntersectionObserver(function (es) {
+        es.forEach(function (e) {
+          if (!e.isIntersecting) return;
+          revealNow(e.target);
+          io.unobserve(e.target);
+        });
+      }, { rootMargin: '0px 0px -8% 0px' });
+      below.forEach(function (n) { io.observe(n); });
+      // a reveal that never fires (throttled tab) must not leave content hidden
+      setTimeout(function () { below.forEach(revealNow); }, 4000);
+    }
+  }
+  function revealNow(n) {
+    if (n.classList.contains('in')) return;
+    n.classList.add('in');
+    var c = n.matches('[data-count]') ? n : n.querySelector('[data-count]');
+    if (c && !c.dataset.done && !calm) { c.dataset.done = '1'; countUp(c); }
   }
 
   /* ---------- hero loops (home .hero-media and every .ph-media page hero) ----------
@@ -70,8 +86,68 @@
         }
       });
     };
-    var later = function () { idle(start, { timeout: 2000 }); };
+    var later = function () {
+      // a speculative prerender must not start the loops; wait until the page is shown
+      if (document.prerendering) { document.addEventListener('prerenderingchange', later, { once: true }); return; }
+      idle(start, { timeout: 2000 });
+    };
     if (document.readyState === 'complete') later(); else window.addEventListener('load', later, { once: true });
+  }
+
+  /* ---------- films: poster cards open one shared player ---------- */
+  var filmCards = $$('[data-film-open]');
+  var player = document.getElementById('fz-player');
+  if (filmCards.length && player && typeof player.showModal === 'function') {
+    var pVid = player.querySelector('.fzp-video');
+    var pTitle = document.getElementById('fzp-title');
+    var pCount = document.getElementById('fzp-count');
+    var pVenture = document.getElementById('fzp-venture');
+    var pLine = document.getElementById('fzp-line');
+    var pSite = document.getElementById('fzp-site');
+    var pPrev = player.querySelector('[data-fzp-prev]');
+    var pNext = player.querySelector('[data-fzp-next]');
+    var cur = 0, opener = null;
+    function show(i) {
+      var c = filmCards[i];
+      cur = i;
+      pTitle.textContent = c.dataset.title;
+      pVenture.textContent = c.dataset.venture;
+      pVenture.href = c.dataset.ventureUrl;
+      pLine.textContent = c.dataset.line;
+      pCount.textContent = (i + 1) + ' / ' + filmCards.length;
+      pVid.poster = c.dataset.poster;
+      if (c.dataset.site) { pSite.href = c.dataset.site; pSite.hidden = false; } else { pSite.hidden = true; }
+      // the video gets its source only now, and plays with sound: this is a user gesture
+      pVid.src = c.getAttribute('href');
+      var p = pVid.play(); if (p && p.catch) p.catch(function () {});
+    }
+    function step(d) { show((cur + d + filmCards.length) % filmCards.length); }
+    filmCards.forEach(function (c, i) {
+      c.addEventListener('click', function (e) {
+        if (e.defaultPrevented || e.button !== 0 || e.metaKey || e.ctrlKey || e.shiftKey || e.altKey) return;
+        e.preventDefault();
+        opener = c;
+        show(i);
+        if (!player.open) player.showModal();
+      });
+    });
+    pPrev.addEventListener('click', function () { step(-1); });
+    pNext.addEventListener('click', function () { step(1); });
+    player.querySelector('[data-fzp-close]').addEventListener('click', function () { player.close(); });
+    // a click on the dimmed backdrop (the dialog itself, not the frame) closes it
+    player.addEventListener('click', function (e) { if (e.target === player) player.close(); });
+    player.addEventListener('keydown', function (e) {
+      if (e.key === 'ArrowRight') { e.preventDefault(); step(1); }
+      else if (e.key === 'ArrowLeft') { e.preventDefault(); step(-1); }
+    });
+    // Esc, the close button and the backdrop all end here: stop the film, free the
+    // connection, and give focus back to the card that opened it
+    player.addEventListener('close', function () {
+      pVid.pause();
+      pVid.removeAttribute('src');
+      pVid.load();
+      if (opener) { opener.focus({ preventScroll: true }); opener = null; }
+    });
   }
 
   /* ---------- venture grid: filters + search ---------- */

@@ -402,6 +402,9 @@ asset filenames are not versioned in the repo, so without the stamp a deploy
 cannot invalidate a cached file and visitors keep running the old JavaScript.
 With it, `_headers` can cache `/assets/*.css` and `*.js` immutably.
 
+`_routes.json` sends only `/api/*` to the Pages Functions Worker; every other path is
+served from the asset cache. Keep it in step with `functions/`.
+
 `dist/` is gitignored. The repo root stays the thing you serve locally, with
 no build step.
 

@@ -22,24 +22,50 @@ const esc = s => String(s == null ? '' : s)
   .replace(/&/g, '&amp;').replace(/</g, '&lt;')
   .replace(/>/g, '&gt;').replace(/"/g, '&quot;');
 
-// A film: a native player, no autoplay, the poster until the viewer presses play.
-// The page script (assets/fz-common.js) pauses any other film when one starts.
-function filmFigure(f, linkName) {
+// Home-page films: a poster card per film. The card is a link to the MP4, so with
+// JavaScript off it still plays the film; fz-ui.js opens the shared player instead.
+// Posters are WebP at 480 and 960 wide, made from the JPGs with cwebp (see DESIGN.md).
+const webpOf = (file, w) => `/assets/films/${esc(file.replace(/\.jpg$/, `-${w}.webp`))}`;
+const fmtDuration = s => s == null ? '' : `${Math.floor(s / 60)}:${String(s % 60).padStart(2, '0')}`;
+const filmCard = (f, i) => {
   const v = BY_ID.get(f.venture);
-  const src = `/assets/films/${esc(f.video)}`;
-  const name = linkName
-    ? `<a class="film-name" href="/ventures/${slug(v)}/">${esc(v.name)}</a>${f.title !== v.name ? `<span class="film-title">${esc(f.title)}</span>` : ''}`
-    : `<span class="film-title">${esc(f.title)}</span>`;
-  return `<figure class="film" id="film-${esc(f.id)}">
-  <video class="fz-film" controls playsinline preload="none" poster="/assets/films/${esc(f.poster)}" width="1920" height="1080" aria-label="${esc(f.title)} film">
-    <source src="${src}" type="video/mp4">
-    <a href="${src}">Download the ${esc(f.title)} film (MP4)</a>
-  </video>
-  <figcaption class="film-cap">${name}<span class="film-line">${esc(f.caption)}</span></figcaption>
-</figure>`;
-}
-// The home-page section: every film, as a grid of cards.
-const filmsSection = () => `  <ul class="films-grid">\n${FILMS.map(f => `    <li>${filmFigure(f, true)}</li>`).join('\n')}\n  </ul>`;
+  const dur = fmtDuration(f.duration);
+  return `<li><a class="film-card" href="/assets/films/${esc(f.video)}" data-film-open="${i}" data-title="${esc(f.title)}" data-venture="${esc(v.name)}" data-venture-url="/ventures/${slug(v)}/" data-site="${esc(v.site ? `https://${v.site}/` : '')}" data-line="${esc(f.caption)}" data-poster="${webpOf(f.poster, 960)}" aria-haspopup="dialog">
+    <span class="film-shot">
+      <picture><source type="image/webp" srcset="${webpOf(f.poster, 480)} 480w, ${webpOf(f.poster, 960)} 960w" sizes="(min-width: 1000px) 380px, (min-width: 600px) 50vw, 100vw"><img src="/assets/films/${esc(f.poster)}" width="960" height="540" loading="lazy" decoding="async" alt=""></picture>
+      <span class="film-play" aria-hidden="true"><svg viewBox="0 0 24 24" width="20" height="20" focusable="false"><path d="M7 4.8v14.4L19.2 12z" fill="currentColor"/></svg></span>
+      ${dur ? `<span class="film-dur"><span class="vh">Length </span>${dur}</span>` : ''}
+    </span>
+    <span class="film-cap">
+      <span class="film-name"><span class="vh">Play the film: </span>${esc(f.title)}</span>
+      <span class="film-title">${esc(v.name)}</span>
+      <span class="film-line">${esc(f.caption)}</span>
+    </span>
+  </a></li>`;
+};
+// The one player every home-page card opens. Its video gets a src only when opened.
+const PLAYER = `<dialog class="fz-player" id="fz-player" aria-labelledby="fzp-title">
+  <div class="fzp-frame">
+    <div class="fzp-top">
+      <p class="fzp-count" id="fzp-count" aria-live="polite"></p>
+      <button class="fzp-close" type="button" data-fzp-close>Close <span aria-hidden="true">&times;</span></button>
+    </div>
+    <div class="fzp-stage"><video class="fzp-video" controls playsinline preload="none"></video></div>
+    <div class="fzp-info">
+      <div>
+        <p class="fzp-title" id="fzp-title"></p>
+        <p class="fzp-meta"><a class="fzp-venture" id="fzp-venture" href="/ventures/"></a><span id="fzp-line"></span></p>
+      </div>
+      <div class="fzp-actions">
+        <a class="fzp-btn" id="fzp-site" href="/" rel="noopener">Visit site <span aria-hidden="true">&rarr;</span></a>
+        <button class="fzp-btn" type="button" data-fzp-prev aria-label="Previous film"><span aria-hidden="true">&larr;</span><span class="fzp-lbl">Previous</span></button>
+        <button class="fzp-btn" type="button" data-fzp-next aria-label="Next film"><span class="fzp-lbl">Next</span><span aria-hidden="true">&rarr;</span></button>
+      </div>
+    </div>
+  </div>
+</dialog>`;
+// The home-page section: every film as a card, and the one shared player.
+const filmsSection = () => `  <ul class="films-grid">\n${FILMS.map(filmCard).join('\n')}\n  </ul>\n${PLAYER}`;
 // A venture's own films, shown in its detail panel. Every film is written out, and
 // fz-ventures.js shows the ones whose data-film-for matches the selected record.
 
@@ -149,6 +175,8 @@ function withUiHead(head) {
   const h = head
     .replace(/<link rel="preconnect"[^>]*>\n?/g, '')
     .replace(/<link href="https:\/\/fonts\.googleapis\.com[^>]*>\n?/g, '')
+    .replace(/<link rel="preload" href="\/assets\/fonts\/[^>]*>\n?/g, '')
+    .replace(/<script type="speculationrules">[\s\S]*?<\/script>\n?/g, '')
     .replace(/<link rel="stylesheet"[^>]*>\n?/g, '')
     .replace(/<meta name="theme-color" content="[^"]*">/, '<meta name="theme-color" content="#0A0B0A">');
   if (!h.includes('<script type="application/ld+json">')) throw new Error('head without JSON-LD');
@@ -255,7 +283,7 @@ function venturePage(v) {
     : `<a class="btn btn--ghost" id="d-link" aria-disabled="true">No public surface yet</a>`;
   const films = FILMS.filter(f => f.venture === v.id);
   const filmsHtml = films.length ? `<div class="app-sec"><h2>The film</h2><div class="app-films" data-film-for="${esc(v.id)}">${films.map(f => `<figure class="film" style="padding:0">
-  <video class="fz-film" controls playsinline preload="none" poster="/assets/films/${esc(f.poster)}" width="1920" height="1080" aria-label="${esc(f.title)} film"><source src="/assets/films/${esc(f.video)}" type="video/mp4"><a href="/assets/films/${esc(f.video)}">Download the ${esc(f.title)} film (MP4)</a></video>
+  <video class="fz-film" controls playsinline preload="none" data-poster="/assets/films/${esc(f.poster)}" width="1920" height="1080" aria-label="${esc(f.title)} film"><source src="/assets/films/${esc(f.video)}" type="video/mp4"><a href="/assets/films/${esc(f.video)}">Download the ${esc(f.title)} film (MP4)</a></video>
   <figcaption>${esc(f.caption)}</figcaption>
 </figure>`).join('\n')}</div></div>` : '';
   const rel = related(v);
@@ -450,7 +478,7 @@ const lastFilmV = lastFilm && BY_ID.get(lastFilm.venture);
 hs = replaceRegion(hs, 'herocards', [
   `    <a class="hcard hcard--offer" href="/venture-as-a-service/"><p class="hcard-k"><span class="acc">New</span> &middot; Venture as a service</p><p class="hcard-price">From $5,000</p><p class="hcard-sub">An autonomous venture MVP on the FZ foundation. Startup program: $500 in credits, limited places.</p><p class="hcard-go">See the offer &rarr;</p></a>`,
   topV ? `    <a class="hcard" href="/ventures/${slug(topV)}/"><p class="hcard-k">FZ stack &middot; most used</p><div class="hcard-row"><span class="hcard-icon">${UI.icon(topV, 30)}</span><span><span class="hcard-name">${esc(topV.name)}</span><br><span class="hcard-sub">${esc(topV.stackRole || topV.category)} &middot; live in ${top[1].size} ventures</span></span></div></a>` : '',
-  lastFilm ? `    <a class="hcard" href="/#films"><p class="hcard-k">Newest film &middot; ${FILMS.length} in all</p><div class="hcard-film" style="background-image:url('/assets/films/${esc(lastFilm.poster)}')"></div><p class="hcard-sub" style="margin-top:10px">${esc(lastFilmV ? lastFilmV.name : lastFilm.title)} &middot; ${esc(lastFilm.caption)}</p></a>` : '',
+  lastFilm ? `    <a class="hcard" href="/#films"><p class="hcard-k">Newest film &middot; ${FILMS.length} in all</p><div class="hcard-film" style="background-image:url('${webpOf(lastFilm.poster, 480)}')"></div><p class="hcard-sub" style="margin-top:10px">${esc(lastFilmV ? lastFilmV.name : lastFilm.title)} &middot; ${esc(lastFilm.caption)}</p></a>` : '',
   `    <div class="hcard"><p class="hcard-k">PRs merged &middot; 30 days</p><p class="hcard-n"><span id="fz-merged" title="Merged pull requests in the ventures' public GitHub repositories, last 30 days">&mdash;</span><small>public repositories</small></p></div>`,
 ].filter(Boolean).join('\n'));
 
