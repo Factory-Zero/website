@@ -230,13 +230,15 @@ button, input { font: inherit; color: inherit; }
 /* The body is transparent on the home page only so the fixed layer below can show. */
 body.has-gc { background: transparent; }
 .has-gc .chip-band { background: transparent; }
-.gc-layer { position: fixed; inset: 0; z-index: -1; pointer-events: none; overflow: hidden; }
-.fl { position: absolute; margin: 0; display: grid; justify-items: center; gap: 10px; opacity: 0; transform: translate3d(0, 8px, 0) scale(.94); transition: opacity .9s var(--ease), transform .9s var(--ease); }
-.fl.is-in { opacity: 1; transform: none; }
-.fl.is-out { opacity: 0; transform: translate3d(0, -6px, 0) scale(.98); transition: opacity 1s var(--ease), transform 1s var(--ease); }
-.fl img { display: block; height: auto; }
-.fl figcaption { font: 500 11px/1 var(--mono); letter-spacing: .12em; text-transform: uppercase; color: var(--fg-2); white-space: nowrap; }
 .hero--home .hero-in { position: relative; z-index: 2; }
+/* The venture grid: a solid, regular grid of square cells behind the page (black ground). */
+.gc-layer { position: fixed; inset: 0; z-index: -1; pointer-events: none; overflow: hidden; display: grid; justify-content: center; align-content: center; grid-template-columns: repeat(var(--cols, 8), var(--cell, 120px)); grid-auto-rows: var(--cell, 120px); }
+.cell { position: relative; margin: 0; display: grid; justify-items: center; align-content: center; gap: 7px; width: var(--cell, 120px); height: var(--cell, 120px); box-sizing: border-box; border: 1px solid rgba(237, 239, 232, .025); opacity: .065; transition: opacity .9s var(--ease), transform .9s var(--ease); }
+.cell img { display: block; height: auto; }
+.cell figcaption { font: 500 10px/1 var(--mono); letter-spacing: .12em; text-transform: uppercase; color: var(--fg-2); white-space: nowrap; opacity: 0; transition: opacity .6s var(--ease); }
+.cell.is-under { opacity: .02; }
+.cell.is-pop { opacity: 1; transform: scale(1.03); z-index: 1; }
+.cell.is-pop figcaption { opacity: 1; }
 .hero--home .hero-grid { z-index: 0; }
 
 /* ---------- idle motion (CSS transforms and opacity only) ---------- */
@@ -256,6 +258,32 @@ body.has-gc { background: transparent; }
 @media (prefers-reduced-motion: reduce) {
   .hb-bob, .hb-seam.hb-pulse, .hb-spark.is-go { animation: none !important; }
   .hb-scene.has-lit .hb:not(.is-lit) { transform: none; }
+}
+
+/* ---------- home hero, v4: a larger, centred composition that fills the first screen ---------- */
+.hero--home .hero-in { max-width: min(1760px, 100%); margin: 0 auto; grid-template-columns: minmax(0, 1.15fr) minmax(0, 1fr); gap: clamp(32px, 4vw, 104px); padding-top: clamp(32px, 6vh, 120px); padding-bottom: clamp(20px, 3.5vh, 96px); }
+.hero--home .display { font-size: clamp(48px, min(6.4vw, 10.4vh), 120px); line-height: .96; }
+.hero--home .hero-copy { max-width: 820px; }
+.hero--home .lede { font-size: clamp(18px, 1.35vw, 24px); max-width: 52ch; margin-top: clamp(18px, 2.2vh, 32px); }
+.hero--home .btns { margin-top: clamp(20px, 3vh, 40px); }
+.hero--home .hero-offer { max-width: 620px; margin-top: clamp(18px, 2.6vh, 36px); padding: 18px 20px 19px; }
+.hero--home .ho-price { font-size: clamp(30px, 2.6vw, 44px); }
+.hero--home .ho-line { font-size: clamp(14px, 1.05vw, 17px); }
+.hb-typed { font-size: clamp(15px, 1.1vw, 19px); }
+.hb-built { font-size: clamp(12px, .95vw, 15px); }
+.hb-svg { max-height: min(78svh, 920px); }
+@media (min-width: 901px) and (max-height: 820px) {
+  .hero--home .display { font-size: clamp(44px, 5.2vw, 84px); }
+  .hero--home .lede { margin-top: 14px; font-size: 17px; }
+  .hero--home .btns { margin-top: 20px; }
+  .hero--home .hero-offer { margin-top: 18px; padding: 14px 16px 15px; }
+  .hero--home .hero-in { padding-top: 28px; padding-bottom: 20px; }
+  .hb-svg { max-height: min(80svh, 720px); }
+}
+@media (max-width: 900px) {
+  .hero--home .hero-in { grid-template-columns: minmax(0, 1fr); gap: 0; padding-top: 40px; padding-bottom: 48px; }
+  .hero--home .display { font-size: clamp(44px, 11.5vw, 72px); }
+  .hb-svg { max-height: none; }
 }
 
 /* ---------- stats band ---------- */

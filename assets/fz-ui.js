@@ -58,6 +58,7 @@
     if (c && !c.dataset.done && !calm) { c.dataset.done = '1'; countUp(c); }
   }
 
+  var popFor = function () {};
   /* ---------- home hero: the prompt bar types, the foundation blocks light ----------
      The static page already shows prompt 0 with its blocks lit. The loop runs only while
      the scene is on screen and the tab is visible, pauses under the pointer or focus, and
@@ -97,7 +98,7 @@
     };
     nextFn = startPrompt;
     if ('IntersectionObserver' in window) {
-      new IntersectionObserver(function (es) { inView = es[0].isIntersecting; if (inView) { kick(); kickFrame(); logoStart(); } else { logoStop(); } }, { threshold: 0.25 }).observe(scene);
+      new IntersectionObserver(function (es) { inView = es[0].isIntersecting; if (inView) { kick(); kickFrame(); } }, { threshold: 0.25 }).observe(scene);
     } else { inView = true; }
     document.addEventListener('visibilitychange', function () { if (!document.hidden) kick(); });
     scene.addEventListener('pointerenter', function () { paused = true; });
@@ -111,62 +112,6 @@
         if (sp) { sp.classList.remove('is-go'); sp.getBoundingClientRect(); sp.classList.add('is-go'); }
       });
     };
-    /* Venture logos, full colour with their names, pop up on the black page: a few at a time,
-       on free space away from the text, the scene and the offer. The ventures a prompt lights
-       pop first. Created on the fly; nothing is in the DOM at rest. */
-    var VENT = ((window.FZ_DATA && window.FZ_DATA.ventures) || []).filter(function (v) { return v.logo && v.status !== 'ARCHIVED'; });
-    var layer = document.querySelector('.gc-layer');
-    var popped = [], logoTimer = 0, LOGO_MAX = 6;
-    var AVOID = 'h1,h2,h3,p,.btn,.card,.vcard,.stat,.hero-offer,.hero-copy,.hero-stage,.eyebrow,.site-header';
-    var freeSpot = function (w, h) {
-      var rects = [].slice.call(document.querySelectorAll(AVOID)).map(function (e) { return e.getBoundingClientRect(); })
-        .filter(function (r) { return r.width > 0 && r.bottom > 0 && r.top < window.innerHeight; });
-      for (var t = 0; t < 40; t++) {
-        var x = 16 + Math.random() * (window.innerWidth - w - 32), y = 84 + Math.random() * (window.innerHeight - h - 104);
-        var ok = rects.every(function (r) { return x + w < r.left - 14 || x > r.right + 14 || y + h < r.top - 14 || y > r.bottom + 14; });
-        if (ok) return [x, y];
-      }
-      return null;
-    };
-    var retire = function (rec, now) {
-      clearTimeout(rec.t);
-      var i = popped.indexOf(rec); if (i >= 0) popped.splice(i, 1);
-      rec.el.classList.remove('is-in'); rec.el.classList.add('is-out');
-      setTimeout(function () { rec.el.parentNode && rec.el.parentNode.removeChild(rec.el); }, now ? 0 : 1000);
-    };
-    var popOne = function (v) {
-      if (!layer) return;
-      var w = Math.round(Math.min(96, Math.max(72, window.innerWidth * 0.06)));
-      var spot = freeSpot(w, w + 30);
-      if (!spot) return;
-      if (popped.length >= LOGO_MAX) retire(popped[0], true);
-      var f = document.createElement('figure');
-      f.className = 'fl';
-      f.style.left = Math.round(spot[0]) + 'px'; f.style.top = Math.round(spot[1]) + 'px';
-      var img = document.createElement('img');
-      img.src = '/assets/' + v.logo; img.width = w; img.height = w; img.alt = ''; img.decoding = 'async';
-      var cap = document.createElement('figcaption'); cap.textContent = v.name;
-      f.appendChild(img); f.appendChild(cap);
-      layer.appendChild(f);
-      var rec = { id: v.id, el: f, t: 0 };
-      popped.push(rec);
-      setTimeout(function () { f.classList.add('is-in'); }, 30);
-      rec.t = setTimeout(function () { retire(rec); }, 3000 + Math.random() * 2000);
-    };
-    var isShown = function (id) { return popped.some(function (r) { return r.id === id; }); };
-    var popFor = function (ids) {
-      ids.forEach(function (id) {
-        var v = VENT.filter(function (x) { return x.id === id; })[0];
-        if (v && !isShown(id)) popOne(v);
-      });
-    };
-    var popRandom = function () {
-      var pool = VENT.filter(function (v) { return !isShown(v.id); });
-      if (pool.length && popped.length < LOGO_MAX - 2) popOne(pool[(Math.random() * pool.length) | 0]);
-    };
-    var logoStart = function () { if (!logoTimer && !document.hidden) logoTimer = setInterval(popRandom, 1300); };
-    var logoStop = function () { clearInterval(logoTimer); logoTimer = 0; };
-    document.addEventListener('visibilitychange', function () { if (document.hidden) logoStop(); else if (inView) logoStart(); });
     /* camera drift and pointer parallax: one rAF loop, only while the hero is on screen and the tab is visible */
     var mainSvg = scene.querySelector('.hb-svg');
     var px = 0, py = 0, tx = 0, ty = 0, raf = 0, t0 = 0;
@@ -190,6 +135,98 @@
     document.addEventListener('visibilitychange', kickFrame);
     kickFrame();
     kick();
+  }
+
+  /* ---------- the venture grid: one logo per cell, behind the page ----------
+     A solid, regular grid of square cells covers the page (fixed, behind all content). Each cell
+     holds one venture's logo, faintly visible. Cells never move, so logos never overlap. Cells
+     under the copy, the offer, the prompt bar and the scene stay dim. A pop lights a cell in the
+     ring around the composition (or the nearest cell of a lit venture, next to the scene) to full
+     colour with its name, then it settles back. Reduced motion and Save-Data: the grid at rest. */
+  var gridEl = document.querySelector('.gc-layer');
+  if (gridEl) {
+    var VENT = ((window.FZ_DATA && window.FZ_DATA.ventures) || []).filter(function (v) { return v.logo && v.status !== 'ARCHIVED'; });
+    var ORDER = VENT.map(function (v, i) { return i; });
+    var seed = 11, rnd = function () { seed = (seed * 1103515245 + 12345) & 0x7fffffff; return seed / 0x7fffffff; };
+    for (var s = ORDER.length - 1; s > 0; s--) { var r = Math.floor(rnd() * (s + 1)), t = ORDER[s]; ORDER[s] = ORDER[r]; ORDER[r] = t; }
+    var cells = [], ring = [], pops = [], popTimer = 0, cellPx = 120, LIT_MAX = 5, scrollT = 0;
+    var AVOID_SEL = '.hero-copy h1, .hero-copy .eyebrow, .hero-copy .lede, .btns, .hero-offer, .hb-prompt, .hb-built, .hb-svg, .site-header';
+    var build = function () {
+      var vw = window.innerWidth, vh = window.innerHeight;
+      cellPx = Math.round(Math.max(112, Math.min(150, vw * 0.082)));
+      var cols = Math.max(1, Math.floor(vw / cellPx)), rows = Math.ceil(vh / cellPx), n = cols * rows, imgW = Math.round(cellPx * 0.74);
+      gridEl.style.setProperty('--cols', cols); gridEl.style.setProperty('--cell', cellPx + 'px');
+      while (cells.length < n) {
+        var f = document.createElement('figure'); f.className = 'cell';
+        var img = document.createElement('img'); img.alt = ''; img.decoding = 'async'; img.loading = 'lazy';
+        var cap = document.createElement('figcaption');
+        f.appendChild(img); f.appendChild(cap); gridEl.appendChild(f); cells.push(f);
+      }
+      while (cells.length > n) { var old = cells.pop(); old.parentNode.removeChild(old); }
+      cells.forEach(function (f, i) {
+        var v = VENT[ORDER[i % ORDER.length]];
+        if (f.getAttribute('data-v') !== v.id) {
+          f.setAttribute('data-v', v.id);
+          var img = f.firstChild; img.src = '/assets/' + v.logo; img.width = imgW; img.height = imgW;
+          f.lastChild.textContent = v.name;
+        }
+      });
+      classify();
+    };
+    var classify = function () {
+      var avoid = [].slice.call(document.querySelectorAll(AVOID_SEL)).map(function (e) { return e.getBoundingClientRect(); })
+        .filter(function (b) { return b.width > 0 && b.bottom > 0 && b.top < window.innerHeight; });
+      ring = [];
+      cells.forEach(function (f, i) {
+        var b = f.getBoundingClientRect(), hit = false, near = Infinity;
+        avoid.forEach(function (a) {
+          var dx = Math.max(a.left - b.right, b.left - a.right, 0), dy = Math.max(a.top - b.bottom, b.top - a.bottom, 0), d = Math.max(dx, dy);
+          if (d <= 0) hit = true; else if (d < near) near = d;
+        });
+        f.classList.toggle('is-under', hit);
+        if (!hit && near <= 240) ring.push(i);
+      });
+    };
+    var unpop = function (f) {
+      f.classList.remove('is-pop');
+      for (var k = pops.length - 1; k >= 0; k--) if (pops[k].f === f) { clearTimeout(pops[k].t); pops.splice(k, 1); }
+    };
+    var doPop = function (i) {
+      var f = cells[i];
+      if (!f || f.classList.contains('is-pop') || pops.length >= LIT_MAX) return;
+      f.classList.add('is-pop');
+      pops.push({ f: f, t: setTimeout(function () { unpop(f); }, 3600 + Math.random() * 1800) });
+    };
+    var heroVisible = function () { var h = document.querySelector('.hero--home'); return !!h && h.getBoundingClientRect().bottom > 120; };
+    var popRandom = function () {
+      if (pops.length >= LIT_MAX - 1 || !heroVisible()) return;
+      var ok = ring.filter(function (i) { return !cells[i].classList.contains('is-pop'); });
+      if (ok.length) doPop(ok[(Math.random() * ok.length) | 0]);
+    };
+    /* A prompt's ventures pop in the cell of that venture nearest the block that lights it. */
+    popFor = function (ids) {
+      ids.forEach(function (id) {
+        var g = document.querySelector('.hb[data-venture="' + id + '"]');
+        if (!g) return;
+        var b = g.getBoundingClientRect(), cx = b.left + b.width / 2, cy = b.top + b.height / 2, best = -1, bd = Infinity;
+        cells.forEach(function (f, i) {
+          if (f.getAttribute('data-v') !== id || f.classList.contains('is-under') || f.classList.contains('is-pop')) return;
+          var c = f.getBoundingClientRect(), d = Math.hypot(c.left + c.width / 2 - cx, c.top + c.height / 2 - cy);
+          if (d < bd) { bd = d; best = i; }
+        });
+        if (best >= 0) doPop(best);
+      });
+    };
+    var gridStart = function () { if (!popTimer && !document.hidden && !calm && !saveData) popTimer = setInterval(popRandom, 1300); };
+    var gridStop = function () { clearInterval(popTimer); popTimer = 0; };
+    build();
+    var heroEl = document.querySelector('.hero--home');
+    if (heroEl && 'IntersectionObserver' in window) {
+      new IntersectionObserver(function (es) { if (es[0].isIntersecting) gridStart(); else gridStop(); }, { threshold: 0.05 }).observe(heroEl);
+    } else { gridStart(); }
+    document.addEventListener('visibilitychange', function () { if (document.hidden) gridStop(); else if (heroVisible()) gridStart(); });
+    window.addEventListener('resize', function () { pops.slice().forEach(function (p) { unpop(p.f); }); build(); });
+    window.addEventListener('scroll', function () { if (!scrollT) scrollT = setTimeout(function () { scrollT = 0; classify(); }, 150); }, { passive: true });
   }
 
   /* ---------- hero loops (home .hero-media and every .ph-media page hero) ----------

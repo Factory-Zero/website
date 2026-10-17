@@ -155,21 +155,22 @@ prompt names a venture that is not on the stack, if there are fewer than 20 prom
 stack venture is never lit by any prompt, so the scene can never claim a venture the stack does
 not contain. Hand edits to `heroPrompts` are data changes: run `node tools/sync-ventures.js`.
 
-## Home background: black, with venture logos that pop up
+## Home background: a solid grid of venture cells
 
-The home page ground is black. There is no grey wash and no tile grid. The only things on it
-are the focused block scene on the right (with its prompt bar and "built with" line) and the
-venture logos that pop up over the page.
+The home page ground is black. Behind all content is a fixed, solid, regular grid of square cells
+(`.gc-layer`, built on the fly by `assets/fz-ui.js`). Each cell holds one live venture's full-colour
+logo and its name, faintly visible at rest. Cells never move, so logos can never overlap. The
+grid is sized from the viewport (cell 112 to 150px) and rebuilt on resize.
 
-The logos are full colour, each with its venture name in small mono under it. They are created
-on the fly in the fixed layer `.gc-layer` (behind all content, `aria-hidden`). At any moment
-there are about 3 to 6 of them, each on free space away from the text, the offer card and the
-scene. Each fades and scales in, holds for 3 to 5 seconds, and fades out. When a prompt lights
-blocks, the logos of those ventures pop up next. Reduced motion and Save-Data show none: the
-page stays black. Nothing is in the DOM at rest.
+Cells under the copy, the offer card, the prompt bar and the block scene are dimmed, so they never
+compete with the content. A pop lights one cell in the ring around the composition to full colour,
+with its name, and it settles back after 3.6 to 5.4 s. A prompt's ventures pop in the nearest cell
+that holds that venture to the block that lights it. Reduced motion and Save-Data keep the grid at
+rest, with no pops.
 
-The block scene keeps its size at every width: its container is the page's content width
-(1320px), so at 1920 and 2560 it is capped rather than growing.
+The hero composition is centred in a content width of up to 1760px. The headline scales with the
+viewport width and height, so the offer card stays on the first screen at 1280x720, 1440x900,
+1920x1080, 2560x1440 and 375x812.
 
 ## Motion
 
