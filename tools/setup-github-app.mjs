@@ -42,7 +42,7 @@ const openUrl = url => spawn(process.platform === 'darwin' ? 'open' : 'xdg-open'
 
 // wrangler, run in the repo so wrangler.toml (the KV binding) applies.
 function wrangler(argv, input) {
-  const r = spawnSync('npx', ['wrangler', ...argv], {
+  const r = spawnSync('bunx', ['wrangler', ...argv], {
     cwd: ROOT,
     input,
     encoding: 'utf8',
@@ -187,7 +187,7 @@ Next:
      Pick each venture org whose private repositories should count, "All repositories".
   2. Merge and deploy PR #16:
      gh pr merge 16 --squash --delete-branch && git checkout main && git pull --ff-only \\
-       && ./tools/build-dist.sh && npx wrangler pages deploy dist --project-name=${PROJECT} --branch=main
+       && ./tools/build-dist.sh && bunx wrangler pages deploy dist --project-name=${PROJECT} --branch=main
   3. Refetch everything with the new access:
      node tools/setup-github-app.mjs --refresh`);
 }

@@ -299,8 +299,8 @@ If Owlpost is unreachable or unconfigured the form falls back to showing
 **Setup that is not in this repo** (do not commit any of it):
 
 ```sh
-npx wrangler pages secret put OWLPOST_API_KEY  --project-name factory-zero
-npx wrangler pages secret put TURNSTILE_SECRET --project-name factory-zero
+bunx wrangler pages secret put OWLPOST_API_KEY  --project-name factory-zero
+bunx wrangler pages secret put TURNSTILE_SECRET --project-name factory-zero
 ```
 
 Optional overrides, as plain Pages env vars: `CONTACT_TO` (default
@@ -381,7 +381,7 @@ Deploys are **direct upload**, not git-connected:
 
 ```sh
 ./tools/build-dist.sh
-npx wrangler pages deploy dist --project-name factory-zero --branch main
+bunx wrangler pages deploy dist --project-name factory-zero --branch main
 ```
 
 `tools/build-dist.sh` assembles `dist/` from an explicit allowlist, so repo
