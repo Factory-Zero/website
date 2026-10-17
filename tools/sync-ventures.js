@@ -502,7 +502,7 @@ hs = replaceRegion(hs, 'marquee', [...live.map(v => mItem(v, false)), ...live.ma
 // Home hero: the Factory Zero stack as stone blocks, and the prompts that light them.
 // heroPrompts is data (assets/fz-data.js): every id must be a stack venture, every stack
 // venture must appear in at least one prompt, and there are at least 20 prompts.
-const { heroScene, heroField, heroSymbols, gridTiles } = require('./hero-scene');
+const { heroScene, heroSymbols } = require('./hero-scene');
 const HERO_PROMPTS = global.window.FZ_DATA.heroPrompts || [];
 const HERO_STACK = V.filter(v => v.stack);
 const STACK_SET = new Set(HERO_STACK.map(v => v.id));
@@ -518,12 +518,8 @@ for (const p of HERO_PROMPTS) {
 const unused = HERO_STACK.filter(v => !heroUsed.has(v.id)).map(v => v.id);
 if (unused.length) throw new Error(`heroPrompts never lights stack ventures: ${unused.join(', ')}`);
 const scene = heroScene({ stack: HERO_STACK, slugOf: v => slug(v), prompts: HERO_PROMPTS });
-// The background layers: the plain block field behind the hero text, and the page-wide grid of
-// venture tiles (every live venture, shuffled, repeated to fill the viewport) with its logo symbols.
-hs = replaceRegion(hs, 'herobg', heroField({ stack: HERO_STACK, slugOf: v => slug(v) }));
-hs = replaceRegion(hs, 'herogrid', heroSymbols({ root: ROOT, ventures: live, slugOf: v => slug(v) }) + '\n' + gridTiles({ ventures: live, slugOf: v => slug(v) }));
 const heroSr = `<p class="sr-only">Prompts such as “${esc(HERO_PROMPTS[0].text)}” and “${esc(HERO_PROMPTS[1].text)}” are built from Factory Zero foundation blocks: ${HERO_STACK.map(v => esc(v.name)).join(', ')}.</p>`;
-hs = replaceRegion(hs, 'heroscene', `${scene.html}\n  ${heroSr}`);
+hs = replaceRegion(hs, 'heroscene', `${heroSymbols({ root: ROOT, ventures: HERO_STACK, slugOf: v => slug(v) })}\n${scene.html}\n  ${heroSr}`);
 
 // The venture grid.
 hs = replaceRegion(hs, 'vtools', UI.vtools(live));

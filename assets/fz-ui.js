@@ -84,20 +84,20 @@
     var litStep = function () {
       setLit(cur.ventures);
       fire(cur.ventures);
-      matchTiles(cur.ventures);
+      popFor(cur.ventures);
       built.textContent = '→ built with: ' + cur.ventures.map(function (id) {
         var g = scene.querySelector('.hb[data-venture="' + id + '"]'); return g ? g.getAttribute('data-name') : id;
       }).join(' · ');
       go(3900, unlightStep);
     };
     var unlightStep = function () {
-      setLit([]); matchTiles([]); built.textContent = '';
+      setLit([]); built.textContent = '';
       idx = (idx + 1) % PROMPTS.length;
       go(750, startPrompt);
     };
     nextFn = startPrompt;
     if ('IntersectionObserver' in window) {
-      new IntersectionObserver(function (es) { inView = es[0].isIntersecting; if (inView) { kick(); kickFrame(); } }, { threshold: 0.25 }).observe(scene);
+      new IntersectionObserver(function (es) { inView = es[0].isIntersecting; if (inView) { kick(); kickFrame(); logoStart(); } else { logoStop(); } }, { threshold: 0.25 }).observe(scene);
     } else { inView = true; }
     document.addEventListener('visibilitychange', function () { if (!document.hidden) kick(); });
     scene.addEventListener('pointerenter', function () { paused = true; });
@@ -111,12 +111,64 @@
         if (sp) { sp.classList.remove('is-go'); sp.getBoundingClientRect(); sp.classList.add('is-go'); }
       });
     };
-    var gcTiles = [].slice.call(document.querySelectorAll('.gc'));
-    var matchTiles = function (ids) {
-      gcTiles.forEach(function (t) { t.classList.toggle('is-match', ids.indexOf(t.getAttribute('data-v')) >= 0); });
+    /* Venture logos, full colour with their names, pop up on the black page: a few at a time,
+       on free space away from the text, the scene and the offer. The ventures a prompt lights
+       pop first. Created on the fly; nothing is in the DOM at rest. */
+    var VENT = ((window.FZ_DATA && window.FZ_DATA.ventures) || []).filter(function (v) { return v.logo && v.status !== 'ARCHIVED'; });
+    var layer = document.querySelector('.gc-layer');
+    var popped = [], logoTimer = 0, LOGO_MAX = 6;
+    var AVOID = 'h1,h2,h3,p,.btn,.card,.vcard,.stat,.hero-offer,.hero-copy,.hero-stage,.eyebrow,.site-header';
+    var freeSpot = function (w, h) {
+      var rects = [].slice.call(document.querySelectorAll(AVOID)).map(function (e) { return e.getBoundingClientRect(); })
+        .filter(function (r) { return r.width > 0 && r.bottom > 0 && r.top < window.innerHeight; });
+      for (var t = 0; t < 40; t++) {
+        var x = 16 + Math.random() * (window.innerWidth - w - 32), y = 84 + Math.random() * (window.innerHeight - h - 104);
+        var ok = rects.every(function (r) { return x + w < r.left - 14 || x > r.right + 14 || y + h < r.top - 14 || y > r.bottom + 14; });
+        if (ok) return [x, y];
+      }
+      return null;
     };
+    var retire = function (rec, now) {
+      clearTimeout(rec.t);
+      var i = popped.indexOf(rec); if (i >= 0) popped.splice(i, 1);
+      rec.el.classList.remove('is-in'); rec.el.classList.add('is-out');
+      setTimeout(function () { rec.el.parentNode && rec.el.parentNode.removeChild(rec.el); }, now ? 0 : 1000);
+    };
+    var popOne = function (v) {
+      if (!layer) return;
+      var w = Math.round(Math.min(96, Math.max(72, window.innerWidth * 0.06)));
+      var spot = freeSpot(w, w + 30);
+      if (!spot) return;
+      if (popped.length >= LOGO_MAX) retire(popped[0], true);
+      var f = document.createElement('figure');
+      f.className = 'fl';
+      f.style.left = Math.round(spot[0]) + 'px'; f.style.top = Math.round(spot[1]) + 'px';
+      var img = document.createElement('img');
+      img.src = '/assets/' + v.logo; img.width = w; img.height = w; img.alt = ''; img.decoding = 'async';
+      var cap = document.createElement('figcaption'); cap.textContent = v.name;
+      f.appendChild(img); f.appendChild(cap);
+      layer.appendChild(f);
+      var rec = { id: v.id, el: f, t: 0 };
+      popped.push(rec);
+      setTimeout(function () { f.classList.add('is-in'); }, 30);
+      rec.t = setTimeout(function () { retire(rec); }, 3000 + Math.random() * 2000);
+    };
+    var isShown = function (id) { return popped.some(function (r) { return r.id === id; }); };
+    var popFor = function (ids) {
+      ids.forEach(function (id) {
+        var v = VENT.filter(function (x) { return x.id === id; })[0];
+        if (v && !isShown(id)) popOne(v);
+      });
+    };
+    var popRandom = function () {
+      var pool = VENT.filter(function (v) { return !isShown(v.id); });
+      if (pool.length && popped.length < LOGO_MAX - 2) popOne(pool[(Math.random() * pool.length) | 0]);
+    };
+    var logoStart = function () { if (!logoTimer && !document.hidden) logoTimer = setInterval(popRandom, 1300); };
+    var logoStop = function () { clearInterval(logoTimer); logoTimer = 0; };
+    document.addEventListener('visibilitychange', function () { if (document.hidden) logoStop(); else if (inView) logoStart(); });
     /* camera drift and pointer parallax: one rAF loop, only while the hero is on screen and the tab is visible */
-    var bgSvg = document.querySelector('.hb-bgsvg'), mainSvg = scene.querySelector('.hb-svg');
+    var mainSvg = scene.querySelector('.hb-svg');
     var px = 0, py = 0, tx = 0, ty = 0, raf = 0, t0 = 0;
     var frame = function (now) {
       raf = 0;
@@ -125,7 +177,6 @@
       var s = (now - t0) / 1000;
       px += (tx - px) * 0.05; py += (ty - py) * 0.05;
       var dx = Math.sin(s * 2 * Math.PI / 14) * 9, dy = Math.cos(s * 2 * Math.PI / 19) * 6;
-      if (bgSvg) bgSvg.style.transform = 'translate3d(' + (dx * 1.6 + px * 1.4).toFixed(2) + 'px,' + (dy * 1.6 + py * 1.4).toFixed(2) + 'px,0)';
       if (mainSvg) mainSvg.style.transform = 'translate3d(' + (dx + px).toFixed(2) + 'px,' + (dy + py).toFixed(2) + 'px,0)';
       raf = requestAnimationFrame(frame);
     };
@@ -139,30 +190,6 @@
     document.addEventListener('visibilitychange', kickFrame);
     kickFrame();
     kick();
-  }
-
-  /* ---------- page-wide venture grid: the shimmer ----------
-     A timer lights one tile a second, and only while the tab is visible. Reduced motion and
-     Save-Data keep the grid still. The tiles of the ventures lit by the hero stay lit. */
-  var gridTiles = [].slice.call(document.querySelectorAll('.gc'));
-  if (gridTiles.length) {
-    var litNow = [].map.call(document.querySelectorAll('.hb.is-lit'), function (g) { return g.getAttribute('data-venture'); });
-    gridTiles.forEach(function (t) { t.classList.toggle('is-match', litNow.indexOf(t.getAttribute('data-v')) >= 0); });
-    if (!calm && !saveData) {
-      var shimId = 0;
-      var shimOne = function () {
-        for (var k = 0; k < 1; k++) {
-          var el = gridTiles[(Math.random() * gridTiles.length) | 0];
-          if (el.classList.contains('is-match') || el.classList.contains('is-shim')) continue;
-          el.classList.add('is-shim');
-          el.addEventListener('animationend', function (e) { e.currentTarget.classList.remove('is-shim'); }, { once: true });
-        }
-      };
-      var shimStart = function () { if (!shimId) shimId = setInterval(shimOne, 1000); };
-      var shimStop = function () { clearInterval(shimId); shimId = 0; };
-      document.addEventListener('visibilitychange', function () { if (document.hidden) shimStop(); else shimStart(); });
-      if (!document.hidden) shimStart();
-    }
   }
 
   /* ---------- hero loops (home .hero-media and every .ph-media page hero) ----------
