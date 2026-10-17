@@ -639,6 +639,10 @@ window.FZ_DATA = {
     { id: 'yoginini', venture: 'FZ-003', title: 'Yoginini', caption: 'A yoga teacher who can see you.', video: 'yoginini-promo-v2.mp4', poster: 'yoginini-poster-v2.jpg' },
     { id: 'posplug', venture: 'FZ-011', title: 'PosPlugin', caption: 'Any POS. One API.', video: 'posplug-promo-v2.mp4', poster: 'posplug-promo-poster.jpg' },
     { id: 'ledgers', venture: 'FZ-021', title: 'ledgers.sh', caption: 'Agents do the books. People keep control.', video: 'ledgers-promo-v2.mp4', poster: 'ledgers-poster.jpg' },
+    { id: 'cratefield', venture: 'FZ-004', title: 'Cratefield', caption: 'The boring 70% of a backend, in about a minute.', video: 'cratefield-promo.mp4', poster: 'cratefield-poster.jpg' },
+    { id: 'supportgenius', venture: 'FZ-008', title: 'SupportGenius', caption: 'Support that answers.', video: 'supportgenius-promo.mp4', poster: 'supportgenius-poster.jpg' },
+    { id: 'findsyou', venture: 'FZ-007', title: 'FindsYou', caption: 'Stop looking. It finds you work.', video: 'findsyou-promo.mp4', poster: 'findsyou-poster.jpg' },
+    { id: 'grooveguru', venture: 'FZ-010', title: 'Groove Guru', caption: 'Hear your mix before the room does.', video: 'grooveguru-promo.mp4', poster: 'grooveguru-poster.jpg' },
     { id: 'sealbin', venture: 'FZ-016', title: 'sealb.in', caption: 'The sealed handoff between agents.', video: 'sealbin-promo.mp4', poster: 'sealbin-poster.jpg' }
   ],
 };
