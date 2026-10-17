@@ -10,12 +10,11 @@ Files: `assets/fz-ui.css` (tokens + every component), `assets/fz-ui.js` (reveal,
 count-up, hero loop, grid filters, live log), `tools/ui.js` (shared header, footer,
 venture card and filter markup used by `tools/sync-ventures.js`).
 
-**Status of the move.** The home page, `/ventures/` and every `/ventures/<slug>/`
-page use this system. `about/`, `enter/`, `stack/` (written by `tools/stack-page.js`),
-`system/`, `technology/`, `thesis/` and `404.html` still load `assets/fz.css`; move
-each by swapping its `<head>` assets for the four lines in `headAssets()` in
-`tools/ui.js`, replacing its header/footer with `header()`/`footer()`, and rebuilding
-its body from the components below. When none loads `fz.css`, delete it.
+**Status of the move.** Every page uses this system: the home page, `/ventures/`, every
+`/ventures/<slug>/` page, `/stack/` (written by `tools/stack-page.js`), `/system/`,
+`/technology/`, `/thesis/`, `/about/`, `/enter/` and `404.html`. The previous stylesheet
+is gone. A new page takes its `<head>` assets from `headAssets()` in `tools/ui.js`, its
+header and footer from `header()` and `footer()`, and its body from the components below.
 
 ## Principles
 
@@ -53,7 +52,7 @@ its body from the components below. When none loads `fz.css`, delete it.
 | `--sec` | `clamp(72px, 10vw, 144px)` | vertical section padding |
 
 Why lime and not the old `#FF5A36`: every generated image glows lime, and two accents
-compete. The orange is retired with `fz.css`.
+compete. The orange of the previous system is retired.
 
 ## Type scale
 
@@ -96,10 +95,21 @@ compete. The orange is retired with `fz.css`.
 | Image band | `section.band > img` (`data-rv` zooms it in) | generated imagery between sections |
 | Films | `.films-grid > li > figure.film`, `.film-cap .film-name .film-title .film-line` | written by `sync-ventures.js` |
 | Panel | `.panel .panel-head .rec` | live log (`.log .log-line`) and the authors chart |
-| Timeline | `.tl .tl-scroll .tl-svg …` | ported from `fz.css`, new palette |
+| Timeline | `.tl .tl-scroll .tl-svg …` | ported from the previous system, new palette |
 | Product page | `.crumbs .app-hero .app-icon .app-name .app-sub .app-meta .app-cta .app-stats .app-body .app-sec .how .deal .side .uses .use` | the venture page; keeps every `d-*` id the chart script reads |
 | CTA band | `.cta-band > img + .wrap > .cta-in` | image ground with a left gradient |
 | Footer | `.site-footer .foot-grid .foot-brand .foot-col .foot-legal` | written by `UI.footer()`; carries the image credit |
+| Page top | `.page-top` + `.eyebrow`, `.h1`, `.lede` | the head of every sub page; `.page-top .btns` for actions |
+| Facts | `dl.cards2.facts > div.card > dt.card-k + dd` | labelled facts, hairline cells (the same grid as cards) |
+| Prose | `.prose .rich` (`.lede` paragraphs, `.link` for inline links) | running copy at 64ch, in two columns with `.split-lede` |
+| Rows | `ul.rows > li > a.row > .row-lead (.row-id, .vicon) + .row-main (.row-name, .row-sub) + .row-end (.chip, .fzs-os)` | hairline list rows: the stack catalogue, the most-used ranking, repository lists |
+| Q and A | `dl.qa > div > dt + dd` | questions in the left column, answers in the right |
+| Prose steps | `ol.steps.steps--prose` | the numbered steps with sentence-case titles |
+| Code | `pre.code > code` | a bordered monospace block beside a `.split` column |
+| Paper | `.paper > aside.paper-meta (.paper-toc) + .paper-body > section.clause (.n, h2) + .paper-end` | the working paper: sticky contents, hairline sections |
+| Layers | `.layers > .layer(.layer--core) > .layer-head (.n, .mode) + .layer-cells > .cell (.id, .label, .st)`, `.rung` between | the system diagram; ventures are `a.cell` links |
+| Access form | `.enter-grid`, `form.enter-form`, `.channels > .channel[aria-checked]`, `.field`, `.transmit`, `.form-error`, `.receipt`, `.direct`, `.hp` | the ids and names in `assets/fz-enter.js` are fixed |
+| Not found | `main.notfound` | the 404 page |
 
 ## Motion
 

@@ -79,21 +79,6 @@
     if (e.key === 'Escape' && pop && !pop.hidden) { e.stopPropagation(); closePop(true); }
   });
 
-  /* Gentle reveal on scroll for the stack page; nothing moves with reduced motion. */
-  var rv = document.querySelectorAll('.sk-reveal');
-  if (rv.length) {
-    var calm = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
-    if (calm || !('IntersectionObserver' in window)) {
-      Array.prototype.forEach.call(rv, function (n) { n.classList.add('in'); });
-    } else {
-      document.documentElement.classList.add('sk-anim');
-      var io = new IntersectionObserver(function (en) {
-        en.forEach(function (x) { if (x.isIntersecting) { x.target.classList.add('in'); io.unobserve(x.target); } });
-      }, { rootMargin: '0px 0px -8% 0px' });
-      Array.prototype.forEach.call(rv, function (n) { io.observe(n); });
-    }
-  }
-
   /* Mobile menu. The <html class="js"> hook is set inline in <head> so the
      panel never flashes; without JS the nav simply wraps under the wordmark. */
   var btn = document.querySelector('.nav-toggle');

@@ -104,7 +104,7 @@ unchanged.
 
 ### Design
 
-The site is moving to a new design system, documented in **`DESIGN.md`**: dark,
+The site uses the design system documented in **`DESIGN.md`**: dark,
 square, hairline grid, one lime accent, Inter Tight, imagery generated with MiniMax.
 The 3D hero network (`fz-hero3d.js`) and the hero canvas (`fz-app.js`) are gone.
 
@@ -119,9 +119,8 @@ about/index.html        what Factory Zero is and is not
 enter/index.html        access request
 404.html                styled not-found page
 assets/
-  fz-ui.css             the design system (see DESIGN.md): home, /ventures/, venture pages
+  fz-ui.css             the design system (see DESIGN.md), loaded by every page
   fz-ui.js              reveal, count-up, hero loop, venture grid filters, live log
-  fz.css                the previous design system, still used by the pages not yet moved
   fz-data.js            ← venture data lives here (single source of truth)
   fz-common.js          loaded on every page
   fz-ventures.js        venture-page activity charts and the shared chart helpers
@@ -149,6 +148,7 @@ tools/
   render-og.sh          regenerates every raster asset
   sync-ventures.js      writes fz-data.js into the static HTML
   ui.js                 shared header, footer, venture card and filter markup
+  stack-page.js         writes stack/index.html from the registry (run by sync-ventures.js)
   timeline.js           draws the home-page venture timeline (used by sync-ventures.js)
   sync-timeline.js      rebuilds timeline-data.json from the GitHub API
   build-dist.sh         assembles dist/ (allowlist + cache-bust stamping)

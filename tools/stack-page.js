@@ -6,6 +6,7 @@
 'use strict';
 const fs = require('fs');
 const path = require('path');
+const UI = require('./ui.js');
 
 const esc = s => String(s == null ? '' : s).replace(/[&<>"]/g, c => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;' }[c]));
 const FOUNDATION = 'The foundation';
@@ -20,9 +21,8 @@ module.exports = function stackPage(ctx) {
   // to assets/logos/<slug>.svg. A mark that carries its own rounded background tile
   // fills the squircle; one that does not sits padded on a dark tile.
   fs.mkdirSync(path.join(ROOT, 'assets', 'logos'), { recursive: true });
-  const icon = (v, big) => {
-    const cls = 'as-icon' + (big ? ' as-icon--lg' : '');
-    if (!v.logo) return `<span class="${cls} as-icon--initial" aria-hidden="true">${esc(v.name.slice(0, 1))}</span>`;
+  const icon = v => {
+    if (!v.logo) return `<span class="vicon vicon--mono" aria-hidden="true">${esc(v.name.slice(0, 1))}</span>`;
     const src = fs.readFileSync(path.join(ROOT, 'assets', v.logo), 'utf8');
     // frozen on a lit frame: the marks animate on the registry, here they sit still
     // Kontinuum's trail is many dots with staggered delays: keep those delays, only pause, and show its loop
@@ -39,7 +39,7 @@ module.exports = function stackPage(ctx) {
       return m;
     });
     const z = ZOOM[v.name];
-    return `<span class="${cls}${bg ? ' as-icon--bg' : ''}"${z ? ` style="--z:${z}"` : ''} aria-hidden="true"><img src="/assets/logos/${slug(v)}.svg" alt="" width="64" height="64" loading="lazy" decoding="async"></span>`;
+    return `<span class="vicon${bg ? ' vicon--full' : ''}"${z ? ` style="--z:${z}"` : ''} aria-hidden="true"><img src="/assets/logos/${slug(v)}.svg" alt="" width="64" height="64" loading="lazy" decoding="async"></span>`;
   };
   const one = v => {
     const s = pitch(v).solution || v.desc || '';
@@ -52,8 +52,11 @@ module.exports = function stackPage(ctx) {
   const users = new Map(stack.map(v => [v.id, []]));
   for (const v of V) for (const u of v.uses || []) if (users.has(u.id)) users.get(u.id).push({ v, live: u.status === 'live' });
 
-  const row = v => `<li><a class="as-row" href="/ventures/${slug(v)}/">${icon(v)}<span class="as-txt"><span class="as-name">${esc(v.name)}</span><span class="as-sub">${esc(v.stackRole)}</span>${os(v)}</span><span class="as-pill">Open</span></a></li>`;
-  const feat = v => `<li><a class="as-feat" href="/ventures/${slug(v)}/">${icon(v, true)}<span class="as-feat-b"><span class="as-feat-k">${esc(v.stackRole)}${os(v)}</span><span class="as-feat-name">${esc(v.name)}</span><span class="as-feat-one">${esc(one(v))}</span></span><span class="as-pill as-pill--lg">Open</span></a></li>`;
+  const row = v => `<li><a class="row" href="/ventures/${slug(v)}/" data-rv>
+        <span class="row-lead">${icon(v)}</span>
+        <span class="row-main"><span class="row-name">${esc(v.name)}</span><span class="row-sub">${esc(v.stackRole)}</span></span>
+        <span class="row-end">${os(v)}<span class="chip">Open</span></span></a></li>`;
+  const feat = v => `<li class="card" data-rv><a class="card-a" href="/ventures/${slug(v)}/">${icon(v)}<span class="card-k">${esc(v.stackRole)}</span><h3 class="h3">${esc(v.name)}</h3><p>${esc(one(v))}</p><span class="card-foot">${os(v)}<span class="chip chip--acc">Open</span></span></a></li>`;
 
   const foundation = stack.filter(v => v.stackGroup === FOUNDATION);
   const groups = [];
@@ -65,7 +68,7 @@ module.exports = function stackPage(ctx) {
   const ranked = stack.slice().sort((a, b) => users.get(b.id).length - users.get(a.id).length || a.name.localeCompare(b.name));
   const chart = ranked.map((v, i) => {
     const n = users.get(v.id).length, live = users.get(v.id).filter(x => x.live).length;
-    return `<li><a class="as-row as-row--chart" href="/ventures/${slug(v)}/"><span class="as-rank">${i + 1}</span>${icon(v)}<span class="as-txt"><span class="as-name">${esc(v.name)}</span><span class="as-sub">${n ? `${n} ${n === 1 ? 'venture uses' : 'ventures use'} it${live ? ` \u00b7 ${live} live` : ''}` : esc(v.stackRole)}</span></span><span class="as-pill">Open</span></a></li>`;
+    return `<li><a class="row" href="/ventures/${slug(v)}/" data-rv><span class="row-lead"><span class="row-id">${i + 1}</span>${icon(v)}</span><span class="row-main"><span class="row-name">${esc(v.name)}</span><span class="row-sub">${n ? `${n} ${n === 1 ? 'venture uses' : 'ventures use'} it${live ? ` \u00b7 ${live} live` : ''}` : esc(v.stackRole)}</span></span><span class="row-end"><span class="chip">Open</span></span></a></li>`;
   }).join('\n');
 
   const osN = stack.filter(v => v.open_source).length;
@@ -83,7 +86,6 @@ module.exports = function stackPage(ctx) {
   const desc = 'The Factory Zero stack: the products every new venture is built on, what each one does, and which ventures use it.';
   const title = 'The stack · Factory Zero';
   const url = `${SITE}/stack/`;
-  const tech = fs.readFileSync(path.join(ROOT, 'technology', 'index.html'), 'utf8');
   const head = fs.readFileSync(path.join(ROOT, 'ventures', 'index.html'), 'utf8').split('<script type="application/ld+json">')[0]
     .replace(/<title>[^<]*<\/title>/, `<title>${title}</title>`)
     .replace(/(<meta name="description" content=")[^"]*/, `$1${esc(desc)}`)
@@ -93,78 +95,67 @@ module.exports = function stackPage(ctx) {
     .replace(/(<meta property="og:description" content=")[^"]*/, `$1${esc(desc)}`)
     .replace(/(<meta property="og:image:alt" content=")[^"]*/, `$1${title}`)
     .replace(/(<meta name="twitter:title" content=")[^"]*/, `$1${title}`)
-    .replace(/(<meta name="twitter:description" content=")[^"]*/, `$1${esc(desc)}`)
-    // The stack page has not moved to the new design system (DESIGN.md) yet, so it
-    // keeps the previous fonts and fz.css even though the registry head it copies has moved.
-    .replace(/family=Inter\+Tight:wght@300;400;500;600/, 'family=Archivo:wght@300;400;500;600')
-    .replace('<link rel="stylesheet" href="/assets/fz-ui.css">', '<link rel="stylesheet" href="/assets/fz.css">');
-  const header = tech.match(/<header class="site-header">[\s\S]*?<\/header>/)[0].replace(/ aria-current="page"/, '').replace('<a href="/stack/">STACK</a>', '<a href="/stack/" aria-current="page">STACK</a>');
-  const footer = tech.match(/<footer class="site-subfooter">[\s\S]*?<\/footer>/)[0];
+    .replace(/(<meta name="twitter:description" content=")[^"]*/, `$1${esc(desc)}`);
+  const header = UI.header('/stack/');
+  const footer = UI.footer(stack, slug);
   const ld = JSON.stringify({ '@context': 'https://schema.org', '@graph': [
     { '@type': 'WebPage', '@id': `${url}#webpage`, url, name: title, description: desc, isPartOf: { '@id': `${SITE}/#website` }, about: { '@id': `${SITE}/#organization` }, inLanguage: 'en' },
     { '@type': 'BreadcrumbList', itemListElement: [{ '@type': 'ListItem', position: 1, name: 'Factory Zero', item: `${SITE}/` }, { '@type': 'ListItem', position: 2, name: 'The stack', item: url }] }
   ] }, null, 2).replace(/</g, '\\u003c');
 
+  const sec = (_id, inner) => `<section class="sec"><div class="wrap">
+${inner}
+</div></section>`;
+  const sh = (id, text) => `  <div class="sec-head"><h2 class="h2" id="${id}">${text}</h2></div>`;
+
   return `${head}<script type="application/ld+json">\n${ld}\n</script>
 </head>
 <body>
-<a class="skip-link" href="#main">Skip to content</a>
 ${header}
 
-<main id="main" class="as">
+<main id="main">
 
-<section class="as-wrap as-hero">
+<section class="page-top"><div class="wrap">
   <p class="eyebrow">THE FACTORY ZERO STACK &middot; ${String(stack.length).padStart(2, '0')} OF ${String(V.length).padStart(2, '0')} VENTURES</p>
-  <h1 class="as-h1">The foundation to launch ventures at&nbsp;scale.</h1>
-  <p class="as-lede">${esc(hero)}</p>
-  <p class="sk-os-line"><span class="fzs-os">OPEN SOURCE</span>${esc(osLine)}</p>
-</section>
+  <h1 class="h1">The foundation to launch ventures at&nbsp;scale.</h1>
+  <p class="lede">${esc(hero)}</p>
+  <p class="os-line"><span class="fzs-os">OPEN SOURCE</span>${esc(osLine)}</p>
+</div></section>
 
-<section class="as-wrap as-sec" aria-labelledby="as-f">
-  <h2 class="as-h2" id="as-f">${FOUNDATION}</h2>
-  <ul class="as-feats">
+${sec('f', `${sh('as-f', FOUNDATION)}
+  <ul class="cards2">
 ${foundation.map(feat).join('\n')}
-  </ul>
-</section>
+  </ul>`)}
 
-<div class="as-wrap as-shelves">
-${groups.map((g, gi) => `  <section class="as-sec" aria-labelledby="as-g${gi}">
-    <h2 class="as-h2" id="as-g${gi}">${esc(g.name)}</h2>
-    <ul class="as-shelf">
+${groups.map((g, gi) => sec(`g${gi}`, `${sh(`as-g${gi}`, esc(g.name))}
+  <ul class="rows">
 ${g.items.map(row).join('\n')}
-    </ul>
-  </section>`).join('\n')}
-</div>
+  </ul>`)).join('\n\n')}
 
-<section class="as-wrap as-sec" aria-labelledby="as-c">
-  <h2 class="as-h2" id="as-c">Most used</h2>
-  <ol class="as-shelf as-chart">
+${sec('c', `${sh('as-c', 'Most used')}
+  <ol class="rows">
 ${chart}
-  </ol>
-</section>
+  </ol>`)}
 
-<section class="as-wrap as-sec" aria-labelledby="how-h">
-  <h2 class="as-h2" id="how-h">How it works</h2>
-  <ol class="sk-steps">
-    <li class="sk-reveal"><span class="sk-n">01</span><h3>The stack ventures are real products</h3><p>Each one is a company with its own brand, and it also serves customers outside Factory Zero.</p></li>
-    <li class="sk-reveal" style="--d:80ms"><span class="sk-n">02</span><h3>A new venture plugs into them on day one</h3><p>Email, deploys, support, agents and the rest are already there, so it starts with the product and not the plumbing.</p></li>
-    <li class="sk-reveal" style="--d:160ms"><span class="sk-n">03</span><h3>Every new stack venture makes the next launch faster</h3><p>What a stack venture adds, infrastructure or agents, is there for the next one to build on.</p></li>
-  </ol>
-</section>
+${sec('how', `${sh('how-h', 'How it works')}
+  <ol class="steps steps--prose" style="--n:3">
+    <li class="step" data-rv><span class="step-n"><span>01</span></span><h3>The stack ventures are real products</h3><p>Each one is a company with its own brand, and it also serves customers outside Factory Zero.</p></li>
+    <li class="step" data-rv style="--d:1"><span class="step-n"><span>02</span></span><h3>A new venture plugs into them on day one</h3><p>Email, deploys, support, agents and the rest are already there, so it starts with the product and not the plumbing.</p></li>
+    <li class="step" data-rv style="--d:2"><span class="step-n"><span>03</span></span><h3>Every new stack venture makes the next launch faster</h3><p>What a stack venture adds, infrastructure or agents, is there for the next one to build on.</p></li>
+  </ol>`)}
 
-<section class="as-wrap as-sec" aria-labelledby="faq-h">
-  <h2 class="as-h2" id="faq-h">Questions</h2>
-  <dl class="sk-faq-list">
+${sec('faq', `${sh('faq-h', 'Questions')}
+  <dl class="qa">
 ${faq.map(([q, a]) => `    <div><dt>${esc(q)}</dt><dd>${esc(a)}</dd></div>`).join('\n')}
   </dl>
-  <p><a class="detail-link" href="/ventures/?stack=1">SEE THE STACK IN THE REGISTRY &rarr;</a></p>
-</section>
+  <p class="link-row" style="margin-top:32px"><a class="link" href="/ventures/?stack=1">SEE THE STACK IN THE REGISTRY &rarr;</a></p>`)}
 
 </main>
 
 ${footer}
 
-<script src="/assets/fz-common.js"></script>
+<script src="/assets/fz-common.js" defer></script>
+<script src="/assets/fz-ui.js" defer></script>
 </body>
 </html>
 `;

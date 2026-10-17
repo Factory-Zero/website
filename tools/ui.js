@@ -92,7 +92,7 @@ function icon(v, size) {
 
 const ARROW = '<svg viewBox="0 0 16 16" width="12" height="12" aria-hidden="true"><path d="M3 8h9M8 3.5 12.5 8 8 12.5" fill="none" stroke="currentColor" stroke-width="1.5"/></svg>';
 
-// The app-store card. data-* drive the filters in fz-grid.js.
+// The app-store card. data-* drive the filters in fz-ui.js.
 function vcard(v, { slug, pitch, i = 0 }) {
   const line = (pitch(v).solution || v.desc || '');
   const q = [v.name, v.id, v.category, v.stackRole, v.site, line].filter(Boolean).join(' ').toLowerCase();

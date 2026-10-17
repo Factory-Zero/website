@@ -32,10 +32,11 @@
 <link rel="manifest" href="/site.webmanifest">
 <link rel="alternate" type="text/plain" href="/llms.txt" title="llms.txt">
 
+
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Archivo:wght@300;400;500;600&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="/assets/fz.css">
+<link href="https://fonts.googleapis.com/css2?family=Inter+Tight:wght@300;400;500;600&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="/assets/fz-ui.css">
 
 <script type="application/ld+json">
 {
@@ -75,41 +76,38 @@
 </script>
 </head>
 <body>
-
-<a class="skip-link" href="#main">SKIP TO CONTENT</a>
+<a class="skip-link" href="#main">Skip to content</a>
 
 <header class="site-header">
-  <a class="wordmark" href="/" aria-label="Factory Zero home">
-    <span>FACTORY ZER</span><span class="o" aria-hidden="true"></span>
-  </a>
+  <a class="wordmark" href="/" aria-label="Factory Zero home"><span class="o" aria-hidden="true"></span>Factory Zero<span class="wm-k" aria-hidden="true">FZ/01</span></a>
   <button class="nav-toggle" type="button" aria-expanded="false" aria-controls="site-nav">MENU</button>
   <nav class="site-nav" id="site-nav" aria-label="Primary">
-    <a href="/ventures/">VENTURES</a>
-    <a href="/stack/">STACK</a>
-    <a href="/system/">SYSTEM</a>
-    <a href="/technology/" aria-current="page">TECHNOLOGY</a>
-    <a href="/thesis/">THESIS</a>
-    <a href="/about/">ABOUT</a>
-    <a class="enter" href="/enter/">ENTER →</a>
+    <a href="/ventures/">Ventures</a>
+    <a href="/stack/">Stack</a>
+    <a href="/system/">System</a>
+    <a href="/technology/" aria-current="page">Technology</a>
+    <a href="/thesis/">Thesis</a>
+    <a href="/about/">About</a>
+    <a class="enter" href="/enter/">Enter <span aria-hidden="true">&rarr;</span></a>
   </nav>
 </header>
 
 <main id="main">
 
-<section class="page">
+<section class="page-top"><div class="wrap">
   <p class="eyebrow">TECHNOLOGY / OPEN SOURCE</p>
-  <h1 class="h-page" style="max-width:14ch">Ordinary parts. Assembled once.</h1>
-  <p class="lede" style="max-width:52ch;font-size:19px;line-height:1.5">Every venture needs a backend, and none of them should build one. The parts a company needs to exist are written once, as an open-source harness in Rust. A venture picks the modules it wants, wires them in one file, and ships as a single stateless worker with its own database.</p>
-  <p><a class="detail-link" href="https://github.com/Cratefield/harness" rel="noopener">GITHUB.COM/CRATEFIELD/HARNESS &rarr;</a></p>
-</section>
+  <h1 class="h1">Ordinary parts. Assembled once.</h1>
+  <p class="lede">Every venture needs a backend, and none of them should build one. The parts a company needs to exist are written once, as an open-source harness in Rust. A venture picks the modules it wants, wires them in one file, and ships as a single stateless worker with its own database.</p>
+  <p class="link-row" style="margin-top:26px"><a class="link" href="https://github.com/Cratefield/harness" rel="noopener">GITHUB.COM/CRATEFIELD/HARNESS &rarr;</a></p>
+</div></section>
 
-<section class="section tech">
+<section class="sec"><div class="wrap">
   <p class="eyebrow">HOW A VENTURE IS BUILT</p>
-  <div class="tech-split">
-    <div>
-      <h2 class="claim">One file names the company.</h2>
-      <p>A venture backend is a small Rust project. It lists the modules it uses, the adapters that connect them to the world, and the venture's own name and domain. Everything else is the harness. Build it and the result is one worker that contains exactly those modules and nothing else.</p>
-      <p>If a module needs something the runtime cannot provide, or two modules claim the same table, the build fails before anything is deployed. A misconfigured venture cannot reach production.</p>
+  <div class="split" style="margin-top:36px">
+    <div class="rich">
+      <h2 class="h2">One file names the company.</h2>
+      <p class="body" style="margin-top:22px">A venture backend is a small Rust project. It lists the modules it uses, the adapters that connect them to the world, and the venture's own name and domain. Everything else is the harness. Build it and the result is one worker that contains exactly those modules and nothing else.</p>
+      <p class="body" style="margin-top:16px">If a module needs something the runtime cannot provide, or two modules claim the same table, the build fails before anything is deployed. A misconfigured venture cannot reach production.</p>
     </div>
     <pre class="code" aria-label="Venture composition in Rust"><code>Harness::builder()
     .venture(Venture::new("factory0", "factory0.ventures")
@@ -123,81 +121,117 @@
         .captcha(Turnstile::from_env()))
     .build()?</code></pre>
   </div>
-</section>
+</div></section>
 
-<section class="section">
+<section class="sec"><div class="wrap">
   <p class="eyebrow">THE STACK</p>
-  <dl class="facts tech-facts">
-    <div><dt>LANGUAGE</dt><dd>Rust</dd></div>
-    <div><dt>COMPUTE</dt><dd>Cloudflare Workers, compiled to WebAssembly</dd></div>
-    <div><dt>DATABASE</dt><dd>Cloudflare D1 today, self-hosted Postgres later</dd></div>
-    <div><dt>ROUTER</dt><dd>axum, the same router on the edge and on a server</dd></div>
-    <div><dt>QUERIES</dt><dd>sea-query, one query rendered for SQLite or Postgres</dd></div>
-    <div><dt>MAIL</dt><dd>Resend, through a port the module never sees</dd></div>
-    <div><dt>ABUSE</dt><dd>Turnstile and per-address rate limits on every public write</dd></div>
-    <div><dt>SESSIONS</dt><dd>None. Signed tokens with key rotation</dd></div>
+  <dl class="cards2 facts" style="margin-top:36px">
+    <div class="card" data-rv><dt class="card-k">LANGUAGE</dt><dd>Rust</dd></div>
+    <div class="card" data-rv style="--d:1"><dt class="card-k">COMPUTE</dt><dd>Cloudflare Workers, compiled to WebAssembly</dd></div>
+    <div class="card" data-rv style="--d:2"><dt class="card-k">DATABASE</dt><dd>Cloudflare D1 today, self-hosted Postgres later</dd></div>
+    <div class="card" data-rv style="--d:3"><dt class="card-k">ROUTER</dt><dd>axum, the same router on the edge and on a server</dd></div>
+    <div class="card" data-rv style="--d:4"><dt class="card-k">QUERIES</dt><dd>sea-query, one query rendered for SQLite or Postgres</dd></div>
+    <div class="card" data-rv style="--d:5"><dt class="card-k">MAIL</dt><dd>Resend, through a port the module never sees</dd></div>
+    <div class="card" data-rv style="--d:6"><dt class="card-k">ABUSE</dt><dd>Turnstile and per-address rate limits on every public write</dd></div>
+    <div class="card" data-rv style="--d:7"><dt class="card-k">SESSIONS</dt><dd>None. Signed tokens with key rotation</dd></div>
   </dl>
-</section>
+</div></section>
 
-<section class="section">
+<section class="sec"><div class="wrap">
   <p class="eyebrow">DESIGN RULES</p>
-  <div class="principles">
-    <div class="principle"><p class="n">01</p><h2 class="claim">Modules only see ports.</h2><p>A module asks for a database, a mailer, a captcha. It never touches a Cloudflare binding or a vendor client. Adapters answer. That one rule is what makes the later move off Cloudflare a change of a single crate.</p></div>
-    <div class="principle"><p class="n">02</p><h2 class="claim">Composition happens at compile time.</h2><p>No plugin loading, no registry service, no runtime surprises. The worker contains what the venture listed. The compiler is the first reviewer. One narrowing is designed: a module whose source should not enter the shared build can run as its own worker, mounted at the same path over a service binding. It is still composed, just not into the same binary.</p></div>
-    <div class="principle"><p class="n">03</p><h2 class="claim">One venture, one database.</h2><p>Nothing is shared at runtime between companies. Each has its own worker, its own data, its own secrets. A venture can be backed up, moved or shut down without touching another.</p></div>
-    <div class="principle"><p class="n">04</p><h2 class="claim">Stateless by construction.</h2><p>Nothing survives a request except what is written to the database. Confirmation and unsubscribe links are signed tokens, so there is no session store to run, scale or leak.</p></div>
-  </div>
-</section>
+  <ul class="cards2" style="margin-top:36px">
+    <li class="card" data-rv><p class="n">01</p><h2 class="h3">Modules only see ports.</h2><p>A module asks for a database, a mailer, a captcha. It never touches a Cloudflare binding or a vendor client. Adapters answer. That one rule is what makes the later move off Cloudflare a change of a single crate.</p></li>
+    <li class="card" data-rv style="--d:1"><p class="n">02</p><h2 class="h3">Composition happens at compile time.</h2><p>No plugin loading, no registry service, no runtime surprises. The worker contains what the venture listed. The compiler is the first reviewer. One narrowing is designed: a module whose source should not enter the shared build can run as its own worker, mounted at the same path over a service binding. It is still composed, just not into the same binary.</p></li>
+    <li class="card" data-rv style="--d:2"><p class="n">03</p><h2 class="h3">One venture, one database.</h2><p>Nothing is shared at runtime between companies. Each has its own worker, its own data, its own secrets. A venture can be backed up, moved or shut down without touching another.</p></li>
+    <li class="card" data-rv style="--d:3"><p class="n">04</p><h2 class="h3">Stateless by construction.</h2><p>Nothing survives a request except what is written to the database. Confirmation and unsubscribe links are signed tokens, so there is no session store to run, scale or leak.</p></li>
+  </ul>
+</div></section>
 
-<section class="section">
+<section class="sec"><div class="wrap">
   <p class="eyebrow">WHAT IS OPEN</p>
-  <div class="tech-split">
-    <div>
-      <h2 class="claim">The factory floor is public. The recipes are not.</h2>
-      <p>The harness, its runtime, its adapters and the first two modules are MIT licensed and developed in the open. Anyone can build a backend on them, and every venture we run does. The modules that encode how Factory Zero operates its companies stay private. Each venture's own backend is private too.</p>
-      <p>One venture is the harness itself. <a href="https://cratefield.com" rel="noopener">Cratefield</a> takes the open-source harness and adds the managed layer around it: it would provision the worker, the database and the secrets inside your own Cloudflare account and then operate them. The harness is real and running; that control plane is designed and not yet written. It is also where the module boundary earns its keep: a customer can build and deploy a module of their own without the source ever reaching us.</p>
-      <p>Decisions are written down as they are made. The architecture document and the decision records are in the repository, including the one recording why a first attempt was thrown away.</p>
+  <div class="split" style="margin-top:36px">
+    <div class="rich">
+      <h2 class="h2">The factory floor is public. The recipes are not.</h2>
+      <p class="body" style="margin-top:22px">The harness, its runtime, its adapters and the first two modules are MIT licensed and developed in the open. Anyone can build a backend on them, and every venture we run does. The modules that encode how Factory Zero operates its companies stay private. Each venture's own backend is private too.</p>
+      <p class="body" style="margin-top:16px">One venture is the harness itself. <a href="https://cratefield.com" rel="noopener">Cratefield</a> takes the open-source harness and adds the managed layer around it: it would provision the worker, the database and the secrets inside your own Cloudflare account and then operate them. The harness is real and running; that control plane is designed and not yet written. It is also where the module boundary earns its keep: a customer can build and deploy a module of their own without the source ever reaching us.</p>
+      <p class="body" style="margin-top:16px">Decisions are written down as they are made. The architecture document and the decision records are in the repository, including the one recording why a first attempt was thrown away.</p>
     </div>
-    <ul class="repo-list">
-      <li><a href="https://github.com/Cratefield/harness" rel="noopener"><span class="id">MIT</span><span>harness</span><span class="muted">core, runtime, adapters, email signup, waitlist, CLI, test kit</span></a></li>
-      <li><a href="https://github.com/Cratefield/harness/blob/main/docs/ARCHITECTURE.md" rel="noopener"><span class="id">DOC</span><span>architecture</span><span class="muted">the full design, twelve sections</span></a></li>
-      <li><a href="https://github.com/Cratefield/harness/tree/main/docs/adr" rel="noopener"><span class="id">ADR</span><span>decision records</span><span class="muted">why Rust, why ports, why one database per venture</span></a></li>
-      <li><a href="https://github.com/Factory-Zero/venture-backend-template" rel="noopener"><span class="id">MIT</span><span>venture backend template</span><span class="muted">what a new venture starts from</span></a></li>
-      <li><a href="https://github.com/Factory-Zero/website" rel="noopener"><span class="id">SRC</span><span>this website</span><span class="muted">static, no build step, no dependencies</span></a></li>
-      <li><a href="https://cratefield.com" rel="noopener"><span class="id">FZ-004</span><span>Cratefield</span><span class="muted">the managed service being built on the harness</span></a></li>
-      <li><a href="https://github.com/Factory-Zero" rel="noopener"><span class="id">ORG</span><span>github.com/Factory-Zero</span><span class="muted">the studio org; the harness itself now sits under Cratefield</span></a></li>
+    <ul class="rows">
+      <li><a class="row" href="https://github.com/Cratefield/harness" rel="noopener"><span class="row-lead"><span class="row-id">MIT</span></span><span class="row-main"><span class="row-name">harness</span><span class="row-sub">core, runtime, adapters, email signup, waitlist, CLI, test kit</span></span></a></li>
+      <li><a class="row" href="https://github.com/Cratefield/harness/blob/main/docs/ARCHITECTURE.md" rel="noopener"><span class="row-lead"><span class="row-id">DOC</span></span><span class="row-main"><span class="row-name">architecture</span><span class="row-sub">the full design, twelve sections</span></span></a></li>
+      <li><a class="row" href="https://github.com/Cratefield/harness/tree/main/docs/adr" rel="noopener"><span class="row-lead"><span class="row-id">ADR</span></span><span class="row-main"><span class="row-name">decision records</span><span class="row-sub">why Rust, why ports, why one database per venture</span></span></a></li>
+      <li><a class="row" href="https://github.com/Factory-Zero/venture-backend-template" rel="noopener"><span class="row-lead"><span class="row-id">MIT</span></span><span class="row-main"><span class="row-name">venture backend template</span><span class="row-sub">what a new venture starts from</span></span></a></li>
+      <li><a class="row" href="https://github.com/Factory-Zero/website" rel="noopener"><span class="row-lead"><span class="row-id">SRC</span></span><span class="row-main"><span class="row-name">this website</span><span class="row-sub">static, no build step, no dependencies</span></span></a></li>
+      <li><a class="row" href="https://cratefield.com" rel="noopener"><span class="row-lead"><span class="row-id">FZ-004</span></span><span class="row-main"><span class="row-name">Cratefield</span><span class="row-sub">the managed service being built on the harness</span></span></a></li>
+      <li><a class="row" href="https://github.com/Factory-Zero" rel="noopener"><span class="row-lead"><span class="row-id">ORG</span></span><span class="row-main"><span class="row-name">github.com/Factory-Zero</span><span class="row-sub">the studio org; the harness itself now sits under Cratefield</span></span></a></li>
     </ul>
   </div>
-</section>
+</div></section>
 
-<section class="section">
+<section class="sec"><div class="wrap">
   <p class="eyebrow">STATUS</p>
-  <dl class="facts">
-    <div><dt>DESIGN</dt><dd>Adopted, nine decision records</dd></div>
-    <div><dt>FOUNDATION</dt><dd>M0 merged, 7 crates</dd></div>
-    <div><dt>FIRST MODULES</dt><dd>Email signup and waitlist, merged</dd></div>
-    <div><dt>PUBLISHED</dt><dd>Not yet on crates.io</dd></div>
+  <dl class="cards2 facts" style="margin-top:36px">
+    <div class="card" data-rv><dt class="card-k">DESIGN</dt><dd>Adopted, nine decision records</dd></div>
+    <div class="card" data-rv style="--d:1"><dt class="card-k">FOUNDATION</dt><dd>M0 merged, 7 crates</dd></div>
+    <div class="card" data-rv style="--d:2"><dt class="card-k">FIRST MODULES</dt><dd>Email signup and waitlist, merged</dd></div>
+    <div class="card" data-rv style="--d:3"><dt class="card-k">PUBLISHED</dt><dd>Not yet on crates.io</dd></div>
   </dl>
-  <p class="lede" style="max-width:48ch">Progress is tracked as issues and milestones in the open. When the first venture backend goes live, it will be this site's own signup.</p>
-  <p><a class="detail-link" href="https://github.com/Cratefield/harness/milestones" rel="noopener">MILESTONES &rarr;</a></p>
-</section>
+  <div class="prose" style="margin-top:36px">
+    <p class="lede">Progress is tracked as issues and milestones in the open. When the first venture backend goes live, it will be this site's own signup.</p>
+    <p><a class="link" href="https://github.com/Cratefield/harness/milestones" rel="noopener">MILESTONES &rarr;</a></p>
+  </div>
+</div></section>
 
 </main>
 
-<footer class="site-subfooter">
-  <nav aria-label="Footer">
-      <a href="/">HOME</a>
-      <a href="/ventures/">VENTURES</a>
-      <a href="/stack/">STACK</a>
-      <a href="/system/">SYSTEM</a>
-      <a href="/technology/">TECHNOLOGY</a>
-      <a href="/thesis/">THESIS</a>
-      <a href="/enter/">ENTER</a>
-      <a class="footer-icon" href="https://github.com/Factory-Zero" rel="noopener" aria-label="GitHub" title="GitHub"><svg viewBox="0 0 16 16" width="16" height="16" aria-hidden="true" focusable="false"><path fill="currentColor" d="M8 0c4.42 0 8 3.58 8 8a8.013 8.013 0 0 1-5.45 7.59c-.4.08-.55-.17-.55-.38 0-.27.01-1.13.01-2.2 0-.75-.25-1.23-.54-1.48 1.78-.2 3.65-.88 3.65-3.95 0-.88-.31-1.59-.82-2.15.08-.2.36-1.02-.08-2.12 0 0-.67-.22-2.2.82-.64-.18-1.32-.27-2-.27-.68 0-1.36.09-2 .27-1.53-1.03-2.2-.82-2.2-.82-.44 1.1-.16 1.92-.08 2.12-.51.56-.82 1.28-.82 2.15 0 3.06 1.86 3.75 3.64 3.95-.23.2-.44.55-.51 1.07-.46.21-1.61.55-2.33-.66-.15-.24-.6-.83-1.23-.82-.67.01-.27.38.01.53.34.19.73.9.82 1.13.16.45.68 1.31 2.69.94 0 .67.01 1.3.01 1.49 0 .21-.15.45-.55.38A7.995 7.995 0 0 1 0 8c0-4.42 3.58-8 8-8Z"/></svg></a>
-  </nav>
-  <div>FACTORY0.VENTURES · FZ/01 · <span id="fz-year">2026</span></div>
+<footer class="site-footer">
+  <div class="wrap">
+    <div class="foot-grid">
+      <div class="foot-brand">
+        <a class="wordmark" href="/" aria-label="Factory Zero home"><span class="o" aria-hidden="true"></span>Factory Zero</a>
+        <p>An AI-native venture studio. Each venture is its own company; together they form the foundation of the autonomous organization.</p>
+      </div>
+      <div class="foot-col">
+        <h3>Factory</h3>
+        <ul>
+          <li><a href="/ventures/">Ventures</a></li>
+          <li><a href="/stack/">Stack</a></li>
+          <li><a href="/system/">System</a></li>
+          <li><a href="/technology/">Technology</a></li>
+        </ul>
+      </div>
+      <div class="foot-col">
+        <h3>Read</h3>
+        <ul>
+          <li><a href="/thesis/">Thesis</a></li>
+          <li><a href="/about/">About</a></li>
+          <li><a href="/#films">Films</a></li>
+          <li><a href="/llms.txt">llms.txt</a></li>
+        </ul>
+      </div>
+      <div class="foot-col">
+        <h3>The FZ stack</h3>
+        <ul>
+          <li><a href="/ventures/kontinuum/">Kontinuum</a></li>
+          <li><a href="/ventures/cratefield/">Cratefield</a></li>
+          <li><a href="/ventures/vibecaddie/">VibeCaddie</a></li>
+          <li><a href="/ventures/colonizer/">Colonizer</a></li>
+          <li><a href="/ventures/supportgenius/">SupportGenius</a></li>
+          <li><a href="/ventures/promptdecode/">promptdecode</a></li>
+          <li><a href="/ventures/posplugin/">PosPlugin</a></li>
+          <li><a href="/stack/">All of it &rarr;</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="foot-legal">
+      <span>FACTORY0.VENTURES &middot; FZ/01 &middot; <span id="fz-year">2026</span></span>
+      <span>Images: MiniMax image-01 &middot; motion: MiniMax Hailuo-2.3</span>
+      <a href="https://github.com/Factory-Zero" rel="noopener" aria-label="Factory Zero on GitHub" title="GitHub"><svg viewBox="0 0 16 16" width="16" height="16" aria-hidden="true" focusable="false"><path fill="currentColor" d="M8 0c4.42 0 8 3.58 8 8a8.013 8.013 0 0 1-5.45 7.59c-.4.08-.55-.17-.55-.38 0-.27.01-1.13.01-2.2 0-.75-.25-1.23-.54-1.48 1.78-.2 3.65-.88 3.65-3.95 0-.88-.31-1.59-.82-2.15.08-.2.36-1.02-.08-2.12 0 0-.67-.22-2.2.82-.64-.18-1.32-.27-2-.27-.68 0-1.36.09-2 .27-1.53-1.03-2.2-.82-2.2-.82-.44 1.1-.16 1.92-.08 2.12-.51.56-.82 1.28-.82 2.15 0 3.06 1.86 3.75 3.64 3.95-.23.2-.44.55-.51 1.07-.46.21-1.61.55-2.33-.66-.15-.24-.6-.83-1.23-.82-.67.01-.27.38.01.53.34.19.73.9.82 1.13.16.45.68 1.31 2.69.94 0 .67.01 1.3.01 1.49 0 .21-.15.45-.55.38A7.995 7.995 0 0 1 0 8c0-4.42 3.58-8 8-8Z"/></svg></a>
+    </div>
+  </div>
 </footer>
 
-<script src="/assets/fz-common.js"></script>
+<script src="/assets/fz-common.js" defer></script>
+<script src="/assets/fz-ui.js" defer></script>
 </body>
 </html>

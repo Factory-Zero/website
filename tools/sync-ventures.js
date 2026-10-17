@@ -18,10 +18,6 @@ const V = global.window.FZ_DATA.ventures;
 const SERVICES = global.window.FZ_DATA.services || {};
 const ROLES = global.window.FZ_DATA.roles || {};
 
-const STATUS_COLOR = {
-  LIVE: '#EDEBE6', SCALING: '#FF5A36', BUILDING: '#A9A8A5',
-  RESEARCHING: '#8A8A8E', UNANNOUNCED: '#8A8A8E', ARCHIVED: '#4A4A4E', ACQUIRED: '#EDEBE6'
-};
 const esc = s => String(s == null ? '' : s)
   .replace(/&/g, '&amp;').replace(/</g, '&lt;')
   .replace(/>/g, '&gt;').replace(/"/g, '&quot;');
@@ -116,9 +112,9 @@ for (const f of FILMS) {
 const useItem = u => `<li class="use"><span class="use-role">${esc(u.label)}</span><a class="use-name" href="${esc(u.page || u.url)}"${u.page ? '' : ' rel="noopener"'}>${esc(u.name)}</a><span class="use-tag use-tag--${u.status}">${u.status.toUpperCase()}</span>${u.note ? `<span class="use-note">${esc(u.note)}</span>` : ''}</li>`;
 const useList = v => uses(v).length ? `<ul class="uses">${uses(v).map(useItem).join('')}</ul>` : '<span>NOT RECORDED</span>';
 
+// One venture on the system page's ventures layer: a hairline cell, id and status.
 function chip(v) {
-  const c = STATUS_COLOR[v.status] || '#8A8A8E';
-  return `        <a href="/ventures/${slug(v)}/"><span class="id">${esc(v.id)}</span><span style="color:${c}">${esc(v.status)}</span></a>`;
+  return `        <a class="cell" href="/ventures/${slug(v)}/"><span class="id">${esc(v.id)}</span><span class="st">${esc(v.status)}</span></a>`;
 }
 
 function replaceRegion(src, key, body) {
