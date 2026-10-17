@@ -29,6 +29,16 @@ for f in fz-ui.css fz-common.js fz-data.js fz-ui.js fz-timeline.js fz-ventures.j
   h=$(shasum -a 256 "dist/assets/$f" | cut -c1-8)
   find dist -name '*.html' -exec sed -i '' "s|/assets/$f\"|/assets/$f?v=$h\"|g" {} +
 done
+# Brand files (favicon, app icons, OG cards) are cached hard by the zone too, so a
+# changed logo or card keeps showing for days unless its URL changes. Stamp them
+# the same way, in the HTML (relative and absolute URLs) and in the manifest.
+for p in dist/assets/favicon.svg dist/assets/apple-touch-icon.png dist/assets/icon-512.png dist/assets/og*.png; do
+  [ -f "$p" ] || continue
+  f=$(basename "$p")
+  h=$(shasum -a 256 "$p" | cut -c1-8)
+  find dist -name '*.html' -exec sed -i '' -E "s#(/assets/$f)\"#\1?v=$h\"#g" {} +
+  sed -i '' -E "s#(/assets/$f)\"#\1?v=$h\"#g" dist/site.webmanifest
+done
 # the README banner is for GitHub, not the site
 rm -f dist/assets/readme-banner.png
 
