@@ -258,22 +258,28 @@ button, input { font: inherit; color: inherit; }
 .band.in img { transform: none; }
 .band-cap { position: absolute; left: var(--gut); bottom: 22px; font: 400 11px var(--mono); letter-spacing: .1em; color: var(--fg-3); text-transform: uppercase; }
 
-/* ---------- chip band: three parallax layers + circuit traces (home, below the ventures grid) ----------
-   Layers overscan the band by 12% top and bottom; fz-ui.js moves each by transform only.
-   Composite: board (opaque ground) < traces (svg) < chip pair and chip die, both screened
-   onto the ground so their pure-black background vanishes. Fades into the page at both ends. */
+/* ---------- chip band: drawn circuit boards (two SVG depths) + a faint photo ground, chip pair and die ----------
+   Every layer overscans the band by 12% top and bottom; fz-ui.js moves each by transform only.
+   Stack: photo ground (10-18% opacity, texture only) < back board (SVG, fine, dim) < mid board (SVG, brighter,
+   bus lines converging on the chips) < chip pair and chip die (screened, so their black ground vanishes).
+   Pulses travel along the drawn traces. Fades into the page at both ends. */
 .chip-band { position: relative; overflow: hidden; isolation: isolate; height: clamp(260px, 38vw, 560px); background: var(--bg); }
-.chip-band::before, .chip-band::after { content: ''; position: absolute; left: 0; right: 0; height: 24%; z-index: 3; pointer-events: none; }
+.chip-band::before, .chip-band::after { content: ''; position: absolute; left: 0; right: 0; height: 24%; z-index: 4; pointer-events: none; }
 .chip-band::before { top: 0; background: linear-gradient(var(--bg), rgba(10, 11, 10, 0)); }
 .chip-band::after { bottom: 0; background: linear-gradient(rgba(10, 11, 10, 0), var(--bg)); }
 .cb-layer { position: absolute; left: 0; right: 0; top: -12%; bottom: -12%; }
 .cb-layer img { display: block; width: 100%; height: 100%; object-fit: cover; }
-.cb-board { z-index: 0; }
-.cb-traces { z-index: 1; }
-.cb-pair, .cb-die { z-index: 2; mix-blend-mode: screen; }
-.cb-traces svg { display: block; width: 100%; height: 100%; overflow: visible; }
-.cb-traces path { fill: none; stroke: var(--acc); stroke-opacity: .16; stroke-width: 1.2; stroke-linecap: round; }
-.cb-traces .cb-pulse { stroke-opacity: .9; stroke-width: 2.2; stroke-dasharray: 60 1000; stroke-dashoffset: 60; animation: cb-pulse var(--t, 9s) linear infinite; animation-delay: var(--dl, 0s); }
+.cb-bg { z-index: 0; }
+.cb-bg img { opacity: .15; }
+.cb-back { z-index: 1; }
+.cb-mid { z-index: 2; }
+.cb-pair, .cb-die { z-index: 3; mix-blend-mode: screen; }
+.cb-layer svg { display: block; width: 100%; height: 100%; overflow: visible; }
+.cb-back path { fill: none; stroke: var(--acc); stroke-opacity: .12; stroke-width: 1; stroke-linejoin: round; }
+.cb-mid path { fill: none; stroke: var(--acc); stroke-opacity: .28; stroke-width: 1.3; stroke-linejoin: round; }
+.cb-layer .cb-via { fill: none; stroke: var(--acc); stroke-opacity: .3; stroke-width: 1; }
+.cb-layer .cb-pad { fill: var(--acc); fill-opacity: .3; }
+.cb-back .cb-pulse, .cb-mid .cb-pulse { fill: none; stroke: var(--acc); stroke-opacity: .9; stroke-width: 2.2; stroke-linecap: round; stroke-dasharray: 60 1000; stroke-dashoffset: 60; animation: cb-pulse var(--t, 9s) linear infinite; animation-delay: var(--dl, 0s); }
 @keyframes cb-pulse { from { stroke-dashoffset: 60; } to { stroke-dashoffset: -1000; } }
 .cb-pair img { animation: cb-glow 7s ease-in-out infinite; }
 .cb-die img { animation: cb-glow 9s ease-in-out -3s infinite; }
