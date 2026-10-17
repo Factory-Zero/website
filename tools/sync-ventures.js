@@ -446,6 +446,7 @@ const topV = top && BY_ID.get(top[0]);
 const lastFilm = FILMS[FILMS.length - 1];
 const lastFilmV = lastFilm && BY_ID.get(lastFilm.venture);
 hs = replaceRegion(hs, 'herocards', [
+  `    <a class="hcard hcard--offer" href="/venture-as-a-service/"><p class="hcard-k"><span class="acc">New</span> &middot; Venture as a service</p><p class="hcard-price">From $5,000</p><p class="hcard-sub">An autonomous venture MVP on the FZ foundation. Startup program: $500 in credits, limited places.</p><p class="hcard-go">See the offer &rarr;</p></a>`,
   topV ? `    <a class="hcard" href="/ventures/${slug(topV)}/"><p class="hcard-k">FZ stack &middot; most used</p><div class="hcard-row"><span class="hcard-icon">${UI.icon(topV, 30)}</span><span><span class="hcard-name">${esc(topV.name)}</span><br><span class="hcard-sub">${esc(topV.stackRole || topV.category)} &middot; live in ${top[1].size} ventures</span></span></div></a>` : '',
   lastFilm ? `    <a class="hcard" href="/#films"><p class="hcard-k">Newest film &middot; ${FILMS.length} in all</p><div class="hcard-film" style="background-image:url('/assets/films/${esc(lastFilm.poster)}')"></div><p class="hcard-sub" style="margin-top:10px">${esc(lastFilmV ? lastFilmV.name : lastFilm.title)} &middot; ${esc(lastFilm.caption)}</p></a>` : '',
   `    <div class="hcard"><p class="hcard-k">PRs merged &middot; 30 days</p><p class="hcard-n"><span id="fz-merged" title="Merged pull requests in the ventures' public GitHub repositories, last 30 days">&mdash;</span><small>public repositories</small></p></div>`,
