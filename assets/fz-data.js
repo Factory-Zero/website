@@ -637,7 +637,7 @@ window.FZ_DATA = {
     { id: 'kontinuum-djs', venture: 'FZ-001', title: 'Kontinuum for DJs and producers', caption: 'Your decks are still composing.', video: 'kontinuum-djs-film.mp4', poster: 'kontinuum-djs-poster.jpg' },
     { id: 'colonizer', venture: 'FZ-006', title: 'Colonizer', caption: 'Colonize your backlog.', video: 'colonizer-promo.mp4', poster: 'colonizer-poster.jpg' },
     { id: 'yoginini', venture: 'FZ-003', title: 'Yoginini', caption: 'A yoga teacher who can see you.', video: 'yoginini-promo-v2.mp4', poster: 'yoginini-poster-v2.jpg' },
-    { id: 'posplug', venture: 'FZ-011', title: 'PosPlugin', caption: 'Any POS. One API.', video: 'posplug-promo.mp4', poster: 'posplug-promo-poster.jpg' },
+    { id: 'posplug', venture: 'FZ-011', title: 'PosPlugin', caption: 'Any POS. One API.', video: 'posplug-promo-v2.mp4', poster: 'posplug-promo-poster.jpg' },
     { id: 'sealbin', venture: 'FZ-016', title: 'sealb.in', caption: 'The sealed handoff between agents.', video: 'sealbin-promo.mp4', poster: 'sealbin-poster.jpg' }
   ],
 };
