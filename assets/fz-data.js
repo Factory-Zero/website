@@ -638,6 +638,7 @@ window.FZ_DATA = {
     { id: 'colonizer', venture: 'FZ-006', title: 'Colonizer', caption: 'Colonize your backlog.', video: 'colonizer-promo.mp4', poster: 'colonizer-poster.jpg' },
     { id: 'yoginini', venture: 'FZ-003', title: 'Yoginini', caption: 'A yoga teacher who can see you.', video: 'yoginini-promo-v2.mp4', poster: 'yoginini-poster-v2.jpg' },
     { id: 'posplug', venture: 'FZ-011', title: 'PosPlugin', caption: 'Any POS. One API.', video: 'posplug-promo-v2.mp4', poster: 'posplug-promo-poster.jpg' },
+    { id: 'ledgers', venture: 'FZ-021', title: 'ledgers.sh', caption: 'Agents do the books. People keep control.', video: 'ledgers-promo.mp4', poster: 'ledgers-poster.jpg' },
     { id: 'sealbin', venture: 'FZ-016', title: 'sealb.in', caption: 'The sealed handoff between agents.', video: 'sealbin-promo.mp4', poster: 'sealbin-poster.jpg' }
   ],
 };
