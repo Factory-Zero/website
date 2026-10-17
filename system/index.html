@@ -34,10 +34,11 @@
 <link rel="manifest" href="/site.webmanifest">
 <link rel="alternate" type="text/plain" href="/llms.txt" title="llms.txt">
 
+
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Archivo:wght@300;400;500;600&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="/assets/fz.css">
+<link href="https://fonts.googleapis.com/css2?family=Inter+Tight:wght@300;400;500;600&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="/assets/fz-ui.css">
 
 <script type="application/ld+json">
 {
@@ -81,120 +82,153 @@
 </script>
 </head>
 <body>
-
-<a class="skip-link" href="#main">SKIP TO CONTENT</a>
+<a class="skip-link" href="#main">Skip to content</a>
 
 <header class="site-header">
-  <a class="wordmark" href="/" aria-label="Factory Zero home">
-    <span>FACTORY ZER</span><span class="o" aria-hidden="true"></span>
-  </a>
+  <a class="wordmark" href="/" aria-label="Factory Zero home"><span class="o" aria-hidden="true"></span>Factory Zero<span class="wm-k" aria-hidden="true">FZ/01</span></a>
   <button class="nav-toggle" type="button" aria-expanded="false" aria-controls="site-nav">MENU</button>
   <nav class="site-nav" id="site-nav" aria-label="Primary">
-    <a href="/ventures/">VENTURES</a>
-    <a href="/stack/">STACK</a>
-    <a href="/system/" aria-current="page">SYSTEM</a>
-    <a href="/technology/">TECHNOLOGY</a>
-    <a href="/thesis/">THESIS</a>
-    <a href="/about/">ABOUT</a>
-    <a href="/enter/" class="enter">ENTER →</a>
+    <a href="/ventures/">Ventures</a>
+    <a href="/stack/">Stack</a>
+    <a href="/system/" aria-current="page">System</a>
+    <a href="/technology/">Technology</a>
+    <a href="/thesis/">Thesis</a>
+    <a href="/about/">About</a>
+    <a class="enter" href="/enter/">Enter <span aria-hidden="true">&rarr;</span></a>
   </nav>
 </header>
 
 <main id="main">
 
-<section class="page">
+<section class="page-top"><div class="wrap">
   <p class="eyebrow">SYSTEM / ARCHITECTURE</p>
-  <h1 class="h-page" style="max-width:12ch">Three layers. One factory.</h1>
-  <p class="lede" style="max-width:52ch;font-size:19px;line-height:1.5">A shared core runs every agent. Venture services package that core into functions a company needs. Ventures consume services and keep their own boundaries. Add a venture, not an organization.</p>
-</section>
+  <h1 class="h1">Three layers. One factory.</h1>
+  <p class="lede">A shared core runs every agent. Venture services package that core into functions a company needs. Ventures consume services and keep their own boundaries. Add a venture, not an organization.</p>
+</div></section>
 
-<section style="padding:0 var(--gut) 16vh">
-  <div class="stack">
-    <div class="tier tier--core">
-      <div class="tier-head"><span class="n">LAYER 0 &middot; FZ CORE</span><span class="mode">SHARED &middot; SINGLE INSTANCE</span></div>
-      <div class="modules">
-        <div><span class="beacon" style="animation-duration:1.80s"></span><span class="label">Agent Runtime</span></div>
-        <div><span class="beacon" style="animation-duration:2.15s"></span><span class="label">Knowledge</span></div>
-        <div><span class="beacon" style="animation-duration:2.50s"></span><span class="label">Identity</span></div>
-        <div><span class="beacon" style="animation-duration:2.85s"></span><span class="label">Memory</span></div>
-        <div><span class="beacon" style="animation-duration:3.20s"></span><span class="label">Permissions</span></div>
-        <div><span class="beacon" style="animation-duration:3.55s"></span><span class="label">Observability</span></div>
-        <div><span class="beacon" style="animation-duration:3.90s"></span><span class="label">Security</span></div>
-        <div><span class="beacon" style="animation-duration:4.25s"></span><span class="label">Compute</span></div>
+<section class="sec"><div class="wrap">
+  <div class="layers">
+    <div class="layer layer--core" data-rv>
+      <div class="layer-head"><span class="n">LAYER 0 &middot; FZ CORE</span><span class="mode">SHARED &middot; SINGLE INSTANCE</span></div>
+      <div class="layer-cells">
+        <div class="cell"><span class="label">Agent Runtime</span></div>
+        <div class="cell"><span class="label">Knowledge</span></div>
+        <div class="cell"><span class="label">Identity</span></div>
+        <div class="cell"><span class="label">Memory</span></div>
+        <div class="cell"><span class="label">Permissions</span></div>
+        <div class="cell"><span class="label">Observability</span></div>
+        <div class="cell"><span class="label">Security</span></div>
+        <div class="cell"><span class="label">Compute</span></div>
       </div>
     </div>
-    <div class="rung" aria-hidden="true"><span></span><span></span><span></span><span></span><span></span><span></span><span></span></div>
-    <div class="tier">
-      <div class="tier-head"><span class="n">LAYER 1 &middot; VENTURE SERVICES</span><span class="mode">SHARED &middot; MULTI-TENANT</span></div>
-      <div class="modules">
-        <div><span class="id">SVC-01</span><span class="label">Product</span></div>
-        <div><span class="id">SVC-02</span><span class="label">Engineering</span></div>
-        <div><span class="id">SVC-03</span><span class="label">Marketing</span></div>
-        <div><span class="id">SVC-04</span><span class="label">Finance</span></div>
-        <div><span class="id">SVC-05</span><span class="label">Support</span></div>
-        <div><span class="id">SVC-06</span><span class="label">Analytics</span></div>
-        <div><span class="id">SVC-07</span><span class="label">Infrastructure</span></div>
+    <div class="rung" aria-hidden="true"></div>
+    <div class="layer" data-rv>
+      <div class="layer-head"><span class="n">LAYER 1 &middot; VENTURE SERVICES</span><span class="mode">SHARED &middot; MULTI-TENANT</span></div>
+      <div class="layer-cells">
+        <div class="cell"><span class="id">SVC-01</span><span class="label">Product</span></div>
+        <div class="cell"><span class="id">SVC-02</span><span class="label">Engineering</span></div>
+        <div class="cell"><span class="id">SVC-03</span><span class="label">Marketing</span></div>
+        <div class="cell"><span class="id">SVC-04</span><span class="label">Finance</span></div>
+        <div class="cell"><span class="id">SVC-05</span><span class="label">Support</span></div>
+        <div class="cell"><span class="id">SVC-06</span><span class="label">Analytics</span></div>
+        <div class="cell"><span class="id">SVC-07</span><span class="label">Infrastructure</span></div>
       </div>
     </div>
-    <div class="rung" aria-hidden="true"><span></span><span></span><span></span><span></span><span></span><span></span><span></span></div>
-    <div class="tier">
-      <div class="tier-head"><span class="n">LAYER 2 &middot; VENTURES</span><span class="mode">ISOLATED &middot; OWN DATA &middot; OWN STRATEGY</span></div>
-      <div class="modules">
-        <!-- fz:ventures:start -->
-        <a href="/ventures/kontinuum/"><span class="id">FZ-001</span><span style="color:#A9A8A5">BUILDING</span></a>
-        <a href="/ventures/undercover-rockstars/"><span class="id">FZ-002</span><span style="color:#A9A8A5">BUILDING</span></a>
-        <a href="/ventures/yoginini/"><span class="id">FZ-003</span><span style="color:#A9A8A5">BUILDING</span></a>
-        <a href="/ventures/cratefield/"><span class="id">FZ-004</span><span style="color:#A9A8A5">BUILDING</span></a>
-        <a href="/ventures/vibecaddie/"><span class="id">FZ-005</span><span style="color:#A9A8A5">BUILDING</span></a>
-        <a href="/ventures/colonizer/"><span class="id">FZ-006</span><span style="color:#A9A8A5">BUILDING</span></a>
-        <a href="/ventures/findsyou-work/"><span class="id">FZ-007</span><span style="color:#A9A8A5">BUILDING</span></a>
-        <a href="/ventures/supportgenius/"><span class="id">FZ-008</span><span style="color:#A9A8A5">BUILDING</span></a>
-        <a href="/ventures/promptdecode/"><span class="id">FZ-009</span><span style="color:#A9A8A5">BUILDING</span></a>
-        <a href="/ventures/groove-guru/"><span class="id">FZ-010</span><span style="color:#A9A8A5">BUILDING</span></a>
-        <a href="/ventures/posplugin/"><span class="id">FZ-011</span><span style="color:#A9A8A5">BUILDING</span></a>
-        <a href="/ventures/keep-shipping/"><span class="id">FZ-012</span><span style="color:#A9A8A5">BUILDING</span></a>
-        <a href="/ventures/owlpost/"><span class="id">FZ-013</span><span style="color:#A9A8A5">BUILDING</span></a>
-        <a href="/ventures/bloodrank/"><span class="id">FZ-014</span><span style="color:#A9A8A5">BUILDING</span></a>
-        <a href="/ventures/ratecla-im/"><span class="id">FZ-015</span><span style="color:#A9A8A5">BUILDING</span></a>
-        <a href="/ventures/sealbin/"><span class="id">FZ-016</span><span style="color:#A9A8A5">BUILDING</span></a>
-        <a href="/ventures/release-show/"><span class="id">FZ-017</span><span style="color:#A9A8A5">BUILDING</span></a>
-        <a href="/ventures/living-brain/"><span class="id">FZ-018</span><span style="color:#A9A8A5">BUILDING</span></a>
-        <a href="/ventures/shoal/"><span class="id">FZ-019</span><span style="color:#A9A8A5">BUILDING</span></a>
-        <a href="/ventures/tokker/"><span class="id">FZ-020</span><span style="color:#A9A8A5">BUILDING</span></a>
-        <a href="/ventures/ledgers/"><span class="id">FZ-021</span><span style="color:#A9A8A5">BUILDING</span></a>
-        <a href="/ventures/ghostwritin/"><span class="id">FZ-022</span><span style="color:#A9A8A5">BUILDING</span></a>
-        <a href="/ventures/squeezin/"><span class="id">FZ-023</span><span style="color:#A9A8A5">BUILDING</span></a>
+    <div class="rung" aria-hidden="true"></div>
+    <div class="layer" data-rv>
+      <div class="layer-head"><span class="n">LAYER 2 &middot; VENTURES</span><span class="mode">ISOLATED &middot; OWN DATA &middot; OWN STRATEGY</span></div>
+      <div class="layer-cells">
+<!-- fz:ventures:start -->
+        <a class="cell" href="/ventures/kontinuum/"><span class="id">FZ-001</span><span class="st">BUILDING</span></a>
+        <a class="cell" href="/ventures/undercover-rockstars/"><span class="id">FZ-002</span><span class="st">BUILDING</span></a>
+        <a class="cell" href="/ventures/yoginini/"><span class="id">FZ-003</span><span class="st">BUILDING</span></a>
+        <a class="cell" href="/ventures/cratefield/"><span class="id">FZ-004</span><span class="st">BUILDING</span></a>
+        <a class="cell" href="/ventures/vibecaddie/"><span class="id">FZ-005</span><span class="st">BUILDING</span></a>
+        <a class="cell" href="/ventures/colonizer/"><span class="id">FZ-006</span><span class="st">BUILDING</span></a>
+        <a class="cell" href="/ventures/findsyou-work/"><span class="id">FZ-007</span><span class="st">BUILDING</span></a>
+        <a class="cell" href="/ventures/supportgenius/"><span class="id">FZ-008</span><span class="st">BUILDING</span></a>
+        <a class="cell" href="/ventures/promptdecode/"><span class="id">FZ-009</span><span class="st">BUILDING</span></a>
+        <a class="cell" href="/ventures/groove-guru/"><span class="id">FZ-010</span><span class="st">BUILDING</span></a>
+        <a class="cell" href="/ventures/posplugin/"><span class="id">FZ-011</span><span class="st">BUILDING</span></a>
+        <a class="cell" href="/ventures/keep-shipping/"><span class="id">FZ-012</span><span class="st">BUILDING</span></a>
+        <a class="cell" href="/ventures/owlpost/"><span class="id">FZ-013</span><span class="st">BUILDING</span></a>
+        <a class="cell" href="/ventures/bloodrank/"><span class="id">FZ-014</span><span class="st">BUILDING</span></a>
+        <a class="cell" href="/ventures/ratecla-im/"><span class="id">FZ-015</span><span class="st">BUILDING</span></a>
+        <a class="cell" href="/ventures/sealbin/"><span class="id">FZ-016</span><span class="st">BUILDING</span></a>
+        <a class="cell" href="/ventures/release-show/"><span class="id">FZ-017</span><span class="st">BUILDING</span></a>
+        <a class="cell" href="/ventures/living-brain/"><span class="id">FZ-018</span><span class="st">BUILDING</span></a>
+        <a class="cell" href="/ventures/shoal/"><span class="id">FZ-019</span><span class="st">BUILDING</span></a>
+        <a class="cell" href="/ventures/tokker/"><span class="id">FZ-020</span><span class="st">BUILDING</span></a>
+        <a class="cell" href="/ventures/ledgers/"><span class="id">FZ-021</span><span class="st">BUILDING</span></a>
+        <a class="cell" href="/ventures/ghostwritin/"><span class="id">FZ-022</span><span class="st">BUILDING</span></a>
+        <a class="cell" href="/ventures/squeezin/"><span class="id">FZ-023</span><span class="st">BUILDING</span></a>
 <!-- fz:ventures:end -->
-        <div><span class="id">FZ-N</span><span class="id">NEXT</span></div>
+        <div class="cell"><span class="id">FZ-N</span><span class="st">NEXT</span></div>
       </div>
     </div>
   </div>
-</section>
+</div></section>
 
-<section class="section">
+<section class="sec"><div class="wrap">
   <p class="eyebrow">DESIGN PRINCIPLES</p>
-  <div class="principles">
-    <div class="principle"><p class="n">01</p><h2 class="claim">Every action is observable.</h2><p>Agents write to a shared event log. Humans can replay, audit and reverse.</p></div>
-    <div class="principle"><p class="n">02</p><h2 class="claim">Permissions before autonomy.</h2><p>An agent's authority is scoped per venture, per function, per budget. Autonomy levels raise the scope, never remove the boundary.</p></div>
-    <div class="principle"><p class="n">03</p><h2 class="claim">Ventures are tenants, not forks.</h2><p>Improvements to the core reach every venture. Learnings from a venture flow back into the core.</p></div>
-    <div class="principle"><p class="n">04</p><h2 class="claim">No mystery.</h2><p>The system is built from ordinary infrastructure, models and code. The novelty is in the coordination. The parts a venture runs on are open source: <a href="/technology/">see the technology</a>.</p></div>
-  </div>
-</section>
+  <ul class="cards2" style="margin-top:36px">
+    <li class="card" data-rv><p class="n">01</p><h2 class="h3">Every action is observable.</h2><p>Agents write to a shared event log. Humans can replay, audit and reverse.</p></li>
+    <li class="card" data-rv style="--d:1"><p class="n">02</p><h2 class="h3">Permissions before autonomy.</h2><p>An agent's authority is scoped per venture, per function, per budget. Autonomy levels raise the scope, never remove the boundary.</p></li>
+    <li class="card" data-rv style="--d:2"><p class="n">03</p><h2 class="h3">Ventures are tenants, not forks.</h2><p>Improvements to the core reach every venture. Learnings from a venture flow back into the core.</p></li>
+    <li class="card" data-rv style="--d:3"><p class="n">04</p><h2 class="h3">No mystery.</h2><p>The system is built from ordinary infrastructure, models and code. The novelty is in the coordination. The parts a venture runs on are open source: <a href="/technology/">see the technology</a>.</p></li>
+  </ul>
+</div></section>
 
 </main>
 
-<footer class="site-subfooter">
-  <nav aria-label="Footer">
-      <a href="/">HOME</a>
-      <a href="/ventures/">VENTURES</a>
-      <a href="/thesis/">THESIS</a>
-      <a href="/about/">ABOUT</a>
-      <a href="/enter/">ENTER</a>
-      <a class="footer-icon" href="https://github.com/Factory-Zero" rel="noopener" aria-label="GitHub" title="GitHub"><svg viewBox="0 0 16 16" width="16" height="16" aria-hidden="true" focusable="false"><path fill="currentColor" d="M8 0c4.42 0 8 3.58 8 8a8.013 8.013 0 0 1-5.45 7.59c-.4.08-.55-.17-.55-.38 0-.27.01-1.13.01-2.2 0-.75-.25-1.23-.54-1.48 1.78-.2 3.65-.88 3.65-3.95 0-.88-.31-1.59-.82-2.15.08-.2.36-1.02-.08-2.12 0 0-.67-.22-2.2.82-.64-.18-1.32-.27-2-.27-.68 0-1.36.09-2 .27-1.53-1.03-2.2-.82-2.2-.82-.44 1.1-.16 1.92-.08 2.12-.51.56-.82 1.28-.82 2.15 0 3.06 1.86 3.75 3.64 3.95-.23.2-.44.55-.51 1.07-.46.21-1.61.55-2.33-.66-.15-.24-.6-.83-1.23-.82-.67.01-.27.38.01.53.34.19.73.9.82 1.13.16.45.68 1.31 2.69.94 0 .67.01 1.3.01 1.49 0 .21-.15.45-.55.38A7.995 7.995 0 0 1 0 8c0-4.42 3.58-8 8-8Z"/></svg></a>
-  </nav>
-  <div>FACTORY0.VENTURES · FZ/01 · <span id="fz-year">2026</span></div>
+<footer class="site-footer">
+  <div class="wrap">
+    <div class="foot-grid">
+      <div class="foot-brand">
+        <a class="wordmark" href="/" aria-label="Factory Zero home"><span class="o" aria-hidden="true"></span>Factory Zero</a>
+        <p>An AI-native venture studio. Each venture is its own company; together they form the foundation of the autonomous organization.</p>
+      </div>
+      <div class="foot-col">
+        <h3>Factory</h3>
+        <ul>
+          <li><a href="/ventures/">Ventures</a></li>
+          <li><a href="/stack/">Stack</a></li>
+          <li><a href="/system/">System</a></li>
+          <li><a href="/technology/">Technology</a></li>
+        </ul>
+      </div>
+      <div class="foot-col">
+        <h3>Read</h3>
+        <ul>
+          <li><a href="/thesis/">Thesis</a></li>
+          <li><a href="/about/">About</a></li>
+          <li><a href="/#films">Films</a></li>
+          <li><a href="/llms.txt">llms.txt</a></li>
+        </ul>
+      </div>
+      <div class="foot-col">
+        <h3>The FZ stack</h3>
+        <ul>
+          <li><a href="/ventures/kontinuum/">Kontinuum</a></li>
+          <li><a href="/ventures/cratefield/">Cratefield</a></li>
+          <li><a href="/ventures/vibecaddie/">VibeCaddie</a></li>
+          <li><a href="/ventures/colonizer/">Colonizer</a></li>
+          <li><a href="/ventures/supportgenius/">SupportGenius</a></li>
+          <li><a href="/ventures/promptdecode/">promptdecode</a></li>
+          <li><a href="/ventures/posplugin/">PosPlugin</a></li>
+          <li><a href="/stack/">All of it &rarr;</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="foot-legal">
+      <span>FACTORY0.VENTURES &middot; FZ/01 &middot; <span id="fz-year">2026</span></span>
+      <span>Images: MiniMax image-01 &middot; motion: MiniMax Hailuo-2.3</span>
+      <a href="https://github.com/Factory-Zero" rel="noopener" aria-label="Factory Zero on GitHub" title="GitHub"><svg viewBox="0 0 16 16" width="16" height="16" aria-hidden="true" focusable="false"><path fill="currentColor" d="M8 0c4.42 0 8 3.58 8 8a8.013 8.013 0 0 1-5.45 7.59c-.4.08-.55-.17-.55-.38 0-.27.01-1.13.01-2.2 0-.75-.25-1.23-.54-1.48 1.78-.2 3.65-.88 3.65-3.95 0-.88-.31-1.59-.82-2.15.08-.2.36-1.02-.08-2.12 0 0-.67-.22-2.2.82-.64-.18-1.32-.27-2-.27-.68 0-1.36.09-2 .27-1.53-1.03-2.2-.82-2.2-.82-.44 1.1-.16 1.92-.08 2.12-.51.56-.82 1.28-.82 2.15 0 3.06 1.86 3.75 3.64 3.95-.23.2-.44.55-.51 1.07-.46.21-1.61.55-2.33-.66-.15-.24-.6-.83-1.23-.82-.67.01-.27.38.01.53.34.19.73.9.82 1.13.16.45.68 1.31 2.69.94 0 .67.01 1.3.01 1.49 0 .21-.15.45-.55.38A7.995 7.995 0 0 1 0 8c0-4.42 3.58-8 8-8Z"/></svg></a>
+    </div>
+  </div>
 </footer>
 
-<script src="/assets/fz-common.js"></script>
+<script src="/assets/fz-common.js" defer></script>
+<script src="/assets/fz-ui.js" defer></script>
 </body>
 </html>

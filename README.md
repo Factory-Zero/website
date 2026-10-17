@@ -102,6 +102,12 @@ design-time dependency, so the component logic was ported to plain JavaScript.
 Timings, easing, canvas geometry, colour thresholds and copy carry over
 unchanged.
 
+### Design
+
+The site uses the design system documented in **`DESIGN.md`**: dark,
+square, hairline grid, one lime accent, Inter Tight, imagery generated with MiniMax.
+The 3D hero network (`fz-hero3d.js`) and the hero canvas (`fz-app.js`) are gone.
+
 ### Layout
 
 ```
@@ -113,12 +119,12 @@ about/index.html        what Factory Zero is and is not
 enter/index.html        access request
 404.html                styled not-found page
 assets/
-  fz.css                design tokens and every component style
+  fz-ui.css             the design system (see DESIGN.md), loaded by every page
+  fz-ui.js              reveal, count-up, hero loop, venture grid filters, live log
   fz-data.js            ← venture data lives here (single source of truth)
   fz-common.js          loaded on every page
-  fz-app.js             home: hero canvas, rolling log, agent rotation
-  fz-hero3d.js          home: the 3D venture network (plain WebGL2, no library; loads after `load`, falls back to the 2D canvas)
-  fz-ventures.js        registry selection and the FZ STACK filter
+  fz-ventures.js        venture-page activity charts and the shared chart helpers
+  ui/                   generated imagery and the hero loop (MiniMax; prompts in DESIGN.md)
   fz-timeline.js        home: plays the venture timeline
   timeline-data.json    org creation dates and commits per day (counts only)
   fz-enter.js           access-request form
@@ -141,6 +147,8 @@ tools/
   banner-render.html    README banner
   render-og.sh          regenerates every raster asset
   sync-ventures.js      writes fz-data.js into the static HTML
+  ui.js                 shared header, footer, venture card and filter markup
+  stack-page.js         writes stack/index.html from the registry (run by sync-ventures.js)
   timeline.js           draws the home-page venture timeline (used by sync-ventures.js)
   sync-timeline.js      rebuilds timeline-data.json from the GitHub API
   build-dist.sh         assembles dist/ (allowlist + cache-bust stamping)
@@ -165,13 +173,14 @@ Nearly everything is data:
   ventures there. The pipeline, the
   branch list and the hero counters all derive from that array.
 - **After editing `ventures`, run `node tools/sync-ventures.js`.** The registry
-  rows and the default detail panel are written into `ventures/index.html` and
+  grid of venture cards is written into `ventures/index.html` and the chips into
   `system/index.html` as static HTML so they are indexable with JavaScript off.
   That script regenerates them from `fz-data.js`, which stays the only place
   venture data is authored. It only rewrites the regions between the
   `<!-- fz:*:start -->` / `<!-- fz:*:end -->` markers. The same run writes one
-  page per venture at `ventures/<slug>/index.html` (the registry with that record
-  selected, plus its own title, description and canonical URL), the venture
+  product page per venture at `ventures/<slug>/index.html` (icon, pitch, aims, film,
+  built-with list, activity charts and related ventures, plus its own title,
+  description, canonical URL and structured data), the venture
   entries in `sitemap.xml`, and `functions/api/activity-sources.json`. Commit
   all of it; never edit the generated venture pages by hand.
 - **What each venture is built with** is the `uses` array on its record in
@@ -226,11 +235,13 @@ Nearly everything is data:
 - **`window.FZ_CONFIG`** at the bottom of the same file holds the headline
   and factory status. These mirror the editable `data-props` from the design
   source; the headline is also written statically in `index.html`.
-- **The hero proof row** (ventures, sectors, ventures that already run on a
-  sister venture) is counted from `ventures` by `sync-ventures.js` and written
-  between the `fz:proof` markers in `index.html`. "Run on a sister venture"
-  counts records with at least one `uses` entry that names another venture
-  and is `live`, so a `planned` link never inflates it.
+- **The home page's generated regions** (`fz:herocards`, `fz:stats`, `fz:marquee`,
+  `fz:vtools`, `fz:vgrid`, `fz:steps`, `fz:films`, `fz:timeline`, `fz:footer`) are
+  written by `sync-ventures.js` from the records. The stats band counts ventures,
+  sectors, FZ STACK ventures, ventures that "run on a sister venture" (records with at
+  least one `uses` entry that names another venture and is `live`, so a `planned`
+  link never inflates it) and films. The hero's "most used" card is the FZ STACK
+  venture with the most live `uses` from other ventures.
 - All prose (thesis, human role, footer) is plain HTML in `index.html`.
 
 ### Regenerating raster assets
