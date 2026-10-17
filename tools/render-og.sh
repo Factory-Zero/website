@@ -23,7 +23,7 @@ card() { # out title kicker sub
   shoot "$ROOT/tools/og-render.html?t=$(urlenc "$2")&k=$(urlenc "$3")&s=$(urlenc "$4")" \
     1200 630 "$ROOT/assets/$1"
 }
-card og-ventures.png "Every venture runs on the same factory core." "VENTURE REGISTRY" \
+card og-ventures.png "Every venture, one foundation." "VENTURE REGISTRY" \
   "Each keeps its own brand, customers, data boundaries and strategy."
 card og-system.png "Three layers. One factory." "SYSTEM / ARCHITECTURE" \
   "A shared core, venture services built on it, and isolated ventures."
@@ -42,7 +42,7 @@ shoot "$ROOT/tools/banner-render.html" 1280 400 "$ROOT/assets/readme-banner.png"
 # Icon: Chrome ignores window widths under ~500px, so render at 512 and downscale.
 cat > "$TMP/icon.html" <<HTML
 <!DOCTYPE html><meta charset="utf-8">
-<style>html,body{margin:0;background:#0A0A0B;width:512px;height:512px}
+<style>html,body{margin:0;background:#0A0B0A;width:512px;height:512px}
 svg{display:block;width:512px;height:512px}</style>
 $(cat "$ROOT/assets/favicon.svg")
 HTML
