@@ -39,7 +39,6 @@
 <link rel="preload" href="/assets/fonts/inter-tight-latin-wght.woff2" as="font" type="font/woff2" crossorigin>
 <link rel="stylesheet" href="/assets/fz-ui.css">
 <script type="speculationrules">{"prerender":[{"where":{"and":[{"href_matches":"/*"},{"not":{"href_matches":"/api/*"}}]},"eagerness":"moderate"}],"prefetch":[{"where":{"and":[{"href_matches":"/*"},{"not":{"href_matches":"/api/*"}}]},"eagerness":"moderate"}]}</script>
-<link rel="preload" as="image" href="/assets/ui/hero.webp" imagesrcset="/assets/ui/hero-960.webp 960w, /assets/ui/hero.webp 1920w" imagesizes="100vw">
 
 <script type="application/ld+json">
 {
@@ -128,16 +127,10 @@
 <main id="main">
 
 <section class="hero hero--home" aria-labelledby="fz-headline">
-  <div class="hero-media" aria-hidden="true">
-    <img src="/assets/ui/hero.webp" srcset="/assets/ui/hero-960.webp 960w, /assets/ui/hero.webp 1920w" sizes="100vw" alt="" width="1920" height="1080" fetchpriority="high">
-    <video data-hero-video muted loop playsinline preload="none" poster="/assets/ui/hero-poster.jpg" width="1600" height="900">
-      <source src="/assets/ui/hero-loop.webm" type="video/webm">
-      <source src="/assets/ui/hero-loop.mp4" type="video/mp4">
-    </video>
-  </div>
   <div class="hero-grid" aria-hidden="true"></div>
   <div class="wrap hero-in">
     <div class="hero-copy">
+
       <p class="eyebrow"><span>AI-native venture studio &middot; factory status <span class="acc">online</span></span></p>
       <h1 class="display" id="fz-headline">The foundation to launch <span class="hl">ventures at&nbsp;scale.</span></h1>
       <p class="lede">Each one is a real company with its own product and brand. Together they form the foundation of the autonomous organization: every launch on the Factory Zero stack adds infrastructure and agents the next one is built&nbsp;on.</p>
@@ -145,19 +138,593 @@
         <a class="btn btn--primary" href="/enter/">Enter Factory Zero <span class="arr" aria-hidden="true">&rarr;</span></a>
         <a class="btn btn--ghost" href="#ventures">See the ventures</a>
       </div>
+      <a class="hero-offer" href="/venture-as-a-service/">
+        <span class="ho-k"><span class="ho-new">New</span> Venture as a service</span>
+        <span class="ho-main"><span class="ho-price">From $5,000</span><span class="ho-line">An autonomous venture MVP on the FZ foundation &middot; $500 startup credits, limited places.</span></span>
+        <span class="ho-go">See the offer <span aria-hidden="true">&rarr;</span></span>
+      </a>
+    </div>
+    <div class="hero-stage">
+<!-- fz:heroscene:start -->
+<!-- The scene and prompt bar. The first prompt is lit so the static page reads
+     without JavaScript; tools/sync-ventures.js writes it, assets/fz-ui.js types the rest. -->
+  <div class="hb-scene has-lit" data-hero-scene data-prompt="0">
+    <div class="hb-prompt">
+      <span class="hb-chev" aria-hidden="true">&rsaquo;</span>
+      <p class="hb-typed" aria-live="off"><span data-typed>A waitlist with email confirmation and an admin page</span><span class="hb-caret" aria-hidden="true"></span></p>
+    </div>
+<svg class="hb-svg" viewBox="-386.41 -157 859.42 591" aria-hidden="true" focusable="false">
+  <defs>
+    <symbol id="hb-mk-owlpost" viewBox="0 0 120 120">
+  
+  
+  
+  <rect x="10" y="10" width="100" height="100" rx="30" fill="currentColor" stroke="none"/>
+  <g><circle cx="41" cy="51" r="15" fill="currentColor" stroke="none"/><circle cx="41" cy="51" r="7" fill="currentColor" stroke="none"/></g>
+  <g><circle cx="79" cy="51" r="15" fill="currentColor" stroke="none"/><circle cx="79" cy="51" r="7" fill="currentColor" stroke="none"/></g>
+  <path d="M52 73H68L60 84Z" fill="currentColor" stroke="none"/>
+  <rect x="53" y="14" width="14" height="10" rx="2" fill="currentColor" stroke="none"/>
+</symbol>
+    <symbol id="hb-mk-cratefield" viewBox="0 0 120 120">
+  
+  
+  
+  <rect x="5" y="5" width="30" height="30" fill="currentColor" stroke="none"/>
+  <rect x="45" y="5" width="30" height="30" fill="currentColor" stroke="none"/>
+  <rect x="85" y="5" width="30" height="30" fill="currentColor" stroke="none"/>
+  <rect x="5" y="45" width="30" height="30" fill="currentColor" stroke="none"/>
+  <rect x="45" y="45" width="30" height="30" fill="currentColor" stroke="none"/>
+  <rect x="85" y="45" width="30" height="30" fill="currentColor" stroke="none"/>
+  <rect x="5" y="85" width="30" height="30" fill="currentColor" stroke="none"/>
+  <rect x="45" y="85" width="30" height="30" fill="currentColor" stroke="none"/>
+  <rect x="85" y="85" width="30" height="30" fill="currentColor" stroke="none"/>
+</symbol>
+    <symbol id="hb-mk-living-brain" viewBox="0 0 120 120">
+  
+  
+  
+  
+  <rect x="10" y="10" width="100" height="100" rx="30" fill="currentColor" stroke="none"/>
+  <g>
+    <line x1="28" y1="34" x2="60" y2="60" fill="none" stroke="currentColor" stroke-width="2"/>
+    <line x1="91" y1="31" x2="60" y2="60" fill="none" stroke="currentColor" stroke-width="2"/>
+    <line x1="27" y1="88" x2="60" y2="60" fill="none" stroke="currentColor" stroke-width="2"/>
+    <line x1="92" y1="86" x2="60" y2="60" fill="none" stroke="currentColor" stroke-width="2"/>
+    <line x1="28" y1="34" x2="91" y2="31" fill="none" stroke="currentColor" stroke-width="2"/>
+  </g>
+  <g>
+    <circle cx="28" cy="34" r="4" fill="currentColor" stroke="none"/>
+    <circle cx="91" cy="31" r="3.2" fill="currentColor" stroke="none"/>
+    <circle cx="27" cy="88" r="3.2" fill="currentColor" stroke="none"/>
+    <circle cx="92" cy="86" r="4" fill="currentColor" stroke="none"/>
+  </g>
+  <circle cx="28" cy="34" r="3" fill="currentColor" stroke="none"/>
+  <circle cx="92" cy="86" r="3" fill="currentColor" stroke="none"/>
+  <circle cx="60" cy="60" r="18" fill="currentColor" stroke="none"/>
+  <circle cx="60" cy="60" r="9" filter="url(#lb-blur)" fill="currentColor" stroke="none"/>
+  <circle cx="60" cy="60" r="18" stroke-width="3" fill="none" stroke="currentColor" stroke-width="3"/>
+  <circle cx="60" cy="60" r="7" fill="currentColor" stroke="none"/>
+</symbol>
+    <symbol id="hb-mk-colonizer" viewBox="0 0 120 120">
+  
+  
+  
+  <polygon points="60,22.6 94,41.3 94,78.7 60,97.4 26,78.7 26,41.3" stroke-width="6.8" fill="none" stroke="currentColor" stroke-width="6.8"/>
+  <circle cx="60" cy="60" r="10.2" fill="currentColor" stroke="none"/>
+  <circle cx="60" cy="22.6" r="5" fill="currentColor" stroke="none"/>
+  <circle cx="94" cy="41.3" r="5" fill="currentColor" stroke="none"/>
+  <circle cx="94" cy="78.7" r="5" fill="currentColor" stroke="none"/>
+  <circle cx="60" cy="97.4" r="5" fill="currentColor" stroke="none"/>
+  <circle cx="26" cy="78.7" r="5" fill="currentColor" stroke="none"/>
+  <circle cx="26" cy="41.3" r="5" fill="currentColor" stroke="none"/>
+</symbol>
+    <symbol id="hb-mk-ledgers" viewBox="0 0 120 120">
+  
+  
+  
+  <rect x="10" y="10" width="100" height="100" rx="26" fill="currentColor" stroke="none"/>
+  <rect x="10.75" y="10.75" width="98.5" height="98.5" rx="25.25" stroke-width="1.5" fill="none" stroke="currentColor" stroke-width="1.5"/>
+  <g>
+    <path d="M44 36H92" stroke-width="5" fill="currentColor" stroke="none"/>
+    <path d="M44 52H92" stroke-width="5" fill="currentColor" stroke="none"/>
+    <path d="M44 68H92" stroke-width="5" fill="currentColor" stroke="none"/>
+    <path d="M60 82H92" stroke-width="3" fill="currentColor" stroke="none"/>
+    <path d="M60 89H92" stroke-width="3" fill="currentColor" stroke="none"/>
+  </g>
+  <g><path d="M26 30h10v10H26z" stroke-width="3" stroke-linejoin="round" fill="none" stroke="currentColor" stroke-width="3"/></g>
+</symbol>
+    <symbol id="hb-mk-kontinuum" viewBox="76 124 360 264">
+  
+  
+  <path d="M 256.00 256.00 C 212.02 193.17, 168.31 136.00, 137.21 136.00 C 106.11 136.00, 88.00 193.17, 88.00 256.00 C 88.00 318.83, 106.11 376.00, 137.21 376.00 C 168.31 376.00, 212.02 318.83, 256.00 256.00 C 299.98 193.17, 343.69 136.00, 374.79 136.00 C 405.89 136.00, 424.00 193.17, 424.00 256.00 C 424.00 318.83, 405.89 376.00, 374.79 376.00 C 343.69 376.00, 299.98 318.83, 256.00 256.00 Z" stroke-width="2.4" fill="none" stroke="currentColor" stroke-width="2.4"></path>
+  <g transform="translate(256.00,256.00)"><rect x="-4.25" y="-4.25" width="8.50" height="8.50" rx="2.38" fill="currentColor" stroke="none"></rect></g>
+  <g transform="translate(233.41,224.02)"><rect x="-4.25" y="-4.25" width="8.50" height="8.50" rx="3.14" fill="currentColor" stroke="none"></rect></g>
+  <g transform="translate(209.92,192.70)"><rect x="-2.89" y="-2.89" width="5.78" height="5.78" rx="2.52" fill="currentColor" stroke="none"></rect></g>
+  <g transform="translate(184.17,163.24)"><rect x="-8.50" y="-8.50" width="17.00" height="17.00" rx="8.04" fill="currentColor" stroke="none"></rect></g>
+  <g transform="translate(153.07,139.79)"><rect x="-2.89" y="-2.89" width="5.78" height="5.78" rx="2.84" fill="currentColor" stroke="none"></rect></g>
+  <g transform="translate(116.82,144.65)"><rect x="-6.63" y="-6.63" width="13.26" height="13.26" rx="6.60" fill="currentColor" stroke="none"></rect></g>
+  <g transform="translate(98.20,178.64)"><rect x="-8.50" y="-8.50" width="17.00" height="17.00" rx="8.48" fill="currentColor" stroke="none"></rect></g>
+  <g transform="translate(90.30,216.94)"><rect x="-6.63" y="-6.63" width="13.26" height="13.26" rx="6.62" fill="currentColor" stroke="none"></rect></g>
+  <g transform="translate(88.00,256.00)"><rect x="-4.25" y="-4.25" width="8.50" height="8.50" rx="4.24" fill="currentColor" stroke="none"></rect></g>
+  <g transform="translate(90.30,295.06)"><rect x="-4.25" y="-4.25" width="8.50" height="8.50" rx="4.24" fill="currentColor" stroke="none"></rect></g>
+  <g transform="translate(98.20,333.36)"><rect x="-6.63" y="-6.63" width="13.26" height="13.26" rx="6.62" fill="currentColor" stroke="none"></rect></g>
+  <g transform="translate(116.82,367.35)"><rect x="-4.25" y="-4.25" width="8.50" height="8.50" rx="4.23" fill="currentColor" stroke="none"></rect></g>
+  <g transform="translate(153.07,372.21)"><rect x="-2.89" y="-2.89" width="5.78" height="5.78" rx="2.84" fill="currentColor" stroke="none"></rect></g>
+  <g transform="translate(184.17,348.76)"><rect x="-8.50" y="-8.50" width="17.00" height="17.00" rx="8.04" fill="currentColor" stroke="none"></rect></g>
+  <g transform="translate(209.92,319.30)"><rect x="-4.25" y="-4.25" width="8.50" height="8.50" rx="3.70" fill="currentColor" stroke="none"></rect></g>
+  <g transform="translate(233.41,287.98)"><rect x="-4.25" y="-4.25" width="8.50" height="8.50" rx="3.14" fill="currentColor" stroke="none"></rect></g>
+  <g transform="translate(256.00,256.00)"><rect x="-4.25" y="-4.25" width="8.50" height="8.50" rx="2.38" fill="currentColor" stroke="none"></rect></g>
+  <g transform="translate(278.59,224.02)"><rect x="-4.25" y="-4.25" width="8.50" height="8.50" rx="1.62" fill="currentColor" stroke="none"></rect></g>
+  <g transform="translate(302.08,192.70)"><rect x="-6.63" y="-6.63" width="13.26" height="13.26" rx="1.66" fill="currentColor" stroke="none"></rect></g>
+  <g transform="translate(327.83,163.24)"><rect x="-6.63" y="-6.63" width="13.26" height="13.26" rx="1.15" fill="currentColor" stroke="none"></rect></g>
+  <g transform="translate(358.93,139.79)"><rect x="-8.50" y="-8.50" width="17.00" height="17.00" rx="1.17" fill="currentColor" stroke="none"></rect></g>
+  <g transform="translate(395.18,144.65)"><rect x="-2.89" y="-2.89" width="5.78" height="5.78" rx="0.36" fill="currentColor" stroke="none"></rect></g>
+  <g transform="translate(413.80,178.64)"><rect x="-2.89" y="-2.89" width="5.78" height="5.78" rx="0.35" fill="currentColor" stroke="none"></rect></g>
+  <g transform="translate(421.70,216.94)"><rect x="-8.50" y="-8.50" width="17.00" height="17.00" rx="1.03" fill="currentColor" stroke="none"></rect></g>
+  <g transform="translate(424.00,256.00)"><rect x="-2.89" y="-2.89" width="5.78" height="5.78" rx="0.35" fill="currentColor" stroke="none"></rect></g>
+  <g transform="translate(421.70,295.06)"><rect x="-8.50" y="-8.50" width="17.00" height="17.00" rx="1.03" fill="currentColor" stroke="none"></rect></g>
+  <g transform="translate(413.80,333.36)"><rect x="-6.63" y="-6.63" width="13.26" height="13.26" rx="0.81" fill="currentColor" stroke="none"></rect></g>
+  <g transform="translate(395.18,367.35)"><rect x="-8.50" y="-8.50" width="17.00" height="17.00" rx="1.06" fill="currentColor" stroke="none"></rect></g>
+  <g transform="translate(358.93,372.21)"><rect x="-2.89" y="-2.89" width="5.78" height="5.78" rx="0.40" fill="currentColor" stroke="none"></rect></g>
+  <g transform="translate(327.83,348.76)"><rect x="-6.63" y="-6.63" width="13.26" height="13.26" rx="1.15" fill="currentColor" stroke="none"></rect></g>
+  <g transform="translate(302.08,319.30)"><rect x="-4.25" y="-4.25" width="8.50" height="8.50" rx="1.06" fill="currentColor" stroke="none"></rect></g>
+  <g transform="translate(278.59,287.98)"><rect x="-8.50" y="-8.50" width="17.00" height="17.00" rx="3.24" fill="currentColor" stroke="none"></rect></g>
+</symbol>
+    <symbol id="hb-mk-sealbin" viewBox="-1 -3.5 18 18">
+  
+  
+  
+  
+  <g>
+    <rect x="3.07" y="0.07" width=".86" height=".86" rx=".14" fill="currentColor" stroke="none"/>
+    <rect x="4.07" y="0.07" width=".86" height=".86" rx=".14" fill="currentColor" stroke="none"/>
+    <rect x="5.07" y="0.07" width=".86" height=".86" rx=".14" fill="currentColor" stroke="none"/>
+    <rect x="6.07" y="0.07" width=".86" height=".86" rx=".14" fill="currentColor" stroke="none"/>
+    <rect x="2.07" y="1.07" width=".86" height=".86" rx=".14" fill="currentColor" stroke="none"/>
+    <rect x="3.07" y="1.07" width=".86" height=".86" rx=".14" fill="currentColor" stroke="none"/>
+    <rect x="4.07" y="1.07" width=".86" height=".86" rx=".14" fill="currentColor" stroke="none"/>
+    <rect x="5.07" y="1.07" width=".86" height=".86" rx=".14" fill="currentColor" stroke="none"/>
+    <rect x="6.07" y="1.07" width=".86" height=".86" rx=".14" fill="currentColor" stroke="none"/>
+    <rect x="7.07" y="1.07" width=".86" height=".86" rx=".14" fill="currentColor" stroke="none"/>
+    <rect x="1.07" y="2.07" width=".86" height=".86" rx=".14" fill="currentColor" stroke="none"/>
+    <rect x="2.07" y="2.07" width=".86" height=".86" rx=".14" fill="currentColor" stroke="none"/>
+    <rect x="4.07" y="2.07" width=".86" height=".86" rx=".14" fill="currentColor" stroke="none"/>
+    <rect x="5.07" y="2.07" width=".86" height=".86" rx=".14" fill="currentColor" stroke="none"/>
+    <rect x="6.07" y="2.07" width=".86" height=".86" rx=".14" fill="currentColor" stroke="none"/>
+    <rect x="7.07" y="2.07" width=".86" height=".86" rx=".14" fill="currentColor" stroke="none"/>
+    <rect x="8.07" y="2.07" width=".86" height=".86" rx=".14" fill="currentColor" stroke="none"/>
+    <rect x="0.07" y="3.07" width=".86" height=".86" rx=".14" fill="currentColor" stroke="none"/>
+    <rect x="1.07" y="3.07" width=".86" height=".86" rx=".14" fill="currentColor" stroke="none"/>
+    <rect x="2.07" y="3.07" width=".86" height=".86" rx=".14" fill="currentColor" stroke="none"/>
+    <rect x="3.07" y="3.07" width=".86" height=".86" rx=".14" fill="currentColor" stroke="none"/>
+    <rect x="4.07" y="3.07" width=".86" height=".86" rx=".14" fill="currentColor" stroke="none"/>
+    <rect x="5.07" y="3.07" width=".86" height=".86" rx=".14" fill="currentColor" stroke="none"/>
+    <rect x="6.07" y="3.07" width=".86" height=".86" rx=".14" fill="currentColor" stroke="none"/>
+    <rect x="7.07" y="3.07" width=".86" height=".86" rx=".14" fill="currentColor" stroke="none"/>
+    <rect x="8.07" y="3.07" width=".86" height=".86" rx=".14" fill="currentColor" stroke="none"/>
+    <rect x="2.07" y="4.07" width=".86" height=".86" rx=".14" fill="currentColor" stroke="none"/>
+    <rect x="3.07" y="4.07" width=".86" height=".86" rx=".14" fill="currentColor" stroke="none"/>
+    <rect x="4.07" y="4.07" width=".86" height=".86" rx=".14" fill="currentColor" stroke="none"/>
+    <rect x="5.07" y="4.07" width=".86" height=".86" rx=".14" fill="currentColor" stroke="none"/>
+    <rect x="6.07" y="4.07" width=".86" height=".86" rx=".14" fill="currentColor" stroke="none"/>
+    <rect x="7.07" y="4.07" width=".86" height=".86" rx=".14" fill="currentColor" stroke="none"/>
+    <rect x="2.07" y="5.07" width=".86" height=".86" rx=".14" fill="currentColor" stroke="none"/>
+    <rect x="3.07" y="5.07" width=".86" height=".86" rx=".14" fill="currentColor" stroke="none"/>
+    <rect x="4.07" y="5.07" width=".86" height=".86" rx=".14" fill="currentColor" stroke="none"/>
+    <rect x="5.07" y="5.07" width=".86" height=".86" rx=".14" fill="currentColor" stroke="none"/>
+    <rect x="6.07" y="5.07" width=".86" height=".86" rx=".14" fill="currentColor" stroke="none"/>
+    <rect x="7.07" y="5.07" width=".86" height=".86" rx=".14" fill="currentColor" stroke="none"/>
+    <rect x="8.07" y="5.07" width=".86" height=".86" rx=".14" fill="currentColor" stroke="none"/>
+    <rect x="14.07" y="5.07" width=".86" height=".86" rx=".14" fill="currentColor" stroke="none"/>
+    <rect x="15.07" y="5.07" width=".86" height=".86" rx=".14" fill="currentColor" stroke="none"/>
+    <rect x="2.07" y="6.07" width=".86" height=".86" rx=".14" fill="currentColor" stroke="none"/>
+    <rect x="3.07" y="6.07" width=".86" height=".86" rx=".14" fill="currentColor" stroke="none"/>
+    <rect x="4.07" y="6.07" width=".86" height=".86" rx=".14" fill="currentColor" stroke="none"/>
+    <rect x="5.07" y="6.07" width=".86" height=".86" rx=".14" fill="currentColor" stroke="none"/>
+    <rect x="6.07" y="6.07" width=".86" height=".86" rx=".14" fill="currentColor" stroke="none"/>
+    <rect x="7.07" y="6.07" width=".86" height=".86" rx=".14" fill="currentColor" stroke="none"/>
+    <rect x="8.07" y="6.07" width=".86" height=".86" rx=".14" fill="currentColor" stroke="none"/>
+    <rect x="9.07" y="6.07" width=".86" height=".86" rx=".14" fill="currentColor" stroke="none"/>
+    <rect x="10.07" y="6.07" width=".86" height=".86" rx=".14" fill="currentColor" stroke="none"/>
+    <rect x="11.07" y="6.07" width=".86" height=".86" rx=".14" fill="currentColor" stroke="none"/>
+    <rect x="13.07" y="6.07" width=".86" height=".86" rx=".14" fill="currentColor" stroke="none"/>
+    <rect x="14.07" y="6.07" width=".86" height=".86" rx=".14" fill="currentColor" stroke="none"/>
+    <rect x="3.07" y="7.07" width=".86" height=".86" rx=".14" fill="currentColor" stroke="none"/>
+    <rect x="4.07" y="7.07" width=".86" height=".86" rx=".14" fill="currentColor" stroke="none"/>
+    <rect x="5.07" y="7.07" width=".86" height=".86" rx=".14" fill="currentColor" stroke="none"/>
+    <rect x="6.07" y="7.07" width=".86" height=".86" rx=".14" fill="currentColor" stroke="none"/>
+    <rect x="7.07" y="7.07" width=".86" height=".86" rx=".14" fill="currentColor" stroke="none"/>
+    <rect x="8.07" y="7.07" width=".86" height=".86" rx=".14" fill="currentColor" stroke="none"/>
+    <rect x="9.07" y="7.07" width=".86" height=".86" rx=".14" fill="currentColor" stroke="none"/>
+    <rect x="10.07" y="7.07" width=".86" height=".86" rx=".14" fill="currentColor" stroke="none"/>
+    <rect x="11.07" y="7.07" width=".86" height=".86" rx=".14" fill="currentColor" stroke="none"/>
+    <rect x="12.07" y="7.07" width=".86" height=".86" rx=".14" fill="currentColor" stroke="none"/>
+    <rect x="13.07" y="7.07" width=".86" height=".86" rx=".14" fill="currentColor" stroke="none"/>
+    <rect x="3.07" y="8.07" width=".86" height=".86" rx=".14" fill="currentColor" stroke="none"/>
+    <rect x="4.07" y="8.07" width=".86" height=".86" rx=".14" fill="currentColor" stroke="none"/>
+    <rect x="5.07" y="8.07" width=".86" height=".86" rx=".14" fill="currentColor" stroke="none"/>
+    <rect x="6.07" y="8.07" width=".86" height=".86" rx=".14" fill="currentColor" stroke="none"/>
+    <rect x="7.07" y="8.07" width=".86" height=".86" rx=".14" fill="currentColor" stroke="none"/>
+    <rect x="8.07" y="8.07" width=".86" height=".86" rx=".14" fill="currentColor" stroke="none"/>
+    <rect x="9.07" y="8.07" width=".86" height=".86" rx=".14" fill="currentColor" stroke="none"/>
+    <rect x="10.07" y="8.07" width=".86" height=".86" rx=".14" fill="currentColor" stroke="none"/>
+    <rect x="11.07" y="8.07" width=".86" height=".86" rx=".14" fill="currentColor" stroke="none"/>
+    <rect x="12.07" y="8.07" width=".86" height=".86" rx=".14" fill="currentColor" stroke="none"/>
+    <rect x="13.07" y="8.07" width=".86" height=".86" rx=".14" fill="currentColor" stroke="none"/>
+    <rect x="4.07" y="9.07" width=".86" height=".86" rx=".14" fill="currentColor" stroke="none"/>
+    <rect x="5.07" y="9.07" width=".86" height=".86" rx=".14" fill="currentColor" stroke="none"/>
+    <rect x="7.07" y="9.07" width=".86" height=".86" rx=".14" fill="currentColor" stroke="none"/>
+    <rect x="8.07" y="9.07" width=".86" height=".86" rx=".14" fill="currentColor" stroke="none"/>
+    <rect x="9.07" y="9.07" width=".86" height=".86" rx=".14" fill="currentColor" stroke="none"/>
+    <rect x="10.07" y="9.07" width=".86" height=".86" rx=".14" fill="currentColor" stroke="none"/>
+    <rect x="11.07" y="9.07" width=".86" height=".86" rx=".14" fill="currentColor" stroke="none"/>
+    <rect x="13.07" y="9.07" width=".86" height=".86" rx=".14" fill="currentColor" stroke="none"/>
+    <rect x="14.07" y="9.07" width=".86" height=".86" rx=".14" fill="currentColor" stroke="none"/>
+    <rect x="5.07" y="10.07" width=".86" height=".86" rx=".14" fill="currentColor" stroke="none"/>
+    <rect x="6.07" y="10.07" width=".86" height=".86" rx=".14" fill="currentColor" stroke="none"/>
+    <rect x="14.07" y="10.07" width=".86" height=".86" rx=".14" fill="currentColor" stroke="none"/>
+    <rect x="15.07" y="10.07" width=".86" height=".86" rx=".14" fill="currentColor" stroke="none"/>
+  </g>
+</symbol>
+    <symbol id="hb-mk-tokker" viewBox="0 0 120 120">
+  
+  
+  
+  <g transform="translate(10 10) scale(1.5625)">
+    <rect width="64" height="64" rx="14" fill="currentColor" stroke="none"/>
+    <g>
+      <rect x="6" y="12" width="25" height="40" rx="4" fill="currentColor" stroke="none"/>
+      <path d="M15.6 21h4.8v6h4.1v4.4h-4.1v8.3c0 1.4.6 2 1.9 2h2.2V46h-3.4c-4 0-5.5-1.9-5.5-5.9v-8.7h-2.7V27h2.7z" fill="currentColor" stroke="none"/>
+    </g>
+    <g>
+      <rect x="33" y="12" width="25" height="40" rx="4" fill="currentColor" stroke="none"/>
+      <path transform="translate(-2 0)" d="M39.2 18.5H44v15.2l6-6.7h5.7l-7 7.6L56 46h-5.6l-5-8.2-1.4 1.5V46h-4.8z" fill="currentColor" stroke="none"/>
+    </g>
+    <path d="M6 31.5h52v1H6z" fill="currentColor" stroke="none"/>
+  </g>
+</symbol>
+    <symbol id="hb-mk-ghostwritin" viewBox="0 0 120 120">
+  
+  
+  
+  
+  <rect x="10" y="10" width="100" height="100" rx="26" fill="currentColor" stroke="none"/>
+  <g>
+    <g>
+      <path d="M38 86V56a22 22 0 0 1 44 0v30l-7.33-6-7.33 6-7.34-6-7.33 6-7.34-6z" fill="currentColor" stroke="none"/>
+      <ellipse cx="51" cy="57" rx="3.6" ry="4.4" fill="currentColor" stroke="none"/>
+      <ellipse cx="69" cy="57" rx="3.6" ry="4.4" fill="currentColor" stroke="none"/>
+    </g>
+    <path d="M34 97q4-4 8 0t8 0 8 0 8 0 8 0 8 0 8 0" stroke-width="2.5" stroke-linecap="round" fill="none" stroke="currentColor" stroke-width="2.5"/>
+    <path d="M34 97H86" stroke-width="2.5" stroke-linecap="round" fill="none" stroke="currentColor" stroke-width="2.5"/>
+    <rect x="0" y="10" width="40" height="100" fill="currentColor" stroke="none"/>
+  </g>
+</symbol>
+    <symbol id="hb-mk-promptdecode" viewBox="0 0 120 120">
+  
+  
+  
+  <rect x="12" y="12" width="96" height="96" rx="30" fill="currentColor" stroke="none"/>
+  <rect x="13.75" y="13.75" width="92.5" height="92.5" rx="28.25" stroke-width="3.5" fill="none" stroke="currentColor" stroke-width="3.5"/>
+  <rect x="28" y="42" width="16" height="36" rx="4" fill="currentColor" stroke="none"/>
+  <rect x="52" y="42" width="16" height="36" rx="4" fill="currentColor" stroke="none"/>
+  <rect x="76" y="42" width="16" height="36" rx="4" fill="currentColor" stroke="none"/>
+</symbol>
+    <symbol id="hb-mk-keep-shipping" viewBox="0 0 120 120">
+  
+  
+  
+  <rect x="10" y="10" width="100" height="100" fill="currentColor" stroke="none"/>
+  <path d="M18 60H102" stroke-width="6" fill="currentColor" stroke="none"/>
+  <rect x="49" y="49" width="22" height="22" transform="rotate(45 60 60)" stroke-width="6" fill="currentColor" stroke="none"/>
+  <rect x="14" y="56" width="8" height="8" fill="currentColor" stroke="none"/>
+</symbol>
+    <symbol id="hb-mk-supportgenius" viewBox="0 0 120 120">
+  
+  
+  
+  
+  <rect x="12" y="12" width="96" height="96" rx="30" fill="currentColor" stroke="none"/>
+  <rect x="13.75" y="13.75" width="92.5" height="92.5" rx="28.25" stroke-width="3.5" fill="none" stroke="currentColor" stroke-width="3.5"/>
+  
+  <path d="M81.57 38.43 A30.5 30.5 0 1 1 38.43 38.43" stroke-width="6" stroke-dasharray="11 7" fill="none" stroke="currentColor" stroke-width="6"/>
+  
+  <path d="M48.9 71.1 A15.7 15.7 0 1 1 71.1 71.1" stroke-width="5.5" fill="none" stroke="currentColor" stroke-width="5.5"/>
+  <circle cx="60" cy="60" r="10" fill="currentColor" stroke="none"/>
+</symbol>
+    <symbol id="hb-mk-squeezin" viewBox="0 0 120 120">
+  
+  
+  
+  
+  <rect x="10" y="10" width="100" height="100" rx="26.7" fill="currentColor" stroke="none"/>
+  <g>
+    <circle cx="60" cy="60" r="13.3" filter="url(#sq-glow)" fill="currentColor" stroke="none"/>
+    <circle cx="60" cy="60" r="13.3" fill="currentColor" stroke="none"/>
+  </g>
+  <rect x="26.7" y="30" width="10" height="60" rx="6.7" fill="currentColor" stroke="none"/>
+  <rect x="83.3" y="30" width="10" height="60" rx="6.7" fill="currentColor" stroke="none"/>
+</symbol>
+    <symbol id="hb-mk-vibecaddie" viewBox="0 0 120 120">
+  
+  
+  
+  
+  <rect x="10" y="10" width="100" height="100" rx="28" fill="currentColor" stroke="none"/>
+  <g>
+    <rect x="50.9" y="28.2" width="18.2" height="63.6" rx="9.1" transform="rotate(20 60 60)" fill="currentColor" stroke="none"/>
+    <circle cx="34" cy="86" r="6" fill="currentColor" stroke="none"/>
+    <rect x="-36" y="10" width="36" height="100" fill="currentColor" stroke="none"/>
+  </g>
+</symbol>
+    <symbol id="hb-mk-posplugin" viewBox="0 0 120 120">
+  
+  
+  
+  <path d="M6 60H36" fill="currentColor" stroke="none"/>
+  <path pathLength="100" d="M6 60H36" fill="currentColor" stroke="none"/>
+  <g>
+    <rect x="36" y="32" width="48" height="56" fill="currentColor" stroke="none"/>
+    <rect x="44" y="40" width="9" height="9" fill="currentColor" stroke="none"/>
+    <rect x="84" y="42" width="28" height="9" fill="currentColor" stroke="none"/>
+    <rect x="84" y="69" width="28" height="9" fill="currentColor" stroke="none"/>
+  </g>
+</symbol>
+    <symbol id="hb-mk-shoal" viewBox="0 0 120 120">
+  
+  
+  
+  <rect x="10" y="10" width="100" height="100" rx="23.4" fill="currentColor" stroke="none"/>
+  <g transform="translate(24.69 23.75) scale(3.047)">
+    <path d="M3 7l3 5-3 5" fill="currentColor" stroke="none"/>
+    <path d="M10 5l4 7-4 7" fill="currentColor" stroke="none"/>
+    <path d="M18 8l2.5 4-2.5 4" fill="currentColor" stroke="none"/>
+  </g>
+</symbol>
+    <symbol id="hb-mk-release-show" viewBox="0 0 120 120">
+  
+  
+  
+  
+  <g>
+    <rect x="10" y="10" width="100" height="100" fill="currentColor" stroke="none"/>
+    <path d="M45.9 37.3L83.4 60L45.9 82.7Z" fill="currentColor" stroke="none"/>
+    <g><rect x="10" y="10" width="100" height="50" fill="currentColor" stroke="none"/><rect x="10" y="59" width="100" height="1" fill="currentColor" stroke="none"/></g>
+    <g><rect x="10" y="60" width="100" height="50" fill="currentColor" stroke="none"/><rect x="10" y="60" width="100" height="1" fill="currentColor" stroke="none"/></g>
+    <circle cx="89.7" cy="30.3" r="6.25" fill="currentColor" stroke="none"/>
+  </g>
+</symbol>
+    <pattern id="hb-st-0" patternUnits="userSpaceOnUse" x="0" y="0" width="200" height="200"><image href="/assets/ui/block-stone.webp" width="200" height="200" preserveAspectRatio="none"/></pattern>
+    <pattern id="hb-st-1" patternUnits="userSpaceOnUse" x="97" y="131" width="200" height="200"><image href="/assets/ui/block-stone.webp" width="200" height="200" preserveAspectRatio="none"/></pattern>
+    <pattern id="hb-st-2" patternUnits="userSpaceOnUse" x="194" y="62" width="200" height="200"><image href="/assets/ui/block-stone.webp" width="200" height="200" preserveAspectRatio="none"/></pattern>
+    <pattern id="hb-st-3" patternUnits="userSpaceOnUse" x="91" y="193" width="200" height="200"><image href="/assets/ui/block-stone.webp" width="200" height="200" preserveAspectRatio="none"/></pattern>
+    <pattern id="hb-st-4" patternUnits="userSpaceOnUse" x="188" y="124" width="200" height="200"><image href="/assets/ui/block-stone.webp" width="200" height="200" preserveAspectRatio="none"/></pattern>
+    <pattern id="hb-st-5" patternUnits="userSpaceOnUse" x="85" y="55" width="200" height="200"><image href="/assets/ui/block-stone.webp" width="200" height="200" preserveAspectRatio="none"/></pattern>
+    <pattern id="hb-st-6" patternUnits="userSpaceOnUse" x="182" y="186" width="200" height="200"><image href="/assets/ui/block-stone.webp" width="200" height="200" preserveAspectRatio="none"/></pattern>
+    <pattern id="hb-st-7" patternUnits="userSpaceOnUse" x="79" y="117" width="200" height="200"><image href="/assets/ui/block-stone.webp" width="200" height="200" preserveAspectRatio="none"/></pattern>
+    <pattern id="hb-st-8" patternUnits="userSpaceOnUse" x="176" y="48" width="200" height="200"><image href="/assets/ui/block-stone.webp" width="200" height="200" preserveAspectRatio="none"/></pattern>
+    <pattern id="hb-st-9" patternUnits="userSpaceOnUse" x="73" y="179" width="200" height="200"><image href="/assets/ui/block-stone.webp" width="200" height="200" preserveAspectRatio="none"/></pattern>
+    <pattern id="hb-st-10" patternUnits="userSpaceOnUse" x="170" y="110" width="200" height="200"><image href="/assets/ui/block-stone.webp" width="200" height="200" preserveAspectRatio="none"/></pattern>
+    <pattern id="hb-st-11" patternUnits="userSpaceOnUse" x="67" y="41" width="200" height="200"><image href="/assets/ui/block-stone.webp" width="200" height="200" preserveAspectRatio="none"/></pattern>
+    <pattern id="hb-st-12" patternUnits="userSpaceOnUse" x="164" y="172" width="200" height="200"><image href="/assets/ui/block-stone.webp" width="200" height="200" preserveAspectRatio="none"/></pattern>
+    <pattern id="hb-st-13" patternUnits="userSpaceOnUse" x="61" y="103" width="200" height="200"><image href="/assets/ui/block-stone.webp" width="200" height="200" preserveAspectRatio="none"/></pattern>
+    <pattern id="hb-st-14" patternUnits="userSpaceOnUse" x="158" y="34" width="200" height="200"><image href="/assets/ui/block-stone.webp" width="200" height="200" preserveAspectRatio="none"/></pattern>
+    <pattern id="hb-st-15" patternUnits="userSpaceOnUse" x="55" y="165" width="200" height="200"><image href="/assets/ui/block-stone.webp" width="200" height="200" preserveAspectRatio="none"/></pattern>
+    <pattern id="hb-st-16" patternUnits="userSpaceOnUse" x="152" y="96" width="200" height="200"><image href="/assets/ui/block-stone.webp" width="200" height="200" preserveAspectRatio="none"/></pattern>
+  </defs>
+  <polygon class="hb-plate" points="0,0 433.01,250 346.41,300 259.81,250 173.21,300 173.21,300 86.6,350 86.6,350 0,400 -346.41,200"/>
+    <g class="hb is-lit" data-venture="FZ-013" data-name="Owlpost">
+      <a href="/ventures/owlpost/" tabindex="-1">
+        <polygon class="hb-face hb-left" points="-74.48,-42 0,1 0,93 -74.48,50" fill="#1b1e1b"/><polygon class="hb-tex" points="-74.48,-42 0,1 0,93 -74.48,50" fill="url(#hb-st-0)"/><polygon class="hb-shade" points="-74.48,-42 0,1 0,93 -74.48,50" fill="rgba(0,0,0,.2)"/>
+        <polygon class="hb-face hb-right" points="74.48,-42 0,1 0,93 74.48,50" fill="#0d0f0d"/><polygon class="hb-tex" points="74.48,-42 0,1 0,93 74.48,50" fill="url(#hb-st-0)"/><polygon class="hb-shade" points="74.48,-42 0,1 0,93 74.48,50" fill="rgba(0,0,0,.52)"/>
+        <polygon class="hb-face hb-top" points="0,-85 74.48,-42 0,1 -74.48,-42" fill="#2a2e29"/><polygon class="hb-tex" points="0,-85 74.48,-42 0,1 -74.48,-42" fill="url(#hb-st-0)"/><polygon class="hb-shade" points="0,-85 74.48,-42 0,1 -74.48,-42" fill="rgba(237,239,232,.13)"/>
+        <polygon class="hb-edge" points="0,-85 74.48,-42 0,1 -74.48,-42" fill="none"/>
+        <g transform="matrix(74.48 43 -74.48 43 0 -85)">
+          <use class="hb-rim" href="#hb-mk-owlpost" x="0.222" y="0.222" width="0.6" height="0.6"/>
+          <use class="hb-cut" href="#hb-mk-owlpost" x="0.2" y="0.2" width="0.6" height="0.6"/>
+        </g>
+      </a>
+    </g>
+    <g class="hb is-lit" data-venture="FZ-004" data-name="Cratefield">
+      <a href="/ventures/cratefield/" tabindex="-1">
+        <polygon class="hb-face hb-left" points="12.12,-84 86.6,-41 86.6,143 12.12,100" fill="#1b1e1b"/><polygon class="hb-tex" points="12.12,-84 86.6,-41 86.6,143 12.12,100" fill="url(#hb-st-1)"/><polygon class="hb-shade" points="12.12,-84 86.6,-41 86.6,143 12.12,100" fill="rgba(0,0,0,.2)"/>
+        <polygon class="hb-face hb-right" points="161.08,-84 86.6,-41 86.6,143 161.08,100" fill="#0d0f0d"/><polygon class="hb-tex" points="161.08,-84 86.6,-41 86.6,143 161.08,100" fill="url(#hb-st-1)"/><polygon class="hb-shade" points="161.08,-84 86.6,-41 86.6,143 161.08,100" fill="rgba(0,0,0,.52)"/>
+        <polygon class="hb-face hb-top" points="86.6,-127 161.08,-84 86.6,-41 12.12,-84" fill="#2a2e29"/><polygon class="hb-tex" points="86.6,-127 161.08,-84 86.6,-41 12.12,-84" fill="url(#hb-st-1)"/><polygon class="hb-shade" points="86.6,-127 161.08,-84 86.6,-41 12.12,-84" fill="rgba(237,239,232,.13)"/>
+        <polygon class="hb-edge" points="86.6,-127 161.08,-84 86.6,-41 12.12,-84" fill="none"/>
+        <g transform="matrix(74.48 43 -74.48 43 86.6 -127)">
+          <use class="hb-rim" href="#hb-mk-cratefield" x="0.222" y="0.222" width="0.6" height="0.6"/>
+          <use class="hb-cut" href="#hb-mk-cratefield" x="0.2" y="0.2" width="0.6" height="0.6"/>
+        </g>
+      </a>
+    </g>
+    <g class="hb" data-venture="FZ-018" data-name="Living Brain">
+      <a href="/ventures/living-brain/" tabindex="-1">
+        <polygon class="hb-face hb-left" points="-161.08,8 -86.6,51 -86.6,143 -161.08,100" fill="#1b1e1b"/><polygon class="hb-tex" points="-161.08,8 -86.6,51 -86.6,143 -161.08,100" fill="url(#hb-st-2)"/><polygon class="hb-shade" points="-161.08,8 -86.6,51 -86.6,143 -161.08,100" fill="rgba(0,0,0,.2)"/>
+        <polygon class="hb-face hb-right" points="-12.12,8 -86.6,51 -86.6,143 -12.12,100" fill="#0d0f0d"/><polygon class="hb-tex" points="-12.12,8 -86.6,51 -86.6,143 -12.12,100" fill="url(#hb-st-2)"/><polygon class="hb-shade" points="-12.12,8 -86.6,51 -86.6,143 -12.12,100" fill="rgba(0,0,0,.52)"/>
+        <polygon class="hb-face hb-top" points="-86.6,-35 -12.12,8 -86.6,51 -161.08,8" fill="#2a2e29"/><polygon class="hb-tex" points="-86.6,-35 -12.12,8 -86.6,51 -161.08,8" fill="url(#hb-st-2)"/><polygon class="hb-shade" points="-86.6,-35 -12.12,8 -86.6,51 -161.08,8" fill="rgba(237,239,232,.13)"/>
+        <polygon class="hb-edge" points="-86.6,-35 -12.12,8 -86.6,51 -161.08,8" fill="none"/>
+        <g transform="matrix(74.48 43 -74.48 43 -86.6 -35)">
+          <use class="hb-rim" href="#hb-mk-living-brain" x="0.222" y="0.222" width="0.6" height="0.6"/>
+          <use class="hb-cut" href="#hb-mk-living-brain" x="0.2" y="0.2" width="0.6" height="0.6"/>
+        </g>
+      </a>
+    </g>
+    <g class="hb" data-venture="FZ-006" data-name="Colonizer">
+      <a href="/ventures/colonizer/" tabindex="-1">
+        <polygon class="hb-face hb-left" points="98.73,-34 173.21,9 173.21,193 98.73,150" fill="#1b1e1b"/><polygon class="hb-tex" points="98.73,-34 173.21,9 173.21,193 98.73,150" fill="url(#hb-st-3)"/><polygon class="hb-shade" points="98.73,-34 173.21,9 173.21,193 98.73,150" fill="rgba(0,0,0,.2)"/>
+        <polygon class="hb-face hb-right" points="247.68,-34 173.21,9 173.21,193 247.68,150" fill="#0d0f0d"/><polygon class="hb-tex" points="247.68,-34 173.21,9 173.21,193 247.68,150" fill="url(#hb-st-3)"/><polygon class="hb-shade" points="247.68,-34 173.21,9 173.21,193 247.68,150" fill="rgba(0,0,0,.52)"/>
+        <polygon class="hb-face hb-top" points="173.21,-77 247.68,-34 173.21,9 98.73,-34" fill="#2a2e29"/><polygon class="hb-tex" points="173.21,-77 247.68,-34 173.21,9 98.73,-34" fill="url(#hb-st-3)"/><polygon class="hb-shade" points="173.21,-77 247.68,-34 173.21,9 98.73,-34" fill="rgba(237,239,232,.13)"/>
+        <polygon class="hb-edge" points="173.21,-77 247.68,-34 173.21,9 98.73,-34" fill="none"/>
+        <g transform="matrix(74.48 43 -74.48 43 173.21 -77)">
+          <use class="hb-rim" href="#hb-mk-colonizer" x="0.222" y="0.222" width="0.6" height="0.6"/>
+          <use class="hb-cut" href="#hb-mk-colonizer" x="0.2" y="0.2" width="0.6" height="0.6"/>
+        </g>
+      </a>
+    </g>
+    <g class="hb" data-venture="FZ-021" data-name="Ledgers">
+      <a href="/ventures/ledgers/" tabindex="-1">
+        <polygon class="hb-face hb-left" points="-74.48,58 0,101 0,193 -74.48,150" fill="#1b1e1b"/><polygon class="hb-tex" points="-74.48,58 0,101 0,193 -74.48,150" fill="url(#hb-st-4)"/><polygon class="hb-shade" points="-74.48,58 0,101 0,193 -74.48,150" fill="rgba(0,0,0,.2)"/>
+        <polygon class="hb-face hb-right" points="74.48,58 0,101 0,193 74.48,150" fill="#0d0f0d"/><polygon class="hb-tex" points="74.48,58 0,101 0,193 74.48,150" fill="url(#hb-st-4)"/><polygon class="hb-shade" points="74.48,58 0,101 0,193 74.48,150" fill="rgba(0,0,0,.52)"/>
+        <polygon class="hb-face hb-top" points="0,15 74.48,58 0,101 -74.48,58" fill="#2a2e29"/><polygon class="hb-tex" points="0,15 74.48,58 0,101 -74.48,58" fill="url(#hb-st-4)"/><polygon class="hb-shade" points="0,15 74.48,58 0,101 -74.48,58" fill="rgba(237,239,232,.13)"/>
+        <polygon class="hb-edge" points="0,15 74.48,58 0,101 -74.48,58" fill="none"/>
+        <g transform="matrix(74.48 43 -74.48 43 0 15)">
+          <use class="hb-rim" href="#hb-mk-ledgers" x="0.222" y="0.222" width="0.6" height="0.6"/>
+          <use class="hb-cut" href="#hb-mk-ledgers" x="0.2" y="0.2" width="0.6" height="0.6"/>
+        </g>
+      </a>
+    </g>
+    <g class="hb" data-venture="FZ-001" data-name="Kontinuum">
+      <a href="/ventures/kontinuum/" tabindex="-1">
+        <polygon class="hb-face hb-left" points="-247.68,58 -173.21,101 -173.21,193 -247.68,150" fill="#1b1e1b"/><polygon class="hb-tex" points="-247.68,58 -173.21,101 -173.21,193 -247.68,150" fill="url(#hb-st-5)"/><polygon class="hb-shade" points="-247.68,58 -173.21,101 -173.21,193 -247.68,150" fill="rgba(0,0,0,.2)"/>
+        <polygon class="hb-face hb-right" points="-98.73,58 -173.21,101 -173.21,193 -98.73,150" fill="#0d0f0d"/><polygon class="hb-tex" points="-98.73,58 -173.21,101 -173.21,193 -98.73,150" fill="url(#hb-st-5)"/><polygon class="hb-shade" points="-98.73,58 -173.21,101 -173.21,193 -98.73,150" fill="rgba(0,0,0,.52)"/>
+        <polygon class="hb-face hb-top" points="-173.21,15 -98.73,58 -173.21,101 -247.68,58" fill="#2a2e29"/><polygon class="hb-tex" points="-173.21,15 -98.73,58 -173.21,101 -247.68,58" fill="url(#hb-st-5)"/><polygon class="hb-shade" points="-173.21,15 -98.73,58 -173.21,101 -247.68,58" fill="rgba(237,239,232,.13)"/>
+        <polygon class="hb-edge" points="-173.21,15 -98.73,58 -173.21,101 -247.68,58" fill="none"/>
+        <g transform="matrix(74.48 43 -74.48 43 -173.21 15)">
+          <use class="hb-rim" href="#hb-mk-kontinuum" x="0.222" y="0.222" width="0.6" height="0.6"/>
+          <use class="hb-cut" href="#hb-mk-kontinuum" x="0.2" y="0.2" width="0.6" height="0.6"/>
+        </g>
+      </a>
+    </g>
+    <g class="hb" data-venture="FZ-016" data-name="Sealbin">
+      <a href="/ventures/sealbin/" tabindex="-1">
+        <polygon class="hb-face hb-left" points="185.33,108 259.81,151 259.81,243 185.33,200" fill="#1b1e1b"/><polygon class="hb-tex" points="185.33,108 259.81,151 259.81,243 185.33,200" fill="url(#hb-st-6)"/><polygon class="hb-shade" points="185.33,108 259.81,151 259.81,243 185.33,200" fill="rgba(0,0,0,.2)"/>
+        <polygon class="hb-face hb-right" points="334.29,108 259.81,151 259.81,243 334.29,200" fill="#0d0f0d"/><polygon class="hb-tex" points="334.29,108 259.81,151 259.81,243 334.29,200" fill="url(#hb-st-6)"/><polygon class="hb-shade" points="334.29,108 259.81,151 259.81,243 334.29,200" fill="rgba(0,0,0,.52)"/>
+        <polygon class="hb-face hb-top" points="259.81,65 334.29,108 259.81,151 185.33,108" fill="#2a2e29"/><polygon class="hb-tex" points="259.81,65 334.29,108 259.81,151 185.33,108" fill="url(#hb-st-6)"/><polygon class="hb-shade" points="259.81,65 334.29,108 259.81,151 185.33,108" fill="rgba(237,239,232,.13)"/>
+        <polygon class="hb-edge" points="259.81,65 334.29,108 259.81,151 185.33,108" fill="none"/>
+        <g transform="matrix(74.48 43 -74.48 43 259.81 65)">
+          <use class="hb-rim" href="#hb-mk-sealbin" x="0.222" y="0.222" width="0.6" height="0.6"/>
+          <use class="hb-cut" href="#hb-mk-sealbin" x="0.2" y="0.2" width="0.6" height="0.6"/>
+        </g>
+      </a>
+    </g>
+    <g class="hb" data-venture="FZ-020" data-name="Tokker">
+      <a href="/ventures/tokker/" tabindex="-1">
+        <polygon class="hb-face hb-left" points="12.12,108 86.6,151 86.6,243 12.12,200" fill="#1b1e1b"/><polygon class="hb-tex" points="12.12,108 86.6,151 86.6,243 12.12,200" fill="url(#hb-st-7)"/><polygon class="hb-shade" points="12.12,108 86.6,151 86.6,243 12.12,200" fill="rgba(0,0,0,.2)"/>
+        <polygon class="hb-face hb-right" points="161.08,108 86.6,151 86.6,243 161.08,200" fill="#0d0f0d"/><polygon class="hb-tex" points="161.08,108 86.6,151 86.6,243 161.08,200" fill="url(#hb-st-7)"/><polygon class="hb-shade" points="161.08,108 86.6,151 86.6,243 161.08,200" fill="rgba(0,0,0,.52)"/>
+        <polygon class="hb-face hb-top" points="86.6,65 161.08,108 86.6,151 12.12,108" fill="#2a2e29"/><polygon class="hb-tex" points="86.6,65 161.08,108 86.6,151 12.12,108" fill="url(#hb-st-7)"/><polygon class="hb-shade" points="86.6,65 161.08,108 86.6,151 12.12,108" fill="rgba(237,239,232,.13)"/>
+        <polygon class="hb-edge" points="86.6,65 161.08,108 86.6,151 12.12,108" fill="none"/>
+        <g transform="matrix(74.48 43 -74.48 43 86.6 65)">
+          <use class="hb-rim" href="#hb-mk-tokker" x="0.222" y="0.222" width="0.6" height="0.6"/>
+          <use class="hb-cut" href="#hb-mk-tokker" x="0.2" y="0.2" width="0.6" height="0.6"/>
+        </g>
+      </a>
+    </g>
+    <g class="hb" data-venture="FZ-022" data-name="Ghostwritin'">
+      <a href="/ventures/ghostwritin/" tabindex="-1">
+        <polygon class="hb-face hb-left" points="-161.08,108 -86.6,151 -86.6,243 -161.08,200" fill="#1b1e1b"/><polygon class="hb-tex" points="-161.08,108 -86.6,151 -86.6,243 -161.08,200" fill="url(#hb-st-8)"/><polygon class="hb-shade" points="-161.08,108 -86.6,151 -86.6,243 -161.08,200" fill="rgba(0,0,0,.2)"/>
+        <polygon class="hb-face hb-right" points="-12.12,108 -86.6,151 -86.6,243 -12.12,200" fill="#0d0f0d"/><polygon class="hb-tex" points="-12.12,108 -86.6,151 -86.6,243 -12.12,200" fill="url(#hb-st-8)"/><polygon class="hb-shade" points="-12.12,108 -86.6,151 -86.6,243 -12.12,200" fill="rgba(0,0,0,.52)"/>
+        <polygon class="hb-face hb-top" points="-86.6,65 -12.12,108 -86.6,151 -161.08,108" fill="#2a2e29"/><polygon class="hb-tex" points="-86.6,65 -12.12,108 -86.6,151 -161.08,108" fill="url(#hb-st-8)"/><polygon class="hb-shade" points="-86.6,65 -12.12,108 -86.6,151 -161.08,108" fill="rgba(237,239,232,.13)"/>
+        <polygon class="hb-edge" points="-86.6,65 -12.12,108 -86.6,151 -161.08,108" fill="none"/>
+        <g transform="matrix(74.48 43 -74.48 43 -86.6 65)">
+          <use class="hb-rim" href="#hb-mk-ghostwritin" x="0.222" y="0.222" width="0.6" height="0.6"/>
+          <use class="hb-cut" href="#hb-mk-ghostwritin" x="0.2" y="0.2" width="0.6" height="0.6"/>
+        </g>
+      </a>
+    </g>
+    <g class="hb" data-venture="FZ-009" data-name="promptdecode">
+      <a href="/ventures/promptdecode/" tabindex="-1">
+        <polygon class="hb-face hb-left" points="-334.29,108 -259.81,151 -259.81,243 -334.29,200" fill="#1b1e1b"/><polygon class="hb-tex" points="-334.29,108 -259.81,151 -259.81,243 -334.29,200" fill="url(#hb-st-9)"/><polygon class="hb-shade" points="-334.29,108 -259.81,151 -259.81,243 -334.29,200" fill="rgba(0,0,0,.2)"/>
+        <polygon class="hb-face hb-right" points="-185.33,108 -259.81,151 -259.81,243 -185.33,200" fill="#0d0f0d"/><polygon class="hb-tex" points="-185.33,108 -259.81,151 -259.81,243 -185.33,200" fill="url(#hb-st-9)"/><polygon class="hb-shade" points="-185.33,108 -259.81,151 -259.81,243 -185.33,200" fill="rgba(0,0,0,.52)"/>
+        <polygon class="hb-face hb-top" points="-259.81,65 -185.33,108 -259.81,151 -334.29,108" fill="#2a2e29"/><polygon class="hb-tex" points="-259.81,65 -185.33,108 -259.81,151 -334.29,108" fill="url(#hb-st-9)"/><polygon class="hb-shade" points="-259.81,65 -185.33,108 -259.81,151 -334.29,108" fill="rgba(237,239,232,.13)"/>
+        <polygon class="hb-edge" points="-259.81,65 -185.33,108 -259.81,151 -334.29,108" fill="none"/>
+        <g transform="matrix(74.48 43 -74.48 43 -259.81 65)">
+          <use class="hb-rim" href="#hb-mk-promptdecode" x="0.222" y="0.222" width="0.6" height="0.6"/>
+          <use class="hb-cut" href="#hb-mk-promptdecode" x="0.2" y="0.2" width="0.6" height="0.6"/>
+        </g>
+      </a>
+    </g>
+    <g class="hb" data-venture="FZ-012" data-name="Keep Shipping">
+      <a href="/ventures/keep-shipping/" tabindex="-1">
+        <polygon class="hb-face hb-left" points="271.93,158 346.41,201 346.41,293 271.93,250" fill="#1b1e1b"/><polygon class="hb-tex" points="271.93,158 346.41,201 346.41,293 271.93,250" fill="url(#hb-st-10)"/><polygon class="hb-shade" points="271.93,158 346.41,201 346.41,293 271.93,250" fill="rgba(0,0,0,.2)"/>
+        <polygon class="hb-face hb-right" points="420.89,158 346.41,201 346.41,293 420.89,250" fill="#0d0f0d"/><polygon class="hb-tex" points="420.89,158 346.41,201 346.41,293 420.89,250" fill="url(#hb-st-10)"/><polygon class="hb-shade" points="420.89,158 346.41,201 346.41,293 420.89,250" fill="rgba(0,0,0,.52)"/>
+        <polygon class="hb-face hb-top" points="346.41,115 420.89,158 346.41,201 271.93,158" fill="#2a2e29"/><polygon class="hb-tex" points="346.41,115 420.89,158 346.41,201 271.93,158" fill="url(#hb-st-10)"/><polygon class="hb-shade" points="346.41,115 420.89,158 346.41,201 271.93,158" fill="rgba(237,239,232,.13)"/>
+        <polygon class="hb-edge" points="346.41,115 420.89,158 346.41,201 271.93,158" fill="none"/>
+        <g transform="matrix(74.48 43 -74.48 43 346.41 115)">
+          <use class="hb-rim" href="#hb-mk-keep-shipping" x="0.222" y="0.222" width="0.6" height="0.6"/>
+          <use class="hb-cut" href="#hb-mk-keep-shipping" x="0.2" y="0.2" width="0.6" height="0.6"/>
+        </g>
+      </a>
+    </g>
+    <g class="hb" data-venture="FZ-008" data-name="SupportGenius">
+      <a href="/ventures/supportgenius/" tabindex="-1">
+        <polygon class="hb-face hb-left" points="98.73,158 173.21,201 173.21,293 98.73,250" fill="#1b1e1b"/><polygon class="hb-tex" points="98.73,158 173.21,201 173.21,293 98.73,250" fill="url(#hb-st-11)"/><polygon class="hb-shade" points="98.73,158 173.21,201 173.21,293 98.73,250" fill="rgba(0,0,0,.2)"/>
+        <polygon class="hb-face hb-right" points="247.68,158 173.21,201 173.21,293 247.68,250" fill="#0d0f0d"/><polygon class="hb-tex" points="247.68,158 173.21,201 173.21,293 247.68,250" fill="url(#hb-st-11)"/><polygon class="hb-shade" points="247.68,158 173.21,201 173.21,293 247.68,250" fill="rgba(0,0,0,.52)"/>
+        <polygon class="hb-face hb-top" points="173.21,115 247.68,158 173.21,201 98.73,158" fill="#2a2e29"/><polygon class="hb-tex" points="173.21,115 247.68,158 173.21,201 98.73,158" fill="url(#hb-st-11)"/><polygon class="hb-shade" points="173.21,115 247.68,158 173.21,201 98.73,158" fill="rgba(237,239,232,.13)"/>
+        <polygon class="hb-edge" points="173.21,115 247.68,158 173.21,201 98.73,158" fill="none"/>
+        <g transform="matrix(74.48 43 -74.48 43 173.21 115)">
+          <use class="hb-rim" href="#hb-mk-supportgenius" x="0.222" y="0.222" width="0.6" height="0.6"/>
+          <use class="hb-cut" href="#hb-mk-supportgenius" x="0.2" y="0.2" width="0.6" height="0.6"/>
+        </g>
+      </a>
+    </g>
+    <g class="hb" data-venture="FZ-023" data-name="Squeezin">
+      <a href="/ventures/squeezin/" tabindex="-1">
+        <polygon class="hb-face hb-left" points="-74.48,158 0,201 0,293 -74.48,250" fill="#1b1e1b"/><polygon class="hb-tex" points="-74.48,158 0,201 0,293 -74.48,250" fill="url(#hb-st-12)"/><polygon class="hb-shade" points="-74.48,158 0,201 0,293 -74.48,250" fill="rgba(0,0,0,.2)"/>
+        <polygon class="hb-face hb-right" points="74.48,158 0,201 0,293 74.48,250" fill="#0d0f0d"/><polygon class="hb-tex" points="74.48,158 0,201 0,293 74.48,250" fill="url(#hb-st-12)"/><polygon class="hb-shade" points="74.48,158 0,201 0,293 74.48,250" fill="rgba(0,0,0,.52)"/>
+        <polygon class="hb-face hb-top" points="0,115 74.48,158 0,201 -74.48,158" fill="#2a2e29"/><polygon class="hb-tex" points="0,115 74.48,158 0,201 -74.48,158" fill="url(#hb-st-12)"/><polygon class="hb-shade" points="0,115 74.48,158 0,201 -74.48,158" fill="rgba(237,239,232,.13)"/>
+        <polygon class="hb-edge" points="0,115 74.48,158 0,201 -74.48,158" fill="none"/>
+        <g transform="matrix(74.48 43 -74.48 43 0 115)">
+          <use class="hb-rim" href="#hb-mk-squeezin" x="0.222" y="0.222" width="0.6" height="0.6"/>
+          <use class="hb-cut" href="#hb-mk-squeezin" x="0.2" y="0.2" width="0.6" height="0.6"/>
+        </g>
+      </a>
+    </g>
+    <g class="hb" data-venture="FZ-005" data-name="VibeCaddie">
+      <a href="/ventures/vibecaddie/" tabindex="-1">
+        <polygon class="hb-face hb-left" points="-247.68,158 -173.21,201 -173.21,293 -247.68,250" fill="#1b1e1b"/><polygon class="hb-tex" points="-247.68,158 -173.21,201 -173.21,293 -247.68,250" fill="url(#hb-st-13)"/><polygon class="hb-shade" points="-247.68,158 -173.21,201 -173.21,293 -247.68,250" fill="rgba(0,0,0,.2)"/>
+        <polygon class="hb-face hb-right" points="-98.73,158 -173.21,201 -173.21,293 -98.73,250" fill="#0d0f0d"/><polygon class="hb-tex" points="-98.73,158 -173.21,201 -173.21,293 -98.73,250" fill="url(#hb-st-13)"/><polygon class="hb-shade" points="-98.73,158 -173.21,201 -173.21,293 -98.73,250" fill="rgba(0,0,0,.52)"/>
+        <polygon class="hb-face hb-top" points="-173.21,115 -98.73,158 -173.21,201 -247.68,158" fill="#2a2e29"/><polygon class="hb-tex" points="-173.21,115 -98.73,158 -173.21,201 -247.68,158" fill="url(#hb-st-13)"/><polygon class="hb-shade" points="-173.21,115 -98.73,158 -173.21,201 -247.68,158" fill="rgba(237,239,232,.13)"/>
+        <polygon class="hb-edge" points="-173.21,115 -98.73,158 -173.21,201 -247.68,158" fill="none"/>
+        <g transform="matrix(74.48 43 -74.48 43 -173.21 115)">
+          <use class="hb-rim" href="#hb-mk-vibecaddie" x="0.222" y="0.222" width="0.6" height="0.6"/>
+          <use class="hb-cut" href="#hb-mk-vibecaddie" x="0.2" y="0.2" width="0.6" height="0.6"/>
+        </g>
+      </a>
+    </g>
+    <g class="hb" data-venture="FZ-011" data-name="PosPlugin">
+      <a href="/ventures/posplugin/" tabindex="-1">
+        <polygon class="hb-face hb-left" points="12.12,208 86.6,251 86.6,343 12.12,300" fill="#1b1e1b"/><polygon class="hb-tex" points="12.12,208 86.6,251 86.6,343 12.12,300" fill="url(#hb-st-14)"/><polygon class="hb-shade" points="12.12,208 86.6,251 86.6,343 12.12,300" fill="rgba(0,0,0,.2)"/>
+        <polygon class="hb-face hb-right" points="161.08,208 86.6,251 86.6,343 161.08,300" fill="#0d0f0d"/><polygon class="hb-tex" points="161.08,208 86.6,251 86.6,343 161.08,300" fill="url(#hb-st-14)"/><polygon class="hb-shade" points="161.08,208 86.6,251 86.6,343 161.08,300" fill="rgba(0,0,0,.52)"/>
+        <polygon class="hb-face hb-top" points="86.6,165 161.08,208 86.6,251 12.12,208" fill="#2a2e29"/><polygon class="hb-tex" points="86.6,165 161.08,208 86.6,251 12.12,208" fill="url(#hb-st-14)"/><polygon class="hb-shade" points="86.6,165 161.08,208 86.6,251 12.12,208" fill="rgba(237,239,232,.13)"/>
+        <polygon class="hb-edge" points="86.6,165 161.08,208 86.6,251 12.12,208" fill="none"/>
+        <g transform="matrix(74.48 43 -74.48 43 86.6 165)">
+          <use class="hb-rim" href="#hb-mk-posplugin" x="0.222" y="0.222" width="0.6" height="0.6"/>
+          <use class="hb-cut" href="#hb-mk-posplugin" x="0.2" y="0.2" width="0.6" height="0.6"/>
+        </g>
+      </a>
+    </g>
+    <g class="hb" data-venture="FZ-019" data-name="Shoal">
+      <a href="/ventures/shoal/" tabindex="-1">
+        <polygon class="hb-face hb-left" points="-161.08,208 -86.6,251 -86.6,343 -161.08,300" fill="#1b1e1b"/><polygon class="hb-tex" points="-161.08,208 -86.6,251 -86.6,343 -161.08,300" fill="url(#hb-st-15)"/><polygon class="hb-shade" points="-161.08,208 -86.6,251 -86.6,343 -161.08,300" fill="rgba(0,0,0,.2)"/>
+        <polygon class="hb-face hb-right" points="-12.12,208 -86.6,251 -86.6,343 -12.12,300" fill="#0d0f0d"/><polygon class="hb-tex" points="-12.12,208 -86.6,251 -86.6,343 -12.12,300" fill="url(#hb-st-15)"/><polygon class="hb-shade" points="-12.12,208 -86.6,251 -86.6,343 -12.12,300" fill="rgba(0,0,0,.52)"/>
+        <polygon class="hb-face hb-top" points="-86.6,165 -12.12,208 -86.6,251 -161.08,208" fill="#2a2e29"/><polygon class="hb-tex" points="-86.6,165 -12.12,208 -86.6,251 -161.08,208" fill="url(#hb-st-15)"/><polygon class="hb-shade" points="-86.6,165 -12.12,208 -86.6,251 -161.08,208" fill="rgba(237,239,232,.13)"/>
+        <polygon class="hb-edge" points="-86.6,165 -12.12,208 -86.6,251 -161.08,208" fill="none"/>
+        <g transform="matrix(74.48 43 -74.48 43 -86.6 165)">
+          <use class="hb-rim" href="#hb-mk-shoal" x="0.222" y="0.222" width="0.6" height="0.6"/>
+          <use class="hb-cut" href="#hb-mk-shoal" x="0.2" y="0.2" width="0.6" height="0.6"/>
+        </g>
+      </a>
+    </g>
+    <g class="hb" data-venture="FZ-017" data-name="release.show">
+      <a href="/ventures/release-show/" tabindex="-1">
+        <polygon class="hb-face hb-left" points="-74.48,258 0,301 0,393 -74.48,350" fill="#1b1e1b"/><polygon class="hb-tex" points="-74.48,258 0,301 0,393 -74.48,350" fill="url(#hb-st-16)"/><polygon class="hb-shade" points="-74.48,258 0,301 0,393 -74.48,350" fill="rgba(0,0,0,.2)"/>
+        <polygon class="hb-face hb-right" points="74.48,258 0,301 0,393 74.48,350" fill="#0d0f0d"/><polygon class="hb-tex" points="74.48,258 0,301 0,393 74.48,350" fill="url(#hb-st-16)"/><polygon class="hb-shade" points="74.48,258 0,301 0,393 74.48,350" fill="rgba(0,0,0,.52)"/>
+        <polygon class="hb-face hb-top" points="0,215 74.48,258 0,301 -74.48,258" fill="#2a2e29"/><polygon class="hb-tex" points="0,215 74.48,258 0,301 -74.48,258" fill="url(#hb-st-16)"/><polygon class="hb-shade" points="0,215 74.48,258 0,301 -74.48,258" fill="rgba(237,239,232,.13)"/>
+        <polygon class="hb-edge" points="0,215 74.48,258 0,301 -74.48,258" fill="none"/>
+        <g transform="matrix(74.48 43 -74.48 43 0 215)">
+          <use class="hb-rim" href="#hb-mk-release-show" x="0.222" y="0.222" width="0.6" height="0.6"/>
+          <use class="hb-cut" href="#hb-mk-release-show" x="0.2" y="0.2" width="0.6" height="0.6"/>
+        </g>
+      </a>
+    </g>
+<g class="hb-tags"><g class="hb-tag is-lit" data-venture="FZ-013"><rect x="-43.3" y="-84" width="86.6" height="24"/><text x="0" y="-71" text-anchor="middle" dominant-baseline="central">Owlpost</text></g><g class="hb-tag is-lit" data-venture="FZ-004"><rect x="28.6" y="-126" width="116" height="24"/><text x="86.6" y="-113" text-anchor="middle" dominant-baseline="central">Cratefield</text></g><g class="hb-tag" data-venture="FZ-018"><rect x="-154.4" y="-34" width="135.6" height="24"/><text x="-86.6" y="-21" text-anchor="middle" dominant-baseline="central">Living Brain</text></g><g class="hb-tag" data-venture="FZ-006"><rect x="120.11" y="-76" width="106.2" height="24"/><text x="173.21" y="-63" text-anchor="middle" dominant-baseline="central">Colonizer</text></g><g class="hb-tag" data-venture="FZ-021"><rect x="-43.3" y="16" width="86.6" height="24"/><text x="0" y="29" text-anchor="middle" dominant-baseline="central">Ledgers</text></g><g class="hb-tag" data-venture="FZ-001"><rect x="-226.31" y="16" width="106.2" height="24"/><text x="-173.21" y="29" text-anchor="middle" dominant-baseline="central">Kontinuum</text></g><g class="hb-tag" data-venture="FZ-016"><rect x="216.51" y="66" width="86.6" height="24"/><text x="259.81" y="79" text-anchor="middle" dominant-baseline="central">Sealbin</text></g><g class="hb-tag" data-venture="FZ-020"><rect x="48.2" y="66" width="76.8" height="24"/><text x="86.6" y="79" text-anchor="middle" dominant-baseline="central">Tokker</text></g><g class="hb-tag" data-venture="FZ-022"><rect x="-154.4" y="66" width="135.6" height="24"/><text x="-86.6" y="79" text-anchor="middle" dominant-baseline="central">Ghostwritin'</text></g><g class="hb-tag" data-venture="FZ-009"><rect x="-327.61" y="66" width="135.6" height="24"/><text x="-259.81" y="79" text-anchor="middle" dominant-baseline="central">promptdecode</text></g><g class="hb-tag" data-venture="FZ-012"><rect x="273.71" y="116" width="145.4" height="24"/><text x="346.41" y="129" text-anchor="middle" dominant-baseline="central">Keep Shipping</text></g><g class="hb-tag" data-venture="FZ-008"><rect x="100.51" y="116" width="145.4" height="24"/><text x="173.21" y="129" text-anchor="middle" dominant-baseline="central">SupportGenius</text></g><g class="hb-tag" data-venture="FZ-023"><rect x="-48.2" y="116" width="96.4" height="24"/><text x="0" y="129" text-anchor="middle" dominant-baseline="central">Squeezin</text></g><g class="hb-tag" data-venture="FZ-005"><rect x="-231.21" y="116" width="116" height="24"/><text x="-173.21" y="129" text-anchor="middle" dominant-baseline="central">VibeCaddie</text></g><g class="hb-tag" data-venture="FZ-011"><rect x="33.5" y="166" width="106.2" height="24"/><text x="86.6" y="179" text-anchor="middle" dominant-baseline="central">PosPlugin</text></g><g class="hb-tag" data-venture="FZ-019"><rect x="-120.1" y="166" width="67" height="24"/><text x="-86.6" y="179" text-anchor="middle" dominant-baseline="central">Shoal</text></g><g class="hb-tag" data-venture="FZ-017"><rect x="-67.8" y="216" width="135.6" height="24"/><text x="0" y="229" text-anchor="middle" dominant-baseline="central">release.show</text></g></g>
+</svg>
+    <p class="hb-built" aria-live="off" data-built>→ built with: Cratefield · Owlpost</p>
+  </div>
+  <p class="sr-only">Prompts such as “A waitlist with email confirmation and an admin page” and “Let my coding agents ship PRs from issues” are built from Factory Zero foundation blocks: Kontinuum, Cratefield, VibeCaddie, Colonizer, SupportGenius, promptdecode, PosPlugin, Keep Shipping, Owlpost, Sealbin, release.show, Living Brain, Shoal, Tokker, Ledgers, Ghostwritin', Squeezin.</p>
+<!-- fz:heroscene:end -->
     </div>
   </div>
-  <div class="hero-cards">
-<!-- fz:herocards:start -->
-    <a class="hcard hcard--offer" href="/venture-as-a-service/"><p class="hcard-k"><span class="acc">New</span> &middot; Venture as a service</p><p class="hcard-price">From $5,000</p><p class="hcard-sub">An autonomous venture MVP on the FZ foundation. Startup program: $500 in credits, limited places.</p><p class="hcard-go">See the offer &rarr;</p></a>
-    <a class="hcard" href="/ventures/cratefield/"><p class="hcard-k">FZ stack &middot; most used</p><div class="hcard-row"><span class="hcard-icon"><img src="/assets/cratefield-animated.svg" alt="" width="30" height="30" loading="lazy" decoding="async"></span><span><span class="hcard-name">Cratefield</span><br><span class="hcard-sub">App foundation &middot; live in 18 ventures</span></span></div></a>
-    <a class="hcard" href="/#films"><p class="hcard-k">Newest film &middot; 16 in all</p><div class="hcard-film" style="background-image:url('/assets/films/sealbin-poster-480.webp')"></div><p class="hcard-sub" style="margin-top:10px">Sealbin &middot; The sealed handoff between agents.</p></a>
-    <div class="hcard"><p class="hcard-k">PRs merged &middot; 30 days</p><p class="hcard-n"><span id="fz-merged" title="Merged pull requests in the ventures' public GitHub repositories, last 30 days">&mdash;</span><small>public repositories</small></p></div>
-<!-- fz:herocards:end -->
-  </div>
-  <a class="ticker" href="/venture-as-a-service/" aria-label="New: Venture as a service. An autonomous venture MVP on the Factory Zero foundation, from $5,000. Startup program: $500 in Factory Zero credits, limited places. See the offer.">
-    <span class="ticker-track" aria-hidden="true"><span class="ticker-item"><span class="tick-new">New</span><b>Venture as a service</b><span>An autonomous venture MVP on the Factory Zero foundation, from $5,000</span><span class="tick-dot" aria-hidden="true"></span><b>Startup program</b><span>$500 in Factory Zero credits &middot; limited places</span><span class="tick-go">See the offer &rarr;</span></span><span class="ticker-item"><span class="tick-new">New</span><b>Venture as a service</b><span>An autonomous venture MVP on the Factory Zero foundation, from $5,000</span><span class="tick-dot" aria-hidden="true"></span><b>Startup program</b><span>$500 in Factory Zero credits &middot; limited places</span><span class="tick-go">See the offer &rarr;</span></span><span class="ticker-item"><span class="tick-new">New</span><b>Venture as a service</b><span>An autonomous venture MVP on the Factory Zero foundation, from $5,000</span><span class="tick-dot" aria-hidden="true"></span><b>Startup program</b><span>$500 in Factory Zero credits &middot; limited places</span><span class="tick-go">See the offer &rarr;</span></span><span class="ticker-item"><span class="tick-new">New</span><b>Venture as a service</b><span>An autonomous venture MVP on the Factory Zero foundation, from $5,000</span><span class="tick-dot" aria-hidden="true"></span><b>Startup program</b><span>$500 in Factory Zero credits &middot; limited places</span><span class="tick-go">See the offer &rarr;</span></span></span>
-  </a>
 </section>
 
 <section aria-label="Factory Zero in numbers">

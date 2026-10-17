@@ -499,17 +499,27 @@ hs = replaceRegion(hs, 'stats', [
 const mItem = (v, copy) => `      <li${copy ? ' aria-hidden="true"' : ''}><a href="/ventures/${slug(v)}/"${copy ? ' tabindex="-1"' : ''}>${UI.icon(v, 28)}${esc(v.name)}</a></li>`;
 hs = replaceRegion(hs, 'marquee', [...live.map(v => mItem(v, false)), ...live.map(v => mItem(v, true))].join('\n'));
 
-// Hero cards: the most-used FZ stack venture, the newest film, merged PRs (filled by fz-ui.js).
-const top = [...usedBy.entries()].sort((a, b) => b[1].size - a[1].size)[0];
-const topV = top && BY_ID.get(top[0]);
-const lastFilm = FILMS[FILMS.length - 1];
-const lastFilmV = lastFilm && BY_ID.get(lastFilm.venture);
-hs = replaceRegion(hs, 'herocards', [
-  `    <a class="hcard hcard--offer" href="/venture-as-a-service/"><p class="hcard-k"><span class="acc">New</span> &middot; Venture as a service</p><p class="hcard-price">From $5,000</p><p class="hcard-sub">An autonomous venture MVP on the FZ foundation. Startup program: $500 in credits, limited places.</p><p class="hcard-go">See the offer &rarr;</p></a>`,
-  topV ? `    <a class="hcard" href="/ventures/${slug(topV)}/"><p class="hcard-k">FZ stack &middot; most used</p><div class="hcard-row"><span class="hcard-icon">${UI.icon(topV, 30)}</span><span><span class="hcard-name">${esc(topV.name)}</span><br><span class="hcard-sub">${esc(topV.stackRole || topV.category)} &middot; live in ${top[1].size} ventures</span></span></div></a>` : '',
-  lastFilm ? `    <a class="hcard" href="/#films"><p class="hcard-k">Newest film &middot; ${FILMS.length} in all</p><div class="hcard-film" style="background-image:url('${webpOf(lastFilm.poster, 480)}')"></div><p class="hcard-sub" style="margin-top:10px">${esc(lastFilmV ? lastFilmV.name : lastFilm.title)} &middot; ${esc(lastFilm.caption)}</p></a>` : '',
-  `    <div class="hcard"><p class="hcard-k">PRs merged &middot; 30 days</p><p class="hcard-n"><span id="fz-merged" title="Merged pull requests in the ventures' public GitHub repositories, last 30 days">&mdash;</span><small>public repositories</small></p></div>`,
-].filter(Boolean).join('\n'));
+// Home hero: the Factory Zero stack as stone blocks, and the prompts that light them.
+// heroPrompts is data (assets/fz-data.js): every id must be a stack venture, every stack
+// venture must appear in at least one prompt, and there are at least 20 prompts.
+const { heroScene } = require('./hero-scene');
+const HERO_PROMPTS = global.window.FZ_DATA.heroPrompts || [];
+const HERO_STACK = V.filter(v => v.stack);
+const STACK_SET = new Set(HERO_STACK.map(v => v.id));
+if (HERO_PROMPTS.length < 20) throw new Error(`heroPrompts needs at least 20 prompts, has ${HERO_PROMPTS.length}`);
+const heroUsed = new Set();
+for (const p of HERO_PROMPTS) {
+  if (!p.text || !Array.isArray(p.ventures) || !p.ventures.length) throw new Error(`heroPrompts: "${p.text}" needs text and ventures`);
+  for (const id of p.ventures) {
+    if (!STACK_SET.has(id)) throw new Error(`heroPrompts: "${p.text}" uses ${id}, which is not a stack venture (stack: true)`);
+    heroUsed.add(id);
+  }
+}
+const unused = HERO_STACK.filter(v => !heroUsed.has(v.id)).map(v => v.id);
+if (unused.length) throw new Error(`heroPrompts never lights stack ventures: ${unused.join(', ')}`);
+const scene = heroScene({ root: ROOT, stack: HERO_STACK, slugOf: v => slug(v), prompts: HERO_PROMPTS });
+const heroSr = `<p class="sr-only">Prompts such as “${esc(HERO_PROMPTS[0].text)}” and “${esc(HERO_PROMPTS[1].text)}” are built from Factory Zero foundation blocks: ${HERO_STACK.map(v => esc(v.name)).join(', ')}.</p>`;
+hs = replaceRegion(hs, 'heroscene', `${scene.html}\n  ${heroSr}`);
 
 // The venture grid.
 hs = replaceRegion(hs, 'vtools', UI.vtools(live));

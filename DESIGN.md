@@ -83,7 +83,7 @@ compete. The orange of the previous system is retired.
 | Buttons | `.btn` + `--primary` (off-white) / `--acc` (lime) / `--ghost` (hairline) / `--sm`; `.btns` row; `.arr` arrow nudges on hover | min height 48px |
 | Text link | `.link` | underline hairline, lime on hover |
 | Chip | `.chip`, `--dot`, `--acc`, `--solid`; `.chips` row | 24px tall mono labels: stage, status, tags |
-| Hero | `.hero .hero-media .hero-grid .hero-in .hero-copy .hero-cards .hcard` | full-bleed image + loop video, gradient from the left, 120px grid lines fading out; up to three floating `.hcard`s from real data (hidden under 1100px) |
+| Hero | `.hero .hero-grid .hero-in .hero-copy .hero-offer .hero-stage` | home: the copy, the glass offer card, and the block scene (`.hb-scene`, `.hb-prompt`, `.hb-svg`), see "Home hero: the block scene" |
 | Stats band | `.stats` (`--n` columns) `.stat .stat-n[data-count] .stat-k` | numbers count up once in view |
 | Marquee | `.marquee .marquee-track` | each item twice, the copy `aria-hidden` + `tabindex=-1`; pauses on hover; static under reduced motion |
 | Venture card | `.vgrid > li > a.vcard` with `.vicon` (the logo, centred) and `.vover` (`.vid .vname .vcat .chips`, shown on hover and focus, under the tile on touch) | square black tile, one hairline, mark only at rest; 5 columns, 3 under 1024px, 2 under 600px; the link text is `.vh` (name + description); written by `UI.vcard()`, with `UI.icon()` giving the initial monogram for a venture without a logo |
@@ -113,6 +113,48 @@ compete. The orange of the previous system is retired.
 | Access form | `.enter-grid`, `form.enter-form`, `.channels > .channel[aria-checked]`, `.field`, `.transmit`, `.form-error`, `.receipt`, `.direct`, `.hp` | the ids and names in `assets/fz-enter.js` are fixed |
 | Not found | `main.notfound` | the 404 page |
 
+## Home hero: the block scene
+
+The home hero's right half is the Factory Zero stack drawn as stone. `tools/hero-scene.js`
+(called by `tools/sync-ventures.js`) writes the scene into `index.html` between the
+`fz:heroscene` markers: one isometric SVG block per stack venture (`stack: true`) on a 5 × 4
+floor plan, the foundation ventures two storeys high. Each block is three flat faces
+(top, left, right), filled with one shared stone texture and shaded per face (top lightest,
+left mid, right darkest), with a 1px hairline on every edge. The venture's logo is carved into
+the top face in the face's own plane: a lit lower edge and a dark recess, so it reads as cut
+into the stone. At rest the blocks are dim; the lit blocks lift 16px, get a lime edge and their
+logo recess turns lime, and the venture name in mono turns lime under them.
+
+The prompt bar above the scene types each prompt from `window.FZ_DATA.heroPrompts`
+(`assets/fz-data.js`), lights the blocks of the ventures that build it, prints
+"→ built with: …", holds, and moves on. Clicking a lit block opens its venture page. The
+static HTML shows prompt 0 lit, so the page reads without JavaScript. Reduced motion and
+Save-Data keep that static scene; the loop runs only while the scene is on screen and the tab is
+visible, and it pauses under the pointer or focus. The loop uses timers, not per-frame callbacks.
+
+The offer ("New · Venture as a service · From $5,000") is a glass card under the hero buttons,
+not part of the scene: it stays on the first screen at 1440 × 900, 1280 × 720 and 375 wide,
+where a card beside the blocks would fall below the fold on a phone. The hero cards and the
+ticker were removed; the first screen is the headline, the lede, the buttons, the offer and
+the scene.
+
+**Texture.** One seamless material tile, `assets/ui/block-stone.webp` (512 px, about 28 KB).
+Generated with MiniMax `image-01` (1:1, base64), then made tileable: the 512 px render was
+mirrored into a 2 × 2 block (1024 px) and downscaled to 512 px, so every edge matches its
+opposite. Prompt, verbatim:
+
+> Seamless tileable macro texture of matte black basalt cast-stone clay surface, fine even grain, subtle pitting and soft micro-relief, even flat diffuse studio lighting from above, uniform dark charcoal-black tone, no objects, no text, no shadows falling across the frame, no edges, no borders, photographic material texture
+
+**Prompt rationale.** `heroPrompts` holds 25 prompts, each a job a founder would ask for,
+mapped only to stack ventures whose `stackRole` does that job: "A waitlist with email
+confirmation and an admin page" lights Cratefield (app foundation) and Owlpost (email); "Let
+my coding agents ship PRs from issues" lights Colonizer (agents) and Keep Shipping (deploys);
+"Keep the books for our agents" lights Ledgers (bookkeeping). Prompts that name two or three
+blocks are the ones where the foundation composes. `tools/sync-ventures.js` refuses the run if a
+prompt names a venture that is not on the stack, if there are fewer than 20 prompts, or if a
+stack venture is never lit by any prompt, so the scene can never claim a venture the stack does
+not contain. Hand edits to `heroPrompts` are data changes: run `node tools/sync-ventures.js`.
+
 ## Motion
 
 - Reveal: add `data-rv` (and `style="--d:N"` for a 70ms stagger). Content is visible by
@@ -128,7 +170,6 @@ compete. The orange of the previous system is retired.
   pauses off screen.
 - Hover: cards lift their icon 3px and draw a lime inset hairline with a soft glow; buttons
   swap to lime; arrows nudge 3px.
-- Floating hero cards drift ±6px over 9–11s.
 - Chip band (home): `fz-ui.js` moves each `[data-cb-layer]` by `transform` only, by its `data-speed`
   (photo ground 0.2, back board 0.5, mid board 0.8, chip pair 1, chip die 1.35, clamped to the 12% overscan), from one rAF-throttled
   scroll handler that runs only while the band is within 200px of the viewport. The pulses (`.cb-pulse`,
