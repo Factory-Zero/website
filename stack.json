@@ -489,8 +489,8 @@
           "url": "https://cratefield.com/",
           "role": "framework",
           "phrase": "Built with",
-          "status": "planned",
-          "note": "The ticketing and routing core is being written on the Cratefield harness; it is not deployed."
+          "status": "live",
+          "note": "The waitlist Worker at api.supportgeni.us runs on the Cratefield harness waitlist module; the ticketing and routing core is being written on the harness and is not deployed."
         },
         {
           "id": "polar",
@@ -551,6 +551,16 @@
       "page": "https://factory0.ventures/ventures/promptdecode/",
       "uses": [
         {
+          "id": "FZ-004",
+          "name": "Cratefield",
+          "kind": "factory-zero",
+          "url": "https://cratefield.com/",
+          "role": "framework",
+          "phrase": "Built with",
+          "status": "live",
+          "note": "The waitlist Worker at api.promptdeco.de runs on the Cratefield harness waitlist module."
+        },
+        {
           "id": "polar",
           "name": "Polar",
           "kind": "third-party",
@@ -598,6 +608,16 @@
       "site": "https://groove.guru/",
       "page": "https://factory0.ventures/ventures/groove-guru/",
       "uses": [
+        {
+          "id": "FZ-004",
+          "name": "Cratefield",
+          "kind": "factory-zero",
+          "url": "https://cratefield.com/",
+          "role": "framework",
+          "phrase": "Built with",
+          "status": "live",
+          "note": "The waitlist Worker at api.groove.guru runs on the Cratefield harness waitlist module."
+        },
         {
           "id": "FZ-012",
           "name": "Keep Shipping",
@@ -711,8 +731,8 @@
           "url": "https://cratefield.com/",
           "role": "framework",
           "phrase": "Built with",
-          "status": "planned",
-          "note": "The hosted parts (waitlist, approvals, run logs) are planned as a Cratefield venture."
+          "status": "live",
+          "note": "The waitlist Worker at api.keepshipping.run runs on the Cratefield harness waitlist module; approvals and run logs are planned as Cratefield modules."
         },
         {
           "id": "FZ-008",
@@ -841,6 +861,16 @@
       "page": "https://factory0.ventures/ventures/bloodrank/",
       "uses": [
         {
+          "id": "FZ-004",
+          "name": "Cratefield",
+          "kind": "factory-zero",
+          "url": "https://cratefield.com/",
+          "role": "framework",
+          "phrase": "Built with",
+          "status": "live",
+          "note": "The waitlist Worker at api.bloodrank.dev runs on the Cratefield harness waitlist module."
+        },
+        {
           "id": "FZ-012",
           "name": "Keep Shipping",
           "kind": "factory-zero",
@@ -885,8 +915,8 @@
           "url": "https://cratefield.com/",
           "role": "framework",
           "phrase": "Built with",
-          "status": "planned",
-          "note": "The request backend is being written on the Cratefield harness; it is not deployed."
+          "status": "live",
+          "note": "The waitlist Worker at api.ratecla.im runs on the Cratefield harness waitlist module; the request backend is being written on the harness and is not deployed."
         },
         {
           "id": "FZ-008",
@@ -1109,8 +1139,8 @@
           "url": "https://cratefield.com/",
           "role": "framework",
           "phrase": "Built with",
-          "status": "planned",
-          "note": "Built in Rust as a Cratefield venture; nothing is deployed yet, including the waitlist."
+          "status": "live",
+          "note": "Built in Rust as a Cratefield venture: the app at app.livingbrain.wiki and the waitlist Worker at api.livingbrain.wiki run on the Cratefield harness."
         },
         {
           "id": "FZ-006",
@@ -1201,6 +1231,16 @@
       "page": "https://factory0.ventures/ventures/shoal/",
       "uses": [
         {
+          "id": "FZ-004",
+          "name": "Cratefield",
+          "kind": "factory-zero",
+          "url": "https://cratefield.com/",
+          "role": "framework",
+          "phrase": "Built with",
+          "status": "live",
+          "note": "The waitlist Worker at api.shoal.ing runs on the Cratefield harness waitlist module."
+        },
+        {
           "id": "google-fonts",
           "name": "Google Fonts",
           "kind": "third-party",
@@ -1225,8 +1265,8 @@
           "url": "https://cratefield.com/",
           "role": "framework",
           "phrase": "Built with",
-          "status": "planned",
-          "note": "The API and MCP server are planned as a Rust Worker on the Cratefield harness; nothing is deployed yet."
+          "status": "live",
+          "note": "The waitlist Worker at api.tokker.dev runs on the Cratefield harness waitlist module; the API and MCP server are planned on the harness."
         },
         {
           "id": "FZ-006",
@@ -1303,8 +1343,8 @@
           "url": "https://cratefield.com/",
           "role": "framework",
           "phrase": "Built with",
-          "status": "planned",
-          "note": "Every module (ledger, invoice, bills, matching, bank, tax, documents, reports) is planned as a Rust crate on the Cratefield harness. Nothing is published yet."
+          "status": "live",
+          "note": "The waitlist Worker at api.ledgers.sh runs on the Cratefield harness waitlist module; every accounting module (ledger, invoice, bills, matching, bank, tax, documents, reports) is planned as a Rust crate on the harness."
         },
         {
           "id": "google-fonts",
@@ -1341,8 +1381,8 @@
           "url": "https://cratefield.com/",
           "role": "framework",
           "phrase": "Built with",
-          "status": "planned",
-          "note": "The open-source app (engine, API Worker, CLI, MCP server) is being built on the Cratefield harness, with the meaning lock and diff offered upstream as generic Cratefield modules."
+          "status": "live",
+          "note": "The waitlist Worker at api.ghostwrit.in runs on the Cratefield harness waitlist module; the open-source app (engine, API Worker, CLI, MCP server) is being built on the harness."
         },
         {
           "id": "google-fonts",
@@ -1372,6 +1412,16 @@
       "site": "https://squeez.in/",
       "page": "https://factory0.ventures/ventures/squeezin/",
       "uses": [
+        {
+          "id": "FZ-004",
+          "name": "Cratefield",
+          "kind": "factory-zero",
+          "url": "https://cratefield.com/",
+          "role": "framework",
+          "phrase": "Built with",
+          "status": "live",
+          "note": "The waitlist Worker at api.squeez.in runs on the Cratefield harness waitlist module."
+        },
         {
           "id": "google-fonts",
           "name": "Google Fonts",

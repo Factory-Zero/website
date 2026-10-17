@@ -211,7 +211,7 @@ window.FZ_DATA = {
     { id: 'FZ-008', name: 'SupportGenius', status: 'BUILDING', stage: 'VALIDATION', launched: null, category: 'SUPPORT', stack: true, stackRole: 'Bug reports and support', stackGroup: 'Customers', open_source: true, license: 'MIT', stackRole: 'Bug reports and support', autonomy: null, site: 'supportgeni.us', logo: 'supportgenius-animated.svg', logoW: 120, logoH: 120,
       target: 4,
       uses: [
-        { id: 'FZ-004', role: 'framework', status: 'planned', note: 'The ticketing and routing core is being written on the Cratefield harness; it is not deployed.' },
+        { id: 'FZ-004', role: 'framework', status: 'live', note: 'The waitlist Worker at api.supportgeni.us runs on the Cratefield harness waitlist module; the ticketing and routing core is being written on the harness and is not deployed.' },
         { id: 'polar', role: 'payments', status: 'planned', note: 'Paid plans through Polar as Merchant of Record, via the Cratefield Payments port. Nothing is on sale yet.' },
         { id: 'FZ-009', role: 'security-screening', status: 'planned', note: 'Free text in bug reports is screened for hidden instructions before a model drafts the ticket.' },
         { id: 'FZ-012', role: 'deploys', status: 'planned', note: 'Every venture site and Worker deployed from the Keep Shipping console.' },
@@ -236,6 +236,7 @@ window.FZ_DATA = {
     { id: 'FZ-009', name: 'promptdecode', status: 'BUILDING', stage: 'VALIDATION', launched: null, category: 'SECURITY', stack: true, stackRole: 'Hidden-text screening', stackGroup: 'Security', open_source: true, license: 'MIT', stackRole: 'Hidden-text screening', autonomy: null, site: 'promptdeco.de', logo: 'promptdecode-animated.svg', logoW: 120, logoH: 120,
       target: 4,
       uses: [
+        { id: 'FZ-004', role: 'framework', status: 'live', note: 'The waitlist Worker at api.promptdeco.de runs on the Cratefield harness waitlist module.' },
         { id: 'polar', role: 'payments', status: 'planned', note: 'Paid tiers (the GitHub Action, private repositories) through Polar as Merchant of Record. Nothing is on sale yet.' },
         { id: 'FZ-012', role: 'deploys', status: 'planned', note: 'Every venture site and Worker deployed from the Keep Shipping console.' },
         { id: 'google-fonts', role: 'fonts', status: 'live', note: 'The site\u2019s typefaces (Instrument Serif, Instrument Sans, JetBrains Mono), loaded from Google.' },
@@ -259,6 +260,7 @@ window.FZ_DATA = {
     { id: 'FZ-010', name: 'Groove Guru', status: 'BUILDING', stage: 'VALIDATION', launched: null, category: 'MUSIC', stack: false, autonomy: null, site: 'groove.guru', logo: 'groove-guru-animated.svg', logoW: 120, logoH: 120,
       target: 4,
       uses: [
+        { id: 'FZ-004', role: 'framework', status: 'live', note: 'The waitlist Worker at api.groove.guru runs on the Cratefield harness waitlist module.' },
         { id: 'FZ-012', role: 'deploys', status: 'planned', note: 'Every venture site and Worker deployed from the Keep Shipping console.' },
         { id: 'google-fonts', role: 'fonts', status: 'live', note: 'The site\u2019s typefaces (Big Shoulders Display, Big Shoulders Stencil Display, Instrument Sans, JetBrains Mono), loaded from Google.' },
         { id: 'cloudflare', role: 'hosting', status: 'live', note: 'The site.' }
@@ -306,7 +308,7 @@ window.FZ_DATA = {
     { id: 'FZ-012', name: 'Keep Shipping', status: 'BUILDING', stage: 'VALIDATION', launched: null, category: 'DEVTOOLS', stack: true, stackRole: 'Deploys', stackGroup: 'Ship & run', open_source: false, stackRole: 'Deploys', autonomy: null, site: 'keepshipping.run', logo: 'keepshipping-animated.svg', logoW: 120, logoH: 120,
       target: 4,
       uses: [
-        { id: 'FZ-004', role: 'framework', status: 'planned', note: 'The hosted parts (waitlist, approvals, run logs) are planned as a Cratefield venture.' },
+        { id: 'FZ-004', role: 'framework', status: 'live', note: 'The waitlist Worker at api.keepshipping.run runs on the Cratefield harness waitlist module; approvals and run logs are planned as Cratefield modules.' },
         { id: 'FZ-008', role: 'bug-reports', status: 'planned', note: 'Errors and bug reports become deduplicated GitHub issues, through the Cratefield error reporter.' },
         { id: 'polar', role: 'payments', status: 'planned', note: 'Paid plans through Polar as Merchant of Record, via the Cratefield Payments port. Nothing is on sale yet.' },
         { id: 'google-fonts', role: 'fonts', status: 'live', note: 'The site\u2019s typefaces (Bricolage Grotesque, DM Mono), loaded from Google.' },
@@ -356,6 +358,7 @@ window.FZ_DATA = {
     { id: 'FZ-014', name: 'Bloodrank', status: 'BUILDING', stage: 'VALIDATION', launched: null, category: 'COMMUNITY', stack: false, autonomy: null, site: 'bloodrank.dev', logo: 'bloodrank-animated.svg', logoW: 120, logoH: 120,
       target: 3,
       uses: [
+        { id: 'FZ-004', role: 'framework', status: 'live', note: 'The waitlist Worker at api.bloodrank.dev runs on the Cratefield harness waitlist module.' },
         { id: 'FZ-012', role: 'deploys', status: 'planned', note: 'Every venture site and Worker deployed from the Keep Shipping console.' },
         { id: 'google-fonts', role: 'fonts', status: 'live', note: 'The site\u2019s typefaces (Big Shoulders Display, Grenze Gotisch, Jolly Lodger, Cormorant Garamond, Geist, Geist Mono), loaded from Google.' },
         { id: 'cloudflare', role: 'hosting', status: 'live', note: 'The site.' }
@@ -378,7 +381,7 @@ window.FZ_DATA = {
     { id: 'FZ-015', name: 'ratecla.im', status: 'BUILDING', stage: 'VALIDATION', launched: null, category: 'TRAVEL', stack: false, autonomy: null, site: 'ratecla.im', logo: 'rateclaim-animated.svg', logoW: 120, logoH: 120,
       target: 4,
       uses: [
-        { id: 'FZ-004', role: 'framework', status: 'planned', note: 'The request backend is being written on the Cratefield harness; it is not deployed.' },
+        { id: 'FZ-004', role: 'framework', status: 'live', note: 'The waitlist Worker at api.ratecla.im runs on the Cratefield harness waitlist module; the request backend is being written on the harness and is not deployed.' },
         { id: 'FZ-008', role: 'bug-reports', status: 'planned', note: 'Errors and bug reports become deduplicated GitHub issues, through the Cratefield error reporter.' },
         { id: 'FZ-012', role: 'deploys', status: 'planned', note: 'Every venture site and Worker deployed from the Keep Shipping console.' },
         { id: 'google-fonts', role: 'fonts', status: 'live', note: 'The site\u2019s typefaces (Plus Jakarta Sans, JetBrains Mono), loaded from Google.' },
@@ -455,7 +458,7 @@ window.FZ_DATA = {
     { id: 'FZ-018', name: 'Living Brain', status: 'BUILDING', stage: 'VALIDATION', launched: null, category: 'DEVTOOLS', stack: true, stackRole: 'Knowledge', stackGroup: 'Content & AI', open_source: true, license: 'Apache-2.0', stackRole: 'Knowledge', autonomy: null, site: 'livingbrain.wiki', logo: 'livingbrain-animated.svg', logoW: 120, logoH: 120,
       target: 4,
       uses: [
-        { id: 'FZ-004', role: 'framework', status: 'planned', note: 'Built in Rust as a Cratefield venture; nothing is deployed yet, including the waitlist.' },
+        { id: 'FZ-004', role: 'framework', status: 'live', note: 'Built in Rust as a Cratefield venture: the app at app.livingbrain.wiki and the waitlist Worker at api.livingbrain.wiki run on the Cratefield harness.' },
         { id: 'FZ-006', role: 'agents', status: 'planned', note: 'Colonizer colonies take the bigger jobs and open a pull request; nothing is dispatched yet.' },
         { id: 'FZ-013', role: 'email', status: 'planned', note: 'Waitlist confirmation, digests and the brain\u2019s own inbox.' },
         { id: 'FZ-008', role: 'support', status: 'planned', note: 'Customer-safe answers and tickets routed back in from SupportGenius.' },
@@ -483,6 +486,7 @@ window.FZ_DATA = {
     { id: 'FZ-019', name: 'Shoal', status: 'BUILDING', stage: 'VALIDATION', launched: null, category: 'SIMULATION', stack: true, stackRole: 'Launch rehearsal', stackGroup: 'Ship & run', open_source: false, stackRole: 'Launch rehearsal', autonomy: null, site: 'shoal.ing', logo: 'shoal-animated.svg', logoW: 120, logoH: 120,
       target: 4,
       uses: [
+        { id: 'FZ-004', role: 'framework', status: 'live', note: 'The waitlist Worker at api.shoal.ing runs on the Cratefield harness waitlist module.' },
         { id: 'google-fonts', role: 'fonts', status: 'live', note: 'The site\u2019s typefaces (Geist, Geist Mono, Instrument Serif), loaded from Google.' }
       ],
       aims: {
@@ -503,7 +507,7 @@ window.FZ_DATA = {
     { id: 'FZ-020', name: 'Tokker', status: 'BUILDING', stage: 'VALIDATION', launched: null, category: 'PRICING', stack: true, stackRole: 'AI token prices', stackGroup: 'Content & AI', open_source: true, license: 'Apache-2.0', autonomy: null, site: 'tokker.dev', logo: 'tokker-animated.svg', logoW: 120, logoH: 120,
       target: 4,
       uses: [
-        { id: 'FZ-004', role: 'framework', status: 'planned', note: 'The API and MCP server are planned as a Rust Worker on the Cratefield harness; nothing is deployed yet.' },
+        { id: 'FZ-004', role: 'framework', status: 'live', note: 'The waitlist Worker at api.tokker.dev runs on the Cratefield harness waitlist module; the API and MCP server are planned on the harness.' },
         { id: 'FZ-006', role: 'agents', status: 'planned', note: 'Scheduled Colonizer loops re-check every price source and open a pull request when a price moves. Not running yet.' },
         { id: 'FZ-013', role: 'email', status: 'planned', note: 'Price-drop alerts, the weekly change email and waitlist confirmation. No mail is sent today.' },
         { id: 'FZ-008', role: 'bug-reports', status: 'planned', note: 'Errors and bug reports become deduplicated GitHub issues, through the Cratefield error reporter.' },
@@ -529,7 +533,7 @@ window.FZ_DATA = {
     { id: 'FZ-021', name: 'Ledgers', status: 'BUILDING', stage: 'VALIDATION', launched: null, category: 'ACCOUNTING', stack: true, stackRole: 'Bookkeeping', stackGroup: 'Customers', open_source: false, stackRole: 'Bookkeeping', autonomy: null, site: 'ledgers.sh', logo: 'ledgers-animated.svg', logoW: 120, logoH: 120,
       target: 4,
       uses: [
-        { id: 'FZ-004', role: 'framework', status: 'planned', note: 'Every module (ledger, invoice, bills, matching, bank, tax, documents, reports) is planned as a Rust crate on the Cratefield harness. Nothing is published yet.' },
+        { id: 'FZ-004', role: 'framework', status: 'live', note: 'The waitlist Worker at api.ledgers.sh runs on the Cratefield harness waitlist module; every accounting module (ledger, invoice, bills, matching, bank, tax, documents, reports) is planned as a Rust crate on the harness.' },
         { id: 'google-fonts', role: 'fonts', status: 'live', note: 'The site’s typefaces (Source Sans 3, Source Code Pro), loaded from Google.' },
         { id: 'cloudflare', role: 'hosting', status: 'live', note: 'The site.' }
       ],
@@ -551,7 +555,7 @@ window.FZ_DATA = {
     { id: 'FZ-022', name: "Ghostwritin'", status: 'BUILDING', stage: 'VALIDATION', launched: null, category: 'WRITING', stack: true, stackRole: 'Writing in your voice', stackGroup: 'Content & AI', open_source: true, license: 'MIT', stackRole: 'Writing in your voice', autonomy: null, site: 'ghostwrit.in', logo: 'ghostwritin-animated.svg', logoW: 120, logoH: 120,
       target: 4,
       uses: [
-        { id: 'FZ-004', role: 'framework', status: 'planned', note: 'The open-source app (engine, API Worker, CLI, MCP server) is being built on the Cratefield harness, with the meaning lock and diff offered upstream as generic Cratefield modules.' },
+        { id: 'FZ-004', role: 'framework', status: 'live', note: 'The waitlist Worker at api.ghostwrit.in runs on the Cratefield harness waitlist module; the open-source app (engine, API Worker, CLI, MCP server) is being built on the harness.' },
         { id: 'google-fonts', role: 'fonts', status: 'live', note: 'The site’s typefaces (Newsreader, JetBrains Mono), loaded from Google.' },
         { id: 'cloudflare', role: 'hosting', status: 'live', note: 'The site.' }
       ],
@@ -573,6 +577,7 @@ window.FZ_DATA = {
     { id: 'FZ-023', name: 'Squeezin', status: 'BUILDING', stage: 'VALIDATION', launched: null, category: 'LINKS', stack: true, stackRole: 'Short links', stackGroup: 'Communication', open_source: false, autonomy: null, site: 'squeez.in', logo: 'squeezin-animated.svg', logoW: 120, logoH: 120,
       target: 4,
       uses: [
+        { id: 'FZ-004', role: 'framework', status: 'live', note: 'The waitlist Worker at api.squeez.in runs on the Cratefield harness waitlist module.' },
         { id: 'google-fonts', role: 'fonts', status: 'live', note: 'The site’s typefaces (Archivo, Instrument Sans, JetBrains Mono), loaded from Google.' },
         { id: 'cloudflare', role: 'hosting', status: 'live', note: 'The site.' }
       ],
