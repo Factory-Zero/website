@@ -373,8 +373,31 @@
   </div>
 </section>
 
-<section class="band" data-rv aria-hidden="true">
-  <img src="/assets/ui/layers.webp" srcset="/assets/ui/layers-800.webp 800w, /assets/ui/layers.webp 1600w" sizes="100vw" alt="" width="1600" height="900" loading="lazy" decoding="async">
+<section class="chip-band" data-rv data-chip-band aria-hidden="true">
+  <div class="cb-layer cb-board" data-cb-layer data-speed="0.5"><img src="/assets/ui/chips-board-960.webp" srcset="/assets/ui/chips-board-960.webp 960w, /assets/ui/chips-board-1920.webp 1920w" sizes="100vw" alt="" width="1920" height="823" loading="lazy" decoding="async"></div>
+  <div class="cb-layer cb-traces" data-cb-layer data-speed="0.75">
+    <svg viewBox="0 0 1600 700" preserveAspectRatio="xMidYMid slice" focusable="false">
+      <path d="M0 200H380L430 150H800L850 200H1130L1180 250H1600"/>
+      <path d="M150 700V560L200 510H520V380L560 340H720"/>
+      <path d="M1600 110H1310L1260 160V330L1210 380H960"/>
+      <path d="M420 0V70L460 110H640V250"/>
+      <path d="M1060 700V620L1110 570H1390L1440 520V430"/>
+      <path d="M0 540H270L320 490H610L660 540H940L990 490H1180"/>
+      <path d="M1460 330H1600"/>
+      <path d="M760 0V60L800 100V170"/>
+      <path d="M1280 700V640L1320 600H1500"/>
+      <path class="cb-pulse" pathLength="1000" style="--t:9s;--dl:-1s" d="M0 200H380L430 150H800L850 200H1130L1180 250H1600"/>
+      <path class="cb-pulse" pathLength="1000" style="--t:11s;--dl:-6s" d="M150 700V560L200 510H520V380L560 340H720"/>
+      <path class="cb-pulse" pathLength="1000" style="--t:8s;--dl:-3s" d="M1600 110H1310L1260 160V330L1210 380H960"/>
+      <path class="cb-pulse" pathLength="1000" style="--t:10s;--dl:-8s" d="M420 0V70L460 110H640V250"/>
+      <path class="cb-pulse" pathLength="1000" style="--t:12s;--dl:-2s" d="M1060 700V620L1110 570H1390L1440 520V430"/>
+      <path class="cb-pulse" pathLength="1000" style="--t:9s;--dl:-5s" d="M0 540H270L320 490H610L660 540H940L990 490H1180"/>
+      <path class="cb-pulse" pathLength="1000" style="--t:7s;--dl:-4s" d="M760 0V60L800 100V170"/>
+      <path class="cb-pulse" pathLength="1000" style="--t:10s;--dl:-7s" d="M1280 700V640L1320 600H1500"/>
+    </svg>
+  </div>
+  <div class="cb-layer cb-pair" data-cb-layer data-speed="1"><img src="/assets/ui/chips-pair-960.webp" srcset="/assets/ui/chips-pair-960.webp 960w, /assets/ui/chips-pair-1920.webp 1920w" sizes="100vw" alt="" width="1920" height="823" loading="lazy" decoding="async"></div>
+  <div class="cb-layer cb-die" data-cb-layer data-speed="1.35"><img src="/assets/ui/chips-die-960.webp" srcset="/assets/ui/chips-die-960.webp 960w, /assets/ui/chips-die-1920.webp 1920w" sizes="100vw" alt="" width="1920" height="823" loading="lazy" decoding="async"></div>
 </section>
 
 <section class="sec sec--flush" id="system" aria-labelledby="factory-h">
