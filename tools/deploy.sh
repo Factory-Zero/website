@@ -21,6 +21,6 @@ done
 git checkout -q main
 git pull -q --ff-only
 ./tools/build-dist.sh > /dev/null
-npx wrangler pages deploy dist --project-name=factory-zero --branch=main
+bunx wrangler pages deploy dist --project-name=factory-zero --branch=main
 [ -n "$refresh" ] && node tools/setup-github-app.mjs --refresh
 echo "Deployed $(git log --oneline -1)"
