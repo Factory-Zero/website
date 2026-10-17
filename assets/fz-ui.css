@@ -198,8 +198,8 @@ button, input { font: inherit; color: inherit; }
 .hb.is-lit .hb-edge { stroke: var(--acc); stroke-width: 1.8; }
 .hb-rim { color: rgba(237, 239, 232, .42); transition: color .6s var(--ease); }
 .hb-cut { color: rgba(0, 0, 0, .6); transition: color .6s var(--ease); }
-.hb.is-lit .hb-cut { color: var(--acc); }
-.hb.is-lit .hb-rim { color: rgba(198, 255, 61, .55); }
+.hb.is-lit .hb-cut { color: rgba(198, 255, 61, .26); }
+.hb.is-lit .hb-rim { color: rgba(198, 255, 61, .7); }
 .hb-label { font: 500 14px var(--mono); letter-spacing: .1em; text-transform: uppercase; fill: var(--acc); opacity: 0; transition: opacity .5s var(--ease); }
 .hb.is-lit .hb-label { opacity: 1; }
 @media (prefers-reduced-motion: reduce) { .hb, .hb-edge, .hb-rim, .hb-cut, .hb-label { transition: none; } .hb-caret { animation: none; } }

@@ -20,12 +20,11 @@ const G = 0.07;         // gap between blocks, in cells
 const SQ = Math.sqrt(3) / 2;
 // The 5 x 4 floor plan. Each stack venture appears exactly once (checked below).
 const LAYOUT = [
-  ['FZ-013', 'FZ-004', 'FZ-006', 'FZ-016', 'FZ-012'],
-  ['FZ-018', 'FZ-021', 'FZ-020', 'FZ-008', 'FZ-019'],
-  ['FZ-001', 'FZ-022', 'FZ-023', 'FZ-011', 'FZ-017'],
-  ['FZ-009', 'FZ-005', null, null, null],
+  ["FZ-013", "FZ-004", "FZ-006", "FZ-016", "FZ-012"],
+  ["FZ-018", "FZ-021", "FZ-020", "FZ-008"],
+  ["FZ-001", "FZ-022", "FZ-023", "FZ-011"],
+  ["FZ-009", "FZ-005", "FZ-019", "FZ-017"],
 ];
-const GROUND_W = 5, GROUND_D = 4;
 const num = n => +n.toFixed(2);
 const P = (x, y, z) => [num((x - y) * SQ * L), num((x + y) * 0.5 * L - z * H)];
 const pts = a => a.map(p => p.join(',')).join(' ');
@@ -64,8 +63,13 @@ function heroScene({ root, stack, slugOf, prompts }) {
   const symbols = [], patterns = [], blocks = [], labels = [];
   const boxes = [];
   // Ground plate under the whole floor plan.
-  const ground = [P(0, 0, 0), P(GROUND_W, 0, 0), P(GROUND_W, GROUND_D, 0), P(0, GROUND_D, 0)];
-  boxes.push(...ground);
+  // The floor plate follows the stepped outline of the rows: no empty cell inside the plan.
+  const widths = LAYOUT.map(r => r.length), R = LAYOUT.length;
+  const ground = [[0, 0], [widths[0], 0]];
+  for (let j = 0; j < R - 1; j++) ground.push([widths[j], j + 1], [widths[j + 1], j + 1]);
+  ground.push([widths[R - 1], R], [0, R]);
+  const gp = ground.map(([x, y]) => P(x, y, 0));
+  boxes.push(...gp);
 
   const cells = [];
   LAYOUT.forEach((row, j) => row.forEach((id, i) => { if (id) cells.push({ id, i, j }); }));
@@ -92,8 +96,8 @@ function heroScene({ root, stack, slugOf, prompts }) {
     const m = [SQ * L * w, 0.5 * L * w, -SQ * L * w, 0.5 * L * w, num(ox), num(oy)].map(num).join(' ');
     const mk = 0.6, mo = (1 - mk) / 2, rim = 0.022;
     const pat = `hb-st-${n}`;
-    const px = (n * 97) % 300, py = (n * 131) % 300;
-    patterns.push(`<pattern id="${pat}" patternUnits="userSpaceOnUse" x="${px}" y="${py}" width="300" height="300"><image href="/assets/ui/block-stone.webp" width="300" height="300" preserveAspectRatio="none"/></pattern>`);
+    const px = (n * 97) % 200, py = (n * 131) % 200;
+    patterns.push(`<pattern id="${pat}" patternUnits="userSpaceOnUse" x="${px}" y="${py}" width="200" height="200"><image href="/assets/ui/block-stone.webp" width="200" height="200" preserveAspectRatio="none"/></pattern>`);
     const lx = P((x0 + x1) / 2, y1, 0);
     blocks.push(`    <g class="hb" data-venture="${esc(id)}" data-name="${esc(v.name)}">
       <a href="/ventures/${esc(slug)}/" tabindex="-1">
@@ -114,7 +118,7 @@ function heroScene({ root, stack, slugOf, prompts }) {
   const vbMinX = Math.min(...boxes.map(p => p[0])) - 40, vbMaxX = Math.max(...boxes.map(p => p[0])) + 40;
   const vbMinY = Math.min(...boxes.map(p => p[1])) - 30, vbMaxY = Math.max(...boxes.map(p => p[1])) + 34;
   const vb = [num(vbMinX), num(vbMinY), num(vbMaxX - vbMinX), num(vbMaxY - vbMinY)].join(' ');
-  const plate = `<polygon class="hb-plate" points="${pts(ground)}"/>`;
+  const plate = `<polygon class="hb-plate" points="${pts(gp)}"/>`;
   const svg = `<svg class="hb-svg" viewBox="${vb}" aria-hidden="true" focusable="false">
   <defs>
     ${symbols.join('\n    ')}
