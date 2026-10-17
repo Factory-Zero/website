@@ -537,6 +537,7 @@ page under "Films from the ventures" and on that venture's page:
 - [Thesis](https://factory0.ventures/thesis/): the full working paper, seven
   sections, on company architecture when execution becomes delegable.
 - [About](https://factory0.ventures/about/): what Factory Zero is and is not.
+- [Venture as a service](https://factory0.ventures/venture-as-a-service/): an autonomous venture MVP built on the Factory Zero foundation, from $5,000; startup program with $500 in Factory Zero credits and limited places.
 - [Enter](https://factory0.ventures/enter/): access requests. Contact is
   contact@factory0.ventures.
 
