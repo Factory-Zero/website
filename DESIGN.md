@@ -93,7 +93,7 @@ compete. The orange of the previous system is retired.
 | Couplets | `.couplets .couplet .was` | struck-through "before" vs "after" |
 | Levels | `ol.levels > li.level(.is-target) .level-n .level-name .level-bar i.on` | autonomy levels |
 | Image band | `section.band > img` (`data-rv` zooms it in) | generated imagery between sections |
-| Chip band | `section.chip-band > .cb-layer(.cb-board, .cb-traces, .cb-pair, .cb-die)` with `[data-cb-layer data-speed]` | home, between the ventures grid and the five layers; three parallax layers over an SVG circuit-trace overlay with travelling pulses; 12% overscan top and bottom, transform only, fades into the page at both ends |
+| Chip band | `section.chip-band > .cb-layer(.cb-bg, .cb-back, .cb-mid, .cb-pair, .cb-die)` with `[data-cb-layer data-speed]` | home, between the ventures grid and the five layers; a faint photo ground at 15%, two SVG circuit-board depths with travelling pulses, and the screened chip pair and die; 12% overscan top and bottom, transform only, fades into the page at both ends |
 | Films | `.films-grid > li > figure.film`, `.film-cap .film-name .film-title .film-line` | written by `sync-ventures.js` |
 | Panel | `.panel .panel-head .rec` | live log (`.log .log-line`) and the authors chart |
 | Timeline | `.tl .tl-scroll .tl-svg …` | ported from the previous system, new palette |
@@ -130,7 +130,7 @@ compete. The orange of the previous system is retired.
   swap to lime; arrows nudge 3px.
 - Floating hero cards drift ±6px over 9–11s.
 - Chip band (home): `fz-ui.js` moves each `[data-cb-layer]` by `transform` only, by its `data-speed`
-  (board 0.5, traces 0.75, chip pair 1, chip die 1.35, clamped to the 12% overscan), from one rAF-throttled
+  (photo ground 0.2, back board 0.5, mid board 0.8, chip pair 1, chip die 1.35, clamped to the 12% overscan), from one rAF-throttled
   scroll handler that runs only while the band is within 200px of the viewport. The pulses (`.cb-pulse`,
   `stroke-dashoffset`) and the chip glow run only while `.is-live`. Reduced motion and Save-Data add
   `.is-still`: a static composite, no transforms, no pulses.
@@ -153,16 +153,17 @@ Shared style suffix for every image prompt:
 | `films.webp` | A sculptural black clay film reel and a camera lens form lying on a black surface, the lime wireframe mesh swirling out of the lens like light. | MiniMax image-01, 16:9 |
 | `ventures.webp` | A grid of rounded-square black clay tiles like app icons standing upright on a black floor in perfect rows, a few tiles glowing with the lime wireframe mesh. | MiniMax image-01, 16:9 |
 | `cta.webp` | A wide horizon of many small black clay crates in a grid receding into darkness, one crate in the foreground open and glowing with the lime wireframe mesh rising from it. Wide panoramic. | MiniMax image-01, 21:9 |
-| `chips-board-{960,1920}.webp` (back layer) | Top-down wide macro shot of a matte black printed circuit board with a fine network of thin neon-lime traces (pure lime, not green, no orange, no copper), tiny glowing lime solder pads and vias, the traces fading into black darkness toward the edges, clean and graphic, slight depth of field. Matte black, hairline-lit, minimal, calm, high detail, deep near-black background, a thin neon-lime (#C6FF3D) accent light as the only colour, generous negative space. No text, no letters, no logos, no people. | MiniMax image-01, 21:9 (then lime duotone, below) |
+| `chips-photo-{960,1920}.webp` (ground, at 15% opacity) | Low-angle side perspective close-up of the edge of an electronics circuit board, NOT top-down, camera tilted, the board receding diagonally into darkness, out-of-focus soft bokeh of tiny lights, faint lime-green glints on a few copper traces and solder pads, matte black surface, mostly black frame, very dark and moody, shallow depth of field. Matte black, deep near-black background, faint neon-lime accent light only, generous negative space. No text, no letters, no logos, no people. | MiniMax image-01, 21:9 (1344x576; upscaled to 1920, graded to near-black lime, 7.6 KB and 3.0 KB) |
+| Drawn boards (`svg.cb-back`, `svg.cb-mid` in `index.html`) | Not a generated image: hand-drawn SVG, seeded, 45 degree and 90 degree routing with pads and vias, and bus bundles that converge on the chip keep-out. Back: 16 fine traces at 12% lime. Mid: 26 traces and bus lines at 28%. Pulses (`.cb-pulse`, `stroke-dashoffset`) run on the drawn traces. | drawn in code |
 | `chips-pair-{960,1920}.webp` (mid layer, screened) | Two black square AI processor chips on a pure black background, slightly isometric three-quarter view, matte black die with fine lime-lit edges and rows of thin metallic pins, one chip larger in the foreground, the other smaller and further back, lime rim light on their edges, pure black background (#000000) so it can be blended. + the style suffix above | MiniMax image-01, 21:9 (then lime duotone) |
 | `chips-die-{960,1920}.webp` (front layer, screened) | A single square black processor die with a glowing neon-lime circuit pattern etched on its surface, small chiplets around it, slight isometric angle, pins along the bottom edge, pure black background (#000000) for blending. + the style suffix above | MiniMax image-01, 21:9 (then lime duotone) |
 | `chips` loop (not made) | Hailuo 6 s loop from the board still with light pulses along the traces, forward and reversed. Skipped in this pass; the SVG pulses carry the motion. | MiniMax-Hailuo-2.3 (not generated) |
 | `hero-loop.webm`, `hero-loop.mp4` | image-to-video from the hero still: "[Static shot] The camera does not move. The neon-lime wireframe mesh slowly pulses and flows upward along the tower like light, a few small black cubes drift very slowly in the air above the plinth and settle, subtle dust in the light. Calm, slow, minimal motion, everything else still. No text, no people." 6 s 1080P, played forward then reversed for a seamless 11.6 s loop, 1600px, no audio (VP9 crf 40 / H.264 crf 27) | MiniMax-Hailuo-2.3 |
 
 Chip band colour treatment: the MiniMax outputs carry a green cast, so each is graded to lime. The
-luminance is mapped black to `#C6FF3D` (the board onto the ground `#0A0B0A`, the two chip layers onto
-pure black so `mix-blend-mode: screen` drops their background), with a small black-point lift so the
-background is exactly black. Encoded with `cwebp -q 74`; the 1920 layers are 11 to 14 KB, the 960s 4 to 6 KB.
+luminance is mapped black to `#C6FF3D` (the chip layers onto pure black so `mix-blend-mode: screen` drops
+their background; the photo ground is graded to near-black and shown at 15% opacity as texture only).
+Encoded with `cwebp -q 74` (chips) and `-q 60` (photo). The chip layers are 11 to 14 KB at 1920, 4 to 6 KB at 960.
 
 Credit (in the footer): "Images: MiniMax image-01 · motion: MiniMax Hailuo-2.3".
 

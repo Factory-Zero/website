@@ -95,7 +95,7 @@
     if (document.readyState === 'complete') later(); else window.addEventListener('load', later, { once: true });
   }
 
-  /* ---------- chip band: parallax layers (board, traces, chip pair, chip die) ----------
+  /* ---------- chip band: parallax layers (photo ground, drawn back and mid boards, chip pair, chip die) ----------
      Each layer is moved by transform only, by its data-speed (nearer layers move more).
      One rAF-throttled scroll handler; it runs only while the band is near the viewport.
      Reduced motion and Save-Data keep the static composite (is-still): no transforms. */
