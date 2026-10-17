@@ -83,26 +83,86 @@
     var startPrompt = function () { cur = PROMPTS[idx]; n = 0; typed.textContent = ''; typeStep(); };
     var litStep = function () {
       setLit(cur.ventures);
+      fire(cur.ventures);
+      matchTiles(cur.ventures);
       built.textContent = '→ built with: ' + cur.ventures.map(function (id) {
         var g = scene.querySelector('.hb[data-venture="' + id + '"]'); return g ? g.getAttribute('data-name') : id;
       }).join(' · ');
       go(3900, unlightStep);
     };
     var unlightStep = function () {
-      setLit([]); built.textContent = '';
+      setLit([]); matchTiles([]); built.textContent = '';
       idx = (idx + 1) % PROMPTS.length;
       go(750, startPrompt);
     };
     nextFn = startPrompt;
     if ('IntersectionObserver' in window) {
-      new IntersectionObserver(function (es) { inView = es[0].isIntersecting; if (inView) kick(); }, { threshold: 0.25 }).observe(scene);
+      new IntersectionObserver(function (es) { inView = es[0].isIntersecting; if (inView) { kick(); kickFrame(); } }, { threshold: 0.25 }).observe(scene);
     } else { inView = true; }
     document.addEventListener('visibilitychange', function () { if (!document.hidden) kick(); });
     scene.addEventListener('pointerenter', function () { paused = true; });
     scene.addEventListener('pointerleave', function () { paused = false; kick(); });
     scene.addEventListener('focusin', function () { paused = true; });
     scene.addEventListener('focusout', function () { paused = false; kick(); });
+    /* sparks from the floor to each lit block; the grid tiles of the lit ventures glow */
+    var fire = function (ids) {
+      ids.forEach(function (id) {
+        var sp = scene.querySelector('.hb-spark[data-venture="' + id + '"]');
+        if (sp) { sp.classList.remove('is-go'); sp.getBoundingClientRect(); sp.classList.add('is-go'); }
+      });
+    };
+    var gcTiles = [].slice.call(document.querySelectorAll('.gc'));
+    var matchTiles = function (ids) {
+      gcTiles.forEach(function (t) { t.classList.toggle('is-match', ids.indexOf(t.getAttribute('data-v')) >= 0); });
+    };
+    /* camera drift and pointer parallax: one rAF loop, only while the hero is on screen and the tab is visible */
+    var bgSvg = document.querySelector('.hb-bgsvg'), mainSvg = scene.querySelector('.hb-svg');
+    var px = 0, py = 0, tx = 0, ty = 0, raf = 0, t0 = 0;
+    var frame = function (now) {
+      raf = 0;
+      if (!inView || document.hidden) return;
+      if (!t0) t0 = now;
+      var s = (now - t0) / 1000;
+      px += (tx - px) * 0.05; py += (ty - py) * 0.05;
+      var dx = Math.sin(s * 2 * Math.PI / 14) * 9, dy = Math.cos(s * 2 * Math.PI / 19) * 6;
+      if (bgSvg) bgSvg.style.transform = 'translate3d(' + (dx * 1.6 + px * 1.4).toFixed(2) + 'px,' + (dy * 1.6 + py * 1.4).toFixed(2) + 'px,0)';
+      if (mainSvg) mainSvg.style.transform = 'translate3d(' + (dx + px).toFixed(2) + 'px,' + (dy + py).toFixed(2) + 'px,0)';
+      raf = requestAnimationFrame(frame);
+    };
+    var kickFrame = function () { if (!raf && inView && !document.hidden) raf = requestAnimationFrame(frame); };
+    if (window.matchMedia && window.matchMedia('(pointer: fine)').matches) {
+      var heroEl = scene.closest('.hero');
+      if (heroEl) heroEl.addEventListener('pointermove', function (e) {
+        tx = (e.clientX / window.innerWidth - 0.5) * -26; ty = (e.clientY / window.innerHeight - 0.5) * -16; kickFrame();
+      });
+    }
+    document.addEventListener('visibilitychange', kickFrame);
+    kickFrame();
     kick();
+  }
+
+  /* ---------- page-wide venture grid: the shimmer ----------
+     A timer lights one tile a second, and only while the tab is visible. Reduced motion and
+     Save-Data keep the grid still. The tiles of the ventures lit by the hero stay lit. */
+  var gridTiles = [].slice.call(document.querySelectorAll('.gc'));
+  if (gridTiles.length) {
+    var litNow = [].map.call(document.querySelectorAll('.hb.is-lit'), function (g) { return g.getAttribute('data-venture'); });
+    gridTiles.forEach(function (t) { t.classList.toggle('is-match', litNow.indexOf(t.getAttribute('data-v')) >= 0); });
+    if (!calm && !saveData) {
+      var shimId = 0;
+      var shimOne = function () {
+        for (var k = 0; k < 1; k++) {
+          var el = gridTiles[(Math.random() * gridTiles.length) | 0];
+          if (el.classList.contains('is-match') || el.classList.contains('is-shim')) continue;
+          el.classList.add('is-shim');
+          el.addEventListener('animationend', function (e) { e.currentTarget.classList.remove('is-shim'); }, { once: true });
+        }
+      };
+      var shimStart = function () { if (!shimId) shimId = setInterval(shimOne, 1000); };
+      var shimStop = function () { clearInterval(shimId); shimId = 0; };
+      document.addEventListener('visibilitychange', function () { if (document.hidden) shimStop(); else shimStart(); });
+      if (!document.hidden) shimStart();
+    }
   }
 
   /* ---------- hero loops (home .hero-media and every .ph-media page hero) ----------
