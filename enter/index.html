@@ -100,7 +100,12 @@
   </nav>
 </header>
 
-<main id="main">
+<main id="main" class="has-ph">
+<!-- Page hero: markup from tools/ui.js pageHero(); assets in assets/ui/heroes/. -->
+<div class="ph-media ph-media--dim" aria-hidden="true">
+  <img src="/assets/ui/heroes/enter.webp" alt="" width="1600" height="900" fetchpriority="high" decoding="async">
+  <video data-hero-video data-webm="/assets/ui/heroes/enter.webm" data-mp4="/assets/ui/heroes/enter.mp4" muted loop playsinline preload="none" width="1600" height="900"></video>
+</div>
 
 <section class="page-top"><div class="wrap enter-grid">
   <div class="enter-lead">
@@ -207,6 +212,7 @@
 </footer>
 
 <script src="/assets/fz-common.js" defer></script>
+<script src="/assets/fz-ui.js" defer></script>
 <script src="/assets/fz-enter.js" defer></script>
 </body>
 </html>

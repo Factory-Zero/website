@@ -41,19 +41,37 @@
     setTimeout(function () { rv.forEach(function (n) { n.classList.add('in'); }); }, 4000);
   }
 
-  /* ---------- hero loop ---------- */
-  var hv = document.querySelector('[data-hero-video]');
-  if (hv && !calm && !saveData && window.matchMedia('(min-width: 600px)').matches) {
-    hv.preload = 'auto';
-    hv.addEventListener('playing', function () { hv.classList.add('is-on'); }, { once: true });
-    var go = function () { var p = hv.play(); if (p && p.catch) p.catch(function () {}); };
-    if (document.readyState === 'complete') go(); else window.addEventListener('load', go, { once: true });
-    // pause when off screen, so it costs nothing while you read
-    if ('IntersectionObserver' in window) {
-      new IntersectionObserver(function (es) {
-        es.forEach(function (e) { if (e.isIntersecting) go(); else hv.pause(); });
-      }).observe(hv);
-    }
+  /* ---------- hero loops (home .hero-media and every .ph-media page hero) ----------
+     Page heroes ship without <source>: data-webm / data-mp4 are attached only after the
+     page has loaded and the browser is idle, never with reduced motion, Save-Data or a
+     slow connection, so the poster is the only hero request on first paint. */
+  var hvs = document.querySelectorAll('[data-hero-video]');
+  var conn = navigator.connection;
+  var slow = conn && /(^|-)2g|3g/.test(conn.effectiveType || '');
+  if (hvs.length && !calm && !saveData && !slow && window.matchMedia('(min-width: 600px)').matches) {
+    var idle = window.requestIdleCallback || function (f) { return setTimeout(f, 200); };
+    var start = function () {
+      Array.prototype.forEach.call(hvs, function (hv) {
+        if (hv.dataset.webm && !hv.querySelector('source')) {
+          [['webm', 'video/webm'], ['mp4', 'video/mp4']].forEach(function (t) {
+            var s = document.createElement('source'); s.src = hv.dataset[t[0]]; s.type = t[1]; hv.appendChild(s);
+          });
+          hv.load();
+        }
+        hv.preload = 'auto';
+        hv.addEventListener('playing', function () { hv.classList.add('is-on'); }, { once: true });
+        var go = function () { var p = hv.play(); if (p && p.catch) p.catch(function () {}); };
+        go();
+        // pause when off screen, so it costs nothing while you read
+        if ('IntersectionObserver' in window) {
+          new IntersectionObserver(function (es) {
+            es.forEach(function (e) { if (e.isIntersecting) go(); else hv.pause(); });
+          }).observe(hv);
+        }
+      });
+    };
+    var later = function () { idle(start, { timeout: 2000 }); };
+    if (document.readyState === 'complete') later(); else window.addEventListener('load', later, { once: true });
   }
 
   /* ---------- venture grid: filters + search ---------- */
