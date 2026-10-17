@@ -108,7 +108,9 @@ button, input { font: inherit; color: inherit; }
 /* ---------- header ---------- */
 .site-header { position: sticky; top: 0; z-index: 50; height: 64px; display: flex; align-items: center; gap: 24px; padding: 0 var(--gut); background: rgba(10, 11, 10, .72); -webkit-backdrop-filter: blur(14px) saturate(140%); backdrop-filter: blur(14px) saturate(140%); border-bottom: 1px solid var(--hair); }
 .wordmark { display: inline-flex; align-items: center; gap: 10px; font: 600 15px/1 var(--sans); letter-spacing: -.01em; color: var(--fg); margin-right: auto; }
-.wordmark .o { width: 18px; height: 18px; border: 2px solid var(--acc); flex: none; }
+.wordmark .wm-t { font-weight: 600; font-size: 14px; letter-spacing: .2em; text-transform: uppercase; }
+/* The O of ZERO is an open ring: the original Factory Zero mark, now in the accent. */
+.wordmark .o { width: 15px; height: 15px; margin-left: -6px; border: 2px solid var(--acc); border-top-color: transparent; border-radius: 50%; flex: none; }
 .wordmark .wm-k { color: var(--fg-3); font: 500 11px/1 var(--mono); letter-spacing: .1em; padding-left: 10px; border-left: 1px solid var(--hair-2); }
 .site-nav { display: flex; align-items: center; gap: 4px; }
 .site-nav a { padding: 8px 12px; font-size: 14px; color: var(--fg-2); transition: color .2s; }
