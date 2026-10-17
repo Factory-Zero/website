@@ -51,6 +51,7 @@
       <div class="stats" id="stats">
         <div><b id="n-v">–</b>VENTURES</div>
         <div><b id="n-s">–</b>ON THE FZ STACK</div>
+        <div><b id="n-o">–</b>OPEN SOURCE</div>
         <div><b id="n-f">–</b>FILMS</div>
       </div>
       <div class="url">factory0<i>.</i>ventures</div>
@@ -66,6 +67,7 @@
   document.getElementById('n-v').textContent = pad(v.length);
   document.getElementById('n-s').textContent = pad(v.filter(function (x) { return x.stack; }).length);
   document.getElementById('n-f').textContent = pad(films.length);
+  document.getElementById('n-o').textContent = pad(v.filter(function (x) { return x.open_source; }).length);
   // Per-page overrides: ?t=title&k=kicker&s=subline (sub replaces the stats row's role as context)
   var q = new URLSearchParams(location.search);
   if (q.get('t')) document.getElementById('title').textContent = q.get('t');

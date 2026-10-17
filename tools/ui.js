@@ -96,12 +96,12 @@ const ARROW = '<svg viewBox="0 0 16 16" width="12" height="12" aria-hidden="true
 function vcard(v, { slug, pitch, i = 0 }) {
   const line = (pitch(v).solution || v.desc || '');
   const q = [v.name, v.id, v.category, v.stackRole, v.site, line].filter(Boolean).join(' ').toLowerCase();
-  return `<li><a class="vcard" href="/ventures/${slug(v)}/" data-stage="${esc(v.stage)}" data-stack="${v.stack ? 1 : 0}" data-cat="${esc(v.category)}" data-q="${esc(q)}" data-rv style="--d:${i % 6}">
+  return `<li><a class="vcard" href="/ventures/${slug(v)}/" data-stage="${esc(v.stage)}" data-stack="${v.stack ? 1 : 0}" data-os="${v.open_source ? 1 : 0}" data-cat="${esc(v.category)}" data-q="${esc(q)}" data-rv style="--d:${i % 6}">
   <span class="vcard-top"><span class="vicon${v.logo ? '' : ' vicon--mono'}">${icon(v, 46)}</span><span class="vid">${esc(v.id)}</span></span>
   <span class="vname">${esc(v.name)}</span>
   <span class="vcat">${esc(v.category)}</span>
   <span class="vdesc">${esc(line)}</span>
-  <span class="chips"><span class="chip">${esc(v.stage)}</span>${v.stack ? `<span class="chip chip--acc">FZ stack</span>` : ''}</span>
+  <span class="chips"><span class="chip">${esc(v.stage)}</span>${v.stack ? `<span class="chip chip--acc">FZ stack</span>` : ''}${v.open_source ? `<span class="chip" title="${esc(v.license || '')} licence">Open source</span>` : ''}</span>
   <span class="vgo" aria-hidden="true">${ARROW}</span>
 </a></li>`;
 }
@@ -116,6 +116,7 @@ function vtools(V) {
   <div class="vfilter" role="group" aria-label="Filter the ventures">
     ${btn('all', 'All', V.length, true)}
     ${btn('stack', 'FZ stack', V.filter(v => v.stack).length, false)}
+    ${btn('os', 'Open source', V.filter(v => v.open_source).length, false)}
     ${stages.map(s => btn('stage:' + s, s.charAt(0) + s.slice(1).toLowerCase(), n(s), false)).join('\n    ')}
   </div>
   <label class="vsearch"><span class="vh">Search the ventures</span><svg viewBox="0 0 16 16" aria-hidden="true"><circle cx="7" cy="7" r="5" fill="none" stroke="currentColor" stroke-width="1.5"/><path d="m11 11 3.5 3.5" stroke="currentColor" stroke-width="1.5"/></svg><input type="search" placeholder="Search ${V.length} ventures" autocomplete="off" data-vsearch></label>
