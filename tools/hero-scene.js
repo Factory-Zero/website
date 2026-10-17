@@ -1,15 +1,16 @@
 'use strict';
-/* The home hero's block scene: the Factory Zero stack drawn as isometric stone blocks.
+/* The home hero's block scene and the background layers behind the home page.
  *
- * Called by tools/sync-ventures.js, which writes the result into index.html between the
- * fz:heroscene markers. Pure functions of the data: no randomness, no network.
+ * Called by tools/sync-ventures.js, which writes four things into index.html:
+ *   heroSymbols  -> the logo symbols (one per live venture), in a hidden defs SVG
+ *   heroScene    -> the bright, lit block scene and the prompt bar (fz:heroscene)
+ *   heroField    -> the plain block field behind the hero text (fz:herobg)
+ *   gridTiles    -> the fixed page-wide grid of venture tiles (fz:herogrid)
+ * Pure functions of the data: a fixed shuffle, no randomness, no network.
  *
- *   heroScene({ root, stack, slugOf, prompts }) -> { html, names }
- *
- * Each block is three faces (top, left, right) filled with one shared stone texture
- * (assets/ui/block-stone.webp, a seamless tile), shaded per face. The venture's logo is
- * carved into the top face: its mark is drawn in the face's own plane with a lit lower
- * edge and a dark recess, so it reads as cut into the stone, not stuck on it.
+ * Each block is three faces (top, left, right) over one seamless stone texture
+ * (assets/ui/block-stone.webp), shaded per face. The venture's logo is carved into the top
+ * face: drawn in the face's own plane, with a lit lower edge and a dark recess.
  */
 const fs = require('fs');
 const path = require('path');
@@ -18,7 +19,7 @@ const L = 100;          // cell edge, in scene units
 const H = 92;           // one storey
 const G = 0.07;         // gap between blocks, in cells
 const SQ = Math.sqrt(3) / 2;
-// The 5 x 4 floor plan. Each stack venture appears exactly once (checked below).
+// The 5-4-4-4 floor plan (17 stack ventures). Each stack venture appears exactly once.
 const LAYOUT = [
   ["FZ-013", "FZ-004", "FZ-006", "FZ-016", "FZ-012"],
   ["FZ-018", "FZ-021", "FZ-020", "FZ-008"],
@@ -52,84 +53,109 @@ function carve(id, file) {
   return `<symbol id="${id}" viewBox="${vb}">${body}</symbol>`;
 }
 
-function heroScene({ root, stack, slugOf, prompts }) {
+// One symbol per live venture, id gl-<slug>. Used by the scene and by the page-wide grid.
+function heroSymbols({ root, ventures, slugOf }) {
+  const syms = ventures.map(v => carve(`gl-${slugOf(v)}`, path.join(root, 'assets', v.logo)));
+  return `<svg class="hb-defs" aria-hidden="true" focusable="false" width="0" height="0"><defs>\n${syms.join('\n')}\n</defs></svg>`;
+}
+
+// The floor plan: row widths, the stepped outline, and the iso points of the plate.
+function floor() {
+  const widths = LAYOUT.map(r => r.length), R = LAYOUT.length, W = Math.max(...widths);
+  const outline = [[0, 0], [widths[0], 0]];
+  for (let j = 0; j < R - 1; j++) outline.push([widths[j], j + 1], [widths[j + 1], j + 1]);
+  outline.push([widths[R - 1], R], [0, R]);
+  return { widths, R, W, outline, plate: outline.map(([x, y]) => P(x, y, 0)) };
+}
+
+// One block's geometry: its top, left and right faces and the centre of its top face.
+function geom(i, j, h) {
+  const x0 = i + G, x1 = i + 1 - G, y0 = j + G, y1 = j + 1 - G;
+  return {
+    x0, x1, y0, y1, w: x1 - x0, h,
+    tp: [P(x0, y0, h), P(x1, y0, h), P(x1, y1, h), P(x0, y1, h)],
+    left: [P(x0, y1, h), P(x1, y1, h), P(x1, y1, 0), P(x0, y1, 0)],
+    right: [P(x1, y0, h), P(x1, y1, h), P(x1, y1, 0), P(x1, y0, 0)],
+    cc: P((x0 + x1) / 2, (y0 + y1) / 2, h),
+  };
+}
+
+const faceMarkup = (g, pat, top = 'rgba(237,239,232,.13)') =>
+  `<polygon class="hb-face hb-left" points="${pts(g.left)}" fill="#1b1e1b"/><polygon class="hb-tex" points="${pts(g.left)}" fill="url(#${pat})"/><polygon class="hb-shade" points="${pts(g.left)}" fill="rgba(0,0,0,.2)"/>` +
+  `<polygon class="hb-face hb-right" points="${pts(g.right)}" fill="#0d0f0d"/><polygon class="hb-tex" points="${pts(g.right)}" fill="url(#${pat})"/><polygon class="hb-shade" points="${pts(g.right)}" fill="rgba(0,0,0,.52)"/>` +
+  `<polygon class="hb-face hb-top" points="${pts(g.tp)}" fill="#2a2e29"/><polygon class="hb-tex" points="${pts(g.tp)}" fill="url(#${pat})"/><polygon class="hb-shade" points="${pts(g.tp)}" fill="${top}"/>`;
+const patDef = (id, n) => `<pattern id="${id}" patternUnits="userSpaceOnUse" x="${(n * 97) % 200}" y="${(n * 131) % 200}" width="200" height="200"><image href="/assets/ui/block-stone.webp" width="200" height="200" preserveAspectRatio="none"/></pattern>`;
+
+// The cells in painter order (back to front), with each stack venture's storey count.
+function cellsOf(stack) {
   const byId = new Map(stack.map(v => [v.id, v]));
-  const placed = LAYOUT.flat().filter(Boolean);
+  const placed = LAYOUT.flat();
   if (placed.length !== stack.length || new Set(placed).size !== placed.length) {
     throw new Error('hero-scene: the LAYOUT must place every stack venture exactly once');
   }
   for (const id of placed) if (!byId.has(id)) throw new Error(`hero-scene: LAYOUT names ${id}, which is not a stack venture`);
-
-  const symbols = [], patterns = [], blocks = [], labels = [];
-  const boxes = [];
-  // Ground plate under the whole floor plan.
-  // The floor plate follows the stepped outline of the rows: no empty cell inside the plan.
-  const widths = LAYOUT.map(r => r.length), R = LAYOUT.length;
-  const ground = [[0, 0], [widths[0], 0]];
-  for (let j = 0; j < R - 1; j++) ground.push([widths[j], j + 1], [widths[j + 1], j + 1]);
-  ground.push([widths[R - 1], R], [0, R]);
-  const gp = ground.map(([x, y]) => P(x, y, 0));
-  boxes.push(...gp);
-
   const cells = [];
-  LAYOUT.forEach((row, j) => row.forEach((id, i) => { if (id) cells.push({ id, i, j }); }));
+  LAYOUT.forEach((row, j) => row.forEach((id, i) => { if (id) cells.push({ id, i, j, v: byId.get(id) }); }));
   cells.sort((a, b) => (a.i + a.j) - (b.i + b.j) || a.j - b.j);
+  return cells;
+}
 
-  const names = {};
-  const tags = [];
-  cells.forEach(({ id, i, j }, n) => {
-    const v = byId.get(id);
+// The lit scene: the stack blocks with their carved logos, floor seams that pulse, a spark
+// that runs from the floor's front corner to each block, and the prompt bar.
+function heroScene({ stack, slugOf, prompts }) {
+  const F = floor();
+  const cells = cellsOf(stack);
+  const origin = F.plate[F.plate.length - 2];             // the front corner of the plate
+  const boxes = [...F.plate];
+  const seams = [];
+  // Floor seams: the grid lines inside the stepped plate, the travelling pulses on every third.
+  for (let i = 1; i < F.W; i++) {
+    const k = F.widths.filter(w => w >= i).length;
+    seams.push([P(i, 0, 0), P(i, k, 0)]);
+  }
+  for (let j = 1; j < F.R; j++) seams.push([P(0, j, 0), P(Math.min(F.widths[j - 1], F.widths[j]), j, 0)]);
+  const seamLines = seams.map(([a, b], k) =>
+    `<line class="hb-seam${k % 3 === 0 ? ' hb-pulse' : ''}" style="--s:${k}" x1="${a[0]}" y1="${a[1]}" x2="${b[0]}" y2="${b[1]}"/>`).join('');
+
+  const blocks = [], sparks = [], tags = [], names = {};
+  cells.forEach(({ id, i, j, v }, n) => {
     const slug = slugOf(v);
-    const h = v.stackGroup === 'The foundation' ? 2 : 1;          // the foundation stands two storeys high
-    const x0 = i + G, x1 = i + 1 - G, y0 = j + G, y1 = j + 1 - G, w = x1 - x0;
-    const top = z => [P(x0, y0, z), P(x1, y0, z), P(x1, y1, z), P(x0, y1, z)];
-    const left = [P(x0, y1, h), P(x1, y1, h), P(x1, y1, 0), P(x0, y1, 0)];
-    const right = [P(x1, y0, h), P(x1, y1, h), P(x1, y1, 0), P(x1, y0, 0)];
-    const tp = top(h);
-    boxes.push(...tp, ...left, ...right);
+    const g = geom(i, j, v.stackGroup === 'The foundation' ? 2 : 1);  // the foundation stands two storeys high
+    boxes.push(...g.tp, ...g.left, ...g.right);
     names[id] = v.name;
-
-    // The logo, carved into the top face: the mark is mapped onto the face's own plane.
-    const sid = `hb-mk-${slug}`;
-    const logoFile = path.join(root, 'assets', v.logo);
-    symbols.push(carve(sid, logoFile));
-    const ox = SQ * L * (x0 - y0), oy = 0.5 * L * (x0 + y0) - h * H;
-    const m = [SQ * L * w, 0.5 * L * w, -SQ * L * w, 0.5 * L * w, num(ox), num(oy)].map(num).join(' ');
-    const mk = 0.6, mo = (1 - mk) / 2, rim = 0.022;
     const pat = `hb-st-${n}`;
-    const px = (n * 97) % 200, py = (n * 131) % 200;
-    patterns.push(`<pattern id="${pat}" patternUnits="userSpaceOnUse" x="${px}" y="${py}" width="200" height="200"><image href="/assets/ui/block-stone.webp" width="200" height="200" preserveAspectRatio="none"/></pattern>`);
-    // The name tag sits above the top face, in a top layer drawn after every block.
-    const cc = P((x0 + x1) / 2, (y0 + y1) / 2, h);
-    const tw = v.name.length * 9.8 + 18, tx = cc[0], ty = cc[1] - 30;
+    const sid = `gl-${slug}`;
+    const mk = 0.6, mo = (1 - mk) / 2, rim = 0.022;
+    const ox = SQ * L * (g.x0 - g.y0), oy = 0.5 * L * (g.x0 + g.y0) - g.h * H;
+    const m = [SQ * L * g.w, 0.5 * L * g.w, -SQ * L * g.w, 0.5 * L * g.w, num(ox), num(oy)].map(num).join(' ');
+    const tw = v.name.length * 9.8 + 18, tx = g.cc[0], ty = g.cc[1] - 30;
     tags.push({ id, name: v.name, x: tx, y: ty, w: tw });
     boxes.push([tx - tw / 2, ty - 12], [tx + tw / 2, ty + 12]);
-    blocks.push(`    <g class="hb" data-venture="${esc(id)}" data-name="${esc(v.name)}">
-      <a href="/ventures/${esc(slug)}/" tabindex="-1">
-        <polygon class="hb-face hb-left" points="${pts(left)}" fill="#1b1e1b"/><polygon class="hb-tex" points="${pts(left)}" fill="url(#${pat})"/><polygon class="hb-shade" points="${pts(left)}" fill="rgba(0,0,0,.2)"/>
-        <polygon class="hb-face hb-right" points="${pts(right)}" fill="#0d0f0d"/><polygon class="hb-tex" points="${pts(right)}" fill="url(#${pat})"/><polygon class="hb-shade" points="${pts(right)}" fill="rgba(0,0,0,.52)"/>
-        <polygon class="hb-face hb-top" points="${pts(tp)}" fill="#2a2e29"/><polygon class="hb-tex" points="${pts(tp)}" fill="url(#${pat})"/><polygon class="hb-shade" points="${pts(tp)}" fill="rgba(237,239,232,.13)"/>
-        <polygon class="hb-edge" points="${pts(tp)}" fill="none"/>
+    sparks.push(`<circle class="hb-spark" data-venture="${esc(id)}" cx="${origin[0]}" cy="${origin[1]}" r="4.5" style="--tx:${num(g.cc[0] - origin[0])}px;--ty:${num(g.cc[1] - origin[1])}px"/>`);
+    blocks.push(`    <g class="hb" data-venture="${esc(id)}" data-name="${esc(v.name)}" data-pat="${pat}">
+      <a href="/ventures/${esc(slug)}/" tabindex="-1"><g class="hb-bob" style="--d:${n}">
+        ${faceMarkup(g, pat)}
+        <polygon class="hb-edge" points="${pts(g.tp)}" fill="none"/>
         <g transform="matrix(${m})">
           <use class="hb-rim" href="#${sid}" x="${(mo + rim).toFixed(3)}" y="${(mo + rim).toFixed(3)}" width="${mk}" height="${mk}"/>
           <use class="hb-cut" href="#${sid}" x="${mo}" y="${mo}" width="${mk}" height="${mk}"/>
         </g>
-      </a>
+      </g></a>
     </g>`);
   });
+  const patterns = cells.map((c, n) => patDef(`hb-st-${n}`, n)).join('\n    ');
 
-  // The floor plate, the blocks back to front, then the labels (in the blocks' groups).
   const vbMinX = Math.min(...boxes.map(p => p[0])) - 40, vbMaxX = Math.max(...boxes.map(p => p[0])) + 40;
   const vbMinY = Math.min(...boxes.map(p => p[1])) - 30, vbMaxY = Math.max(...boxes.map(p => p[1])) + 34;
   const vb = [num(vbMinX), num(vbMinY), num(vbMaxX - vbMinX), num(vbMaxY - vbMinY)].join(' ');
-  const plate = `<polygon class="hb-plate" points="${pts(gp)}"/>`;
   const svg = `<svg class="hb-svg" viewBox="${vb}" aria-hidden="true" focusable="false">
   <defs>
-    ${symbols.join('\n    ')}
-    ${patterns.join('\n    ')}
+    ${patterns}
   </defs>
-  ${plate}
+  <polygon class="hb-plate" points="${pts(F.plate)}"/>
+  <g class="hb-seams">${seamLines}</g>
 ${blocks.join('\n')}
+<g class="hb-sparks">${sparks.join('')}</g>
 <g class="hb-tags">${tags.map(t => `<g class="hb-tag" data-venture="${esc(t.id)}"><rect x="${num(t.x - t.w / 2)}" y="${num(t.y - 12)}" width="${num(t.w)}" height="24"/><text x="${num(t.x)}" y="${num(t.y + 1)}" text-anchor="middle" dominant-baseline="central">${esc(t.name)}</text></g>`).join('')}</g>
 </svg>`;
 
@@ -137,10 +163,10 @@ ${blocks.join('\n')}
   const first = prompts[0];
   const built = `→ built with: ${first.ventures.map(id => names[id]).join(' · ')}`;
   const litAtStart = new Set(first.ventures);
-  const html = `<!-- The scene and prompt bar. The first prompt is lit so the static page reads
+  const html = `<!-- The lit scene and prompt bar. The first prompt is lit so the static page reads
      without JavaScript; tools/sync-ventures.js writes it, assets/fz-ui.js types the rest. -->
   <div class="hb-scene has-lit" data-hero-scene data-prompt="0">
-    <div class="hb-prompt">
+    <div class="hb-prompt" data-hero-prompt>
       <span class="hb-chev" aria-hidden="true">&rsaquo;</span>
       <p class="hb-typed" aria-live="off"><span data-typed>${esc(first.text)}</span><span class="hb-caret" aria-hidden="true"></span></p>
     </div>
@@ -150,4 +176,42 @@ ${svg.replace(/<g class="(hb|hb-tag)" data-venture="([^"]+)"/g, (m, cls, id) => 
   return { html, names };
 }
 
-module.exports = { heroScene, LAYOUT };
+// The background field behind the hero text: the same floor plan with plain faces (no
+// logos, no lights), drawn larger and cropped by the hero. Decorative.
+function heroField({ stack, slugOf }) {
+  const F = floor();
+  const cells = cellsOf(stack);
+  const boxes = [...F.plate];
+  const out = [], pats = [];
+  cells.forEach(({ i, j, v }, n) => {
+    const g = geom(i, j, v.stackGroup === 'The foundation' ? 2 : 1);
+    boxes.push(...g.tp, ...g.left, ...g.right);
+    const pat = `hbf-st-${n}`;
+    pats.push(patDef(pat, n + 7));
+    out.push(`<g class="hb-bob" style="--d:${n}">${faceMarkup(g, pat, 'rgba(237,239,232,.09)')}</g>`);
+  });
+  const vbMinX = Math.min(...boxes.map(p => p[0])) - 30, vbMaxX = Math.max(...boxes.map(p => p[0])) + 30;
+  const vbMinY = Math.min(...boxes.map(p => p[1])) - 30, vbMaxY = Math.max(...boxes.map(p => p[1])) + 30;
+  const vb = [num(vbMinX), num(vbMinY), num(vbMaxX - vbMinX), num(vbMaxY - vbMinY)].join(' ');
+  return `<svg class="hb-bgsvg" viewBox="${vb}" aria-hidden="true" focusable="false" preserveAspectRatio="xMidYMid slice">
+  <defs>${pats.join('')}</defs>
+${out.join('\n')}
+</svg>`;
+}
+
+// The page-wide grid: square tiles, one per slot, cycling through every live venture in a
+// fixed shuffled order, so each venture appears evenly. Decorative; the logos are <use>s.
+function gridTiles({ ventures, slugOf, count = 300 }) {
+  const order = ventures.slice();
+  let seed = 7;
+  const rnd = () => (seed = (seed * 1103515245 + 12345) & 0x7fffffff) / 0x7fffffff;
+  for (let k = order.length - 1; k > 0; k--) { const r = Math.floor(rnd() * (k + 1)); [order[k], order[r]] = [order[r], order[k]]; }
+  const tiles = [];
+  for (let k = 0; k < count; k++) {
+    const v = order[k % order.length];
+    tiles.push(`<span class="gc" data-v="${esc(v.id)}" title=""><svg viewBox="0 0 120 120" width="100%" height="100%"><use href="#gl-${esc(slugOf(v))}" x="18" y="18" width="84" height="84"/></svg></span>`);
+  }
+  return tiles.join('');
+}
+
+module.exports = { heroSymbols, heroScene, heroField, gridTiles, LAYOUT };

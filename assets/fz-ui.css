@@ -226,6 +226,53 @@ button, input { font: inherit; color: inherit; }
   .ho-go { justify-self: start; }
 }
 
+/* ---------- page-wide venture grid (home): one fixed layer behind all content ---------- */
+.gc-layer { position: fixed; inset: 0; z-index: -1; pointer-events: none; overflow: hidden; --gc-cell: clamp(64px, 6.4vw, 104px);
+  display: grid; grid-template-columns: repeat(auto-fill, var(--gc-cell)); grid-auto-rows: var(--gc-cell); justify-content: center; align-content: start; }
+.gc { position: relative; display: block; width: var(--gc-cell); height: var(--gc-cell); border: 1px solid rgba(237, 239, 232, .06); color: var(--fg); opacity: .035; transition: opacity 1.4s var(--ease), color 1.4s var(--ease); }
+.gc svg { position: absolute; inset: 0; display: block; width: 100%; height: 100%; }
+.gc.is-match { opacity: .085; color: var(--acc); }
+.gc.is-shim { animation: gcShim 4.2s ease-in-out 1 both; }
+@keyframes gcShim { 0%, 100% { opacity: .035; } 45%, 55% { opacity: .11; } }
+/* The body is transparent on the home page: html keeps the ground, so the fixed grid (z-index -1) sits above it. */
+body.has-gc { background: transparent; }
+/* The ground of a home section is transparent so the grid shows through; cards keep theirs. */
+.has-gc .chip-band { background: transparent; }
+.has-gc .chip-band::before { background: linear-gradient(rgba(10, 11, 10, .0), rgba(10, 11, 10, 0)); }
+.has-gc .chip-band::after { background: linear-gradient(rgba(10, 11, 10, 0), rgba(10, 11, 10, 0)); }
+
+/* ---------- hero background: the plain block field and the veil over the text ---------- */
+.hb-bg { position: absolute; inset: -6% -4%; z-index: 0; pointer-events: none; overflow: hidden;
+  -webkit-mask-image: linear-gradient(90deg, #000 0%, rgba(0, 0, 0, .5) 55%, rgba(0, 0, 0, .3) 100%); mask-image: linear-gradient(90deg, #000 0%, rgba(0, 0, 0, .5) 55%, rgba(0, 0, 0, .3) 100%); }
+.hero--home::before { display: none; }
+.hb-bgsvg { display: block; width: 100%; height: 100%; opacity: .85; will-change: transform; }
+.hb-veil { position: absolute; inset: 0; z-index: 1; pointer-events: none;
+  background: linear-gradient(90deg, rgba(10, 11, 10, .93) 0%, rgba(10, 11, 10, .8) 36%, rgba(10, 11, 10, .18) 70%, rgba(10, 11, 10, .05) 100%); }
+.hero--home .hero-in { position: relative; z-index: 2; }
+.hero--home .hero-grid { z-index: 0; }
+
+/* ---------- idle motion (CSS transforms and opacity only) ---------- */
+.hb-bob { animation: hbBob 6.5s ease-in-out infinite; animation-delay: calc(var(--d, 0) * -0.45s); }
+@keyframes hbBob { 0%, 100% { transform: translateY(0); } 50% { transform: translateY(-3px); } }
+.hb-seam { stroke: rgba(237, 239, 232, .1); stroke-width: 1.2; fill: none; }
+.hb-seam.hb-pulse { stroke: rgba(198, 255, 61, .6); stroke-dasharray: 26 520; animation: hbPulse 7.5s linear infinite; animation-delay: calc(var(--s, 0) * -1.1s); }
+@keyframes hbPulse { from { stroke-dashoffset: 280; } to { stroke-dashoffset: -280; } }
+.hb-spark { fill: var(--acc); opacity: 0; }
+.hb-spark.is-go { animation: hbSpark .95s cubic-bezier(.5, 0, .7, 1) 1 forwards; }
+@keyframes hbSpark { 0% { opacity: 0; transform: translate(0, 0); } 10% { opacity: 1; } 100% { opacity: 0; transform: translate(var(--tx), var(--ty)); } }
+/* A lit block rises on a spring after its spark arrives; the others dip a little. */
+.hb { transition: transform .9s var(--ease), filter .6s var(--ease); }
+.hb.is-lit { transition: transform 1.05s cubic-bezier(.3, 1.6, .5, 1) .55s, filter .6s var(--ease); }
+.hb-scene.has-lit .hb:not(.is-lit) { transform: translateY(4px); }
+.hb-tag.is-lit { transition: transform 1.05s cubic-bezier(.3, 1.6, .5, 1) .55s, opacity .5s var(--ease); }
+@media (prefers-reduced-motion: reduce) {
+  .hb-bob, .hb-seam.hb-pulse, .hb-spark.is-go, .gc.is-shim { animation: none !important; }
+  .hb-scene.has-lit .hb:not(.is-lit) { transform: none; }
+}
+@media (max-width: 900px) {
+  .hb-veil { background: linear-gradient(180deg, rgba(10, 11, 10, .72) 0%, rgba(10, 11, 10, .9) 46%, rgba(10, 11, 10, .94) 100%); }
+}
+
 /* ---------- stats band ---------- */
 .stats { display: grid; grid-template-columns: repeat(var(--n, 5), minmax(0, 1fr)); border-top: 1px solid var(--hair); border-bottom: 1px solid var(--hair); }
 .stat { padding: 36px 28px 32px; border-left: 1px solid var(--hair); min-width: 0; }

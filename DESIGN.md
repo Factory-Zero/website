@@ -155,6 +155,27 @@ prompt names a venture that is not on the stack, if there are fewer than 20 prom
 stack venture is never lit by any prompt, so the scene can never claim a venture the stack does
 not contain. Hand edits to `heroPrompts` are data changes: run `node tools/sync-ventures.js`.
 
+## Home background: the venture grid and the block field
+
+The home page sits on one fixed, full-viewport grid of venture tiles (`.gc-layer`, written by
+`tools/hero-scene.js` into the `fz:herogrid` region right after `<body>`). Every live venture is
+a square tile with its monochrome logo, in a fixed shuffled order that repeats to fill the
+viewport. At rest the tiles are 3.5% opacity. A timer lights one tile a second to about 11% and
+lets it fade back. The tiles of the ventures lit by the hero prompt go to 8.5% in lime. The layer
+is behind all content (z-index -1), the home body is transparent so it shows, and each section
+keeps its ground transparent. The cards keep their own opaque ground for contrast. Reduced motion
+and Save-Data keep the grid still. Only the home page has the layer.
+
+Behind the hero text, the same floor plan is drawn as plain faces (`fz:herobg`, `.hb-bg`) at
+low contrast, cropped by the hero and faded toward the right, where the lit scene sits. A dark
+veil (`.hb-veil`) behind the text column keeps the headline and offer at AA contrast.
+
+Motion (CSS transforms and opacity, plus one rAF loop that runs only while the hero is on screen
+and the tab is visible): the blocks bob out of phase; the floor seams carry slow lime pulses; a
+spark runs from the floor's front corner to each block the prompt names, and that block rises
+on a spring after the spark arrives; the other blocks dip slightly. The field drifts on a slow
+figure and follows the pointer on fine pointers.
+
 ## Motion
 
 - Reveal: add `data-rv` (and `style="--d:N"` for a 70ms stagger). Content is visible by
