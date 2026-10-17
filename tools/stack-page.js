@@ -113,7 +113,8 @@ ${inner}
 <body>
 ${header}
 
-<main id="main">
+<main id="main" class="has-ph">
+${UI.pageHero('stack')}
 
 <section class="page-top"><div class="wrap">
   <p class="eyebrow">THE FACTORY ZERO STACK &middot; ${String(stack.length).padStart(2, '0')} OF ${String(V.length).padStart(2, '0')} VENTURES</p>

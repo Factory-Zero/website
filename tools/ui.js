@@ -124,4 +124,19 @@ function vtools(V) {
 </div>`;
 }
 
-module.exports = { esc, headAssets, header, footer, icon, vcard, vtools, ARROW, FONTS };
+// The page hero: a full-bleed loop behind the top of a subpage. Put it as the first
+// child of <main class="has-ph">. The still shows first and is the reduced-motion /
+// data-saver fallback. The <video> carries no <source> in the HTML: fz-ui.js adds the
+// sources after load + idle, and only with motion allowed, no Save-Data, a fast
+// connection and a viewport ≥600px, so the loop never competes with the page.
+// variant: 'app' (venture product page: shorter, fades before the stats row),
+// 'dim' (pages whose content sits over the right half: the form, the thesis title).
+function pageHero(slug, variant) {
+  const base = `/assets/ui/heroes/${esc(slug)}`;
+  return `<div class="ph-media${variant ? ` ph-media--${esc(variant)}` : ''}" aria-hidden="true">
+  <img src="${base}.webp" alt="" width="1600" height="900" fetchpriority="high" decoding="async">
+  <video data-hero-video data-webm="${base}.webm" data-mp4="${base}.mp4" muted loop playsinline preload="none" width="1600" height="900"></video>
+</div>`;
+}
+
+module.exports = { pageHero, esc, headAssets, header, footer, icon, vcard, vtools, ARROW, FONTS };

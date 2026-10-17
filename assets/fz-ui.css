@@ -624,6 +624,34 @@ button.link { background: none; border: 0; border-bottom: 1px solid var(--hair-3
 .notfound .lede { margin-top: 22px; }
 .notfound p:last-child { margin-top: 32px; }
 
+/* ---------- page hero: a full-bleed loop behind the top of every subpage ----------
+   <main class="has-ph"> + first child <div class="ph-media"> (tools/ui.js pageHero()).
+   No frame: the veil fades it into the page on the left and at the bottom. */
+main.has-ph { position: relative; isolation: isolate; }
+.ph-media { position: absolute; top: 0; left: 0; right: 0; height: clamp(560px, 88vh, 880px); z-index: -1; pointer-events: none; overflow: hidden; }
+.ph-media img, .ph-media video { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; object-position: var(--ph-pos, 72% 50%); }
+.ph-media video { opacity: 0; transition: opacity 1.2s var(--ease); }
+.ph-media video.is-on { opacity: 1; }
+.ph-media::after { content: ''; position: absolute; inset: 0;
+  background:
+    linear-gradient(90deg, rgba(10, 11, 10, .93) 0%, rgba(10, 11, 10, .78) 34%, rgba(10, 11, 10, .2) 68%, rgba(10, 11, 10, .3) 100%),
+    linear-gradient(180deg, rgba(10, 11, 10, .5) 0%, rgba(10, 11, 10, 0) 16%),
+    linear-gradient(0deg, var(--bg) 0%, rgba(10, 11, 10, .6) 22%, rgba(10, 11, 10, 0) 52%); }
+.ph-media::before { content: ''; position: absolute; inset: 0; z-index: 1; background-image: linear-gradient(var(--hair) 1px, transparent 1px), linear-gradient(90deg, var(--hair) 1px, transparent 1px); background-size: 120px 120px; -webkit-mask-image: linear-gradient(90deg, #000 0%, transparent 50%); mask-image: linear-gradient(90deg, #000 0%, transparent 50%); opacity: .5; }
+.ph-media--app { height: clamp(480px, 66vh, 640px); }
+.ph-media--app::after { background:
+    linear-gradient(90deg, rgba(10, 11, 10, .95) 0%, rgba(10, 11, 10, .86) 46%, rgba(10, 11, 10, .35) 74%, rgba(10, 11, 10, .45) 100%),
+    linear-gradient(180deg, rgba(10, 11, 10, .5) 0%, rgba(10, 11, 10, 0) 16%),
+    linear-gradient(0deg, var(--bg) 0%, var(--bg) 18%, rgba(10, 11, 10, .55) 46%, rgba(10, 11, 10, 0) 72%); }
+.ph-media--dim::after { background:
+    linear-gradient(90deg, rgba(10, 11, 10, .93) 0%, rgba(10, 11, 10, .8) 40%, rgba(10, 11, 10, .62) 70%, rgba(10, 11, 10, .66) 100%),
+    linear-gradient(0deg, var(--bg) 0%, rgba(10, 11, 10, .6) 24%, rgba(10, 11, 10, 0) 55%); }
+@media (max-width: 760px) {
+  .ph-media { height: clamp(460px, 74vh, 640px); }
+  .ph-media img, .ph-media video { object-position: var(--ph-pos-m, 78% 50%); }
+  .ph-media::after, .ph-media--app::after, .ph-media--dim::after { background: linear-gradient(180deg, rgba(10, 11, 10, .55) 0%, rgba(10, 11, 10, .74) 40%, var(--bg) 100%); }
+}
+
 /* ---------- reveal (only when motion is allowed and JS runs) ---------- */
 html.rv-on [data-rv] { opacity: 0; transform: translate3d(0, 18px, 0); transition: opacity .9s var(--ease), transform .9s var(--ease); transition-delay: calc(var(--d, 0) * 70ms); }
 html.rv-on [data-rv].in { opacity: 1; transform: none; }
@@ -633,7 +661,7 @@ html.rv-on [data-rv].in { opacity: 1; transform: none; }
   .marquee { overflow-x: auto; -webkit-mask-image: none; mask-image: none; }
   .marquee-track { animation: none; }
   .marquee-track li[aria-hidden="true"] { display: none; }
-  .hero-media video { display: none; }
+  .hero-media video, .ph-media video { display: none; }
 }
 
 /* ---------- Venture-as-a-service ticker (top of the home hero) + offer card ---------- */

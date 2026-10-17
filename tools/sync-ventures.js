@@ -165,7 +165,8 @@ const vbody = `</head>
 
 ${UI.header('/ventures/')}
 
-<main id="main">
+<main id="main" class="has-ph">
+${UI.pageHero('ventures')}
 
 <section class="sec sec--flush">
   <div class="wrap">
@@ -276,7 +277,8 @@ ${rel.map((o, i) => UI.vcard(o, { slug, pitch, i })).join('\n')}
         data-offer="${esc(p.offer)}" data-saves="${esc(p.saves)}" data-now="${esc(p.now)}"></button>`;
   const ghLinks = gh(v).length ? gh(v).map(([l, u]) => `<a href="${esc(u)}" rel="noopener">${esc(l)} &rarr;</a>`).join('') : '<span>No public repository</span>';
   return `
-<main id="main">
+<main id="main" class="has-ph">
+${UI.pageHero(slug(v), 'app')}
 ${record}
 <div class="wrap">
   <nav class="crumbs" aria-label="Breadcrumb"><a href="/">Factory Zero</a><span aria-hidden="true">/</span><a href="/ventures/">Ventures</a><span aria-hidden="true">/</span><span id="d-record">RECORD / ${esc(v.id)}</span></nav>
