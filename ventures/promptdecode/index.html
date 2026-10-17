@@ -10,7 +10,7 @@
 <meta name="description" content="promptdecode finds invisible text and shows you, in plain words, what it says.">
 <link rel="canonical" href="https://factory0.ventures/ventures/promptdecode/">
 <meta name="robots" content="index, follow, max-image-preview:large, max-snippet:-1">
-<meta name="theme-color" content="#0A0A0B">
+<meta name="theme-color" content="#0A0B0A">
 <meta name="color-scheme" content="dark">
 
 <meta property="og:type" content="website">
@@ -37,8 +37,8 @@
 
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Archivo:wght@300;400;500;600&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="/assets/fz.css">
+<link href="https://fonts.googleapis.com/css2?family=Inter+Tight:wght@300;400;500;600&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="/assets/fz-ui.css">
 
 <script type="application/ld+json">
 {
@@ -88,171 +88,25 @@
 </head>
 <body>
 
-<a class="skip-link" href="#main">SKIP TO CONTENT</a>
+<a class="skip-link" href="#main">Skip to content</a>
 
 <header class="site-header">
-  <a class="wordmark" href="/" aria-label="Factory Zero home">
-    <span>FACTORY ZER</span><span class="o" aria-hidden="true"></span>
-  </a>
+  <a class="wordmark" href="/" aria-label="Factory Zero home"><span class="o" aria-hidden="true"></span>Factory Zero<span class="wm-k" aria-hidden="true">FZ/01</span></a>
   <button class="nav-toggle" type="button" aria-expanded="false" aria-controls="site-nav">MENU</button>
   <nav class="site-nav" id="site-nav" aria-label="Primary">
-    <a href="/ventures/" aria-current="page">VENTURES</a>
-    <a href="/stack/">STACK</a>
-    <a href="/system/">SYSTEM</a>
-    <a href="/technology/">TECHNOLOGY</a>
-    <a href="/thesis/">THESIS</a>
-    <a href="/about/">ABOUT</a>
-    <a href="/enter/" class="enter">ENTER →</a>
+    <a href="/ventures/" aria-current="page">Ventures</a>
+    <a href="/stack/">Stack</a>
+    <a href="/system/">System</a>
+    <a href="/technology/">Technology</a>
+    <a href="/thesis/">Thesis</a>
+    <a href="/about/">About</a>
+    <a class="enter" href="/enter/">Enter <span aria-hidden="true">&rarr;</span></a>
   </nav>
 </header>
 
 <main id="main">
-
-<section class="page">
-  <div class="page-head">
-    <p class="kicker">VENTURE REGISTRY</p>
-    <p class="count" id="fz-count">23 RECORDS &middot; 00 LIVE</p>
-  </div>
-  <h1 class="h-page">Registry</h1>
-  <p class="lede lede--wide" style="margin-bottom:6vh">Every venture below is a company of its own, and they are built to run on each other: Cratefield is the framework, Colonizer runs the agents, Owlpost sends the mail, Ledgers keeps the books. The ventures on the Factory Zero stack, marked FZ STACK, are the foundation for the autonomous organization, and most of it is open source, so anyone can build on it too. Select a venture to see the problem it solves, what you can use today, and which of the others it uses; most of those links are still planned, and each page says which are live. No venture reports a figure yet, so none is shown.</p>
-  <!-- fz:stackbar:start -->
-    <div class="registry-filter"><button type="button" class="fzs-filter" id="fz-stack-filter" aria-pressed="false">FZ STACK &middot; 17</button><button type="button" class="fzs-i" aria-label="What is FZ STACK?" aria-haspopup="dialog" aria-expanded="false">i</button><p class="fzs-hint">The ventures other ventures are built on. They add to the shared foundation; the others inherit it. <a href="/stack/">See the stack &rarr;</a></p></div>
-<!-- fz:stackbar:end -->
-  <div class="registry">
-    <div class="registry-head registry-cols" aria-hidden="true">
-      <span>ID</span><span>NAME</span><span>STATUS</span><span>CATEGORY</span><span class="aut">TARGET</span>
-    </div>
-    <!-- fz:registry:start -->
-      <button type="button" class="record registry-cols" aria-pressed="false" aria-controls="d-record"
-        data-id="FZ-001" data-stack="1" data-stack-role="Music in your app" data-license="MIT" data-slug="kontinuum" data-name="Kontinuum" data-status="BUILDING" data-status-color="#A9A8A5"
-        data-category="MUSIC" data-autonomy=""
-        data-target="4" data-aim-operate="Composition, performance and release are the engine’s job, not a studio’s. The aim is a catalogue that writes and renews itself while people set the taste boundaries and sign off on what ships."
-        data-aim-intelligence="A deterministic real-time engine that plays and a critic that listens: instruments and scenes as code, a scoring model that judges each take against a reference, and distillation from what listeners keep. No cloud model in the playback loop." data-aim-growth="Listener-led. One listener, one continuous stream; growth is listeners who come back the next day, counted from the first installed build and not before."
-        data-github="[[&quot;KONTINUUM-AI/KONTINUUM-ENGINE&quot;,&quot;https://github.com/Kontinuum-ai/kontinuum-engine&quot;],[&quot;KONTINUUM-AI&quot;,&quot;https://github.com/Kontinuum-ai&quot;]]" data-uses="[[&quot;DEPLOYS&quot;,&quot;Keep Shipping&quot;,&quot;/ventures/keep-shipping/&quot;,&quot;planned&quot;,&quot;Every venture site and Worker deployed from the Keep Shipping console.&quot;],[&quot;HOSTING&quot;,&quot;Cloudflare&quot;,&quot;https://www.cloudflare.com&quot;,&quot;live&quot;,&quot;The site.&quot;]]"
-        data-launched="NOT YET" data-stage="PROTOTYPE" data-site="kontinuum.audio"
-        data-logo="kontinuum-animated.svg" data-logo-w="360" data-logo-h="264" data-desc="An AI composer performing on a deterministic real-time engine. Music written and performed continuously, personalised to the listener, and playable offline. Not a streaming app and not a DAW: a living instrument."
-        data-problem="Playlists run out, repeat themselves, or break the mood you were in." data-solution="Kontinuum plays music that never ends and never repeats. It is written while you listen." data-how="[&quot;A real-time music engine composes and plays each moment as it goes&quot;,&quot;Plays on your device, offline, with nothing to stream or buffer&quot;,&quot;Designed to learn which moments you keep and lean towards them&quot;]"
-        data-offer="The engine is free and open source (MIT). Try it in your browser at kontinuum.audio." data-saves="No more skipping, shuffling or building playlists." data-now="Browser demo works today. The app is still being built; there is no download yet.">
-        <span class="rid">FZ-001</span>
-        <span class="name"><img class="venture-logo" src="/assets/kontinuum-animated.svg" alt="" width="30" height="22">Kontinuum<span class="fzs">FZ STACK</span><span class="fzs-role">Music in your app</span><span class="fzs-os" title="MIT licence">OPEN SOURCE</span></span>
-        <span class="status" style="color:#A9A8A5"><span class="dot"></span>BUILDING</span>
-        <span class="cat">MUSIC</span>
-        <span class="aut">L4</span>
-      </button>
-      <button type="button" class="record registry-cols" aria-pressed="false" aria-controls="d-record"
-        data-id="FZ-002" data-stack="0" data-stack-role="" data-license="" data-slug="undercover-rockstars" data-name="Undercover Rockstars" data-status="BUILDING" data-status-color="#A9A8A5"
-        data-category="APPAREL" data-autonomy=""
-        data-target="3" data-aim-operate="The garments are cut by people in Bali and that stays. Everything around them is the target for agents: stock, orders, fulfilment, support, content and the brief for the next drop."
-        data-aim-intelligence="Operational rather than creative: demand and stock forecasting per pair and size, fit guidance from a body measurement taken in the browser, and language models for support and copy. Design direction stays human." data-aim-growth="Drop by drop. Growth is pairs sold per drop and buyers who return for the next one, counted from the first drop that is open for sale."
-        data-github="[[&quot;UNDERCOVER-ROCKSTARS/WEBSITE&quot;,&quot;https://github.com/Undercover-Rockstars/website&quot;],[&quot;UNDERCOVER-ROCKSTARS&quot;,&quot;https://github.com/Undercover-Rockstars&quot;]]" data-uses="[[&quot;DEPLOYS&quot;,&quot;Keep Shipping&quot;,&quot;/ventures/keep-shipping/&quot;,&quot;planned&quot;,&quot;Every venture site and Worker deployed from the Keep Shipping console.&quot;],[&quot;FONTS&quot;,&quot;Google Fonts&quot;,&quot;https://fonts.google.com&quot;,&quot;live&quot;,&quot;The site’s typefaces (Archivo, JetBrains Mono), loaded from Google.&quot;],[&quot;HOSTING&quot;,&quot;Cloudflare&quot;,&quot;https://www.cloudflare.com&quot;,&quot;live&quot;,&quot;The site and its forms.&quot;]]"
-        data-launched="NOT YET" data-stage="LAUNCH" data-site="undercoverrockstars.com"
-        data-logo="undercover-rockstars-animated.svg" data-logo-w="100" data-logo-h="100" data-desc="A clothing house built on one idea: every piece comes as a matched pair. One pattern is cut twice, once for the day and once for the night, so the fit never changes when the room does. Drop 01 is eight pairs, sixteen garments, cut in Bali."
-        data-problem="Clothes that look right in the day look wrong at night, so you change, pack a second outfit or compromise." data-solution="Every Undercover Rockstars piece comes as a matched pair: one cut for the day, the same cut for the night." data-how="[&quot;One pattern, cut twice, so the fit never changes&quot;,&quot;Drop 01: eight pairs, sixteen garments&quot;,&quot;Cut in small runs in Bali&quot;]"
-        data-offer="Drop 01 is not on sale yet. The collection is on the site." data-saves="One fit, two looks. No second outfit." data-now="The site is live. Nothing can be bought yet.">
-        <span class="rid">FZ-002</span>
-        <span class="name"><img class="venture-logo" src="/assets/undercover-rockstars-animated.svg" alt="" width="30" height="30">Undercover Rockstars</span>
-        <span class="status" style="color:#A9A8A5"><span class="dot"></span>BUILDING</span>
-        <span class="cat">APPAREL</span>
-        <span class="aut">L3</span>
-      </button>
-      <button type="button" class="record registry-cols" aria-pressed="false" aria-controls="d-record"
-        data-id="FZ-003" data-stack="0" data-stack-role="" data-license="" data-slug="yoginini" data-name="Yoginini" data-status="BUILDING" data-status-color="#A9A8A5"
-        data-category="WELLNESS" data-autonomy=""
-        data-target="3" data-aim-operate="The teacher on the phone runs itself; the real teachers are people and stay that way. Agents run bookings, payouts, support, the coach cohort and the teaching content around them."
-        data-aim-intelligence="Perception on the device: a pose model tracking 33 landmarks, angle and score models that never see video, and a voice that chooses one correction at a time. The backend’s intelligence is scheduling and matching, not vision." data-aim-growth="Practice-led. Growth is people who practise every week and the hours booked with real teachers, counted from the first app in hands."
-        data-github="[[&quot;YOGININI/WEBSITE&quot;,&quot;https://github.com/Yoginini/website&quot;],[&quot;YOGININI&quot;,&quot;https://github.com/Yoginini&quot;]]" data-uses="[[&quot;FRAMEWORK&quot;,&quot;Cratefield&quot;,&quot;/ventures/cratefield/&quot;,&quot;planned&quot;,&quot;The bookings backend is being written to run on the Cratefield harness; it is not deployed.&quot;],[&quot;BUG REPORTS&quot;,&quot;SupportGenius&quot;,&quot;/ventures/supportgenius/&quot;,&quot;planned&quot;,&quot;Errors and bug reports become deduplicated GitHub issues, through the Cratefield error reporter.&quot;],[&quot;DEPLOYS&quot;,&quot;Keep Shipping&quot;,&quot;/ventures/keep-shipping/&quot;,&quot;planned&quot;,&quot;Every venture site and Worker deployed from the Keep Shipping console.&quot;],[&quot;FONTS&quot;,&quot;Google Fonts&quot;,&quot;https://fonts.google.com&quot;,&quot;live&quot;,&quot;The site’s typefaces (Cormorant Garamond, Figtree, Space Mono), loaded from Google.&quot;],[&quot;HOSTING&quot;,&quot;Cloudflare&quot;,&quot;https://www.cloudflare.com&quot;,&quot;live&quot;,&quot;The site and its forms.&quot;]]"
-        data-launched="NOT YET" data-stage="VALIDATION" data-site="yoginini.us"
-        data-logo="yoginini-animated.svg" data-logo-w="120" data-logo-h="120" data-desc="A yoga teacher that can see you. A pose model running on the phone tracks 33 body landmarks and speaks one calm correction at a time, and no video ever leaves the device. Real teachers are bookable by the hour alongside it. The site and the waitlist are open; the app is not built."
-        data-problem="Yoga videos can’t see you. Nobody tells you when your knee drifts or your back rounds." data-solution="Yoginini is a yoga teacher on your phone that watches your pose and gives one calm correction at a time." data-how="[&quot;Follows 33 points on your body through the phone camera&quot;,&quot;Speaks one correction at a time, like a teacher across the room&quot;,&quot;Video never leaves your phone. Book a real teacher by the hour when you want one&quot;]"
-        data-offer="Free to join the waitlist." data-saves="Private-lesson feedback without booking a private lesson." data-now="Being built. The site and the waitlist are open; the app is not out yet.">
-        <span class="rid">FZ-003</span>
-        <span class="name"><img class="venture-logo" src="/assets/yoginini-animated.svg" alt="" width="30" height="30">Yoginini</span>
-        <span class="status" style="color:#A9A8A5"><span class="dot"></span>BUILDING</span>
-        <span class="cat">WELLNESS</span>
-        <span class="aut">L3</span>
-      </button>
-      <button type="button" class="record registry-cols" aria-pressed="false" aria-controls="d-record"
-        data-id="FZ-004" data-stack="1" data-stack-role="App foundation" data-license="MIT" data-slug="cratefield" data-name="Cratefield" data-status="BUILDING" data-status-color="#A9A8A5"
-        data-category="INFRASTRUCTURE" data-autonomy=""
-        data-target="4" data-aim-operate="Provisioning, upgrades, backups, incident response and support are the product, so they are the automation target. The aim is a control plane that runs each customer’s backend without a person on call."
-        data-aim-intelligence="Systems intelligence: compile-time composition, migration and drift checks, anomaly detection on worker and database telemetry, and an agent that reads a failing deploy and proposes the fix. Not a chat model on top of a dashboard." data-aim-growth="Developer-led. Growth is backends running in customers’ own Cloudflare accounts and harness crates in use, counted once the control plane exists."
-        data-github="[[&quot;CRATEFIELD/HARNESS&quot;,&quot;https://github.com/Cratefield/harness&quot;],[&quot;CRATEFIELD&quot;,&quot;https://github.com/Cratefield&quot;]]" data-uses="[[&quot;EMAIL&quot;,&quot;Resend&quot;,&quot;https://resend.com&quot;,&quot;live&quot;,&quot;Waitlist confirmation mail (double opt-in) from send.cratefield.com.&quot;],[&quot;EMAIL&quot;,&quot;Owlpost&quot;,&quot;/ventures/owlpost/&quot;,&quot;planned&quot;,&quot;Owlpost replaces Resend, through an Owlpost adapter in the harness.&quot;],[&quot;BUG REPORTS&quot;,&quot;SupportGenius&quot;,&quot;/ventures/supportgenius/&quot;,&quot;planned&quot;,&quot;Errors and bug reports become deduplicated GitHub issues, through the Cratefield error reporter.&quot;],[&quot;PAYMENTS&quot;,&quot;Polar&quot;,&quot;https://polar.sh&quot;,&quot;planned&quot;,&quot;Polar as Merchant of Record behind the harness Payments port, for the managed service. Nothing is on sale yet.&quot;],[&quot;DEPLOYS&quot;,&quot;Keep Shipping&quot;,&quot;/ventures/keep-shipping/&quot;,&quot;planned&quot;,&quot;Every venture site and Worker deployed from the Keep Shipping console.&quot;],[&quot;FONTS&quot;,&quot;Google Fonts&quot;,&quot;https://fonts.google.com&quot;,&quot;live&quot;,&quot;The site’s typefaces (Archivo, IBM Plex Mono), loaded from Google.&quot;],[&quot;HOSTING&quot;,&quot;Cloudflare&quot;,&quot;https://www.cloudflare.com&quot;,&quot;live&quot;,&quot;The site, and the waitlist Worker with its D1 database.&quot;]]"
-        data-launched="NOT YET" data-stage="VALIDATION" data-site="cratefield.com"
-        data-logo="cratefield-animated.svg" data-logo-w="120" data-logo-h="120" data-desc="A backend you compile rather than a platform you configure. The Rust harness underneath is open source, MIT and running today; the managed control plane, which would provision the worker, the database and the secrets inside your own Cloudflare account and then operate them, is designed and not yet written. The site and the early-access list are open."
-        data-problem="Every new product starts with weeks of the same plumbing: sign-ups, database, emails, deploys, secrets." data-solution="Cratefield is a backend you compile. Pick the modules you need and ship one small service to your own Cloudflare account." data-how="[&quot;Modules plug in at build time, so you ship only what you use&quot;,&quot;One service and one database per product, in an account you own&quot;,&quot;Email sign-up and waitlist modules work today&quot;]"
-        data-offer="Free and open source (MIT). A managed version that runs it for you is planned." data-saves="Skip weeks of backend setup on every new product." data-now="The open-source core works today. The managed service is not built yet.">
-        <span class="rid">FZ-004</span>
-        <span class="name"><img class="venture-logo" src="/assets/cratefield-animated.svg" alt="" width="30" height="30">Cratefield<span class="fzs">FZ STACK</span><span class="fzs-role">App foundation</span><span class="fzs-os" title="MIT licence">OPEN SOURCE</span></span>
-        <span class="status" style="color:#A9A8A5"><span class="dot"></span>BUILDING</span>
-        <span class="cat">INFRASTRUCTURE</span>
-        <span class="aut">L4</span>
-      </button>
-      <button type="button" class="record registry-cols" aria-pressed="false" aria-controls="d-record"
-        data-id="FZ-005" data-stack="1" data-stack-role="Code review" data-license="" data-slug="vibecaddie" data-name="VibeCaddie" data-status="BUILDING" data-status-color="#A9A8A5"
-        data-category="DEVTOOLS" data-autonomy=""
-        data-target="5" data-aim-operate="The product is an agent and the company should be too: install, audit, findings, credits, support and skill updates all run without a person in the loop. People review the review skills and set the prices."
-        data-aim-intelligence="Reasoning over code: repository classification, skill selection, severity ranking and fix suggestions, with a verification pass so a finding is confirmed before it is shown. Judged on precision, not volume." data-aim-growth="Usage-led. Growth is repositories audited and credits bought again, counted from the first run of the GitHub app."
-        data-github="[[&quot;VIBECADDIE/WEBSITE&quot;,&quot;https://github.com/VibeCaddie/website&quot;],[&quot;VIBECADDIE&quot;,&quot;https://github.com/VibeCaddie&quot;]]" data-uses="[[&quot;DEPLOYS&quot;,&quot;Keep Shipping&quot;,&quot;/ventures/keep-shipping/&quot;,&quot;planned&quot;,&quot;Every venture site and Worker deployed from the Keep Shipping console.&quot;],[&quot;FONTS&quot;,&quot;Google Fonts&quot;,&quot;https://fonts.google.com&quot;,&quot;live&quot;,&quot;The site’s typefaces (Sora, IBM Plex Mono), loaded from Google.&quot;],[&quot;HOSTING&quot;,&quot;Cloudflare&quot;,&quot;https://www.cloudflare.com&quot;,&quot;live&quot;,&quot;The site and its forms.&quot;]]"
-        data-launched="NOT YET" data-stage="VALIDATION" data-site="vibecaddie.com"
-        data-logo="vibecaddie-animated.svg" data-logo-w="120" data-logo-h="120" data-desc="A code review agent for the code you did not fully write. It reads a repository, works out what kind of codebase it is, loads only the review skills that apply to it, and returns findings ranked by severity with the file, the line, why it matters and a suggested fix. Prepaid credits rather than a subscription, so the price of a run is known before it starts. The site and the early-access list are open; the GitHub app is not built."
-        data-problem="You shipped code you didn’t fully write, and nobody has really reviewed it." data-solution="VibeCaddie reviews your repository and tells you what to fix first." data-how="[&quot;Works out what kind of codebase it is and checks only what applies&quot;,&quot;Every finding comes with the file, the line, why it matters and a fix&quot;,&quot;Double-checks each finding before showing it, so you get fewer false alarms&quot;]"
-        data-offer="Pay per run with prepaid credits, so you know the price before it starts. Early access is open." data-saves="Built to turn days of waiting for a review into minutes." data-now="Being built. The site and early-access list are open; the GitHub app is not out yet.">
-        <span class="rid">FZ-005</span>
-        <span class="name"><img class="venture-logo" src="/assets/vibecaddie-animated.svg" alt="" width="30" height="30">VibeCaddie<span class="fzs">FZ STACK</span><span class="fzs-role">Code review</span></span>
-        <span class="status" style="color:#A9A8A5"><span class="dot"></span>BUILDING</span>
-        <span class="cat">DEVTOOLS</span>
-        <span class="aut">L5</span>
-      </button>
-      <button type="button" class="record registry-cols" aria-pressed="false" aria-controls="d-record"
-        data-id="FZ-006" data-stack="1" data-stack-role="Agents" data-license="MIT" data-slug="colonizer" data-name="Colonizer" data-status="BUILDING" data-status-color="#A9A8A5"
-        data-category="DEVTOOLS" data-autonomy=""
-        data-target="4" data-aim-operate="The backlog is the thing that should clear itself. A person picks the issue and reviews the pull request; everything between (the sandbox, the worktree, the agent, the mesh, the commit and the push) is the automation target."
-        data-aim-intelligence="Isolation and judgement rather than a bigger model: one settler per colony, questions returned as multiple-choice cards instead of prose, a watchdog that notices a colony has stopped making progress, and a router that puts the right model on each slot." data-aim-growth="Repository-led. Growth is repositories with colonies running and pull requests merged from them, counted from the first install that is not the author’s."
-        data-github="[[&quot;COLONIZER-DEV/HARNESS&quot;,&quot;https://github.com/Colonizer-dev/harness&quot;],[&quot;COLONIZER-DEV&quot;,&quot;https://github.com/Colonizer-dev&quot;]]" data-uses="[[&quot;FRAMEWORK&quot;,&quot;Cratefield&quot;,&quot;/ventures/cratefield/&quot;,&quot;live&quot;,&quot;The fleet waitlist Worker at api.colonizer.dev runs on the Cratefield harness, and the app uses its telemetry module.&quot;],[&quot;EMAIL&quot;,&quot;Owlpost&quot;,&quot;/ventures/owlpost/&quot;,&quot;planned&quot;,&quot;Waitlist confirmation mail. Double opt-in is off today, so no mail is sent yet.&quot;],[&quot;BUG REPORTS&quot;,&quot;SupportGenius&quot;,&quot;/ventures/supportgenius/&quot;,&quot;planned&quot;,&quot;Errors and bug reports become deduplicated GitHub issues, through the Cratefield error reporter.&quot;],[&quot;PAYMENTS&quot;,&quot;Polar&quot;,&quot;https://polar.sh&quot;,&quot;planned&quot;,&quot;Paid plans through Polar as Merchant of Record, via the Cratefield Payments port. Nothing is on sale yet.&quot;],[&quot;SECURITY SCREENING&quot;,&quot;promptdecode&quot;,&quot;/ventures/promptdecode/&quot;,&quot;live&quot;,&quot;Colony output is screened before a pull request opens by the screen module’s promptdecode provider, a built-in decoder for promptdecode’s three code-point classes.&quot;],[&quot;SECRETS HANDOFF&quot;,&quot;Sealbin&quot;,&quot;/ventures/sealbin/&quot;,&quot;planned&quot;,&quot;Optional sealed handoffs between colonies on different machines.&quot;],[&quot;DEPLOYS&quot;,&quot;Keep Shipping&quot;,&quot;/ventures/keep-shipping/&quot;,&quot;planned&quot;,&quot;Every venture site and Worker deployed from the Keep Shipping console.&quot;],[&quot;FONTS&quot;,&quot;Google Fonts&quot;,&quot;https://fonts.google.com&quot;,&quot;live&quot;,&quot;The site’s typefaces (Instrument Sans, JetBrains Mono), loaded from Google.&quot;],[&quot;HOSTING&quot;,&quot;Cloudflare&quot;,&quot;https://www.cloudflare.com&quot;,&quot;live&quot;,&quot;The site and the waitlist Worker.&quot;]]"
-        data-launched="NOT YET" data-stage="PROTOTYPE" data-site="colonizer.dev"
-        data-logo="colonizer-animated.svg" data-logo-w="120" data-logo-h="120" data-desc="A local-first app that turns GitHub issues into pull requests. Each task gets a coding agent, Claude Code today, inside its own disposable KVM microVM with a fresh git worktree, linked to the host over a private mesh that never touches your own tailnet. The web UI shows the chat, a terminal in the VM and the agent’s questions as multiple-choice cards. The host, not the VM, commits, pushes and opens the pull request, so the GitHub and Claude tokens never enter it. The Rust host, the in-VM daemon and the React UI are open source under MIT and run locally on Linux x86_64 with KVM. There is no hosted service; more coding agents, a model router, remote outposts and GitLab, Linear and Jira sources are planned, not built."
-        data-problem="Working through GitHub issues takes hours you’d rather spend building." data-solution="Colonizer sends coding agents to solve your GitHub issues and hands back pull requests you can review and merge." data-how="[&quot;Each agent works in its own isolated VM, away from your machine and your keys&quot;,&quot;Runs locally, on your own computer&quot;,&quot;Returns ready-to-review pull requests&quot;]"
-        data-offer="Free and open source (MIT). Runs on your own machine; nothing is hosted." data-saves="Save yourself hours of coding work on every backlog." data-now="Works today on Linux, with Claude Code as the agent.">
-        <span class="rid">FZ-006</span>
-        <span class="name"><img class="venture-logo" src="/assets/colonizer-animated.svg" alt="" width="30" height="30">Colonizer<span class="fzs">FZ STACK</span><span class="fzs-role">Agents</span><span class="fzs-os" title="MIT licence">OPEN SOURCE</span></span>
-        <span class="status" style="color:#A9A8A5"><span class="dot"></span>BUILDING</span>
-        <span class="cat">DEVTOOLS</span>
-        <span class="aut">L4</span>
-      </button>
-      <button type="button" class="record registry-cols" aria-pressed="false" aria-controls="d-record"
-        data-id="FZ-007" data-stack="0" data-stack-role="" data-license="" data-slug="findsyou-work" data-name="FindsYou.work" data-status="BUILDING" data-status-color="#A9A8A5"
-        data-category="CAREERS" data-autonomy=""
-        data-target="4" data-aim-operate="The search itself is the automation target: reading the boards, discarding what the person could never take, drafting the documents and tracking what was sent. The person decides what to apply for and presses send; nothing is ever submitted on their behalf."
-        data-aim-intelligence="Eligibility before relevance. A model of right to work, employment type, hours, travel and timezone decides what is even possible, a reading of the listing decides whether it is worth the time, and a provenance check refuses to print a number that is not in the person’s own CV." data-aim-growth="Outcome-led. Growth is replies received per person and people who come back for the next search, counted from the first scan that runs for someone else."
-        data-github="[[&quot;FINDSYOU-WORK/WEBSITE&quot;,&quot;https://github.com/FindsYou-Work/website&quot;],[&quot;FINDSYOU-WORK&quot;,&quot;https://github.com/FindsYou-Work&quot;]]" data-uses="[[&quot;FRAMEWORK&quot;,&quot;Cratefield&quot;,&quot;/ventures/cratefield/&quot;,&quot;live&quot;,&quot;The waitlist Worker at api.findsyou.work runs on the Cratefield harness waitlist module.&quot;],[&quot;EMAIL&quot;,&quot;Owlpost&quot;,&quot;/ventures/owlpost/&quot;,&quot;planned&quot;,&quot;Waitlist confirmation mail. Double opt-in is off today, so no mail is sent yet.&quot;],[&quot;PAYMENTS&quot;,&quot;Stripe&quot;,&quot;https://stripe.com&quot;,&quot;planned&quot;,&quot;A paywall through the Cratefield Stripe adapter. Nothing is on sale yet.&quot;],[&quot;BUG REPORTS&quot;,&quot;SupportGenius&quot;,&quot;/ventures/supportgenius/&quot;,&quot;planned&quot;,&quot;Errors and bug reports become deduplicated GitHub issues, through the Cratefield error reporter.&quot;],[&quot;DEPLOYS&quot;,&quot;Keep Shipping&quot;,&quot;/ventures/keep-shipping/&quot;,&quot;planned&quot;,&quot;Every venture site and Worker deployed from the Keep Shipping console.&quot;],[&quot;FONTS&quot;,&quot;Google Fonts&quot;,&quot;https://fonts.google.com&quot;,&quot;live&quot;,&quot;The site’s typefaces (Instrument Serif, Manrope, IBM Plex Mono), loaded from Google.&quot;],[&quot;HOSTING&quot;,&quot;Cloudflare&quot;,&quot;https://www.cloudflare.com&quot;,&quot;live&quot;,&quot;The site and the waitlist Worker.&quot;]]"
-        data-launched="NOT YET" data-stage="VALIDATION" data-site="findsyou.work"
-        data-logo="findsyou-animated.svg" data-logo-w="120" data-logo-h="120" data-desc="A job search that runs without the person doing the searching. It reads the boards continuously, throws out the listings they could never actually take (wrong residency, wrong hours, full-time only, no sponsorship, reposted ghost jobs) and hands back the few that survive with a CV and cover letter already written for each. The value is in what it removes: most of a week’s listings, with the reason each one was discarded shown rather than hidden. The site and the waitlist are open; the scan, the filter and the documents are designed and not yet written."
-        data-problem="Job hunting means scrolling hundreds of listings you could never actually take." data-solution="FindsYou reads the job boards for you and hands back only the jobs you can really get, with a CV and cover letter written for each." data-how="[&quot;Drops listings that don’t fit: wrong country, hours, visa, or jobs that are not really open&quot;,&quot;Shows why each one was dropped&quot;,&quot;Writes a matching CV and cover letter for every job that’s left&quot;]"
-        data-offer="Free to join the waitlist." data-saves="Most of a week of job-board scrolling, gone." data-now="Being built. The site and waitlist are open; the search is not running yet.">
-        <span class="rid">FZ-007</span>
-        <span class="name"><img class="venture-logo" src="/assets/findsyou-animated.svg" alt="" width="30" height="30">FindsYou.work</span>
-        <span class="status" style="color:#A9A8A5"><span class="dot"></span>BUILDING</span>
-        <span class="cat">CAREERS</span>
-        <span class="aut">L4</span>
-      </button>
-      <button type="button" class="record registry-cols" aria-pressed="false" aria-controls="d-record"
-        data-id="FZ-008" data-stack="1" data-stack-role="Bug reports and support" data-license="MIT" data-slug="supportgenius" data-name="SupportGenius" data-status="BUILDING" data-status-color="#A9A8A5"
-        data-category="SUPPORT" data-autonomy=""
-        data-target="4" data-aim-operate="The support desk is the automation target: answering from the company’s own docs, tickets and files, turning what it cannot answer into a ticket, a lead or an issue with reproduction steps, and keeping the customer told until it is closed. People stay on call to approve, take over and hand back; nothing is filed on one model’s say-so."
-        data-aim-intelligence="Two models that check each other rather than one bigger one. A drafting model turns the conversation into a structured ticket and an independent judge decides whether, where and with what priority it is filed; the agent answers only above a confidence threshold, and each correction a person makes is kept as a reviewed source for the next customer." data-aim-growth="Resolution-led. Growth is conversations resolved without a handoff and escalations filed without a correction, counted from the first widget that runs on a site that is not the author’s."
-        data-github="[[&quot;SUPPORTGENIUS/WEBSITE&quot;,&quot;https://github.com/SupportGenius/website&quot;],[&quot;SUPPORTGENIUS&quot;,&quot;https://github.com/SupportGenius&quot;]]" data-uses="[[&quot;FRAMEWORK&quot;,&quot;Cratefield&quot;,&quot;/ventures/cratefield/&quot;,&quot;planned&quot;,&quot;The ticketing and routing core is being written on the Cratefield harness; it is not deployed.&quot;],[&quot;PAYMENTS&quot;,&quot;Polar&quot;,&quot;https://polar.sh&quot;,&quot;planned&quot;,&quot;Paid plans through Polar as Merchant of Record, via the Cratefield Payments port. Nothing is on sale yet.&quot;],[&quot;SECURITY SCREENING&quot;,&quot;promptdecode&quot;,&quot;/ventures/promptdecode/&quot;,&quot;planned&quot;,&quot;Free text in bug reports is screened for hidden instructions before a model drafts the ticket.&quot;],[&quot;DEPLOYS&quot;,&quot;Keep Shipping&quot;,&quot;/ventures/keep-shipping/&quot;,&quot;planned&quot;,&quot;Every venture site and Worker deployed from the Keep Shipping console.&quot;],[&quot;FONTS&quot;,&quot;Google Fonts&quot;,&quot;https://fonts.google.com&quot;,&quot;live&quot;,&quot;The site’s typefaces (Geist, Geist Mono), loaded from Google.&quot;],[&quot;HOSTING&quot;,&quot;Cloudflare&quot;,&quot;https://www.cloudflare.com&quot;,&quot;live&quot;,&quot;The site.&quot;]]"
-        data-launched="NOT YET" data-stage="VALIDATION" data-site="supportgeni.us"
-        data-logo="supportgenius-animated.svg" data-logo-w="120" data-logo-h="120" data-desc="A customer-support agent that answers from a company’s own docs, tickets and files, by text or voice, through a web widget, an iOS or Android SDK, a phone line, an API or an MCP server. What it cannot answer becomes a ticket for support, a lead for sales or a GitHub issue with reproduction steps for engineering: a drafting model writes it, an independent judge model checks it before anything is filed, and the customer hears back as it moves until it is closed. The ticketing and routing core is planned in Rust, open source under MIT. Only the site exists. The agent, the widget, the SDKs, the phone line, the integrations and the core are designed and not yet written, and the waitlist is not open yet."
-        data-problem="Customers wait for answers already in your docs, and real bugs get lost in the inbox." data-solution="SupportGenius answers customers from your own docs and files, and turns what it can’t answer into a proper ticket." data-how="[&quot;Answers by chat, voice or phone, from your docs, tickets and files&quot;,&quot;What it can’t answer becomes a support ticket, a sales lead or a GitHub issue with steps to reproduce&quot;,&quot;Every ticket is checked a second time before it is filed, and the customer gets updates until it is closed&quot;]"
-        data-offer="The core is planned as free and open source (MIT)." data-saves="Built to take repeat questions and ticket triage off your week." data-now="Being built. Only the site exists; the waitlist opens soon.">
-        <span class="rid">FZ-008</span>
-        <span class="name"><img class="venture-logo" src="/assets/supportgenius-animated.svg" alt="" width="30" height="30">SupportGenius<span class="fzs">FZ STACK</span><span class="fzs-role">Bug reports and support</span><span class="fzs-os" title="MIT licence">OPEN SOURCE</span></span>
-        <span class="status" style="color:#A9A8A5"><span class="dot"></span>BUILDING</span>
-        <span class="cat">SUPPORT</span>
-        <span class="aut">L4</span>
-      </button>
-      <button type="button" class="record registry-cols" aria-pressed="true" aria-controls="d-record"
-        data-id="FZ-009" data-stack="1" data-stack-role="Hidden-text screening" data-license="MIT" data-slug="promptdecode" data-name="promptdecode" data-status="BUILDING" data-status-color="#A9A8A5"
+<button type="button" class="record" data-static hidden aria-pressed="true" tabindex="-1"
+        data-id="FZ-009" data-stack="1" data-stack-role="Hidden-text screening" data-license="MIT" data-slug="promptdecode" data-name="promptdecode" data-status="BUILDING" data-status-color="currentColor"
         data-category="SECURITY" data-autonomy=""
         data-target="4" data-aim-operate="Review is the automation target. A coding agent with a write token reads a pull request that a human reviewer has already approved, and the two of them are not reading the same document: tag-block characters, bidi overrides and variation selectors render as nothing and tokenize normally. The scanners are meant to run in CI on every change, decode what they find rather than merely flag it, and post the plain text back on the pull request, with no model in the loop and nothing leaving the runner."
         data-aim-intelligence="Deliberately none where none is needed. Both planned engines are deterministic: one tracing untrusted workflow input to an agent step that holds a write token, one matching named Unicode classes across repository content. A detector that needs a model to decide what is suspicious cannot state its own coverage, and coverage that can be stated is the product." data-aim-growth="Evidence-led, and slower for it. No percentage of attacks blocked is published, because character-level evasion rates move too far with technique for one number to mean anything. What gets published is deterministic coverage of a named list of Unicode classes and recall at a stated false-positive rate on a named corpus, with the corpus and the harness in the open. Growth is repositories scanned per week once the Action exists."
@@ -260,403 +114,147 @@
         data-launched="NOT YET" data-stage="VALIDATION" data-site="promptdeco.de"
         data-logo="promptdecode-animated.svg" data-logo-w="120" data-logo-h="120" data-desc="Finds text that is invisible to a human reviewer and fully legible to a language model, and decodes it. Hidden instructions in a pull request title, an issue body or a repository file can tell a coding agent to approve, merge or comment, while the diff shows nothing unusual. Two parts work today. The decoder on the site, which reads three named classes of code point (the Unicode tag block, bidi controls and overrides, variation selectors), reconstructs the payload they encode, and runs entirely in the reader’s browser, sending nothing anywhere. And the config scanner, which traces untrusted workflow input to an agent step holding a write token, and runs from source with no release yet. The rest is designed and unwritten: a content engine that decodes payloads across a repository, a command-line scanner, a GitHub Action, and an open benchmark. If a class is not on the published list, it is not detected; the list is the claim."
         data-problem="Hidden text in a pull request or issue can tell a coding agent to approve or merge, and the human reviewer can’t see it." data-solution="promptdecode finds invisible text and shows you, in plain words, what it says." data-how="[&quot;Paste any text and it reveals hidden characters and decodes their message&quot;,&quot;Runs entirely in your browser; nothing is sent anywhere&quot;,&quot;A config scanner checks your GitHub workflows for agent steps that untrusted input can reach&quot;]"
-        data-offer="Free to use today at promptdeco.de." data-saves="Catch a hidden instruction before your agent acts on it." data-now="The decoder works today, and the config scanner runs from source (no release yet). The content scanner and the GitHub Action are being built.">
-        <span class="rid">FZ-009</span>
-        <span class="name"><img class="venture-logo" src="/assets/promptdecode-animated.svg" alt="" width="30" height="30">promptdecode<span class="fzs">FZ STACK</span><span class="fzs-role">Hidden-text screening</span><span class="fzs-os" title="MIT licence">OPEN SOURCE</span></span>
-        <span class="status" style="color:#A9A8A5"><span class="dot"></span>BUILDING</span>
-        <span class="cat">SECURITY</span>
-        <span class="aut">L4</span>
-      </button>
-      <button type="button" class="record registry-cols" aria-pressed="false" aria-controls="d-record"
-        data-id="FZ-010" data-stack="0" data-stack-role="" data-license="" data-slug="groove-guru" data-name="Groove Guru" data-status="BUILDING" data-status-color="#A9A8A5"
-        data-category="MUSIC" data-autonomy=""
-        data-target="4" data-aim-operate="Teaching is the automation target. A small harness on the booth LAN reads what Pioneer Pro DJ Link gear already announces (beat, tempo, sync, master, on-air, crossfader) and a coach speaks one note at a time when the mix drifts: a Camelot clash, a blend that misses the phrase, a deck sliding off the grid. It listens and never sends control, so there is nothing for it to break in a live set."
-        data-aim-intelligence="Deterministic where timing matters, language where it does not. Beat, phrase and key checks are rules over packet data and run locally; a model only turns a finding into a sentence, because speech arrives 300 to 800 milliseconds late and cannot coach a downbeat. The click stays on the laptop." data-aim-growth="Practice-led. Free, open-source harness first, a $6.99 a month Pro tier for hosted history and sessions at launch. Growth is drills completed on real gear, counted from the first booth that is not the author’s."
-        data-github="[[&quot;GROOVE-GURU/WEBSITE&quot;,&quot;https://github.com/Groove-Guru/website&quot;],[&quot;GROOVE-GURU&quot;,&quot;https://github.com/Groove-Guru&quot;]]" data-uses="[[&quot;DEPLOYS&quot;,&quot;Keep Shipping&quot;,&quot;/ventures/keep-shipping/&quot;,&quot;planned&quot;,&quot;Every venture site and Worker deployed from the Keep Shipping console.&quot;],[&quot;FONTS&quot;,&quot;Google Fonts&quot;,&quot;https://fonts.google.com&quot;,&quot;live&quot;,&quot;The site’s typefaces (Big Shoulders Display, Big Shoulders Stencil Display, Instrument Sans, JetBrains Mono), loaded from Google.&quot;],[&quot;HOSTING&quot;,&quot;Cloudflare&quot;,&quot;https://www.cloudflare.com&quot;,&quot;live&quot;,&quot;The site.&quot;]]"
-        data-launched="NOT YET" data-stage="VALIDATION" data-site="groove.guru"
-        data-logo="groove-guru-animated.svg" data-logo-w="120" data-logo-h="120" data-desc="A DJ tutor for Pioneer Pro DJ Link gear. A harness on a machine plugged into the booth switch listens to the CDJs and mixer on UDP 50000 to 50002, mirrors the decks in a browser, and coaches key, phrase and timing in a calm voice, then gets out of the way. It needs the gear: it is not a browser DJ app. One part exists and works today: the site at groove.guru, with six zero-to-booth drills that run in the browser on a visual beat clock (count the bar, cue on the one, ride the phrase, blend on the Camelot wheel, the first mix). The rest is designed and unwritten: the harness, one Rust binary under MIT; the spoken coach; Pro on Cloudflare; and an iPad and iPhone companion over local Wi-Fi or Cloudflare. Independent, and not affiliated with Pioneer DJ."
-        data-problem="Learning to DJ on your own, nobody tells you why the mix sounded off." data-solution="Groove Guru listens to your Pioneer decks and tells you, in a calm voice, when the key clashes, the blend misses the phrase or the beat drifts." data-how="[&quot;A small app on the booth network reads your CDJs and mixer, and never touches your mix&quot;,&quot;Mirrors your decks in the browser&quot;,&quot;Six drills take you from zero to your first mix, free on the site today&quot;]"
-        data-offer="The booth app will be free and open source (MIT). Pro coaching at launch: $6.99 a month." data-saves="Stop guessing what went wrong in your practice sets." data-now="The drills work today. The booth app and the coach are being built. Needs Pioneer Pro DJ Link gear.">
-        <span class="rid">FZ-010</span>
-        <span class="name"><img class="venture-logo" src="/assets/groove-guru-animated.svg" alt="" width="30" height="30">Groove Guru</span>
-        <span class="status" style="color:#A9A8A5"><span class="dot"></span>BUILDING</span>
-        <span class="cat">MUSIC</span>
-        <span class="aut">L4</span>
-      </button>
-      <button type="button" class="record registry-cols" aria-pressed="false" aria-controls="d-record"
-        data-id="FZ-011" data-stack="1" data-stack-role="Point of sale" data-license="" data-slug="posplugin" data-name="PosPlugin" data-status="BUILDING" data-status-color="#A9A8A5"
-        data-category="INTEGRATIONS" data-autonomy=""
-        data-target="4" data-aim-operate="Integration upkeep is the automation target. Connecting a merchant’s point-of-sale system is meant to be a guided half hour instead of a custom project, and keeping it connected is meant to need nobody: a monitor watches every sync for schema drift and failures, proposes the mapping fix, and tells ops what broke and why."
-        data-aim-intelligence="A model reads a POS’s API docs, specs or sample payloads and proposes how each field maps to one data model, with a confidence score on every field. It proposes and a person confirms: a low-confidence mapping never goes live on its own, and every decision is kept in an audit log. Moving the data is plain code." data-aim-growth="Developer-led. A free sandbox with test POS data first, then pricing per connected location, set with the first customers. Restaurants are the first vertical. Growth is merchant locations connected, counted from the first customer that is not a pilot."
-        data-github="[[&quot;POSPLUGIN/WEBSITE&quot;,&quot;https://github.com/POSplugin/website&quot;],[&quot;POSPLUGIN&quot;,&quot;https://github.com/POSplugin&quot;]]" data-uses="[[&quot;FRAMEWORK&quot;,&quot;Cratefield&quot;,&quot;/ventures/cratefield/&quot;,&quot;live&quot;,&quot;The waitlist Worker at api.posplug.in runs on the Cratefield harness waitlist module.&quot;],[&quot;EMAIL&quot;,&quot;Owlpost&quot;,&quot;/ventures/owlpost/&quot;,&quot;planned&quot;,&quot;Waitlist confirmation mail. Double opt-in is off today, so no mail is sent yet.&quot;],[&quot;BUG REPORTS&quot;,&quot;SupportGenius&quot;,&quot;/ventures/supportgenius/&quot;,&quot;planned&quot;,&quot;Errors and bug reports become deduplicated GitHub issues, through the Cratefield error reporter.&quot;],[&quot;DEPLOYS&quot;,&quot;Keep Shipping&quot;,&quot;/ventures/keep-shipping/&quot;,&quot;planned&quot;,&quot;Every venture site and Worker deployed from the Keep Shipping console.&quot;],[&quot;FONTS&quot;,&quot;Google Fonts&quot;,&quot;https://fonts.google.com&quot;,&quot;live&quot;,&quot;The site’s typefaces (Archivo, IBM Plex Mono), loaded from Google.&quot;],[&quot;HOSTING&quot;,&quot;Cloudflare&quot;,&quot;https://www.cloudflare.com&quot;,&quot;live&quot;,&quot;The site and the waitlist Worker.&quot;]]"
-        data-launched="NOT YET" data-stage="VALIDATION" data-site="posplug.in"
-        data-logo="posplug-animated.svg" data-logo-w="120" data-logo-h="120" data-desc="An integration layer for point-of-sale systems. It connects to a merchant’s POS with OAuth or an API key, pulls sample data read-only, and a model maps the POS’s fields to one data model (orders, payments, catalog items, locations) with a confidence score on every field; a person confirms the uncertain ones. Apps then read every merchant through one REST API and one webhook stream, with the original POS payload kept on each record, and write orders back where the POS allows. A monitor watches for schema drift and failing syncs. Card numbers never pass through it. The first vertical is restaurants. What exists today is the site at posplug.in and its early-access list; the connectors, the mapping engine, the unified API and the sandbox are designed and not yet written."
-        data-problem="Every app that needs a merchant’s sales data has to build a new integration for each point-of-sale system, and each one breaks when the vendor changes its API." data-solution="PosPlugin connects to any POS once and gives your app all of them through one API." data-how="[&quot;Connect a merchant’s POS with a login or an API key; nothing is written to it&quot;,&quot;AI maps its fields to one clean model, and a person confirms anything it is unsure of&quot;,&quot;Your app reads orders, payments, menus and locations through one REST API and webhooks&quot;]"
-        data-offer="A free sandbox for developers at launch; live pricing per connected location." data-saves="Connect a new merchant in half an hour instead of weeks of integration work." data-now="The site and the early-access list are open. The connectors, the mapping engine and the API are being built.">
-        <span class="rid">FZ-011</span>
-        <span class="name"><img class="venture-logo" src="/assets/posplug-animated.svg" alt="" width="30" height="30">PosPlugin<span class="fzs">FZ STACK</span><span class="fzs-role">Point of sale</span></span>
-        <span class="status" style="color:#A9A8A5"><span class="dot"></span>BUILDING</span>
-        <span class="cat">INTEGRATIONS</span>
-        <span class="aut">L4</span>
-      </button>
-      <button type="button" class="record registry-cols" aria-pressed="false" aria-controls="d-record"
-        data-id="FZ-012" data-stack="1" data-stack-role="Deploys" data-license="" data-slug="keep-shipping" data-name="Keep Shipping" data-status="BUILDING" data-status-color="#A9A8A5"
-        data-category="DEVTOOLS" data-autonomy=""
-        data-target="4" data-aim-operate="Deploys are the automation target. One typed workflow file per repository builds the images, plans and applies the infrastructure and rolls out, and it is checked before anything runs, so a broken pipeline is caught on the laptop instead of in the tenth CI run. The same engine runs locally and in CI, so nobody has to push to find out."
-        data-aim-intelligence="Coding agents can write, check and run the workflow, fenced by a policy in the same file: what they may do alone, what waits for a named person. A decide step asks Jev, a typed decision model, how risky a plan is; it answers with one of the answers you defined and a confidence score, low-risk changes can go through, and destroys always wait for a human. The engine itself is plain code." data-aim-growth="Developer-led. An early-access list first, opened in small batches; typed, versioned blocks that one team writes and forty repos reuse carry it inside a company. Pricing is not set. Growth is repositories shipping through it, counted from the first team that is not a pilot."
-        data-github="[[&quot;KEEP-SHIPPING/WEBSITE&quot;,&quot;https://github.com/Keep-Shipping/website&quot;],[&quot;KEEP-SHIPPING&quot;,&quot;https://github.com/Keep-Shipping&quot;]]" data-uses="[[&quot;FRAMEWORK&quot;,&quot;Cratefield&quot;,&quot;/ventures/cratefield/&quot;,&quot;planned&quot;,&quot;The hosted parts (waitlist, approvals, run logs) are planned as a Cratefield venture.&quot;],[&quot;BUG REPORTS&quot;,&quot;SupportGenius&quot;,&quot;/ventures/supportgenius/&quot;,&quot;planned&quot;,&quot;Errors and bug reports become deduplicated GitHub issues, through the Cratefield error reporter.&quot;],[&quot;PAYMENTS&quot;,&quot;Polar&quot;,&quot;https://polar.sh&quot;,&quot;planned&quot;,&quot;Paid plans through Polar as Merchant of Record, via the Cratefield Payments port. Nothing is on sale yet.&quot;],[&quot;FONTS&quot;,&quot;Google Fonts&quot;,&quot;https://fonts.google.com&quot;,&quot;live&quot;,&quot;The site’s typefaces (Bricolage Grotesque, DM Mono), loaded from Google.&quot;],[&quot;HOSTING&quot;,&quot;Cloudflare&quot;,&quot;https://www.cloudflare.com&quot;,&quot;live&quot;,&quot;The site.&quot;]]"
-        data-launched="NOT YET" data-stage="VALIDATION" data-site="keepshipping.run"
-        data-logo="keepshipping-animated.svg" data-logo-w="120" data-logo-h="120" data-desc="A deploy workflow engine. Each repository gets one typed workflow file that builds and signs OCI images, plans and applies Terraform or OpenTofu (apply runs the exact plan a reviewer approved), waits for a human where the file says so, and rolls out to Kubernetes, VMs over SSH or serverless. Every step has typed inputs and outputs, so a tag wired where a digest belongs or a misspelled step fails the check before anything runs, and the same engine runs the file on a laptop and in CI. Steps can be packaged as typed, versioned blocks and reused across repos; a step that needs real code is a TypeScript function with typed inputs. For coding agents, a policy in the file says what they may do alone and what waits for a named person, and a decide step asks Jev (TypeSafe AI) to rate a plan, with destroys always going to a human. What exists today is the site at keepshipping.run and its early-access list; the engine, the CLI, the steps and the runner are designed and not yet written."
-        data-problem="Changing a deploy pipeline takes a string of “fix ci” commits: hundreds of lines of YAML nobody fully understands, glued to Terraform and Docker with shell scripts, and the only test is to push and wait." data-solution="Keep Shipping replaces that with one readable workflow file per repo that is checked before it runs." data-how="[&quot;Build images, plan and apply Terraform or OpenTofu, and deploy, as typed steps instead of scripts&quot;,&quot;Run the exact same pipeline on your laptop before you push it&quot;,&quot;Let agents ship too: a policy decides what waits for a person&quot;]"
-        data-offer="Early access by invite, in small batches." data-saves="Stop spending afternoons on eleven commits to change one pipeline." data-now="The site and the early-access list are open. The engine, the CLI and the built-in steps are being built.">
-        <span class="rid">FZ-012</span>
-        <span class="name"><img class="venture-logo" src="/assets/keepshipping-animated.svg" alt="" width="30" height="30">Keep Shipping<span class="fzs">FZ STACK</span><span class="fzs-role">Deploys</span></span>
-        <span class="status" style="color:#A9A8A5"><span class="dot"></span>BUILDING</span>
-        <span class="cat">DEVTOOLS</span>
-        <span class="aut">L4</span>
-      </button>
-      <button type="button" class="record registry-cols" aria-pressed="false" aria-controls="d-record"
-        data-id="FZ-013" data-stack="1" data-stack-role="Email" data-license="" data-slug="owlpost" data-name="Owlpost" data-status="BUILDING" data-status-color="#A9A8A5"
-        data-category="EMAIL" data-autonomy=""
-        data-target="4" data-aim-operate="Sending runs itself: a message is accepted, split, signed, delivered and watched, and bounces and complaints feed the suppression list with no one in the loop. People set limits and look at the dashboard; they do not push mail through by hand."
-        data-aim-intelligence="Mostly plain code. Models help at the edges: an AI panel that edits a template and shows every change as a diff to accept or reject, and screening that holds a suspicious inbound message before an agent reads it." data-aim-growth="Developer-led, and first inside Factory Zero: Owlpost replaces Resend in the ventures that send mail today. Growth is emails sent and agent inboxes in use by teams outside Factory Zero, counted from the first of those."
-        data-github="[[&quot;OWLPOST-TO&quot;,&quot;https://github.com/Owlpost-to&quot;]]" data-uses="[[&quot;FRAMEWORK&quot;,&quot;Cratefield&quot;,&quot;/ventures/cratefield/&quot;,&quot;live&quot;,&quot;The email API is a Cratefield venture, deployed at api.owlpost.to.&quot;],[&quot;INBOUND EMAIL&quot;,&quot;Amazon SES&quot;,&quot;https://aws.amazon.com/ses/&quot;,&quot;live&quot;,&quot;Receives inbound mail for agents.owlpost.to in production.&quot;],[&quot;EMAIL&quot;,&quot;Amazon SES&quot;,&quot;https://aws.amazon.com/ses/&quot;,&quot;planned&quot;,&quot;Outbound sending through SES, once AWS lifts the sandbox on the account.&quot;],[&quot;BUG REPORTS&quot;,&quot;SupportGenius&quot;,&quot;/ventures/supportgenius/&quot;,&quot;planned&quot;,&quot;Errors and bug reports become deduplicated GitHub issues, through the Cratefield error reporter.&quot;],[&quot;PAYMENTS&quot;,&quot;Polar&quot;,&quot;https://polar.sh&quot;,&quot;planned&quot;,&quot;Paid plans and usage through Polar as Merchant of Record. Nothing is on sale yet.&quot;],[&quot;DEPLOYS&quot;,&quot;Keep Shipping&quot;,&quot;/ventures/keep-shipping/&quot;,&quot;planned&quot;,&quot;Every venture site and Worker deployed from the Keep Shipping console.&quot;],[&quot;HOSTING&quot;,&quot;Cloudflare&quot;,&quot;https://www.cloudflare.com&quot;,&quot;live&quot;,&quot;The site, Email Routing, and the API Worker with D1 and R2.&quot;]]"
-        data-launched="NOT YET" data-stage="VALIDATION" data-site="owlpost.to"
-        data-logo="owlpost-animated.svg" data-logo-w="120" data-logo-h="120" data-desc="An email API for apps and AI agents. One key sends transactional and marketing email, receives inbound mail as JSON by webhook, and creates persistent inboxes for agents on owlpost.to or your own domain. Deliverability is part of the path: separate transactional and marketing streams, DKIM, SPF and DMARC records set up for you, a suppression list checked before every send, one-click unsubscribe. It is built in Rust on the Cratefield harness and Cloudflare’s email service. What exists today is the site, the API at api.owlpost.to and inbound mail into inboxes; sending waits on Amazon SES production access, and the SDKs are still being built. Its first job is to replace Resend inside Factory Zero."
-        data-problem="Apps send email through one service, parse replies with another, and AI agents have no real inbox at all." data-solution="Owlpost is one email API: send, receive inbound mail as JSON, and give an agent its own address." data-how="[&quot;Transactional and marketing email from one SDK, with a timeline for every message&quot;,&quot;Inbound email parsed to JSON and posted to your webhook&quot;,&quot;Real inboxes for AI agents, created with one API call&quot;]"
-        data-offer="The plan is a free tier of 5,000 emails a month; paid plans are not open." data-saves="Stop stitching a sending service, an inbound parser and a mailbox together." data-now="The site and the API at api.owlpost.to are live, and inbound mail reaches inboxes. Sending waits on Amazon SES production access; its first job is to replace Resend in the Factory Zero ventures.">
-        <span class="rid">FZ-013</span>
-        <span class="name"><img class="venture-logo" src="/assets/owlpost-animated.svg" alt="" width="30" height="30">Owlpost<span class="fzs">FZ STACK</span><span class="fzs-role">Email</span></span>
-        <span class="status" style="color:#A9A8A5"><span class="dot"></span>BUILDING</span>
-        <span class="cat">EMAIL</span>
-        <span class="aut">L4</span>
-      </button>
-      <button type="button" class="record registry-cols" aria-pressed="false" aria-controls="d-record"
-        data-id="FZ-014" data-stack="0" data-stack-role="" data-license="" data-slug="bloodrank" data-name="Bloodrank" data-status="BUILDING" data-status-color="#A9A8A5"
-        data-category="COMMUNITY" data-autonomy=""
-        data-target="3" data-aim-operate="The boards keep themselves: spend and shipped work are read from the tools and from GitHub and Stripe, scored, ranked and published every night without anyone entering numbers."
-        data-aim-intelligence="Plain scoring code, log-scaled and published. A model only helps check that a claimed kill (a deploy, a launch, revenue) is real before it counts." data-aim-growth="Community-led: builders share their coffin cards. Growth is verified profiles on the public board, counted from the first one that is not ours."
-        data-github="[[&quot;BLOODRANK&quot;,&quot;https://github.com/Bloodrank&quot;]]" data-uses="[[&quot;DEPLOYS&quot;,&quot;Keep Shipping&quot;,&quot;/ventures/keep-shipping/&quot;,&quot;planned&quot;,&quot;Every venture site and Worker deployed from the Keep Shipping console.&quot;],[&quot;FONTS&quot;,&quot;Google Fonts&quot;,&quot;https://fonts.google.com&quot;,&quot;live&quot;,&quot;The site’s typefaces (Big Shoulders Display, Grenze Gotisch, Jolly Lodger, Cormorant Garamond, Geist, Geist Mono), loaded from Google.&quot;],[&quot;HOSTING&quot;,&quot;Cloudflare&quot;,&quot;https://www.cloudflare.com&quot;,&quot;live&quot;,&quot;The site.&quot;]]"
-        data-launched="NOT YET" data-stage="VALIDATION" data-site="bloodrank.dev"
-        data-logo="bloodrank-animated.svg" data-logo-w="120" data-logo-h="120" data-desc="A leaderboard for AI vampires: builders who run several AI coding agents at once. Each profile gets a Vampire Score from 0 to 1000: 40% blood (monthly AI spend, log-scaled), 40% kills (deploys, launches, merged features and revenue, verified through GitHub and Stripe) and 20% night (parallel agents and late-night usage), with ranks from Thrall to Count. A Sunlight board counts days fully offline, because the essay that coined the term was about burnout. What exists today is the concept site with sample data; the service is not built."
-        data-problem="Token leaderboards reward spending, not shipping, and most teams that ran them dropped them." data-solution="Bloodrank ranks people who run AI coding agents on what they spend and what they actually ship, side by side." data-how="[&quot;Blood: monthly AI spend, log-scaled so a big budget cannot buy the top&quot;,&quot;Kills: deploys, launches and revenue, verified through GitHub and Stripe&quot;,&quot;A Sunlight board for days fully offline&quot;]"
-        data-offer="The public board is planned to be free." data-saves="Stop guessing whether your agent spend is paying off." data-now="The site is live with sample data, labelled as such. The service, the board and `npx bloodrank` are not built.">
-        <span class="rid">FZ-014</span>
-        <span class="name"><img class="venture-logo" src="/assets/bloodrank-animated.svg" alt="" width="30" height="30">Bloodrank</span>
-        <span class="status" style="color:#A9A8A5"><span class="dot"></span>BUILDING</span>
-        <span class="cat">COMMUNITY</span>
-        <span class="aut">L3</span>
-      </button>
-      <button type="button" class="record registry-cols" aria-pressed="false" aria-controls="d-record"
-        data-id="FZ-015" data-stack="0" data-stack-role="" data-license="" data-slug="ratecla-im" data-name="ratecla.im" data-status="BUILDING" data-status-color="#A9A8A5"
-        data-category="TRAVEL" data-autonomy=""
-        data-target="4" data-aim-operate="A request runs itself: find the hotel’s reservations desk, ask, wait, read the reply, check it beats the lowest public price for the same stay, hold it for 24 hours, and bill the hotel after the stay. A person steps in only when a reply is unclear."
-        data-aim-intelligence="An agent that says it is an AI in every message, drafts the email and reads the reply into a checked quote. It never invents a price: anything uncertain goes to a human. The workflow around it is a plain, durable state machine." data-aim-growth="Traveller-led, with hotels following: every quote is a reason for a hotel to list itself. Growth is accepted quotes at hotels that list with ratecla.im, counted from the first stay."
-        data-github="[[&quot;RATECLAIM&quot;,&quot;https://github.com/Rateclaim&quot;]]" data-uses="[[&quot;FRAMEWORK&quot;,&quot;Cratefield&quot;,&quot;/ventures/cratefield/&quot;,&quot;planned&quot;,&quot;The request backend is being written on the Cratefield harness; it is not deployed.&quot;],[&quot;BUG REPORTS&quot;,&quot;SupportGenius&quot;,&quot;/ventures/supportgenius/&quot;,&quot;planned&quot;,&quot;Errors and bug reports become deduplicated GitHub issues, through the Cratefield error reporter.&quot;],[&quot;DEPLOYS&quot;,&quot;Keep Shipping&quot;,&quot;/ventures/keep-shipping/&quot;,&quot;planned&quot;,&quot;Every venture site and Worker deployed from the Keep Shipping console.&quot;],[&quot;FONTS&quot;,&quot;Google Fonts&quot;,&quot;https://fonts.google.com&quot;,&quot;live&quot;,&quot;The site’s typefaces (Plus Jakarta Sans, JetBrains Mono), loaded from Google.&quot;],[&quot;HOSTING&quot;,&quot;Cloudflare&quot;,&quot;https://www.cloudflare.com&quot;,&quot;live&quot;,&quot;The site.&quot;]]"
-        data-launched="NOT YET" data-stage="VALIDATION" data-site="ratecla.im"
-        data-logo="rateclaim-animated.svg" data-logo-w="120" data-logo-h="120" data-desc="Hotel rates nobody publishes. A traveller pastes a hotel link; an AI agent that identifies itself contacts the hotel’s reservations desk directly, asks for availability and its best unpublished rate, checks it against the lowest public price for the same stay, and returns a quote held for 24 hours. Free for travellers; hotels pay five percent after the stay instead of the 15 to 25 percent booking platforms charge. Built on the Cratefield harness. What exists today is the site; requests, the agent and the extension are being built."
-        data-problem="Hotels pay booking platforms 15 to 25 percent, and the lower rate they could give you directly is never published." data-solution="ratecla.im asks the hotel for that rate on your behalf and brings back a quote held for 24 hours." data-how="[&quot;Paste a hotel link, or use the browser extension on the page you are on&quot;,&quot;An AI agent, which says it is one, asks the reservations desk directly&quot;,&quot;You only see a quote that beats the lowest public price found for the same stay&quot;]"
-        data-offer="Free for travellers; hotels pay five percent after the stay." data-saves="Stop overpaying for a rate the hotel would have given you if you asked." data-now="The site is live and says requests are not open yet. The agent, the backend and the extension are being built.">
-        <span class="rid">FZ-015</span>
-        <span class="name"><img class="venture-logo" src="/assets/rateclaim-animated.svg" alt="" width="30" height="30">ratecla.im</span>
-        <span class="status" style="color:#A9A8A5"><span class="dot"></span>BUILDING</span>
-        <span class="cat">TRAVEL</span>
-        <span class="aut">L4</span>
-      </button>
-      <button type="button" class="record registry-cols" aria-pressed="false" aria-controls="d-record"
-        data-id="FZ-016" data-stack="1" data-stack-role="Sealed sharing" data-license="Apache-2.0" data-slug="sealbin" data-name="Sealbin" data-status="BUILDING" data-status-color="#A9A8A5"
-        data-category="SECURITY" data-autonomy=""
-        data-target="4" data-aim-operate="The service runs itself: sealing, one-time opens, expiry and deletion are plain state on Cloudflare with no human in the path. Signup, keys, billing and abuse handling are automated; a person steps in only for security reports and enterprise contracts."
-        data-aim-intelligence="No model ever sees a handoff: everything is end-to-end encrypted on the sender’s machine. Agents are the customers, not the operators. The skill teaches them when to seal and how to read a handoff index-first." data-aim-growth="Developer-led: every sealed link one agent sends is a sealb.in link another agent opens. Growth is agents with a key, counted from the first seal, and paid plans when those agents run in CI or production."
-        data-github="[[&quot;SEALBIN&quot;,&quot;https://github.com/sealbin&quot;]]" data-uses="[[&quot;FRAMEWORK&quot;,&quot;Cratefield&quot;,&quot;/ventures/cratefield/&quot;,&quot;live&quot;,&quot;The waitlist Worker at api.sealb.in runs on the Cratefield harness waitlist module.&quot;],[&quot;EMAIL&quot;,&quot;Owlpost&quot;,&quot;/ventures/owlpost/&quot;,&quot;planned&quot;,&quot;Sealed links delivered to agent inboxes, and waitlist mail. Double opt-in is off today, so no mail is sent yet.&quot;],[&quot;BUG REPORTS&quot;,&quot;SupportGenius&quot;,&quot;/ventures/supportgenius/&quot;,&quot;planned&quot;,&quot;Errors and bug reports become deduplicated GitHub issues, through the Cratefield error reporter.&quot;],[&quot;PAYMENTS&quot;,&quot;Polar&quot;,&quot;https://polar.sh&quot;,&quot;planned&quot;,&quot;Pro and Team subscriptions through Polar as Merchant of Record. Nothing is on sale yet.&quot;],[&quot;SECURITY SCREENING&quot;,&quot;promptdecode&quot;,&quot;/ventures/promptdecode/&quot;,&quot;planned&quot;,&quot;Optional local promptdecode scan when a handoff is opened.&quot;],[&quot;DEPLOYS&quot;,&quot;Keep Shipping&quot;,&quot;/ventures/keep-shipping/&quot;,&quot;planned&quot;,&quot;Every venture site and Worker deployed from the Keep Shipping console.&quot;],[&quot;HOSTING&quot;,&quot;Cloudflare&quot;,&quot;https://www.cloudflare.com&quot;,&quot;live&quot;,&quot;The site and the waitlist Worker.&quot;]]"
-        data-launched="NOT YET" data-stage="VALIDATION" data-site="sealb.in"
-        data-logo="sealbin-animated.svg" data-logo-w="120" data-logo-h="120" data-desc="The sealed handoff between AI agents. The sending agent encrypts files, context or secrets on its own machine and uploads only ciphertext; the key travels in the link’s #fragment and never reaches the server. The receiving agent opens the link once, the contents land on disk, and the ciphertext is deleted. Burn-after-read by default, or a TTL, with an optional password. A CLI, an MCP server with seal and open tools, an agent skill and a REST API; open source under Apache-2.0 with a hosted service on Cloudflare. What exists today is the site and the early-access waitlist; the product is being built."
-        data-problem="Agents hand each other context, files and secrets through prompts, chat threads and public pastes: leaky, permanent and too big for a prompt." data-solution="sealb.in seals the handoff on the sender’s machine and gives one link that the receiving agent opens once, then it is deleted." data-how="[&quot;/seal ./context.tar in Claude Code, Codex or any agent with a shell&quot;,&quot;The key stays in the link’s #fragment; the server only holds ciphertext&quot;,&quot;/open puts the files on disk, burns the link, and leaves no copies behind&quot;]"
-        data-offer="Open source under Apache-2.0; free to start, then priced per agent, not per seal." data-saves="Stop leaving tokens in chat history and pasting megabytes of context into prompts." data-now="The site is live and early access is a waitlist. The CLI, MCP server, skill and hosted service are being built.">
-        <span class="rid">FZ-016</span>
-        <span class="name"><img class="venture-logo" src="/assets/sealbin-animated.svg" alt="" width="30" height="30">Sealbin<span class="fzs">FZ STACK</span><span class="fzs-role">Sealed sharing</span><span class="fzs-os" title="Apache-2.0 licence">OPEN SOURCE</span></span>
-        <span class="status" style="color:#A9A8A5"><span class="dot"></span>BUILDING</span>
-        <span class="cat">SECURITY</span>
-        <span class="aut">L4</span>
-      </button>
-      <button type="button" class="record registry-cols" aria-pressed="false" aria-controls="d-record"
-        data-id="FZ-017" data-stack="1" data-stack-role="Release videos" data-license="" data-slug="release-show" data-name="release.show" data-status="BUILDING" data-status-color="#A9A8A5"
-        data-category="VIDEO" data-autonomy=""
-        data-target="4" data-aim-operate="Release announcements are the automation target. Once a project connects GitHub, nobody has to write them: a merged pull request, a published release or a change to the site is picked up on its own, and the video, blog post, release widget, social posts and email digest follow from it."
-        data-aim-intelligence="Models read what changed in the code and on the site and write the story of the release: the script, the captions, the blog post and the social copy, in the project’s own brand. An AI-avatar presenter can front the video. Detecting changes and rendering the output are plain code." data-aim-growth="Developer-led: every release video is ready to post to X, LinkedIn or YouTube, and every project gets a public channel page at release.show/&lt;project&gt;. An early-access waitlist first. Growth is projects publishing through it, counted from the first project that is not a pilot."
-        data-github="[[&quot;RELEASE-SHOW&quot;,&quot;https://github.com/Release-Show&quot;]]" data-uses="[[&quot;FRAMEWORK&quot;,&quot;Cratefield&quot;,&quot;/ventures/cratefield/&quot;,&quot;live&quot;,&quot;The waitlist Worker at api.release.show runs on the Cratefield harness waitlist module.&quot;],[&quot;EMAIL&quot;,&quot;Owlpost&quot;,&quot;/ventures/owlpost/&quot;,&quot;planned&quot;,&quot;Release digests and transactional notices. No mail is sent today.&quot;],[&quot;BUG REPORTS&quot;,&quot;SupportGenius&quot;,&quot;/ventures/supportgenius/&quot;,&quot;planned&quot;,&quot;Errors and bug reports become deduplicated GitHub issues, through the Cratefield error reporter.&quot;],[&quot;PAYMENTS&quot;,&quot;Polar&quot;,&quot;https://polar.sh&quot;,&quot;planned&quot;,&quot;Paid plans through Polar as Merchant of Record, via the Cratefield Payments port. Nothing is on sale yet.&quot;],[&quot;SECURITY SCREENING&quot;,&quot;promptdecode&quot;,&quot;/ventures/promptdecode/&quot;,&quot;planned&quot;,&quot;Untrusted release text is screened before any model reads it.&quot;],[&quot;DEPLOYS&quot;,&quot;Keep Shipping&quot;,&quot;/ventures/keep-shipping/&quot;,&quot;planned&quot;,&quot;Every venture site and Worker deployed from the Keep Shipping console.&quot;],[&quot;FONTS&quot;,&quot;Google Fonts&quot;,&quot;https://fonts.google.com&quot;,&quot;live&quot;,&quot;The site’s typefaces (Geist, Geist Mono), loaded from Google.&quot;],[&quot;HOSTING&quot;,&quot;Cloudflare&quot;,&quot;https://www.cloudflare.com&quot;,&quot;live&quot;,&quot;The site and the waitlist Worker.&quot;]]"
-        data-launched="NOT YET" data-stage="VALIDATION" data-site="release.show"
-        data-logo="releaseshow-animated.svg" data-logo-w="120" data-logo-h="120" data-desc="Release videos made from the work itself. release.show reads GitHub releases, merged pull requests and website changes and turns them into 30 to 90 second videos, branded, captioned and ready to post. Each release also becomes an AI-avatar presenter video, a blog post, an in-app release widget, social posts and an email digest, and every project gets a public channel page at release.show/&lt;project&gt;. What exists today is the site and its early-access waitlist; the product has not launched."
-        data-problem="A release ships with a changelog entry, and turning it into a video, a post and an email for the people it was built for is a separate job that rarely gets done." data-solution="release.show turns GitHub releases, merged pull requests and website changes into 30 to 90 second videos: branded, captioned and ready to post. Every release deserves a premiere." data-how="[&quot;Each release becomes a short branded, captioned video&quot;,&quot;The same release also becomes an AI-avatar presenter video, a blog post, an in-app release widget, social posts and an email digest&quot;,&quot;Every project gets a public channel page at release.show/&lt;project&gt;&quot;]"
-        data-offer="Early access by waitlist." data-saves="Ship the release; the announcements come with it." data-now="Early access is a waitlist at release.show. The product has not launched.">
-        <span class="rid">FZ-017</span>
-        <span class="name"><img class="venture-logo" src="/assets/releaseshow-animated.svg" alt="" width="30" height="30">release.show<span class="fzs">FZ STACK</span><span class="fzs-role">Release videos</span></span>
-        <span class="status" style="color:#A9A8A5"><span class="dot"></span>BUILDING</span>
-        <span class="cat">VIDEO</span>
-        <span class="aut">L4</span>
-      </button>
-      <button type="button" class="record registry-cols" aria-pressed="false" aria-controls="d-record"
-        data-id="FZ-018" data-stack="1" data-stack-role="Knowledge" data-license="Apache-2.0" data-slug="living-brain" data-name="Living Brain" data-status="BUILDING" data-status-color="#A9A8A5"
-        data-category="DEVTOOLS" data-autonomy=""
-        data-target="4" data-aim-operate="The wiki is the thing that should keep itself: conversations become pages with their sources linked, and a nightly pass merges duplicates, surfaces contradictions and refreshes stale facts, with no one assigned to tend it. People ask questions and correct it; they do not write it."
-        data-aim-intelligence="Models read team conversations and write the pages, citing the source message for every fact; the nightly passes reconcile what changed, and a learning layer models how each person works. Teams bring their own LLM, LiteLLM included. Reading is always done with the asker’s own access." data-aim-growth="Team-led, inside the tools people already use: coding agents over MCP, the terminal, and team chat (Slack, Discord). A free self-hosted tier for small teams first. Growth is workspaces with a wiki that is being kept, counted from the first one that is not ours."
-        data-github="[[&quot;LIVINGBRAIN-WIKI/LIVINGBRAIN&quot;,&quot;https://github.com/Livingbrain-wiki/livingbrain&quot;],[&quot;LIVINGBRAIN-WIKI&quot;,&quot;https://github.com/Livingbrain-wiki&quot;]]" data-uses="[[&quot;FRAMEWORK&quot;,&quot;Cratefield&quot;,&quot;/ventures/cratefield/&quot;,&quot;planned&quot;,&quot;Built in Rust as a Cratefield venture; nothing is deployed yet, including the waitlist.&quot;],[&quot;AGENTS&quot;,&quot;Colonizer&quot;,&quot;/ventures/colonizer/&quot;,&quot;planned&quot;,&quot;Colonizer colonies take the bigger jobs and open a pull request; nothing is dispatched yet.&quot;],[&quot;EMAIL&quot;,&quot;Owlpost&quot;,&quot;/ventures/owlpost/&quot;,&quot;planned&quot;,&quot;Waitlist confirmation, digests and the brain’s own inbox.&quot;],[&quot;SUPPORT&quot;,&quot;SupportGenius&quot;,&quot;/ventures/supportgenius/&quot;,&quot;planned&quot;,&quot;Customer-safe answers and tickets routed back in from SupportGenius.&quot;],[&quot;BUG REPORTS&quot;,&quot;SupportGenius&quot;,&quot;/ventures/supportgenius/&quot;,&quot;planned&quot;,&quot;Errors and bug reports become deduplicated GitHub issues, through the Cratefield error reporter.&quot;],[&quot;PAYMENTS&quot;,&quot;Polar&quot;,&quot;https://polar.sh&quot;,&quot;planned&quot;,&quot;Hosted plans through Polar as Merchant of Record. Nothing is on sale yet.&quot;],[&quot;SECURITY SCREENING&quot;,&quot;promptdecode&quot;,&quot;/ventures/promptdecode/&quot;,&quot;planned&quot;,&quot;Every way in and out screened for hidden text with the promptdecode engine.&quot;],[&quot;DEPLOYS&quot;,&quot;Keep Shipping&quot;,&quot;/ventures/keep-shipping/&quot;,&quot;planned&quot;,&quot;Every venture site and Worker deployed from the Keep Shipping console.&quot;],[&quot;HOSTING&quot;,&quot;Cloudflare&quot;,&quot;https://www.cloudflare.com&quot;,&quot;live&quot;,&quot;The site.&quot;]]"
-        data-launched="NOT YET" data-stage="VALIDATION" data-site="livingbrain.wiki"
-        data-logo="livingbrain-animated.svg" data-logo-w="120" data-logo-h="120" data-desc="A company wiki that writes and maintains itself. The plan: Living Brain turns team conversations into Markdown pages for people, projects, decisions and customers, with every fact linked to the message it came from; nightly passes merge duplicates, surface contradictions and refresh stale facts, and a learning layer models how each person works. It would be reachable from coding agents through an MCP server and a Claude Code plugin, from the terminal through the `livingbrain` CLI, one Rust binary, and in team chat (Slack and Discord, with WhatsApp and Telegram later); an installable app (PWA) and a 3D graph view sit alongside. Bigger jobs would go to a Colonizer colony that returns a pull request, and email (digests and an inbox) would go through Owlpost. Bring your own model, LiteLLM included, and it reads only with the asker’s own access. Built in Rust as a Cratefield venture on Cloudflare Workers (D1, R2, KV, Durable Objects); open core, Apache-2.0 with an `ee/` directory under a commercial licence. What exists today is the site, its early-access waitlist and the plan as issues; nothing is built and nothing is sold."
-        data-problem="What a team knows is spread across chat threads, agent sessions and people’s heads, and the wiki meant to hold it is written once and then goes stale." data-solution="Living Brain is planned as a brain for your team that writes its own company wiki and keeps improving it: in your coding agent over MCP, in your terminal with one fast Rust binary, and in team chat (Slack, Discord)." data-how="[&quot;Team conversations would become Markdown pages for people, projects, decisions and customers, every fact linked to its source message&quot;,&quot;Nightly passes would merge duplicates, surface contradictions and refresh stale facts&quot;,&quot;It would read only with the asker’s own access, in chat, over MCP and in the CLI alike&quot;]"
-        data-offer="Planned pricing per workspace, your own LLM on every plan: Community free (self-hosted, up to 5 people); Teams $5 a month self-hosted, or $9 a month hosted ($90 a year) with 25 people included; Crew $15 a month ($150 a year), hosted with $5 of DeepSeek credit a month and 25 people included. Hosted usage is metered like memory: writing $1 per million tokens, reading unlimited, harder questions from $0.001 each. Nothing is on sale." data-saves="Stop writing the wiki by hand and finding it out of date." data-now="In design. The plan is four epics and 38 issues in the open product repository; nothing is built, and early access is a waitlist at livingbrain.wiki.">
-        <span class="rid">FZ-018</span>
-        <span class="name"><img class="venture-logo" src="/assets/livingbrain-animated.svg" alt="" width="30" height="30">Living Brain<span class="fzs">FZ STACK</span><span class="fzs-role">Knowledge</span><span class="fzs-os" title="Apache-2.0 licence">OPEN SOURCE</span></span>
-        <span class="status" style="color:#A9A8A5"><span class="dot"></span>BUILDING</span>
-        <span class="cat">DEVTOOLS</span>
-        <span class="aut">L4</span>
-      </button>
-      <button type="button" class="record registry-cols" aria-pressed="false" aria-controls="d-record"
-        data-id="FZ-019" data-stack="1" data-stack-role="Launch rehearsal" data-license="" data-slug="shoal" data-name="Shoal" data-status="BUILDING" data-status-color="#A9A8A5"
-        data-category="SIMULATION" data-autonomy=""
-        data-target="4" data-aim-operate="A rehearsal should need nobody to run it: paste a launch post or README, and seeding the crowd, simulating the thread and scoring the outcome happen on their own, on your own machine or server. The person decides what to change and when to launch."
-        data-aim-intelligence="Jev, a deterministic engine, runs the simulated developers: who reads, who votes, who argues. A language model writes text only when an agent posts, from a local model or an API. The predicted thread, the top objections and the edits that change the outcome come out of that run." data-aim-growth="Developer-led: a single open-core binary, written in Rust and self-hostable, for people about to post to Hacker News, Reddit or X. An early-access waitlist first. Growth is launches rehearsed before they are posted, counted from the first one that is not ours."
-        data-github="[[&quot;SHOAL-ING/WEBSITE&quot;,&quot;https://github.com/shoal-ing/website&quot;],[&quot;SHOAL-ING&quot;,&quot;https://github.com/shoal-ing&quot;]]" data-uses="[[&quot;FONTS&quot;,&quot;Google Fonts&quot;,&quot;https://fonts.google.com&quot;,&quot;live&quot;,&quot;The site’s typefaces (Geist, Geist Mono, Instrument Serif), loaded from Google.&quot;]]"
-        data-launched="NOT YET" data-stage="VALIDATION" data-site="shoal.ing"
-        data-logo="shoal-animated.svg" data-logo-w="120" data-logo-h="120" data-desc="Launch rehearsal. Paste a launch post or README, and thousands of simulated developers read it, vote and argue about it on a simulated Hacker News, Reddit or X; you get the predicted thread, the top objections and the edits that change the outcome. Seed, simulate, score. Planned as a single open-core binary written in Rust, self-hostable, with a local model or an API: Jev is the deterministic engine, and a language model writes text only when an agent posts. What exists today is the site and its early-access waitlist; the CLI is in development and cannot be installed yet."
-        data-problem="A launch post gets one shot: you find out what Hacker News, Reddit or X thinks of it only after it is live." data-solution="Shoal lets you rehearse the launch first. Paste a launch post or README, and thousands of simulated developers read it, vote and argue about it on a simulated Hacker News, Reddit or X." data-how="[&quot;Seed: paste a launch post or README&quot;,&quot;Simulate: thousands of simulated developers read it, vote and argue on a simulated Hacker News, Reddit or X&quot;,&quot;Score: the predicted thread, the top objections and the edits that change the outcome&quot;]"
-        data-offer="Early access by waitlist." data-saves="Find the objections before the launch thread does." data-now="Early access is a waitlist at shoal.ing. The CLI is in development and cannot be installed yet.">
-        <span class="rid">FZ-019</span>
-        <span class="name"><img class="venture-logo" src="/assets/shoal-animated.svg" alt="" width="30" height="30">Shoal<span class="fzs">FZ STACK</span><span class="fzs-role">Launch rehearsal</span></span>
-        <span class="status" style="color:#A9A8A5"><span class="dot"></span>BUILDING</span>
-        <span class="cat">SIMULATION</span>
-        <span class="aut">L4</span>
-      </button>
-      <button type="button" class="record registry-cols" aria-pressed="false" aria-controls="d-record"
-        data-id="FZ-020" data-stack="1" data-stack-role="AI token prices" data-license="Apache-2.0" data-slug="tokker" data-name="Tokker" data-status="BUILDING" data-status-color="#A9A8A5"
-        data-category="PRICING" data-autonomy=""
-        data-target="4" data-aim-operate="Keeping the prices true is the job that should run on its own: scheduled agents re-check every source, save the page as evidence, confirm a change with a second fetch and open a pull request, and small confirmed changes merge by themselves. A person reviews changes to limits, units or fair-use wording, and anything from a secondary source."
-        data-aim-intelligence="Mostly plain code: an extractor per source, the diff, the currency conversion and the token math that turns published limits into $ per 1M. A language model is only the fallback extractor, its output checked against the saved page and always sent to review." data-aim-growth="Developer- and agent-led: a free JSON API and an MCP server, so coding agents can ask which provider is cheapest, and price-drop alerts by email. Free and open, with no affiliate links at launch. Growth is people and agents using the index, counted from the first API call that is not ours."
-        data-github="[[&quot;TOKKER-DEV/TOKKER&quot;,&quot;https://github.com/Tokker-dev/tokker&quot;],[&quot;TOKKER-DEV&quot;,&quot;https://github.com/Tokker-dev&quot;]]" data-uses="[[&quot;FRAMEWORK&quot;,&quot;Cratefield&quot;,&quot;/ventures/cratefield/&quot;,&quot;planned&quot;,&quot;The API and MCP server are planned as a Rust Worker on the Cratefield harness; nothing is deployed yet.&quot;],[&quot;AGENTS&quot;,&quot;Colonizer&quot;,&quot;/ventures/colonizer/&quot;,&quot;planned&quot;,&quot;Scheduled Colonizer loops re-check every price source and open a pull request when a price moves. Not running yet.&quot;],[&quot;EMAIL&quot;,&quot;Owlpost&quot;,&quot;/ventures/owlpost/&quot;,&quot;planned&quot;,&quot;Price-drop alerts, the weekly change email and waitlist confirmation. No mail is sent today.&quot;],[&quot;BUG REPORTS&quot;,&quot;SupportGenius&quot;,&quot;/ventures/supportgenius/&quot;,&quot;planned&quot;,&quot;Errors and bug reports become deduplicated GitHub issues, through the Cratefield error reporter.&quot;],[&quot;PAYMENTS&quot;,&quot;Polar&quot;,&quot;https://polar.sh&quot;,&quot;planned&quot;,&quot;A paid API tier later, through Polar. The index is free and nothing is on sale.&quot;],[&quot;DEPLOYS&quot;,&quot;Keep Shipping&quot;,&quot;/ventures/keep-shipping/&quot;,&quot;planned&quot;,&quot;Every venture site and Worker deployed from the Keep Shipping console.&quot;],[&quot;HOSTING&quot;,&quot;Cloudflare&quot;,&quot;https://www.cloudflare.com&quot;,&quot;live&quot;,&quot;The site.&quot;]]"
-        data-launched="NOT YET" data-stage="VALIDATION" data-site="tokker.dev"
-        data-logo="tokker-animated.svg" data-logo-w="120" data-logo-h="120" data-desc="An open, sourced price index for AI tokens and subscriptions. Tokker lists what AI model APIs cost in US dollars per 1M tokens across about 60 providers, and turns subscription limits (5-hour windows, weekly caps, credit pools) into real tokens and an estimated $ per 1M at full use, so an API and a $200 plan sit on one scale. Every number carries its source and the date it was checked; what a provider does not publish is marked unknown. Scheduled agents on Colonizer are planned to keep the prices fresh, and a free JSON API, an MCP server and price-drop alerts by email through Owlpost are planned on a Rust Worker on the Cratefield harness. Free and open, with no affiliate links at launch; the code is Apache-2.0 and the data CC BY 4.0 (proposed). What exists today is the homepage and an early index (62 providers and 103 plans, prices as of 5 Oct 2026); the API, MCP server and alerts do not work yet."
-        data-problem="AI token prices are hard to compare: about 60 API providers price them differently, and subscriptions hide their limits in 5-hour windows and weekly caps." data-solution="Tokker is a free, open price index for AI tokens. It puts every model API and every AI subscription on one scale, US dollars per 1M tokens, so you can see the cheapest way to get the tokens you need." data-how="[&quot;Compares API prices per 1M tokens across about 60 providers, each number linked to its source and the date it was checked&quot;,&quot;Turns subscription limits (5-hour windows, weekly caps) into real tokens and $ per 1M at full use&quot;,&quot;Scheduled agents are planned to re-check every source and update a price when it moves&quot;]"
-        data-offer="Free and open: the data is in a public repository, and there are no affiliate links at launch." data-saves="Stop working out by hand whether a plan or an API is cheaper for the way you use AI." data-now="The homepage is live at tokker.dev with an early index (prices as of 5 Oct 2026). The API, MCP server, scheduled re-checks and price-drop alerts are planned and do not work yet.">
-        <span class="rid">FZ-020</span>
-        <span class="name"><img class="venture-logo" src="/assets/tokker-animated.svg" alt="" width="30" height="30">Tokker<span class="fzs">FZ STACK</span><span class="fzs-role">AI token prices</span><span class="fzs-os" title="Apache-2.0 licence">OPEN SOURCE</span></span>
-        <span class="status" style="color:#A9A8A5"><span class="dot"></span>BUILDING</span>
-        <span class="cat">PRICING</span>
-        <span class="aut">L4</span>
-      </button>
-      <button type="button" class="record registry-cols" aria-pressed="false" aria-controls="d-record"
-        data-id="FZ-021" data-stack="1" data-stack-role="Bookkeeping" data-license="" data-slug="ledgers" data-name="Ledgers" data-status="BUILDING" data-status-color="#A9A8A5"
-        data-category="ACCOUNTING" data-autonomy=""
-        data-target="4" data-aim-operate="The bookkeeping is the work meant to run without people: agents read incoming bills, match them to orders, receipts and payments, and draft and post entries within the limits each agent key is given. People stay in the loop by design: anything above a limit stops for approval, and paying money out, closing a period and filing tax always need a person."
-        data-aim-intelligence="A language model reads documents and proposes matches, each field with a confidence score and a link to its place on the source; the ledger itself is plain double-entry code. Every action is audited, entries are reversed rather than edited, and a dry run shows each debit and credit before anything posts." data-aim-growth="Open source first: free for a single user with their own AI model key, so developers and their agents can start from the CLI and MCP tools. Growth is companies moving to managed plans, which include the agents, counted from the first document an agent books that is not ours."
-        data-github="[[&quot;LEDGERS-SH&quot;,&quot;https://github.com/Ledgers-sh&quot;]]" data-uses="[[&quot;FRAMEWORK&quot;,&quot;Cratefield&quot;,&quot;/ventures/cratefield/&quot;,&quot;planned&quot;,&quot;Every module (ledger, invoice, bills, matching, bank, tax, documents, reports) is planned as a Rust crate on the Cratefield harness. Nothing is published yet.&quot;],[&quot;FONTS&quot;,&quot;Google Fonts&quot;,&quot;https://fonts.google.com&quot;,&quot;live&quot;,&quot;The site’s typefaces (Source Sans 3, Source Code Pro), loaded from Google.&quot;],[&quot;HOSTING&quot;,&quot;Cloudflare&quot;,&quot;https://www.cloudflare.com&quot;,&quot;live&quot;,&quot;The site.&quot;]]"
-        data-launched="NOT YET" data-stage="VALIDATION" data-site="ledgers.sh"
-        data-logo="ledgers-animated.svg" data-logo-w="120" data-logo-h="120" data-desc="Open-source, double-entry accounting built for AI agents. Agents extract vendor bills, propose invoice, order, receipt and payment matches with confidence scores, and draft journal entries; each agent key has a tier (read, draft, post within limits) and per-currency amount limits, and paying money out, closing a period and filing tax always need a person. Every action is audited and reversible, and a dry run shows each debit and credit before anything posts. Agents work through a CLI and MCP tools, people supervise in a browser and phone app (PWA, offline, push approvals), and an HTTP API shares the same commands. Multi-currency and right-to-left from the start; one company, internal units or a group with consolidation. Eight modules (ledger, invoice, bills, matching, bank, tax, documents, reports) are planned as Rust crates on the Cratefield harness, MIT-licensed, self-hosted or managed. What exists today is the homepage; nothing is released."
-        data-problem="Bookkeeping is mostly reading invoices and matching them to orders and payments, and agents could do that work, but nobody wants an AI posting whatever it likes to the books." data-solution="Ledgers is open-source accounting built for AI agents. Agents read invoices, match payments and draft entries; policy decides what they may post; you approve the rest." data-how="[&quot;Every agent key gets a tier (read, draft, post within limits) and amount limits per currency; paying out, closing periods and filing tax always need a person&quot;,&quot;A dry run shows every debit and credit before anything posts, and every action is audited and reversible&quot;,&quot;Agents use the CLI and MCP tools, people review in a browser and phone app, and all of them run the same commands&quot;]"
-        data-offer="Planned to be free and open source (MIT) for a single user with your own AI model key; managed plans would include the agents." data-saves="Stop typing invoices into your books and only look at the few entries an agent isn’t sure about." data-now="The homepage is live at ledgers.sh. The crates, CLI, MCP server, app, waitlist and managed plans are planned and do not exist yet.">
-        <span class="rid">FZ-021</span>
-        <span class="name"><img class="venture-logo" src="/assets/ledgers-animated.svg" alt="" width="30" height="30">Ledgers<span class="fzs">FZ STACK</span><span class="fzs-role">Bookkeeping</span></span>
-        <span class="status" style="color:#A9A8A5"><span class="dot"></span>BUILDING</span>
-        <span class="cat">ACCOUNTING</span>
-        <span class="aut">L4</span>
-      </button>
-      <button type="button" class="record registry-cols" aria-pressed="false" aria-controls="d-record"
-        data-id="FZ-022" data-stack="1" data-stack-role="Writing in your voice" data-license="MIT" data-slug="ghostwritin" data-name="Ghostwritin'" data-status="BUILDING" data-status-color="#A9A8A5"
-        data-category="WRITING" data-autonomy=""
-        data-target="4" data-aim-operate="The rewriting is the work meant to run on its own: drafts come in through the web app, API, CLI or MCP server, the engine rewrites them in the chosen voice, checks the result against the original and returns the diff and scores. People handle what a machine should not decide: support, abuse reports and the use policy."
-        data-aim-intelligence="A language model does the rewrite; plain code does the checking. The meaning lock compares names, numbers, quotes and code against the original, and a rewrite that moved one is rejected. The human score is a detector estimate shown as a guide, never a promise." data-aim-growth="Open source first: the engine, CLI and MCP server are planned under MIT, so writers and developers can self-host with their own model key. Growth is people moving to hosted plans for My voice and the score, counted from the first rewrite that is not ours."
-        data-github="[[&quot;GHOSTWRITIN&quot;,&quot;https://github.com/Ghostwritin&quot;]]" data-uses="[[&quot;FRAMEWORK&quot;,&quot;Cratefield&quot;,&quot;/ventures/cratefield/&quot;,&quot;planned&quot;,&quot;The open-source app (engine, API Worker, CLI, MCP server) is being built on the Cratefield harness, with the meaning lock and diff offered upstream as generic Cratefield modules.&quot;],[&quot;FONTS&quot;,&quot;Google Fonts&quot;,&quot;https://fonts.google.com&quot;,&quot;live&quot;,&quot;The site’s typefaces (Newsreader, JetBrains Mono), loaded from Google.&quot;],[&quot;HOSTING&quot;,&quot;Cloudflare&quot;,&quot;https://www.cloudflare.com&quot;,&quot;live&quot;,&quot;The site.&quot;]]"
-        data-launched="NOT YET" data-stage="VALIDATION" data-site="ghostwrit.in"
-        data-logo="ghostwritin-animated.svg" data-logo-w="120" data-logo-h="120" data-desc="Rewrites AI-assisted drafts into the writer’s own voice and checks that the meaning stayed the same. A draft of up to 10,000 words is pasted in and the passages a detector would flag are marked; the writer picks a voice (Casual, Professional, Academic, or My voice built from three to five of their own samples) and a strength from light polish to a full rewrite. A meaning lock keeps names, numbers, quotes and code exactly as written and checks each rewrite against the original; a diff shows every change, with a human score (a detector estimate, a guide not a guarantee) before and after. Web app, REST API, CLI and MCP server are planned on one MIT-licensed engine, self-hosted or hosted. Intended for writers whose own work gets misread and for drafts a tool helped with; users are told to follow their school’s, client’s or publisher’s rules. What exists today is the homepage; nothing is released."
-        data-problem="A tool helped with your first draft, and now it doesn’t sound like you, and your own writing sometimes gets misread as AI-written." data-solution="Ghostwritin’ rewrites AI-assisted drafts into your own natural voice, then checks that the meaning stayed exactly the same." data-how="[&quot;Choose a voice (Casual, Professional, Academic, or My voice, learned from three to five of your samples) and a strength&quot;,&quot;Names, numbers, quotes and code stay locked, and every rewrite is checked against your original&quot;,&quot;A diff shows every change, with a human score before and after; the web app, API, CLI and MCP server share one engine&quot;]"
-        data-offer="Planned to be open source (MIT): self-host with your own model key, or use the hosted version, with a free tier of 500 words a day." data-saves="Stop rewriting a tool’s draft line by line until it sounds like you again." data-now="The homepage is live. The web app, API, CLI, MCP server, waitlist and hosted plans are planned and do not exist yet.">
-        <span class="rid">FZ-022</span>
-        <span class="name"><img class="venture-logo" src="/assets/ghostwritin-animated.svg" alt="" width="30" height="30">Ghostwritin'<span class="fzs">FZ STACK</span><span class="fzs-role">Writing in your voice</span><span class="fzs-os" title="MIT licence">OPEN SOURCE</span></span>
-        <span class="status" style="color:#A9A8A5"><span class="dot"></span>BUILDING</span>
-        <span class="cat">WRITING</span>
-        <span class="aut">L4</span>
-      </button>
-      <button type="button" class="record registry-cols" aria-pressed="false" aria-controls="d-record"
-        data-id="FZ-023" data-stack="1" data-stack-role="Short links" data-license="" data-slug="squeezin" data-name="Squeezin" data-status="BUILDING" data-status-color="#A9A8A5"
-        data-category="LINKS" data-autonomy=""
-        data-target="4" data-aim-operate="Shortening, redirects, link checks and expiry are meant to run without people: a link is made, checked against Google Safe Browsing and user reports, served as a redirect and expired on schedule. People handle abuse reports, appeals and anything a check flags."
-        data-aim-intelligence="Mostly plain code: short codes, redirects, safety lookups, click counts. Agents are a customer, not the engine: through the MCP server an agent creates, checks and expires links, and every link it makes carries its name on the check page." data-aim-growth="Free is the whole product: unlimited links, QR codes, custom endings, expiry and click counts at no cost and with no ads. Revenue is small and optional: a $2 handle, Pro at $3 a month for your own domain and editable links, and agents paying per link from a prepaid balance."
-        data-github="[[&quot;SQEEZIN&quot;,&quot;https://github.com/Sqeezin&quot;]]" data-uses="[[&quot;FONTS&quot;,&quot;Google Fonts&quot;,&quot;https://fonts.google.com&quot;,&quot;live&quot;,&quot;The site’s typefaces (Archivo, Instrument Sans, JetBrains Mono), loaded from Google.&quot;],[&quot;HOSTING&quot;,&quot;Cloudflare&quot;,&quot;https://www.cloudflare.com&quot;,&quot;live&quot;,&quot;The site.&quot;]]"
-        data-launched="NOT YET" data-stage="VALIDATION" data-site="squeez.in"
-        data-logo="squeezin-animated.svg" data-logo-w="120" data-logo-h="120" data-desc="A free link shortener with no ads, no signup and no tracking sold. Paste a long link and get squeez.in/code, with custom endings, easy-to-say word endings (squeez.in/blue-otter), QR codes, expiry (24 hours, 7 days, after the first click) and 30 days of click counts. Adding + to any squeez.in link opens a check page with the destination, page title, creator (a person, or the AI agent that made it) and a safety result from Google Safe Browsing and user reports. An MCP server at squeez.in/mcp lets agents create, check and expire links and hear when one is opened, paid per link from a prepaid balance. Planned add-ons: a $2 handle and Pro at $3 a month (own domain, editable destinations, two years of stats). What exists today is the website with a local preview; no short link works yet."
-        data-problem="Most link shorteners show ads, ask you to sign up, or put basics like custom endings and QR codes behind a paywall, and nobody can tell where a short link goes before they click it." data-solution="Squeezin is a free link shortener with no ads and no signup. Add + to any squeez.in link to see where it goes, who made it and whether it is safe before you open it." data-how="[&quot;Paste a long link, press Enter, and the short link is ready, with custom endings, easy-to-say endings, QR codes and expiry&quot;,&quot;Every link has a check page at squeez.in/code+ with its destination, page title, creator and a safety check&quot;,&quot;Agents connect to squeez.in/mcp to create, check and expire links, and each link they make says which agent made it&quot;]"
-        data-offer="Free for good, with no ads and no signup; a handle is $2 once, Pro is $3 a month, and agents pay per link." data-saves="Stop paying for a shortener or clicking blind on links people send you." data-now="The website is live with a local preview of shortening. Real short links, link checks, accounts, the MCP server and paid add-ons are planned and do not work yet.">
-        <span class="rid">FZ-023</span>
-        <span class="name"><img class="venture-logo" src="/assets/squeezin-animated.svg" alt="" width="30" height="30">Squeezin<span class="fzs">FZ STACK</span><span class="fzs-role">Short links</span></span>
-        <span class="status" style="color:#A9A8A5"><span class="dot"></span>BUILDING</span>
-        <span class="cat">LINKS</span>
-        <span class="aut">L4</span>
-      </button>
-<!-- fz:registry:end -->
-  </div>
-</section>
+        data-offer="Free to use today at promptdeco.de." data-saves="Catch a hidden instruction before your agent acts on it." data-now="The decoder works today, and the config scanner runs from source (no release yet). The content scanner and the GitHub Action are being built."></button>
+<div class="wrap">
+  <nav class="crumbs" aria-label="Breadcrumb"><a href="/">Factory Zero</a><span aria-hidden="true">/</span><a href="/ventures/">Ventures</a><span aria-hidden="true">/</span><span id="d-record">RECORD / FZ-009</span></nav>
 
-<section class="record-detail" aria-live="polite">
-  <p class="eyebrow" id="d-record">RECORD / FZ-009</p>
-  <div class="two-col">
+  <header class="app-hero">
+    <div class="app-icon"><img id="d-logo" src="/assets/promptdecode-animated.svg" alt="promptdecode logo" width="120" height="120"></div>
     <div>
-      <!-- fz:detail:start -->
-      <div class="detail-id"><span id="d-id">FZ-009</span><img id="d-logo" class="venture-logo venture-logo--lg" src="/assets/promptdecode-animated.svg" alt="promptdecode logo" width="120" height="120"></div>
-      <h2 class="detail-name" id="d-name">promptdecode</h2>
-      <p class="fzs-line" id="d-stack"><a class="fzs" href="/stack/">FZ STACK</a><span class="fzs-role" id="d-stack-role">Hidden-text screening</span><span class="fzs-os" id="d-stack-os" title="MIT licence">OPEN SOURCE</span><button type="button" class="fzs-i" aria-label="What is FZ STACK?" aria-haspopup="dialog" aria-expanded="false">i</button><span class="fzs-note">Other ventures are built on this one.</span></p>
-      <div class="pitch">
-        <section><h3 class="pitch-k">THE PROBLEM</h3><p class="pitch-problem" id="d-problem">Hidden text in a pull request or issue can tell a coding agent to approve or merge, and the human reviewer can’t see it.</p></section>
-        <section><h3 class="pitch-k">WHAT IT DOES</h3><p class="pitch-solution" id="d-solution">promptdecode finds invisible text and shows you, in plain words, what it says.</p></section>
-        <section><h3 class="pitch-k">HOW IT WORKS</h3><ul class="pitch-how" id="d-how"><li>Paste any text and it reveals hidden characters and decodes their message</li><li>Runs entirely in your browser; nothing is sent anywhere</li><li>A config scanner checks your GitHub workflows for agent steps that untrusted input can reach</li></ul></section>
-        <section class="pitch-deal"><p class="pitch-offer" id="d-offer">Free to use today at promptdeco.de.</p><p class="pitch-saves" id="d-saves">Catch a hidden instruction before your agent acts on it.</p></section>
-        <p class="pitch-now"><span class="pitch-k">TODAY</span> <span id="d-now">The decoder works today, and the config scanner runs from source (no release yet). The content scanner and the GitHub Action are being built.</span></p>
+      <p class="app-id"><span id="d-id">FZ-009</span> &middot; <span id="d-cat">SECURITY</span></p>
+      <h1 class="app-name" id="d-name">promptdecode</h1>
+      <p class="app-sub">promptdecode finds invisible text and shows you, in plain words, what it says.</p>
+      <div class="app-meta">
+        <span class="chip chip--dot" id="d-status">BUILDING</span>
+        <span class="chip" id="d-stage">VALIDATION</span>
+        <span id="d-stack" style="display:inline-flex;gap:6px;align-items:center"><a class="fzs" href="/stack/">FZ stack</a><span class="fzs-role" id="d-stack-role">Hidden-text screening</span><span class="fzs-os" id="d-stack-os" title="MIT licence">Open source</span><button type="button" class="fzs-i" aria-label="What is FZ STACK?" aria-haspopup="dialog" aria-expanded="false">i</button></span>
       </div>
-      <a class="detail-link" id="d-link" href="https://promptdeco.de">PROMPTDECO.DE &rarr;</a>
-      <div class="venture-films">
-        <div class="venture-film" data-film-for="FZ-018" hidden><figure class="film" id="film-livingbrain">
-  <video class="fz-film" controls playsinline preload="none" poster="/assets/films/livingbrain-poster.jpg" width="1920" height="1080" aria-label="Living Brain film">
-    <source src="/assets/films/livingbrain-film.mp4" type="video/mp4">
-    <a href="/assets/films/livingbrain-film.mp4">Download the Living Brain film (MP4)</a>
-  </video>
-  <figcaption class="film-cap"><span class="film-title">Living Brain</span><span class="film-line">A brain for your team.</span></figcaption>
-</figure></div>
-        <div class="venture-film" data-film-for="FZ-013" hidden><figure class="film" id="film-owlpost">
-  <video class="fz-film" controls playsinline preload="none" poster="/assets/films/owlpost-poster.jpg" width="1920" height="1080" aria-label="Owlpost film">
-    <source src="/assets/films/owlpost-film.mp4" type="video/mp4">
-    <a href="/assets/films/owlpost-film.mp4">Download the Owlpost film (MP4)</a>
-  </video>
-  <figcaption class="film-cap"><span class="film-title">Owlpost</span><span class="film-line">Email for apps and agents.</span></figcaption>
-</figure></div>
-        <div class="venture-film" data-film-for="FZ-019" hidden><figure class="film" id="film-shoal">
-  <video class="fz-film" controls playsinline preload="none" poster="/assets/films/shoal-poster.jpg" width="1920" height="1080" aria-label="Shoal film">
-    <source src="/assets/films/shoal-film.mp4" type="video/mp4">
-    <a href="/assets/films/shoal-film.mp4">Download the Shoal film (MP4)</a>
-  </video>
-  <figcaption class="film-cap"><span class="film-title">Shoal</span><span class="film-line">Rehearse your launch.</span></figcaption>
-</figure></div>
-        <div class="venture-film" data-film-for="FZ-015" hidden><figure class="film" id="film-rateclaim">
-  <video class="fz-film" controls playsinline preload="none" poster="/assets/films/rateclaim-poster.jpg" width="1920" height="1080" aria-label="ratecla.im film">
-    <source src="/assets/films/rateclaim-film.mp4" type="video/mp4">
-    <a href="/assets/films/rateclaim-film.mp4">Download the ratecla.im film (MP4)</a>
-  </video>
-  <figcaption class="film-cap"><span class="film-title">ratecla.im</span><span class="film-line">The rate they don’t publish.</span></figcaption>
-</figure></div>
-        <div class="venture-film" data-film-for="FZ-001" hidden><figure class="film" id="film-kontinuum-v3">
-  <video class="fz-film" controls playsinline preload="none" poster="/assets/films/kontinuum-v3-poster.jpg" width="1920" height="1080" aria-label="Kontinuum film">
-    <source src="/assets/films/kontinuum-v3.mp4" type="video/mp4">
-    <a href="/assets/films/kontinuum-v3.mp4">Download the Kontinuum film (MP4)</a>
-  </video>
-  <figcaption class="film-cap"><span class="film-title">Kontinuum</span><span class="film-line">A new way of producing.</span></figcaption>
-</figure></div>
-        <div class="venture-film" data-film-for="FZ-001" hidden><figure class="film" id="film-kontinuum-djs">
-  <video class="fz-film" controls playsinline preload="none" poster="/assets/films/kontinuum-djs-poster.jpg" width="1920" height="1080" aria-label="Kontinuum for DJs and producers film">
-    <source src="/assets/films/kontinuum-djs-film.mp4" type="video/mp4">
-    <a href="/assets/films/kontinuum-djs-film.mp4">Download the Kontinuum for DJs and producers film (MP4)</a>
-  </video>
-  <figcaption class="film-cap"><span class="film-title">Kontinuum for DJs and producers</span><span class="film-line">Your decks are still composing.</span></figcaption>
-</figure></div>
-        <div class="venture-film" data-film-for="FZ-006" hidden><figure class="film" id="film-colonizer">
-  <video class="fz-film" controls playsinline preload="none" poster="/assets/films/colonizer-poster.jpg" width="1920" height="1080" aria-label="Colonizer film">
-    <source src="/assets/films/colonizer-promo.mp4" type="video/mp4">
-    <a href="/assets/films/colonizer-promo.mp4">Download the Colonizer film (MP4)</a>
-  </video>
-  <figcaption class="film-cap"><span class="film-title">Colonizer</span><span class="film-line">Colonize your backlog.</span></figcaption>
-</figure></div>
-        <div class="venture-film" data-film-for="FZ-003" hidden><figure class="film" id="film-yoginini">
-  <video class="fz-film" controls playsinline preload="none" poster="/assets/films/yoginini-poster-v2.jpg" width="1920" height="1080" aria-label="Yoginini film">
-    <source src="/assets/films/yoginini-promo-v2.mp4" type="video/mp4">
-    <a href="/assets/films/yoginini-promo-v2.mp4">Download the Yoginini film (MP4)</a>
-  </video>
-  <figcaption class="film-cap"><span class="film-title">Yoginini</span><span class="film-line">A yoga teacher who can see you.</span></figcaption>
-</figure></div>
-        <div class="venture-film" data-film-for="FZ-011" hidden><figure class="film" id="film-posplug">
-  <video class="fz-film" controls playsinline preload="none" poster="/assets/films/posplug-promo-poster.jpg" width="1920" height="1080" aria-label="PosPlugin film">
-    <source src="/assets/films/posplug-promo-v2.mp4" type="video/mp4">
-    <a href="/assets/films/posplug-promo-v2.mp4">Download the PosPlugin film (MP4)</a>
-  </video>
-  <figcaption class="film-cap"><span class="film-title">PosPlugin</span><span class="film-line">Any POS. One API.</span></figcaption>
-</figure></div>
-        <div class="venture-film" data-film-for="FZ-021" hidden><figure class="film" id="film-ledgers">
-  <video class="fz-film" controls playsinline preload="none" poster="/assets/films/ledgers-poster.jpg" width="1920" height="1080" aria-label="ledgers.sh film">
-    <source src="/assets/films/ledgers-promo-v2.mp4" type="video/mp4">
-    <a href="/assets/films/ledgers-promo-v2.mp4">Download the ledgers.sh film (MP4)</a>
-  </video>
-  <figcaption class="film-cap"><span class="film-title">ledgers.sh</span><span class="film-line">Agents do the books. People keep control.</span></figcaption>
-</figure></div>
-        <div class="venture-film" data-film-for="FZ-004" hidden><figure class="film" id="film-cratefield">
-  <video class="fz-film" controls playsinline preload="none" poster="/assets/films/cratefield-poster.jpg" width="1920" height="1080" aria-label="Cratefield film">
-    <source src="/assets/films/cratefield-promo.mp4" type="video/mp4">
-    <a href="/assets/films/cratefield-promo.mp4">Download the Cratefield film (MP4)</a>
-  </video>
-  <figcaption class="film-cap"><span class="film-title">Cratefield</span><span class="film-line">The boring 70% of a backend, in about a minute.</span></figcaption>
-</figure></div>
-        <div class="venture-film" data-film-for="FZ-008" hidden><figure class="film" id="film-supportgenius">
-  <video class="fz-film" controls playsinline preload="none" poster="/assets/films/supportgenius-poster.jpg" width="1920" height="1080" aria-label="SupportGenius film">
-    <source src="/assets/films/supportgenius-promo.mp4" type="video/mp4">
-    <a href="/assets/films/supportgenius-promo.mp4">Download the SupportGenius film (MP4)</a>
-  </video>
-  <figcaption class="film-cap"><span class="film-title">SupportGenius</span><span class="film-line">Support that answers.</span></figcaption>
-</figure></div>
-        <div class="venture-film" data-film-for="FZ-007" hidden><figure class="film" id="film-findsyou">
-  <video class="fz-film" controls playsinline preload="none" poster="/assets/films/findsyou-poster.jpg" width="1920" height="1080" aria-label="FindsYou film">
-    <source src="/assets/films/findsyou-promo.mp4" type="video/mp4">
-    <a href="/assets/films/findsyou-promo.mp4">Download the FindsYou film (MP4)</a>
-  </video>
-  <figcaption class="film-cap"><span class="film-title">FindsYou</span><span class="film-line">Stop looking. It finds you work.</span></figcaption>
-</figure></div>
-        <div class="venture-film" data-film-for="FZ-010" hidden><figure class="film" id="film-grooveguru">
-  <video class="fz-film" controls playsinline preload="none" poster="/assets/films/grooveguru-poster.jpg" width="1920" height="1080" aria-label="Groove Guru film">
-    <source src="/assets/films/grooveguru-promo.mp4" type="video/mp4">
-    <a href="/assets/films/grooveguru-promo.mp4">Download the Groove Guru film (MP4)</a>
-  </video>
-  <figcaption class="film-cap"><span class="film-title">Groove Guru</span><span class="film-line">Hear your mix before the room does.</span></figcaption>
-</figure></div>
-        <div class="venture-film" data-film-for="FZ-016" hidden><figure class="film" id="film-sealbin">
-  <video class="fz-film" controls playsinline preload="none" poster="/assets/films/sealbin-poster.jpg" width="1920" height="1080" aria-label="sealb.in film">
-    <source src="/assets/films/sealbin-promo.mp4" type="video/mp4">
-    <a href="/assets/films/sealbin-promo.mp4">Download the sealb.in film (MP4)</a>
-  </video>
-  <figcaption class="film-cap"><span class="film-title">sealb.in</span><span class="film-line">The sealed handoff between agents.</span></figcaption>
-</figure></div>
-      </div>
-      <details class="detail-more"><summary>THE TECHNICAL DETAIL</summary><p class="detail-desc" id="d-desc">Finds text that is invisible to a human reviewer and fully legible to a language model, and decodes it. Hidden instructions in a pull request title, an issue body or a repository file can tell a coding agent to approve, merge or comment, while the diff shows nothing unusual. Two parts work today. The decoder on the site, which reads three named classes of code point (the Unicode tag block, bidi controls and overrides, variation selectors), reconstructs the payload they encode, and runs entirely in the reader’s browser, sending nothing anywhere. And the config scanner, which traces untrusted workflow input to an agent step holding a write token, and runs from source with no release yet. The rest is designed and unwritten: a content engine that decodes payloads across a repository, a command-line scanner, a GitHub Action, and an open benchmark. If a class is not on the published list, it is not detected; the list is the claim.</p></details>
-<!-- fz:detail:end -->
     </div>
-    <dl class="spec">
-      <!-- fz:spec:start -->
-        <div><dt>STATUS</dt><dd id="d-status" style="color:#A9A8A5">BUILDING</dd></div>
-        <div><dt>CATEGORY</dt><dd id="d-cat">SECURITY</dd></div>
-        <div><dt>PIPELINE STAGE</dt><dd id="d-stage">VALIDATION</dd></div>
-        <div><dt>LAUNCHED</dt><dd id="d-launched">NOT YET</dd></div>
-        <div class="wide target"><dt>AUTONOMY TARGET</dt><dd><span id="d-target">LEVEL 4 &middot; SELF-OPTIMIZING</span><span class="meter" id="d-meter"><i style="width:80%"></i></span></dd></div>
-        <div class="wide aim"><dt>AIM &middot; AUTONOMOUS OPERATION</dt><dd id="d-aim-operate">Review is the automation target. A coding agent with a write token reads a pull request that a human reviewer has already approved, and the two of them are not reading the same document: tag-block characters, bidi overrides and variation selectors render as nothing and tokenize normally. The scanners are meant to run in CI on every change, decode what they find rather than merely flag it, and post the plain text back on the pull request, with no model in the loop and nothing leaving the runner.</dd></div>
-        <div class="wide aim"><dt>AIM &middot; INTELLIGENCE</dt><dd id="d-aim-intelligence">Deliberately none where none is needed. Both planned engines are deterministic: one tracing untrusted workflow input to an agent step that holds a write token, one matching named Unicode classes across repository content. A detector that needs a model to decide what is suspicious cannot state its own coverage, and coverage that can be stated is the product.</dd></div>
-        <div class="wide aim"><dt>AIM &middot; GROWTH</dt><dd id="d-aim-growth">Evidence-led, and slower for it. No percentage of attacks blocked is published, because character-level evasion rates move too far with technique for one number to mean anything. What gets published is deterministic coverage of a named list of Unicode classes and recall at a stated false-positive rate on a named corpus, with the corpus and the harness in the open. Growth is repositories scanned per week once the Action exists.</dd></div>
-        <div class="wide source"><dt>SOURCE</dt><dd id="d-github"><a href="https://github.com/PromptDecode/website" rel="noopener">PROMPTDECODE/WEBSITE &rarr;</a><a href="https://github.com/PromptDecode" rel="noopener">PROMPTDECODE &rarr;</a></dd></div>
-        <div class="wide activity"><dt>ACTIVITY &middot; COMMITS PER WEEK</dt><dd id="d-activity"><span>LOADING</span></dd></div>
-        <div class="wide activity"><dt>ISSUES &middot; OPENED AND CLOSED PER WEEK</dt><dd id="d-issues"><span>LOADING</span></dd></div>
-        <div class="wide built"><dt>BUILT WITH &middot; LIVE OR PLANNED</dt><dd id="d-uses"><ul class="uses"><li class="use"><span class="use-role">PAYMENTS</span><a class="use-name" href="https://polar.sh" rel="noopener">Polar</a><span class="use-tag use-tag--planned">PLANNED</span><span class="use-note">Paid tiers (the GitHub Action, private repositories) through Polar as Merchant of Record. Nothing is on sale yet.</span></li><li class="use"><span class="use-role">DEPLOYS</span><a class="use-name" href="/ventures/keep-shipping/">Keep Shipping</a><span class="use-tag use-tag--planned">PLANNED</span><span class="use-note">Every venture site and Worker deployed from the Keep Shipping console.</span></li><li class="use"><span class="use-role">FONTS</span><a class="use-name" href="https://fonts.google.com" rel="noopener">Google Fonts</a><span class="use-tag use-tag--live">LIVE</span><span class="use-note">The site’s typefaces (Instrument Serif, Instrument Sans, JetBrains Mono), loaded from Google.</span></li><li class="use"><span class="use-role">HOSTING</span><a class="use-name" href="https://www.cloudflare.com" rel="noopener">Cloudflare</a><span class="use-tag use-tag--live">LIVE</span><span class="use-note">The site, where the decoder runs in the browser.</span></li></ul></dd></div>
-        <div class="wide inherit"><dt>INHERITED FROM FACTORY</dt><dd>IDENTITY &middot; BILLING &middot; DEPLOYMENT &middot; OBSERVABILITY &middot; SUPPORT &middot; ANALYTICS &middot; SECURITY</dd></div>
-<!-- fz:spec:end -->
-    </dl>
-  </div>
-</section>
+    <div class="app-cta"><a class="btn btn--primary" id="d-link" href="https://promptdeco.de" rel="noopener">Visit promptdeco.de <span class="arr" aria-hidden="true">&rarr;</span></a><span class="note">Launched: <span id="d-launched">NOT YET</span></span></div>
+  </header>
 
+  <dl class="app-stats">
+    <div><dt>Status</dt><dd>BUILDING</dd></div>
+    <div><dt>Pipeline stage</dt><dd>VALIDATION</dd></div>
+    <div><dt>Sector</dt><dd>SECURITY</dd></div>
+    <div><dt>Autonomy target</dt><dd><span id="d-target">LEVEL 4 &middot; SELF-OPTIMIZING</span><span class="meter" id="d-meter"><i class="on"></i><i class="on"></i><i class="on"></i><i class="on"></i><i></i></span></dd></div>
+    <div><dt>Built with</dt><dd>2 live &middot; 2 planned</dd></div>
+  </dl>
+
+  <div class="app-body">
+    <div>
+      <div class="app-sec"><h2>The problem</h2><p class="big" id="d-problem">Hidden text in a pull request or issue can tell a coding agent to approve or merge, and the human reviewer can’t see it.</p></div>
+      <div class="app-sec"><h2>What it does</h2><p class="big" id="d-solution">promptdecode finds invisible text and shows you, in plain words, what it says.</p></div>
+      <div class="app-sec"><h2>How it works</h2><ol class="how" id="d-how"><li>Paste any text and it reveals hidden characters and decodes their message</li><li>Runs entirely in your browser; nothing is sent anywhere</li><li>A config scanner checks your GitHub workflows for agent steps that untrusted input can reach</li></ol></div>
+      <div class="app-sec"><div class="deal"><p id="d-offer">Free to use today at promptdeco.de.</p><p id="d-saves">Catch a hidden instruction before your agent acts on it.</p></div>
+        <p class="now" style="margin-top:18px"><span class="chip">Today</span><span id="d-now">The decoder works today, and the config scanner runs from source (no release yet). The content scanner and the GitHub Action are being built.</span></p></div>
+      
+      <div class="app-sec"><h2>Aims</h2>
+        <dl class="cards2" style="grid-template-columns:1fr">
+          <div class="card"><dt class="card-k">Autonomous operation</dt><dd style="margin:12px 0 0;color:var(--fg-2)" id="d-aim-operate">Review is the automation target. A coding agent with a write token reads a pull request that a human reviewer has already approved, and the two of them are not reading the same document: tag-block characters, bidi overrides and variation selectors render as nothing and tokenize normally. The scanners are meant to run in CI on every change, decode what they find rather than merely flag it, and post the plain text back on the pull request, with no model in the loop and nothing leaving the runner.</dd></div>
+          <div class="card"><dt class="card-k">Intelligence</dt><dd style="margin:12px 0 0;color:var(--fg-2)" id="d-aim-intelligence">Deliberately none where none is needed. Both planned engines are deterministic: one tracing untrusted workflow input to an agent step that holds a write token, one matching named Unicode classes across repository content. A detector that needs a model to decide what is suspicious cannot state its own coverage, and coverage that can be stated is the product.</dd></div>
+          <div class="card"><dt class="card-k">Growth</dt><dd style="margin:12px 0 0;color:var(--fg-2)" id="d-aim-growth">Evidence-led, and slower for it. No percentage of attacks blocked is published, because character-level evasion rates move too far with technique for one number to mean anything. What gets published is deterministic coverage of a named list of Unicode classes and recall at a stated false-positive rate on a named corpus, with the corpus and the harness in the open. Growth is repositories scanned per week once the Action exists.</dd></div>
+        </dl>
+      </div>
+      <div class="app-sec"><details class="more-desc"><summary>The technical detail</summary><p class="body" id="d-desc">Finds text that is invisible to a human reviewer and fully legible to a language model, and decodes it. Hidden instructions in a pull request title, an issue body or a repository file can tell a coding agent to approve, merge or comment, while the diff shows nothing unusual. Two parts work today. The decoder on the site, which reads three named classes of code point (the Unicode tag block, bidi controls and overrides, variation selectors), reconstructs the payload they encode, and runs entirely in the reader’s browser, sending nothing anywhere. And the config scanner, which traces untrusted workflow input to an agent step holding a write token, and runs from source with no release yet. The rest is designed and unwritten: a content engine that decodes payloads across a repository, a command-line scanner, a GitHub Action, and an open benchmark. If a class is not on the published list, it is not detected; the list is the claim.</p></details></div>
+    </div>
+    <aside class="side" aria-label="promptdecode details">
+      <div><h3>Built with &middot; live or planned</h3><div style="margin-top:14px" id="d-uses"><ul class="uses"><li class="use"><span class="use-role">PAYMENTS</span><a class="use-name" href="https://polar.sh" rel="noopener">Polar</a><span class="use-tag use-tag--planned">PLANNED</span><span class="use-note">Paid tiers (the GitHub Action, private repositories) through Polar as Merchant of Record. Nothing is on sale yet.</span></li><li class="use"><span class="use-role">DEPLOYS</span><a class="use-name" href="/ventures/keep-shipping/">Keep Shipping</a><span class="use-tag use-tag--planned">PLANNED</span><span class="use-note">Every venture site and Worker deployed from the Keep Shipping console.</span></li><li class="use"><span class="use-role">FONTS</span><a class="use-name" href="https://fonts.google.com" rel="noopener">Google Fonts</a><span class="use-tag use-tag--live">LIVE</span><span class="use-note">The site’s typefaces (Instrument Serif, Instrument Sans, JetBrains Mono), loaded from Google.</span></li><li class="use"><span class="use-role">HOSTING</span><a class="use-name" href="https://www.cloudflare.com" rel="noopener">Cloudflare</a><span class="use-tag use-tag--live">LIVE</span><span class="use-note">The site, where the decoder runs in the browser.</span></li></ul></div></div>
+      <div class="activity-box"><h3>Commits per week</h3><div style="margin-top:14px" id="d-activity"><span>LOADING</span></div></div>
+      <div class="activity-box"><h3>Issues opened and closed</h3><div style="margin-top:14px" id="d-issues"><span>LOADING</span></div></div>
+      <div><dl><div><dt>Source</dt><dd class="repo-links" id="d-github"><a href="https://github.com/PromptDecode/website" rel="noopener">PROMPTDECODE/WEBSITE &rarr;</a><a href="https://github.com/PromptDecode" rel="noopener">PROMPTDECODE &rarr;</a></dd></div>
+      <div><dt>Inherited from the factory</dt><dd>Identity &middot; billing &middot; deployment &middot; observability &middot; support &middot; analytics &middot; security</dd></div></dl></div>
+    </aside>
+  </div>
+</div>
+<section class="sec"><div class="wrap">
+  <div class="sec-head"><div><p class="eyebrow">Related</p><h2 class="h2">From the same foundation.</h2></div><div class="sec-head__aside"><a class="link" href="/ventures/">All ventures <span aria-hidden="true">&rarr;</span></a></div></div>
+  <ul class="vgrid">
+<li><a class="vcard" href="/ventures/keep-shipping/" data-stage="VALIDATION" data-stack="1" data-cat="DEVTOOLS" data-q="keep shipping fz-012 devtools deploys keepshipping.run keep shipping replaces that with one readable workflow file per repo that is checked before it runs." data-rv style="--d:0">
+  <span class="vcard-top"><span class="vicon"><img src="/assets/keepshipping-animated.svg" alt="" width="46" height="46" loading="lazy" decoding="async"></span><span class="vid">FZ-012</span></span>
+  <span class="vname">Keep Shipping</span>
+  <span class="vcat">DEVTOOLS</span>
+  <span class="vdesc">Keep Shipping replaces that with one readable workflow file per repo that is checked before it runs.</span>
+  <span class="chips"><span class="chip">VALIDATION</span><span class="chip chip--acc">FZ stack</span></span>
+  <span class="vgo" aria-hidden="true"><svg viewBox="0 0 16 16" width="12" height="12" aria-hidden="true"><path d="M3 8h9M8 3.5 12.5 8 8 12.5" fill="none" stroke="currentColor" stroke-width="1.5"/></svg></span>
+</a></li>
+<li><a class="vcard" href="/ventures/colonizer/" data-stage="PROTOTYPE" data-stack="1" data-cat="DEVTOOLS" data-q="colonizer fz-006 devtools agents colonizer.dev colonizer sends coding agents to solve your github issues and hands back pull requests you can review and merge." data-rv style="--d:1">
+  <span class="vcard-top"><span class="vicon"><img src="/assets/colonizer-animated.svg" alt="" width="46" height="46" loading="lazy" decoding="async"></span><span class="vid">FZ-006</span></span>
+  <span class="vname">Colonizer</span>
+  <span class="vcat">DEVTOOLS</span>
+  <span class="vdesc">Colonizer sends coding agents to solve your GitHub issues and hands back pull requests you can review and merge.</span>
+  <span class="chips"><span class="chip">PROTOTYPE</span><span class="chip chip--acc">FZ stack</span></span>
+  <span class="vgo" aria-hidden="true"><svg viewBox="0 0 16 16" width="12" height="12" aria-hidden="true"><path d="M3 8h9M8 3.5 12.5 8 8 12.5" fill="none" stroke="currentColor" stroke-width="1.5"/></svg></span>
+</a></li>
+<li><a class="vcard" href="/ventures/supportgenius/" data-stage="VALIDATION" data-stack="1" data-cat="SUPPORT" data-q="supportgenius fz-008 support bug reports and support supportgeni.us supportgenius answers customers from your own docs and files, and turns what it can’t answer into a proper ticket." data-rv style="--d:2">
+  <span class="vcard-top"><span class="vicon"><img src="/assets/supportgenius-animated.svg" alt="" width="46" height="46" loading="lazy" decoding="async"></span><span class="vid">FZ-008</span></span>
+  <span class="vname">SupportGenius</span>
+  <span class="vcat">SUPPORT</span>
+  <span class="vdesc">SupportGenius answers customers from your own docs and files, and turns what it can’t answer into a proper ticket.</span>
+  <span class="chips"><span class="chip">VALIDATION</span><span class="chip chip--acc">FZ stack</span></span>
+  <span class="vgo" aria-hidden="true"><svg viewBox="0 0 16 16" width="12" height="12" aria-hidden="true"><path d="M3 8h9M8 3.5 12.5 8 8 12.5" fill="none" stroke="currentColor" stroke-width="1.5"/></svg></span>
+</a></li>
+<li><a class="vcard" href="/ventures/sealbin/" data-stage="VALIDATION" data-stack="1" data-cat="SECURITY" data-q="sealbin fz-016 security sealed sharing sealb.in sealb.in seals the handoff on the sender’s machine and gives one link that the receiving agent opens once, then it is deleted." data-rv style="--d:3">
+  <span class="vcard-top"><span class="vicon"><img src="/assets/sealbin-animated.svg" alt="" width="46" height="46" loading="lazy" decoding="async"></span><span class="vid">FZ-016</span></span>
+  <span class="vname">Sealbin</span>
+  <span class="vcat">SECURITY</span>
+  <span class="vdesc">sealb.in seals the handoff on the sender’s machine and gives one link that the receiving agent opens once, then it is deleted.</span>
+  <span class="chips"><span class="chip">VALIDATION</span><span class="chip chip--acc">FZ stack</span></span>
+  <span class="vgo" aria-hidden="true"><svg viewBox="0 0 16 16" width="12" height="12" aria-hidden="true"><path d="M3 8h9M8 3.5 12.5 8 8 12.5" fill="none" stroke="currentColor" stroke-width="1.5"/></svg></span>
+</a></li>
+  </ul>
+</div></section>
 </main>
 
-<footer class="site-subfooter">
-  <nav aria-label="Footer">
-      <a href="/">HOME</a>
-      <a href="/system/">SYSTEM</a>
-      <a href="/technology/">TECHNOLOGY</a>
-      <a href="/thesis/">THESIS</a>
-      <a href="/about/">ABOUT</a>
-      <a href="/enter/">ENTER</a>
-      <a class="footer-icon" href="https://github.com/Factory-Zero" rel="noopener" aria-label="GitHub" title="GitHub"><svg viewBox="0 0 16 16" width="16" height="16" aria-hidden="true" focusable="false"><path fill="currentColor" d="M8 0c4.42 0 8 3.58 8 8a8.013 8.013 0 0 1-5.45 7.59c-.4.08-.55-.17-.55-.38 0-.27.01-1.13.01-2.2 0-.75-.25-1.23-.54-1.48 1.78-.2 3.65-.88 3.65-3.95 0-.88-.31-1.59-.82-2.15.08-.2.36-1.02-.08-2.12 0 0-.67-.22-2.2.82-.64-.18-1.32-.27-2-.27-.68 0-1.36.09-2 .27-1.53-1.03-2.2-.82-2.2-.82-.44 1.1-.16 1.92-.08 2.12-.51.56-.82 1.28-.82 2.15 0 3.06 1.86 3.75 3.64 3.95-.23.2-.44.55-.51 1.07-.46.21-1.61.55-2.33-.66-.15-.24-.6-.83-1.23-.82-.67.01-.27.38.01.53.34.19.73.9.82 1.13.16.45.68 1.31 2.69.94 0 .67.01 1.3.01 1.49 0 .21-.15.45-.55.38A7.995 7.995 0 0 1 0 8c0-4.42 3.58-8 8-8Z"/></svg></a>
-  </nav>
-  <div>FACTORY0.VENTURES · FZ/01 · <span id="fz-year">2026</span></div>
+<footer class="site-footer">
+  <div class="wrap">
+    <div class="foot-grid">
+      <div class="foot-brand">
+        <a class="wordmark" href="/" aria-label="Factory Zero home"><span class="o" aria-hidden="true"></span>Factory Zero</a>
+        <p>An AI-native venture studio. Each venture is its own company; together they form the foundation of the autonomous organization.</p>
+      </div>
+      <div class="foot-col">
+        <h3>Factory</h3>
+        <ul>
+          <li><a href="/ventures/">Ventures</a></li>
+          <li><a href="/stack/">Stack</a></li>
+          <li><a href="/system/">System</a></li>
+          <li><a href="/technology/">Technology</a></li>
+        </ul>
+      </div>
+      <div class="foot-col">
+        <h3>Read</h3>
+        <ul>
+          <li><a href="/thesis/">Thesis</a></li>
+          <li><a href="/about/">About</a></li>
+          <li><a href="/#films">Films</a></li>
+          <li><a href="/llms.txt">llms.txt</a></li>
+        </ul>
+      </div>
+      <div class="foot-col">
+        <h3>The FZ stack</h3>
+        <ul>
+          <li><a href="/ventures/kontinuum/">Kontinuum</a></li>
+          <li><a href="/ventures/cratefield/">Cratefield</a></li>
+          <li><a href="/ventures/vibecaddie/">VibeCaddie</a></li>
+          <li><a href="/ventures/colonizer/">Colonizer</a></li>
+          <li><a href="/ventures/supportgenius/">SupportGenius</a></li>
+          <li><a href="/ventures/promptdecode/">promptdecode</a></li>
+          <li><a href="/ventures/posplugin/">PosPlugin</a></li>
+          <li><a href="/stack/">All of it &rarr;</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="foot-legal">
+      <span>FACTORY0.VENTURES &middot; FZ/01 &middot; <span id="fz-year">2026</span></span>
+      <span>Images: MiniMax image-01 &middot; motion: MiniMax Hailuo-2.3</span>
+      <a href="https://github.com/Factory-Zero" rel="noopener" aria-label="Factory Zero on GitHub" title="GitHub"><svg viewBox="0 0 16 16" width="16" height="16" aria-hidden="true" focusable="false"><path fill="currentColor" d="M8 0c4.42 0 8 3.58 8 8a8.013 8.013 0 0 1-5.45 7.59c-.4.08-.55-.17-.55-.38 0-.27.01-1.13.01-2.2 0-.75-.25-1.23-.54-1.48 1.78-.2 3.65-.88 3.65-3.95 0-.88-.31-1.59-.82-2.15.08-.2.36-1.02-.08-2.12 0 0-.67-.22-2.2.82-.64-.18-1.32-.27-2-.27-.68 0-1.36.09-2 .27-1.53-1.03-2.2-.82-2.2-.82-.44 1.1-.16 1.92-.08 2.12-.51.56-.82 1.28-.82 2.15 0 3.06 1.86 3.75 3.64 3.95-.23.2-.44.55-.51 1.07-.46.21-1.61.55-2.33-.66-.15-.24-.6-.83-1.23-.82-.67.01-.27.38.01.53.34.19.73.9.82 1.13.16.45.68 1.31 2.69.94 0 .67.01 1.3.01 1.49 0 .21-.15.45-.55.38A7.995 7.995 0 0 1 0 8c0-4.42 3.58-8 8-8Z"/></svg></a>
+    </div>
+  </div>
 </footer>
 
-<script src="/assets/fz-common.js"></script>
-<script src="/assets/fz-ventures.js"></script>
+<script src="/assets/fz-common.js" defer></script>
+<script src="/assets/fz-ventures.js" defer></script>
+<script src="/assets/fz-ui.js" defer></script>
 </body>
 </html>

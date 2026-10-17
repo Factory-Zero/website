@@ -9,7 +9,7 @@
 <meta name="description" content="Factory Zero launches ventures at scale. Each one is its own company; the ventures on the Factory Zero stack form the foundation of the autonomous organization. One operating system, many distinct ventures.">
 <link rel="canonical" href="https://factory0.ventures/">
 <meta name="robots" content="index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1">
-<meta name="theme-color" content="#0A0A0B">
+<meta name="theme-color" content="#0A0B0A">
 <meta name="color-scheme" content="dark">
 
 <meta property="og:type" content="website">
@@ -35,10 +35,12 @@
 <link rel="manifest" href="/site.webmanifest">
 <link rel="alternate" type="text/plain" href="/llms.txt" title="llms.txt">
 
+
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Archivo:wght@300;400;500;600&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="/assets/fz.css">
+<link href="https://fonts.googleapis.com/css2?family=Inter+Tight:wght@300;400;500;600&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="/assets/fz-ui.css">
+<link rel="preload" as="image" href="/assets/ui/hero.webp" imagesrcset="/assets/ui/hero-960.webp 960w, /assets/ui/hero.webp 1920w" imagesizes="100vw">
 
 <script type="application/ld+json">
 {
@@ -107,222 +109,562 @@
 </head>
 <body>
 
-<a class="skip-link" href="#main">SKIP TO CONTENT</a>
+<a class="skip-link" href="#main">Skip to content</a>
 
 <header class="site-header">
-  <a class="wordmark" href="/" aria-label="Factory Zero home">
-    <span>FACTORY ZER</span><span class="o" aria-hidden="true"></span>
-  </a>
+  <a class="wordmark" href="/" aria-label="Factory Zero home"><span class="o" aria-hidden="true"></span>Factory Zero<span class="wm-k" aria-hidden="true">FZ/01</span></a>
   <button class="nav-toggle" type="button" aria-expanded="false" aria-controls="site-nav">MENU</button>
   <nav class="site-nav" id="site-nav" aria-label="Primary">
-    <a href="/ventures/">VENTURES</a>
-    <a href="/stack/">STACK</a>
-    <a href="/system/">SYSTEM</a>
-    <a href="/technology/">TECHNOLOGY</a>
-    <a href="/thesis/">THESIS</a>
-    <a href="/about/">ABOUT</a>
-    <a class="enter" href="/enter/">ENTER →</a>
+    <a href="/ventures/">Ventures</a>
+    <a href="/stack/">Stack</a>
+    <a href="/system/">System</a>
+    <a href="/technology/">Technology</a>
+    <a href="/thesis/">Thesis</a>
+    <a href="/about/">About</a>
+    <a class="enter" href="/enter/">Enter <span aria-hidden="true">&rarr;</span></a>
   </nav>
 </header>
 
 <main id="main">
 
-<section class="hero" aria-label="Factory Zero">
-  <canvas class="hero-canvas" id="fz-canvas" aria-hidden="true"></canvas>
-
-  <div class="readout">
-    <dl class="readout-group">
-      <div>
-        <dt>FACTORY STATUS</dt>
-        <dd class="live"><span class="dot-live" aria-hidden="true"></span><span id="fz-status">ONLINE</span></dd>
-      </div>
-      <div>
-        <dt>SYSTEM</dt>
-        <dd>FZ/01</dd>
-      </div>
-    </dl>
-    <dl class="readout-group readout-group--end">
-      <div>
-        <dt>PRS MERGED · 30D</dt>
-        <dd id="fz-merged" title="Merged pull requests in the ventures' public GitHub repositories, last 30 days">—</dd>
-      </div>
-    </dl>
+<section class="hero" aria-labelledby="fz-headline">
+  <div class="hero-media" aria-hidden="true">
+    <img src="/assets/ui/hero.webp" srcset="/assets/ui/hero-960.webp 960w, /assets/ui/hero.webp 1920w" sizes="100vw" alt="" width="1920" height="1080" fetchpriority="high">
+    <video data-hero-video muted loop playsinline preload="none" poster="/assets/ui/hero-poster.jpg" width="1600" height="900">
+      <source src="/assets/ui/hero-loop.webm" type="video/webm">
+      <source src="/assets/ui/hero-loop.mp4" type="video/mp4">
+    </video>
   </div>
-
-  <div class="hero-title-wrap">
-    <h1 class="hero-title" id="fz-headline">The foundation to launch ventures at&nbsp;scale.</h1>
-  </div>
-
-  <div class="hero-foot">
+  <div class="hero-grid" aria-hidden="true"></div>
+  <div class="wrap hero-in">
     <div class="hero-copy">
-      <p class="hero-sub">Each one is a real company with its own product and brand. Together they form the foundation of the autonomous organization: every launch on the Factory Zero stack adds infrastructure and agents the next one is built&nbsp;on.</p>
-      <div class="hero-cta">
-        <a class="btn btn--primary" href="#ventures">See the ventures <span aria-hidden="true">&darr;</span></a>
-        <a class="btn btn--ghost" href="#system">How it works</a>
+      <p class="eyebrow"><span>AI-native venture studio &middot; factory status <span class="acc">online</span></span></p>
+      <h1 class="display" id="fz-headline">The foundation to launch <span class="hl">ventures at&nbsp;scale.</span></h1>
+      <p class="lede">Each one is a real company with its own product and brand. Together they form the foundation of the autonomous organization: every launch on the Factory Zero stack adds infrastructure and agents the next one is built&nbsp;on.</p>
+      <div class="btns">
+        <a class="btn btn--primary" href="/enter/">Enter Factory Zero <span class="arr" aria-hidden="true">&rarr;</span></a>
+        <a class="btn btn--ghost" href="#ventures">See the ventures</a>
       </div>
     </div>
-    <div class="hero-side">
-      <!-- Counted from assets/fz-data.js by tools/sync-ventures.js. -->
-      <dl class="hero-proof" aria-label="Factory Zero in numbers">
-<!-- fz:proof:start -->
-        <div><dt>VENTURES</dt><dd>23</dd></div>
-        <div><dt>SECTORS</dt><dd>18</dd></div>
-        <div><dt>RUN ON A SISTER VENTURE</dt><dd>06</dd></div>
-<!-- fz:proof:end -->
-      </dl>
-      <p class="hero-phase">NEW VENTURE<b id="fz-phase">INITIALIZING</b></p>
+  </div>
+  <div class="hero-cards">
+<!-- fz:herocards:start -->
+    <a class="hcard" href="/ventures/cratefield/"><p class="hcard-k">FZ stack &middot; most used</p><div class="hcard-row"><span class="hcard-icon"><img src="/assets/cratefield-animated.svg" alt="" width="30" height="30" loading="lazy" decoding="async"></span><span><span class="hcard-name">Cratefield</span><br><span class="hcard-sub">App foundation &middot; live in 6 ventures</span></span></div></a>
+    <a class="hcard" href="/#films"><p class="hcard-k">Newest film &middot; 15 in all</p><div class="hcard-film" style="background-image:url('/assets/films/sealbin-poster.jpg')"></div><p class="hcard-sub" style="margin-top:10px">Sealbin &middot; The sealed handoff between agents.</p></a>
+    <div class="hcard"><p class="hcard-k">PRs merged &middot; 30 days</p><p class="hcard-n"><span id="fz-merged" title="Merged pull requests in the ventures' public GitHub repositories, last 30 days">&mdash;</span><small>public repositories</small></p></div>
+<!-- fz:herocards:end -->
+  </div>
+</section>
+
+<section aria-label="Factory Zero in numbers">
+  <div class="wrap">
+    <!-- Counted from assets/fz-data.js by tools/sync-ventures.js. -->
+    <div class="stats" style="--n:5;border-top:0">
+<!-- fz:stats:start -->
+      <div class="stat" data-rv style="--d:0"><p class="stat-n" data-count="23">23</p><p class="stat-k"><b>Ventures</b>, each its own company</p></div>
+      <div class="stat" data-rv style="--d:1"><p class="stat-n" data-count="18">18</p><p class="stat-k"><b>Sectors</b>, from music to accounting</p></div>
+      <div class="stat" data-rv style="--d:2"><p class="stat-n" data-count="17">17</p><p class="stat-k">On the <b>FZ stack</b>: ventures others build on</p></div>
+      <div class="stat" data-rv style="--d:3"><p class="stat-n" data-count="6">06</p><p class="stat-k">Already <b>run on a sister venture</b>, checked live</p></div>
+      <div class="stat" data-rv style="--d:4"><p class="stat-n" data-count="15">15</p><p class="stat-k"><b>Films</b> from the ventures</p></div>
+<!-- fz:stats:end -->
     </div>
   </div>
 </section>
 
-<section class="vision" id="vision" aria-labelledby="vision-h">
-  <p class="eyebrow">VISION</p>
-  <h2 class="h-lg" id="vision-h">We are building the autonomous organization.</h2>
-  <p class="vision-lede">Factory Zero builds companies that run themselves. Agents do the operating work, from research and engineering to support and finance, while people set the direction. Each venture inherits the same foundation, so nothing is rebuilt.</p>
-  <ul class="vision-pillars">
-    <li>
-      <p class="vp-k">AUTONOMOUS OPERATIONS</p>
-      <p class="vp-t">Every function in a venture, from research to finance, is an agent. Ventures are designed to run at autonomy levels 3 to 5.</p>
-    </li>
-    <li>
-      <p class="vp-k">SCALE ON ONE FOUNDATION</p>
-      <p class="vp-t">We scale fast by launching venture after venture on the same foundation, a shared agent network: identity, payments, deploys and observability are built once and inherited by every venture. Ventures on the Factory Zero stack add to it.</p>
-    </li>
-    <li>
-      <p class="vp-k">HUMANS AT THE HELM</p>
-      <p class="vp-t">People define mission, capital, ethics and risk boundaries. A named human is accountable for every venture.</p>
-    </li>
+<div class="marquee" aria-label="The ventures">
+  <ul class="marquee-track">
+<!-- fz:marquee:start -->
+      <li><a href="/ventures/kontinuum/"><img src="/assets/kontinuum-animated.svg" alt="" width="28" height="21" loading="lazy" decoding="async">Kontinuum</a></li>
+      <li><a href="/ventures/undercover-rockstars/"><img src="/assets/undercover-rockstars-animated.svg" alt="" width="28" height="28" loading="lazy" decoding="async">Undercover Rockstars</a></li>
+      <li><a href="/ventures/yoginini/"><img src="/assets/yoginini-animated.svg" alt="" width="28" height="28" loading="lazy" decoding="async">Yoginini</a></li>
+      <li><a href="/ventures/cratefield/"><img src="/assets/cratefield-animated.svg" alt="" width="28" height="28" loading="lazy" decoding="async">Cratefield</a></li>
+      <li><a href="/ventures/vibecaddie/"><img src="/assets/vibecaddie-animated.svg" alt="" width="28" height="28" loading="lazy" decoding="async">VibeCaddie</a></li>
+      <li><a href="/ventures/colonizer/"><img src="/assets/colonizer-animated.svg" alt="" width="28" height="28" loading="lazy" decoding="async">Colonizer</a></li>
+      <li><a href="/ventures/findsyou-work/"><img src="/assets/findsyou-animated.svg" alt="" width="28" height="28" loading="lazy" decoding="async">FindsYou.work</a></li>
+      <li><a href="/ventures/supportgenius/"><img src="/assets/supportgenius-animated.svg" alt="" width="28" height="28" loading="lazy" decoding="async">SupportGenius</a></li>
+      <li><a href="/ventures/promptdecode/"><img src="/assets/promptdecode-animated.svg" alt="" width="28" height="28" loading="lazy" decoding="async">promptdecode</a></li>
+      <li><a href="/ventures/groove-guru/"><img src="/assets/groove-guru-animated.svg" alt="" width="28" height="28" loading="lazy" decoding="async">Groove Guru</a></li>
+      <li><a href="/ventures/posplugin/"><img src="/assets/posplug-animated.svg" alt="" width="28" height="28" loading="lazy" decoding="async">PosPlugin</a></li>
+      <li><a href="/ventures/keep-shipping/"><img src="/assets/keepshipping-animated.svg" alt="" width="28" height="28" loading="lazy" decoding="async">Keep Shipping</a></li>
+      <li><a href="/ventures/owlpost/"><img src="/assets/owlpost-animated.svg" alt="" width="28" height="28" loading="lazy" decoding="async">Owlpost</a></li>
+      <li><a href="/ventures/bloodrank/"><img src="/assets/bloodrank-animated.svg" alt="" width="28" height="28" loading="lazy" decoding="async">Bloodrank</a></li>
+      <li><a href="/ventures/ratecla-im/"><img src="/assets/rateclaim-animated.svg" alt="" width="28" height="28" loading="lazy" decoding="async">ratecla.im</a></li>
+      <li><a href="/ventures/sealbin/"><img src="/assets/sealbin-animated.svg" alt="" width="28" height="28" loading="lazy" decoding="async">Sealbin</a></li>
+      <li><a href="/ventures/release-show/"><img src="/assets/releaseshow-animated.svg" alt="" width="28" height="28" loading="lazy" decoding="async">release.show</a></li>
+      <li><a href="/ventures/living-brain/"><img src="/assets/livingbrain-animated.svg" alt="" width="28" height="28" loading="lazy" decoding="async">Living Brain</a></li>
+      <li><a href="/ventures/shoal/"><img src="/assets/shoal-animated.svg" alt="" width="28" height="28" loading="lazy" decoding="async">Shoal</a></li>
+      <li><a href="/ventures/tokker/"><img src="/assets/tokker-animated.svg" alt="" width="28" height="28" loading="lazy" decoding="async">Tokker</a></li>
+      <li><a href="/ventures/ledgers/"><img src="/assets/ledgers-animated.svg" alt="" width="28" height="28" loading="lazy" decoding="async">Ledgers</a></li>
+      <li><a href="/ventures/ghostwritin/"><img src="/assets/ghostwritin-animated.svg" alt="" width="28" height="28" loading="lazy" decoding="async">Ghostwritin'</a></li>
+      <li><a href="/ventures/squeezin/"><img src="/assets/squeezin-animated.svg" alt="" width="28" height="28" loading="lazy" decoding="async">Squeezin</a></li>
+      <li aria-hidden="true"><a href="/ventures/kontinuum/" tabindex="-1"><img src="/assets/kontinuum-animated.svg" alt="" width="28" height="21" loading="lazy" decoding="async">Kontinuum</a></li>
+      <li aria-hidden="true"><a href="/ventures/undercover-rockstars/" tabindex="-1"><img src="/assets/undercover-rockstars-animated.svg" alt="" width="28" height="28" loading="lazy" decoding="async">Undercover Rockstars</a></li>
+      <li aria-hidden="true"><a href="/ventures/yoginini/" tabindex="-1"><img src="/assets/yoginini-animated.svg" alt="" width="28" height="28" loading="lazy" decoding="async">Yoginini</a></li>
+      <li aria-hidden="true"><a href="/ventures/cratefield/" tabindex="-1"><img src="/assets/cratefield-animated.svg" alt="" width="28" height="28" loading="lazy" decoding="async">Cratefield</a></li>
+      <li aria-hidden="true"><a href="/ventures/vibecaddie/" tabindex="-1"><img src="/assets/vibecaddie-animated.svg" alt="" width="28" height="28" loading="lazy" decoding="async">VibeCaddie</a></li>
+      <li aria-hidden="true"><a href="/ventures/colonizer/" tabindex="-1"><img src="/assets/colonizer-animated.svg" alt="" width="28" height="28" loading="lazy" decoding="async">Colonizer</a></li>
+      <li aria-hidden="true"><a href="/ventures/findsyou-work/" tabindex="-1"><img src="/assets/findsyou-animated.svg" alt="" width="28" height="28" loading="lazy" decoding="async">FindsYou.work</a></li>
+      <li aria-hidden="true"><a href="/ventures/supportgenius/" tabindex="-1"><img src="/assets/supportgenius-animated.svg" alt="" width="28" height="28" loading="lazy" decoding="async">SupportGenius</a></li>
+      <li aria-hidden="true"><a href="/ventures/promptdecode/" tabindex="-1"><img src="/assets/promptdecode-animated.svg" alt="" width="28" height="28" loading="lazy" decoding="async">promptdecode</a></li>
+      <li aria-hidden="true"><a href="/ventures/groove-guru/" tabindex="-1"><img src="/assets/groove-guru-animated.svg" alt="" width="28" height="28" loading="lazy" decoding="async">Groove Guru</a></li>
+      <li aria-hidden="true"><a href="/ventures/posplugin/" tabindex="-1"><img src="/assets/posplug-animated.svg" alt="" width="28" height="28" loading="lazy" decoding="async">PosPlugin</a></li>
+      <li aria-hidden="true"><a href="/ventures/keep-shipping/" tabindex="-1"><img src="/assets/keepshipping-animated.svg" alt="" width="28" height="28" loading="lazy" decoding="async">Keep Shipping</a></li>
+      <li aria-hidden="true"><a href="/ventures/owlpost/" tabindex="-1"><img src="/assets/owlpost-animated.svg" alt="" width="28" height="28" loading="lazy" decoding="async">Owlpost</a></li>
+      <li aria-hidden="true"><a href="/ventures/bloodrank/" tabindex="-1"><img src="/assets/bloodrank-animated.svg" alt="" width="28" height="28" loading="lazy" decoding="async">Bloodrank</a></li>
+      <li aria-hidden="true"><a href="/ventures/ratecla-im/" tabindex="-1"><img src="/assets/rateclaim-animated.svg" alt="" width="28" height="28" loading="lazy" decoding="async">ratecla.im</a></li>
+      <li aria-hidden="true"><a href="/ventures/sealbin/" tabindex="-1"><img src="/assets/sealbin-animated.svg" alt="" width="28" height="28" loading="lazy" decoding="async">Sealbin</a></li>
+      <li aria-hidden="true"><a href="/ventures/release-show/" tabindex="-1"><img src="/assets/releaseshow-animated.svg" alt="" width="28" height="28" loading="lazy" decoding="async">release.show</a></li>
+      <li aria-hidden="true"><a href="/ventures/living-brain/" tabindex="-1"><img src="/assets/livingbrain-animated.svg" alt="" width="28" height="28" loading="lazy" decoding="async">Living Brain</a></li>
+      <li aria-hidden="true"><a href="/ventures/shoal/" tabindex="-1"><img src="/assets/shoal-animated.svg" alt="" width="28" height="28" loading="lazy" decoding="async">Shoal</a></li>
+      <li aria-hidden="true"><a href="/ventures/tokker/" tabindex="-1"><img src="/assets/tokker-animated.svg" alt="" width="28" height="28" loading="lazy" decoding="async">Tokker</a></li>
+      <li aria-hidden="true"><a href="/ventures/ledgers/" tabindex="-1"><img src="/assets/ledgers-animated.svg" alt="" width="28" height="28" loading="lazy" decoding="async">Ledgers</a></li>
+      <li aria-hidden="true"><a href="/ventures/ghostwritin/" tabindex="-1"><img src="/assets/ghostwritin-animated.svg" alt="" width="28" height="28" loading="lazy" decoding="async">Ghostwritin'</a></li>
+      <li aria-hidden="true"><a href="/ventures/squeezin/" tabindex="-1"><img src="/assets/squeezin-animated.svg" alt="" width="28" height="28" loading="lazy" decoding="async">Squeezin</a></li>
+<!-- fz:marquee:end -->
   </ul>
-  <a class="vision-link" href="/stack/">SEE THE FOUNDATION &rarr;</a>
-  <a class="vision-link" href="/thesis/">READ THE THESIS &rarr;</a>
+</div>
+
+<section class="sec sec--flush" id="vision" aria-labelledby="vision-h">
+  <div class="wrap">
+    <div class="split">
+      <div>
+        <p class="eyebrow">Vision</p>
+        <h2 class="h2" id="vision-h" style="margin-top:18px">We are building the <span class="hl">autonomous organization.</span></h2>
+      </div>
+      <div>
+        <p class="lede">Factory Zero builds companies that run themselves. Agents do the operating work, from research and engineering to support and finance, while people set the direction. Each venture inherits the same foundation, so nothing is rebuilt.</p>
+        <div class="btns" style="margin-top:28px"><a class="link" href="/stack/">See the foundation <span aria-hidden="true">&rarr;</span></a><a class="link" href="/thesis/">Read the thesis <span aria-hidden="true">&rarr;</span></a></div>
+      </div>
+    </div>
+    <ul class="cards2" style="margin-top:clamp(40px,6vw,72px)">
+      <li class="card card--acc" data-rv style="--d:0"><p class="card-k">01 &middot; Autonomous operations</p><h3 class="h3">Every function is an agent.</h3><p>Every function in a venture, from research to finance, is an agent. Ventures are designed to run at autonomy levels 3 to 5.</p></li>
+      <li class="card" data-rv style="--d:1"><p class="card-k">02 &middot; Scale on one foundation</p><h3 class="h3">Built once, inherited by all.</h3><p>We scale fast by launching venture after venture on the same foundation, a shared agent network: identity, payments, deploys and observability are built once and inherited by every venture. Ventures on the Factory Zero stack add to it.</p></li>
+      <li class="card" data-rv style="--d:2"><p class="card-k">03 &middot; Humans at the helm</p><h3 class="h3">A named human, accountable.</h3><p>People define mission, capital, ethics and risk boundaries. A named human is accountable for every venture.</p></li>
+    </ul>
+  </div>
 </section>
 
-<section class="reel-band" id="ventures" aria-labelledby="reel-h">
-  <div class="reel-head">
-    <p class="eyebrow eyebrow--flush" id="reel-h">THE VENTURES &middot; <span id="fz-reel-count">23</span></p>
-    <a class="reel-all" href="/ventures/">THE REGISTRY &rarr;</a>
+<section class="sec" id="ventures" aria-labelledby="ventures-h">
+  <div class="wrap">
+    <div class="sec-head">
+      <div>
+        <p class="eyebrow">The ventures</p>
+        <h2 class="h2" id="ventures-h">Real companies. One&nbsp;factory.</h2>
+        <p class="lede">Open one to see the problem it solves, what you can use today, and which of the others it runs on. None can be bought from today; each page says what is live.</p>
+      </div>
+      <div class="sec-head__aside"><a class="link" href="/ventures/">The full registry <span aria-hidden="true">&rarr;</span></a></div>
+    </div>
+<!-- fz:vtools:start -->
+<div class="vtools">
+  <div class="vfilter" role="group" aria-label="Filter the ventures">
+    <button type="button" data-f="all" aria-pressed="true">All<span class="n">23</span></button>
+    <button type="button" data-f="stack" aria-pressed="false">FZ stack<span class="n">17</span></button>
+    <button type="button" data-f="stage:PROTOTYPE" aria-pressed="false">Prototype<span class="n">2</span></button>
+    <button type="button" data-f="stage:LAUNCH" aria-pressed="false">Launch<span class="n">1</span></button>
+    <button type="button" data-f="stage:VALIDATION" aria-pressed="false">Validation<span class="n">20</span></button>
   </div>
-  <!-- Two rows run in opposite directions, ventures alternating between them.
-       In each row two tracks slide together so the loop has no seam; every
-       duplicate is hidden from assistive tech and the tab order. Generated from
-       assets/fz-data.js by tools/sync-ventures.js. -->
-  <div class="reels">
-<!-- fz:reel:start -->
-    <div class="reel">
-      <ul class="reel-track">
-        <li><a href="/ventures/kontinuum/"><img src="/assets/kontinuum-animated.svg" alt="" width="44" height="32" loading="lazy"><span class="reel-name">Kontinuum</span><span class="reel-meta">FZ-001 &middot; MUSIC</span><span class="reel-stack-row"><span class="fzs">FZ STACK</span><span class="fzs-role">Music in your app</span><span class="fzs-os" title="MIT licence">OPEN SOURCE</span></span></a></li>
-        <li><a href="/ventures/yoginini/"><img src="/assets/yoginini-animated.svg" alt="" width="44" height="44" loading="lazy"><span class="reel-name">Yoginini</span><span class="reel-meta">FZ-003 &middot; WELLNESS</span></a></li>
-        <li><a href="/ventures/vibecaddie/"><img src="/assets/vibecaddie-animated.svg" alt="" width="44" height="44" loading="lazy"><span class="reel-name">VibeCaddie</span><span class="reel-meta">FZ-005 &middot; DEVTOOLS</span><span class="reel-stack-row"><span class="fzs">FZ STACK</span><span class="fzs-role">Code review</span></span></a></li>
-        <li><a href="/ventures/findsyou-work/"><img src="/assets/findsyou-animated.svg" alt="" width="44" height="44" loading="lazy"><span class="reel-name">FindsYou.work</span><span class="reel-meta">FZ-007 &middot; CAREERS</span></a></li>
-        <li><a href="/ventures/promptdecode/"><img src="/assets/promptdecode-animated.svg" alt="" width="44" height="44" loading="lazy"><span class="reel-name">promptdecode</span><span class="reel-meta">FZ-009 &middot; SECURITY</span><span class="reel-stack-row"><span class="fzs">FZ STACK</span><span class="fzs-role">Hidden-text screening</span><span class="fzs-os" title="MIT licence">OPEN SOURCE</span></span></a></li>
-        <li><a href="/ventures/posplugin/"><img src="/assets/posplug-animated.svg" alt="" width="44" height="44" loading="lazy"><span class="reel-name">PosPlugin</span><span class="reel-meta">FZ-011 &middot; INTEGRATIONS</span><span class="reel-stack-row"><span class="fzs">FZ STACK</span><span class="fzs-role">Point of sale</span></span></a></li>
-        <li><a href="/ventures/owlpost/"><img src="/assets/owlpost-animated.svg" alt="" width="44" height="44" loading="lazy"><span class="reel-name">Owlpost</span><span class="reel-meta">FZ-013 &middot; EMAIL</span><span class="reel-stack-row"><span class="fzs">FZ STACK</span><span class="fzs-role">Email</span></span></a></li>
-        <li><a href="/ventures/ratecla-im/"><img src="/assets/rateclaim-animated.svg" alt="" width="44" height="44" loading="lazy"><span class="reel-name">ratecla.im</span><span class="reel-meta">FZ-015 &middot; TRAVEL</span></a></li>
-        <li><a href="/ventures/release-show/"><img src="/assets/releaseshow-animated.svg" alt="" width="44" height="44" loading="lazy"><span class="reel-name">release.show</span><span class="reel-meta">FZ-017 &middot; VIDEO</span><span class="reel-stack-row"><span class="fzs">FZ STACK</span><span class="fzs-role">Release videos</span></span></a></li>
-        <li><a href="/ventures/shoal/"><img src="/assets/shoal-animated.svg" alt="" width="44" height="44" loading="lazy"><span class="reel-name">Shoal</span><span class="reel-meta">FZ-019 &middot; SIMULATION</span><span class="reel-stack-row"><span class="fzs">FZ STACK</span><span class="fzs-role">Launch rehearsal</span></span></a></li>
-        <li><a href="/ventures/ledgers/"><img src="/assets/ledgers-animated.svg" alt="" width="44" height="44" loading="lazy"><span class="reel-name">Ledgers</span><span class="reel-meta">FZ-021 &middot; ACCOUNTING</span><span class="reel-stack-row"><span class="fzs">FZ STACK</span><span class="fzs-role">Bookkeeping</span></span></a></li>
-        <li><a href="/ventures/squeezin/"><img src="/assets/squeezin-animated.svg" alt="" width="44" height="44" loading="lazy"><span class="reel-name">Squeezin</span><span class="reel-meta">FZ-023 &middot; LINKS</span><span class="reel-stack-row"><span class="fzs">FZ STACK</span><span class="fzs-role">Short links</span></span></a></li>
-        <li aria-hidden="true"><a href="/ventures/kontinuum/" tabindex="-1"><img src="/assets/kontinuum-animated.svg" alt="" width="44" height="32" loading="lazy"><span class="reel-name">Kontinuum</span><span class="reel-meta">FZ-001 &middot; MUSIC</span><span class="reel-stack-row"><span class="fzs">FZ STACK</span><span class="fzs-role">Music in your app</span><span class="fzs-os" title="MIT licence">OPEN SOURCE</span></span></a></li>
-        <li aria-hidden="true"><a href="/ventures/yoginini/" tabindex="-1"><img src="/assets/yoginini-animated.svg" alt="" width="44" height="44" loading="lazy"><span class="reel-name">Yoginini</span><span class="reel-meta">FZ-003 &middot; WELLNESS</span></a></li>
-        <li aria-hidden="true"><a href="/ventures/vibecaddie/" tabindex="-1"><img src="/assets/vibecaddie-animated.svg" alt="" width="44" height="44" loading="lazy"><span class="reel-name">VibeCaddie</span><span class="reel-meta">FZ-005 &middot; DEVTOOLS</span><span class="reel-stack-row"><span class="fzs">FZ STACK</span><span class="fzs-role">Code review</span></span></a></li>
-        <li aria-hidden="true"><a href="/ventures/findsyou-work/" tabindex="-1"><img src="/assets/findsyou-animated.svg" alt="" width="44" height="44" loading="lazy"><span class="reel-name">FindsYou.work</span><span class="reel-meta">FZ-007 &middot; CAREERS</span></a></li>
-        <li aria-hidden="true"><a href="/ventures/promptdecode/" tabindex="-1"><img src="/assets/promptdecode-animated.svg" alt="" width="44" height="44" loading="lazy"><span class="reel-name">promptdecode</span><span class="reel-meta">FZ-009 &middot; SECURITY</span><span class="reel-stack-row"><span class="fzs">FZ STACK</span><span class="fzs-role">Hidden-text screening</span><span class="fzs-os" title="MIT licence">OPEN SOURCE</span></span></a></li>
-        <li aria-hidden="true"><a href="/ventures/posplugin/" tabindex="-1"><img src="/assets/posplug-animated.svg" alt="" width="44" height="44" loading="lazy"><span class="reel-name">PosPlugin</span><span class="reel-meta">FZ-011 &middot; INTEGRATIONS</span><span class="reel-stack-row"><span class="fzs">FZ STACK</span><span class="fzs-role">Point of sale</span></span></a></li>
-        <li aria-hidden="true"><a href="/ventures/owlpost/" tabindex="-1"><img src="/assets/owlpost-animated.svg" alt="" width="44" height="44" loading="lazy"><span class="reel-name">Owlpost</span><span class="reel-meta">FZ-013 &middot; EMAIL</span><span class="reel-stack-row"><span class="fzs">FZ STACK</span><span class="fzs-role">Email</span></span></a></li>
-        <li aria-hidden="true"><a href="/ventures/ratecla-im/" tabindex="-1"><img src="/assets/rateclaim-animated.svg" alt="" width="44" height="44" loading="lazy"><span class="reel-name">ratecla.im</span><span class="reel-meta">FZ-015 &middot; TRAVEL</span></a></li>
-        <li aria-hidden="true"><a href="/ventures/release-show/" tabindex="-1"><img src="/assets/releaseshow-animated.svg" alt="" width="44" height="44" loading="lazy"><span class="reel-name">release.show</span><span class="reel-meta">FZ-017 &middot; VIDEO</span><span class="reel-stack-row"><span class="fzs">FZ STACK</span><span class="fzs-role">Release videos</span></span></a></li>
-        <li aria-hidden="true"><a href="/ventures/shoal/" tabindex="-1"><img src="/assets/shoal-animated.svg" alt="" width="44" height="44" loading="lazy"><span class="reel-name">Shoal</span><span class="reel-meta">FZ-019 &middot; SIMULATION</span><span class="reel-stack-row"><span class="fzs">FZ STACK</span><span class="fzs-role">Launch rehearsal</span></span></a></li>
-        <li aria-hidden="true"><a href="/ventures/ledgers/" tabindex="-1"><img src="/assets/ledgers-animated.svg" alt="" width="44" height="44" loading="lazy"><span class="reel-name">Ledgers</span><span class="reel-meta">FZ-021 &middot; ACCOUNTING</span><span class="reel-stack-row"><span class="fzs">FZ STACK</span><span class="fzs-role">Bookkeeping</span></span></a></li>
-        <li aria-hidden="true"><a href="/ventures/squeezin/" tabindex="-1"><img src="/assets/squeezin-animated.svg" alt="" width="44" height="44" loading="lazy"><span class="reel-name">Squeezin</span><span class="reel-meta">FZ-023 &middot; LINKS</span><span class="reel-stack-row"><span class="fzs">FZ STACK</span><span class="fzs-role">Short links</span></span></a></li>
-      </ul>
-      <ul class="reel-track" aria-hidden="true">
-        <li aria-hidden="true"><a href="/ventures/kontinuum/" tabindex="-1"><img src="/assets/kontinuum-animated.svg" alt="" width="44" height="32" loading="lazy"><span class="reel-name">Kontinuum</span><span class="reel-meta">FZ-001 &middot; MUSIC</span><span class="reel-stack-row"><span class="fzs">FZ STACK</span><span class="fzs-role">Music in your app</span><span class="fzs-os" title="MIT licence">OPEN SOURCE</span></span></a></li>
-        <li aria-hidden="true"><a href="/ventures/yoginini/" tabindex="-1"><img src="/assets/yoginini-animated.svg" alt="" width="44" height="44" loading="lazy"><span class="reel-name">Yoginini</span><span class="reel-meta">FZ-003 &middot; WELLNESS</span></a></li>
-        <li aria-hidden="true"><a href="/ventures/vibecaddie/" tabindex="-1"><img src="/assets/vibecaddie-animated.svg" alt="" width="44" height="44" loading="lazy"><span class="reel-name">VibeCaddie</span><span class="reel-meta">FZ-005 &middot; DEVTOOLS</span><span class="reel-stack-row"><span class="fzs">FZ STACK</span><span class="fzs-role">Code review</span></span></a></li>
-        <li aria-hidden="true"><a href="/ventures/findsyou-work/" tabindex="-1"><img src="/assets/findsyou-animated.svg" alt="" width="44" height="44" loading="lazy"><span class="reel-name">FindsYou.work</span><span class="reel-meta">FZ-007 &middot; CAREERS</span></a></li>
-        <li aria-hidden="true"><a href="/ventures/promptdecode/" tabindex="-1"><img src="/assets/promptdecode-animated.svg" alt="" width="44" height="44" loading="lazy"><span class="reel-name">promptdecode</span><span class="reel-meta">FZ-009 &middot; SECURITY</span><span class="reel-stack-row"><span class="fzs">FZ STACK</span><span class="fzs-role">Hidden-text screening</span><span class="fzs-os" title="MIT licence">OPEN SOURCE</span></span></a></li>
-        <li aria-hidden="true"><a href="/ventures/posplugin/" tabindex="-1"><img src="/assets/posplug-animated.svg" alt="" width="44" height="44" loading="lazy"><span class="reel-name">PosPlugin</span><span class="reel-meta">FZ-011 &middot; INTEGRATIONS</span><span class="reel-stack-row"><span class="fzs">FZ STACK</span><span class="fzs-role">Point of sale</span></span></a></li>
-        <li aria-hidden="true"><a href="/ventures/owlpost/" tabindex="-1"><img src="/assets/owlpost-animated.svg" alt="" width="44" height="44" loading="lazy"><span class="reel-name">Owlpost</span><span class="reel-meta">FZ-013 &middot; EMAIL</span><span class="reel-stack-row"><span class="fzs">FZ STACK</span><span class="fzs-role">Email</span></span></a></li>
-        <li aria-hidden="true"><a href="/ventures/ratecla-im/" tabindex="-1"><img src="/assets/rateclaim-animated.svg" alt="" width="44" height="44" loading="lazy"><span class="reel-name">ratecla.im</span><span class="reel-meta">FZ-015 &middot; TRAVEL</span></a></li>
-        <li aria-hidden="true"><a href="/ventures/release-show/" tabindex="-1"><img src="/assets/releaseshow-animated.svg" alt="" width="44" height="44" loading="lazy"><span class="reel-name">release.show</span><span class="reel-meta">FZ-017 &middot; VIDEO</span><span class="reel-stack-row"><span class="fzs">FZ STACK</span><span class="fzs-role">Release videos</span></span></a></li>
-        <li aria-hidden="true"><a href="/ventures/shoal/" tabindex="-1"><img src="/assets/shoal-animated.svg" alt="" width="44" height="44" loading="lazy"><span class="reel-name">Shoal</span><span class="reel-meta">FZ-019 &middot; SIMULATION</span><span class="reel-stack-row"><span class="fzs">FZ STACK</span><span class="fzs-role">Launch rehearsal</span></span></a></li>
-        <li aria-hidden="true"><a href="/ventures/ledgers/" tabindex="-1"><img src="/assets/ledgers-animated.svg" alt="" width="44" height="44" loading="lazy"><span class="reel-name">Ledgers</span><span class="reel-meta">FZ-021 &middot; ACCOUNTING</span><span class="reel-stack-row"><span class="fzs">FZ STACK</span><span class="fzs-role">Bookkeeping</span></span></a></li>
-        <li aria-hidden="true"><a href="/ventures/squeezin/" tabindex="-1"><img src="/assets/squeezin-animated.svg" alt="" width="44" height="44" loading="lazy"><span class="reel-name">Squeezin</span><span class="reel-meta">FZ-023 &middot; LINKS</span><span class="reel-stack-row"><span class="fzs">FZ STACK</span><span class="fzs-role">Short links</span></span></a></li>
-        <li aria-hidden="true"><a href="/ventures/kontinuum/" tabindex="-1"><img src="/assets/kontinuum-animated.svg" alt="" width="44" height="32" loading="lazy"><span class="reel-name">Kontinuum</span><span class="reel-meta">FZ-001 &middot; MUSIC</span><span class="reel-stack-row"><span class="fzs">FZ STACK</span><span class="fzs-role">Music in your app</span><span class="fzs-os" title="MIT licence">OPEN SOURCE</span></span></a></li>
-        <li aria-hidden="true"><a href="/ventures/yoginini/" tabindex="-1"><img src="/assets/yoginini-animated.svg" alt="" width="44" height="44" loading="lazy"><span class="reel-name">Yoginini</span><span class="reel-meta">FZ-003 &middot; WELLNESS</span></a></li>
-        <li aria-hidden="true"><a href="/ventures/vibecaddie/" tabindex="-1"><img src="/assets/vibecaddie-animated.svg" alt="" width="44" height="44" loading="lazy"><span class="reel-name">VibeCaddie</span><span class="reel-meta">FZ-005 &middot; DEVTOOLS</span><span class="reel-stack-row"><span class="fzs">FZ STACK</span><span class="fzs-role">Code review</span></span></a></li>
-        <li aria-hidden="true"><a href="/ventures/findsyou-work/" tabindex="-1"><img src="/assets/findsyou-animated.svg" alt="" width="44" height="44" loading="lazy"><span class="reel-name">FindsYou.work</span><span class="reel-meta">FZ-007 &middot; CAREERS</span></a></li>
-        <li aria-hidden="true"><a href="/ventures/promptdecode/" tabindex="-1"><img src="/assets/promptdecode-animated.svg" alt="" width="44" height="44" loading="lazy"><span class="reel-name">promptdecode</span><span class="reel-meta">FZ-009 &middot; SECURITY</span><span class="reel-stack-row"><span class="fzs">FZ STACK</span><span class="fzs-role">Hidden-text screening</span><span class="fzs-os" title="MIT licence">OPEN SOURCE</span></span></a></li>
-        <li aria-hidden="true"><a href="/ventures/posplugin/" tabindex="-1"><img src="/assets/posplug-animated.svg" alt="" width="44" height="44" loading="lazy"><span class="reel-name">PosPlugin</span><span class="reel-meta">FZ-011 &middot; INTEGRATIONS</span><span class="reel-stack-row"><span class="fzs">FZ STACK</span><span class="fzs-role">Point of sale</span></span></a></li>
-        <li aria-hidden="true"><a href="/ventures/owlpost/" tabindex="-1"><img src="/assets/owlpost-animated.svg" alt="" width="44" height="44" loading="lazy"><span class="reel-name">Owlpost</span><span class="reel-meta">FZ-013 &middot; EMAIL</span><span class="reel-stack-row"><span class="fzs">FZ STACK</span><span class="fzs-role">Email</span></span></a></li>
-        <li aria-hidden="true"><a href="/ventures/ratecla-im/" tabindex="-1"><img src="/assets/rateclaim-animated.svg" alt="" width="44" height="44" loading="lazy"><span class="reel-name">ratecla.im</span><span class="reel-meta">FZ-015 &middot; TRAVEL</span></a></li>
-        <li aria-hidden="true"><a href="/ventures/release-show/" tabindex="-1"><img src="/assets/releaseshow-animated.svg" alt="" width="44" height="44" loading="lazy"><span class="reel-name">release.show</span><span class="reel-meta">FZ-017 &middot; VIDEO</span><span class="reel-stack-row"><span class="fzs">FZ STACK</span><span class="fzs-role">Release videos</span></span></a></li>
-        <li aria-hidden="true"><a href="/ventures/shoal/" tabindex="-1"><img src="/assets/shoal-animated.svg" alt="" width="44" height="44" loading="lazy"><span class="reel-name">Shoal</span><span class="reel-meta">FZ-019 &middot; SIMULATION</span><span class="reel-stack-row"><span class="fzs">FZ STACK</span><span class="fzs-role">Launch rehearsal</span></span></a></li>
-        <li aria-hidden="true"><a href="/ventures/ledgers/" tabindex="-1"><img src="/assets/ledgers-animated.svg" alt="" width="44" height="44" loading="lazy"><span class="reel-name">Ledgers</span><span class="reel-meta">FZ-021 &middot; ACCOUNTING</span><span class="reel-stack-row"><span class="fzs">FZ STACK</span><span class="fzs-role">Bookkeeping</span></span></a></li>
-        <li aria-hidden="true"><a href="/ventures/squeezin/" tabindex="-1"><img src="/assets/squeezin-animated.svg" alt="" width="44" height="44" loading="lazy"><span class="reel-name">Squeezin</span><span class="reel-meta">FZ-023 &middot; LINKS</span><span class="reel-stack-row"><span class="fzs">FZ STACK</span><span class="fzs-role">Short links</span></span></a></li>
-      </ul>
-    </div>
-    <div class="reel reel--rev">
-      <ul class="reel-track">
-        <li><a href="/ventures/undercover-rockstars/"><img src="/assets/undercover-rockstars-animated.svg" alt="" width="44" height="44" loading="lazy"><span class="reel-name">Undercover Rockstars</span><span class="reel-meta">FZ-002 &middot; APPAREL</span></a></li>
-        <li><a href="/ventures/cratefield/"><img src="/assets/cratefield-animated.svg" alt="" width="44" height="44" loading="lazy"><span class="reel-name">Cratefield</span><span class="reel-meta">FZ-004 &middot; INFRASTRUCTURE</span><span class="reel-stack-row"><span class="fzs">FZ STACK</span><span class="fzs-role">App foundation</span><span class="fzs-os" title="MIT licence">OPEN SOURCE</span></span></a></li>
-        <li><a href="/ventures/colonizer/"><img src="/assets/colonizer-animated.svg" alt="" width="44" height="44" loading="lazy"><span class="reel-name">Colonizer</span><span class="reel-meta">FZ-006 &middot; DEVTOOLS</span><span class="reel-stack-row"><span class="fzs">FZ STACK</span><span class="fzs-role">Agents</span><span class="fzs-os" title="MIT licence">OPEN SOURCE</span></span></a></li>
-        <li><a href="/ventures/supportgenius/"><img src="/assets/supportgenius-animated.svg" alt="" width="44" height="44" loading="lazy"><span class="reel-name">SupportGenius</span><span class="reel-meta">FZ-008 &middot; SUPPORT</span><span class="reel-stack-row"><span class="fzs">FZ STACK</span><span class="fzs-role">Bug reports and support</span><span class="fzs-os" title="MIT licence">OPEN SOURCE</span></span></a></li>
-        <li><a href="/ventures/groove-guru/"><img src="/assets/groove-guru-animated.svg" alt="" width="44" height="44" loading="lazy"><span class="reel-name">Groove Guru</span><span class="reel-meta">FZ-010 &middot; MUSIC</span></a></li>
-        <li><a href="/ventures/keep-shipping/"><img src="/assets/keepshipping-animated.svg" alt="" width="44" height="44" loading="lazy"><span class="reel-name">Keep Shipping</span><span class="reel-meta">FZ-012 &middot; DEVTOOLS</span><span class="reel-stack-row"><span class="fzs">FZ STACK</span><span class="fzs-role">Deploys</span></span></a></li>
-        <li><a href="/ventures/bloodrank/"><img src="/assets/bloodrank-animated.svg" alt="" width="44" height="44" loading="lazy"><span class="reel-name">Bloodrank</span><span class="reel-meta">FZ-014 &middot; COMMUNITY</span></a></li>
-        <li><a href="/ventures/sealbin/"><img src="/assets/sealbin-animated.svg" alt="" width="44" height="44" loading="lazy"><span class="reel-name">Sealbin</span><span class="reel-meta">FZ-016 &middot; SECURITY</span><span class="reel-stack-row"><span class="fzs">FZ STACK</span><span class="fzs-role">Sealed sharing</span><span class="fzs-os" title="Apache-2.0 licence">OPEN SOURCE</span></span></a></li>
-        <li><a href="/ventures/living-brain/"><img src="/assets/livingbrain-animated.svg" alt="" width="44" height="44" loading="lazy"><span class="reel-name">Living Brain</span><span class="reel-meta">FZ-018 &middot; DEVTOOLS</span><span class="reel-stack-row"><span class="fzs">FZ STACK</span><span class="fzs-role">Knowledge</span><span class="fzs-os" title="Apache-2.0 licence">OPEN SOURCE</span></span></a></li>
-        <li><a href="/ventures/tokker/"><img src="/assets/tokker-animated.svg" alt="" width="44" height="44" loading="lazy"><span class="reel-name">Tokker</span><span class="reel-meta">FZ-020 &middot; PRICING</span><span class="reel-stack-row"><span class="fzs">FZ STACK</span><span class="fzs-role">AI token prices</span><span class="fzs-os" title="Apache-2.0 licence">OPEN SOURCE</span></span></a></li>
-        <li><a href="/ventures/ghostwritin/"><img src="/assets/ghostwritin-animated.svg" alt="" width="44" height="44" loading="lazy"><span class="reel-name">Ghostwritin'</span><span class="reel-meta">FZ-022 &middot; WRITING</span><span class="reel-stack-row"><span class="fzs">FZ STACK</span><span class="fzs-role">Writing in your voice</span><span class="fzs-os" title="MIT licence">OPEN SOURCE</span></span></a></li>
-        <li aria-hidden="true"><a href="/ventures/undercover-rockstars/" tabindex="-1"><img src="/assets/undercover-rockstars-animated.svg" alt="" width="44" height="44" loading="lazy"><span class="reel-name">Undercover Rockstars</span><span class="reel-meta">FZ-002 &middot; APPAREL</span></a></li>
-        <li aria-hidden="true"><a href="/ventures/cratefield/" tabindex="-1"><img src="/assets/cratefield-animated.svg" alt="" width="44" height="44" loading="lazy"><span class="reel-name">Cratefield</span><span class="reel-meta">FZ-004 &middot; INFRASTRUCTURE</span><span class="reel-stack-row"><span class="fzs">FZ STACK</span><span class="fzs-role">App foundation</span><span class="fzs-os" title="MIT licence">OPEN SOURCE</span></span></a></li>
-        <li aria-hidden="true"><a href="/ventures/colonizer/" tabindex="-1"><img src="/assets/colonizer-animated.svg" alt="" width="44" height="44" loading="lazy"><span class="reel-name">Colonizer</span><span class="reel-meta">FZ-006 &middot; DEVTOOLS</span><span class="reel-stack-row"><span class="fzs">FZ STACK</span><span class="fzs-role">Agents</span><span class="fzs-os" title="MIT licence">OPEN SOURCE</span></span></a></li>
-        <li aria-hidden="true"><a href="/ventures/supportgenius/" tabindex="-1"><img src="/assets/supportgenius-animated.svg" alt="" width="44" height="44" loading="lazy"><span class="reel-name">SupportGenius</span><span class="reel-meta">FZ-008 &middot; SUPPORT</span><span class="reel-stack-row"><span class="fzs">FZ STACK</span><span class="fzs-role">Bug reports and support</span><span class="fzs-os" title="MIT licence">OPEN SOURCE</span></span></a></li>
-        <li aria-hidden="true"><a href="/ventures/groove-guru/" tabindex="-1"><img src="/assets/groove-guru-animated.svg" alt="" width="44" height="44" loading="lazy"><span class="reel-name">Groove Guru</span><span class="reel-meta">FZ-010 &middot; MUSIC</span></a></li>
-        <li aria-hidden="true"><a href="/ventures/keep-shipping/" tabindex="-1"><img src="/assets/keepshipping-animated.svg" alt="" width="44" height="44" loading="lazy"><span class="reel-name">Keep Shipping</span><span class="reel-meta">FZ-012 &middot; DEVTOOLS</span><span class="reel-stack-row"><span class="fzs">FZ STACK</span><span class="fzs-role">Deploys</span></span></a></li>
-        <li aria-hidden="true"><a href="/ventures/bloodrank/" tabindex="-1"><img src="/assets/bloodrank-animated.svg" alt="" width="44" height="44" loading="lazy"><span class="reel-name">Bloodrank</span><span class="reel-meta">FZ-014 &middot; COMMUNITY</span></a></li>
-        <li aria-hidden="true"><a href="/ventures/sealbin/" tabindex="-1"><img src="/assets/sealbin-animated.svg" alt="" width="44" height="44" loading="lazy"><span class="reel-name">Sealbin</span><span class="reel-meta">FZ-016 &middot; SECURITY</span><span class="reel-stack-row"><span class="fzs">FZ STACK</span><span class="fzs-role">Sealed sharing</span><span class="fzs-os" title="Apache-2.0 licence">OPEN SOURCE</span></span></a></li>
-        <li aria-hidden="true"><a href="/ventures/living-brain/" tabindex="-1"><img src="/assets/livingbrain-animated.svg" alt="" width="44" height="44" loading="lazy"><span class="reel-name">Living Brain</span><span class="reel-meta">FZ-018 &middot; DEVTOOLS</span><span class="reel-stack-row"><span class="fzs">FZ STACK</span><span class="fzs-role">Knowledge</span><span class="fzs-os" title="Apache-2.0 licence">OPEN SOURCE</span></span></a></li>
-        <li aria-hidden="true"><a href="/ventures/tokker/" tabindex="-1"><img src="/assets/tokker-animated.svg" alt="" width="44" height="44" loading="lazy"><span class="reel-name">Tokker</span><span class="reel-meta">FZ-020 &middot; PRICING</span><span class="reel-stack-row"><span class="fzs">FZ STACK</span><span class="fzs-role">AI token prices</span><span class="fzs-os" title="Apache-2.0 licence">OPEN SOURCE</span></span></a></li>
-        <li aria-hidden="true"><a href="/ventures/ghostwritin/" tabindex="-1"><img src="/assets/ghostwritin-animated.svg" alt="" width="44" height="44" loading="lazy"><span class="reel-name">Ghostwritin'</span><span class="reel-meta">FZ-022 &middot; WRITING</span><span class="reel-stack-row"><span class="fzs">FZ STACK</span><span class="fzs-role">Writing in your voice</span><span class="fzs-os" title="MIT licence">OPEN SOURCE</span></span></a></li>
-      </ul>
-      <ul class="reel-track" aria-hidden="true">
-        <li aria-hidden="true"><a href="/ventures/undercover-rockstars/" tabindex="-1"><img src="/assets/undercover-rockstars-animated.svg" alt="" width="44" height="44" loading="lazy"><span class="reel-name">Undercover Rockstars</span><span class="reel-meta">FZ-002 &middot; APPAREL</span></a></li>
-        <li aria-hidden="true"><a href="/ventures/cratefield/" tabindex="-1"><img src="/assets/cratefield-animated.svg" alt="" width="44" height="44" loading="lazy"><span class="reel-name">Cratefield</span><span class="reel-meta">FZ-004 &middot; INFRASTRUCTURE</span><span class="reel-stack-row"><span class="fzs">FZ STACK</span><span class="fzs-role">App foundation</span><span class="fzs-os" title="MIT licence">OPEN SOURCE</span></span></a></li>
-        <li aria-hidden="true"><a href="/ventures/colonizer/" tabindex="-1"><img src="/assets/colonizer-animated.svg" alt="" width="44" height="44" loading="lazy"><span class="reel-name">Colonizer</span><span class="reel-meta">FZ-006 &middot; DEVTOOLS</span><span class="reel-stack-row"><span class="fzs">FZ STACK</span><span class="fzs-role">Agents</span><span class="fzs-os" title="MIT licence">OPEN SOURCE</span></span></a></li>
-        <li aria-hidden="true"><a href="/ventures/supportgenius/" tabindex="-1"><img src="/assets/supportgenius-animated.svg" alt="" width="44" height="44" loading="lazy"><span class="reel-name">SupportGenius</span><span class="reel-meta">FZ-008 &middot; SUPPORT</span><span class="reel-stack-row"><span class="fzs">FZ STACK</span><span class="fzs-role">Bug reports and support</span><span class="fzs-os" title="MIT licence">OPEN SOURCE</span></span></a></li>
-        <li aria-hidden="true"><a href="/ventures/groove-guru/" tabindex="-1"><img src="/assets/groove-guru-animated.svg" alt="" width="44" height="44" loading="lazy"><span class="reel-name">Groove Guru</span><span class="reel-meta">FZ-010 &middot; MUSIC</span></a></li>
-        <li aria-hidden="true"><a href="/ventures/keep-shipping/" tabindex="-1"><img src="/assets/keepshipping-animated.svg" alt="" width="44" height="44" loading="lazy"><span class="reel-name">Keep Shipping</span><span class="reel-meta">FZ-012 &middot; DEVTOOLS</span><span class="reel-stack-row"><span class="fzs">FZ STACK</span><span class="fzs-role">Deploys</span></span></a></li>
-        <li aria-hidden="true"><a href="/ventures/bloodrank/" tabindex="-1"><img src="/assets/bloodrank-animated.svg" alt="" width="44" height="44" loading="lazy"><span class="reel-name">Bloodrank</span><span class="reel-meta">FZ-014 &middot; COMMUNITY</span></a></li>
-        <li aria-hidden="true"><a href="/ventures/sealbin/" tabindex="-1"><img src="/assets/sealbin-animated.svg" alt="" width="44" height="44" loading="lazy"><span class="reel-name">Sealbin</span><span class="reel-meta">FZ-016 &middot; SECURITY</span><span class="reel-stack-row"><span class="fzs">FZ STACK</span><span class="fzs-role">Sealed sharing</span><span class="fzs-os" title="Apache-2.0 licence">OPEN SOURCE</span></span></a></li>
-        <li aria-hidden="true"><a href="/ventures/living-brain/" tabindex="-1"><img src="/assets/livingbrain-animated.svg" alt="" width="44" height="44" loading="lazy"><span class="reel-name">Living Brain</span><span class="reel-meta">FZ-018 &middot; DEVTOOLS</span><span class="reel-stack-row"><span class="fzs">FZ STACK</span><span class="fzs-role">Knowledge</span><span class="fzs-os" title="Apache-2.0 licence">OPEN SOURCE</span></span></a></li>
-        <li aria-hidden="true"><a href="/ventures/tokker/" tabindex="-1"><img src="/assets/tokker-animated.svg" alt="" width="44" height="44" loading="lazy"><span class="reel-name">Tokker</span><span class="reel-meta">FZ-020 &middot; PRICING</span><span class="reel-stack-row"><span class="fzs">FZ STACK</span><span class="fzs-role">AI token prices</span><span class="fzs-os" title="Apache-2.0 licence">OPEN SOURCE</span></span></a></li>
-        <li aria-hidden="true"><a href="/ventures/ghostwritin/" tabindex="-1"><img src="/assets/ghostwritin-animated.svg" alt="" width="44" height="44" loading="lazy"><span class="reel-name">Ghostwritin'</span><span class="reel-meta">FZ-022 &middot; WRITING</span><span class="reel-stack-row"><span class="fzs">FZ STACK</span><span class="fzs-role">Writing in your voice</span><span class="fzs-os" title="MIT licence">OPEN SOURCE</span></span></a></li>
-        <li aria-hidden="true"><a href="/ventures/undercover-rockstars/" tabindex="-1"><img src="/assets/undercover-rockstars-animated.svg" alt="" width="44" height="44" loading="lazy"><span class="reel-name">Undercover Rockstars</span><span class="reel-meta">FZ-002 &middot; APPAREL</span></a></li>
-        <li aria-hidden="true"><a href="/ventures/cratefield/" tabindex="-1"><img src="/assets/cratefield-animated.svg" alt="" width="44" height="44" loading="lazy"><span class="reel-name">Cratefield</span><span class="reel-meta">FZ-004 &middot; INFRASTRUCTURE</span><span class="reel-stack-row"><span class="fzs">FZ STACK</span><span class="fzs-role">App foundation</span><span class="fzs-os" title="MIT licence">OPEN SOURCE</span></span></a></li>
-        <li aria-hidden="true"><a href="/ventures/colonizer/" tabindex="-1"><img src="/assets/colonizer-animated.svg" alt="" width="44" height="44" loading="lazy"><span class="reel-name">Colonizer</span><span class="reel-meta">FZ-006 &middot; DEVTOOLS</span><span class="reel-stack-row"><span class="fzs">FZ STACK</span><span class="fzs-role">Agents</span><span class="fzs-os" title="MIT licence">OPEN SOURCE</span></span></a></li>
-        <li aria-hidden="true"><a href="/ventures/supportgenius/" tabindex="-1"><img src="/assets/supportgenius-animated.svg" alt="" width="44" height="44" loading="lazy"><span class="reel-name">SupportGenius</span><span class="reel-meta">FZ-008 &middot; SUPPORT</span><span class="reel-stack-row"><span class="fzs">FZ STACK</span><span class="fzs-role">Bug reports and support</span><span class="fzs-os" title="MIT licence">OPEN SOURCE</span></span></a></li>
-        <li aria-hidden="true"><a href="/ventures/groove-guru/" tabindex="-1"><img src="/assets/groove-guru-animated.svg" alt="" width="44" height="44" loading="lazy"><span class="reel-name">Groove Guru</span><span class="reel-meta">FZ-010 &middot; MUSIC</span></a></li>
-        <li aria-hidden="true"><a href="/ventures/keep-shipping/" tabindex="-1"><img src="/assets/keepshipping-animated.svg" alt="" width="44" height="44" loading="lazy"><span class="reel-name">Keep Shipping</span><span class="reel-meta">FZ-012 &middot; DEVTOOLS</span><span class="reel-stack-row"><span class="fzs">FZ STACK</span><span class="fzs-role">Deploys</span></span></a></li>
-        <li aria-hidden="true"><a href="/ventures/bloodrank/" tabindex="-1"><img src="/assets/bloodrank-animated.svg" alt="" width="44" height="44" loading="lazy"><span class="reel-name">Bloodrank</span><span class="reel-meta">FZ-014 &middot; COMMUNITY</span></a></li>
-        <li aria-hidden="true"><a href="/ventures/sealbin/" tabindex="-1"><img src="/assets/sealbin-animated.svg" alt="" width="44" height="44" loading="lazy"><span class="reel-name">Sealbin</span><span class="reel-meta">FZ-016 &middot; SECURITY</span><span class="reel-stack-row"><span class="fzs">FZ STACK</span><span class="fzs-role">Sealed sharing</span><span class="fzs-os" title="Apache-2.0 licence">OPEN SOURCE</span></span></a></li>
-        <li aria-hidden="true"><a href="/ventures/living-brain/" tabindex="-1"><img src="/assets/livingbrain-animated.svg" alt="" width="44" height="44" loading="lazy"><span class="reel-name">Living Brain</span><span class="reel-meta">FZ-018 &middot; DEVTOOLS</span><span class="reel-stack-row"><span class="fzs">FZ STACK</span><span class="fzs-role">Knowledge</span><span class="fzs-os" title="Apache-2.0 licence">OPEN SOURCE</span></span></a></li>
-        <li aria-hidden="true"><a href="/ventures/tokker/" tabindex="-1"><img src="/assets/tokker-animated.svg" alt="" width="44" height="44" loading="lazy"><span class="reel-name">Tokker</span><span class="reel-meta">FZ-020 &middot; PRICING</span><span class="reel-stack-row"><span class="fzs">FZ STACK</span><span class="fzs-role">AI token prices</span><span class="fzs-os" title="Apache-2.0 licence">OPEN SOURCE</span></span></a></li>
-        <li aria-hidden="true"><a href="/ventures/ghostwritin/" tabindex="-1"><img src="/assets/ghostwritin-animated.svg" alt="" width="44" height="44" loading="lazy"><span class="reel-name">Ghostwritin'</span><span class="reel-meta">FZ-022 &middot; WRITING</span><span class="reel-stack-row"><span class="fzs">FZ STACK</span><span class="fzs-role">Writing in your voice</span><span class="fzs-os" title="MIT licence">OPEN SOURCE</span></span></a></li>
-      </ul>
-    </div>
-<!-- fz:reel:end -->
+  <label class="vsearch"><span class="vh">Search the ventures</span><svg viewBox="0 0 16 16" aria-hidden="true"><circle cx="7" cy="7" r="5" fill="none" stroke="currentColor" stroke-width="1.5"/><path d="m11 11 3.5 3.5" stroke="currentColor" stroke-width="1.5"/></svg><input type="search" placeholder="Search 23 ventures" autocomplete="off" data-vsearch></label>
+</div>
+<!-- fz:vtools:end -->
+    <ul class="vgrid" data-vgrid>
+<!-- fz:vgrid:start -->
+<li><a class="vcard" href="/ventures/kontinuum/" data-stage="PROTOTYPE" data-stack="1" data-cat="MUSIC" data-q="kontinuum fz-001 music music in your app kontinuum.audio kontinuum plays music that never ends and never repeats. it is written while you listen." data-rv style="--d:0">
+  <span class="vcard-top"><span class="vicon"><img src="/assets/kontinuum-animated.svg" alt="" width="46" height="34" loading="lazy" decoding="async"></span><span class="vid">FZ-001</span></span>
+  <span class="vname">Kontinuum</span>
+  <span class="vcat">MUSIC</span>
+  <span class="vdesc">Kontinuum plays music that never ends and never repeats. It is written while you listen.</span>
+  <span class="chips"><span class="chip">PROTOTYPE</span><span class="chip chip--acc">FZ stack</span></span>
+  <span class="vgo" aria-hidden="true"><svg viewBox="0 0 16 16" width="12" height="12" aria-hidden="true"><path d="M3 8h9M8 3.5 12.5 8 8 12.5" fill="none" stroke="currentColor" stroke-width="1.5"/></svg></span>
+</a></li>
+<li><a class="vcard" href="/ventures/undercover-rockstars/" data-stage="LAUNCH" data-stack="0" data-cat="APPAREL" data-q="undercover rockstars fz-002 apparel undercoverrockstars.com every undercover rockstars piece comes as a matched pair: one cut for the day, the same cut for the night." data-rv style="--d:1">
+  <span class="vcard-top"><span class="vicon"><img src="/assets/undercover-rockstars-animated.svg" alt="" width="46" height="46" loading="lazy" decoding="async"></span><span class="vid">FZ-002</span></span>
+  <span class="vname">Undercover Rockstars</span>
+  <span class="vcat">APPAREL</span>
+  <span class="vdesc">Every Undercover Rockstars piece comes as a matched pair: one cut for the day, the same cut for the night.</span>
+  <span class="chips"><span class="chip">LAUNCH</span></span>
+  <span class="vgo" aria-hidden="true"><svg viewBox="0 0 16 16" width="12" height="12" aria-hidden="true"><path d="M3 8h9M8 3.5 12.5 8 8 12.5" fill="none" stroke="currentColor" stroke-width="1.5"/></svg></span>
+</a></li>
+<li><a class="vcard" href="/ventures/yoginini/" data-stage="VALIDATION" data-stack="0" data-cat="WELLNESS" data-q="yoginini fz-003 wellness yoginini.us yoginini is a yoga teacher on your phone that watches your pose and gives one calm correction at a time." data-rv style="--d:2">
+  <span class="vcard-top"><span class="vicon"><img src="/assets/yoginini-animated.svg" alt="" width="46" height="46" loading="lazy" decoding="async"></span><span class="vid">FZ-003</span></span>
+  <span class="vname">Yoginini</span>
+  <span class="vcat">WELLNESS</span>
+  <span class="vdesc">Yoginini is a yoga teacher on your phone that watches your pose and gives one calm correction at a time.</span>
+  <span class="chips"><span class="chip">VALIDATION</span></span>
+  <span class="vgo" aria-hidden="true"><svg viewBox="0 0 16 16" width="12" height="12" aria-hidden="true"><path d="M3 8h9M8 3.5 12.5 8 8 12.5" fill="none" stroke="currentColor" stroke-width="1.5"/></svg></span>
+</a></li>
+<li><a class="vcard" href="/ventures/cratefield/" data-stage="VALIDATION" data-stack="1" data-cat="INFRASTRUCTURE" data-q="cratefield fz-004 infrastructure app foundation cratefield.com cratefield is a backend you compile. pick the modules you need and ship one small service to your own cloudflare account." data-rv style="--d:3">
+  <span class="vcard-top"><span class="vicon"><img src="/assets/cratefield-animated.svg" alt="" width="46" height="46" loading="lazy" decoding="async"></span><span class="vid">FZ-004</span></span>
+  <span class="vname">Cratefield</span>
+  <span class="vcat">INFRASTRUCTURE</span>
+  <span class="vdesc">Cratefield is a backend you compile. Pick the modules you need and ship one small service to your own Cloudflare account.</span>
+  <span class="chips"><span class="chip">VALIDATION</span><span class="chip chip--acc">FZ stack</span></span>
+  <span class="vgo" aria-hidden="true"><svg viewBox="0 0 16 16" width="12" height="12" aria-hidden="true"><path d="M3 8h9M8 3.5 12.5 8 8 12.5" fill="none" stroke="currentColor" stroke-width="1.5"/></svg></span>
+</a></li>
+<li><a class="vcard" href="/ventures/vibecaddie/" data-stage="VALIDATION" data-stack="1" data-cat="DEVTOOLS" data-q="vibecaddie fz-005 devtools code review vibecaddie.com vibecaddie reviews your repository and tells you what to fix first." data-rv style="--d:4">
+  <span class="vcard-top"><span class="vicon"><img src="/assets/vibecaddie-animated.svg" alt="" width="46" height="46" loading="lazy" decoding="async"></span><span class="vid">FZ-005</span></span>
+  <span class="vname">VibeCaddie</span>
+  <span class="vcat">DEVTOOLS</span>
+  <span class="vdesc">VibeCaddie reviews your repository and tells you what to fix first.</span>
+  <span class="chips"><span class="chip">VALIDATION</span><span class="chip chip--acc">FZ stack</span></span>
+  <span class="vgo" aria-hidden="true"><svg viewBox="0 0 16 16" width="12" height="12" aria-hidden="true"><path d="M3 8h9M8 3.5 12.5 8 8 12.5" fill="none" stroke="currentColor" stroke-width="1.5"/></svg></span>
+</a></li>
+<li><a class="vcard" href="/ventures/colonizer/" data-stage="PROTOTYPE" data-stack="1" data-cat="DEVTOOLS" data-q="colonizer fz-006 devtools agents colonizer.dev colonizer sends coding agents to solve your github issues and hands back pull requests you can review and merge." data-rv style="--d:5">
+  <span class="vcard-top"><span class="vicon"><img src="/assets/colonizer-animated.svg" alt="" width="46" height="46" loading="lazy" decoding="async"></span><span class="vid">FZ-006</span></span>
+  <span class="vname">Colonizer</span>
+  <span class="vcat">DEVTOOLS</span>
+  <span class="vdesc">Colonizer sends coding agents to solve your GitHub issues and hands back pull requests you can review and merge.</span>
+  <span class="chips"><span class="chip">PROTOTYPE</span><span class="chip chip--acc">FZ stack</span></span>
+  <span class="vgo" aria-hidden="true"><svg viewBox="0 0 16 16" width="12" height="12" aria-hidden="true"><path d="M3 8h9M8 3.5 12.5 8 8 12.5" fill="none" stroke="currentColor" stroke-width="1.5"/></svg></span>
+</a></li>
+<li><a class="vcard" href="/ventures/findsyou-work/" data-stage="VALIDATION" data-stack="0" data-cat="CAREERS" data-q="findsyou.work fz-007 careers findsyou.work findsyou reads the job boards for you and hands back only the jobs you can really get, with a cv and cover letter written for each." data-rv style="--d:0">
+  <span class="vcard-top"><span class="vicon"><img src="/assets/findsyou-animated.svg" alt="" width="46" height="46" loading="lazy" decoding="async"></span><span class="vid">FZ-007</span></span>
+  <span class="vname">FindsYou.work</span>
+  <span class="vcat">CAREERS</span>
+  <span class="vdesc">FindsYou reads the job boards for you and hands back only the jobs you can really get, with a CV and cover letter written for each.</span>
+  <span class="chips"><span class="chip">VALIDATION</span></span>
+  <span class="vgo" aria-hidden="true"><svg viewBox="0 0 16 16" width="12" height="12" aria-hidden="true"><path d="M3 8h9M8 3.5 12.5 8 8 12.5" fill="none" stroke="currentColor" stroke-width="1.5"/></svg></span>
+</a></li>
+<li><a class="vcard" href="/ventures/supportgenius/" data-stage="VALIDATION" data-stack="1" data-cat="SUPPORT" data-q="supportgenius fz-008 support bug reports and support supportgeni.us supportgenius answers customers from your own docs and files, and turns what it can’t answer into a proper ticket." data-rv style="--d:1">
+  <span class="vcard-top"><span class="vicon"><img src="/assets/supportgenius-animated.svg" alt="" width="46" height="46" loading="lazy" decoding="async"></span><span class="vid">FZ-008</span></span>
+  <span class="vname">SupportGenius</span>
+  <span class="vcat">SUPPORT</span>
+  <span class="vdesc">SupportGenius answers customers from your own docs and files, and turns what it can’t answer into a proper ticket.</span>
+  <span class="chips"><span class="chip">VALIDATION</span><span class="chip chip--acc">FZ stack</span></span>
+  <span class="vgo" aria-hidden="true"><svg viewBox="0 0 16 16" width="12" height="12" aria-hidden="true"><path d="M3 8h9M8 3.5 12.5 8 8 12.5" fill="none" stroke="currentColor" stroke-width="1.5"/></svg></span>
+</a></li>
+<li><a class="vcard" href="/ventures/promptdecode/" data-stage="VALIDATION" data-stack="1" data-cat="SECURITY" data-q="promptdecode fz-009 security hidden-text screening promptdeco.de promptdecode finds invisible text and shows you, in plain words, what it says." data-rv style="--d:2">
+  <span class="vcard-top"><span class="vicon"><img src="/assets/promptdecode-animated.svg" alt="" width="46" height="46" loading="lazy" decoding="async"></span><span class="vid">FZ-009</span></span>
+  <span class="vname">promptdecode</span>
+  <span class="vcat">SECURITY</span>
+  <span class="vdesc">promptdecode finds invisible text and shows you, in plain words, what it says.</span>
+  <span class="chips"><span class="chip">VALIDATION</span><span class="chip chip--acc">FZ stack</span></span>
+  <span class="vgo" aria-hidden="true"><svg viewBox="0 0 16 16" width="12" height="12" aria-hidden="true"><path d="M3 8h9M8 3.5 12.5 8 8 12.5" fill="none" stroke="currentColor" stroke-width="1.5"/></svg></span>
+</a></li>
+<li><a class="vcard" href="/ventures/groove-guru/" data-stage="VALIDATION" data-stack="0" data-cat="MUSIC" data-q="groove guru fz-010 music groove.guru groove guru listens to your pioneer decks and tells you, in a calm voice, when the key clashes, the blend misses the phrase or the beat drifts." data-rv style="--d:3">
+  <span class="vcard-top"><span class="vicon"><img src="/assets/groove-guru-animated.svg" alt="" width="46" height="46" loading="lazy" decoding="async"></span><span class="vid">FZ-010</span></span>
+  <span class="vname">Groove Guru</span>
+  <span class="vcat">MUSIC</span>
+  <span class="vdesc">Groove Guru listens to your Pioneer decks and tells you, in a calm voice, when the key clashes, the blend misses the phrase or the beat drifts.</span>
+  <span class="chips"><span class="chip">VALIDATION</span></span>
+  <span class="vgo" aria-hidden="true"><svg viewBox="0 0 16 16" width="12" height="12" aria-hidden="true"><path d="M3 8h9M8 3.5 12.5 8 8 12.5" fill="none" stroke="currentColor" stroke-width="1.5"/></svg></span>
+</a></li>
+<li><a class="vcard" href="/ventures/posplugin/" data-stage="VALIDATION" data-stack="1" data-cat="INTEGRATIONS" data-q="posplugin fz-011 integrations point of sale posplug.in posplugin connects to any pos once and gives your app all of them through one api." data-rv style="--d:4">
+  <span class="vcard-top"><span class="vicon"><img src="/assets/posplug-animated.svg" alt="" width="46" height="46" loading="lazy" decoding="async"></span><span class="vid">FZ-011</span></span>
+  <span class="vname">PosPlugin</span>
+  <span class="vcat">INTEGRATIONS</span>
+  <span class="vdesc">PosPlugin connects to any POS once and gives your app all of them through one API.</span>
+  <span class="chips"><span class="chip">VALIDATION</span><span class="chip chip--acc">FZ stack</span></span>
+  <span class="vgo" aria-hidden="true"><svg viewBox="0 0 16 16" width="12" height="12" aria-hidden="true"><path d="M3 8h9M8 3.5 12.5 8 8 12.5" fill="none" stroke="currentColor" stroke-width="1.5"/></svg></span>
+</a></li>
+<li><a class="vcard" href="/ventures/keep-shipping/" data-stage="VALIDATION" data-stack="1" data-cat="DEVTOOLS" data-q="keep shipping fz-012 devtools deploys keepshipping.run keep shipping replaces that with one readable workflow file per repo that is checked before it runs." data-rv style="--d:5">
+  <span class="vcard-top"><span class="vicon"><img src="/assets/keepshipping-animated.svg" alt="" width="46" height="46" loading="lazy" decoding="async"></span><span class="vid">FZ-012</span></span>
+  <span class="vname">Keep Shipping</span>
+  <span class="vcat">DEVTOOLS</span>
+  <span class="vdesc">Keep Shipping replaces that with one readable workflow file per repo that is checked before it runs.</span>
+  <span class="chips"><span class="chip">VALIDATION</span><span class="chip chip--acc">FZ stack</span></span>
+  <span class="vgo" aria-hidden="true"><svg viewBox="0 0 16 16" width="12" height="12" aria-hidden="true"><path d="M3 8h9M8 3.5 12.5 8 8 12.5" fill="none" stroke="currentColor" stroke-width="1.5"/></svg></span>
+</a></li>
+<li><a class="vcard" href="/ventures/owlpost/" data-stage="VALIDATION" data-stack="1" data-cat="EMAIL" data-q="owlpost fz-013 email email owlpost.to owlpost is one email api: send, receive inbound mail as json, and give an agent its own address." data-rv style="--d:0">
+  <span class="vcard-top"><span class="vicon"><img src="/assets/owlpost-animated.svg" alt="" width="46" height="46" loading="lazy" decoding="async"></span><span class="vid">FZ-013</span></span>
+  <span class="vname">Owlpost</span>
+  <span class="vcat">EMAIL</span>
+  <span class="vdesc">Owlpost is one email API: send, receive inbound mail as JSON, and give an agent its own address.</span>
+  <span class="chips"><span class="chip">VALIDATION</span><span class="chip chip--acc">FZ stack</span></span>
+  <span class="vgo" aria-hidden="true"><svg viewBox="0 0 16 16" width="12" height="12" aria-hidden="true"><path d="M3 8h9M8 3.5 12.5 8 8 12.5" fill="none" stroke="currentColor" stroke-width="1.5"/></svg></span>
+</a></li>
+<li><a class="vcard" href="/ventures/bloodrank/" data-stage="VALIDATION" data-stack="0" data-cat="COMMUNITY" data-q="bloodrank fz-014 community bloodrank.dev bloodrank ranks people who run ai coding agents on what they spend and what they actually ship, side by side." data-rv style="--d:1">
+  <span class="vcard-top"><span class="vicon"><img src="/assets/bloodrank-animated.svg" alt="" width="46" height="46" loading="lazy" decoding="async"></span><span class="vid">FZ-014</span></span>
+  <span class="vname">Bloodrank</span>
+  <span class="vcat">COMMUNITY</span>
+  <span class="vdesc">Bloodrank ranks people who run AI coding agents on what they spend and what they actually ship, side by side.</span>
+  <span class="chips"><span class="chip">VALIDATION</span></span>
+  <span class="vgo" aria-hidden="true"><svg viewBox="0 0 16 16" width="12" height="12" aria-hidden="true"><path d="M3 8h9M8 3.5 12.5 8 8 12.5" fill="none" stroke="currentColor" stroke-width="1.5"/></svg></span>
+</a></li>
+<li><a class="vcard" href="/ventures/ratecla-im/" data-stage="VALIDATION" data-stack="0" data-cat="TRAVEL" data-q="ratecla.im fz-015 travel ratecla.im ratecla.im asks the hotel for that rate on your behalf and brings back a quote held for 24 hours." data-rv style="--d:2">
+  <span class="vcard-top"><span class="vicon"><img src="/assets/rateclaim-animated.svg" alt="" width="46" height="46" loading="lazy" decoding="async"></span><span class="vid">FZ-015</span></span>
+  <span class="vname">ratecla.im</span>
+  <span class="vcat">TRAVEL</span>
+  <span class="vdesc">ratecla.im asks the hotel for that rate on your behalf and brings back a quote held for 24 hours.</span>
+  <span class="chips"><span class="chip">VALIDATION</span></span>
+  <span class="vgo" aria-hidden="true"><svg viewBox="0 0 16 16" width="12" height="12" aria-hidden="true"><path d="M3 8h9M8 3.5 12.5 8 8 12.5" fill="none" stroke="currentColor" stroke-width="1.5"/></svg></span>
+</a></li>
+<li><a class="vcard" href="/ventures/sealbin/" data-stage="VALIDATION" data-stack="1" data-cat="SECURITY" data-q="sealbin fz-016 security sealed sharing sealb.in sealb.in seals the handoff on the sender’s machine and gives one link that the receiving agent opens once, then it is deleted." data-rv style="--d:3">
+  <span class="vcard-top"><span class="vicon"><img src="/assets/sealbin-animated.svg" alt="" width="46" height="46" loading="lazy" decoding="async"></span><span class="vid">FZ-016</span></span>
+  <span class="vname">Sealbin</span>
+  <span class="vcat">SECURITY</span>
+  <span class="vdesc">sealb.in seals the handoff on the sender’s machine and gives one link that the receiving agent opens once, then it is deleted.</span>
+  <span class="chips"><span class="chip">VALIDATION</span><span class="chip chip--acc">FZ stack</span></span>
+  <span class="vgo" aria-hidden="true"><svg viewBox="0 0 16 16" width="12" height="12" aria-hidden="true"><path d="M3 8h9M8 3.5 12.5 8 8 12.5" fill="none" stroke="currentColor" stroke-width="1.5"/></svg></span>
+</a></li>
+<li><a class="vcard" href="/ventures/release-show/" data-stage="VALIDATION" data-stack="1" data-cat="VIDEO" data-q="release.show fz-017 video release videos release.show release.show turns github releases, merged pull requests and website changes into 30 to 90 second videos: branded, captioned and ready to post. every release deserves a premiere." data-rv style="--d:4">
+  <span class="vcard-top"><span class="vicon"><img src="/assets/releaseshow-animated.svg" alt="" width="46" height="46" loading="lazy" decoding="async"></span><span class="vid">FZ-017</span></span>
+  <span class="vname">release.show</span>
+  <span class="vcat">VIDEO</span>
+  <span class="vdesc">release.show turns GitHub releases, merged pull requests and website changes into 30 to 90 second videos: branded, captioned and ready to post. Every release deserves a premiere.</span>
+  <span class="chips"><span class="chip">VALIDATION</span><span class="chip chip--acc">FZ stack</span></span>
+  <span class="vgo" aria-hidden="true"><svg viewBox="0 0 16 16" width="12" height="12" aria-hidden="true"><path d="M3 8h9M8 3.5 12.5 8 8 12.5" fill="none" stroke="currentColor" stroke-width="1.5"/></svg></span>
+</a></li>
+<li><a class="vcard" href="/ventures/living-brain/" data-stage="VALIDATION" data-stack="1" data-cat="DEVTOOLS" data-q="living brain fz-018 devtools knowledge livingbrain.wiki living brain is planned as a brain for your team that writes its own company wiki and keeps improving it: in your coding agent over mcp, in your terminal with one fast rust binary, and in team chat (slack, discord)." data-rv style="--d:5">
+  <span class="vcard-top"><span class="vicon"><img src="/assets/livingbrain-animated.svg" alt="" width="46" height="46" loading="lazy" decoding="async"></span><span class="vid">FZ-018</span></span>
+  <span class="vname">Living Brain</span>
+  <span class="vcat">DEVTOOLS</span>
+  <span class="vdesc">Living Brain is planned as a brain for your team that writes its own company wiki and keeps improving it: in your coding agent over MCP, in your terminal with one fast Rust binary, and in team chat (Slack, Discord).</span>
+  <span class="chips"><span class="chip">VALIDATION</span><span class="chip chip--acc">FZ stack</span></span>
+  <span class="vgo" aria-hidden="true"><svg viewBox="0 0 16 16" width="12" height="12" aria-hidden="true"><path d="M3 8h9M8 3.5 12.5 8 8 12.5" fill="none" stroke="currentColor" stroke-width="1.5"/></svg></span>
+</a></li>
+<li><a class="vcard" href="/ventures/shoal/" data-stage="VALIDATION" data-stack="1" data-cat="SIMULATION" data-q="shoal fz-019 simulation launch rehearsal shoal.ing shoal lets you rehearse the launch first. paste a launch post or readme, and thousands of simulated developers read it, vote and argue about it on a simulated hacker news, reddit or x." data-rv style="--d:0">
+  <span class="vcard-top"><span class="vicon"><img src="/assets/shoal-animated.svg" alt="" width="46" height="46" loading="lazy" decoding="async"></span><span class="vid">FZ-019</span></span>
+  <span class="vname">Shoal</span>
+  <span class="vcat">SIMULATION</span>
+  <span class="vdesc">Shoal lets you rehearse the launch first. Paste a launch post or README, and thousands of simulated developers read it, vote and argue about it on a simulated Hacker News, Reddit or X.</span>
+  <span class="chips"><span class="chip">VALIDATION</span><span class="chip chip--acc">FZ stack</span></span>
+  <span class="vgo" aria-hidden="true"><svg viewBox="0 0 16 16" width="12" height="12" aria-hidden="true"><path d="M3 8h9M8 3.5 12.5 8 8 12.5" fill="none" stroke="currentColor" stroke-width="1.5"/></svg></span>
+</a></li>
+<li><a class="vcard" href="/ventures/tokker/" data-stage="VALIDATION" data-stack="1" data-cat="PRICING" data-q="tokker fz-020 pricing ai token prices tokker.dev tokker is a free, open price index for ai tokens. it puts every model api and every ai subscription on one scale, us dollars per 1m tokens, so you can see the cheapest way to get the tokens you need." data-rv style="--d:1">
+  <span class="vcard-top"><span class="vicon"><img src="/assets/tokker-animated.svg" alt="" width="46" height="46" loading="lazy" decoding="async"></span><span class="vid">FZ-020</span></span>
+  <span class="vname">Tokker</span>
+  <span class="vcat">PRICING</span>
+  <span class="vdesc">Tokker is a free, open price index for AI tokens. It puts every model API and every AI subscription on one scale, US dollars per 1M tokens, so you can see the cheapest way to get the tokens you need.</span>
+  <span class="chips"><span class="chip">VALIDATION</span><span class="chip chip--acc">FZ stack</span></span>
+  <span class="vgo" aria-hidden="true"><svg viewBox="0 0 16 16" width="12" height="12" aria-hidden="true"><path d="M3 8h9M8 3.5 12.5 8 8 12.5" fill="none" stroke="currentColor" stroke-width="1.5"/></svg></span>
+</a></li>
+<li><a class="vcard" href="/ventures/ledgers/" data-stage="VALIDATION" data-stack="1" data-cat="ACCOUNTING" data-q="ledgers fz-021 accounting bookkeeping ledgers.sh ledgers is open-source accounting built for ai agents. agents read invoices, match payments and draft entries; policy decides what they may post; you approve the rest." data-rv style="--d:2">
+  <span class="vcard-top"><span class="vicon"><img src="/assets/ledgers-animated.svg" alt="" width="46" height="46" loading="lazy" decoding="async"></span><span class="vid">FZ-021</span></span>
+  <span class="vname">Ledgers</span>
+  <span class="vcat">ACCOUNTING</span>
+  <span class="vdesc">Ledgers is open-source accounting built for AI agents. Agents read invoices, match payments and draft entries; policy decides what they may post; you approve the rest.</span>
+  <span class="chips"><span class="chip">VALIDATION</span><span class="chip chip--acc">FZ stack</span></span>
+  <span class="vgo" aria-hidden="true"><svg viewBox="0 0 16 16" width="12" height="12" aria-hidden="true"><path d="M3 8h9M8 3.5 12.5 8 8 12.5" fill="none" stroke="currentColor" stroke-width="1.5"/></svg></span>
+</a></li>
+<li><a class="vcard" href="/ventures/ghostwritin/" data-stage="VALIDATION" data-stack="1" data-cat="WRITING" data-q="ghostwritin' fz-022 writing writing in your voice ghostwrit.in ghostwritin’ rewrites ai-assisted drafts into your own natural voice, then checks that the meaning stayed exactly the same." data-rv style="--d:3">
+  <span class="vcard-top"><span class="vicon"><img src="/assets/ghostwritin-animated.svg" alt="" width="46" height="46" loading="lazy" decoding="async"></span><span class="vid">FZ-022</span></span>
+  <span class="vname">Ghostwritin'</span>
+  <span class="vcat">WRITING</span>
+  <span class="vdesc">Ghostwritin’ rewrites AI-assisted drafts into your own natural voice, then checks that the meaning stayed exactly the same.</span>
+  <span class="chips"><span class="chip">VALIDATION</span><span class="chip chip--acc">FZ stack</span></span>
+  <span class="vgo" aria-hidden="true"><svg viewBox="0 0 16 16" width="12" height="12" aria-hidden="true"><path d="M3 8h9M8 3.5 12.5 8 8 12.5" fill="none" stroke="currentColor" stroke-width="1.5"/></svg></span>
+</a></li>
+<li><a class="vcard" href="/ventures/squeezin/" data-stage="VALIDATION" data-stack="1" data-cat="LINKS" data-q="squeezin fz-023 links short links squeez.in squeezin is a free link shortener with no ads and no signup. add + to any squeez.in link to see where it goes, who made it and whether it is safe before you open it." data-rv style="--d:4">
+  <span class="vcard-top"><span class="vicon"><img src="/assets/squeezin-animated.svg" alt="" width="46" height="46" loading="lazy" decoding="async"></span><span class="vid">FZ-023</span></span>
+  <span class="vname">Squeezin</span>
+  <span class="vcat">LINKS</span>
+  <span class="vdesc">Squeezin is a free link shortener with no ads and no signup. Add + to any squeez.in link to see where it goes, who made it and whether it is safe before you open it.</span>
+  <span class="chips"><span class="chip">VALIDATION</span><span class="chip chip--acc">FZ stack</span></span>
+  <span class="vgo" aria-hidden="true"><svg viewBox="0 0 16 16" width="12" height="12" aria-hidden="true"><path d="M3 8h9M8 3.5 12.5 8 8 12.5" fill="none" stroke="currentColor" stroke-width="1.5"/></svg></span>
+</a></li>
+<!-- fz:vgrid:end -->
+    </ul>
+    <p class="vempty" data-vempty hidden>No venture matches. <button type="button" class="link" data-vreset style="background:none;border:0;border-bottom:1px solid var(--hair-3);cursor:pointer">Show all</button></p>
   </div>
-  <!-- When each venture's GitHub org was created, and its commits per day since.
-       Static SVG generated by tools/sync-ventures.js from assets/timeline-data.json;
-       assets/fz-timeline.js plays it as a slow sweep once it is in view. -->
-  <div class="tl" id="fz-timeline">
-    <div class="reel-head tl-head-row">
-      <p class="mono tl-k" id="tl-h">FOUNDED &middot; COMMITS PER DAY</p>
-      <p class="mono tl-k tl-range"><span id="tl-now" aria-hidden="true"></span><span class="tl-span">15 AUG &ndash; 9 OCT 2026 &middot; WITA</span></p>
+</section>
+
+<section class="band" data-rv aria-hidden="true">
+  <img src="/assets/ui/layers.webp" srcset="/assets/ui/layers-800.webp 800w, /assets/ui/layers.webp 1600w" sizes="100vw" alt="" width="1600" height="900" loading="lazy" decoding="async">
+</section>
+
+<section class="sec sec--flush" id="system" aria-labelledby="factory-h">
+  <div class="wrap">
+    <div class="sec-head">
+      <div>
+        <p class="eyebrow">The factory</p>
+        <h2 class="h2" id="factory-h">One operating system. Every function, an&nbsp;agent.</h2>
+        <p class="lede">Factory Zero OS runs as five layers. Each function in each layer is an agent, and every venture inherits all of them.</p>
+      </div>
+      <div class="sec-head__aside"><a class="link" href="/system/">How the system works <span aria-hidden="true">&rarr;</span></a></div>
     </div>
-    <div class="tl-scroll" tabindex="0" aria-labelledby="tl-h">
+    <ol class="steps" style="--n:5">
+<!-- fz:steps:start -->
+      <li class="step" data-rv style="--d:0"><span class="step-n"><span>1</span></span><h3>DISCOVER</h3><ul><li><b>Research</b><span>Reads markets and competitors</span></li><li><b>Strategy</b><span>Scores opportunities against the thesis</span></li><li><b>Analytics</b><span>Keeps the usage models current</span></li></ul></li>
+      <li class="step" data-rv style="--d:1"><span class="step-n"><span>2</span></span><h3>BUILD</h3><ul><li><b>Product</b><span>Turns decisions into specifications</span></li><li><b>Engineering</b><span>Writes the code and ships it</span></li><li><b>Design</b><span>Drafts interface variants</span></li><li><b>QA</b><span>Writes and runs the tests</span></li></ul></li>
+      <li class="step" data-rv style="--d:2"><span class="step-n"><span>3</span></span><h3>OPERATE</h3><ul><li><b>Infrastructure</b><span>Runs deployments and capacity</span></li><li><b>Security</b><span>Audits code and access policies</span></li><li><b>Support</b><span>Answers support from the docs</span></li><li><b>Finance</b><span>Reconciles payments and the ledger</span></li></ul></li>
+      <li class="step" data-rv style="--d:3"><span class="step-n"><span>4</span></span><h3>DISTRIBUTE</h3><ul><li><b>Growth</b><span>Designs growth experiments</span></li><li><b>Content</b><span>Writes release notes and posts</span></li><li><b>Sales</b><span>Drafts outreach for review</span></li></ul></li>
+      <li class="step" data-rv style="--d:4"><span class="step-n"><span>5</span></span><h3>LEARN</h3><ul><li><b>Legal</b><span>Drafts terms for human review</span></li><li><b>Knowledge</b><span>Turns what worked into playbooks</span></li><li><b>Optimization</b><span>Looks for what keeps users</span></li></ul></li>
+<!-- fz:steps:end -->
+    </ol>
+  </div>
+</section>
+
+<section class="sec" id="thesis" aria-labelledby="thesis-h">
+  <div class="wrap split">
+    <div>
+      <p class="eyebrow">Thesis</p>
+      <h2 class="h1" id="thesis-h" style="margin-top:18px">The company is becoming software.</h2>
+      <p class="lede" style="margin-top:22px">Historically, software automated individual workflows. The next step is software coordinating the organization itself. Factory Zero builds real companies around that transition. <strong style="color:var(--fg);font-weight:500">We build for the second model.</strong></p>
+    </div>
+    <div class="couplets">
+      <div class="couplet" data-rv style="--d:0"><span class="was">Software automated the worker.</span><span>Agents automate the organization.</span></div>
+      <div class="couplet" data-rv style="--d:1"><span class="was">The traditional company coordinates humans.</span><span>The AI-native company coordinates intelligence.</span></div>
+    </div>
+  </div>
+</section>
+
+<section class="sec" aria-labelledby="branch-h">
+  <div class="wrap split">
+    <div>
+      <p class="eyebrow">One system, many ventures</p>
+      <h2 class="h2" id="branch-h" style="margin-top:18px">One factory. Many distinct ventures.</h2>
+      <p class="lede" style="margin-top:22px">Every venture inherits the same foundation. Nothing is rebuilt. Each runs with its own brand, product, customers, data boundaries and strategy.</p>
+      <div class="chips" style="margin-top:28px;gap:8px">
+        <span class="chip">Identity</span><span class="chip">Payments &middot; billing</span><span class="chip">Analytics</span><span class="chip">Deployment</span><span class="chip">Observability</span><span class="chip">Agent orchestration</span><span class="chip">Customer support</span><span class="chip">Marketing automation</span><span class="chip">Finance</span><span class="chip">Knowledge</span><span class="chip">Security</span><span class="chip">Experimentation</span><span class="chip">Internal tooling</span>
+      </div>
+    </div>
+    <div>
+      <p class="eyebrow eyebrow--plain">Autonomy is an architecture, not a claim</p>
+      <p class="body" style="margin:14px 0 22px">We design ventures to run at levels 3 to 5. Humans can intervene at every level, and a named human is accountable for every venture.</p>
+      <ol class="levels">
+        <li class="level"><span class="level-n">LEVEL 0</span><span class="level-name">Human-operated</span><span class="level-bar" aria-hidden="true"><i></i><i></i><i></i><i></i><i></i></span></li>
+        <li class="level"><span class="level-n">LEVEL 1</span><span class="level-name">AI-assisted</span><span class="level-bar" aria-hidden="true"><i class="on"></i><i></i><i></i><i></i><i></i></span></li>
+        <li class="level"><span class="level-n">LEVEL 2</span><span class="level-name">Agent workflows</span><span class="level-bar" aria-hidden="true"><i class="on"></i><i class="on"></i><i></i><i></i><i></i></span></li>
+        <li class="level is-target"><span class="level-n">LEVEL 3</span><span class="level-name">Agent-operated</span><span class="level-bar" aria-hidden="true"><i class="on"></i><i class="on"></i><i class="on"></i><i></i><i></i></span></li>
+        <li class="level is-target"><span class="level-n">LEVEL 4</span><span class="level-name">Self-optimizing</span><span class="level-bar" aria-hidden="true"><i class="on"></i><i class="on"></i><i class="on"></i><i class="on"></i><i></i></span></li>
+        <li class="level is-target"><span class="level-n">LEVEL 5</span><span class="level-name">Autonomous company</span><span class="level-bar" aria-hidden="true"><i class="on"></i><i class="on"></i><i class="on"></i><i class="on"></i><i class="on"></i></span></li>
+      </ol>
+    </div>
+  </div>
+</section>
+
+<section class="band" data-rv aria-hidden="true">
+  <img src="/assets/ui/films.webp" srcset="/assets/ui/films-800.webp 800w, /assets/ui/films.webp 1600w" sizes="100vw" alt="" width="1600" height="900" loading="lazy" decoding="async">
+</section>
+
+<section class="sec sec--flush" id="films" aria-labelledby="films-h">
+  <div class="wrap">
+    <div class="sec-head">
+      <div>
+        <p class="eyebrow">The films</p>
+        <h2 class="h2" id="films-h">Films from the ventures.</h2>
+      </div>
+      <div class="sec-head__aside"><p class="vcount">Press play on any poster</p></div>
+    </div>
+<!-- fz:films:start -->
+  <ul class="films-grid">
+    <li><figure class="film" id="film-livingbrain">
+  <video class="fz-film" controls playsinline preload="none" poster="/assets/films/livingbrain-poster.jpg" width="1920" height="1080" aria-label="Living Brain film">
+    <source src="/assets/films/livingbrain-film.mp4" type="video/mp4">
+    <a href="/assets/films/livingbrain-film.mp4">Download the Living Brain film (MP4)</a>
+  </video>
+  <figcaption class="film-cap"><a class="film-name" href="/ventures/living-brain/">Living Brain</a><span class="film-line">A brain for your team.</span></figcaption>
+</figure></li>
+    <li><figure class="film" id="film-owlpost">
+  <video class="fz-film" controls playsinline preload="none" poster="/assets/films/owlpost-poster.jpg" width="1920" height="1080" aria-label="Owlpost film">
+    <source src="/assets/films/owlpost-film.mp4" type="video/mp4">
+    <a href="/assets/films/owlpost-film.mp4">Download the Owlpost film (MP4)</a>
+  </video>
+  <figcaption class="film-cap"><a class="film-name" href="/ventures/owlpost/">Owlpost</a><span class="film-line">Email for apps and agents.</span></figcaption>
+</figure></li>
+    <li><figure class="film" id="film-shoal">
+  <video class="fz-film" controls playsinline preload="none" poster="/assets/films/shoal-poster.jpg" width="1920" height="1080" aria-label="Shoal film">
+    <source src="/assets/films/shoal-film.mp4" type="video/mp4">
+    <a href="/assets/films/shoal-film.mp4">Download the Shoal film (MP4)</a>
+  </video>
+  <figcaption class="film-cap"><a class="film-name" href="/ventures/shoal/">Shoal</a><span class="film-line">Rehearse your launch.</span></figcaption>
+</figure></li>
+    <li><figure class="film" id="film-rateclaim">
+  <video class="fz-film" controls playsinline preload="none" poster="/assets/films/rateclaim-poster.jpg" width="1920" height="1080" aria-label="ratecla.im film">
+    <source src="/assets/films/rateclaim-film.mp4" type="video/mp4">
+    <a href="/assets/films/rateclaim-film.mp4">Download the ratecla.im film (MP4)</a>
+  </video>
+  <figcaption class="film-cap"><a class="film-name" href="/ventures/ratecla-im/">ratecla.im</a><span class="film-line">The rate they don’t publish.</span></figcaption>
+</figure></li>
+    <li><figure class="film" id="film-kontinuum-v3">
+  <video class="fz-film" controls playsinline preload="none" poster="/assets/films/kontinuum-v3-poster.jpg" width="1920" height="1080" aria-label="Kontinuum film">
+    <source src="/assets/films/kontinuum-v3.mp4" type="video/mp4">
+    <a href="/assets/films/kontinuum-v3.mp4">Download the Kontinuum film (MP4)</a>
+  </video>
+  <figcaption class="film-cap"><a class="film-name" href="/ventures/kontinuum/">Kontinuum</a><span class="film-line">A new way of producing.</span></figcaption>
+</figure></li>
+    <li><figure class="film" id="film-kontinuum-djs">
+  <video class="fz-film" controls playsinline preload="none" poster="/assets/films/kontinuum-djs-poster.jpg" width="1920" height="1080" aria-label="Kontinuum for DJs and producers film">
+    <source src="/assets/films/kontinuum-djs-film.mp4" type="video/mp4">
+    <a href="/assets/films/kontinuum-djs-film.mp4">Download the Kontinuum for DJs and producers film (MP4)</a>
+  </video>
+  <figcaption class="film-cap"><a class="film-name" href="/ventures/kontinuum/">Kontinuum</a><span class="film-title">Kontinuum for DJs and producers</span><span class="film-line">Your decks are still composing.</span></figcaption>
+</figure></li>
+    <li><figure class="film" id="film-colonizer">
+  <video class="fz-film" controls playsinline preload="none" poster="/assets/films/colonizer-poster.jpg" width="1920" height="1080" aria-label="Colonizer film">
+    <source src="/assets/films/colonizer-promo.mp4" type="video/mp4">
+    <a href="/assets/films/colonizer-promo.mp4">Download the Colonizer film (MP4)</a>
+  </video>
+  <figcaption class="film-cap"><a class="film-name" href="/ventures/colonizer/">Colonizer</a><span class="film-line">Colonize your backlog.</span></figcaption>
+</figure></li>
+    <li><figure class="film" id="film-yoginini">
+  <video class="fz-film" controls playsinline preload="none" poster="/assets/films/yoginini-poster-v2.jpg" width="1920" height="1080" aria-label="Yoginini film">
+    <source src="/assets/films/yoginini-promo-v2.mp4" type="video/mp4">
+    <a href="/assets/films/yoginini-promo-v2.mp4">Download the Yoginini film (MP4)</a>
+  </video>
+  <figcaption class="film-cap"><a class="film-name" href="/ventures/yoginini/">Yoginini</a><span class="film-line">A yoga teacher who can see you.</span></figcaption>
+</figure></li>
+    <li><figure class="film" id="film-posplug">
+  <video class="fz-film" controls playsinline preload="none" poster="/assets/films/posplug-promo-poster.jpg" width="1920" height="1080" aria-label="PosPlugin film">
+    <source src="/assets/films/posplug-promo-v2.mp4" type="video/mp4">
+    <a href="/assets/films/posplug-promo-v2.mp4">Download the PosPlugin film (MP4)</a>
+  </video>
+  <figcaption class="film-cap"><a class="film-name" href="/ventures/posplugin/">PosPlugin</a><span class="film-line">Any POS. One API.</span></figcaption>
+</figure></li>
+    <li><figure class="film" id="film-ledgers">
+  <video class="fz-film" controls playsinline preload="none" poster="/assets/films/ledgers-poster.jpg" width="1920" height="1080" aria-label="ledgers.sh film">
+    <source src="/assets/films/ledgers-promo-v2.mp4" type="video/mp4">
+    <a href="/assets/films/ledgers-promo-v2.mp4">Download the ledgers.sh film (MP4)</a>
+  </video>
+  <figcaption class="film-cap"><a class="film-name" href="/ventures/ledgers/">Ledgers</a><span class="film-title">ledgers.sh</span><span class="film-line">Agents do the books. People keep control.</span></figcaption>
+</figure></li>
+    <li><figure class="film" id="film-cratefield">
+  <video class="fz-film" controls playsinline preload="none" poster="/assets/films/cratefield-poster.jpg" width="1920" height="1080" aria-label="Cratefield film">
+    <source src="/assets/films/cratefield-promo.mp4" type="video/mp4">
+    <a href="/assets/films/cratefield-promo.mp4">Download the Cratefield film (MP4)</a>
+  </video>
+  <figcaption class="film-cap"><a class="film-name" href="/ventures/cratefield/">Cratefield</a><span class="film-line">The boring 70% of a backend, in about a minute.</span></figcaption>
+</figure></li>
+    <li><figure class="film" id="film-supportgenius">
+  <video class="fz-film" controls playsinline preload="none" poster="/assets/films/supportgenius-poster.jpg" width="1920" height="1080" aria-label="SupportGenius film">
+    <source src="/assets/films/supportgenius-promo.mp4" type="video/mp4">
+    <a href="/assets/films/supportgenius-promo.mp4">Download the SupportGenius film (MP4)</a>
+  </video>
+  <figcaption class="film-cap"><a class="film-name" href="/ventures/supportgenius/">SupportGenius</a><span class="film-line">Support that answers.</span></figcaption>
+</figure></li>
+    <li><figure class="film" id="film-findsyou">
+  <video class="fz-film" controls playsinline preload="none" poster="/assets/films/findsyou-poster.jpg" width="1920" height="1080" aria-label="FindsYou film">
+    <source src="/assets/films/findsyou-promo.mp4" type="video/mp4">
+    <a href="/assets/films/findsyou-promo.mp4">Download the FindsYou film (MP4)</a>
+  </video>
+  <figcaption class="film-cap"><a class="film-name" href="/ventures/findsyou-work/">FindsYou.work</a><span class="film-title">FindsYou</span><span class="film-line">Stop looking. It finds you work.</span></figcaption>
+</figure></li>
+    <li><figure class="film" id="film-grooveguru">
+  <video class="fz-film" controls playsinline preload="none" poster="/assets/films/grooveguru-poster.jpg" width="1920" height="1080" aria-label="Groove Guru film">
+    <source src="/assets/films/grooveguru-promo.mp4" type="video/mp4">
+    <a href="/assets/films/grooveguru-promo.mp4">Download the Groove Guru film (MP4)</a>
+  </video>
+  <figcaption class="film-cap"><a class="film-name" href="/ventures/groove-guru/">Groove Guru</a><span class="film-line">Hear your mix before the room does.</span></figcaption>
+</figure></li>
+    <li><figure class="film" id="film-sealbin">
+  <video class="fz-film" controls playsinline preload="none" poster="/assets/films/sealbin-poster.jpg" width="1920" height="1080" aria-label="sealb.in film">
+    <source src="/assets/films/sealbin-promo.mp4" type="video/mp4">
+    <a href="/assets/films/sealbin-promo.mp4">Download the sealb.in film (MP4)</a>
+  </video>
+  <figcaption class="film-cap"><a class="film-name" href="/ventures/sealbin/">Sealbin</a><span class="film-title">sealb.in</span><span class="film-line">The sealed handoff between agents.</span></figcaption>
+</figure></li>
+  </ul>
+<!-- fz:films:end -->
+  </div>
+</section>
+
+<section class="sec" aria-labelledby="tl-h">
+  <div class="wrap">
+    <div class="sec-head">
+      <div>
+        <p class="eyebrow">Continuous creation</p>
+        <h2 class="h2" style="margin-top:18px">The factory never stops.</h2>
+        <p class="lede">Ventures are launched continuously, not one at a time over years. Each cycle teaches the next.</p>
+      </div>
+    </div>
+    <!-- Static SVG generated by tools/sync-ventures.js from assets/timeline-data.json;
+         assets/fz-timeline.js plays it as a slow sweep once it is in view. -->
+    <div class="tl" id="fz-timeline">
+      <div class="tl-head-row">
+        <p class="tl-k" id="tl-h">FOUNDED &middot; COMMITS PER DAY</p>
+        <p class="tl-k tl-range"><span id="tl-now" aria-hidden="true"></span><span class="tl-span">15 AUG &ndash; 9 OCT 2026 &middot; WITA</span></p>
+      </div>
+      <div class="tl-scroll" tabindex="0" aria-labelledby="tl-h">
 <!-- fz:timeline:start -->
 <svg class="tl-svg" viewBox="0 0 1200 546" role="group" aria-labelledby="tl-title tl-desc" data-days="56" data-window="15 AUG – 9 OCT" data-x0="18" data-step="21.0909">
   <title id="tl-title">When each venture started, and its commits per day</title>
@@ -740,287 +1082,101 @@
   <line class="tl-head" x1="18" x2="18" y1="16" y2="546" aria-hidden="true"/>
 </svg>
 <!-- fz:timeline:end -->
-    </div>
-  </div>
-</section>
-
-<section class="section films" id="films" aria-labelledby="films-h">
-  <div class="section-head">
-    <p class="eyebrow eyebrow--flush">THE FILMS</p>
-    <p class="mono hint">CLICK A POSTER TO PLAY</p>
-  </div>
-  <h2 class="h-lg" id="films-h">Films from the ventures.</h2>
-<!-- fz:films:start -->
-  <ul class="films-grid">
-    <li><figure class="film" id="film-livingbrain">
-  <video class="fz-film" controls playsinline preload="none" poster="/assets/films/livingbrain-poster.jpg" width="1920" height="1080" aria-label="Living Brain film">
-    <source src="/assets/films/livingbrain-film.mp4" type="video/mp4">
-    <a href="/assets/films/livingbrain-film.mp4">Download the Living Brain film (MP4)</a>
-  </video>
-  <figcaption class="film-cap"><a class="film-name" href="/ventures/living-brain/">Living Brain</a><span class="film-line">A brain for your team.</span></figcaption>
-</figure></li>
-    <li><figure class="film" id="film-owlpost">
-  <video class="fz-film" controls playsinline preload="none" poster="/assets/films/owlpost-poster.jpg" width="1920" height="1080" aria-label="Owlpost film">
-    <source src="/assets/films/owlpost-film.mp4" type="video/mp4">
-    <a href="/assets/films/owlpost-film.mp4">Download the Owlpost film (MP4)</a>
-  </video>
-  <figcaption class="film-cap"><a class="film-name" href="/ventures/owlpost/">Owlpost</a><span class="film-line">Email for apps and agents.</span></figcaption>
-</figure></li>
-    <li><figure class="film" id="film-shoal">
-  <video class="fz-film" controls playsinline preload="none" poster="/assets/films/shoal-poster.jpg" width="1920" height="1080" aria-label="Shoal film">
-    <source src="/assets/films/shoal-film.mp4" type="video/mp4">
-    <a href="/assets/films/shoal-film.mp4">Download the Shoal film (MP4)</a>
-  </video>
-  <figcaption class="film-cap"><a class="film-name" href="/ventures/shoal/">Shoal</a><span class="film-line">Rehearse your launch.</span></figcaption>
-</figure></li>
-    <li><figure class="film" id="film-rateclaim">
-  <video class="fz-film" controls playsinline preload="none" poster="/assets/films/rateclaim-poster.jpg" width="1920" height="1080" aria-label="ratecla.im film">
-    <source src="/assets/films/rateclaim-film.mp4" type="video/mp4">
-    <a href="/assets/films/rateclaim-film.mp4">Download the ratecla.im film (MP4)</a>
-  </video>
-  <figcaption class="film-cap"><a class="film-name" href="/ventures/ratecla-im/">ratecla.im</a><span class="film-line">The rate they don’t publish.</span></figcaption>
-</figure></li>
-    <li><figure class="film" id="film-kontinuum-v3">
-  <video class="fz-film" controls playsinline preload="none" poster="/assets/films/kontinuum-v3-poster.jpg" width="1920" height="1080" aria-label="Kontinuum film">
-    <source src="/assets/films/kontinuum-v3.mp4" type="video/mp4">
-    <a href="/assets/films/kontinuum-v3.mp4">Download the Kontinuum film (MP4)</a>
-  </video>
-  <figcaption class="film-cap"><a class="film-name" href="/ventures/kontinuum/">Kontinuum</a><span class="film-line">A new way of producing.</span></figcaption>
-</figure></li>
-    <li><figure class="film" id="film-kontinuum-djs">
-  <video class="fz-film" controls playsinline preload="none" poster="/assets/films/kontinuum-djs-poster.jpg" width="1920" height="1080" aria-label="Kontinuum for DJs and producers film">
-    <source src="/assets/films/kontinuum-djs-film.mp4" type="video/mp4">
-    <a href="/assets/films/kontinuum-djs-film.mp4">Download the Kontinuum for DJs and producers film (MP4)</a>
-  </video>
-  <figcaption class="film-cap"><a class="film-name" href="/ventures/kontinuum/">Kontinuum</a><span class="film-title">Kontinuum for DJs and producers</span><span class="film-line">Your decks are still composing.</span></figcaption>
-</figure></li>
-    <li><figure class="film" id="film-colonizer">
-  <video class="fz-film" controls playsinline preload="none" poster="/assets/films/colonizer-poster.jpg" width="1920" height="1080" aria-label="Colonizer film">
-    <source src="/assets/films/colonizer-promo.mp4" type="video/mp4">
-    <a href="/assets/films/colonizer-promo.mp4">Download the Colonizer film (MP4)</a>
-  </video>
-  <figcaption class="film-cap"><a class="film-name" href="/ventures/colonizer/">Colonizer</a><span class="film-line">Colonize your backlog.</span></figcaption>
-</figure></li>
-    <li><figure class="film" id="film-yoginini">
-  <video class="fz-film" controls playsinline preload="none" poster="/assets/films/yoginini-poster-v2.jpg" width="1920" height="1080" aria-label="Yoginini film">
-    <source src="/assets/films/yoginini-promo-v2.mp4" type="video/mp4">
-    <a href="/assets/films/yoginini-promo-v2.mp4">Download the Yoginini film (MP4)</a>
-  </video>
-  <figcaption class="film-cap"><a class="film-name" href="/ventures/yoginini/">Yoginini</a><span class="film-line">A yoga teacher who can see you.</span></figcaption>
-</figure></li>
-    <li><figure class="film" id="film-posplug">
-  <video class="fz-film" controls playsinline preload="none" poster="/assets/films/posplug-promo-poster.jpg" width="1920" height="1080" aria-label="PosPlugin film">
-    <source src="/assets/films/posplug-promo-v2.mp4" type="video/mp4">
-    <a href="/assets/films/posplug-promo-v2.mp4">Download the PosPlugin film (MP4)</a>
-  </video>
-  <figcaption class="film-cap"><a class="film-name" href="/ventures/posplugin/">PosPlugin</a><span class="film-line">Any POS. One API.</span></figcaption>
-</figure></li>
-    <li><figure class="film" id="film-ledgers">
-  <video class="fz-film" controls playsinline preload="none" poster="/assets/films/ledgers-poster.jpg" width="1920" height="1080" aria-label="ledgers.sh film">
-    <source src="/assets/films/ledgers-promo-v2.mp4" type="video/mp4">
-    <a href="/assets/films/ledgers-promo-v2.mp4">Download the ledgers.sh film (MP4)</a>
-  </video>
-  <figcaption class="film-cap"><a class="film-name" href="/ventures/ledgers/">Ledgers</a><span class="film-title">ledgers.sh</span><span class="film-line">Agents do the books. People keep control.</span></figcaption>
-</figure></li>
-    <li><figure class="film" id="film-cratefield">
-  <video class="fz-film" controls playsinline preload="none" poster="/assets/films/cratefield-poster.jpg" width="1920" height="1080" aria-label="Cratefield film">
-    <source src="/assets/films/cratefield-promo.mp4" type="video/mp4">
-    <a href="/assets/films/cratefield-promo.mp4">Download the Cratefield film (MP4)</a>
-  </video>
-  <figcaption class="film-cap"><a class="film-name" href="/ventures/cratefield/">Cratefield</a><span class="film-line">The boring 70% of a backend, in about a minute.</span></figcaption>
-</figure></li>
-    <li><figure class="film" id="film-supportgenius">
-  <video class="fz-film" controls playsinline preload="none" poster="/assets/films/supportgenius-poster.jpg" width="1920" height="1080" aria-label="SupportGenius film">
-    <source src="/assets/films/supportgenius-promo.mp4" type="video/mp4">
-    <a href="/assets/films/supportgenius-promo.mp4">Download the SupportGenius film (MP4)</a>
-  </video>
-  <figcaption class="film-cap"><a class="film-name" href="/ventures/supportgenius/">SupportGenius</a><span class="film-line">Support that answers.</span></figcaption>
-</figure></li>
-    <li><figure class="film" id="film-findsyou">
-  <video class="fz-film" controls playsinline preload="none" poster="/assets/films/findsyou-poster.jpg" width="1920" height="1080" aria-label="FindsYou film">
-    <source src="/assets/films/findsyou-promo.mp4" type="video/mp4">
-    <a href="/assets/films/findsyou-promo.mp4">Download the FindsYou film (MP4)</a>
-  </video>
-  <figcaption class="film-cap"><a class="film-name" href="/ventures/findsyou-work/">FindsYou.work</a><span class="film-title">FindsYou</span><span class="film-line">Stop looking. It finds you work.</span></figcaption>
-</figure></li>
-    <li><figure class="film" id="film-grooveguru">
-  <video class="fz-film" controls playsinline preload="none" poster="/assets/films/grooveguru-poster.jpg" width="1920" height="1080" aria-label="Groove Guru film">
-    <source src="/assets/films/grooveguru-promo.mp4" type="video/mp4">
-    <a href="/assets/films/grooveguru-promo.mp4">Download the Groove Guru film (MP4)</a>
-  </video>
-  <figcaption class="film-cap"><a class="film-name" href="/ventures/groove-guru/">Groove Guru</a><span class="film-line">Hear your mix before the room does.</span></figcaption>
-</figure></li>
-    <li><figure class="film" id="film-sealbin">
-  <video class="fz-film" controls playsinline preload="none" poster="/assets/films/sealbin-poster.jpg" width="1920" height="1080" aria-label="sealb.in film">
-    <source src="/assets/films/sealbin-promo.mp4" type="video/mp4">
-    <a href="/assets/films/sealbin-promo.mp4">Download the sealb.in film (MP4)</a>
-  </video>
-  <figcaption class="film-cap"><a class="film-name" href="/ventures/sealbin/">Sealbin</a><span class="film-title">sealb.in</span><span class="film-line">The sealed handoff between agents.</span></figcaption>
-</figure></li>
-  </ul>
-<!-- fz:films:end -->
-</section>
-
-<section class="thesis" id="thesis" aria-labelledby="thesis-h">
-  <p class="eyebrow">01 / THESIS</p>
-  <h2 class="h-xl" id="thesis-h">The company is becoming software.</h2>
-  <div class="thesis-grid">
-    <div class="couplet">
-      <div class="was">Software automated the worker.</div>
-      <div>Agents automate the organization.</div>
-    </div>
-    <div class="couplet">
-      <div class="was">The traditional company coordinates humans.</div>
-      <div>The AI-native company coordinates intelligence.</div>
-    </div>
-    <p class="lede">Historically, software automated individual workflows. The next step is software coordinating the organization itself. Factory Zero builds real companies around that transition.<br><br><strong>We build for the second model.</strong></p>
-  </div>
-</section>
-
-<section class="section factory" id="system" aria-labelledby="factory-h">
-  <div class="section-head">
-    <p class="eyebrow eyebrow--flush">02 / THE FACTORY</p>
-    <p class="mono hint">HOVER MODULES TO INSPECT</p>
-  </div>
-  <h2 class="h-lg" id="factory-h">One operating system. Every function, an agent.</h2>
-
-  <div class="os-badge-wrap">
-    <div class="os-badge"><span class="ring" aria-hidden="true"></span>FACTORY ZERO OS</div>
-    <div class="os-stem" aria-hidden="true"></div>
-  </div>
-
-  <div class="layers" id="fz-layers"></div>
-
-  <div class="agent-readout" aria-live="polite">
-    <span class="id" id="fz-agent-id"></span>
-    <span class="msg" id="fz-agent-msg"></span>
-    <span class="time" id="fz-agent-time"></span>
-  </div>
-</section>
-
-<section class="section branch" aria-labelledby="branch-h">
-  <p class="eyebrow">03 / ONE SYSTEM. MANY VENTURES.</p>
-  <div class="two-col">
-    <div>
-      <h2 class="h-lg" id="branch-h">One factory.<br>Many distinct ventures.</h2>
-      <p class="lede">Every venture inherits the same foundation. Nothing is rebuilt. Each runs with its own brand, product, customers, data boundaries and strategy.</p>
-    </div>
-    <div class="branch-map">
-      <div class="shared">
-        <div class="title">SHARED / INHERITED</div>
-        <div>IDENTITY</div>
-        <div>PAYMENTS · BILLING</div>
-        <div>ANALYTICS</div>
-        <div>DEPLOYMENT</div>
-        <div>OBSERVABILITY</div>
-        <div>AGENT ORCHESTRATION</div>
-        <div>CUSTOMER SUPPORT</div>
-        <div>MARKETING AUTOMATION</div>
-        <div>FINANCE</div>
-        <div>KNOWLEDGE</div>
-        <div>SECURITY</div>
-        <div>EXPERIMENTATION</div>
-        <div>INTERNAL TOOLING</div>
       </div>
-      <div class="branch-join" aria-hidden="true"></div>
-      <div class="branch-list" id="fz-branches"></div>
     </div>
-  </div>
-</section>
-
-<section class="section pipeline" aria-labelledby="pipeline-h">
-  <div class="section-head">
-    <p class="eyebrow eyebrow--flush">04 / VENTURE PIPELINE</p>
-    <p class="mono hint" id="fz-pipeline-count">LINE 01 &middot; 23 UNITS IN PROCESS</p>
-  </div>
-  <h2 class="h-lg" id="pipeline-h">Signal to company, as a production line.</h2>
-  <div class="line" id="fz-line">
-    <div class="line-scan" aria-hidden="true"></div>
-  </div>
-</section>
-
-<section class="section autonomy" aria-labelledby="autonomy-h">
-  <p class="eyebrow">05 / AUTONOMY</p>
-  <div class="two-col">
-    <div>
-      <h2 class="h-lg" id="autonomy-h">Autonomy is an architecture, not a claim.</h2>
-      <p class="lede">We design ventures to run at levels 3 to 5. Humans can intervene at every level, and a named human is accountable for every venture.</p>
-    </div>
-    <div class="levels" id="fz-levels"></div>
-  </div>
-</section>
-
-<section class="section human-role" aria-labelledby="human-h">
-  <p class="eyebrow">06 / HUMAN ROLE</p>
-  <h2 class="h-xl" id="human-h">Human judgment.<br><span class="machine">Machine execution.</span></h2>
-  <div class="roles">
-    <div class="role">
-      <div class="label">HUMAN LAYER</div>
-      <ul><li>Mission</li><li>Capital</li><li>Governance</li><li>Judgment</li></ul>
-      <p>Humans define mission, capital, ethics, ownership, risk boundaries, high-impact decisions and relationships.</p>
-    </div>
-    <div class="role role--agent">
-      <div class="label">AGENT LAYER</div>
-      <ul><li>Research</li><li>Build</li><li>Operate</li><li>Optimize</li></ul>
-      <p>Agents execute within those boundaries. Every action is logged, observable and reversible.</p>
-    </div>
-  </div>
-</section>
-
-<section class="cycle" aria-labelledby="cycle-h">
-  <p class="eyebrow">07 / CONTINUOUS CREATION</p>
-  <div class="two-col">
-    <div>
-      <h2 class="h-xl" id="cycle-h">The factory never stops.</h2>
-      <p class="lede">Ventures are launched continuously, not one at a time over years. Each cycle teaches the next.</p>
-      <p class="cadence"><span>BUILD.</span><span>DEPLOY.</span><span>OBSERVE.</span><span>LEARN.</span><span class="last">REPEAT.</span></p>
-    </div>
-    <div class="authors-wrap">
-      <div class="log" aria-label="Latest public activity across the ventures, from GitHub">
-        <div class="log-head">
-          <span>FZ/LOG · LIVE FROM GITHUB</span>
-          <span class="rec" aria-hidden="true">●</span>
-        </div>
-        <div id="fz-log"><div class="log-line"><span>Loading the latest public activity…</span></div></div>
+    <div class="split" style="margin-top:clamp(48px,6vw,80px);grid-template-columns:1fr 1fr">
+      <div class="panel log" aria-label="Latest public activity across the ventures, from GitHub">
+        <div class="panel-head"><span>FZ/LOG &middot; live from GitHub</span><span class="rec" aria-hidden="true">&#9679;</span></div>
+        <div id="fz-log"><div class="log-line"><span>Loading the latest public activity&hellip;</span></div></div>
       </div>
-      <div class="authors" id="fz-authors" hidden>
-        <div class="log-head">
-          <span>MERGED PRS · COLONIZER VS PEOPLE · LAST 12 WEEKS</span>
-          <span class="rec" aria-hidden="true">●</span>
-        </div>
-        <div id="fz-authors-chart"><p class="authors-lead">Counting merged pull requests across the ventures’ public repositories.</p></div>
+      <div class="panel authors" id="fz-authors" hidden>
+        <div class="panel-head"><span>Merged PRs &middot; colonizer vs people &middot; 12 weeks</span><span class="rec" aria-hidden="true">&#9679;</span></div>
+        <div id="fz-authors-chart"><p class="authors-lead">Counting merged pull requests across the ventures&rsquo; public repositories.</p></div>
       </div>
     </div>
   </div>
+</section>
+
+<section class="sec" aria-labelledby="human-h">
+  <div class="wrap">
+    <div class="sec-head">
+      <div>
+        <p class="eyebrow">Human role</p>
+        <h2 class="h1" id="human-h" style="margin-top:18px">Human judgment. <span class="muted">Machine execution.</span></h2>
+      </div>
+    </div>
+    <div class="cards2">
+      <div class="card" data-rv style="--d:0"><p class="card-k">Human layer</p><h3 class="h3">Mission &middot; Capital &middot; Governance &middot; Judgment</h3><p>Humans define mission, capital, ethics, ownership, risk boundaries, high-impact decisions and relationships.</p></div>
+      <div class="card card--acc" data-rv style="--d:1"><p class="card-k">Agent layer</p><h3 class="h3">Research &middot; Build &middot; Operate &middot; Optimize</h3><p>Agents execute within those boundaries. Every action is logged, observable and reversible.</p></div>
+    </div>
+  </div>
+</section>
+
+<section class="cta-band" aria-labelledby="cta-h">
+  <img src="/assets/ui/cta.webp" alt="" width="1344" height="576" loading="lazy" decoding="async">
+  <div class="wrap"><div class="cta-in">
+    <p class="eyebrow">Build. Deploy. Observe. Learn. Repeat.</p>
+    <h2 class="h1" id="cta-h">Enter Factory Zero.</h2>
+    <p class="lede">Build with us, invest, partner or join. A human reads every request.</p>
+    <div class="btns"><a class="btn btn--acc" href="/enter/">Request access <span class="arr" aria-hidden="true">&rarr;</span></a><a class="btn btn--ghost" href="/about/">What Factory Zero is</a></div>
+  </div></div>
 </section>
 
 </main>
 
+<!-- fz:footer:start -->
 <footer class="site-footer">
-  <a class="enter-cta" href="/enter/">
-    <span>Enter Factory Zero</span>
-    <span class="arrow" aria-hidden="true">→</span>
-  </a>
-  <div class="footer-meta">
-    <nav aria-label="Footer">
-      <a href="/ventures/">VENTURES</a>
-      <a href="/stack/">STACK</a>
-      <a href="/system/">SYSTEM</a>
-      <a href="/technology/">TECHNOLOGY</a>
-      <a href="/thesis/">THESIS</a>
-      <a href="/about/">ABOUT</a>
-      <a href="/enter/">ENTER</a>
-      <a class="footer-icon" href="https://github.com/Factory-Zero" rel="noopener" aria-label="GitHub" title="GitHub"><svg viewBox="0 0 16 16" width="16" height="16" aria-hidden="true" focusable="false"><path fill="currentColor" d="M8 0c4.42 0 8 3.58 8 8a8.013 8.013 0 0 1-5.45 7.59c-.4.08-.55-.17-.55-.38 0-.27.01-1.13.01-2.2 0-.75-.25-1.23-.54-1.48 1.78-.2 3.65-.88 3.65-3.95 0-.88-.31-1.59-.82-2.15.08-.2.36-1.02-.08-2.12 0 0-.67-.22-2.2.82-.64-.18-1.32-.27-2-.27-.68 0-1.36.09-2 .27-1.53-1.03-2.2-.82-2.2-.82-.44 1.1-.16 1.92-.08 2.12-.51.56-.82 1.28-.82 2.15 0 3.06 1.86 3.75 3.64 3.95-.23.2-.44.55-.51 1.07-.46.21-1.61.55-2.33-.66-.15-.24-.6-.83-1.23-.82-.67.01-.27.38.01.53.34.19.73.9.82 1.13.16.45.68 1.31 2.69.94 0 .67.01 1.3.01 1.49 0 .21-.15.45-.55.38A7.995 7.995 0 0 1 0 8c0-4.42 3.58-8 8-8Z"/></svg></a>
-    </nav>
-    <div>FACTORY0.VENTURES · FZ/01 · <span id="fz-year">2026</span></div>
+  <div class="wrap">
+    <div class="foot-grid">
+      <div class="foot-brand">
+        <a class="wordmark" href="/" aria-label="Factory Zero home"><span class="o" aria-hidden="true"></span>Factory Zero</a>
+        <p>An AI-native venture studio. Each venture is its own company; together they form the foundation of the autonomous organization.</p>
+      </div>
+      <div class="foot-col">
+        <h3>Factory</h3>
+        <ul>
+          <li><a href="/ventures/">Ventures</a></li>
+          <li><a href="/stack/">Stack</a></li>
+          <li><a href="/system/">System</a></li>
+          <li><a href="/technology/">Technology</a></li>
+        </ul>
+      </div>
+      <div class="foot-col">
+        <h3>Read</h3>
+        <ul>
+          <li><a href="/thesis/">Thesis</a></li>
+          <li><a href="/about/">About</a></li>
+          <li><a href="/#films">Films</a></li>
+          <li><a href="/llms.txt">llms.txt</a></li>
+        </ul>
+      </div>
+      <div class="foot-col">
+        <h3>The FZ stack</h3>
+        <ul>
+          <li><a href="/ventures/kontinuum/">Kontinuum</a></li>
+          <li><a href="/ventures/cratefield/">Cratefield</a></li>
+          <li><a href="/ventures/vibecaddie/">VibeCaddie</a></li>
+          <li><a href="/ventures/colonizer/">Colonizer</a></li>
+          <li><a href="/ventures/supportgenius/">SupportGenius</a></li>
+          <li><a href="/ventures/promptdecode/">promptdecode</a></li>
+          <li><a href="/ventures/posplugin/">PosPlugin</a></li>
+          <li><a href="/stack/">All of it &rarr;</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="foot-legal">
+      <span>FACTORY0.VENTURES &middot; FZ/01 &middot; <span id="fz-year">2026</span></span>
+      <span>Images: MiniMax image-01 &middot; motion: MiniMax Hailuo-2.3</span>
+      <a href="https://github.com/Factory-Zero" rel="noopener" aria-label="Factory Zero on GitHub" title="GitHub"><svg viewBox="0 0 16 16" width="16" height="16" aria-hidden="true" focusable="false"><path fill="currentColor" d="M8 0c4.42 0 8 3.58 8 8a8.013 8.013 0 0 1-5.45 7.59c-.4.08-.55-.17-.55-.38 0-.27.01-1.13.01-2.2 0-.75-.25-1.23-.54-1.48 1.78-.2 3.65-.88 3.65-3.95 0-.88-.31-1.59-.82-2.15.08-.2.36-1.02-.08-2.12 0 0-.67-.22-2.2.82-.64-.18-1.32-.27-2-.27-.68 0-1.36.09-2 .27-1.53-1.03-2.2-.82-2.2-.82-.44 1.1-.16 1.92-.08 2.12-.51.56-.82 1.28-.82 2.15 0 3.06 1.86 3.75 3.64 3.95-.23.2-.44.55-.51 1.07-.46.21-1.61.55-2.33-.66-.15-.24-.6-.83-1.23-.82-.67.01-.27.38.01.53.34.19.73.9.82 1.13.16.45.68 1.31 2.69.94 0 .67.01 1.3.01 1.49 0 .21-.15.45-.55.38A7.995 7.995 0 0 1 0 8c0-4.42 3.58-8 8-8Z"/></svg></a>
+    </div>
   </div>
 </footer>
+<!-- fz:footer:end -->
 
-<script src="/assets/fz-common.js"></script>
+<script src="/assets/fz-common.js" defer></script>
 <script src="/assets/fz-data.js"></script>
-<script src="/assets/fz-ventures.js"></script>
-<script src="/assets/fz-app.js"></script>
-<script src="/assets/fz-timeline.js"></script>
-<script src="/assets/fz-hero3d.js" defer></script>
+<script src="/assets/fz-ventures.js" defer></script>
+<script src="/assets/fz-timeline.js" defer></script>
+<script src="/assets/fz-ui.js" defer></script>
 </body>
 </html>

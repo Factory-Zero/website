@@ -250,6 +250,14 @@
   };
 
   function select(row) {
+    // A venture page (data-static) is already fully written by sync-ventures.js:
+    // only its charts are left to fill.
+    if (row.hasAttribute('data-static')) {
+      var rp = [];
+      try { rp = JSON.parse(row.dataset.github || '[]'); } catch (e) { rp = []; }
+      if (el.activity) activity(row.dataset.id, rp.length > 0);
+      return;
+    }
     rows.forEach(function (r) { r.setAttribute('aria-pressed', String(r === row)); });
 
     var d = row.dataset;

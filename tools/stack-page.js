@@ -93,7 +93,11 @@ module.exports = function stackPage(ctx) {
     .replace(/(<meta property="og:description" content=")[^"]*/, `$1${esc(desc)}`)
     .replace(/(<meta property="og:image:alt" content=")[^"]*/, `$1${title}`)
     .replace(/(<meta name="twitter:title" content=")[^"]*/, `$1${title}`)
-    .replace(/(<meta name="twitter:description" content=")[^"]*/, `$1${esc(desc)}`);
+    .replace(/(<meta name="twitter:description" content=")[^"]*/, `$1${esc(desc)}`)
+    // The stack page has not moved to the new design system (DESIGN.md) yet, so it
+    // keeps the previous fonts and fz.css even though the registry head it copies has moved.
+    .replace(/family=Inter\+Tight:wght@300;400;500;600/, 'family=Archivo:wght@300;400;500;600')
+    .replace('<link rel="stylesheet" href="/assets/fz-ui.css">', '<link rel="stylesheet" href="/assets/fz.css">');
   const header = tech.match(/<header class="site-header">[\s\S]*?<\/header>/)[0].replace(/ aria-current="page"/, '').replace('<a href="/stack/">STACK</a>', '<a href="/stack/" aria-current="page">STACK</a>');
   const footer = tech.match(/<footer class="site-subfooter">[\s\S]*?<\/footer>/)[0];
   const ld = JSON.stringify({ '@context': 'https://schema.org', '@graph': [
