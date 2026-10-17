@@ -35,10 +35,9 @@
 <link rel="manifest" href="/site.webmanifest">
 <link rel="alternate" type="text/plain" href="/llms.txt" title="llms.txt">
 
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Inter+Tight:wght@300;400;500;600&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
+<link rel="preload" href="/assets/fonts/inter-tight-latin-wght.woff2" as="font" type="font/woff2" crossorigin>
 <link rel="stylesheet" href="/assets/fz-ui.css">
+<script type="speculationrules">{"prerender":[{"where":{"and":[{"href_matches":"/*"},{"not":{"href_matches":"/api/*"}}]},"eagerness":"moderate"}],"prefetch":[{"where":{"and":[{"href_matches":"/*"},{"not":{"href_matches":"/api/*"}}]},"eagerness":"moderate"}]}</script>
 
 <script type="application/ld+json">
 {
@@ -154,11 +153,11 @@
       <div class="app-sec"><div class="deal"><p id="d-offer">The engine is free and open source (MIT). Try it in your browser at kontinuum.audio.</p><p id="d-saves">No more skipping, shuffling or building playlists.</p></div>
         <p class="now" style="margin-top:18px"><span class="chip">Today</span><span id="d-now">Browser demo works today. The app is still being built; there is no download yet.</span></p></div>
       <div class="app-sec"><h2>The film</h2><div class="app-films" data-film-for="FZ-001"><figure class="film" style="padding:0">
-  <video class="fz-film" controls playsinline preload="none" poster="/assets/films/kontinuum-v3-poster.jpg" width="1920" height="1080" aria-label="Kontinuum film"><source src="/assets/films/kontinuum-v3.mp4" type="video/mp4"><a href="/assets/films/kontinuum-v3.mp4">Download the Kontinuum film (MP4)</a></video>
+  <video class="fz-film" controls playsinline preload="none" data-poster="/assets/films/kontinuum-v3-poster.jpg" width="1920" height="1080" aria-label="Kontinuum film"><source src="/assets/films/kontinuum-v3.mp4" type="video/mp4"><a href="/assets/films/kontinuum-v3.mp4">Download the Kontinuum film (MP4)</a></video>
   <figcaption>A new way of producing.</figcaption>
 </figure>
 <figure class="film" style="padding:0">
-  <video class="fz-film" controls playsinline preload="none" poster="/assets/films/kontinuum-djs-poster.jpg" width="1920" height="1080" aria-label="Kontinuum for DJs and producers film"><source src="/assets/films/kontinuum-djs-film.mp4" type="video/mp4"><a href="/assets/films/kontinuum-djs-film.mp4">Download the Kontinuum for DJs and producers film (MP4)</a></video>
+  <video class="fz-film" controls playsinline preload="none" data-poster="/assets/films/kontinuum-djs-poster.jpg" width="1920" height="1080" aria-label="Kontinuum for DJs and producers film"><source src="/assets/films/kontinuum-djs-film.mp4" type="video/mp4"><a href="/assets/films/kontinuum-djs-film.mp4">Download the Kontinuum for DJs and producers film (MP4)</a></video>
   <figcaption>Your decks are still composing.</figcaption>
 </figure></div></div>
       <div class="app-sec"><h2>Aims</h2>

@@ -6,7 +6,7 @@ the imagery. Modelled on lemon.io's structure (big light headline, floating UI c
 over sculptural imagery, stats band, logo marquee, numbered steps, hairline cards),
 translated to dark mode.
 
-Files: `assets/fz-ui.css` (tokens + every component), `assets/fz-ui.js` (reveal,
+Files: `assets/fz-ui.css` (tokens, the @font-face rules and every component), `assets/fz-ui.js` (reveal,
 count-up, hero loop, grid filters, live log), `tools/ui.js` (shared header, footer,
 venture card and filter markup used by `tools/sync-ventures.js`).
 
@@ -45,8 +45,8 @@ header and footer from `header()` and `footer()`, and its body from the componen
 | `--fg-4` | `#5D6259` | decoration only, never text |
 | `--acc` | `#C6FF3D` | the accent; text on it is `--acc-ink` |
 | `--hl` | lime → lavender at 24% | `.hl` highlight under key words |
-| `--sans` | Inter Tight 300/400/500/600 | everything |
-| `--mono` | IBM Plex Mono 400/500 | eyebrows, labels, ids, chips |
+| `--sans` | Inter Tight 300/400/500/600 (self-hosted, `assets/fonts/`) | everything |
+| `--mono` | IBM Plex Mono 400/500 (self-hosted) | eyebrows, labels, ids, chips |
 | `--wrap` | 1320px | content width |
 | `--gut` | `clamp(16px, 4vw, 48px)` | side gutter |
 | `--sec` | `clamp(72px, 10vw, 144px)` | vertical section padding |
@@ -114,9 +114,13 @@ compete. The orange of the previous system is retired.
 
 ## Motion
 
-- Reveal: add `data-rv` (and `style="--d:N"` for a 70ms stagger). `fz-ui.js` sets
-  `html.rv-on` only when motion is allowed and IntersectionObserver exists; a 4s fallback
-  reveals anything a throttled tab never intersected.
+- Reveal: add `data-rv` (and `style="--d:N"` for a 70ms stagger). Content is visible by
+  default. `fz-ui.js` hides only `[data-rv]` elements below the first viewport, and only after
+  it has set `html.rv-on`; anything above the fold is shown at once. A 4s fallback reveals
+  anything a throttled tab never intersected.
+- Films: the home grid is poster cards (WebP, 480/960 wide, from `assets/films/*-poster.jpg`)
+  that open one shared `<dialog class="fz-player">`. Each card is also a link to the MP4.
+  A venture's own player takes its poster through `data-poster` near the viewport.
 - Count-up: `[data-count]` inside a revealed element, 1.1s ease-out.
 - Hero loop: `video[data-hero-video]` stays `preload="none"` and starts only with motion
   allowed, no data saver and a viewport ≥600px; it fades in on `playing` over the still and

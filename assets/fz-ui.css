@@ -2,6 +2,12 @@
    Dark, Swiss, square. One accent (lime), hairline grid, generous space.
    Documented in DESIGN.md. Every page loads this file (and no other stylesheet). */
 
+/* Self-hosted type, Latin subset (SIL OFL 1.1; licences in assets/fonts/). Inter Tight
+   is one variable file covering 300-600; IBM Plex Mono has its 400 and 500 files. */
+@font-face { font-family: 'Inter Tight'; font-style: normal; font-weight: 300 600; font-display: swap; src: url(/assets/fonts/inter-tight-latin-wght.woff2) format('woff2'); unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD; }
+@font-face { font-family: 'IBM Plex Mono'; font-style: normal; font-weight: 400; font-display: swap; src: url(/assets/fonts/ibm-plex-mono-400.woff2) format('woff2'); unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD; }
+@font-face { font-family: 'IBM Plex Mono'; font-style: normal; font-weight: 500; font-display: swap; src: url(/assets/fonts/ibm-plex-mono-500.woff2) format('woff2'); unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD; }
+
 :root {
   /* ground */
   --bg:     #0A0B0A;
@@ -289,6 +295,48 @@ button, input { font: inherit; color: inherit; }
 .films-grid > li { border-right: 1px solid var(--hair); border-bottom: 1px solid var(--hair); min-width: 0; }
 .film { margin: 0; padding: 14px 14px 18px; height: 100%; transition: background .3s; }
 .films-grid > li:hover .film { background: var(--bg-1); }
+
+/* Home films: a poster card that opens the shared player (see .fz-player below). */
+.film-card { display: block; height: 100%; padding: 14px 14px 18px; transition: background .3s; }
+.films-grid > li:hover .film-card, .film-card:focus-visible { background: var(--bg-1); }
+.film-card:focus-visible { outline: 2px solid var(--acc); outline-offset: -2px; }
+.film-shot { position: relative; display: block; aspect-ratio: 16 / 9; overflow: hidden; background: #000; }
+.film-shot img { width: 100%; height: 100%; object-fit: cover; transition: transform .6s var(--ease); }
+.film-card:hover .film-shot img { transform: scale(1.03); }
+.film-play { position: absolute; left: 50%; top: 50%; display: grid; place-items: center; width: 56px; height: 56px; transform: translate(-50%, -50%); border: 1px solid rgba(237, 240, 230, .5); background: rgba(10, 11, 10, .55); color: var(--fg); -webkit-backdrop-filter: blur(6px); backdrop-filter: blur(6px); transition: border-color .25s, color .25s, background .25s; }
+.film-card:hover .film-play, .film-card:focus-visible .film-play { border-color: var(--acc); color: var(--acc); background: rgba(10, 11, 10, .8); }
+.film-play svg { margin-left: 3px; }
+.film-dur { position: absolute; right: 10px; bottom: 10px; padding: 5px 7px; background: rgba(10, 11, 10, .82); font: 500 11px/1 var(--mono); letter-spacing: .08em; color: var(--fg-2); }
+.film-card .film-cap { margin-top: 14px; }
+.film-card .film-name { font-weight: 500; font-size: 16px; color: var(--fg); }
+.film-card:hover .film-name { color: var(--acc); }
+.film-card .film-line { color: var(--fg-2); font-size: 14px; }
+
+/* The one shared film player: a native <dialog>, opened from a card. */
+.fz-player { display: none; position: fixed; inset: 0; width: 100%; height: 100%; max-width: none; max-height: none; margin: 0; padding: 0; border: 0; background: transparent; color: var(--fg); place-items: center; opacity: 0; transform: scale(.97); transition: opacity .28s var(--ease), transform .28s var(--ease), display .28s allow-discrete, overlay .28s allow-discrete; }
+.fz-player[open] { display: grid; opacity: 1; transform: none; }
+@starting-style { .fz-player[open] { opacity: 0; transform: scale(.97); } }
+.fz-player::backdrop { background: rgba(6, 7, 6, .74); -webkit-backdrop-filter: blur(14px); backdrop-filter: blur(14px); opacity: 0; transition: opacity .28s var(--ease), display .28s allow-discrete, overlay .28s allow-discrete; }
+.fz-player[open]::backdrop { opacity: 1; }
+@starting-style { .fz-player[open]::backdrop { opacity: 0; } }
+.fzp-frame { position: relative; width: min(1100px, calc(100vw - 32px)); max-height: calc(100dvh - 32px); overflow-y: auto; padding: 14px; background: var(--bg-1); border: 1px solid rgba(198, 255, 61, .42); box-shadow: 0 0 0 1px rgba(198, 255, 61, .08), 0 0 90px -18px rgba(198, 255, 61, .34); }
+.fzp-top { display: flex; justify-content: space-between; align-items: center; gap: 12px; padding: 0 2px 12px; }
+.fzp-count { font: 500 11px/1 var(--mono); letter-spacing: .12em; color: var(--fg-3); text-transform: uppercase; }
+.fzp-close { display: inline-flex; align-items: center; gap: 8px; height: 38px; padding: 0 14px; background: transparent; border: 1px solid var(--hair-3); font: 500 12px/1 var(--mono); letter-spacing: .1em; text-transform: uppercase; cursor: pointer; }
+.fzp-close:hover { border-color: var(--acc); color: var(--acc); }
+.fzp-stage { aspect-ratio: 16 / 9; background: #000; }
+.fzp-video { display: block; width: 100%; height: 100%; object-fit: contain; background: #000; }
+.fzp-info { display: flex; flex-wrap: wrap; justify-content: space-between; align-items: flex-end; gap: 16px 24px; padding: 18px 2px 4px; }
+.fzp-title { font: 400 clamp(22px, 2.6vw, 30px)/1.1 var(--sans); letter-spacing: -.02em; color: var(--fg); }
+.fzp-meta { display: flex; flex-wrap: wrap; gap: 6px 14px; margin-top: 10px; font: 400 12px/1.4 var(--mono); letter-spacing: .06em; color: var(--fg-3); }
+.fzp-venture { color: var(--acc); }
+.fzp-venture:hover { text-decoration: underline; text-decoration-thickness: 1px; }
+.fzp-actions { display: flex; flex-wrap: wrap; gap: 8px; }
+.fzp-btn { display: inline-flex; align-items: center; gap: 8px; height: 40px; padding: 0 14px; background: transparent; border: 1px solid var(--hair-3); font: 500 13px/1 var(--sans); color: var(--fg); cursor: pointer; transition: border-color .2s, color .2s; }
+.fzp-btn:hover { border-color: var(--acc); color: var(--acc); }
+.fzp-btn[hidden] { display: none; }
+@media (max-width: 600px) { .fzp-frame { padding: 10px; } .fzp-info { padding-top: 14px; } .fzp-lbl { display: none; } }
+@media (prefers-reduced-motion: reduce) { .fz-player, .fz-player::backdrop { transition: none !important; } }
 .film video { width: 100%; height: auto; aspect-ratio: 16 / 9; background: #000; object-fit: cover; }
 .film-cap { display: flex; flex-wrap: wrap; align-items: baseline; gap: 4px 10px; margin-top: 14px; }
 .film-name { font-weight: 500; font-size: 16px; }
@@ -652,9 +700,12 @@ main.has-ph { position: relative; isolation: isolate; }
   .ph-media::after, .ph-media--app::after, .ph-media--dim::after { background: linear-gradient(180deg, rgba(10, 11, 10, .55) 0%, rgba(10, 11, 10, .74) 40%, var(--bg) 100%); }
 }
 
-/* ---------- reveal (only when motion is allowed and JS runs) ---------- */
-html.rv-on [data-rv] { opacity: 0; transform: translate3d(0, 18px, 0); transition: opacity .9s var(--ease), transform .9s var(--ease); transition-delay: calc(var(--d, 0) * 70ms); }
-html.rv-on [data-rv].in { opacity: 1; transform: none; }
+/* ---------- reveal ----------
+   Visible by default. fz-ui.js adds html.rv-on only when some [data-rv] sits below
+   the first viewport, and then hides just those until they scroll in. */
+html.js.rv-on [data-rv]:not(.in) { opacity: 0; transform: translate3d(0, 18px, 0); }
+html.js.rv-on [data-rv] { transition: opacity .9s var(--ease), transform .9s var(--ease); transition-delay: calc(var(--d, 0) * 70ms); }
+html.js.rv-on [data-rv].in { opacity: 1; transform: none; }
 
 @media (prefers-reduced-motion: reduce) {
   *, *::before, *::after { animation-duration: .001ms !important; animation-iteration-count: 1 !important; transition-duration: .001ms !important; }

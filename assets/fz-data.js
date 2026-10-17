@@ -634,21 +634,21 @@ window.FZ_DATA = {
   // venture's detail panel. `venture` is a record id above; `video` and `poster`
   // are files in assets/films/. tools/sync-ventures.js checks both exist.
   films: [
-    { id: 'livingbrain', venture: 'FZ-018', title: 'Living Brain', caption: 'A brain for your team.', video: 'livingbrain-film.mp4', poster: 'livingbrain-poster.jpg' },
-    { id: 'owlpost', venture: 'FZ-013', title: 'Owlpost', caption: 'Email for apps and agents.', video: 'owlpost-film.mp4', poster: 'owlpost-poster.jpg' },
-    { id: 'shoal', venture: 'FZ-019', title: 'Shoal', caption: 'Rehearse your launch.', video: 'shoal-film.mp4', poster: 'shoal-poster.jpg' },
-    { id: 'rateclaim', venture: 'FZ-015', title: 'ratecla.im', caption: 'The rate they don\u2019t publish.', video: 'rateclaim-film.mp4', poster: 'rateclaim-poster.jpg' },
-    { id: 'kontinuum-v3', venture: 'FZ-001', title: 'Kontinuum', caption: 'A new way of producing.', video: 'kontinuum-v3.mp4', poster: 'kontinuum-v3-poster.jpg' },
-    { id: 'kontinuum-djs', venture: 'FZ-001', title: 'Kontinuum for DJs and producers', caption: 'Your decks are still composing.', video: 'kontinuum-djs-film.mp4', poster: 'kontinuum-djs-poster.jpg' },
-    { id: 'colonizer', venture: 'FZ-006', title: 'Colonizer', caption: 'Colonize your backlog.', video: 'colonizer-promo.mp4', poster: 'colonizer-poster.jpg' },
-    { id: 'yoginini', venture: 'FZ-003', title: 'Yoginini', caption: 'A yoga teacher who can see you.', video: 'yoginini-promo-v2.mp4', poster: 'yoginini-poster-v2.jpg' },
-    { id: 'posplug', venture: 'FZ-011', title: 'PosPlugin', caption: 'Any POS. One API.', video: 'posplug-promo-v2.mp4', poster: 'posplug-promo-poster.jpg' },
-    { id: 'ledgers', venture: 'FZ-021', title: 'ledgers.sh', caption: 'Agents do the books. People keep control.', video: 'ledgers-promo-v2.mp4', poster: 'ledgers-poster.jpg' },
-    { id: 'cratefield', venture: 'FZ-004', title: 'Cratefield', caption: 'The boring 70% of a backend, in about a minute.', video: 'cratefield-promo.mp4', poster: 'cratefield-poster.jpg' },
-    { id: 'supportgenius', venture: 'FZ-008', title: 'SupportGenius', caption: 'Support that answers.', video: 'supportgenius-promo.mp4', poster: 'supportgenius-poster.jpg' },
-    { id: 'findsyou', venture: 'FZ-007', title: 'FindsYou', caption: 'Stop looking. It finds you work.', video: 'findsyou-promo.mp4', poster: 'findsyou-poster.jpg' },
-    { id: 'grooveguru', venture: 'FZ-010', title: 'Groove Guru', caption: 'Hear your mix before the room does.', video: 'grooveguru-promo.mp4', poster: 'grooveguru-poster.jpg' },
-    { id: 'sealbin', venture: 'FZ-016', title: 'sealb.in', caption: 'The sealed handoff between agents.', video: 'sealbin-promo.mp4', poster: 'sealbin-poster.jpg' }
+    { id: 'livingbrain', venture: 'FZ-018', title: 'Living Brain', caption: 'A brain for your team.', video: 'livingbrain-film.mp4', poster: 'livingbrain-poster.jpg', duration: 30 },
+    { id: 'owlpost', venture: 'FZ-013', title: 'Owlpost', caption: 'Email for apps and agents.', video: 'owlpost-film.mp4', poster: 'owlpost-poster.jpg', duration: 30 },
+    { id: 'shoal', venture: 'FZ-019', title: 'Shoal', caption: 'Rehearse your launch.', video: 'shoal-film.mp4', poster: 'shoal-poster.jpg', duration: 30 },
+    { id: 'rateclaim', venture: 'FZ-015', title: 'ratecla.im', caption: 'The rate they don\u2019t publish.', video: 'rateclaim-film.mp4', poster: 'rateclaim-poster.jpg', duration: 30 },
+    { id: 'kontinuum-v3', venture: 'FZ-001', title: 'Kontinuum', caption: 'A new way of producing.', video: 'kontinuum-v3.mp4', poster: 'kontinuum-v3-poster.jpg', duration: 48 },
+    { id: 'kontinuum-djs', venture: 'FZ-001', title: 'Kontinuum for DJs and producers', caption: 'Your decks are still composing.', video: 'kontinuum-djs-film.mp4', poster: 'kontinuum-djs-poster.jpg', duration: 30 },
+    { id: 'colonizer', venture: 'FZ-006', title: 'Colonizer', caption: 'Colonize your backlog.', video: 'colonizer-promo.mp4', poster: 'colonizer-poster.jpg', duration: 40 },
+    { id: 'yoginini', venture: 'FZ-003', title: 'Yoginini', caption: 'A yoga teacher who can see you.', video: 'yoginini-promo-v2.mp4', poster: 'yoginini-poster-v2.jpg', duration: 41 },
+    { id: 'posplug', venture: 'FZ-011', title: 'PosPlugin', caption: 'Any POS. One API.', video: 'posplug-promo-v2.mp4', poster: 'posplug-promo-poster.jpg', duration: 47 },
+    { id: 'ledgers', venture: 'FZ-021', title: 'ledgers.sh', caption: 'Agents do the books. People keep control.', video: 'ledgers-promo-v2.mp4', poster: 'ledgers-poster.jpg', duration: 43 },
+    { id: 'cratefield', venture: 'FZ-004', title: 'Cratefield', caption: 'The boring 70% of a backend, in about a minute.', video: 'cratefield-promo.mp4', poster: 'cratefield-poster.jpg', duration: 60 },
+    { id: 'supportgenius', venture: 'FZ-008', title: 'SupportGenius', caption: 'Support that answers.', video: 'supportgenius-promo.mp4', poster: 'supportgenius-poster.jpg', duration: 44 },
+    { id: 'findsyou', venture: 'FZ-007', title: 'FindsYou', caption: 'Stop looking. It finds you work.', video: 'findsyou-promo.mp4', poster: 'findsyou-poster.jpg', duration: 45 },
+    { id: 'grooveguru', venture: 'FZ-010', title: 'Groove Guru', caption: 'Hear your mix before the room does.', video: 'grooveguru-promo.mp4', poster: 'grooveguru-poster.jpg', duration: 49 },
+    { id: 'sealbin', venture: 'FZ-016', title: 'sealb.in', caption: 'The sealed handoff between agents.', video: 'sealbin-promo.mp4', poster: 'sealbin-poster.jpg', duration: 39 }
   ],
 };
 

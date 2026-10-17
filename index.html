@@ -36,10 +36,9 @@
 <link rel="alternate" type="text/plain" href="/llms.txt" title="llms.txt">
 
 
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Inter+Tight:wght@300;400;500;600&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
+<link rel="preload" href="/assets/fonts/inter-tight-latin-wght.woff2" as="font" type="font/woff2" crossorigin>
 <link rel="stylesheet" href="/assets/fz-ui.css">
+<script type="speculationrules">{"prerender":[{"where":{"and":[{"href_matches":"/*"},{"not":{"href_matches":"/api/*"}}]},"eagerness":"moderate"}],"prefetch":[{"where":{"and":[{"href_matches":"/*"},{"not":{"href_matches":"/api/*"}}]},"eagerness":"moderate"}]}</script>
 <link rel="preload" as="image" href="/assets/ui/hero.webp" imagesrcset="/assets/ui/hero-960.webp 960w, /assets/ui/hero.webp 1920w" imagesizes="100vw">
 
 <script type="application/ld+json">
@@ -155,7 +154,7 @@
 <!-- fz:herocards:start -->
     <a class="hcard hcard--offer" href="/venture-as-a-service/"><p class="hcard-k"><span class="acc">New</span> &middot; Venture as a service</p><p class="hcard-price">From $5,000</p><p class="hcard-sub">An autonomous venture MVP on the FZ foundation. Startup program: $500 in credits, limited places.</p><p class="hcard-go">See the offer &rarr;</p></a>
     <a class="hcard" href="/ventures/cratefield/"><p class="hcard-k">FZ stack &middot; most used</p><div class="hcard-row"><span class="hcard-icon"><img src="/assets/cratefield-animated.svg" alt="" width="30" height="30" loading="lazy" decoding="async"></span><span><span class="hcard-name">Cratefield</span><br><span class="hcard-sub">App foundation &middot; live in 18 ventures</span></span></div></a>
-    <a class="hcard" href="/#films"><p class="hcard-k">Newest film &middot; 15 in all</p><div class="hcard-film" style="background-image:url('/assets/films/sealbin-poster.jpg')"></div><p class="hcard-sub" style="margin-top:10px">Sealbin &middot; The sealed handoff between agents.</p></a>
+    <a class="hcard" href="/#films"><p class="hcard-k">Newest film &middot; 15 in all</p><div class="hcard-film" style="background-image:url('/assets/films/sealbin-poster-480.webp')"></div><p class="hcard-sub" style="margin-top:10px">Sealbin &middot; The sealed handoff between agents.</p></a>
     <div class="hcard"><p class="hcard-k">PRs merged &middot; 30 days</p><p class="hcard-n"><span id="fz-merged" title="Merged pull requests in the ventures' public GitHub repositories, last 30 days">&mdash;</span><small>public repositories</small></p></div>
 <!-- fz:herocards:end -->
   </div>
@@ -546,112 +545,207 @@
     </div>
 <!-- fz:films:start -->
   <ul class="films-grid">
-    <li><figure class="film" id="film-livingbrain">
-  <video class="fz-film" controls playsinline preload="none" poster="/assets/films/livingbrain-poster.jpg" width="1920" height="1080" aria-label="Living Brain film">
-    <source src="/assets/films/livingbrain-film.mp4" type="video/mp4">
-    <a href="/assets/films/livingbrain-film.mp4">Download the Living Brain film (MP4)</a>
-  </video>
-  <figcaption class="film-cap"><a class="film-name" href="/ventures/living-brain/">Living Brain</a><span class="film-line">A brain for your team.</span></figcaption>
-</figure></li>
-    <li><figure class="film" id="film-owlpost">
-  <video class="fz-film" controls playsinline preload="none" poster="/assets/films/owlpost-poster.jpg" width="1920" height="1080" aria-label="Owlpost film">
-    <source src="/assets/films/owlpost-film.mp4" type="video/mp4">
-    <a href="/assets/films/owlpost-film.mp4">Download the Owlpost film (MP4)</a>
-  </video>
-  <figcaption class="film-cap"><a class="film-name" href="/ventures/owlpost/">Owlpost</a><span class="film-line">Email for apps and agents.</span></figcaption>
-</figure></li>
-    <li><figure class="film" id="film-shoal">
-  <video class="fz-film" controls playsinline preload="none" poster="/assets/films/shoal-poster.jpg" width="1920" height="1080" aria-label="Shoal film">
-    <source src="/assets/films/shoal-film.mp4" type="video/mp4">
-    <a href="/assets/films/shoal-film.mp4">Download the Shoal film (MP4)</a>
-  </video>
-  <figcaption class="film-cap"><a class="film-name" href="/ventures/shoal/">Shoal</a><span class="film-line">Rehearse your launch.</span></figcaption>
-</figure></li>
-    <li><figure class="film" id="film-rateclaim">
-  <video class="fz-film" controls playsinline preload="none" poster="/assets/films/rateclaim-poster.jpg" width="1920" height="1080" aria-label="ratecla.im film">
-    <source src="/assets/films/rateclaim-film.mp4" type="video/mp4">
-    <a href="/assets/films/rateclaim-film.mp4">Download the ratecla.im film (MP4)</a>
-  </video>
-  <figcaption class="film-cap"><a class="film-name" href="/ventures/ratecla-im/">ratecla.im</a><span class="film-line">The rate they don’t publish.</span></figcaption>
-</figure></li>
-    <li><figure class="film" id="film-kontinuum-v3">
-  <video class="fz-film" controls playsinline preload="none" poster="/assets/films/kontinuum-v3-poster.jpg" width="1920" height="1080" aria-label="Kontinuum film">
-    <source src="/assets/films/kontinuum-v3.mp4" type="video/mp4">
-    <a href="/assets/films/kontinuum-v3.mp4">Download the Kontinuum film (MP4)</a>
-  </video>
-  <figcaption class="film-cap"><a class="film-name" href="/ventures/kontinuum/">Kontinuum</a><span class="film-line">A new way of producing.</span></figcaption>
-</figure></li>
-    <li><figure class="film" id="film-kontinuum-djs">
-  <video class="fz-film" controls playsinline preload="none" poster="/assets/films/kontinuum-djs-poster.jpg" width="1920" height="1080" aria-label="Kontinuum for DJs and producers film">
-    <source src="/assets/films/kontinuum-djs-film.mp4" type="video/mp4">
-    <a href="/assets/films/kontinuum-djs-film.mp4">Download the Kontinuum for DJs and producers film (MP4)</a>
-  </video>
-  <figcaption class="film-cap"><a class="film-name" href="/ventures/kontinuum/">Kontinuum</a><span class="film-title">Kontinuum for DJs and producers</span><span class="film-line">Your decks are still composing.</span></figcaption>
-</figure></li>
-    <li><figure class="film" id="film-colonizer">
-  <video class="fz-film" controls playsinline preload="none" poster="/assets/films/colonizer-poster.jpg" width="1920" height="1080" aria-label="Colonizer film">
-    <source src="/assets/films/colonizer-promo.mp4" type="video/mp4">
-    <a href="/assets/films/colonizer-promo.mp4">Download the Colonizer film (MP4)</a>
-  </video>
-  <figcaption class="film-cap"><a class="film-name" href="/ventures/colonizer/">Colonizer</a><span class="film-line">Colonize your backlog.</span></figcaption>
-</figure></li>
-    <li><figure class="film" id="film-yoginini">
-  <video class="fz-film" controls playsinline preload="none" poster="/assets/films/yoginini-poster-v2.jpg" width="1920" height="1080" aria-label="Yoginini film">
-    <source src="/assets/films/yoginini-promo-v2.mp4" type="video/mp4">
-    <a href="/assets/films/yoginini-promo-v2.mp4">Download the Yoginini film (MP4)</a>
-  </video>
-  <figcaption class="film-cap"><a class="film-name" href="/ventures/yoginini/">Yoginini</a><span class="film-line">A yoga teacher who can see you.</span></figcaption>
-</figure></li>
-    <li><figure class="film" id="film-posplug">
-  <video class="fz-film" controls playsinline preload="none" poster="/assets/films/posplug-promo-poster.jpg" width="1920" height="1080" aria-label="PosPlugin film">
-    <source src="/assets/films/posplug-promo-v2.mp4" type="video/mp4">
-    <a href="/assets/films/posplug-promo-v2.mp4">Download the PosPlugin film (MP4)</a>
-  </video>
-  <figcaption class="film-cap"><a class="film-name" href="/ventures/posplugin/">PosPlugin</a><span class="film-line">Any POS. One API.</span></figcaption>
-</figure></li>
-    <li><figure class="film" id="film-ledgers">
-  <video class="fz-film" controls playsinline preload="none" poster="/assets/films/ledgers-poster.jpg" width="1920" height="1080" aria-label="ledgers.sh film">
-    <source src="/assets/films/ledgers-promo-v2.mp4" type="video/mp4">
-    <a href="/assets/films/ledgers-promo-v2.mp4">Download the ledgers.sh film (MP4)</a>
-  </video>
-  <figcaption class="film-cap"><a class="film-name" href="/ventures/ledgers/">Ledgers</a><span class="film-title">ledgers.sh</span><span class="film-line">Agents do the books. People keep control.</span></figcaption>
-</figure></li>
-    <li><figure class="film" id="film-cratefield">
-  <video class="fz-film" controls playsinline preload="none" poster="/assets/films/cratefield-poster.jpg" width="1920" height="1080" aria-label="Cratefield film">
-    <source src="/assets/films/cratefield-promo.mp4" type="video/mp4">
-    <a href="/assets/films/cratefield-promo.mp4">Download the Cratefield film (MP4)</a>
-  </video>
-  <figcaption class="film-cap"><a class="film-name" href="/ventures/cratefield/">Cratefield</a><span class="film-line">The boring 70% of a backend, in about a minute.</span></figcaption>
-</figure></li>
-    <li><figure class="film" id="film-supportgenius">
-  <video class="fz-film" controls playsinline preload="none" poster="/assets/films/supportgenius-poster.jpg" width="1920" height="1080" aria-label="SupportGenius film">
-    <source src="/assets/films/supportgenius-promo.mp4" type="video/mp4">
-    <a href="/assets/films/supportgenius-promo.mp4">Download the SupportGenius film (MP4)</a>
-  </video>
-  <figcaption class="film-cap"><a class="film-name" href="/ventures/supportgenius/">SupportGenius</a><span class="film-line">Support that answers.</span></figcaption>
-</figure></li>
-    <li><figure class="film" id="film-findsyou">
-  <video class="fz-film" controls playsinline preload="none" poster="/assets/films/findsyou-poster.jpg" width="1920" height="1080" aria-label="FindsYou film">
-    <source src="/assets/films/findsyou-promo.mp4" type="video/mp4">
-    <a href="/assets/films/findsyou-promo.mp4">Download the FindsYou film (MP4)</a>
-  </video>
-  <figcaption class="film-cap"><a class="film-name" href="/ventures/findsyou-work/">FindsYou.work</a><span class="film-title">FindsYou</span><span class="film-line">Stop looking. It finds you work.</span></figcaption>
-</figure></li>
-    <li><figure class="film" id="film-grooveguru">
-  <video class="fz-film" controls playsinline preload="none" poster="/assets/films/grooveguru-poster.jpg" width="1920" height="1080" aria-label="Groove Guru film">
-    <source src="/assets/films/grooveguru-promo.mp4" type="video/mp4">
-    <a href="/assets/films/grooveguru-promo.mp4">Download the Groove Guru film (MP4)</a>
-  </video>
-  <figcaption class="film-cap"><a class="film-name" href="/ventures/groove-guru/">Groove Guru</a><span class="film-line">Hear your mix before the room does.</span></figcaption>
-</figure></li>
-    <li><figure class="film" id="film-sealbin">
-  <video class="fz-film" controls playsinline preload="none" poster="/assets/films/sealbin-poster.jpg" width="1920" height="1080" aria-label="sealb.in film">
-    <source src="/assets/films/sealbin-promo.mp4" type="video/mp4">
-    <a href="/assets/films/sealbin-promo.mp4">Download the sealb.in film (MP4)</a>
-  </video>
-  <figcaption class="film-cap"><a class="film-name" href="/ventures/sealbin/">Sealbin</a><span class="film-title">sealb.in</span><span class="film-line">The sealed handoff between agents.</span></figcaption>
-</figure></li>
+<li><a class="film-card" href="/assets/films/livingbrain-film.mp4" data-film-open="0" data-title="Living Brain" data-venture="Living Brain" data-venture-url="/ventures/living-brain/" data-site="https://livingbrain.wiki/" data-line="A brain for your team." data-poster="/assets/films/livingbrain-poster-960.webp" aria-haspopup="dialog">
+    <span class="film-shot">
+      <picture><source type="image/webp" srcset="/assets/films/livingbrain-poster-480.webp 480w, /assets/films/livingbrain-poster-960.webp 960w" sizes="(min-width: 1000px) 380px, (min-width: 600px) 50vw, 100vw"><img src="/assets/films/livingbrain-poster.jpg" width="960" height="540" loading="lazy" decoding="async" alt=""></picture>
+      <span class="film-play" aria-hidden="true"><svg viewBox="0 0 24 24" width="20" height="20" focusable="false"><path d="M7 4.8v14.4L19.2 12z" fill="currentColor"/></svg></span>
+      <span class="film-dur"><span class="vh">Length </span>0:30</span>
+    </span>
+    <span class="film-cap">
+      <span class="film-name"><span class="vh">Play the film: </span>Living Brain</span>
+      <span class="film-title">Living Brain</span>
+      <span class="film-line">A brain for your team.</span>
+    </span>
+  </a></li>
+<li><a class="film-card" href="/assets/films/owlpost-film.mp4" data-film-open="1" data-title="Owlpost" data-venture="Owlpost" data-venture-url="/ventures/owlpost/" data-site="https://owlpost.to/" data-line="Email for apps and agents." data-poster="/assets/films/owlpost-poster-960.webp" aria-haspopup="dialog">
+    <span class="film-shot">
+      <picture><source type="image/webp" srcset="/assets/films/owlpost-poster-480.webp 480w, /assets/films/owlpost-poster-960.webp 960w" sizes="(min-width: 1000px) 380px, (min-width: 600px) 50vw, 100vw"><img src="/assets/films/owlpost-poster.jpg" width="960" height="540" loading="lazy" decoding="async" alt=""></picture>
+      <span class="film-play" aria-hidden="true"><svg viewBox="0 0 24 24" width="20" height="20" focusable="false"><path d="M7 4.8v14.4L19.2 12z" fill="currentColor"/></svg></span>
+      <span class="film-dur"><span class="vh">Length </span>0:30</span>
+    </span>
+    <span class="film-cap">
+      <span class="film-name"><span class="vh">Play the film: </span>Owlpost</span>
+      <span class="film-title">Owlpost</span>
+      <span class="film-line">Email for apps and agents.</span>
+    </span>
+  </a></li>
+<li><a class="film-card" href="/assets/films/shoal-film.mp4" data-film-open="2" data-title="Shoal" data-venture="Shoal" data-venture-url="/ventures/shoal/" data-site="https://shoal.ing/" data-line="Rehearse your launch." data-poster="/assets/films/shoal-poster-960.webp" aria-haspopup="dialog">
+    <span class="film-shot">
+      <picture><source type="image/webp" srcset="/assets/films/shoal-poster-480.webp 480w, /assets/films/shoal-poster-960.webp 960w" sizes="(min-width: 1000px) 380px, (min-width: 600px) 50vw, 100vw"><img src="/assets/films/shoal-poster.jpg" width="960" height="540" loading="lazy" decoding="async" alt=""></picture>
+      <span class="film-play" aria-hidden="true"><svg viewBox="0 0 24 24" width="20" height="20" focusable="false"><path d="M7 4.8v14.4L19.2 12z" fill="currentColor"/></svg></span>
+      <span class="film-dur"><span class="vh">Length </span>0:30</span>
+    </span>
+    <span class="film-cap">
+      <span class="film-name"><span class="vh">Play the film: </span>Shoal</span>
+      <span class="film-title">Shoal</span>
+      <span class="film-line">Rehearse your launch.</span>
+    </span>
+  </a></li>
+<li><a class="film-card" href="/assets/films/rateclaim-film.mp4" data-film-open="3" data-title="ratecla.im" data-venture="ratecla.im" data-venture-url="/ventures/ratecla-im/" data-site="https://ratecla.im/" data-line="The rate they don’t publish." data-poster="/assets/films/rateclaim-poster-960.webp" aria-haspopup="dialog">
+    <span class="film-shot">
+      <picture><source type="image/webp" srcset="/assets/films/rateclaim-poster-480.webp 480w, /assets/films/rateclaim-poster-960.webp 960w" sizes="(min-width: 1000px) 380px, (min-width: 600px) 50vw, 100vw"><img src="/assets/films/rateclaim-poster.jpg" width="960" height="540" loading="lazy" decoding="async" alt=""></picture>
+      <span class="film-play" aria-hidden="true"><svg viewBox="0 0 24 24" width="20" height="20" focusable="false"><path d="M7 4.8v14.4L19.2 12z" fill="currentColor"/></svg></span>
+      <span class="film-dur"><span class="vh">Length </span>0:30</span>
+    </span>
+    <span class="film-cap">
+      <span class="film-name"><span class="vh">Play the film: </span>ratecla.im</span>
+      <span class="film-title">ratecla.im</span>
+      <span class="film-line">The rate they don’t publish.</span>
+    </span>
+  </a></li>
+<li><a class="film-card" href="/assets/films/kontinuum-v3.mp4" data-film-open="4" data-title="Kontinuum" data-venture="Kontinuum" data-venture-url="/ventures/kontinuum/" data-site="https://kontinuum.audio/" data-line="A new way of producing." data-poster="/assets/films/kontinuum-v3-poster-960.webp" aria-haspopup="dialog">
+    <span class="film-shot">
+      <picture><source type="image/webp" srcset="/assets/films/kontinuum-v3-poster-480.webp 480w, /assets/films/kontinuum-v3-poster-960.webp 960w" sizes="(min-width: 1000px) 380px, (min-width: 600px) 50vw, 100vw"><img src="/assets/films/kontinuum-v3-poster.jpg" width="960" height="540" loading="lazy" decoding="async" alt=""></picture>
+      <span class="film-play" aria-hidden="true"><svg viewBox="0 0 24 24" width="20" height="20" focusable="false"><path d="M7 4.8v14.4L19.2 12z" fill="currentColor"/></svg></span>
+      <span class="film-dur"><span class="vh">Length </span>0:48</span>
+    </span>
+    <span class="film-cap">
+      <span class="film-name"><span class="vh">Play the film: </span>Kontinuum</span>
+      <span class="film-title">Kontinuum</span>
+      <span class="film-line">A new way of producing.</span>
+    </span>
+  </a></li>
+<li><a class="film-card" href="/assets/films/kontinuum-djs-film.mp4" data-film-open="5" data-title="Kontinuum for DJs and producers" data-venture="Kontinuum" data-venture-url="/ventures/kontinuum/" data-site="https://kontinuum.audio/" data-line="Your decks are still composing." data-poster="/assets/films/kontinuum-djs-poster-960.webp" aria-haspopup="dialog">
+    <span class="film-shot">
+      <picture><source type="image/webp" srcset="/assets/films/kontinuum-djs-poster-480.webp 480w, /assets/films/kontinuum-djs-poster-960.webp 960w" sizes="(min-width: 1000px) 380px, (min-width: 600px) 50vw, 100vw"><img src="/assets/films/kontinuum-djs-poster.jpg" width="960" height="540" loading="lazy" decoding="async" alt=""></picture>
+      <span class="film-play" aria-hidden="true"><svg viewBox="0 0 24 24" width="20" height="20" focusable="false"><path d="M7 4.8v14.4L19.2 12z" fill="currentColor"/></svg></span>
+      <span class="film-dur"><span class="vh">Length </span>0:30</span>
+    </span>
+    <span class="film-cap">
+      <span class="film-name"><span class="vh">Play the film: </span>Kontinuum for DJs and producers</span>
+      <span class="film-title">Kontinuum</span>
+      <span class="film-line">Your decks are still composing.</span>
+    </span>
+  </a></li>
+<li><a class="film-card" href="/assets/films/colonizer-promo.mp4" data-film-open="6" data-title="Colonizer" data-venture="Colonizer" data-venture-url="/ventures/colonizer/" data-site="https://colonizer.dev/" data-line="Colonize your backlog." data-poster="/assets/films/colonizer-poster-960.webp" aria-haspopup="dialog">
+    <span class="film-shot">
+      <picture><source type="image/webp" srcset="/assets/films/colonizer-poster-480.webp 480w, /assets/films/colonizer-poster-960.webp 960w" sizes="(min-width: 1000px) 380px, (min-width: 600px) 50vw, 100vw"><img src="/assets/films/colonizer-poster.jpg" width="960" height="540" loading="lazy" decoding="async" alt=""></picture>
+      <span class="film-play" aria-hidden="true"><svg viewBox="0 0 24 24" width="20" height="20" focusable="false"><path d="M7 4.8v14.4L19.2 12z" fill="currentColor"/></svg></span>
+      <span class="film-dur"><span class="vh">Length </span>0:40</span>
+    </span>
+    <span class="film-cap">
+      <span class="film-name"><span class="vh">Play the film: </span>Colonizer</span>
+      <span class="film-title">Colonizer</span>
+      <span class="film-line">Colonize your backlog.</span>
+    </span>
+  </a></li>
+<li><a class="film-card" href="/assets/films/yoginini-promo-v2.mp4" data-film-open="7" data-title="Yoginini" data-venture="Yoginini" data-venture-url="/ventures/yoginini/" data-site="https://yoginini.us/" data-line="A yoga teacher who can see you." data-poster="/assets/films/yoginini-poster-v2-960.webp" aria-haspopup="dialog">
+    <span class="film-shot">
+      <picture><source type="image/webp" srcset="/assets/films/yoginini-poster-v2-480.webp 480w, /assets/films/yoginini-poster-v2-960.webp 960w" sizes="(min-width: 1000px) 380px, (min-width: 600px) 50vw, 100vw"><img src="/assets/films/yoginini-poster-v2.jpg" width="960" height="540" loading="lazy" decoding="async" alt=""></picture>
+      <span class="film-play" aria-hidden="true"><svg viewBox="0 0 24 24" width="20" height="20" focusable="false"><path d="M7 4.8v14.4L19.2 12z" fill="currentColor"/></svg></span>
+      <span class="film-dur"><span class="vh">Length </span>0:41</span>
+    </span>
+    <span class="film-cap">
+      <span class="film-name"><span class="vh">Play the film: </span>Yoginini</span>
+      <span class="film-title">Yoginini</span>
+      <span class="film-line">A yoga teacher who can see you.</span>
+    </span>
+  </a></li>
+<li><a class="film-card" href="/assets/films/posplug-promo-v2.mp4" data-film-open="8" data-title="PosPlugin" data-venture="PosPlugin" data-venture-url="/ventures/posplugin/" data-site="https://posplug.in/" data-line="Any POS. One API." data-poster="/assets/films/posplug-promo-poster-960.webp" aria-haspopup="dialog">
+    <span class="film-shot">
+      <picture><source type="image/webp" srcset="/assets/films/posplug-promo-poster-480.webp 480w, /assets/films/posplug-promo-poster-960.webp 960w" sizes="(min-width: 1000px) 380px, (min-width: 600px) 50vw, 100vw"><img src="/assets/films/posplug-promo-poster.jpg" width="960" height="540" loading="lazy" decoding="async" alt=""></picture>
+      <span class="film-play" aria-hidden="true"><svg viewBox="0 0 24 24" width="20" height="20" focusable="false"><path d="M7 4.8v14.4L19.2 12z" fill="currentColor"/></svg></span>
+      <span class="film-dur"><span class="vh">Length </span>0:47</span>
+    </span>
+    <span class="film-cap">
+      <span class="film-name"><span class="vh">Play the film: </span>PosPlugin</span>
+      <span class="film-title">PosPlugin</span>
+      <span class="film-line">Any POS. One API.</span>
+    </span>
+  </a></li>
+<li><a class="film-card" href="/assets/films/ledgers-promo-v2.mp4" data-film-open="9" data-title="ledgers.sh" data-venture="Ledgers" data-venture-url="/ventures/ledgers/" data-site="https://ledgers.sh/" data-line="Agents do the books. People keep control." data-poster="/assets/films/ledgers-poster-960.webp" aria-haspopup="dialog">
+    <span class="film-shot">
+      <picture><source type="image/webp" srcset="/assets/films/ledgers-poster-480.webp 480w, /assets/films/ledgers-poster-960.webp 960w" sizes="(min-width: 1000px) 380px, (min-width: 600px) 50vw, 100vw"><img src="/assets/films/ledgers-poster.jpg" width="960" height="540" loading="lazy" decoding="async" alt=""></picture>
+      <span class="film-play" aria-hidden="true"><svg viewBox="0 0 24 24" width="20" height="20" focusable="false"><path d="M7 4.8v14.4L19.2 12z" fill="currentColor"/></svg></span>
+      <span class="film-dur"><span class="vh">Length </span>0:43</span>
+    </span>
+    <span class="film-cap">
+      <span class="film-name"><span class="vh">Play the film: </span>ledgers.sh</span>
+      <span class="film-title">Ledgers</span>
+      <span class="film-line">Agents do the books. People keep control.</span>
+    </span>
+  </a></li>
+<li><a class="film-card" href="/assets/films/cratefield-promo.mp4" data-film-open="10" data-title="Cratefield" data-venture="Cratefield" data-venture-url="/ventures/cratefield/" data-site="https://cratefield.com/" data-line="The boring 70% of a backend, in about a minute." data-poster="/assets/films/cratefield-poster-960.webp" aria-haspopup="dialog">
+    <span class="film-shot">
+      <picture><source type="image/webp" srcset="/assets/films/cratefield-poster-480.webp 480w, /assets/films/cratefield-poster-960.webp 960w" sizes="(min-width: 1000px) 380px, (min-width: 600px) 50vw, 100vw"><img src="/assets/films/cratefield-poster.jpg" width="960" height="540" loading="lazy" decoding="async" alt=""></picture>
+      <span class="film-play" aria-hidden="true"><svg viewBox="0 0 24 24" width="20" height="20" focusable="false"><path d="M7 4.8v14.4L19.2 12z" fill="currentColor"/></svg></span>
+      <span class="film-dur"><span class="vh">Length </span>1:00</span>
+    </span>
+    <span class="film-cap">
+      <span class="film-name"><span class="vh">Play the film: </span>Cratefield</span>
+      <span class="film-title">Cratefield</span>
+      <span class="film-line">The boring 70% of a backend, in about a minute.</span>
+    </span>
+  </a></li>
+<li><a class="film-card" href="/assets/films/supportgenius-promo.mp4" data-film-open="11" data-title="SupportGenius" data-venture="SupportGenius" data-venture-url="/ventures/supportgenius/" data-site="https://supportgeni.us/" data-line="Support that answers." data-poster="/assets/films/supportgenius-poster-960.webp" aria-haspopup="dialog">
+    <span class="film-shot">
+      <picture><source type="image/webp" srcset="/assets/films/supportgenius-poster-480.webp 480w, /assets/films/supportgenius-poster-960.webp 960w" sizes="(min-width: 1000px) 380px, (min-width: 600px) 50vw, 100vw"><img src="/assets/films/supportgenius-poster.jpg" width="960" height="540" loading="lazy" decoding="async" alt=""></picture>
+      <span class="film-play" aria-hidden="true"><svg viewBox="0 0 24 24" width="20" height="20" focusable="false"><path d="M7 4.8v14.4L19.2 12z" fill="currentColor"/></svg></span>
+      <span class="film-dur"><span class="vh">Length </span>0:44</span>
+    </span>
+    <span class="film-cap">
+      <span class="film-name"><span class="vh">Play the film: </span>SupportGenius</span>
+      <span class="film-title">SupportGenius</span>
+      <span class="film-line">Support that answers.</span>
+    </span>
+  </a></li>
+<li><a class="film-card" href="/assets/films/findsyou-promo.mp4" data-film-open="12" data-title="FindsYou" data-venture="FindsYou.work" data-venture-url="/ventures/findsyou-work/" data-site="https://findsyou.work/" data-line="Stop looking. It finds you work." data-poster="/assets/films/findsyou-poster-960.webp" aria-haspopup="dialog">
+    <span class="film-shot">
+      <picture><source type="image/webp" srcset="/assets/films/findsyou-poster-480.webp 480w, /assets/films/findsyou-poster-960.webp 960w" sizes="(min-width: 1000px) 380px, (min-width: 600px) 50vw, 100vw"><img src="/assets/films/findsyou-poster.jpg" width="960" height="540" loading="lazy" decoding="async" alt=""></picture>
+      <span class="film-play" aria-hidden="true"><svg viewBox="0 0 24 24" width="20" height="20" focusable="false"><path d="M7 4.8v14.4L19.2 12z" fill="currentColor"/></svg></span>
+      <span class="film-dur"><span class="vh">Length </span>0:45</span>
+    </span>
+    <span class="film-cap">
+      <span class="film-name"><span class="vh">Play the film: </span>FindsYou</span>
+      <span class="film-title">FindsYou.work</span>
+      <span class="film-line">Stop looking. It finds you work.</span>
+    </span>
+  </a></li>
+<li><a class="film-card" href="/assets/films/grooveguru-promo.mp4" data-film-open="13" data-title="Groove Guru" data-venture="Groove Guru" data-venture-url="/ventures/groove-guru/" data-site="https://groove.guru/" data-line="Hear your mix before the room does." data-poster="/assets/films/grooveguru-poster-960.webp" aria-haspopup="dialog">
+    <span class="film-shot">
+      <picture><source type="image/webp" srcset="/assets/films/grooveguru-poster-480.webp 480w, /assets/films/grooveguru-poster-960.webp 960w" sizes="(min-width: 1000px) 380px, (min-width: 600px) 50vw, 100vw"><img src="/assets/films/grooveguru-poster.jpg" width="960" height="540" loading="lazy" decoding="async" alt=""></picture>
+      <span class="film-play" aria-hidden="true"><svg viewBox="0 0 24 24" width="20" height="20" focusable="false"><path d="M7 4.8v14.4L19.2 12z" fill="currentColor"/></svg></span>
+      <span class="film-dur"><span class="vh">Length </span>0:49</span>
+    </span>
+    <span class="film-cap">
+      <span class="film-name"><span class="vh">Play the film: </span>Groove Guru</span>
+      <span class="film-title">Groove Guru</span>
+      <span class="film-line">Hear your mix before the room does.</span>
+    </span>
+  </a></li>
+<li><a class="film-card" href="/assets/films/sealbin-promo.mp4" data-film-open="14" data-title="sealb.in" data-venture="Sealbin" data-venture-url="/ventures/sealbin/" data-site="https://sealb.in/" data-line="The sealed handoff between agents." data-poster="/assets/films/sealbin-poster-960.webp" aria-haspopup="dialog">
+    <span class="film-shot">
+      <picture><source type="image/webp" srcset="/assets/films/sealbin-poster-480.webp 480w, /assets/films/sealbin-poster-960.webp 960w" sizes="(min-width: 1000px) 380px, (min-width: 600px) 50vw, 100vw"><img src="/assets/films/sealbin-poster.jpg" width="960" height="540" loading="lazy" decoding="async" alt=""></picture>
+      <span class="film-play" aria-hidden="true"><svg viewBox="0 0 24 24" width="20" height="20" focusable="false"><path d="M7 4.8v14.4L19.2 12z" fill="currentColor"/></svg></span>
+      <span class="film-dur"><span class="vh">Length </span>0:39</span>
+    </span>
+    <span class="film-cap">
+      <span class="film-name"><span class="vh">Play the film: </span>sealb.in</span>
+      <span class="film-title">Sealbin</span>
+      <span class="film-line">The sealed handoff between agents.</span>
+    </span>
+  </a></li>
   </ul>
+<dialog class="fz-player" id="fz-player" aria-labelledby="fzp-title">
+  <div class="fzp-frame">
+    <div class="fzp-top">
+      <p class="fzp-count" id="fzp-count" aria-live="polite"></p>
+      <button class="fzp-close" type="button" data-fzp-close>Close <span aria-hidden="true">&times;</span></button>
+    </div>
+    <div class="fzp-stage"><video class="fzp-video" controls playsinline preload="none"></video></div>
+    <div class="fzp-info">
+      <div>
+        <p class="fzp-title" id="fzp-title"></p>
+        <p class="fzp-meta"><a class="fzp-venture" id="fzp-venture" href="/ventures/"></a><span id="fzp-line"></span></p>
+      </div>
+      <div class="fzp-actions">
+        <a class="fzp-btn" id="fzp-site" href="/" rel="noopener">Visit site <span aria-hidden="true">&rarr;</span></a>
+        <button class="fzp-btn" type="button" data-fzp-prev aria-label="Previous film"><span aria-hidden="true">&larr;</span><span class="fzp-lbl">Previous</span></button>
+        <button class="fzp-btn" type="button" data-fzp-next aria-label="Next film"><span class="fzp-lbl">Next</span><span aria-hidden="true">&rarr;</span></button>
+      </div>
+    </div>
+  </div>
+</dialog>
 <!-- fz:films:end -->
   </div>
 </section>

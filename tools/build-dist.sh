@@ -9,7 +9,8 @@ rm -rf dist
 mkdir -p dist
 
 # top-level files
-for f in index.html 404.html robots.txt sitemap.xml llms.txt stack.json site.webmanifest _headers _redirects; do
+# _routes.json: only /api/* runs the Pages Functions Worker; every other path is served from the asset cache.
+for f in index.html 404.html robots.txt sitemap.xml llms.txt stack.json site.webmanifest _headers _redirects _routes.json; do
   cp "$f" dist/
 done
 
