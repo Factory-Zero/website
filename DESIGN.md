@@ -93,6 +93,7 @@ compete. The orange of the previous system is retired.
 | Couplets | `.couplets .couplet .was` | struck-through "before" vs "after" |
 | Levels | `ol.levels > li.level(.is-target) .level-n .level-name .level-bar i.on` | autonomy levels |
 | Image band | `section.band > img` (`data-rv` zooms it in) | generated imagery between sections |
+| Chip band | `section.chip-band > .cb-layer(.cb-board, .cb-traces, .cb-pair, .cb-die)` with `[data-cb-layer data-speed]` | home, between the ventures grid and the five layers; three parallax layers over an SVG circuit-trace overlay with travelling pulses; 12% overscan top and bottom, transform only, fades into the page at both ends |
 | Films | `.films-grid > li > figure.film`, `.film-cap .film-name .film-title .film-line` | written by `sync-ventures.js` |
 | Panel | `.panel .panel-head .rec` | live log (`.log .log-line`) and the authors chart |
 | Timeline | `.tl .tl-scroll .tl-svg …` | ported from the previous system, new palette |
@@ -128,6 +129,11 @@ compete. The orange of the previous system is retired.
 - Hover: cards lift their icon 3px and draw a lime inset hairline with a soft glow; buttons
   swap to lime; arrows nudge 3px.
 - Floating hero cards drift ±6px over 9–11s.
+- Chip band (home): `fz-ui.js` moves each `[data-cb-layer]` by `transform` only, by its `data-speed`
+  (board 0.5, traces 0.75, chip pair 1, chip die 1.35, clamped to the 12% overscan), from one rAF-throttled
+  scroll handler that runs only while the band is within 200px of the viewport. The pulses (`.cb-pulse`,
+  `stroke-dashoffset`) and the chip glow run only while `.is-live`. Reduced motion and Save-Data add
+  `.is-still`: a static composite, no transforms, no pulses.
 - `prefers-reduced-motion: reduce` kills every animation and transition and hides the video.
 
 ## Imagery
@@ -144,11 +150,19 @@ Shared style suffix for every image prompt:
 |---|---|---|
 | `hero.webp`, `hero-960.webp`, `hero-poster.jpg` | first frame of the loop below | MiniMax-Hailuo-2.3 |
 | source still for the loop | A quiet miniature factory: dozens of small matte black clay cubes and crates stacked into towers and rows on a black plinth, a few cubes lifted mid-air as if being assembled, the lime wireframe mesh flowing across the central tower. Composition weighted to the right, empty dark space on the left. | MiniMax image-01, 16:9 |
-| `layers.webp` | Five thick black clay slabs stacked with small gaps between them like floors of a building, each slab slightly offset, the lime wireframe tracing their edges and connecting them with thin vertical lines. Centered. | MiniMax image-01, 16:9 |
 | `films.webp` | A sculptural black clay film reel and a camera lens form lying on a black surface, the lime wireframe mesh swirling out of the lens like light. | MiniMax image-01, 16:9 |
 | `ventures.webp` | A grid of rounded-square black clay tiles like app icons standing upright on a black floor in perfect rows, a few tiles glowing with the lime wireframe mesh. | MiniMax image-01, 16:9 |
 | `cta.webp` | A wide horizon of many small black clay crates in a grid receding into darkness, one crate in the foreground open and glowing with the lime wireframe mesh rising from it. Wide panoramic. | MiniMax image-01, 21:9 |
+| `chips-board-{960,1920}.webp` (back layer) | Top-down wide macro shot of a matte black printed circuit board with a fine network of thin neon-lime traces (pure lime, not green, no orange, no copper), tiny glowing lime solder pads and vias, the traces fading into black darkness toward the edges, clean and graphic, slight depth of field. Matte black, hairline-lit, minimal, calm, high detail, deep near-black background, a thin neon-lime (#C6FF3D) accent light as the only colour, generous negative space. No text, no letters, no logos, no people. | MiniMax image-01, 21:9 (then lime duotone, below) |
+| `chips-pair-{960,1920}.webp` (mid layer, screened) | Two black square AI processor chips on a pure black background, slightly isometric three-quarter view, matte black die with fine lime-lit edges and rows of thin metallic pins, one chip larger in the foreground, the other smaller and further back, lime rim light on their edges, pure black background (#000000) so it can be blended. + the style suffix above | MiniMax image-01, 21:9 (then lime duotone) |
+| `chips-die-{960,1920}.webp` (front layer, screened) | A single square black processor die with a glowing neon-lime circuit pattern etched on its surface, small chiplets around it, slight isometric angle, pins along the bottom edge, pure black background (#000000) for blending. + the style suffix above | MiniMax image-01, 21:9 (then lime duotone) |
+| `chips` loop (not made) | Hailuo 6 s loop from the board still with light pulses along the traces, forward and reversed. Skipped in this pass; the SVG pulses carry the motion. | MiniMax-Hailuo-2.3 (not generated) |
 | `hero-loop.webm`, `hero-loop.mp4` | image-to-video from the hero still: "[Static shot] The camera does not move. The neon-lime wireframe mesh slowly pulses and flows upward along the tower like light, a few small black cubes drift very slowly in the air above the plinth and settle, subtle dust in the light. Calm, slow, minimal motion, everything else still. No text, no people." 6 s 1080P, played forward then reversed for a seamless 11.6 s loop, 1600px, no audio (VP9 crf 40 / H.264 crf 27) | MiniMax-Hailuo-2.3 |
+
+Chip band colour treatment: the MiniMax outputs carry a green cast, so each is graded to lime. The
+luminance is mapped black to `#C6FF3D` (the board onto the ground `#0A0B0A`, the two chip layers onto
+pure black so `mix-blend-mode: screen` drops their background), with a small black-point lift so the
+background is exactly black. Encoded with `cwebp -q 74`; the 1920 layers are 11 to 14 KB, the 960s 4 to 6 KB.
 
 Credit (in the footer): "Images: MiniMax image-01 · motion: MiniMax Hailuo-2.3".
 

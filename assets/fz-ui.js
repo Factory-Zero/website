@@ -2,6 +2,7 @@
    - scroll reveal and count-up (only below the fold, and only once JS runs)
    - the home films: poster cards open one shared player
    - the hero loop video (never with reduced motion or data saver)
+   - the home chip band: parallax layers, transform only (static with reduced motion or Save-Data)
    - venture grid filters and search
    - the home page's live GitHub log, merged-PR count and authors chart
    Everything degrades to the static HTML, which is complete on its own. */
@@ -92,6 +93,45 @@
       idle(start, { timeout: 2000 });
     };
     if (document.readyState === 'complete') later(); else window.addEventListener('load', later, { once: true });
+  }
+
+  /* ---------- chip band: parallax layers (board, traces, chip pair, chip die) ----------
+     Each layer is moved by transform only, by its data-speed (nearer layers move more).
+     One rAF-throttled scroll handler; it runs only while the band is near the viewport.
+     Reduced motion and Save-Data keep the static composite (is-still): no transforms. */
+  var chip = document.querySelector('[data-chip-band]');
+  if (chip) {
+    if (calm || saveData || !('IntersectionObserver' in window)) {
+      chip.classList.add('is-still');
+    } else {
+      var cLayers = $$('[data-cb-layer]', chip);
+      var overscan = 0, live = false, queued = false;
+      var measure = function () { overscan = chip.offsetHeight * 0.12; };
+      var paint = function () {
+        queued = false;
+        if (!live) return;
+        var r = chip.getBoundingClientRect();
+        var vh = window.innerHeight || root.clientHeight;
+        // c is 0 when the band is centred in the viewport, about +1 when it enters at the bottom
+        var c = (r.top + r.height / 2 - vh / 2) / vh;
+        cLayers.forEach(function (l) {
+          var k = Math.max(-1, Math.min(1, c * Number(l.getAttribute('data-speed'))));
+          l.style.transform = 'translate3d(0,' + (k * overscan).toFixed(1) + 'px,0)';
+        });
+      };
+      var queue = function () { if (live && !queued) { queued = true; requestAnimationFrame(paint); } };
+      measure();
+      window.addEventListener('scroll', queue, { passive: true });
+      window.addEventListener('resize', function () { measure(); queue(); }, { passive: true });
+      new IntersectionObserver(function (es) {
+        es.forEach(function (e) {
+          live = e.isIntersecting;
+          chip.classList.toggle('is-live', live);
+          if (live) queue();
+          else cLayers.forEach(function (l) { l.style.transform = ''; });
+        });
+      }, { rootMargin: '200px 0px' }).observe(chip);
+    }
   }
 
   /* ---------- films: poster cards open one shared player ---------- */
