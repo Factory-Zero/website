@@ -200,9 +200,11 @@ button, input { font: inherit; color: inherit; }
 .hb-cut { color: rgba(0, 0, 0, .6); transition: color .6s var(--ease); }
 .hb.is-lit .hb-cut { color: rgba(198, 255, 61, .26); }
 .hb.is-lit .hb-rim { color: rgba(198, 255, 61, .7); }
-.hb-label { font: 500 14px var(--mono); letter-spacing: .1em; text-transform: uppercase; fill: var(--acc); opacity: 0; transition: opacity .5s var(--ease); }
-.hb.is-lit .hb-label { opacity: 1; }
-@media (prefers-reduced-motion: reduce) { .hb, .hb-edge, .hb-rim, .hb-cut, .hb-label { transition: none; } .hb-caret { animation: none; } }
+.hb-tag { opacity: 0; transition: transform .8s var(--ease), opacity .5s var(--ease); }
+.hb-tag.is-lit { opacity: 1; transform: translateY(-16px); }
+.hb-tag rect { fill: rgba(10, 11, 10, .85); stroke: var(--acc); stroke-width: 1; vector-effect: non-scaling-stroke; }
+.hb-tag text { font: 500 14px var(--mono); letter-spacing: .1em; text-transform: uppercase; fill: var(--acc); }
+@media (prefers-reduced-motion: reduce) { .hb, .hb-edge, .hb-rim, .hb-cut, .hb-tag { transition: none; } .hb-caret { animation: none; } }
 
 @media (min-width: 901px) and (max-height: 820px) {
   .hero--home .display { font-size: clamp(40px, 4.6vw, 64px); }
@@ -217,7 +219,7 @@ button, input { font: inherit; color: inherit; }
 }
 @media (max-width: 760px) {
   .hero--home .hero-in { padding-top: 40px; }
-  .hb-label { display: none; }
+  .hb-tag { display: none; }
   .hb-typed { font-size: 14px; }
   .hb-scene.has-lit .hb.is-lit { transform: translateY(-8px); }
   .hero-offer { grid-template-columns: minmax(0, 1fr); }

@@ -67,7 +67,7 @@
   if (scene && PROMPTS.length && !calm && !saveData) {
     var typed = scene.querySelector('[data-typed]');
     var built = scene.querySelector('[data-built]');
-    var blocks = [].slice.call(scene.querySelectorAll('.hb'));
+    var blocks = [].slice.call(scene.querySelectorAll('.hb, .hb-tag'));
     var inView = false, paused = false, timer = 0, nextFn = null, idx = 0, cur = null, n = 0;
     var ready = function () { return inView && !paused && !document.hidden; };
     var go = function (ms, fn) { nextFn = fn; if (timer) clearTimeout(timer); timer = setTimeout(tick, ms); };

@@ -76,6 +76,7 @@ function heroScene({ root, stack, slugOf, prompts }) {
   cells.sort((a, b) => (a.i + a.j) - (b.i + b.j) || a.j - b.j);
 
   const names = {};
+  const tags = [];
   cells.forEach(({ id, i, j }, n) => {
     const v = byId.get(id);
     const slug = slugOf(v);
@@ -98,7 +99,11 @@ function heroScene({ root, stack, slugOf, prompts }) {
     const pat = `hb-st-${n}`;
     const px = (n * 97) % 200, py = (n * 131) % 200;
     patterns.push(`<pattern id="${pat}" patternUnits="userSpaceOnUse" x="${px}" y="${py}" width="200" height="200"><image href="/assets/ui/block-stone.webp" width="200" height="200" preserveAspectRatio="none"/></pattern>`);
-    const lx = P((x0 + x1) / 2, y1, 0);
+    // The name tag sits above the top face, in a top layer drawn after every block.
+    const cc = P((x0 + x1) / 2, (y0 + y1) / 2, h);
+    const tw = v.name.length * 9.8 + 18, tx = cc[0], ty = cc[1] - 30;
+    tags.push({ id, name: v.name, x: tx, y: ty, w: tw });
+    boxes.push([tx - tw / 2, ty - 12], [tx + tw / 2, ty + 12]);
     blocks.push(`    <g class="hb" data-venture="${esc(id)}" data-name="${esc(v.name)}">
       <a href="/ventures/${esc(slug)}/" tabindex="-1">
         <polygon class="hb-face hb-left" points="${pts(left)}" fill="#1b1e1b"/><polygon class="hb-tex" points="${pts(left)}" fill="url(#${pat})"/><polygon class="hb-shade" points="${pts(left)}" fill="rgba(0,0,0,.2)"/>
@@ -110,7 +115,6 @@ function heroScene({ root, stack, slugOf, prompts }) {
           <use class="hb-cut" href="#${sid}" x="${mo}" y="${mo}" width="${mk}" height="${mk}"/>
         </g>
       </a>
-      <text class="hb-label" x="${lx[0]}" y="${lx[1] + 22}" text-anchor="middle">${esc(v.name)}</text>
     </g>`);
   });
 
@@ -126,6 +130,7 @@ function heroScene({ root, stack, slugOf, prompts }) {
   </defs>
   ${plate}
 ${blocks.join('\n')}
+<g class="hb-tags">${tags.map(t => `<g class="hb-tag" data-venture="${esc(t.id)}"><rect x="${num(t.x - t.w / 2)}" y="${num(t.y - 12)}" width="${num(t.w)}" height="24"/><text x="${num(t.x)}" y="${num(t.y + 1)}" text-anchor="middle" dominant-baseline="central">${esc(t.name)}</text></g>`).join('')}</g>
 </svg>`;
 
   // The first prompt is what the static page shows, with its blocks lit.
@@ -139,7 +144,7 @@ ${blocks.join('\n')}
       <span class="hb-chev" aria-hidden="true">&rsaquo;</span>
       <p class="hb-typed" aria-live="off"><span data-typed>${esc(first.text)}</span><span class="hb-caret" aria-hidden="true"></span></p>
     </div>
-${svg.replace(/<g class="hb" data-venture="([^"]+)"/g, (m, id) => litAtStart.has(id) ? `<g class="hb is-lit" data-venture="${id}"` : m)}
+${svg.replace(/<g class="(hb|hb-tag)" data-venture="([^"]+)"/g, (m, cls, id) => litAtStart.has(id) ? `<g class="${cls} is-lit" data-venture="${id}"` : m)}
     <p class="hb-built" aria-live="off" data-built>${esc(built)}</p>
   </div>`;
   return { html, names };
