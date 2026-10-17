@@ -648,6 +648,7 @@ window.FZ_DATA = {
     { id: 'supportgenius', venture: 'FZ-008', title: 'SupportGenius', caption: 'Support that answers.', video: 'supportgenius-promo.mp4', poster: 'supportgenius-poster.jpg', duration: 44 },
     { id: 'findsyou', venture: 'FZ-007', title: 'FindsYou', caption: 'Stop looking. It finds you work.', video: 'findsyou-promo.mp4', poster: 'findsyou-poster.jpg', duration: 45 },
     { id: 'grooveguru', venture: 'FZ-010', title: 'Groove Guru', caption: 'Hear your mix before the room does.', video: 'grooveguru-promo.mp4', poster: 'grooveguru-poster.jpg', duration: 49 },
+    { id: 'squeezin', venture: 'FZ-023', title: 'Squeezin', caption: 'Shorten any link. Free, no ads.', video: 'squeezin-promo.mp4', poster: 'squeezin-poster.jpg', duration: 41 },
     { id: 'sealbin', venture: 'FZ-016', title: 'sealb.in', caption: 'The sealed handoff between agents.', video: 'sealbin-promo.mp4', poster: 'sealbin-poster.jpg', duration: 39 }
   ],
 };
