@@ -70,6 +70,7 @@
       cards.forEach(function (c) {
         var ok = f === 'all' ||
           (f === 'stack' && c.dataset.stack === '1') ||
+          (f === 'os' && c.dataset.os === '1') ||
           (f.indexOf('stage:') === 0 && c.dataset.stage === f.slice(6));
         if (ok && q) ok = c.dataset.q.indexOf(q) !== -1;
         c.parentNode.hidden = !ok;
@@ -88,6 +89,7 @@
     if (reset) reset.addEventListener('click', function () { if (input) input.value = ''; set('all'); });
     // /ventures/?stack=1 arrives with the FZ stack filter on (the stack page links here)
     if (/[?&]stack=1\b/.test(location.search)) set('stack');
+    if (/[?&]os=1\b/.test(location.search)) set('os');
   });
 
   /* ---------- home: live GitHub log + merged PRs ---------- */

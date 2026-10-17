@@ -433,6 +433,7 @@ hs = replaceRegion(hs, 'stats', [
   stat(STACK_V.length, 'On the <b>FZ stack</b>: ventures others build on', 2),
   stat(ON_SISTER, 'Already <b>run on a sister venture</b>, checked live', 3),
   stat(FILMS.length, '<b>Films</b> from the ventures', 4),
+  stat(STACK_V.filter(v => v.open_source).length, `<b>Open source</b>: ${STACK_V.filter(v => v.open_source).length * 2 > STACK_V.length ? 'most' : 'part'} of the FZ stack, ${STACK_V.filter(v => v.open_source).length} of ${STACK_V.length}`, 5),
 ].join('\n'));
 
 // The logo marquee: every venture twice, the copy hidden from assistive tech.
