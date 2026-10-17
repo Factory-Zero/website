@@ -96,17 +96,16 @@ function icon(v, size) {
 
 const ARROW = '<svg viewBox="0 0 16 16" width="12" height="12" aria-hidden="true"><path d="M3 8h9M8 3.5 12.5 8 8 12.5" fill="none" stroke="currentColor" stroke-width="1.5"/></svg>';
 
-// The app-store card. data-* drive the filters in fz-ui.js.
+// The app-store tile: only the venture mark on black. The name, id, category and
+// stage chips sit in an overlay that fades in on hover and focus (on touch the name
+// shows under the tile). The accessible name is the visually hidden name + description.
+// data-* drive the filters in fz-ui.js.
 function vcard(v, { slug, pitch, i = 0 }) {
-  const line = (pitch(v).solution || v.desc || '');
-  const q = [v.name, v.id, v.category, v.stackRole, v.site, line].filter(Boolean).join(' ').toLowerCase();
-  return `<li><a class="vcard" href="/ventures/${slug(v)}/" data-stage="${esc(v.stage)}" data-stack="${v.stack ? 1 : 0}" data-os="${v.open_source ? 1 : 0}" data-cat="${esc(v.category)}" data-q="${esc(q)}" data-rv style="--d:${i % 6}">
-  <span class="vcard-top"><span class="vicon${v.logo ? '' : ' vicon--mono'}">${icon(v, 46)}</span><span class="vid">${esc(v.id)}</span></span>
-  <span class="vname">${esc(v.name)}</span>
-  <span class="vcat">${esc(v.category)}</span>
-  <span class="vdesc">${esc(line)}</span>
-  <span class="chips"><span class="chip">${esc(v.stage)}</span>${v.stack ? `<span class="chip chip--acc">FZ stack</span>` : ''}${v.open_source ? `<span class="chip" title="${esc(v.license || '')} licence">Open source</span>` : ''}</span>
-  <span class="vgo" aria-hidden="true">${ARROW}</span>
+  const line = (pitch(v).solution || v.desc || "");
+  const q = [v.name, v.id, v.category, v.stackRole, v.site, line].filter(Boolean).join(" ").toLowerCase();
+  return `<li><a class="vcard" href="/ventures/${slug(v)}/" data-stage="${esc(v.stage)}" data-stack="${v.stack ? 1 : 0}" data-os="${v.open_source ? 1 : 0}" data-cat="${esc(v.category)}" data-q="${esc(q)}" data-rv style="--d:${i % 6}"><span class="vh">${esc(v.name)}. ${esc(line)}</span>
+  <span class="vicon">${icon(v, 200)}</span>
+  <span class="vover" aria-hidden="true"><span class="vid">${esc(v.id)}</span><span class="vname">${esc(v.name)}</span><span class="vcat">${esc(v.category)}</span><span class="chips"><span class="chip">${esc(v.stage)}</span>${v.stack ? `<span class="chip chip--acc">FZ stack</span>` : ""}${v.open_source ? `<span class="chip" title="${esc(v.license || "")} licence">Open source</span>` : ""}</span></span>
 </a></li>`;
 }
 
