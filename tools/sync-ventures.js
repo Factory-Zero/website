@@ -18,6 +18,31 @@ const V = global.window.FZ_DATA.ventures;
 const SERVICES = global.window.FZ_DATA.services || {};
 const ROLES = global.window.FZ_DATA.roles || {};
 
+// Display filter. The registry keeps every record (stack.json and Living Brain read
+// it), but a venture page, its "Built with" list and its counts never show payment
+// providers, the host or the font service: skipped by role, or by provider name.
+const HIDDEN_ROLES = new Set(['payments', 'psp', 'hosting', 'fonts']);
+const HIDDEN_PROVIDER = /stripe|polar|xendit|hyperswitch|paddle|lemon ?squeezy|paypal|adyen|cloudflare|google[- ]fonts/i;
+// Rendered prose on venture pages (desc, pitch, aims, shown notes) reworded so no
+// vendor name is left. Page copy only: fz-data.js and stack.json keep the originals.
+const PROSE = [
+  [/Cloudflare Workers \(D1, R2, KV, Durable Objects\)/g, 'serverless edge infrastructure (a database, object storage and durable state)'],
+  [/\bCloudflare (accounts?)\b/g, 'cloud $1'],
+  [/Pro on Cloudflare/g, 'Pro hosted in the cloud'],
+  [/or Cloudflare\./g, 'or the internet.'],
+  [/and Cloudflare’s email service\./g, 'and managed edge infrastructure.'],
+  [/GitHub and Stripe/g, 'GitHub and payment records'],
+  [/plain state on Cloudflare/g, 'plain state in the hosted service'],
+  [/a hosted service on Cloudflare\./g, 'a hosted service.'],
+  [/ on Cloudflare\b/g, ' in the cloud'],
+];
+const scrubProse = t => typeof t === 'string' ? PROSE.reduce((x, [re, to]) => x.replace(re, to), t) : t;
+for (const v of V) {
+  if (v.desc) v.desc = scrubProse(v.desc);
+  for (const k of Object.keys(v.pitch || {})) v.pitch[k] = Array.isArray(v.pitch[k]) ? v.pitch[k].map(scrubProse) : scrubProse(v.pitch[k]);
+  for (const k of Object.keys(v.aims || {})) v.aims[k] = scrubProse(v.aims[k]);
+}
+
 const esc = s => String(s == null ? '' : s)
   .replace(/&/g, '&amp;').replace(/</g, '&lt;')
   .replace(/>/g, '&gt;').replace(/"/g, '&quot;');
@@ -103,6 +128,10 @@ function uses(v) {
     };
   });
 }
+// The entries a venture page shows: the display filter applied to uses(v).
+const shownUses = v => uses(v)
+  .filter(u => !HIDDEN_ROLES.has(u.role) && !HIDDEN_PROVIDER.test(`${u.id} ${u.name}`))
+  .map(u => ({ ...u, note: scrubProse(u.note) }));
 // The Factory Zero stack: the ventures other ventures are built on. `stack` is
 // authored in the registry; it must cover every venture that appears in another
 // venture's `uses`, so the label cannot drift from the links.
@@ -136,7 +165,7 @@ for (const f of FILMS) {
 }
 // The rendered list, shared by the static page and (through data-uses) fz-ventures.js.
 const useItem = u => `<li class="use"><span class="use-role">${esc(u.label)}</span><a class="use-name" href="${esc(u.page || u.url)}"${u.page ? '' : ' rel="noopener"'}>${esc(u.name)}</a><span class="use-tag use-tag--${u.status}">${u.status.toUpperCase()}</span>${u.note ? `<span class="use-note">${esc(u.note)}</span>` : ''}</li>`;
-const useList = v => uses(v).length ? `<ul class="uses">${uses(v).map(useItem).join('')}</ul>` : '<span>NOT RECORDED</span>';
+const useList = v => shownUses(v).length ? `<ul class="uses">${shownUses(v).map(useItem).join('')}</ul>` : '<span>NOT RECORDED</span>';
 
 // One venture on the system page's ventures layer: a hairline cell, id and status.
 function chip(v) {
@@ -298,7 +327,7 @@ ${rel.map((o, i) => UI.vcard(o, { slug, pitch, i })).join('\n')}
         data-category="${esc(v.category)}" data-autonomy="${v.autonomy == null ? '' : v.autonomy}"
         data-target="${v.target == null ? '' : v.target}" data-aim-operate="${esc(a.operate)}"
         data-aim-intelligence="${esc(a.intelligence)}" data-aim-growth="${esc(a.growth)}"
-        data-github="${esc(JSON.stringify(gh(v)))}" data-uses="${esc(JSON.stringify(uses(v).map(u => [u.label, u.name, u.page || u.url, u.status, u.note])))}"
+        data-github="${esc(JSON.stringify(gh(v)))}" data-uses="${esc(JSON.stringify(shownUses(v).map(u => [u.label, u.name, u.page || u.url, u.status, u.note])))}"
         data-launched="${esc(v.launched || 'NOT YET')}" data-stage="${esc(v.stage)}" data-site="${esc(v.site)}"
         data-logo="${esc(v.logo || '')}" data-logo-w="${v.logoW || ''}" data-logo-h="${v.logoH || ''}" data-desc="${esc(v.desc)}"
         data-problem="${esc(p.problem)}" data-solution="${esc(p.solution)}" data-how="${esc(JSON.stringify(p.how || []))}"
@@ -331,7 +360,7 @@ ${record}
     <div><dt>Pipeline stage</dt><dd>${esc(v.stage)}</dd></div>
     <div><dt>Sector</dt><dd>${esc(v.category)}</dd></div>
     <div><dt>Autonomy target</dt><dd><span id="d-target">${targetLong(v)}</span>${meter(v.target)}</dd></div>
-    <div><dt>Built with</dt><dd>${uses(v).filter(u => u.status === 'live').length} live &middot; ${uses(v).filter(u => u.status === 'planned').length} planned</dd></div>
+    <div><dt>Built with</dt><dd>${shownUses(v).filter(u => u.status === 'live').length} live &middot; ${shownUses(v).filter(u => u.status === 'planned').length} planned</dd></div>
   </dl>
 
   <div class="app-body">
